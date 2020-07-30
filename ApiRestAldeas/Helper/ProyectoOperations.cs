@@ -19,8 +19,6 @@ namespace ApiRestAldeas.Helper
                 var data = from pro in db.tbProyectos
                            select pro;
 
-
-
                 var proyectos = JsonConvert.SerializeObject(data);
                 return proyectos;
               

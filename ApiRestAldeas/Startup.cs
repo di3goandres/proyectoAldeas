@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ApiRestAldeas.EntityFrame;
 using ApiRestAldeas.Factory;
+using ApiRestAldeas.Helper;
 using ApiRestAldeas.Repositories;
 using ApiRestAldeas.Services;
 using Microsoft.AspNetCore.Builder;
@@ -57,7 +58,8 @@ namespace ApiRestAldeas
             services.AddRouting(options => options.LowercaseUrls = true);
             services.AddScoped(typeof(IContextFactory), typeof(ContextFactory));
             services.AddScoped(typeof(IDataModelRepository), typeof(DataModelRepository));
-
+            // configure DI for application services para el llamado al servicio de 
+            services.AddScoped<IUserService, UserService>();
             services.AddDbContext<Aldeas_Context>();
             services.AddControllers();
         }
@@ -91,6 +93,9 @@ namespace ApiRestAldeas
             {
                 endpoints.MapControllers();
             });
+
+            //para el tema de autorizacion.
+            app.UseMiddleware<JwtMiddleware>();
 
             string swaggerEndPoint = Configuration.GetSection("SwaggerMap").GetSection("EndPoint").Value;
             app.UseSwagger();

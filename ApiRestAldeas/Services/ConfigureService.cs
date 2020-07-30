@@ -1,4 +1,5 @@
 ﻿using System;
+using ApiRestAldeas.Entities;
 using ApiRestAldeas.Repositories;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.Extensions.Configuration;
@@ -18,7 +19,10 @@ namespace ApiRestAldeas.Services
             {
                 var connexion = Configuration.GetSection("ConnectionDB");
                 services.Configure<ConnectionDB>(Configuration.GetSection("ConnectionDB"));
-               
+                services.Configure<Token>(Configuration.GetSection("Token"));
+                services.Configure<LdapConfig>(Configuration.GetSection("Ldap"));
+
+
             }
         }
         

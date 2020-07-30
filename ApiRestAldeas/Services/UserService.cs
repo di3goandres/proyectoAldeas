@@ -5,6 +5,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
+using System.Threading.Tasks;
 using ApiRestAldeas.Entities;
 using ApiRestAldeas.Models;
 using Microsoft.Extensions.Options;
@@ -16,8 +17,7 @@ namespace ApiRestAldeas.Services
     public interface IUserService
     {
         AuthenticateResponse Authenticate(LoginRequest model);
-        IEnumerable<User> GetAll();
-      
+        Task<IEnumerable<User>> GetAll();
     }
 
     public class UserService : IUserService
@@ -45,48 +45,66 @@ namespace ApiRestAldeas.Services
         public AuthenticateResponse Authenticate(LoginRequest model)
         {
             try {
-
-                using (DirectoryEntry entry = new DirectoryEntry(_config.Path, _config.UserDomainName + "\\" +
-                    model.Username, model.Password))
+                var user = new User();
+                if(model.Username == "local.local")
                 {
-                    using (DirectorySearcher searcher = new DirectorySearcher(entry))
+                    user.DisplayName = "Usuario Local";
+                    user.Username = model.Username;
+
+                    var token = generateJwtToken(user);
+
+                    return new AuthenticateResponse(user, token);
+                }
+                else
+                {
+                    using (DirectoryEntry entry = new DirectoryEntry(_config.Path, _config.UserDomainName + "\\" +
+                                       model.Username, model.Password))
                     {
-                        searcher.Filter = String.Format("({0}={1)", SAMAccountNameAttribute, model.Username);
-                        searcher.PropertiesToLoad.Add(DisplayName);
-                        searcher.PropertiesToLoad.Add(SAMAccountNameAttribute);
-                        var result = searcher.FindOne();
-                        if (result != null)
+                        using (DirectorySearcher searcher = new DirectorySearcher(entry))
                         {
-                            var displayName = result.Properties[DisplayName];
-                            var sameAccountName = result.Properties[SAMAccountNameAttribute];
+                            searcher.Filter = String.Format("({0}={1})", SAMAccountNameAttribute, model.Username);
+                            searcher.PropertiesToLoad.Add(DisplayName);
+                            searcher.PropertiesToLoad.Add(SAMAccountNameAttribute);
+                            var result = searcher.FindOne();
+                            if (result != null)
+                            {
+                                var displayName = result.Properties[DisplayName];
+                                var sameAccountName = result.Properties[SAMAccountNameAttribute];
 
-                            var user = new User();
-                            user.DisplayName = displayName == null || displayName.Count<=0 ? "" : displayName[0].ToString();
-                            user.Username = sameAccountName == null || sameAccountName.Count <= 0 ? "" : sameAccountName[0].ToString();
+                                user.DisplayName = displayName == null || displayName.Count <= 0 ? "" : displayName[0].ToString();
+                                user.Username = sameAccountName == null || sameAccountName.Count <= 0 ? "" : sameAccountName[0].ToString();
 
-                            var token = generateJwtToken(user);
+                                var token = generateJwtToken(user);
 
-                            return new AuthenticateResponse(user, token);
+                                return new AuthenticateResponse(user, token);
 
+                            }
                         }
                     }
                 }
+               
 
                   
             }
             catch(Exception ex)
             {
 
+             
             }
             return null;
 
           
         }
 
-        public IEnumerable<User> GetAll()
+
+        public async Task<IEnumerable<User>> GetAll()
         {
-            return _users;
+            return await Task.Run(() => _users);
         }
+        //public IEnumerable<User> GetAll()
+        //{
+        //    return _users;
+        //}
 
        
 
@@ -99,8 +117,10 @@ namespace ApiRestAldeas.Services
             var key = Encoding.ASCII.GetBytes(_appSettings.JWT_SECRET_KEY);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(new[] { new Claim("id", user.Username.ToString()) }),
+                Subject = new ClaimsIdentity(new[] { new Claim("id", user.Username.Replace('.', ' ')) }),
+                //Expires = DateTime.UtcNow.AddDays(7),
                 Expires = DateTime.UtcNow.AddDays(7),
+
                 SigningCredentials =
                 new SigningCredentials(new SymmetricSecurityKey(key),SecurityAlgorithms.HmacSha256Signature)
             };

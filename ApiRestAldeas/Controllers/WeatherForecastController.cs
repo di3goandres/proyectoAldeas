@@ -53,7 +53,7 @@ namespace ApiRestAldeas.Controllers
             .ToArray();
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpGet]
         [Route("/api/aldeas/consultar/")]
         public dynamic consultar()

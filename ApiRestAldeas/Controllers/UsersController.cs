@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using ApiRestAldeas.Models;
 using ApiRestAldeas.Repositories;
 using ApiRestAldeas.Services;
@@ -15,8 +16,7 @@ namespace ApiRestAldeas.Controllers
         private IUserService _userService;
        
 
-        //private readonly IDataModelRepository _dataModelRepository;
-
+       
         #endregion
 
         public UsersController(IUserService userService)
@@ -30,26 +30,25 @@ namespace ApiRestAldeas.Controllers
             var response = _userService.Authenticate(model);
 
             if (response == null)
-                return BadRequest(new { message = "Username or password is incorrect" });
+                return BadRequest(new { message = "Username or password is incorrect"});
 
             return Ok(response);
         }
 
+        //[Authorize]
+        //[HttpGet]
+        //public IActionResult GetAll()
+        //{
+        //    var users = _userService.GetAll();
+        //    return Ok(users);
+        //}
         [Authorize]
         [HttpGet]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            var users = _userService.GetAll();
+            var users = await _userService.GetAll();
             return Ok(users);
         }
 
-
-        //[Authorize]
-        //[HttpGet]
-        //[Route("/api/aldeas/consultar2/")]
-        //public dynamic consultar()
-        //{
-        //    return _dataModelRepository.GuardarProyecto();
-        //}
     }
 }

@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
+using ApiRestAldeas.Entities;
 using ApiRestAldeas.EntityFrame;
 using ApiRestAldeas.Factory;
 using ApiRestAldeas.Helper;
@@ -62,6 +64,31 @@ namespace ApiRestAldeas
             services.AddScoped<IUserService, UserService>();
             services.AddDbContext<Aldeas_Context>();
             services.AddControllers();
+
+            //// configure strongly typed settings objects
+            //var appSettingsSection = Configuration.GetSection("Token");
+            //services.Configure<Appsettings>(appSettingsSection);
+
+            //// configure jwt authentication
+            //var appSettings = appSettingsSection.Get<Appsettings>();
+            //var key = Encoding.ASCII.GetBytes(appSettings.Secret);
+            //services.AddAuthentication(x =>
+            //{
+            //    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            //    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            //})
+            //.AddJwtBearer(x =>
+            //{
+            //    x.RequireHttpsMetadata = false;
+            //    x.SaveToken = true;
+            //    x.TokenValidationParameters = new TokenValidationParameters
+            //    {
+            //        ValidateIssuerSigningKey = true,
+            //        IssuerSigningKey = new SymmetricSecurityKey(key),
+            //        ValidateIssuer = false,
+            //        ValidateAudience = false
+            //    };
+            //});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -86,13 +113,15 @@ namespace ApiRestAldeas
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
-            app.UseAuthorization();
+           
+            //app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+
+
 
             //para el tema de autorizacion.
             app.UseMiddleware<JwtMiddleware>();

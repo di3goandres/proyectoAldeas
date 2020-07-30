@@ -52,7 +52,7 @@ namespace ApiRestAldeas
             services.AddConfigureService(this.Configuration);
             services.AddOptions();
             services.AddCorsService();
-
+            services.AddSwaggerGen();
             services.AddSingletonServices();
             services.AddRouting(options => options.LowercaseUrls = true);
             services.AddScoped(typeof(IContextFactory), typeof(ContextFactory));
@@ -90,6 +90,14 @@ namespace ApiRestAldeas
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+
+            string swaggerEndPoint = Configuration.GetSection("SwaggerMap").GetSection("EndPoint").Value;
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint(swaggerEndPoint, "API DataModel V1");
+
             });
             app.UseCors("AllowAllOrigins");
 

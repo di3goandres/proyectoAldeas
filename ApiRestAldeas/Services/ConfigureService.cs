@@ -18,6 +18,7 @@ namespace ApiRestAldeas.Services
             {
                 var connexion = Configuration.GetSection("ConnectionDB");
                 services.Configure<ConnectionDB>(Configuration.GetSection("ConnectionDB"));
+               
             }
         }
         

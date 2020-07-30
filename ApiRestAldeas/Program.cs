@@ -22,9 +22,6 @@ namespace ApiRestAldeas
             WebHost.CreateDefaultBuilder(args)
             .UseStartup<Startup>().Build();
             
-                //.ConfigureWebHostDefaults(webBuilder =>
-                //{
-                //    webBuilder.UseStartup<Startup>();
-                //});
+
     }
 }

@@ -1,0 +1,50 @@
+﻿<Properties StartupConfiguration="{284B719A-C87D-4090-9B2C-AE032A895170}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ApiRestAldeas/Helper/ProyectoOperations.cs">
+    <Files>
+      <File FileName="ApiRestAldeas/Startup.cs" Line="38" Column="1" />
+      <File FileName="ApiRestAldeas/Program.cs" Line="25" Column="18" />
+      <File FileName="ApiRestAldeas/Helper/ProyectoOperations.cs" Line="26" Column="15" />
+      <File FileName="ApiRestAldeas/Factory/ContextFactory.cs" Line="14" Column="1" />
+      <File FileName="ApiRestAldeas/Factory/IContextFactory.cs" Line="1" Column="1" />
+      <File FileName="ApiRestAldeas/Services/ConfigureService.cs" Line="20" Column="1" />
+      <File FileName="ApiRestAldeas/appsettings.json" Line="11" Column="7" />
+      <File FileName="ApiRestAldeas/Entities/Appsettings.cs" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="ApiRestAldeas" expanded="True">
+            <Node name="ApiRestAldeas" expanded="True">
+              <Node name="Controllers" expanded="True" />
+              <Node name="Entities" expanded="True" />
+              <Node name="EntityFrame" expanded="True" />
+              <Node name="Factory" expanded="True" />
+              <Node name="Helper" expanded="True">
+                <Node name="ProyectoOperations.cs" selected="True" />
+              </Node>
+              <Node name="Properties" expanded="True" />
+              <Node name="Repositories" expanded="True" />
+              <Node name="Services" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State>
+          <Value>Configuration.GetSection("ConnectionDB")</Value>
+          <Value>Configuration.GetSection("ConnectionDB")</Value>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/diegomontealegregarcia/Projects/ApiRestAldeas/ApiRestAldeas/Services/ConfigureService.cs" relfile="ApiRestAldeas/Services/ConfigureService.cs" line="20" column="1" />
+      <Breakpoint file="/Users/diegomontealegregarcia/Projects/ApiRestAldeas/ApiRestAldeas/Helper/ProyectoOperations.cs" relfile="ApiRestAldeas/Helper/ProyectoOperations.cs" line="27" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.ApiRestAldeas PreferredExecutionTarget="/Applications/Safari.app" />
+</Properties>

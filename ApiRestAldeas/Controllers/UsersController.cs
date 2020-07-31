@@ -24,7 +24,8 @@ namespace ApiRestAldeas.Controllers
             _userService = userService;
         }
 
-        [HttpPost("authenticate")]
+        [HttpPost]
+        [Route("/api/user/authenticate/")]
         public IActionResult Authenticate(LoginRequest model)
         {
             var response = _userService.Authenticate(model);

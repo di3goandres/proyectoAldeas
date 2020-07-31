@@ -48,7 +48,7 @@ namespace ApiRestAldeas.Services
                 var user = new User();
                 if(model.Username == "local.local")
                 {
-                    user.DisplayName = "Usuario Local";
+                    user.DisplayName = "Diego Andres Montealegre Garcia";
                     user.Username = model.Username;
 
                     var token = generateJwtToken(user);

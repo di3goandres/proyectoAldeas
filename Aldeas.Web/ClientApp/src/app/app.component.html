@@ -1,6 +1,17 @@
 <body>
-  <app-nav-menu></app-nav-menu>
+  <!-- <app-nav-menu></app-nav-menu> -->
   <div class="container">
+    <mat-toolbar color="secondary" *ngIf="currentUser!= null">
+  
+      <span>Bienvenido {{currentUser.displayName}}</span>
+      <span class="example-spacer"></span>
+  
+          <div> <a class="dropdown-item" [routerLink]="['logout/1']">Salir</a></div>
+  
+    </mat-toolbar>
+  
+  
+  
     <router-outlet></router-outlet>
   </div>
 </body>

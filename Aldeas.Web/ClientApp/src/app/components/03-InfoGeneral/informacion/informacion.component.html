@@ -1,0 +1,99 @@
+<div class="container">
+    <mat-horizontal-stepper [linear]="isLinear" #stepper>
+
+        <mat-step [stepControl]="firstFormGroup">
+            <form [formGroup]="firstFormGroup">
+                <ng-template matStepLabel>Información General</ng-template>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>estado del proyecto</mat-label>
+                    <mat-select formControlName="estado" [(ngModel)]="infoProyecto.Estatus" required>
+                        <mat-option *ngFor="let estado of estados" [value]="estado.value">
+                            {{estado.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Nombre del Proyecto</mat-label>
+                    <input matInput placeholder="Nombre del Proyecto" formControlName="firstCtrl"
+                        [(ngModel)]="infoProyecto.Nombre" required>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Donante</mat-label>
+                    <input matInput formControlName="controlNombre" [(ngModel)]="infoProyecto.Donante"
+                        placeholder="Donante" required (change)="ver()">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Tipo de Financiación</mat-label>
+                    <mat-select formControlName="financiacion" [(ngModel)]="infoProyecto.TipoFinanciacion" required>
+                        <mat-option *ngFor="let estado of financiacion" [value]="estado.value">
+                            {{estado.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-divider></mat-divider>
+                <mat-form-field appearance="fill">
+                    <mat-label>Fecha de Inicio</mat-label>
+                    <input matInput formControlName="fechas" [matDatepicker]="picker"
+                        [(ngModel)]="infoProyecto.FechaInicio" ng-keydown="$event.preventDefault();">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker touchUi #picker></mat-datepicker>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Fecha de Finalizacion</mat-label>
+                    <input matInput formControlName="fechas" [matDatepicker]="pickerEnd"
+                        ng-keydown="$event.preventDefault();" [(ngModel)]="infoProyecto.FechaFinaliacion">
+                    <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
+                    <mat-datepicker  touchUi #pickerEnd></mat-datepicker>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Tiempo de Ejecucion</mat-label>
+                    <input matInput  disabled="true" [value]="tiempo">
+
+                   
+                </mat-form-field>
+                <div>
+
+                    <button mat-button matStepperNext>Next</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup">
+            <form [formGroup]="secondFormGroup">
+                <ng-template matStepLabel>Información Financiera</ng-template>
+                <mat-form-field>
+                    <mat-label>Address</mat-label>
+                    <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY" required>
+                </mat-form-field>
+
+                <div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button matStepperNext>Next</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step [stepControl]="thirdFormGroup">
+            <form [formGroup]="thirdFormGroup">
+                <ng-template matStepLabel>Participantes Proyectados</ng-template>
+                <mat-form-field>
+                    <mat-label>Address</mat-label>
+                    <input matInput formControlName="thirdCtrl" placeholder="Ex. 1 Main St, New York, NY" required>
+                </mat-form-field>
+                <div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button matStepperNext>Next</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Done</ng-template>
+            <p>You are now done.</p>
+            <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button (click)="stepper.reset()">Reset</button>
+            </div>
+        </mat-step>
+    </mat-horizontal-stepper>
+</div>

@@ -1,39 +1,32 @@
 ﻿<Properties StartupConfiguration="{284B719A-C87D-4090-9B2C-AE032A895170}|Default">
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="ApiRestAldeas/Models/LoginRequest.cs">
     <Files>
       <File FileName="ApiRestAldeas/Helper/ProyectoOperations.cs" Line="21" Column="1" />
-      <File FileName="ApiRestAldeas/Controllers/WeatherForecastController.cs" Line="63" Column="1" />
+      <File FileName="ApiRestAldeas/Controllers/WeatherForecastController.cs" Line="42" Column="13" />
       <File FileName="ApiRestAldeas/Entities/Appsettings.cs" Line="19" Column="10" />
-      <File FileName="ApiRestAldeas/appsettings.json" Line="23" Column="42" />
-      <File FileName="ApiRestAldeas/Startup.cs" Line="98" Column="35" />
+      <File FileName="ApiRestAldeas/appsettings.json" Line="23" Column="49" />
+      <File FileName="ApiRestAldeas/Startup.cs" Line="127" Column="35" />
       <File FileName="ApiRestAldeas/Factory/ContextFactory.cs" />
       <File FileName="ApiRestAldeas/Services/ConfigureService.cs" Line="23" Column="78" />
-      <File FileName="ApiRestAldeas/Helper/JwtMiddleware.cs" Line="55" Column="48" />
-      <File FileName="ApiRestAldeas/Services/UserService.cs" Line="77" Column="29" />
-      <File FileName="ApiRestAldeas/Controllers/UsersController.cs" Line="30" Column="45" />
-      <File FileName="ApiRestAldeas/Helper/AuthorizeAttribute.cs" Line="17" Column="29" />
+      <File FileName="ApiRestAldeas/Helper/JwtMiddleware.cs" Line="86" Column="48" />
+      <File FileName="ApiRestAldeas/Services/UserService.cs" Line="89" Column="29" />
+      <File FileName="ApiRestAldeas/Controllers/UsersController.cs" Line="29" Column="48" />
+      <File FileName="ApiRestAldeas/Helper/AuthorizeAttribute.cs" Line="34" Column="29" />
       <File FileName="ApiRestAldeas/Program.cs" Line="2" Column="1" />
       <File FileName="ApiRestAldeas/Models/AuthenticateResponse.cs" Line="15" Column="44" />
       <File FileName="ApiRestAldeas/Entities/LdapConfig.cs" Line="7" Column="37" />
+      <File FileName="ApiRestAldeas/Models/LoginRequest.cs" Line="7" Column="31" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="ApiRestAldeas" expanded="True" selected="True">
+          <Node name="ApiRestAldeas" expanded="True">
             <Node name="ApiRestAldeas" expanded="True">
-              <Node name="Dependencies" expanded="True">
-                <Node name="PackageDependencies" expanded="True">
-                  <Node name="Microsoft.Windows.Compatibility" expanded="True">
-                    <Node name="System.DirectoryServices" expanded="True" />
-                  </Node>
-                </Node>
-              </Node>
               <Node name="Controllers" expanded="True" />
-              <Node name="Entities" expanded="True" />
-              <Node name="EntityFrame" expanded="True" />
               <Node name="Helper" expanded="True" />
-              <Node name="Models" expanded="True" />
-              <Node name="Services" expanded="True" />
+              <Node name="Models" expanded="True">
+                <Node name="LoginRequest.cs" selected="True" />
+              </Node>
             </Node>
           </Node>
         </State>
@@ -54,7 +47,8 @@
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint enabled="false" file="/Users/diegomontealegregarcia/Projects/Github/proyectoAldeas/ApiRestAldeas/Helper/ProyectoOperations.cs" relfile="ApiRestAldeas/Helper/ProyectoOperations.cs" line="27" column="1" />
-      <Breakpoint file="/Users/diegomontealegregarcia/Projects/Github/proyectoAldeas/ApiRestAldeas/Helper/AuthorizeAttribute.cs" relfile="ApiRestAldeas/Helper/AuthorizeAttribute.cs" line="15" column="1" />
+      <Breakpoint file="/Users/diegomontealegregarcia/Projects/Github/proyectoAldeas/ApiRestAldeas/Helper/AuthorizeAttribute.cs" relfile="ApiRestAldeas/Helper/AuthorizeAttribute.cs" line="28" column="1" />
+      <Breakpoint file="/Users/diegomontealegregarcia/Projects/Github/proyectoAldeas/ApiRestAldeas/Controllers/UsersController.cs" relfile="ApiRestAldeas/Controllers/UsersController.cs" line="33" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />

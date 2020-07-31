@@ -39,7 +39,7 @@ namespace ApiRestAldeas.Controllers
         }
 
         [HttpGet]
-        [Route("/api/aldeas/clima/")]
+            [Route("/api/aldeas/clima/")]
 
         public IEnumerable<WeatherForecast> Get()
         {

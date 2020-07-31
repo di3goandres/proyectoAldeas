@@ -1,0 +1,12 @@
+form mat-step{
+    padding-top: 20px !important;
+}
+
+form {
+    padding-top: 20px !important;
+
+}
+
+mat-form-field {
+ padding-right: 10px;   
+}

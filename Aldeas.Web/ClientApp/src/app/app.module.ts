@@ -66,7 +66,7 @@ const routes: Routes = [
 
 
     // ]),
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
+    RouterModule.forRoot(routes),
     BrowserAnimationsModule
   ],
   providers: [

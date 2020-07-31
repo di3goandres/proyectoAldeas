@@ -15,8 +15,10 @@ import {MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/mater
 import {MatSelectModule} from '@angular/material/select';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-
+import {MatTableModule} from '@angular/material/table';
 import { MatMomentDateModule, MomentDateAdapter } from "@angular/material-moment-adapter";
+import { BrowserModule } from '@angular/platform-browser';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [LoginComponent, HomeComponent, HeaaderComponent, InformacionComponent],
@@ -36,7 +38,9 @@ import { MatMomentDateModule, MomentDateAdapter } from "@angular/material-moment
     MatDividerModule,
     MatDatepickerModule,
     MatMomentDateModule,
-    // MomentDateAdapter
+    MatTableModule,
+    BrowserModule,
+     MatButtonModule 
    
   ],
   providers: [

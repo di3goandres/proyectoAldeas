@@ -10,3 +10,26 @@ form {
 mat-form-field {
  padding-right: 10px;   
 }
+
+div.row{
+    padding-top: 10px;
+}
+
+.bajar{
+    margin-top: 10px;
+}
+.centrarTabla{
+    float: none; margin: 0 auto;
+}
+.estirar
+{
+    
+width: 200%;
+}
+.mat-form-field {
+    width: 100%;
+}
+.centerlabel{
+    text-align: center;
+    
+}

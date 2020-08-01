@@ -1,4 +1,5 @@
 ﻿using System;
+using ApiRestAldeas.Models;
 using Newtonsoft.Json.Linq;
 
 namespace ApiRestAldeas.Repositories
@@ -18,6 +19,15 @@ namespace ApiRestAldeas.Repositories
         /// </summary>
         /// <returns></returns>
         dynamic DatosColombia();
+
+
+        /// <summary>
+        /// /
+        /// </summary>
+        /// <returns></returns>
+        dynamic GuardarRegistroProyecto(ProyectoRequest proyectoRequest);
+
+
 
     }
 }

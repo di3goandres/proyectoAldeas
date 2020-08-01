@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ApiRestAldeas.Models;
 using ApiRestAldeas.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -38,6 +39,14 @@ namespace ApiRestAldeas.Controllers
         public dynamic consultar()
         {
             return _dataModelRepository.DatosColombia();
+        }
+
+        //[Authorize]
+        [HttpPost]
+        [Route("/api/aldeas/GuardarProyecto/")]
+        public dynamic guardarProyecto([FromBody]ProyectoRequest proyectoRequest)
+        {
+            return _dataModelRepository.GuardarRegistroProyecto(proyectoRequest);
         }
 
 

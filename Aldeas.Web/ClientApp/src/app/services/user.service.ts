@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { User } from '../models/user';
 import { Router } from '@angular/router';
 import { ConsultaDepartamentos } from '../models/ConsultaDepartamentos';
+import { Proyecto } from '../models/proyect';
 
 
 @Injectable({
@@ -47,7 +48,7 @@ export class UserService {
   // tslint:disable-next-line: typedef con autorizacion
   private ejecutarQueryPost(query: string, params: string) {
     this.header = new HttpHeaders().set('Authorization', this.token)
-      .set('Content-Type', 'application/x-www-form-urlencoded');
+      .set('Content-Type', 'application/json');
     return this.http.post(query, params, { headers: this.header });
 
   }
@@ -85,6 +86,14 @@ export class UserService {
 
   getDepartamentosRespando() {
     return this.ejecutarQuery<ConsultaDepartamentos>('/api/aldeas/datoscolombia/');
+  }
+
+
+  guardarRegistroProyecto(infoproyecto: Proyecto) {
+    this.json = JSON.stringify(infoproyecto);
+    this.params = '' + this.json;
+    return this.ejecutarQueryPost('/api/aldeas/guardarproyecto', this.params);
+
   }
 
   getIdentity() {

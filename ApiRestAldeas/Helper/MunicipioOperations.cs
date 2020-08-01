@@ -13,7 +13,12 @@ namespace ApiRestAldeas.Helper
     {
         
 
-
+        /// <summary>
+        /// Metodo para obtener los datos del los municipios
+        /// </summary>
+        /// <param name="factory"></param>
+        /// <param name="connection"></param>
+        /// <returns></returns>
         public static DepartamentoResponse obtenerDatos(IContextFactory factory, IOptions<ConnectionDB> connection)
         {
             DepartamentoResponse retorno = new DepartamentoResponse();

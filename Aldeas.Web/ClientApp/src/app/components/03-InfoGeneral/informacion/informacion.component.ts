@@ -1,6 +1,6 @@
 import { Component, OnInit, EventEmitter, Output, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Proyecto } from '../../../models/proyect';
+import { Proyecto, FechaElement, MunicipioSeleccionado } from '../../../models/proyect';
 import * as moment from 'moment';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { MatTable } from '@angular/material/table';
@@ -12,27 +12,10 @@ interface Select {
   viewValue: string;
 }
 
-export class FechaElement {
-  constructor(
-    public Fecha: Date,
-    public position: number,
-  ) {
-  }
-
-}
 
 
-export class MunicipioSeleccionado {
-  constructor(
-    public CodigoDeparamento: number,
-    public CodigoMunicipio: number,
-    public Municipio: string,
-    public Departamento: string,
-    public position: number,
-  ) {
-  }
 
-}
+
 @Component({
   selector: 'app-informacion',
   templateUrl: './informacion.component.html',
@@ -41,7 +24,7 @@ export class MunicipioSeleccionado {
 export class InformacionComponent implements OnInit {
   @ViewChild('reuniones') table: MatTable<any>;
   @ViewChild('informes') tableInformes: MatTable<any>;
-  @ViewChild('departamentos')  tableDepartamentos: MatTable<any>;
+  @ViewChild('departamentos') tableDepartamentos: MatTable<any>;
 
 
   @Output() dateChange: EventEmitter<MatDatepickerInputEvent<any>>;
@@ -51,7 +34,7 @@ export class InformacionComponent implements OnInit {
 
   dataSourceComites: FechaElement[] = [];
   dataSourceInformes: FechaElement[] = []
-  dataSourcemunicipio: MunicipioSeleccionado[]=[];
+  dataSourcemunicipio: MunicipioSeleccionado[] = [];
 
   tipoImplementacion: Select[] = [
     { value: 'PROGRAMA ', viewValue: 'PROGRAMA' },
@@ -84,6 +67,11 @@ export class InformacionComponent implements OnInit {
   FechaInformes: Date;
   AgregarInfome: boolean;
   AgregarMuni: boolean;
+  validarNextPantalla_1: boolean;
+
+  validarDepartamentos: boolean;
+  ValidarReuniones: boolean;
+  ValidarInformes: boolean;
 
 
   agregarComite: boolean;
@@ -91,11 +79,11 @@ export class InformacionComponent implements OnInit {
 
 
   objetoColombia: ConsultaDepartamentos;
-  Departamentos: Departamento[] =[];
-  Municipios: Municipio[] =[];
-  MunicipioSeleccionado: Municipio[] =[];
+  Departamentos: Departamento[] = [];
+  Municipios: Municipio[] = [];
+  MunicipioSeleccionado: Municipio[] = [];
   codigoDepartamento: number;
-  codigoMunicipio:number;
+  codigoMunicipio: number;
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -115,6 +103,7 @@ export class InformacionComponent implements OnInit {
 
   AgregarFechaInforme() {
 
+
     let conteo = this.dataSourceInformes.length + 1
     let nuevo = new FechaElement(
       this.FechaComite,
@@ -126,6 +115,10 @@ export class InformacionComponent implements OnInit {
     if (conteo === 5) {
       this.AgregarInfome = false;
     }
+    this.ValidarInformes = true
+    this.continuar();
+
+
   }
   agregarFechaComite() {
 
@@ -141,25 +134,32 @@ export class InformacionComponent implements OnInit {
       this.agregarComite = false;
 
     }
+
+    this.ValidarReuniones = true;
+    this.continuar();
   }
 
   eliminarfechaComite(listafecha: FechaElement) {
 
-    console.log(listafecha);
+
     this.dataSourceComites = this.dataSourceComites.filter(fecha => {
       return fecha.position !== listafecha.position;
     });
 
     let conteo = this.dataSourceComites.length
     let conteointerno = 0;
-    this.dataSourceComites.forEach(item=> {
-      conteointerno+=1;
+    this.dataSourceComites.forEach(item => {
+      conteointerno += 1;
       item.position = conteointerno
     })
     this.table.renderRows();
 
-
-    console.log('Numero Final', this.dataSourceComites)
+    if(this.dataSourceComites.length === 0){
+      this.ValidarReuniones = false;
+    }else{
+      this.ValidarReuniones = true
+    }
+    this.continuar()
     if (5 > conteo) {
       this.agregarComite = true;
 
@@ -168,18 +168,25 @@ export class InformacionComponent implements OnInit {
   }
   eliminarFechaInforme(listafecha: FechaElement) {
 
-    console.log(listafecha);
     this.dataSourceInformes = this.dataSourceInformes.filter(fecha => {
       return fecha.position !== listafecha.position;
     });
 
     let conteointerno = 0;
-    this.dataSourceInformes.forEach(item=> {
-      conteointerno+=1;
+    this.dataSourceInformes.forEach(item => {
+      conteointerno += 1;
       item.position = conteointerno
     })
     this.table.renderRows();
 
+
+
+    if(this.dataSourceInformes.length === 0){
+      this.ValidarInformes = false;
+    }else{
+      this.ValidarInformes = true
+    }
+    this.continuar()
 
     let conteo = this.dataSourceInformes.length
 
@@ -190,7 +197,7 @@ export class InformacionComponent implements OnInit {
   }
 
   CambioInformes(event) {
-    console.log(event);
+  
     var fecha = moment(this.FechaInformes);
     if (fecha.isValid()) {
       this.AgregarInfome = true;
@@ -201,10 +208,10 @@ export class InformacionComponent implements OnInit {
 
   }
   CambioComite(event) {
-    console.log(event);
+
     var fecha = moment(this.FechaComite);
     if (fecha.isValid()) {
-      console.log('valida', fecha.isValid());
+     
 
       this.agregarComite = true;
     } else {
@@ -216,10 +223,15 @@ export class InformacionComponent implements OnInit {
   calcularDias() {
 
     var firstDate = moment(this.infoProyecto.FechaInicio);
-    var secondDate = moment(this.infoProyecto.FechaFinaliacion);
+    var secondDate = moment(this.infoProyecto.FechaFinalizacion);
 
 
+  
     if (firstDate.isValid() && secondDate.isValid()) {
+      if(firstDate.toDate() > secondDate.toDate()){
+        this.infoProyecto.FechaFinalizacion = firstDate.toDate();
+        secondDate = firstDate
+      }
       this.tiempo = this.datediff(firstDate.toDate(), secondDate.toDate());
 
     } else {
@@ -229,41 +241,41 @@ export class InformacionComponent implements OnInit {
 
 
   }
- 
 
-  traerDepartamentos(){
+
+  traerDepartamentos() {
     this.userService.getDepartamentos().subscribe(
       response => {
-       
+
         this.Departamentos.push(...response.departamentos)
         this.Municipios.push(...response.municipios)
-        console.log(response.departamentos[0].codigo);
+       
 
-        
+
       },
       error => {
         console.log(error);
       }
     );
-    }
+  }
   ver() {
-    console.log(this.infoProyecto);
+
     this.calcularDias()
   }
 
-  cambioDepartamento(id){
+  cambioDepartamento(id) {
 
-    this.MunicipioSeleccionado =  this.Municipios.filter(municipio => {
+    this.MunicipioSeleccionado = this.Municipios.filter(municipio => {
       return municipio.codigoDepartamento === id;
     });
 
     this.codigoDepartamento = id;
-    this.AgregarMuni =true;
+    this.AgregarMuni = true;
   }
 
-  cambioMunicipio(id){
+  cambioMunicipio(id) {
     this.codigoMunicipio = id;
-    this.AgregarMuni =false;
+    this.AgregarMuni = false;
 
   }
 
@@ -276,43 +288,52 @@ export class InformacionComponent implements OnInit {
     this.actualizarValorMunicipio(false, listaMunicio.CodigoMunicipio);
     this.tableDepartamentos.renderRows();
 
-   
-   
-    
+
+    if (this.dataSourcemunicipio.length === 0) {
+      this.validarDepartamentos = false;
+    } else {
+      this.validarDepartamentos = true
+    }
+
+    this.continuar()
+
+
+
 
   }
-  agregarMunicipio(){
-    
+  agregarMunicipio() {
+
     let municipio = this.Municipios.find(muni => {
-      return muni.codigo ===  this.codigoMunicipio;
+      return muni.codigo === this.codigoMunicipio;
     });
 
     let depar = this.Departamentos.find(depar => {
-      return depar.codigo ===  this.codigoDepartamento;
+      return depar.codigo === this.codigoDepartamento;
     });
 
 
     let conteo = this.dataSourcemunicipio.length + 1
     let nuevo = new MunicipioSeleccionado
-    (
-      this.codigoDepartamento,
-      this.codigoMunicipio, municipio.nombre,
-      depar.nombre,
-      this.codigoMunicipio
-    );
+      (
+        this.codigoDepartamento,
+        this.codigoMunicipio, municipio.nombre,
+        depar.nombre,
+        this.codigoMunicipio
+      );
     this.dataSourcemunicipio.push(nuevo);
     this.tableDepartamentos.renderRows();
 
- 
+
     this.actualizarValorMunicipio(true, this.codigoMunicipio)
     this.cambioDepartamento(this.codigoDepartamento);
-    this.AgregarMuni =true;
+    this.AgregarMuni = true;
 
-    // console.log(this.dataSourcemunicipio.length)
+    this.validarDepartamentos = true;
+    this.continuar();
   }
 
 
-  actualizarValorMunicipio( activo : boolean, codigoMunicipio) {
+  actualizarValorMunicipio(activo: boolean, codigoMunicipio) {
     let actualizar = this.Municipios.find(muni => {
       return muni.codigo === codigoMunicipio;
     });
@@ -332,9 +353,36 @@ export class InformacionComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
-    this.AgregarMuni =true;
+  continuar() {
+   
+    if (this.validarDepartamentos && this.ValidarReuniones && this.ValidarInformes) {
+      this.validarNextPantalla_1 = false;
+    } else {
+      this.validarNextPantalla_1 = true;
 
+    }
+  }
+  onGuardar() {
+    this.infoProyecto.FechasInformes.push(... this.dataSourceInformes);
+    this.infoProyecto.FechasComites.push(... this.dataSourceComites);
+    this.infoProyecto.Municipio.push(...this.dataSourcemunicipio)
+    console.log(this.infoProyecto)
+    this.userService.guardarRegistroProyecto(this.infoProyecto).subscribe(
+      response => {
+        console.log(response)
+      },
+      error => {
+        console.log(error)
+      },
+
+    )
+  }
+  ngOnInit(): void {
+    this.AgregarMuni = true;
+    this.validarNextPantalla_1 = true;
+    this.validarDepartamentos = false;
+    this.ValidarReuniones = false ;
+     this.ValidarInformes = false
     this.infoProyecto = new Proyecto();
     this.calcularDias()
 
@@ -347,16 +395,34 @@ export class InformacionComponent implements OnInit {
 
 
     this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required],
-      controlNombre: ['', Validators.required],
-      email: ['', Validators.required],
       estado: ['', Validators.required],
-      telefono: ['', Validators.required],
+
+      proyecto: ['', Validators.required],
+
+      Donante: ['', Validators.required],
       financiacion: ['', Validators.required],
+
+      NombreContacto: ['', Validators.required],
+      Direccion: ['', Validators.required],
+
+
+      email: ['', Validators.required],
+
+      telefono: ['', Validators.required],
+
+
+
+      LiderEjecucion: ['', Validators.required],
+      LiderCoordinacion: ['', Validators.required],
+      ComiteTecnico: ['', Validators.required],
+      tipoImplementacion: ['', Validators.required],
+      requiere: ['', Validators.required],
+
       fechas: ['', Validators.required],
       fechasFin: ['', Validators.required],
 
-      requiere: ['', Validators.required]
+      
+
 
 
     });

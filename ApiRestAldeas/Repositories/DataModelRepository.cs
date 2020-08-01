@@ -2,6 +2,7 @@
 using ApiRestAldeas.EntityFrame;
 using ApiRestAldeas.Factory;
 using ApiRestAldeas.Helper;
+using ApiRestAldeas.Models;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json.Linq;
 using static ApiRestAldeas.Entities.Appsettings;
@@ -31,7 +32,10 @@ namespace ApiRestAldeas.Repositories
            return ProyectoOperations.ConsultarProyecto(_factory, _connectionDB) ;
         }
 
-      
+        public dynamic GuardarRegistroProyecto(ProyectoRequest proyectoRequest)
+        {
+            return true;
+        }
     }
 
 

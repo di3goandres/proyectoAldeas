@@ -8,7 +8,7 @@
                     <div class="col-3">
                         <mat-form-field appearance="fill">
                             <mat-label>Estado del proyecto</mat-label>
-                            <mat-select formControlName="estado" [(ngModel)]="infoProyecto.Estatus" required>
+                            <mat-select formControlName="estado" [(ngModel)]="infoProyecto.Status" required>
                                 <mat-option *ngFor="let estado of estados" [value]="estado.value">
                                     {{estado.viewValue}}
                                 </mat-option>
@@ -18,15 +18,15 @@
                     <div class="col-3">
                         <mat-form-field appearance="fill">
                             <mat-label>Nombre del Proyecto</mat-label>
-                            <input matInput placeholder="Nombre del Proyecto" formControlName="firstCtrl"
+                            <input matInput placeholder="Nombre del Proyecto" formControlName="proyecto"
                                 [(ngModel)]="infoProyecto.Nombre" required>
                         </mat-form-field>
                     </div>
                     <div class="col-3">
                         <mat-form-field appearance="fill">
                             <mat-label>Donante</mat-label>
-                            <input matInput formControlName="controlNombre" [(ngModel)]="infoProyecto.Donante"
-                                placeholder="Donante" required (change)="ver()">
+                            <input matInput formControlName="Donante" [(ngModel)]="infoProyecto.Donante"
+                                placeholder="Donante" required>
                         </mat-form-field>
                     </div>
                     <div class="col-3">
@@ -52,28 +52,29 @@
                     <div class="col-3">
                         <mat-form-field appearance="fill">
                             <mat-label>Nombre del Contacto</mat-label>
-                            <input matInput placeholder="Nombre Contacto" formControlName="firstCtrl"
+                            <input matInput placeholder="Nombre Contacto" formControlName="NombreContacto"
                                 [(ngModel)]="infoProyecto.NombreDonante" required>
                         </mat-form-field>
                     </div>
                     <div class="col-3">
                         <mat-form-field appearance="fill">
                             <mat-label>Direccion</mat-label>
-                            <input matInput placeholder="Direccion" formControlName="firstCtrl"
+                            <input matInput placeholder="Direccion" formControlName="Direccion"
                                 [(ngModel)]="infoProyecto.Direccion" required>
                         </mat-form-field>
                     </div>
                     <div class="col-3">
                         <mat-form-field appearance="fill">
                             <mat-label>Email</mat-label>
-                            <input matInput formControlName="email" [(ngModel)]="infoProyecto.Email" placeholder="Email"
+                            <input type="email" matInput formControlName="email" [(ngModel)]="infoProyecto.Email" placeholder="Email"
+                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                                 required>
                         </mat-form-field>
                     </div>
                     <div class="col-3">
                         <mat-form-field appearance="fill">
                             <mat-label>Telefono</mat-label>
-                            <input matInput formControlName="telefono" [(ngModel)]="infoProyecto.Telefono"
+                            <input type="text" matInput formControlName="telefono" [(ngModel)]="infoProyecto.Telefono"
                                 placeholder="Telefono" required>
                         </mat-form-field>
                     </div>
@@ -85,22 +86,22 @@
                     <div class="col-4">
                         <mat-form-field appearance="fill">
                             <mat-label>Líder de Ejecución del Proyecto</mat-label>
-                            <input matInput placeholder="Lider Ejecucion" formControlName="firstCtrl"
+                            <input matInput placeholder="Lider Ejecucion" formControlName="LiderEjecucion"
                                 [(ngModel)]="infoProyecto.LiderEjecucion" required>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field appearance="fill">
                             <mat-label>Lider de la Coordinacion del Proyecto</mat-label>
-                            <input matInput placeholder="Nombre del Proyecto" formControlName="firstCtrl"
+                            <input matInput placeholder="Lider de la Coordinacion" formControlName="LiderCoordinacion"
                                 [(ngModel)]="infoProyecto.LiderCoordinacion" required>
                         </mat-form-field>
                     </div>
                     <div class="col-4">
                         <mat-form-field appearance="fill">
                             <mat-label>Comite Técnico del Proyecto</mat-label>
-                            <input matInput formControlName="controlNombre" [(ngModel)]="infoProyecto.ComiteTecnico"
-                                placeholder="Donante" required>
+                            <input matInput formControlName="ComiteTecnico" [(ngModel)]="infoProyecto.ComiteTecnico"
+                                placeholder="Comite Tecnico del Proyecto" required>
                         </mat-form-field>
                     </div>
 
@@ -115,7 +116,7 @@
                         
                             <mat-form-field appearance="fill">
                                 <mat-label>Tipo de Implementación</mat-label>
-                                <mat-select formControlName="requiere" [(ngModel)]="infoProyecto.TipoImplementacion"
+                                <mat-select formControlName="tipoImplementacion" [(ngModel)]="infoProyecto.TipoImplementacion"
                                     required>
                                     <mat-option *ngFor="let item of tipoImplementacion" [value]="item.value">
                                         {{item.viewValue}}
@@ -155,11 +156,11 @@
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <input mat-raised-button
+                        <button mat-raised-button
                             [disabled]="AgregarMuni"
                             class="btn mat-focus-indicator btn btn-success pull-right bajar mat-raised-button mat-button-base mat-primary pull-right bajar"
                             color="primary" (click)="agregarMunicipio()"
-                            value="Agregar Municipio" />
+                            value="Agregar Municipio" >Agregar Municipio</button>
 
                     </div>
                 </div>
@@ -236,7 +237,7 @@
                             <mat-label>Fecha de Finalizacion</mat-label>
                             <input matInput formControlName="fechasFin" [matDatepicker]="pickerEnd"
                                 ng-keydown="$event.preventDefault();" (dateChange)="Cambio($event)"
-                                [min]="infoProyecto.FechaInicio" [(ngModel)]="infoProyecto.FechaFinaliacion">
+                                [min]="infoProyecto.FechaInicio" [(ngModel)]="infoProyecto.FechaFinalizacion">
                             <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
                             <mat-datepicker touchUi #pickerEnd></mat-datepicker>
                         </mat-form-field>
@@ -272,10 +273,10 @@
                                 </mat-form-field>
                             </div>
                             <div class="col-6">
-                                <input mat-raised-button
+                                <button mat-raised-button
                                     class="btn mat-focus-indicator btn btn-success pull-right bajar mat-raised-button mat-button-base mat-primary pull-right bajar"
                                     [disabled]="!AgregarInfome" color="primary" (click)="AgregarFechaInforme()"
-                                    value="Agregar Fecha" />
+                                   >Agregar Fecha</button>
 
                             </div>
                         </div>
@@ -333,10 +334,10 @@
                                 </mat-form-field>
                             </div>
                             <div class="col-6">
-                                <input mat-raised-button
+                                <button mat-raised-button
                                     class="btn mat-focus-indicator btn btn-success pull-right bajar mat-raised-button mat-button-base mat-primary pull-right bajar"
                                     [disabled]="!agregarComite" color="primary" (click)="agregarFechaComite()"
-                                    value="Agregar Fecha" />
+                                    >Agregar Fecha</button>
 
                             </div>
                         </div>
@@ -385,11 +386,21 @@
                 </div>
 
 
-                <mat-divider></mat-divider>
+                <mat-divider>
+                    
+                </mat-divider>
 
                 <div>
+                    <button mat-raised-button color="warn"  [disabled]="validarNextPantalla_1" (click)="onGuardar()">Guardar</button>
+                   
 
-                    <button mat-raised-button color="warn" matStepperNext>Next</button>
+                    <label>
+                        Tablas {{validarNextPantalla_1 }}
+                        - formulario Valido: {{this.firstFormGroup.invalid}}
+                       - reusltado:  {{(!validarNextPantalla_1  && !this.firstFormGroup.invalid)? false: true}}
+                    </label>
+                  
+                    <button mat-raised-button color="warn" matStepperNext [disabled]="(!validarNextPantalla_1  && !this.firstFormGroup.invalid)? false: true" >Next</button>
                 </div>
             </form>
         </mat-step>

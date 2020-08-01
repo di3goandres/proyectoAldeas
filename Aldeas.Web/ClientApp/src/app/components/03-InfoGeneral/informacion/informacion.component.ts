@@ -4,6 +4,8 @@ import { Proyecto } from '../../../models/proyect';
 import * as moment from 'moment';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { MatTable } from '@angular/material/table';
+import { UserService } from '../../../services/user.service';
+import { ConsultaDepartamentos, Municipio, Departamento } from '../../../models/ConsultaDepartamentos';
 
 interface Select {
   value: string;
@@ -15,11 +17,22 @@ export class FechaElement {
     public Fecha: Date,
     public position: number,
   ) {
-
   }
 
 }
 
+
+export class MunicipioSeleccionado {
+  constructor(
+    public CodigoDeparamento: number,
+    public CodigoMunicipio: number,
+    public Municipio: string,
+    public Departamento: string,
+    public position: number,
+  ) {
+  }
+
+}
 @Component({
   selector: 'app-informacion',
   templateUrl: './informacion.component.html',
@@ -28,12 +41,17 @@ export class FechaElement {
 export class InformacionComponent implements OnInit {
   @ViewChild('reuniones') table: MatTable<any>;
   @ViewChild('informes') tableInformes: MatTable<any>;
+  @ViewChild('departamentos')  tableDepartamentos: MatTable<any>;
+
 
   @Output() dateChange: EventEmitter<MatDatepickerInputEvent<any>>;
 
-  displayedColumns: string[] = ['position', 'Fecha'];
-  dataSourceComites: FechaElement[] =[];
+  displayedColumns: string[] = ['position', 'Fecha', 'Quitar'];
+  displayedColumnsDepartamento: string[] = ['position', 'Departamento', 'Municipio', 'Quitar'];
+
+  dataSourceComites: FechaElement[] = [];
   dataSourceInformes: FechaElement[] = []
+  dataSourcemunicipio: MunicipioSeleccionado[]=[];
 
   tipoImplementacion: Select[] = [
     { value: 'PROGRAMA ', viewValue: 'PROGRAMA' },
@@ -65,11 +83,24 @@ export class InformacionComponent implements OnInit {
   FechaComite: Date;
   FechaInformes: Date;
   AgregarInfome: boolean;
+  AgregarMuni: boolean;
+
 
   agregarComite: boolean;
   infoProyecto: Proyecto;
 
-  constructor(private _formBuilder: FormBuilder) {
+
+  objetoColombia: ConsultaDepartamentos;
+  Departamentos: Departamento[] =[];
+  Municipios: Municipio[] =[];
+  MunicipioSeleccionado: Municipio[] =[];
+  codigoDepartamento: number;
+  codigoMunicipio:number;
+
+  constructor(
+    private _formBuilder: FormBuilder,
+    public userService: UserService
+  ) {
     this.FechaComite = new Date();
     this.agregarComite = true;
     this.FechaInformes = new Date();
@@ -91,8 +122,8 @@ export class InformacionComponent implements OnInit {
     );
     this.dataSourceInformes.push(nuevo);
     this.tableInformes.renderRows();
-    
-    if(conteo===5){
+
+    if (conteo === 5) {
       this.AgregarInfome = false;
     }
   }
@@ -105,46 +136,59 @@ export class InformacionComponent implements OnInit {
     );
     this.dataSourceComites.push(nuevo);
     this.table.renderRows();
-    
-    if(conteo===5){
-    this.agregarComite = false;
+
+    if (conteo === 5) {
+      this.agregarComite = false;
 
     }
   }
+
   eliminarfechaComite(listafecha: FechaElement) {
-    
+
     console.log(listafecha);
     this.dataSourceComites = this.dataSourceComites.filter(fecha => {
       return fecha.position !== listafecha.position;
     });
-    this.table.renderRows();
-    
 
-    let conteo = this.dataSourceComites.length 
-    console.log('Numero Final', conteo)
-    if(5> conteo){
+    let conteo = this.dataSourceComites.length
+    let conteointerno = 0;
+    this.dataSourceComites.forEach(item=> {
+      conteointerno+=1;
+      item.position = conteointerno
+    })
+    this.table.renderRows();
+
+
+    console.log('Numero Final', this.dataSourceComites)
+    if (5 > conteo) {
       this.agregarComite = true;
-  
-      }
+
+    }
 
   }
   eliminarFechaInforme(listafecha: FechaElement) {
-    
+
     console.log(listafecha);
     this.dataSourceInformes = this.dataSourceInformes.filter(fecha => {
       return fecha.position !== listafecha.position;
     });
+
+    let conteointerno = 0;
+    this.dataSourceInformes.forEach(item=> {
+      conteointerno+=1;
+      item.position = conteointerno
+    })
     this.table.renderRows();
-    
 
-    let conteo = this.dataSourceInformes.length 
 
-    if(5> conteo){
+    let conteo = this.dataSourceInformes.length
+
+    if (5 > conteo) {
       this.AgregarInfome = true;
-      }
+    }
 
   }
-  
+
   CambioInformes(event) {
     console.log(event);
     var fecha = moment(this.FechaInformes);
@@ -185,7 +229,112 @@ export class InformacionComponent implements OnInit {
 
 
   }
+ 
+
+  traerDepartamentos(){
+    this.userService.getDepartamentos().subscribe(
+      response => {
+       
+        this.Departamentos.push(...response.departamentos)
+        this.Municipios.push(...response.municipios)
+        console.log(response.departamentos[0].codigo);
+
+        
+      },
+      error => {
+        console.log(error);
+      }
+    );
+    }
+  ver() {
+    console.log(this.infoProyecto);
+    this.calcularDias()
+  }
+
+  cambioDepartamento(id){
+
+    this.MunicipioSeleccionado =  this.Municipios.filter(municipio => {
+      return municipio.codigoDepartamento === id;
+    });
+
+    this.codigoDepartamento = id;
+    this.AgregarMuni =true;
+  }
+
+  cambioMunicipio(id){
+    this.codigoMunicipio = id;
+    this.AgregarMuni =false;
+
+  }
+
+  eliminarMunicipio(listaMunicio: MunicipioSeleccionado) {
+
+    this.dataSourcemunicipio = this.dataSourcemunicipio.filter(item => {
+      return item.position !== listaMunicio.position;
+    });
+    this.tableDepartamentos.renderRows();
+    this.actualizarValorMunicipio(false, listaMunicio.CodigoMunicipio);
+    this.tableDepartamentos.renderRows();
+
+   
+   
+    
+
+  }
+  agregarMunicipio(){
+    
+    let municipio = this.Municipios.find(muni => {
+      return muni.codigo ===  this.codigoMunicipio;
+    });
+
+    let depar = this.Departamentos.find(depar => {
+      return depar.codigo ===  this.codigoDepartamento;
+    });
+
+
+    let conteo = this.dataSourcemunicipio.length + 1
+    let nuevo = new MunicipioSeleccionado
+    (
+      this.codigoDepartamento,
+      this.codigoMunicipio, municipio.nombre,
+      depar.nombre,
+      this.codigoMunicipio
+    );
+    this.dataSourcemunicipio.push(nuevo);
+    this.tableDepartamentos.renderRows();
+
+ 
+    this.actualizarValorMunicipio(true, this.codigoMunicipio)
+    this.cambioDepartamento(this.codigoDepartamento);
+    this.AgregarMuni =true;
+
+    // console.log(this.dataSourcemunicipio.length)
+  }
+
+
+  actualizarValorMunicipio( activo : boolean, codigoMunicipio) {
+    let actualizar = this.Municipios.find(muni => {
+      return muni.codigo === codigoMunicipio;
+    });
+    actualizar.activo = activo;
+
+    let index = this.Municipios.indexOf(actualizar);
+    this.Municipios[index] = actualizar;
+  }
+  Cambio(event) {
+
+    this.calcularDias()
+  }
+
+  onDateChange(newDate: Date): void {
+    this.previousDate = new Date(newDate);
+
+
+  }
+
   ngOnInit(): void {
+    this.AgregarMuni =true;
+
     this.infoProyecto = new Proyecto();
     this.calcularDias()
 
@@ -217,21 +366,8 @@ export class InformacionComponent implements OnInit {
     this.thirdFormGroup = this._formBuilder.group({
       thirdCtrl: ['', Validators.required]
     });
-  }
 
-  ver() {
-    console.log(this.infoProyecto);
-    this.calcularDias()
-  }
-
-  Cambio(event) {
-
-    this.calcularDias()
-  }
-
-  onDateChange(newDate: Date): void {
-    this.previousDate = new Date(newDate);
-
+    this.traerDepartamentos();
 
   }
 

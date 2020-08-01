@@ -13,6 +13,8 @@ mat-form-field {
 
 div.row{
     padding-top: 10px;
+    padding-bottom: 10px;
+
 }
 
 .bajar{
@@ -22,9 +24,12 @@ div.row{
     float: none; margin: 0 auto;
 }
 .estirar
-{
-    
+{ 
 width: 200%;
+}
+.departamento
+{ 
+width: 100%;
 }
 .mat-form-field {
     width: 100%;

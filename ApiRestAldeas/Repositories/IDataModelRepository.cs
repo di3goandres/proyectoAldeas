@@ -12,5 +12,12 @@ namespace ApiRestAldeas.Repositories
         /// </param>
         /// <returns>Mensaje de respuesta sobre el nuevo registro</returns>
         dynamic GuardarProyecto();
+
+        /// <summary>
+        /// Metopdo para obtener los datos de municipios
+        /// </summary>
+        /// <returns></returns>
+        dynamic DatosColombia();
+
     }
 }

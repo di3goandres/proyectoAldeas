@@ -19,9 +19,20 @@ namespace ApiRestAldeas.Repositories
             _connectionDB = connectionDB;
             _factory = factory;
         }
+
+        public dynamic DatosColombia()
+        {
+            return MunicipioOperations.obtenerDatos(_factory, _connectionDB);
+
+        }
+
         public dynamic GuardarProyecto()
         {
            return ProyectoOperations.ConsultarProyecto(_factory, _connectionDB) ;
         }
+
+      
     }
+
+
 }

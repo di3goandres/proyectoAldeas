@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from '../models/user';
 import { Router } from '@angular/router';
+import { ConsultaDepartamentos } from '../models/ConsultaDepartamentos';
 
 
 @Injectable({
@@ -25,15 +26,31 @@ export class UserService {
   });
 
   constructor(
-      private http: HttpClient,
-      public router: Router) { 
+    private http: HttpClient,
+    public router: Router) {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
-   }
+  }
 
-   public get currenUserValue() : User {
-     return this.currentUserSubject.value;
-   }
+  public get currenUserValue(): User {
+    return this.currentUserSubject.value;
+  }
+
+
+  ///metodo par ejecutar metodos get
+  private ejecutarQuery<T>(query: string) {
+    this.header = new HttpHeaders().set('Authorization', this.token);
+    return this.http.get<T>(query, { headers: this.header });
+  }
+
+
+  // tslint:disable-next-line: typedef con autorizacion
+  private ejecutarQueryPost(query: string, params: string) {
+    this.header = new HttpHeaders().set('Authorization', this.token)
+      .set('Content-Type', 'application/x-www-form-urlencoded');
+    return this.http.post(query, params, { headers: this.header });
+
+  }
 
   loginUser(user, getToken = null): Observable<any> {
     if (getToken != null) {
@@ -45,49 +62,56 @@ export class UserService {
 
 
 
-    return this.http.post<any>('/api/user/authenticate', this.json,{ headers: this.header })
+    return this.http.post<any>('/api/user/authenticate', this.json, { headers: this.header })
       .pipe(map(user => {
 
         localStorage.setItem('currentUser', JSON.stringify(user));
         this.currentUserSubject.next(user);
         return user;
-        
+
       }))
-    ;
+      ;
   }
 
-  logut(){
+  logut() {
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
 
   }
 
+  getDepartamentos() {
+    return this.http.get<ConsultaDepartamentos>('/assets/data/departamentos.json');
+  }
 
-  getIdentity(){
+  getDepartamentosRespando() {
+    return this.ejecutarQuery<ConsultaDepartamentos>('/api/aldeas/datoscolombia/');
+  }
+
+  getIdentity() {
     let token = localStorage.getItem('currentUser');
-      // tslint:disable-next-line: triple-equals
-      if (token && (token != 'undefined' || token != null)) {
-        this.token = token;
-      } else {
-        this.token = null;
-      }
-      return this.token;
+    // tslint:disable-next-line: triple-equals
+    if (token && (token != 'undefined' || token != null)) {
+      this.token = token;
+    } else {
+      this.token = null;
+    }
+    return this.token;
 
   }
-  validaToken() : Promise<boolean> {
+  validaToken(): Promise<boolean> {
 
-    if(this.getIdentity()==null){
-  
+    if (this.getIdentity() == null) {
+
       this.router.navigate(['login']);
-     
+
       Promise.resolve(false);
     }
-    return new Promise(resolve=>{
+    return new Promise(resolve => {
 
-      if(this.getIdentity()==null){
+      if (this.getIdentity() == null) {
         this.router.navigate(['login']);
         resolve(false);
-      }else{
+      } else {
         resolve(true);
       }
     })

@@ -35,6 +35,10 @@ namespace ApiRestAldeas.EntityFrame
         }
         public virtual DbSet<Proyectos> tbProyectos { get; set; }
 
+        public virtual DbSet<Departamentos> tbDepartamentos { get; set; }
+        public virtual DbSet<Municipios> tbMunicipios { get; set; }
+
+
 
         #region Required
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -43,7 +47,17 @@ namespace ApiRestAldeas.EntityFrame
             {
                 entity.ToTable("Proyectos");
             });
-               
+
+            modelBuilder.Entity<Municipios>(entity =>
+            {
+                entity.ToTable("municipios");
+            });
+
+            modelBuilder.Entity<Departamentos>(entity =>
+            {
+                entity.ToTable("departamentos");
+            });
+
         }
         #endregion
     }

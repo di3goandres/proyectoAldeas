@@ -262,7 +262,7 @@
                                 <mat-form-field appearance="fill">
                                     <mat-label>Fecha de entrega De informes</mat-label>
                                     <input matInput formControlName="fechas" [matDatepicker]="pickerInformes"
-                                        [(ngModel)]="FechaComite" ng-keydown="$event.preventDefault();"
+                                        [(ngModel)]="FechaInformes" ng-keydown="$event.preventDefault();"
                                         (dateChange)="CambioInformes($event)">
                                     <mat-datepicker-toggle matSuffix [for]="pickerInformes"></mat-datepicker-toggle>
                                     <mat-datepicker touchUi #pickerInformes></mat-datepicker>

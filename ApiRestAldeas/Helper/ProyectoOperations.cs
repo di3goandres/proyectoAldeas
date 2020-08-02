@@ -64,7 +64,7 @@ namespace ApiRestAldeas.Helper
                     });
                 }
 
-                foreach (var item in proyectoRequest.FechasComites)
+                foreach (var item in proyectoRequest.FechasInformes)
                 {
                     fechas.Add(new FechasEntregas()
                     {

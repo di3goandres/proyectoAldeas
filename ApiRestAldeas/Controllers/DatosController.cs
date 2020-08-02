@@ -33,7 +33,7 @@ namespace ApiRestAldeas.Controllers
 
         
 
-        //[Authorize]
+        [Authorize]
         [HttpGet]
         [Route("/api/aldeas/datosColombia/")]
         public dynamic consultar()
@@ -41,7 +41,7 @@ namespace ApiRestAldeas.Controllers
             return _dataModelRepository.DatosColombia();
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpPost]
         [Route("/api/aldeas/GuardarProyecto/")]
         public dynamic guardarProyecto([FromBody]ProyectoRequest proyectoRequest)
@@ -49,6 +49,7 @@ namespace ApiRestAldeas.Controllers
             return _dataModelRepository.GuardarRegistroProyecto(proyectoRequest);
         }
 
+        [Authorize]
         [HttpGet]
         [Route("/api/aldeas/datosCentroCostos/")]
         public dynamic ConsultarCentroCostos()

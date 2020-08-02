@@ -1,11 +1,13 @@
 ﻿<Properties StartupConfiguration="{284B719A-C87D-4090-9B2C-AE032A895170}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="ApiRestAldeas/EntityFrame/Aldeas_Context.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ApiRestAldeas/Helper/AuthorizeAttribute.cs">
     <Files>
-      <File FileName="ApiRestAldeas/Helper/ProyectoOperations.cs" Line="87" Column="60" />
+      <File FileName="ApiRestAldeas/Helper/ProyectoOperations.cs" Line="126" Column="1" />
       <File FileName="ApiRestAldeas/Models/ProyectoRequest.cs" Line="32" Column="18" />
       <File FileName="ApiRestAldeas/EntityFrame/InformacionFinanciera.cs" Line="30" Column="1" />
       <File FileName="ApiRestAldeas/EntityFrame/Proyectos.cs" Line="9" Column="37" />
-      <File FileName="ApiRestAldeas/EntityFrame/Aldeas_Context.cs" Line="46" Column="51" />
+      <File FileName="ApiRestAldeas/EntityFrame/Aldeas_Context.cs" Line="89" Column="47" />
+      <File FileName="ApiRestAldeas/Helper/AuthorizeAttribute.cs" Line="37" Column="1" />
+      <File FileName="ApiRestAldeas/Controllers/DatosController.cs" Line="36" Column="9" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -14,10 +16,10 @@
             <Node name="ApiRestAldeas" expanded="True">
               <Node name="Controllers" expanded="True" />
               <Node name="Entities" expanded="True" />
-              <Node name="EntityFrame" expanded="True">
-                <Node name="Aldeas_Context.cs" selected="True" />
+              <Node name="EntityFrame" expanded="True" />
+              <Node name="Helper" expanded="True">
+                <Node name="AuthorizeAttribute.cs" selected="True" />
               </Node>
-              <Node name="Helper" expanded="True" />
               <Node name="Models" expanded="True" />
               <Node name="Repositories" expanded="True" />
             </Node>
@@ -34,8 +36,8 @@
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint enabled="false" file="/Users/diegomontealegregarcia/Projects/Github/proyectoAldeas/ApiRestAldeas/Helper/ProyectoOperations.cs" relfile="ApiRestAldeas/Helper/ProyectoOperations.cs" line="29" column="1" />
-      <Breakpoint file="/Users/diegomontealegregarcia/Projects/Github/proyectoAldeas/ApiRestAldeas/Helper/AuthorizeAttribute.cs" relfile="ApiRestAldeas/Helper/AuthorizeAttribute.cs" line="28" column="1" />
-      <Breakpoint file="/Users/diegomontealegregarcia/Projects/Github/proyectoAldeas/ApiRestAldeas/Helper/ProyectoOperations.cs" relfile="ApiRestAldeas/Helper/ProyectoOperations.cs" line="70" column="1" />
+      <Breakpoint file="/Users/diegomontealegregarcia/Projects/Github/proyectoAldeas/ApiRestAldeas/Helper/ProyectoOperations.cs" relfile="ApiRestAldeas/Helper/ProyectoOperations.cs" line="126" column="1" />
+      <Breakpoint file="/Users/diegomontealegregarcia/Projects/Github/proyectoAldeas/ApiRestAldeas/Helper/AuthorizeAttribute.cs" relfile="ApiRestAldeas/Helper/AuthorizeAttribute.cs" line="19" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />

@@ -41,14 +41,17 @@ export class UserService {
 
   ///metodo par ejecutar metodos get
   private ejecutarQuery<T>(query: string) {
-    this.header = new HttpHeaders().set('Authorization', this.token);
+   let user = this.currentUserSubject.value;
+    this.header = new HttpHeaders().set('Authorization', user.token);
     return this.http.get<T>(query, { headers: this.header });
   }
 
 
   // tslint:disable-next-line: typedef con autorizacion
   private ejecutarQueryPost(query: string, params: string) {
-    this.header = new HttpHeaders().set('Authorization', this.token)
+   let user = this.currentUserSubject.value;
+
+    this.header = new HttpHeaders().set('Authorization', user.token)
       .set('Content-Type', 'application/json');
     return this.http.post(query, params, { headers: this.header });
 

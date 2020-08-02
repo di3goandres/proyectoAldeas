@@ -20,6 +20,12 @@ namespace ApiRestAldeas.Repositories
         /// <returns></returns>
         dynamic DatosColombia();
 
+        /// <summary>
+        /// Metopdo para obtener los datos de municipios
+        /// </summary>
+        /// <returns></returns>
+        dynamic CentroCostos();
+
 
         /// <summary>
         /// /

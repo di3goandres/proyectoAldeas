@@ -22,7 +22,7 @@ namespace ApiRestAldeas.EntityFrame
         /// <summary>
         /// 
         /// </summary>
-        public int tipo_financiacion { get; set; }
+        public string tipo_financiacion { get; set; }
         /// <summary>
         /// 
         /// </summary>

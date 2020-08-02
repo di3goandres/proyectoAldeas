@@ -37,6 +37,15 @@ namespace ApiRestAldeas.EntityFrame
 
         public virtual DbSet<Departamentos> tbDepartamentos { get; set; }
         public virtual DbSet<Municipios> tbMunicipios { get; set; }
+        public virtual DbSet<CentroCostos> tbCentros { get; set; }
+
+        public virtual DbSet<SubCentroCostos> tbSubcentros { get; set; }
+        public virtual DbSet<FechasEntregas> tbFechaEntregas { get; set; }
+
+        public virtual DbSet<MunicipioProyectos> tbMunicipioProyectos { get; set; }
+        public virtual DbSet<InformacionFinanciera> tbInformacionFinanciera { get; set; }
+
+
 
 
 
@@ -58,6 +67,27 @@ namespace ApiRestAldeas.EntityFrame
                 entity.ToTable("departamentos");
             });
 
+            modelBuilder.Entity<CentroCostos>(entity =>
+            {
+                entity.ToTable("CentroCostos");
+            });
+            modelBuilder.Entity<SubCentroCostos>(entity =>
+            {
+                entity.ToTable("SubCentroCostos");
+            });
+            modelBuilder.Entity<FechasEntregas>(entity =>
+            {
+                entity.ToTable("fecha_entregas");
+            });
+            modelBuilder.Entity<MunicipioProyectos>(entity =>
+            {
+                entity.ToTable("municipios_proyecto");
+            });
+
+            modelBuilder.Entity<InformacionFinanciera>(entity =>
+            {
+                entity.ToTable("infoFinanciera");
+            });
         }
         #endregion
     }

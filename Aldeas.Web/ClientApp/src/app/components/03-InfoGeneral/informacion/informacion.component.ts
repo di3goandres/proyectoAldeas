@@ -1,11 +1,12 @@
 import { Component, OnInit, EventEmitter, Output, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Proyecto, FechaElement, MunicipioSeleccionado } from '../../../models/proyect';
+import { Proyecto, FechaElement, MunicipioSeleccionado, Financiera } from '../../../models/proyect';
 import * as moment from 'moment';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { MatTable } from '@angular/material/table';
 import { UserService } from '../../../services/user.service';
 import { ConsultaDepartamentos, Municipio, Departamento } from '../../../models/ConsultaDepartamentos';
+import { CentrosCosto, SubCentro } from '../../../models/comunes';
 
 interface Select {
   value: string;
@@ -25,6 +26,7 @@ export class InformacionComponent implements OnInit {
   @ViewChild('reuniones') table: MatTable<any>;
   @ViewChild('informes') tableInformes: MatTable<any>;
   @ViewChild('departamentos') tableDepartamentos: MatTable<any>;
+  @ViewChild('desebolsos') tableDesembolsos: MatTable<any>;
 
 
   @Output() dateChange: EventEmitter<MatDatepickerInputEvent<any>>;
@@ -33,9 +35,21 @@ export class InformacionComponent implements OnInit {
   displayedColumnsDepartamento: string[] = ['position', 'Departamento', 'Municipio', 'Quitar'];
 
   dataSourceComites: FechaElement[] = [];
-  dataSourceInformes: FechaElement[] = []
+  dataSourceInformes: FechaElement[] = [];
+  dataSourceDesembolsos: FechaElement[] = [];
+
   dataSourcemunicipio: MunicipioSeleccionado[] = [];
 
+  Fuente: Select[] = [
+    { value: 'CONTRAPARTIDA ', viewValue: 'CONTRAPARTIDA' },
+    { value: 'APORTE DEL DONANTE', viewValue: 'APORTE DEL DONANTE' },
+
+  ];
+  TipoFuente: Select[] = [
+    { value: 'EFECTICO ', viewValue: 'EFECTIVO' },
+    { value: 'ESPECIE', viewValue: 'ESPECIE' },
+
+  ];
   tipoImplementacion: Select[] = [
     { value: 'PROGRAMA ', viewValue: 'PROGRAMA' },
     { value: 'MIXTO', viewValue: 'MIXTO' },
@@ -55,7 +69,7 @@ export class InformacionComponent implements OnInit {
     { value: 'Nacional', viewValue: 'Nacional' },
     { value: 'Internacional', viewValue: 'Internacional' }
   ];
-  isLinear = true;
+  isLinear = false;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
@@ -65,6 +79,9 @@ export class InformacionComponent implements OnInit {
   previousDate: Date;
   FechaComite: Date;
   FechaInformes: Date;
+  FechaDesembolso: Date;
+  AgregarDesembolso: boolean;
+
   AgregarInfome: boolean;
   AgregarMuni: boolean;
   validarNextPantalla_1: boolean;
@@ -76,12 +93,17 @@ export class InformacionComponent implements OnInit {
 
   agregarComite: boolean;
   infoProyecto: Proyecto;
-
+  infoFinanciera: Financiera;
 
   objetoColombia: ConsultaDepartamentos;
   Departamentos: Departamento[] = [];
   Municipios: Municipio[] = [];
   MunicipioSeleccionado: Municipio[] = [];
+
+  centrosCostos: CentrosCosto[] =[];
+  subCentro:     SubCentro[] = [];
+  subCentroSeleccionado: SubCentro[] = [];
+
   codigoDepartamento: number;
   codigoMunicipio: number;
 
@@ -90,7 +112,9 @@ export class InformacionComponent implements OnInit {
     public userService: UserService
   ) {
     this.FechaComite = new Date();
+    this.FechaDesembolso = new Date()
     this.agregarComite = true;
+    this.AgregarDesembolso = true;
     this.FechaInformes = new Date();
     this.AgregarInfome = true;
   }
@@ -120,6 +144,26 @@ export class InformacionComponent implements OnInit {
 
 
   }
+
+  agregarFechaDesembolso() {
+
+    let conteo = this.dataSourceDesembolsos.length + 1
+    let nuevo = new FechaElement(
+      this.FechaDesembolso,
+      conteo
+    );
+    this.dataSourceDesembolsos.push(nuevo);
+    this.tableDesembolsos.renderRows();
+
+    if (conteo === 5) {
+      this.AgregarDesembolso = false;
+
+    }
+
+
+  }
+
+
   agregarFechaComite() {
 
     let conteo = this.dataSourceComites.length + 1
@@ -137,6 +181,34 @@ export class InformacionComponent implements OnInit {
 
     this.ValidarReuniones = true;
     this.continuar();
+  }
+
+  eliminarDesembolso(listafecha: FechaElement) {
+
+
+    this.dataSourceDesembolsos = this.dataSourceDesembolsos.filter(fecha => {
+      return fecha.position !== listafecha.position;
+    });
+
+    let conteo = this.dataSourceDesembolsos.length
+    let conteointerno = 0;
+    this.dataSourceDesembolsos.forEach(item => {
+      conteointerno += 1;
+      item.position = conteointerno
+    })
+    this.table.renderRows();
+
+    // if(this.dataSourceComites.length === 0){
+    //   this.ValidarReuniones = false;
+    // }else{
+    //   this.ValidarReuniones = true
+    // }
+    // this.continuar()
+    if (5 > conteo) {
+      this.AgregarDesembolso = true;
+
+    }
+
   }
 
   eliminarfechaComite(listafecha: FechaElement) {
@@ -207,6 +279,7 @@ export class InformacionComponent implements OnInit {
     }
 
   }
+  
   CambioComite(event) {
 
     var fecha = moment(this.FechaComite);
@@ -216,6 +289,20 @@ export class InformacionComponent implements OnInit {
       this.agregarComite = true;
     } else {
       this.agregarComite = false;
+
+    }
+
+  }
+
+  cambioDesembolso(event) {
+
+    var fecha = moment(this.FechaDesembolso);
+    if (fecha.isValid()) {
+     
+
+      this.AgregarDesembolso = true;
+    } else {
+      this.AgregarDesembolso = false;
 
     }
 
@@ -249,6 +336,29 @@ export class InformacionComponent implements OnInit {
 
         this.Departamentos.push(...response.departamentos)
         this.Municipios.push(...response.municipios)
+       
+
+
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
+  cambioCentroCosto(id){
+  
+      this.subCentroSeleccionado = this.subCentro.filter(item => {
+        return item.codigoCentro === id;
+      });
+  
+  }
+  traerCentrosCostos() {
+    this.userService.getCentrosResponse().subscribe(
+      response => {
+
+        this.centrosCostos.push(...response.centrosCostos)
+        this.subCentro.push(...response.subCentro)
        
 
 
@@ -363,9 +473,17 @@ export class InformacionComponent implements OnInit {
     }
   }
   onGuardar() {
+    this.infoProyecto.FechasInformes = [];
+    this.infoProyecto.FechasComites = [];
+    this.infoProyecto.Municipio = [];
+    this.infoFinanciera.Desembolsos = [];
+
     this.infoProyecto.FechasInformes.push(... this.dataSourceInformes);
     this.infoProyecto.FechasComites.push(... this.dataSourceComites);
     this.infoProyecto.Municipio.push(...this.dataSourcemunicipio)
+    this.infoFinanciera.Desembolsos.push(... this.dataSourceDesembolsos)
+    this.infoProyecto.infoFinanciera = this.infoFinanciera;
+    
     console.log(this.infoProyecto)
     this.userService.guardarRegistroProyecto(this.infoProyecto).subscribe(
       response => {
@@ -384,6 +502,7 @@ export class InformacionComponent implements OnInit {
     this.ValidarReuniones = false ;
      this.ValidarInformes = false
     this.infoProyecto = new Proyecto();
+    this.infoFinanciera = new Financiera();
     this.calcularDias()
 
     this.isLinear = true;
@@ -421,19 +540,31 @@ export class InformacionComponent implements OnInit {
       fechas: ['', Validators.required],
       fechasFin: ['', Validators.required],
 
-      
-
-
 
     });
     this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
+
+      CostoTotal: ['', Validators.required],
+      Fuente: ['', Validators.required],
+      TipoFuente: ['', Validators.required],
+      TasaCambio: ['', Validators.required],
+      Cuenta: ['', Validators.required],
+      CentroCosto: ['',  Validators.required],
+      SubCentroCosto: ['',  Validators.required],
+      Navision: ['',  Validators.required],
+      fechas: ['',  Validators.required],
+
+
+
+
+
     });
     this.thirdFormGroup = this._formBuilder.group({
       thirdCtrl: ['', Validators.required]
     });
 
     this.traerDepartamentos();
+    this.traerCentrosCostos();
 
   }
 

@@ -1,5 +1,5 @@
 <div class="container">
-    <mat-horizontal-stepper [linear]="isLinear" #stepper>
+    <mat-horizontal-stepper [linear]="false" #stepper>
 
         <mat-step [stepControl]="firstFormGroup">
             <form [formGroup]="firstFormGroup">
@@ -66,9 +66,8 @@
                     <div class="col-3">
                         <mat-form-field appearance="fill">
                             <mat-label>Email</mat-label>
-                            <input type="email" matInput formControlName="email" [(ngModel)]="infoProyecto.Email" placeholder="Email"
-                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-                                required>
+                            <input type="email" matInput formControlName="email" [(ngModel)]="infoProyecto.Email"
+                                placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
                         </mat-form-field>
                     </div>
                     <div class="col-3">
@@ -113,20 +112,20 @@
 
                 <div class="row">
                     <div class="col-3">
-                        
-                            <mat-form-field appearance="fill">
-                                <mat-label>Tipo de Implementación</mat-label>
-                                <mat-select formControlName="tipoImplementacion" [(ngModel)]="infoProyecto.TipoImplementacion"
-                                    required>
-                                    <mat-option *ngFor="let item of tipoImplementacion" [value]="item.value">
-                                        {{item.viewValue}}
-                                    </mat-option>
-                                </mat-select>
-                            </mat-form-field>
-                        </div>
+
+                        <mat-form-field appearance="fill">
+                            <mat-label>Tipo de Implementación</mat-label>
+                            <mat-select formControlName="tipoImplementacion"
+                                [(ngModel)]="infoProyecto.TipoImplementacion" required>
+                                <mat-option *ngFor="let item of tipoImplementacion" [value]="item.value">
+                                    {{item.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
 
 
-                    
+
                 </div>
                 <mat-divider></mat-divider>
 
@@ -156,11 +155,10 @@
                         </mat-form-field>
                     </div>
                     <div class="col-4">
-                        <button mat-raised-button
-                            [disabled]="AgregarMuni"
+                        <button mat-raised-button [disabled]="AgregarMuni"
                             class="btn mat-focus-indicator btn btn-success pull-right bajar mat-raised-button mat-button-base mat-primary pull-right bajar"
-                            color="primary" (click)="agregarMunicipio()"
-                            value="Agregar Municipio" >Agregar Municipio</button>
+                            color="primary" (click)="agregarMunicipio()" value="Agregar Municipio">Agregar
+                            Municipio</button>
 
                     </div>
                 </div>
@@ -178,19 +176,19 @@
                             <ng-container matColumnDef="Departamento">
                                 <th mat-header-cell *matHeaderCellDef> Departamento </th>
                                 <td mat-cell *matCellDef="let element"> {{element.Departamento}}
-                                  </td>
+                                </td>
                             </ng-container>
                             <!-- Name Column -->
                             <ng-container matColumnDef="Municipio">
                                 <th mat-header-cell *matHeaderCellDef> Municipio </th>
                                 <td mat-cell *matCellDef="let element"> {{element.Municipio}}
-                                     </td>
+                                </td>
                             </ng-container>
                             <ng-container matColumnDef="Quitar">
                                 <th mat-header-cell *matHeaderCellDef> Quitar </th>
-                                <td mat-cell *matCellDef="let element"> 
+                                <td mat-cell *matCellDef="let element">
                                     <button type="button" mat-mini-fab color="primary" aria-label="fecha"
-                                    (click)="eliminarMunicipio(element)" >
+                                        (click)="eliminarMunicipio(element)">
                                         <mat-icon>delete_outline</mat-icon>
                                     </button> </td>
                             </ng-container>
@@ -275,8 +273,8 @@
                             <div class="col-6">
                                 <button mat-raised-button
                                     class="btn mat-focus-indicator btn btn-success pull-right bajar mat-raised-button mat-button-base mat-primary pull-right bajar"
-                                    [disabled]="!AgregarInfome" color="primary" (click)="AgregarFechaInforme()"
-                                   >Agregar Fecha</button>
+                                    [disabled]="!AgregarInfome" color="primary" (click)="AgregarFechaInforme()">Agregar
+                                    Fecha</button>
 
                             </div>
                         </div>
@@ -298,11 +296,11 @@
                                     <ng-container matColumnDef="Fecha">
                                         <th mat-header-cell *matHeaderCellDef> Fecha </th>
                                         <td mat-cell *matCellDef="let element"> {{element.Fecha |date:['yyyy-MM-dd']}}
-                                             </td>
+                                        </td>
                                     </ng-container>
                                     <ng-container matColumnDef="Quitar">
                                         <th mat-header-cell *matHeaderCellDef> Quitar </th>
-                                        <td mat-cell *matCellDef="let element"> 
+                                        <td mat-cell *matCellDef="let element">
                                             <button type="button" mat-mini-fab color="primary" aria-label="fecha"
                                                 (click)="eliminarFechaInforme(element)">
                                                 <mat-icon>delete_outline</mat-icon>
@@ -336,8 +334,8 @@
                             <div class="col-6">
                                 <button mat-raised-button
                                     class="btn mat-focus-indicator btn btn-success pull-right bajar mat-raised-button mat-button-base mat-primary pull-right bajar"
-                                    [disabled]="!agregarComite" color="primary" (click)="agregarFechaComite()"
-                                    >Agregar Fecha</button>
+                                    [disabled]="!agregarComite" color="primary" (click)="agregarFechaComite()">Agregar
+                                    Fecha</button>
 
                             </div>
                         </div>
@@ -359,12 +357,12 @@
                                     <ng-container matColumnDef="Fecha">
                                         <th mat-header-cell *matHeaderCellDef> Fecha </th>
                                         <td mat-cell *matCellDef="let element"> {{element.Fecha |date:['yyyy-MM-dd']}}
-                                           </td>
+                                        </td>
                                     </ng-container>
-                                      <!-- Name Column -->
-                                      <ng-container matColumnDef="Quitar">
+                                    <!-- Name Column -->
+                                    <ng-container matColumnDef="Quitar">
                                         <th mat-header-cell *matHeaderCellDef> Quitar </th>
-                                        <td mat-cell *matCellDef="let element"> 
+                                        <td mat-cell *matCellDef="let element">
                                             <button type="button" mat-mini-fab color="primary" aria-label="fecha"
                                                 (click)="eliminarfechaComite(element)">
                                                 <mat-icon>delete_outline</mat-icon>
@@ -387,31 +385,186 @@
 
 
                 <mat-divider>
-                    
+
                 </mat-divider>
 
                 <div>
-                    <button mat-raised-button color="warn"  [disabled]="validarNextPantalla_1" (click)="onGuardar()">Guardar</button>
-                   
-
-                    <label>
-                        Tablas {{validarNextPantalla_1 }}
-                        - formulario Valido: {{this.firstFormGroup.invalid}}
-                       - reusltado:  {{(!validarNextPantalla_1  && !this.firstFormGroup.invalid)? false: true}}
-                    </label>
-                  
-                    <button mat-raised-button color="warn" matStepperNext [disabled]="(!validarNextPantalla_1  && !this.firstFormGroup.invalid)? false: true" >Next</button>
+                    <!-- <button mat-raised-button color="warn"  [disabled]="validarNextPantalla_1" (click)="onGuardar()">Guardar</button>
+                 -->
+                    <button mat-raised-button color="warn" matStepperNext
+                        [disabled]="(!validarNextPantalla_1  && !this.firstFormGroup.invalid)? false: true">Next</button>
                 </div>
             </form>
         </mat-step>
         <mat-step [stepControl]="secondFormGroup">
             <form [formGroup]="secondFormGroup">
+
                 <ng-template matStepLabel>Información Financiera</ng-template>
-                <mat-form-field>
-                   
-                    <mat-label>Address</mat-label>
-                    <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY" required>
-                </mat-form-field>
+                <div class="row">
+
+                    <div class="col-12">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Costo Total Del Proyecto</mat-label>
+
+                            <input matInput placeholder="Costo Total " formControlName="CostoTotal"
+                                [(ngModel)]="infoFinanciera.CostoTotal" required>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 centerlabel font-weight-bold"><label>PRESUPUESTO POR FUENTES</label></div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Fuente Presupuesto</mat-label>
+                            <mat-select formControlName="Fuente" [(ngModel)]="infoFinanciera.FuentePresupuesto"
+                                required>
+                                <mat-option *ngFor="let item of Fuente" [value]="item.value">
+                                    {{item.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-6">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Tipo Fuente</mat-label>
+                            <mat-select formControlName="TipoFuente" [(ngModel)]="infoFinanciera.TipoFuente" required>
+                                <mat-option *ngFor="let item of TipoFuente" [value]="item.value">
+                                    {{item.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <mat-divider></mat-divider>
+                <div class="row">
+                    <div class="col-6">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Tasa de Cambio Pactada</mat-label>
+                            <input matInput formControlName="TasaCambio" [(ngModel)]="infoFinanciera.TasaCambio"
+                                required />
+
+                        </mat-form-field>
+                    </div>
+                    <div class="col-6">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Cuenta a la que llegan los fondos</mat-label>
+
+
+                            <input matInput placeholder="Cuenta a la que llegan los fondos" formControlName="Cuenta"
+                                [(ngModel)]="infoFinanciera.Cuenta" required />
+
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-6">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Centro de Costos</mat-label>
+                            <mat-select formControlName="CentroCosto" [(ngModel)]="infoFinanciera.CentroCostos"
+                                (selectionChange)="cambioCentroCosto($event.value)" required>
+                                <mat-option *ngFor="let item of centrosCostos" [value]="item.codigoCentro">
+                                    {{item.nombre}}
+                                </mat-option>
+                            </mat-select>
+
+                        </mat-form-field>
+                    </div>
+                    <div class="col-6">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Sub Centro de Costos </mat-label>
+                            <mat-select formControlName="SubCentroCosto" [(ngModel)]="infoFinanciera.SubCentro"
+                                required>
+                                <mat-option *ngFor="let item of subCentroSeleccionado" [value]="item.codigoSubCentro">
+                                    {{item.nombre}}
+                                </mat-option>
+                            </mat-select>
+
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Navision/ Facility</mat-label>
+                            <input matInput formControlName="Navision" [(ngModel)]="infoFinanciera.NavisionFacilitiy"
+                                required />
+
+                        </mat-form-field>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div >
+                        <div class="row">
+
+                            <div class="col-4">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Fecha de Desembolsos</mat-label>
+                                    <input matInput formControlName="fechas" [matDatepicker]="pickerDesembolso"
+                                        [(ngModel)]="FechaDesembolso" ng-keydown="$event.preventDefault();"
+                                        (dateChange)="cambioDesembolso($event)">
+                                    <mat-datepicker-toggle matSuffix [for]="pickerDesembolso">
+                                    </mat-datepicker-toggle>
+                                    <mat-datepicker touchUi #pickerDesembolso></mat-datepicker>
+                                    <!-- <input type="button" value="Agregar Fecha"/> -->
+
+                                </mat-form-field>
+                            </div>
+                            <div class="col-3" style="padding-right: 30px;">
+                                <button mat-raised-button
+                                    class="btn mat-focus-indicator btn btn-success pull-right bajar mat-raised-button mat-button-base mat-primary pull-right bajar"
+                                    [disabled]="!AgregarDesembolso" color="primary"
+                                    (click)="agregarFechaDesembolso()">Agregar
+                                    Fecha</button>
+
+                            </div>
+                            <div class="centrarTabla col-5" style="padding-left: 10px;">
+
+
+                                <table #desebolsos mat-table [dataSource]="dataSourceDesembolsos"
+                                    class="mat-elevation-z8 estirar">
+
+
+                                    <!-- Position Column -->
+                                    <ng-container matColumnDef="position">
+                                        <th mat-header-cell *matHeaderCellDef> No. </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+                                    </ng-container>
+
+                                    <!-- Name Column -->
+                                    <ng-container matColumnDef="Fecha">
+                                        <th mat-header-cell *matHeaderCellDef> Fecha </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.Fecha |date:['yyyy-MM-dd']}}
+                                        </td>
+                                    </ng-container>
+                                    <!-- Name Column -->
+                                    <ng-container matColumnDef="Quitar">
+                                        <th mat-header-cell *matHeaderCellDef> Quitar </th>
+                                        <td mat-cell *matCellDef="let element">
+                                            <button type="button" mat-mini-fab color="primary" aria-label="fecha"
+                                                (click)="eliminarDesembolso(element)">
+                                                <mat-icon>delete_outline</mat-icon>
+                                            </button> </td>
+                                    </ng-container>
+
+
+
+
+                                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                                </table>
+
+
+                            </div>
+                        </div>
+                       
+                    </div>
+                </div>
+                <mat-divider></mat-divider>
+
 
                 <div>
                     <button mat-button matStepperPrevious>Back</button>
@@ -441,4 +594,7 @@
             </div>
         </mat-step>
     </mat-horizontal-stepper>
+     <button mat-raised-button color="warn" 
+     (click)="onGuardar()">Guardar</button>
+    
 </div>

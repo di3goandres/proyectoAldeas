@@ -6,6 +6,7 @@ import { User } from '../models/user';
 import { Router } from '@angular/router';
 import { ConsultaDepartamentos } from '../models/ConsultaDepartamentos';
 import { Proyecto } from '../models/proyect';
+import { CentrosResponse } from '../models/comunes';
 
 
 @Injectable({
@@ -86,6 +87,11 @@ export class UserService {
 
   getDepartamentosRespando() {
     return this.ejecutarQuery<ConsultaDepartamentos>('/api/aldeas/datoscolombia/');
+  }
+
+
+  getCentrosResponse() {
+    return this.ejecutarQuery<CentrosResponse>('/api/aldeas/datoscentrocostos/');
   }
 
 

@@ -3,6 +3,20 @@ using System.Collections.Generic;
 
 namespace ApiRestAldeas.Models
 {
+    public class Financiera
+    {
+            public string CostoTotal { get; set; }
+            public string FuentePresupuesto { get; set; }
+            public string TipoFuente { get; set; }
+            public string MonedaDonacion { get; set; }
+            public string TasaCambio { get; set; }
+            public string Cuenta { get; set; }
+            public int CentroCostos { get; set; }
+            public int SubCentro { get; set; }
+            public string NavisionFacilitiy { get; set; }
+            public List<Fechas> Desembolsos { get; set; }
+    }
+
 
     public class Fechas
     {
@@ -83,6 +97,8 @@ namespace ApiRestAldeas.Models
         
         public List<Municipios> Municipio { get; set; }
 
+
+        public Financiera InfoFinanciera { get; set; }
 
 
     }

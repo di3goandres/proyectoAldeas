@@ -49,6 +49,13 @@ namespace ApiRestAldeas.Controllers
             return _dataModelRepository.GuardarRegistroProyecto(proyectoRequest);
         }
 
+        [HttpGet]
+        [Route("/api/aldeas/datosCentroCostos/")]
+        public dynamic ConsultarCentroCostos()
+        {
+            return _dataModelRepository.CentroCostos();
+        }
+
 
     }
 }

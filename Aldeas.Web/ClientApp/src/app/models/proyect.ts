@@ -7,6 +7,8 @@ export class FechaElement {
 
 }
 
+
+
 export class MunicipioSeleccionado {
   constructor(
     public CodigoDepartamento: number,
@@ -16,6 +18,41 @@ export class MunicipioSeleccionado {
     public position: number,
   ) {
   }
+
+}
+
+
+
+export class Financiera {
+  constructor(
+ 
+    
+
+  ) {
+    this.CostoTotal= "0",
+    this.FuentePresupuesto= ""
+    this.TipoFuente= ""
+    this.MonedaDonacion= "";
+    this.TasaCambio= "";
+    this.Cuenta= "";
+    this.CentroCostos= ""
+    this.SubCentro= "";
+    this.NavisionFacilitiy= "";
+    this.Desembolsos=[];
+  }
+
+  public CostoTotal: string;
+  public FuentePresupuesto: string;
+  public TipoFuente: string;
+  public MonedaDonacion: string;
+  public TasaCambio: string;
+  public Cuenta: string;
+  public CentroCostos: string;
+  public SubCentro: string;
+  public NavisionFacilitiy: string;
+  public Desembolsos: FechaElement [];
+
+
 
 }
 export class Proyecto {
@@ -30,7 +67,7 @@ export class Proyecto {
     this.Direccion = "";
     this.Email = "";
     this.TipoImplementacion = "";
-    this.Telefono = 0
+    this.Telefono = "0"
     this.FechaInicio = new Date();
     this.FechaFinalizacion = new Date();
     this.LiderEjecucion = "";
@@ -40,6 +77,7 @@ export class Proyecto {
     this.FechasComites =[];
     this.FechasInformes =[];
     this.Municipio=[];
+    this.infoFinanciera = new Financiera();
 
   }
   public Status: string;
@@ -49,7 +87,7 @@ export class Proyecto {
   public NombreDonante: string;
   public Direccion: string;
   public Email: string;
-  public Telefono: number;
+  public Telefono: string;
   public TipoImplementacion: string;
   public FechaInicio: Date;
   public FechaFinalizacion: Date;
@@ -60,6 +98,7 @@ export class Proyecto {
   public FechasInformes: FechaElement [];
   public FechasComites: FechaElement [];
   public Municipio: MunicipioSeleccionado[];
+  public infoFinanciera: Financiera;
 
 
 

@@ -21,6 +21,11 @@ namespace ApiRestAldeas.Repositories
             _factory = factory;
         }
 
+        public dynamic CentroCostos()
+        {
+            return CentroCostosOperations.obtenerDatos(_factory, _connectionDB);
+        }
+
         public dynamic DatosColombia()
         {
             return MunicipioOperations.obtenerDatos(_factory, _connectionDB);
@@ -34,7 +39,7 @@ namespace ApiRestAldeas.Repositories
 
         public dynamic GuardarRegistroProyecto(ProyectoRequest proyectoRequest)
         {
-            return true;
+            return ProyectoOperations.Guardar(_factory, _connectionDB, proyectoRequest);
         }
     }
 

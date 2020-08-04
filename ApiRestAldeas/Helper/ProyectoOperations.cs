@@ -31,6 +31,7 @@ namespace ApiRestAldeas.Helper
         public static dynamic Guardar(IContextFactory factory, IOptions<ConnectionDB> connection,
             ProyectoRequest proyectoRequest)
         {
+            long idProyecto = 0;
             using (Aldeas_Context db = factory.Create(connection))
             {
                 var nuevoProyecto = new Proyectos()
@@ -50,7 +51,7 @@ namespace ApiRestAldeas.Helper
                 };
                 db.tbProyectos.Add(nuevoProyecto);
                 db.SaveChanges();
-
+                idProyecto = nuevoProyecto.id;
                 List<FechasEntregas> fechas = new List<FechasEntregas>();
                
 
@@ -124,7 +125,24 @@ namespace ApiRestAldeas.Helper
 
 
             }
+            return new { id = idProyecto, status = idProyecto == 0 ? "error": "OK", code=200 };
+        }
+
+        public static dynamic GuardarArchivo(IContextFactory factory, IOptions<ConnectionDB> connection,
+          int idProyecto, string file, string tipo )
+        {
+            using (Aldeas_Context db = factory.Create(connection))
+            {
+                
+
+
+
+
+
+
+            }
             return true;
         }
+
     }
 }

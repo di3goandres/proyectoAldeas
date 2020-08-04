@@ -1,6 +1,6 @@
 import { Component, OnInit, EventEmitter, Output, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Proyecto, FechaElement, MunicipioSeleccionado, Financiera } from '../../../models/proyect';
+import { Proyecto, FechaElement, MunicipioSeleccionado, Financiera, Participantes, Ejecucion } from '../../../models/proyect';
 import * as moment from 'moment';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { MatTable } from '@angular/material/table';
@@ -27,16 +27,27 @@ export class InformacionComponent implements OnInit {
   @ViewChild('informes') tableInformes: MatTable<any>;
   @ViewChild('departamentos') tableDepartamentos: MatTable<any>;
   @ViewChild('desebolsos') tableDesembolsos: MatTable<any>;
+  @ViewChild('vistantes') tablevistantes: MatTable<any>;
 
+
+
+  fileToUpload: File = null;
 
   @Output() dateChange: EventEmitter<MatDatepickerInputEvent<any>>;
 
   displayedColumns: string[] = ['position', 'Fecha', 'Quitar'];
   displayedColumnsDepartamento: string[] = ['position', 'Departamento', 'Municipio', 'Quitar'];
+  displayedColumnsPROYECTO: string[] = 
+  ['position', '1' , '2',  '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
 
+  displayedColumnsParticipante: string[] = 
+  ['position', '0 - 5 Años' , '6 - 12 años',
+    '13 - 15 años', '18 - 24 años', '25 - 56 años', 
+    'Mayores de 60 años', 'Total']
   dataSourceComites: FechaElement[] = [];
   dataSourceInformes: FechaElement[] = [];
   dataSourceDesembolsos: FechaElement[] = [];
+  dataSourceVisita: FechaElement[] = [];
 
   dataSourcemunicipio: MunicipioSeleccionado[] = [];
 
@@ -80,7 +91,12 @@ export class InformacionComponent implements OnInit {
   FechaComite: Date;
   FechaInformes: Date;
   FechaDesembolso: Date;
+  FechaVisita: Date;
+
+  
   AgregarDesembolso: boolean;
+  AgregarVisita: boolean;
+
 
   AgregarInfome: boolean;
   AgregarMuni: boolean;
@@ -106,6 +122,10 @@ export class InformacionComponent implements OnInit {
 
   codigoDepartamento: number;
   codigoMunicipio: number;
+  ejecucion: Ejecucion[]=[];
+  participantes: Participantes[]=[];
+
+  
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -117,6 +137,16 @@ export class InformacionComponent implements OnInit {
     this.AgregarDesembolso = true;
     this.FechaInformes = new Date();
     this.AgregarInfome = true;
+    this.FechaVisita = new Date();
+    this.AgregarVisita = true;
+
+    
+    this.ejecucion.push(new Ejecucion("EJECUCION DEL PROYECTO"));
+    this.ejecucion.push(new Ejecucion("RECUPERACIÓN DEL PROYECTO"));
+    this.participantes.push(new Participantes("MUJERES"))
+    this.participantes.push(new Participantes("HOMBRES"))
+    this.participantes.push(new Participantes("OTROS"))
+
   }
   datediff(first, second) {
     // Take the difference between the dates and divide by milliseconds per day.
@@ -141,6 +171,24 @@ export class InformacionComponent implements OnInit {
     }
     this.ValidarInformes = true
     this.continuar();
+
+
+  }
+
+  agregarVisita() {
+
+    let conteo = this.dataSourceVisita.length + 1
+    let nuevo = new FechaElement(
+      this.FechaDesembolso,
+      conteo
+    );
+    this.dataSourceVisita.push(nuevo);
+    this.tablevistantes.renderRows();
+
+    if (conteo === 5) {
+      this.AgregarVisita = false;
+
+    }
 
 
   }
@@ -183,31 +231,48 @@ export class InformacionComponent implements OnInit {
     this.continuar();
   }
 
-  eliminarDesembolso(listafecha: FechaElement) {
+
+  eliminarVisita(listafecha: FechaElement) {
 
 
-    this.dataSourceDesembolsos = this.dataSourceDesembolsos.filter(fecha => {
+    this.dataSourceVisita = this.dataSourceVisita.filter(fecha => {
       return fecha.position !== listafecha.position;
     });
 
-    let conteo = this.dataSourceDesembolsos.length
+    let conteo = this.dataSourceVisita.length
     let conteointerno = 0;
-    this.dataSourceDesembolsos.forEach(item => {
+    this.dataSourceVisita.forEach(item => {
       conteointerno += 1;
       item.position = conteointerno
     })
-    this.table.renderRows();
+    this.tablevistantes.renderRows();
 
-    // if(this.dataSourceComites.length === 0){
-    //   this.ValidarReuniones = false;
-    // }else{
-    //   this.ValidarReuniones = true
-    // }
-    // this.continuar()
     if (5 > conteo) {
-      this.AgregarDesembolso = true;
+      this.AgregarVisita = true;
 
     }
+
+  }
+
+  eliminarDesembolso() {
+
+
+    // this.dataSourceDesembolsos = this.dataSourceDesembolsos.filter(fecha => {
+    //   return fecha.position !== listafecha.position;
+    // });
+
+    // let conteo = this.dataSourceDesembolsos.length
+    // let conteointerno = 0;
+    // this.dataSourceDesembolsos.forEach(item => {
+    //   conteointerno += 1;
+    //   item.position = conteointerno
+    // })
+    // this.table.renderRows();
+
+    // if (5 > conteo) {
+    //   this.AgregarDesembolso = true;
+
+    // }
 
   }
 
@@ -294,12 +359,22 @@ export class InformacionComponent implements OnInit {
 
   }
 
+  cambioVisita(event) {
+
+    var fecha = moment(this.FechaDesembolso);
+    if (fecha.isValid()) {
+      this.AgregarDesembolso = true;
+    } else {
+      this.AgregarDesembolso = false;
+
+    }
+
+  }
+
   cambioDesembolso(event) {
 
     var fecha = moment(this.FechaDesembolso);
     if (fecha.isValid()) {
-     
-
       this.AgregarDesembolso = true;
     } else {
       this.AgregarDesembolso = false;
@@ -477,24 +552,51 @@ export class InformacionComponent implements OnInit {
     this.infoProyecto.FechasComites = [];
     this.infoProyecto.Municipio = [];
     this.infoFinanciera.Desembolsos = [];
+    this.infoProyecto.ListaEjecucion = [];
+
 
     this.infoProyecto.FechasInformes.push(... this.dataSourceInformes);
     this.infoProyecto.FechasComites.push(... this.dataSourceComites);
     this.infoProyecto.Municipio.push(...this.dataSourcemunicipio)
     this.infoFinanciera.Desembolsos.push(... this.dataSourceDesembolsos)
     this.infoProyecto.infoFinanciera = this.infoFinanciera;
-    
-    console.log(this.infoProyecto)
-    this.userService.guardarRegistroProyecto(this.infoProyecto).subscribe(
-      response => {
-        console.log(response)
-      },
-      error => {
-        console.log(error)
-      },
+    this.infoProyecto.ListaEjecucion.push(... this.ejecucion);
 
-    )
+    this.infoProyecto.ListaParticipantes =[];
+    this.infoProyecto.ListaParticipantes.push(... this.participantes);
+
+    console.log(this.fileToUpload);
+    this.userService.postFile(this.fileToUpload)
+    .subscribe(
+        response => {
+          console.log(response)
+        },
+        error => {
+          console.log(error)
+        },
+  
+      )
+    
+    //console.log(JSON.stringify( this.infoProyecto))
+
+
+    // this.userService.guardarRegistroProyecto(this.infoProyecto).subscribe(
+    //   response => {
+    //     console.log(response)
+    //   },
+    //   error => {
+    //     console.log(error)
+    //   },
+
+    // )
   }
+
+  handleFileInput(files: FileList) {
+    this.fileToUpload = files.item(0);
+}
+  
+
+
   ngOnInit(): void {
     this.AgregarMuni = true;
     this.validarNextPantalla_1 = true;
@@ -553,14 +655,16 @@ export class InformacionComponent implements OnInit {
       SubCentroCosto: ['',  Validators.required],
       Navision: ['',  Validators.required],
       fechas: ['',  Validators.required],
-
-
-
+      responsable: ['',  Validators.required],
+      lugar: ['',  Validators.required],
+      proyecto: ['',  Validators.required],
 
 
     });
     this.thirdFormGroup = this._formBuilder.group({
-      thirdCtrl: ['', Validators.required]
+      thirdCtrl: ['', Validators.required],
+      proyecto: ['',  Validators.required],
+
     });
 
     this.traerDepartamentos();

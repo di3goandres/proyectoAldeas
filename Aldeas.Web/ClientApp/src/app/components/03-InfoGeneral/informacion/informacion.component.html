@@ -42,7 +42,6 @@
                     </div>
 
                 </div>
-                <mat-divider></mat-divider>
 
                 <div class="row">
                     <div class="col-12 centerlabel font-weight-bold"><label>DATOS CONTACTO</label></div>
@@ -79,7 +78,7 @@
                     </div>
 
                 </div>
-                <mat-divider></mat-divider>
+                
 
                 <div class="row">
                     <div class="col-4">
@@ -127,8 +126,7 @@
 
 
                 </div>
-                <mat-divider></mat-divider>
-
+            
                 <div class="row">
                     <div class="col-4">
                         <mat-form-field appearance="fill">
@@ -204,7 +202,6 @@
 
                 </div>
 
-                <mat-divider></mat-divider>
                 <div class="row">
                     <div class="col-12 centerlabel font-weight-bold"><label>FECHAS PROYECTO</label></div>
                 </div>
@@ -249,8 +246,6 @@
                         </mat-form-field>
                     </div>
                 </div>
-
-                <mat-divider></mat-divider>
                 <div class="row">
                     <div class="col-12 centerlabel font-weight-bold"><label>FECHA DE REUNIONES</label></div>
                 </div>
@@ -497,7 +492,7 @@
 
                 </div>
                 <div class="row">
-                    <div >
+                    <div>
                         <div class="row">
 
                             <div class="col-4">
@@ -560,8 +555,260 @@
 
                             </div>
                         </div>
-                       
+
                     </div>
+                </div>
+                <div class="row">
+
+
+                    <div class="centrarTabla col-3">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Responsable</mat-label>
+                            <input matInput formControlName="responsable" required />
+
+
+                        </mat-form-field>
+                    </div>
+                    <div class="centrarTabla col-3">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Lugar</mat-label>
+                            <input matInput formControlName="lugar" required />
+
+
+                        </mat-form-field>
+                    </div>
+                    <div class="centrarTabla col-3">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Visitas del Donante</mat-label>
+                            <input matInput formControlName="fechas" [matDatepicker]="picherVisitas"
+                                [(ngModel)]="FechaVisita" ng-keydown="$event.preventDefault();"
+                                (dateChange)="cambioVisita($event)">
+                            <mat-datepicker-toggle matSuffix [for]="picherVisitas">
+                            </mat-datepicker-toggle>
+                            <mat-datepicker touchUi #picherVisitas></mat-datepicker>
+                            <!-- <input type="button" value="Agregar Fecha"/> -->
+
+                        </mat-form-field>
+                    </div>
+                    <div class="col-3" style="padding-right: 30px;">
+                        <button mat-raised-button
+                            class="btn mat-focus-indicator btn btn-success pull-right bajar mat-raised-button mat-button-base mat-primary pull-right bajar"
+                            [disabled]="!AgregarVisita" color="primary" (click)="agregarVisita()">Agregar
+                            Fecha</button>
+
+                    </div>
+                    <div class=" centrarTabla col-1"></div>
+
+                </div>
+                <div class="row">
+                    <div class=" col-1"></div>
+                    <div class="centrarTabla col-4" style="padding-left: 10px;">
+
+
+                        <table #vistantes mat-table [dataSource]="dataSourceVisita" class="mat-elevation-z8 estirar">
+
+
+                            <!-- Position Column -->
+                            <ng-container matColumnDef="position">
+                                <th mat-header-cell *matHeaderCellDef> No. </th>
+                                <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+                            </ng-container>
+
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="Fecha">
+                                <th mat-header-cell *matHeaderCellDef> Fecha </th>
+                                <td mat-cell *matCellDef="let element"> {{element.Fecha |date:['yyyy-MM-dd']}}
+                                </td>
+                            </ng-container>
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="Quitar">
+                                <th mat-header-cell *matHeaderCellDef> Quitar </th>
+                                <td mat-cell *matCellDef="let element">
+                                    <button type="button" mat-mini-fab color="primary" aria-label="fecha"
+                                        (click)="eliminarDesembolso(element)">
+                                        <mat-icon>delete_outline</mat-icon>
+                                    </button> </td>
+                            </ng-container>
+
+
+
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                        </table>
+
+
+                    </div>
+                    <div class="centrarTabla col-2"></div>
+
+
+
+                </div>
+                <mat-divider></mat-divider>
+                <div class="row">
+                   
+                    <div class="">
+
+                        <table mat-table [dataSource]="ejecucion" class="mat-elevation-z8 ajuste">
+
+
+                            <!-- Position Column -->
+                            <ng-container matColumnDef="position">
+                                <th mat-header-cell *matHeaderCellDef> No. </th>
+                                <td mat-cell *matCellDef="let element"> {{element.Nombre}} </td>
+                            </ng-container>
+
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="1">
+                                <th mat-header-cell *matHeaderCellDef> 1 </th>
+                                <td mat-cell *matCellDef="let element; let i  = index">
+                                    <!-- <ng-template viewMode> -->
+                                    <mat-form-field >
+                                        <input matInput type="number" [(ngModel)]="element.Enero"
+                                            formControlName="proyecto">
+                                    </mat-form-field>
+                                </td>
+                            </ng-container>
+                             <ng-container matColumnDef="2">
+                                <th mat-header-cell *matHeaderCellDef> 2 </th>
+                                <td mat-cell *matCellDef="let element; let i  = index">
+                                  
+                                    <mat-form-field>
+                                        <input matInput type="number" [(ngModel)]="element.Febrero"
+                                            formControlName="proyecto">
+                                    </mat-form-field>
+                                </td>
+                            </ng-container>
+                            <ng-container matColumnDef="3">
+                                <th mat-header-cell *matHeaderCellDef> 3 </th>
+                                <td mat-cell *matCellDef="let element; let i  = index">
+                                   
+                                    <mat-form-field>
+                                        <input matInput type="number" [(ngModel)]="element.Marzo"
+                                            formControlName="proyecto">
+                                    </mat-form-field>
+                                </td>
+                            </ng-container>
+                           
+                            <ng-container matColumnDef="4">
+                                <th mat-header-cell *matHeaderCellDef> 4 </th>
+                                <td mat-cell *matCellDef="let element; let i  = index">
+                                    
+                                    <mat-form-field class="maxWidth">
+                                        <input matInput type="number" [(ngModel)]="element.Abril"
+                                            formControlName="proyecto">
+                                    </mat-form-field>
+                                </td>
+                            </ng-container>
+                          
+                           <ng-container matColumnDef="5">
+                                <th mat-header-cell *matHeaderCellDef> 5 </th>
+                                <td mat-cell *matCellDef="let element; let i  = index">
+                                   
+                                    <mat-form-field>
+                                        <input matInput type="number" [(ngModel)]="element.Mayo"
+                                            formControlName="proyecto">
+                                    </mat-form-field>
+                                </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="6">
+                                <th mat-header-cell *matHeaderCellDef> 6 </th>
+                                <td mat-cell *matCellDef="let element; let i  = index">
+                                   
+                                    <mat-form-field>
+                                        <input matInput type="number" [(ngModel)]="element.Junio"
+                                            formControlName="proyecto">
+                                    </mat-form-field>
+                                </td>
+                            </ng-container>
+                            <mat-divider></mat-divider>
+                            <ng-container matColumnDef="7">
+                                <th mat-header-cell *matHeaderCellDef> 7 </th>
+                                <td mat-cell *matCellDef="let element; let i  = index">
+                                    
+                                    <mat-form-field>
+                                        <input matInput type="number" [(ngModel)]="element.Julio"
+                                            formControlName="proyecto">
+                                    </mat-form-field>
+                                </td>
+                            </ng-container>
+                            <ng-container matColumnDef="8">
+                                <th mat-header-cell *matHeaderCellDef> 8 </th>
+                                <td mat-cell *matCellDef="let element; let i  = index">
+                                   
+                                    <mat-form-field>
+                                        <input matInput type="number" [(ngModel)]="element.Agosto"
+                                            formControlName="proyecto">
+                                    </mat-form-field>
+                                </td>
+                            </ng-container>
+                            <ng-container matColumnDef="9">
+                                <th mat-header-cell *matHeaderCellDef> 9 </th>
+                                <td mat-cell *matCellDef="let element; let i  = index">
+                                   
+                                    <mat-form-field>
+                                        <input matInput type="number" [(ngModel)]="element.Sept"
+                                            formControlName="proyecto">
+                                    </mat-form-field>
+                                </td>
+                            </ng-container>
+                            <ng-container matColumnDef="10">
+                                <th mat-header-cell *matHeaderCellDef> 10 </th>
+                                <td mat-cell *matCellDef="let element; let i  = index">
+                                   
+                                    <mat-form-field>
+                                        <input matInput type="number" [(ngModel)]="element.Octubre"
+                                            formControlName="proyecto">
+                                    </mat-form-field>
+                                </td>
+                            </ng-container>
+                            <ng-container matColumnDef="11">
+                                <th mat-header-cell *matHeaderCellDef> 11 </th>
+                                <td mat-cell *matCellDef="let element; let i  = index">
+                                   
+                                    <mat-form-field>
+                                        <input matInput type="number" [(ngModel)]="element.Noviembre"
+                                            formControlName="proyecto">
+                                    </mat-form-field>
+                                </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="12">
+                                <th mat-header-cell *matHeaderCellDef> 12 </th>
+                                <td mat-cell *matCellDef="let element; let i  = index">
+                                    
+                                    <mat-form-field>
+                                        <input matInput type="number" [(ngModel)]="element.Diciembre"
+                                            formControlName="proyecto">
+                                    </mat-form-field>
+                                </td>
+                            </ng-container> 
+
+
+
+
+
+
+
+
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumnsPROYECTO"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumnsPROYECTO;"></tr>
+                        </table>
+
+
+                    </div>
+                  
+
+
+
+                </div>
+                <div class="form-group">
+                    <label for="file">Adjuntar Presupuesto</label>
+                    <input type="file"
+                           id="file"
+                           (change)="handleFileInput($event.target.files)">
                 </div>
                 <mat-divider></mat-divider>
 
@@ -575,10 +822,119 @@
         <mat-step [stepControl]="thirdFormGroup">
             <form [formGroup]="thirdFormGroup">
                 <ng-template matStepLabel>Participantes Proyectados</ng-template>
-                <mat-form-field>
-                    <mat-label>Address</mat-label>
-                    <input matInput formControlName="thirdCtrl" placeholder="Ex. 1 Main St, New York, NY" required>
-                </mat-form-field>
+                <div class="row">
+                    <div class="col-12 centerlabel font-weight-bold"><label>PARTICIPANTES PROYECTO</label></div>
+                </div>
+                <div class="row">
+                   
+                    <div class="">
+
+                        <table #participantesTable mat-table [dataSource]="participantes" class="mat-elevation-z8 participantes">
+
+
+                            <!-- Position Column -->
+                            <ng-container matColumnDef="position">
+                                <th mat-header-cell *matHeaderCellDef> No. </th>
+                                <td mat-cell *matCellDef="let element"> {{element.Nombre}} </td>
+                            </ng-container>
+
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="0 - 5 Años">
+                                <th mat-header-cell *matHeaderCellDef> 0 - 5 Años </th>
+                                <td mat-cell *matCellDef="let element; let i  = index">
+                                    <!-- <ng-template viewMode> -->
+                                    <mat-form-field >
+                                        <input matInput type="number" [(ngModel)]="element.Rango_0_5"
+                                            formControlName="proyecto">
+                                    </mat-form-field>
+                                </td>
+                            </ng-container>
+                             <ng-container matColumnDef="6 - 12 años">
+                                <th mat-header-cell *matHeaderCellDef> 6 - 12 años </th>
+                                <td mat-cell *matCellDef="let element; let i  = index">
+                                  
+                                    <mat-form-field>
+                                        <input matInput type="number" [(ngModel)]="element.Rango_6_12"
+                                            formControlName="proyecto">
+                                    </mat-form-field>
+                                </td>
+                            </ng-container>
+                            <ng-container matColumnDef="13 - 15 años">
+                                <th mat-header-cell *matHeaderCellDef> 13 - 15 años </th>
+                                <td mat-cell *matCellDef="let element; let i  = index">
+                                   
+                                    <mat-form-field>
+                                        <input matInput type="number" [(ngModel)]="element.Rango_13_17"
+                                            formControlName="proyecto">
+                                    </mat-form-field>
+                                </td>
+                            </ng-container>
+                           
+                            <ng-container matColumnDef="18 - 24 años">
+                                <th mat-header-cell *matHeaderCellDef> 18 - 24 años </th>
+                                <td mat-cell *matCellDef="let element; let i  = index">
+                                    
+                                    <mat-form-field class="maxWidth">
+                                        <input matInput type="number" [(ngModel)]="element.Rango_18_24"
+                                            formControlName="proyecto">
+                                    </mat-form-field>
+                                </td>
+                            </ng-container>
+                          
+                           <ng-container matColumnDef="25 - 56 años">
+                                <th mat-header-cell *matHeaderCellDef> 25 - 56 años </th>
+                                <td mat-cell *matCellDef="let element; let i  = index">
+                                   
+                                    <mat-form-field>
+                                        <input matInput type="number" [(ngModel)]="element.Rango_25_56"
+                                            formControlName="proyecto">
+                                    </mat-form-field>
+                                </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="Mayores de 60 años">
+                                <th mat-header-cell *matHeaderCellDef> Mayores de 60 años </th>
+                                <td mat-cell *matCellDef="let element; let i  = index">
+                                   
+                                    <mat-form-field>
+                                        <input matInput type="number" [(ngModel)]="element.Mayores_60"
+                                            formControlName="proyecto">
+                                    </mat-form-field>
+                                </td>
+                            </ng-container>
+                            <mat-divider></mat-divider>
+                            <ng-container matColumnDef="Total">
+                                <th mat-header-cell *matHeaderCellDef> TOTAL </th>
+                                <td mat-cell *matCellDef="let element; let i  = index">
+                                    
+                                    <mat-form-field>
+                                        <input matInput type="number" [(ngModel)]="element.Total"
+                                            formControlName="proyecto">
+                                    </mat-form-field>
+                                </td>
+                            </ng-container>
+                         
+
+
+
+
+
+
+
+
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumnsParticipante"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumnsParticipante;"></tr>
+                        </table>
+
+
+                    </div>
+                  
+
+
+
+                </div>
+
                 <div>
                     <button mat-button matStepperPrevious>Back</button>
                     <button mat-button matStepperNext>Next</button>
@@ -594,7 +950,6 @@
             </div>
         </mat-step>
     </mat-horizontal-stepper>
-     <button mat-raised-button color="warn" 
-     (click)="onGuardar()">Guardar</button>
-    
+    <button mat-raised-button color="warn" (click)="onGuardar()">Guardar</button>
+
 </div>

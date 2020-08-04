@@ -1,4 +1,129 @@
-use proyectosAldea
+DROP TABLE IF EXISTS proyectos;
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[proyectos](
+	[id] [bigint] IDENTITY(1,1) NOT NULL,
+	[nombre] [varchar](500) NOT NULL,
+	[status] [varchar](500) NOT NULL,
+	[donante] [varchar](500) NOT NULL,
+	[tipo_financiacion] [varchar](255) NULL,
+	[nombre_donante] [varchar](500) NOT NULL,
+	[direccion] [varchar](500) NOT NULL,
+	[email] [varchar](500) NOT NULL,
+	[fecha_inicio] [datetime] NOT NULL,
+	[fecha_finalizacion] [datetime] NOT NULL,
+	[lider_ejecucion] [varchar](500) NOT NULL,
+	[lider_coordinacion] [varchar](500) NOT NULL,
+	[comite_tecnico] [varchar](500) NOT NULL
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[proyectos] ADD  CONSTRAINT [PK_proyectos] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+
+
+
+DROP TABLE IF EXISTS SubCentroCostos;
+DROP TABLE IF EXISTS CentroCostos;
+
+
+
+CREATE TABLE CentroCostos (
+  id   [int] IDENTITY(1,1) NOT NULL,
+  Codigo int NOT NULL ,
+  CentroCosto varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (Codigo)
+)
+GO
+CREATE TABLE SubCentroCostos (
+  id   [int] IDENTITY(1,1) NOT NULL,
+  CodigoCentro  int  NOT NULL  ,
+  SubCodigo varchar(255)  NOT NULL ,
+  SubCentroCosto varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (id), 
+  CONSTRAINT FK_CENTRO_SUB FOREIGN KEY (CodigoCentro) REFERENCES CentroCostos(Codigo)
+
+)
+GO
+
+INSERT INTO CentroCostos ( Codigo, CentroCosto)
+values
+(1, 'Activo'),
+(2, 'Pasivo'),
+(3, 'Patrimonio')
+
+GO
+INSERT INTO SubCentroCostos ( CodigoCentro,SubCodigo,  SubCentroCosto)
+values
+(1, '1', 'Activo'),
+(1, '11', 'Disponible'),
+(1, '1105', 'Caja'),
+
+(2, '2', 'Pasivo'),
+(2, '21', 'Obligaciones Financieras'),
+(2, '2105', 'Bancos Nacionales'),
+
+(3, '3', 'Patrimonio'),
+(3, '31', 'Capital Social'),
+(3, '3105', 'Capital Suscrito por y pagado')
+GO
+
+
+DROP TABLE IF EXISTS departamentos;
+CREATE TABLE departamentos (
+  id   [int] IDENTITY(1,1) NOT NULL,
+  id_departamento [int]  not null,
+  departamento varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (id_departamento)
+) 
+GO
+
+
+  
+/*!40000 ALTER TABLE departamentos DISABLE KEYS */;
+
+INSERT INTO departamentos (id_departamento, departamento)
+VALUES
+	(5,'ANTIOQUIA'),
+	(8,'ATLÁNTICO'),
+	(11,'BOGOTÁ, D.C.'),
+	(13,'BOLÍVAR'),
+	(15,'BOYACÁ'),
+	(17,'CALDAS'),
+	(18,'CAQUETÁ'),
+	(19,'CAUCA'),
+	(20,'CESAR'),
+	(23,'CÓRDOBA'),
+	(25,'CUNDINAMARCA'),
+	(27,'CHOCÓ'),
+	(41,'HUILA'),
+	(44,'LA GUAJIRA'),
+	(47,'MAGDALENA'),
+	(50,'META'),
+	(52,'NARIÑO'),
+	(54,'NORTE DE SANTANDER'),
+	(63,'QUINDIO'),
+	(66,'RISARALDA'),
+	(68,'SANTANDER'),
+	(70,'SUCRE'),
+	(73,'TOLIMA'),
+	(76,'VALLE DEL CAUCA'),
+	(81,'ARAUCA'),
+	(85,'CASANARE'),
+	(86,'PUTUMAYO'),
+	(88,'ARCHIPIÉLAGO DE SAN ANDRÉS, PROVIDENCIA Y SANTA CATALINA'),
+	(91,'AMAZONAS'),
+	(94,'GUAINÍA'),
+	(95,'GUAVIARE'),
+	(97,'VAUPÉS'),
+	(99,'VICHADA');
+GO
+
+
 DROP TABLE IF EXISTS municipios;
 
 CREATE TABLE municipios (
@@ -1116,3 +1241,95 @@ VALUES
 ('91798','TARAPACÁ',91),
 ('94001','INÍRIDA',94)
 GO	
+
+DROP TABLE IF EXISTS municipios_proyecto;
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[municipios_proyecto](
+	[id] [bigint] IDENTITY(1,1) NOT NULL,
+	[id_proyecto] [bigint] NOT NULL,
+	[id_departamento] [int] NULL,
+	[id_municipio] [int] NULL
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[municipios_proyecto] ADD  CONSTRAINT [PK_municipios_proyecto] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[municipios_proyecto]  WITH CHECK ADD  CONSTRAINT [FK_municipios_proyecto_proyectos] FOREIGN KEY([id_proyecto])
+REFERENCES [dbo].[proyectos] ([id])
+GO
+ALTER TABLE [dbo].[municipios_proyecto] CHECK CONSTRAINT [FK_municipios_proyecto_proyectos]
+GO
+
+
+DROP TABLE IF EXISTS  fecha_entregas;
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[fecha_entregas](
+	[id] [bigint] IDENTITY(1,1) NOT NULL,
+	[id_proyecto] [bigint] NOT NULL,
+	[fecha] [datetime] NOT NULL,
+	[tipo_fecha] [varchar](255) NULL
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[fecha_entregas] ADD  CONSTRAINT [PK_fecha_entregas] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[fecha_entregas]  WITH CHECK ADD  CONSTRAINT [FK_fecha_entregas_proyectos] FOREIGN KEY([id_proyecto])
+REFERENCES [dbo].[proyectos] ([id])
+GO
+ALTER TABLE [dbo].[fecha_entregas] CHECK CONSTRAINT [FK_fecha_entregas_proyectos]
+GO
+
+
+DROP TABLE IF EXISTS infoFinanciera;
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[infoFinanciera](
+	[id] [bigint] IDENTITY(1,1) NOT NULL,
+	[id_proyecto] [bigint] NOT NULL,
+	[costoTotal] [bigint] NOT NULL,
+	[fuente] [varchar](255) NULL,
+	[tipoFuente] [varchar](255) NULL,
+	[monedaDonacion] [varchar](255) NULL,
+	[tasaCambio] [varchar](255) NULL,
+	[cuenta] [varchar](255) NULL,
+	[navision] [varchar](255) NULL,
+	[idSubCentroCostos] [int] NULL
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[infoFinanciera] ADD PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[infoFinanciera] ADD  DEFAULT ('') FOR [fuente]
+GO
+ALTER TABLE [dbo].[infoFinanciera] ADD  DEFAULT ('') FOR [tipoFuente]
+GO
+ALTER TABLE [dbo].[infoFinanciera] ADD  DEFAULT ('') FOR [monedaDonacion]
+GO
+ALTER TABLE [dbo].[infoFinanciera] ADD  DEFAULT ('') FOR [tasaCambio]
+GO
+ALTER TABLE [dbo].[infoFinanciera] ADD  DEFAULT ('') FOR [cuenta]
+GO
+ALTER TABLE [dbo].[infoFinanciera] ADD  DEFAULT ('') FOR [navision]
+GO
+ALTER TABLE [dbo].[infoFinanciera]  WITH CHECK ADD  CONSTRAINT [FK_INFO_PROYECTO] FOREIGN KEY([id_proyecto])
+REFERENCES [dbo].[proyectos] ([id])
+GO
+ALTER TABLE [dbo].[infoFinanciera] CHECK CONSTRAINT [FK_INFO_PROYECTO]
+GO

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Http;
 
 namespace ApiRestAldeas.Models
 {
@@ -101,5 +102,11 @@ namespace ApiRestAldeas.Models
         public Financiera InfoFinanciera { get; set; }
 
 
+    }
+
+    public class FileInputModel
+    {
+        public IFormFile File { get; set; }
+        public int idProyecto { get; set; }
     }
 }

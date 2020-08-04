@@ -63,7 +63,9 @@
           },
           "configurations": {
             "production": {
-              "browserTarget": "Aldeas.Web:build:production"
+              "browserTarget": "Aldeas.Web:build:production",
+               "proxyConfig": "proxy.conf.json"
+              
             }
           }
         },

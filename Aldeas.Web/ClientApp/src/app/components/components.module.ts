@@ -9,21 +9,22 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { InformacionComponent } from './03-InfoGeneral/informacion/informacion.component';
 import { RouterModule } from '@angular/router';
-import {MatStepperModule} from '@angular/material/stepper';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
-import {MatSelectModule} from '@angular/material/select';
-import {MatDividerModule} from '@angular/material/divider';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatTableModule} from '@angular/material/table';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatTableModule } from '@angular/material/table';
 import { MatMomentDateModule, MomentDateAdapter } from "@angular/material-moment-adapter";
 import { BrowserModule } from '@angular/platform-browser';
 import { MatButtonModule } from '@angular/material/button';
+import { FechasComponent } from './00-Comunes/fechas/fechas.component';
 
 @NgModule({
-  declarations: [LoginComponent, HomeComponent, HeaaderComponent, InformacionComponent],
+  declarations: [LoginComponent, HomeComponent, HeaaderComponent, InformacionComponent, FechasComponent],
   imports: [
-    
+
     CommonModule,
     FormsModule,
     MatToolbarModule,
@@ -40,11 +41,11 @@ import { MatButtonModule } from '@angular/material/button';
     MatMomentDateModule,
     MatTableModule,
     BrowserModule,
-     MatButtonModule 
-   
+    MatButtonModule
+
   ],
   providers: [
-   { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },
+    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },
     MatDatepickerModule
   ],
 })

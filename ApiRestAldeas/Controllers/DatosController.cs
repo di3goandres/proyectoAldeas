@@ -23,7 +23,7 @@ namespace ApiRestAldeas.Controllers
 
         #endregion
 
-                        private readonly ILogger<DatosController> _logger;
+        private readonly ILogger<DatosController> _logger;
 
         public DatosController(IDataModelRepository dataModelRepository, ILogger<DatosController> logger)
         {
@@ -31,7 +31,7 @@ namespace ApiRestAldeas.Controllers
             _dataModelRepository = dataModelRepository;
         }
 
-        
+
 
         [Authorize]
         [HttpGet]
@@ -41,12 +41,35 @@ namespace ApiRestAldeas.Controllers
             return _dataModelRepository.DatosColombia();
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpPost]
         [Route("/api/aldeas/GuardarProyecto/")]
-        public dynamic guardarProyecto([FromBody]ProyectoRequest proyectoRequest)
+        public dynamic guardarProyecto([FromBody] ProyectoRequest proyectoRequest)
         {
             return _dataModelRepository.GuardarRegistroProyecto(proyectoRequest);
+        }
+
+        [HttpPost]
+        [Route("/api/aldeas/GuardarProyectoArchivo/")]
+        public dynamic guardarProyecto([FromForm] FileInputModel proyectoRequest)
+        {
+            var excelLargo = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+            if (proyectoRequest.File.ContentType.Contains("application/vnd.ms-excel")
+                || proyectoRequest.File.ContentType.Contains("application/pdf")
+                || proyectoRequest.File.ContentType.Contains(excelLargo))
+            {
+                return _dataModelRepository.UploadFile(proyectoRequest);
+
+            }
+            else
+            {
+                return new
+                {
+                    code = 200,
+                    status = "error",
+                    message = "No se permite este tipo de contenido" + proyectoRequest.File.ContentType
+                };
+            }
         }
 
         [Authorize]
@@ -54,7 +77,7 @@ namespace ApiRestAldeas.Controllers
         [Route("/api/aldeas/datosCentroCostos/")]
         public dynamic ConsultarCentroCostos()
         {
-            return _dataModelRepository.CentroCostos();
+            return  _dataModelRepository.CentroCostos();
         }
 
 

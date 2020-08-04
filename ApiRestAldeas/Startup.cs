@@ -64,7 +64,9 @@ namespace ApiRestAldeas
             services.AddScoped<IUserService, UserService>();
             services.AddDbContext<Aldeas_Context>();
             services.AddControllers();
-
+            services.AddMvc(options=> {
+                options.InputFormatters.Add(new BypassFormDataInputFormatter());
+            });
             //// configure strongly typed settings objects
             //var appSettingsSection = Configuration.GetSection("Token");
             //services.Configure<Appsettings>(appSettingsSection);

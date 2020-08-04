@@ -41,7 +41,11 @@ namespace ApiRestAldeas.Services
                         builder
                             .AllowAnyOrigin()
                             .AllowAnyHeader()
-                            .AllowAnyMethod();
+                            .AllowAnyMethod()
+                            .WithOrigins("http://10.4.0.159/");
+
+
+
                     });
             });
            

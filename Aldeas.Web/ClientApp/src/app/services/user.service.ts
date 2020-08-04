@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { ConsultaDepartamentos } from '../models/ConsultaDepartamentos';
 import { Proyecto } from '../models/proyect';
 import { CentrosResponse } from '../models/comunes';
+import { environment } from 'src/environments/environment.prod';
 
 
 @Injectable({
@@ -38,12 +39,26 @@ export class UserService {
     return this.currentUserSubject.value;
   }
 
+  postFile(fileToUpload: File) {
+   
+   let user = this.currentUserSubject.value;
+
+    const formData: FormData = new FormData();
+    this.header = new HttpHeaders().set('Authorization', user.token);
+
+    formData.append('file', fileToUpload);
+    formData.append('idProyecto', "1");
+   
+    return this.http.post(environment.ApiUrl + '/api/aldeas/GuardarProyectoArchivo/',
+     formData, { headers: this.header });
+    
+}
 
   ///metodo par ejecutar metodos get
   private ejecutarQuery<T>(query: string) {
    let user = this.currentUserSubject.value;
     this.header = new HttpHeaders().set('Authorization', user.token);
-    return this.http.get<T>(query, { headers: this.header });
+    return this.http.get<T>(environment.ApiUrl + query, { headers: this.header });
   }
 
 
@@ -53,7 +68,7 @@ export class UserService {
 
     this.header = new HttpHeaders().set('Authorization', user.token)
       .set('Content-Type', 'application/json');
-    return this.http.post(query, params, { headers: this.header });
+    return this.http.post(environment.ApiUrl + query, params, { headers: this.header });
 
   }
 
@@ -67,7 +82,7 @@ export class UserService {
 
 
 
-    return this.http.post<any>('/api/user/authenticate', this.json, { headers: this.header })
+    return this.http.post<any>(environment.ApiUrl +'/api/user/authenticate', this.json, { headers: this.header })
       .pipe(map(user => {
 
         localStorage.setItem('currentUser', JSON.stringify(user));
@@ -84,11 +99,11 @@ export class UserService {
 
   }
 
-  getDepartamentos() {
-    return this.http.get<ConsultaDepartamentos>('/assets/data/departamentos.json');
-  }
+  // getDepartamentos() {
+  //   return this.http.get<ConsultaDepartamentos>('/assets/data/departamentos.json');
+  // }
 
-  getDepartamentosRespando() {
+  getDepartamentos() {
     return this.ejecutarQuery<ConsultaDepartamentos>('/api/aldeas/datoscolombia/');
   }
 

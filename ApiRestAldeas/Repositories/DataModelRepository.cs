@@ -44,6 +44,11 @@ namespace ApiRestAldeas.Repositories
             throw new NotImplementedException();
         }
 
+        public dynamic GuardarRegistroColaborador(ColaboradorRequest request)
+        {
+            return ColaboradoresOperations.Guardar(_factory, _connectionDB, request);
+        }
+
         public dynamic GuardarRegistroProyecto(ProyectoRequest proyectoRequest)
         {
             return ProyectoOperations.Guardar(_factory, _connectionDB, proyectoRequest);

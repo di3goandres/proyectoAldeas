@@ -1,9 +1,12 @@
 ﻿<Properties StartupConfiguration="{284B719A-C87D-4090-9B2C-AE032A895170}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="ApiRestAldeas/Helper/ProyectoOperations.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ApiRestAldeas/Helper/ColaboradoresOperations.cs">
     <Files>
-      <File FileName="ApiRestAldeas/Controllers/DatosController.cs" Line="22" Column="35" />
-      <File FileName="ApiRestAldeas/Repositories/DataModelRepository.cs" Line="62" Column="47" />
-      <File FileName="ApiRestAldeas/Helper/ProyectoOperations.cs" Line="253" Column="31" />
+      <File FileName="ApiRestAldeas/Controllers/DatosController.cs" Line="57" Column="62" />
+      <File FileName="ApiRestAldeas/Repositories/DataModelRepository.cs" Line="49" Column="77" />
+      <File FileName="ApiRestAldeas/EntityFrame/Aldeas_Context.cs" Line="50" Column="39" />
+      <File FileName="ApiRestAldeas/EntityFrame/TbColaborador.cs" Line="15" Column="34" />
+      <File FileName="ApiRestAldeas/Helper/ColaboradoresOperations.cs" Line="20" Column="21" />
+      <File FileName="ApiRestAldeas/Program.cs" Line="18" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -13,9 +16,8 @@
               <Node name="Controllers" expanded="True" />
               <Node name="EntityFrame" expanded="True" />
               <Node name="Helper" expanded="True">
-                <Node name="ProyectoOperations.cs" selected="True" />
+                <Node name="ColaboradoresOperations.cs" selected="True" />
               </Node>
-              <Node name="Models" expanded="True" />
               <Node name="Repositories" expanded="True" />
               <Node name="Services" expanded="True" />
             </Node>
@@ -34,9 +36,10 @@
       <Breakpoint file="/Users/diegomontealegregarcia/Projects/Github/proyectoAldeas/ApiRestAldeas/Controllers/DatosController.cs" relfile="ApiRestAldeas/Controllers/DatosController.cs" line="49" column="1" />
       <Breakpoint file="/Users/diegomontealegregarcia/Projects/Github/proyectoAldeas/ApiRestAldeas/Helper/ProyectoOperations.cs" relfile="ApiRestAldeas/Helper/ProyectoOperations.cs" line="35" column="1" />
       <Breakpoint file="/Users/diegomontealegregarcia/Projects/Github/proyectoAldeas/ApiRestAldeas/Helper/ProyectoOperations.cs" relfile="ApiRestAldeas/Helper/ProyectoOperations.cs" line="244" column="1" />
-      <Breakpoint file="/Users/diegomontealegregarcia/Projects/Github/proyectoAldeas/ApiRestAldeas/Controllers/DatosController.cs" relfile="ApiRestAldeas/Controllers/DatosController.cs" line="61" column="1" />
-      <Breakpoint file="/Users/diegomontealegregarcia/Projects/Github/proyectoAldeas/ApiRestAldeas/Repositories/DataModelRepository.cs" relfile="ApiRestAldeas/Repositories/DataModelRepository.cs" line="62" column="1" />
+      <Breakpoint file="/Users/diegomontealegregarcia/Projects/Github/proyectoAldeas/ApiRestAldeas/Controllers/DatosController.cs" relfile="ApiRestAldeas/Controllers/DatosController.cs" line="69" column="1" />
+      <Breakpoint file="/Users/diegomontealegregarcia/Projects/Github/proyectoAldeas/ApiRestAldeas/Repositories/DataModelRepository.cs" relfile="ApiRestAldeas/Repositories/DataModelRepository.cs" line="67" column="1" />
       <Breakpoint file="/Users/diegomontealegregarcia/Projects/Github/proyectoAldeas/ApiRestAldeas/Helper/ProyectoOperations.cs" relfile="ApiRestAldeas/Helper/ProyectoOperations.cs" line="259" column="1" />
+      <Breakpoint file="/Users/diegomontealegregarcia/Projects/Github/proyectoAldeas/ApiRestAldeas/Controllers/DatosController.cs" relfile="ApiRestAldeas/Controllers/DatosController.cs" line="57" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />

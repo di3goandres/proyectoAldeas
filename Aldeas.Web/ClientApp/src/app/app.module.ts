@@ -22,6 +22,7 @@ import { UsuarioGuard } from './guards/usuario.guard';
 import { InformacionComponent } from './components/03-InfoGeneral/informacion/informacion.component';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import { ColaboradorComponent } from './components/04-Colaboradores/colaborador/colaborador.component';
 
 
 const routes: Routes = [ 
@@ -34,6 +35,7 @@ const routes: Routes = [
   { path: 'Home', component: HomeComponent, pathMatch: 'full',  canActivate:[UsuarioGuard], canLoad: [UsuarioGuard] },
   { path: 'logout/:sure', component: LoginComponent, pathMatch: 'full' },
   { path: 'Informacion', component: InformacionComponent, pathMatch: 'full', canActivate:[UsuarioGuard], canLoad: [UsuarioGuard]  },
+  { path: 'Colaborador', component: ColaboradorComponent, pathMatch: 'full', canActivate:[UsuarioGuard], canLoad: [UsuarioGuard]  },
 
 ];
 @NgModule({

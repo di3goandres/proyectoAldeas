@@ -21,8 +21,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { MatButtonModule } from '@angular/material/button';
 import { FechasComponent } from './00-Comunes/fechas/fechas.component';
 import {MatCardModule} from '@angular/material/card';
+import { ColaboradorComponent } from './04-Colaboradores/colaborador/colaborador.component';
 @NgModule({
-  declarations: [LoginComponent, HomeComponent, HeaaderComponent, InformacionComponent, FechasComponent],
+  declarations: [LoginComponent, HomeComponent, HeaaderComponent, InformacionComponent, FechasComponent, ColaboradorComponent],
   imports: [
 
     CommonModule,

@@ -41,12 +41,20 @@ namespace ApiRestAldeas.Controllers
             return _dataModelRepository.DatosColombia();
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpPost]
         [Route("/api/aldeas/GuardarProyecto/")]
         public dynamic guardarProyecto([FromBody] ProyectoRequest proyectoRequest)
         {
             return _dataModelRepository.GuardarRegistroProyecto(proyectoRequest);
+        }
+        [Authorize]
+
+        [HttpPost]
+        [Route("/api/aldeas/GuardarColaborador/")]
+        public dynamic GuardarColaborador([FromBody] ColaboradorRequest request)
+        {
+            return _dataModelRepository.GuardarRegistroColaborador(request);
         }
 
         [HttpPost]
@@ -56,6 +64,7 @@ namespace ApiRestAldeas.Controllers
             var excelLargo = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
             if (proyectoRequest.File.ContentType.Contains("application/vnd.ms-excel")
                 || proyectoRequest.File.ContentType.Contains("application/pdf")
+                || proyectoRequest.File.ContentType.Contains("contenidoapplication/octet-stream")
                 || proyectoRequest.File.ContentType.Contains(excelLargo))
             {
                 return _dataModelRepository.UploadFile(proyectoRequest);
@@ -79,6 +88,8 @@ namespace ApiRestAldeas.Controllers
         {
             return  _dataModelRepository.CentroCostos();
         }
+
+
 
 
     }

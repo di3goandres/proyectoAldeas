@@ -1,0 +1,216 @@
+<!-- <mat-horizontal-stepper [linear]="true" #stepper>
+
+    <mat-step [stepControl]="firstFormGroup"> -->
+<form [formGroup]="firstFormGroup">
+    <div *ngIf="!MostrarExitoso">
+        <ng-template matStepLabel>Registro de Colaboradores</ng-template>
+        <div class="row">
+            <div class="col-12 centerlabel font-weight-bold"><label>REGISTRO COLABORADORES</label></div>
+        </div>
+        <!--Nombre Colaborardor 
+                Fecha de Nacimiento
+                Cargo    
+            -->
+        <div class="row">
+            <div class="col-4">
+                <mat-form-field appearance="fill">
+                    <mat-label>Nombre del Colaborador</mat-label>
+                    <input matInput [(ngModel)]="colaborador.Nombre" formControlName="NombreColaborador" required />
+
+                </mat-form-field>
+            </div>
+
+            <div class="col-4">
+                <mat-form-field appearance="fill">
+                    <mat-label>Fecha de Nacimiento</mat-label>
+                    <input matInput formControlName="FechaNacimiento" [matDatepicker]="pickerDesembolso"
+                        [(ngModel)]="colaborador.Fecha" ng-keydown="$event.preventDefault();"
+                        (dateChange)="fechaNacimiento($event)" [max]="FechaMax">
+                    <mat-datepicker-toggle matSuffix [for]="pickerDesembolso">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker touchUi #pickerDesembolso></mat-datepicker>
+                    <!-- <input type="button" value="Agregar Fecha"/> -->
+
+                </mat-form-field>
+            </div>
+            <div class="col-4">
+                <mat-form-field appearance="fill">
+                    <mat-label>Cargo</mat-label>
+                    <input matInput [(ngModel)]="colaborador.Cargo" formControlName="Cargo" required />
+
+                </mat-form-field>
+            </div>
+
+        </div>
+        <!--
+                Empleo a Tiempo
+                Tipo de Contrato
+                Costo Mensual    
+            -->
+        <div class="row">
+            <div class="col-6">
+                <mat-form-field appearance="fill">
+                    <mat-label>Empleo a Tiempo</mat-label>
+                    <input matInput [(ngModel)]="colaborador.Tiempo" formControlName="Tiempo" required />
+
+                </mat-form-field>
+            </div>
+            <div class="col-6">
+                <mat-form-field appearance="fill">
+                    <mat-label>Tipo de Contrato</mat-label>
+                    <mat-select formControlName="TipoContrato" [(ngModel)]="colaborador.TipoContrato" required>
+                        <mat-option *ngFor="let item of tipoContrado" [value]="item.value">
+                            {{item.viewValue}}
+                        </mat-option>
+                    </mat-select>
+
+                </mat-form-field>
+            </div>
+
+
+        </div>
+
+        <!--Fechas-->
+        <div class="row">
+            <div class="col-6">
+                <mat-form-field appearance="fill">
+                    <mat-label>Fecha de Inicio</mat-label>
+                    <input matInput formControlName="FechaInicio" [matDatepicker]="pickerInicio"
+                        [(ngModel)]="colaborador.FechaInicio" (dateChange)="FechaInicio($event)"
+                        ng-keydown="$event.preventDefault();">
+                    <mat-datepicker-toggle matSuffix [for]="pickerInicio">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker touchUi #pickerInicio></mat-datepicker>
+                    <!-- <input type="button" value="Agregar Fecha"/> -->
+
+                </mat-form-field>
+            </div>
+
+            <div class="col-6">
+                <mat-form-field appearance="fill">
+                    <mat-label>Fecha de Fin</mat-label>
+                    <input matInput formControlName="Fechafin" [matDatepicker]="pickerFin"
+                        [(ngModel)]="colaborador.FechaFin" ng-keydown="$event.preventDefault();"
+                        (dateChange)="fechaNacimiento($event)" [min]="colaborador.FechaInicio">
+                    <mat-datepicker-toggle matSuffix [for]="pickerFin">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker touchUi #pickerFin></mat-datepicker>
+
+                </mat-form-field>
+            </div>
+
+
+        </div>
+
+        <!--
+               COSTO MENSUAL
+               CENTRO DE COSTOS
+               SUB CENTRO DE COSTOS  
+               % DE RECUPERACION  
+            -->
+        <div class="row">
+            <div class="col-3">
+                <mat-form-field appearance="fill">
+                    <mat-label>Costo Mensual</mat-label>
+                    <input matInput type="number" [(ngModel)]="colaborador.CostoMensual" formControlName="Costo"
+                        required />
+
+                </mat-form-field>
+            </div>
+            <div class="col-3">
+                <mat-form-field appearance="fill">
+                    <mat-label>Centro de Costos</mat-label>
+                    <mat-select formControlName="CentroCosto" (selectionChange)="cambioCentroCosto($event.value)"
+                        [(ngModel)]="colaborador.CentroCostos" required>
+                        <mat-option *ngFor="let item of centrosCostos" [value]="item.codigoCentro">
+                            {{item.nombre}}
+                        </mat-option>
+                    </mat-select>
+
+                </mat-form-field>
+            </div>
+            <div class="col-3">
+                <mat-form-field appearance="fill">
+                    <mat-label>Sub Centro de Costos </mat-label>
+                    <mat-select formControlName="SubCentroCosto" [(ngModel)]="colaborador.Subcentro" required>
+                        <mat-option *ngFor="let item of subCentroSeleccionado" [value]="item.codigoSubCentro">
+                            {{item.nombre}}
+                        </mat-option>
+                    </mat-select>
+
+                </mat-form-field>
+            </div>
+            <div class="col-3">
+                <mat-form-field appearance="fill">
+                    <mat-label>% De recuperacion</mat-label>
+                    <input [(ngModel)]="colaborador.Porcentaje" type="number" matInput min="0" max="100"
+                        formControlName="Porcentaje" required />
+
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 centerlabel font-weight-bold">
+                <label>FUENTE Y VALOR DE FINANCICIÓN</label></div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <mat-form-field appearance="fill">
+                    <mat-label>Contrapartida</mat-label>
+                    <input matInput [(ngModel)]="colaborador.Contrapartida" type="number"
+                        formControlName="Contrapartida" required />
+
+
+                </mat-form-field>
+            </div>
+            <div class="col-6">
+                <mat-form-field appearance="fill">
+                    <mat-label>Aporte del Donante</mat-label>
+
+                    <input matInput [(ngModel)]="colaborador.Aporte" type="number" formControlName="Aporte" required />
+
+
+
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 centerlabel font-weight-bold">
+                <label>Ya casi esta listo pulsa guardar
+                    <!-- {{this.firstFormGroup.invalid }} - {{Guardando}}
+                        <br> {{!(this.firstFormGroup.invalid && Guardando)}} -->
+                </label>
+                <br>
+                <button mat-raised-button color="warn" [disabled]="(this.firstFormGroup.invalid || Guardando)"
+                    (click)="onGuardar()">Guardar</button>
+
+            </div>
+
+
+        </div>
+    </div>
+    <div class="row centrarTabla" *ngIf="MostrarExitoso">
+        <div class="col-3"></div>
+        <div class="col-6 centerlabel">
+            <mat-card class="example-card" color="warn">
+                <mat-card-header class="centrarTabla" style="padding-left: 23%;">
+                    <div mat-card-avatar class="example-header-image centerlabel"></div>
+                    <mat-card-title class="centerlabel centrarTabla">Registro Exitoso</mat-card-title>
+
+                </mat-card-header>
+
+                <mat-card-content>
+
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-raised-button color="warn" [routerLink]="['/Home']">Inicio</button>
+
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+
+</form>
+<!-- </mat-step>
+</mat-horizontal-stepper> -->

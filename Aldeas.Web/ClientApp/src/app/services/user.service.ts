@@ -8,6 +8,7 @@ import { ConsultaDepartamentos } from '../models/ConsultaDepartamentos';
 import { Proyecto } from '../models/proyect';
 import { CentrosResponse, Respuesta } from '../models/comunes';
 import { environment } from 'src/environments/environment.prod';
+import { Colaborador } from '../models/colaborador';
 
 
 @Injectable({
@@ -117,6 +118,14 @@ export class UserService {
     this.json = JSON.stringify(infoproyecto);
     this.params = '' + this.json;
     return this.ejecutarQueryPost<Respuesta>('/api/aldeas/guardarproyecto', this.params);
+
+  }
+
+
+  guardarColaborador(infoColaborador: Colaborador) {
+    this.json = JSON.stringify(infoColaborador);
+    this.params = '' + this.json;
+    return this.ejecutarQueryPost<Respuesta>('/api/aldeas/GuardarColaborador', this.params);
 
   }
 

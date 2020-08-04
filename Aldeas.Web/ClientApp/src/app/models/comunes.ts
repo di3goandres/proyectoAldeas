@@ -23,3 +23,10 @@ export interface Respuesta{
     status:  string;
     message: string;
 }
+
+
+export interface SelectGlobal {
+    value: string;
+    viewValue: string;
+  }
+  

@@ -1404,3 +1404,33 @@ CREATE TABLE participantes (
 
 )
 GO
+
+
+
+
+DROP TABLE IF EXISTS colaboradores;
+Go
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[colaboradores](
+	[Id] [bigint] IDENTITY(1,1) NOT NULL,
+	[SubCentroCosto] [int] not null,
+	[nombre] [varchar](500) NOT NULL,
+	[FechaNacimiento] [datetime] NOT NULL,
+	[Cargo] [varchar](500) NOT NULL,
+	[Tiempo] [varchar](500) NOT NULL,
+	[TipoContrato] [varchar](500) NOT NULL,
+	[FechaInicio] [datetime] NOT NULL,
+	[FechaFin] [datetime] NOT NULL,
+	[fecha_finalizacion] [datetime] NOT NULL,
+	[CostoMensual] [bigint] not null,
+	[Porcentaje] [int] not null,
+	[Contrapartida] [bigint] not null,
+	[Aporte] [bigint] not null
+   PRIMARY KEY (Id),
+   CONSTRAINT FK_colaborador_subcentrocosto
+   FOREIGN KEY (SubCentroCosto) REFERENCES SubCentroCostos(id)
+
+) 

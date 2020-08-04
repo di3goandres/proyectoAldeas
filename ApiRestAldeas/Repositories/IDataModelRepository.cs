@@ -42,5 +42,10 @@ namespace ApiRestAldeas.Repositories
 
 
 
+        dynamic GuardarRegistroColaborador(ColaboradorRequest request);
+
+
+
+
     }
 }

@@ -39,7 +39,7 @@ export class UserService {
     return this.currentUserSubject.value;
   }
 
-  postFile(fileToUpload: File) {
+  postFile(fileToUpload: File, id: string) {
    
    let user = this.currentUserSubject.value;
 
@@ -47,7 +47,7 @@ export class UserService {
     this.header = new HttpHeaders().set('Authorization', user.token);
 
     formData.append('file', fileToUpload);
-    formData.append('idProyecto', "1");
+    formData.append('idProyecto', id.toString());
    
     return this.http.post(environment.ApiUrl + '/api/aldeas/GuardarProyectoArchivo/',
      formData, { headers: this.header });

@@ -387,7 +387,7 @@
                     <!-- <button mat-raised-button color="warn"  [disabled]="validarNextPantalla_1" (click)="onGuardar()">Guardar</button>
                  -->
                     <button mat-raised-button color="warn" matStepperNext
-                        [disabled]="(!validarNextPantalla_1  && !this.firstFormGroup.invalid)? false: true">Next</button>
+                        [disabled]="(!validarNextPantalla_1  && !this.firstFormGroup.invalid)? false: true">Continuar</button>
                 </div>
             </form>
         </mat-step>
@@ -401,7 +401,7 @@
                         <mat-form-field appearance="fill">
                             <mat-label>Costo Total Del Proyecto</mat-label>
 
-                            <input matInput placeholder="Costo Total " formControlName="CostoTotal"
+                            <input matInput type="number" placeholder="Costo Total " formControlName="CostoTotal"
                                 [(ngModel)]="infoFinanciera.CostoTotal" required>
                         </mat-form-field>
                     </div>
@@ -434,7 +434,15 @@
                 </div>
                 <mat-divider></mat-divider>
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-4">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Moneda Donación</mat-label>
+                            <input matInput formControlName="Moneda" [(ngModel)]="infoFinanciera.MonedaDonacion"
+                                required />
+
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
                         <mat-form-field appearance="fill">
                             <mat-label>Tasa de Cambio Pactada</mat-label>
                             <input matInput formControlName="TasaCambio" [(ngModel)]="infoFinanciera.TasaCambio"
@@ -442,7 +450,7 @@
 
                         </mat-form-field>
                     </div>
-                    <div class="col-6">
+                    <div class="col-4">
                         <mat-form-field appearance="fill">
                             <mat-label>Cuenta a la que llegan los fondos</mat-label>
 
@@ -459,7 +467,8 @@
                         <mat-form-field appearance="fill">
                             <mat-label>Centro de Costos</mat-label>
                             <mat-select formControlName="CentroCosto" [(ngModel)]="infoFinanciera.CentroCostos"
-                                (selectionChange)="cambioCentroCosto($event.value)" required>
+                                (selectionChange)="cambioCentroCosto($event.value)"
+                                 required>
                                 <mat-option *ngFor="let item of centrosCostos" [value]="item.codigoCentro">
                                     {{item.nombre}}
                                 </mat-option>
@@ -564,7 +573,9 @@
                     <div class="centrarTabla col-3">
                         <mat-form-field appearance="fill">
                             <mat-label>Responsable</mat-label>
-                            <input matInput formControlName="responsable" required />
+                            <input 
+                            [(ngModel)]="infoFinanciera.Responsable" 
+                            matInput formControlName="responsable" required />
 
 
                         </mat-form-field>
@@ -572,7 +583,9 @@
                     <div class="centrarTabla col-3">
                         <mat-form-field appearance="fill">
                             <mat-label>Lugar</mat-label>
-                            <input matInput formControlName="lugar" required />
+                            <input matInput formControlName="lugar" 
+                            [(ngModel)]="infoFinanciera.Lugar" 
+                            required />
 
 
                         </mat-form-field>
@@ -625,7 +638,7 @@
                                 <th mat-header-cell *matHeaderCellDef> Quitar </th>
                                 <td mat-cell *matCellDef="let element">
                                     <button type="button" mat-mini-fab color="primary" aria-label="fecha"
-                                        (click)="eliminarDesembolso(element)">
+                                        (click)="eliminarVisita(element)">
                                         <mat-icon>delete_outline</mat-icon>
                                     </button> </td>
                             </ng-container>
@@ -808,14 +821,20 @@
                     <label for="file">Adjuntar Presupuesto</label>
                     <input type="file"
                            id="file"
+                           [accept]="contentInclude"
                            (change)="handleFileInput($event.target.files)">
                 </div>
                 <mat-divider></mat-divider>
 
 
                 <div>
-                    <button mat-button matStepperPrevious>Back</button>
-                    <button mat-button matStepperNext>Next</button>
+                   
+                    <button mat-raised-button color="warn" matStepperPrevious>Atras</button>
+                  
+                     
+                        <button mat-raised-button color="warn" matStepperNext
+                            [disabled]="(!validarNextPantalla_2  && !this.secondFormGroup.invalid)? false: true">Continuar</button>
+                   
                 </div>
             </form>
         </mat-step>
@@ -913,16 +932,6 @@
                                     </mat-form-field>
                                 </td>
                             </ng-container>
-                         
-
-
-
-
-
-
-
-
-
                             <tr mat-header-row *matHeaderRowDef="displayedColumnsParticipante"></tr>
                             <tr mat-row *matRowDef="let row; columns: displayedColumnsParticipante;"></tr>
                         </table>
@@ -934,10 +943,115 @@
 
 
                 </div>
+                <div class="row">
+                    <div class="col-6">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Total Familias Participantes</mat-label>
+                            <input matInput type="number" formControlName="totalFamilias"
+                             [(ngModel)]="infoProyectados.TotalFamilias"
+                                required />
 
+                        </mat-form-field>
+                    </div>
+                    <div class="col-6">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Observaciones</mat-label>
+                            <input matInput formControlName="Observaciones"
+                             [(ngModel)]="infoProyectados.Observaciones"
+                                required />
+
+                        </mat-form-field>
+                    </div>
+                    
+                </div>
+                <div class="row">
+                    <div class="col-12 centerlabel font-weight-bold"><label>OTROS PARTICIPANTES</label></div>
+                </div>
+
+                <div class="row">
+                    <div class="col-4">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Tipo de Participantes</mat-label>
+                            <input matInput formControlName="TipoP"
+                             [(ngModel)]="otroTipo"
+                                 />
+
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Total de Participantes</mat-label>
+                            <input matInput type="number" formControlName="TotalP"
+                             [(ngModel)]="otroTotal"
+                                 />
+
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4" style="padding-right: 30px;">
+                        <button mat-raised-button
+                            class="btn mat-focus-indicator btn btn-success pull-right bajar mat-raised-button mat-button-base mat-primary pull-right bajar"
+                            color="primary"
+                            (click)="AgregarOtro()">Agregar
+                            Participante</button>
+
+                    </div>
+                  
+                </div>
+                <div class="row">
+                    <div class="col-5" style="padding-left: 10px;">
+
+
+                        <table #otros mat-table [dataSource]="dataSourceOtros"
+                            class="mat-elevation-z8 estirar">
+
+    <!-- Name Column -->
+                            <ng-container matColumnDef="position" >
+                                <th mat-header-cell *matHeaderCellDef> position </th>
+                                <td mat-cell *matCellDef="let element; let i = index"> {{ i + 1}}
+                                </td>
+                            </ng-container>
+                        
+
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="Tipo">
+                                <th mat-header-cell *matHeaderCellDef> Tipo Participante </th>
+                                <td mat-cell *matCellDef="let element"> {{element.Tipo}}
+                                </td>
+                            </ng-container>
+                            <ng-container matColumnDef="Total">
+                                <th mat-header-cell *matHeaderCellDef> Total de Participante </th>
+                                <td mat-cell *matCellDef="let element"> {{element.Total}}
+                                </td>
+                            </ng-container>
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="Quitar">
+                                <th mat-header-cell *matHeaderCellDef> Quitar </th>
+                                <td mat-cell *matCellDef="let element">
+                                    <button type="button" mat-mini-fab color="primary" aria-label="fecha"
+                                        (click)="eliminarOtro(element)">
+                                        <mat-icon>delete_outline</mat-icon>
+                                    </button> </td>
+                            </ng-container>
+
+
+
+
+                            <tr mat-header-row *matHeaderRowDef="displayedOtros"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedOtros;"></tr>
+                        </table>
+
+
+                    </div>
+                </div>
                 <div>
                     <button mat-button matStepperPrevious>Back</button>
-                    <button mat-button matStepperNext>Next</button>
+                   
+                        {{this.secondFormGroup.invalid}}
+                        <!-- <button mat-raised-button color="warn"  [disabled]="validarNextPantalla_1" (click)="onGuardar()">Guardar</button>
+                     -->
+                        <button mat-raised-button color="warn" matStepperNext
+                            [disabled]="!this.thirdFormGroup.invalid">Continuar</button>
+                  
                 </div>
             </form>
         </mat-step>

@@ -116,7 +116,19 @@ namespace ApiRestAldeas.Helper
                 db.tbFechaEntregas.AddRange(fechas);
 
                 db.SaveChanges();
-
+                /**
+                 * Pantalla 2
+                 */
+                ///Fechas de visita
+                ///agregar responsable y lugar
+                ///agregar ejecucion y base de datos
+                ///
+                /**
+                 * Pantalla 3 Participantes
+                 * tabla Partipantes con tipo
+                 * total familias /Observaciones
+                 * Lista de otros Participantes
+                 */
 
 
 

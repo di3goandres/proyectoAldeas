@@ -59,6 +59,34 @@ export class Ejecucion {
   public Diciembre: number;
 
 }
+
+export class Otros{
+  constructor(
+     public Tipo: string,
+     public Total: number
+
+  ){
+   
+
+  }
+ 
+
+}
+export class Proyectados{
+  constructor(){
+    this.ListaParticipantes = [];
+    this.TotalFamilias = 0;
+    this.OtrosParticipantes = [];
+    this.Observaciones = ""
+
+  }
+  public ListaParticipantes: Participantes[];
+  public TotalFamilias: number;
+  public Observaciones: string;
+
+  public OtrosParticipantes: Otros[];
+
+}
 export class Participantes {
   
   constructor(
@@ -90,7 +118,7 @@ export class Financiera {
 
 
   ) {
-    this.CostoTotal = "0",
+    this.CostoTotal = "",
     this.FuentePresupuesto = ""
     this.TipoFuente = ""
     this.MonedaDonacion = "";
@@ -111,6 +139,9 @@ export class Financiera {
   public CentroCostos: string;
   public SubCentro: string;
   public NavisionFacilitiy: string;
+  public Responsable: string;
+  public Lugar: string;
+
   public Desembolsos: FechaElement[];
 
 
@@ -139,7 +170,7 @@ export class Proyecto {
     this.FechasInformes = [];
     this.Municipio = [];
     this.infoFinanciera = new Financiera();
-    this.ListaParticipantes = [];
+    this.ParticiProyectados = new Proyectados();
     this.ListaEjecucion = []
 
   }
@@ -162,8 +193,8 @@ export class Proyecto {
   public FechasComites: FechaElement[];
   public Municipio: MunicipioSeleccionado[];
   public infoFinanciera: Financiera;
-  public ListaParticipantes: Participantes[];
   public ListaEjecucion: Ejecucion[]; 
+  public ParticiProyectados: Proyectados;
 
 
 }

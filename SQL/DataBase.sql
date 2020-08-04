@@ -16,7 +16,9 @@ CREATE TABLE [dbo].[proyectos](
 	[fecha_finalizacion] [datetime] NOT NULL,
 	[lider_ejecucion] [varchar](500) NOT NULL,
 	[lider_coordinacion] [varchar](500) NOT NULL,
-	[comite_tecnico] [varchar](500) NOT NULL
+	[comite_tecnico] [varchar](500) NOT NULL,
+	[archivo] [varbinary](max) NULL,
+	[Nombrearchivo] [varchar](500) NULL
 ) ON [PRIMARY]
 GO
 ALTER TABLE [dbo].[proyectos] ADD  CONSTRAINT [PK_proyectos] PRIMARY KEY CLUSTERED 
@@ -1308,6 +1310,10 @@ CREATE TABLE [dbo].[infoFinanciera](
 	[tasaCambio] [varchar](255) NULL,
 	[cuenta] [varchar](255) NULL,
 	[navision] [varchar](255) NULL,
+	[responsable] [varchar](255) ,
+	[lugar] [varchar](255) ,
+
+
 	[idSubCentroCostos] [int] NULL
 ) ON [PRIMARY]
 GO
@@ -1332,4 +1338,69 @@ ALTER TABLE [dbo].[infoFinanciera]  WITH CHECK ADD  CONSTRAINT [FK_INFO_PROYECTO
 REFERENCES [dbo].[proyectos] ([id])
 GO
 ALTER TABLE [dbo].[infoFinanciera] CHECK CONSTRAINT [FK_INFO_PROYECTO]
+GO
+
+
+
+DROP TABLE IF EXISTS ejecucion_financiera;
+
+CREATE TABLE ejecucion_financiera (
+  id   [bigint] IDENTITY(1,1) NOT NULL,
+  IdFinanciera bigint NOT NULL ,
+  Nombre varchar(255) NULL, 
+
+  Enero bigint NOT NULL  DEFAULT 0,
+  Febrero bigint NOT NULL  DEFAULT 0,
+  Marzo bigint NOT NULL  DEFAULT 0,
+  Abril bigint NOT NULL  DEFAULT 0,
+  Mayo bigint NOT NULL  DEFAULT 0,
+  Junio bigint NOT NULL  DEFAULT 0,
+  Julio bigint NOT NULL  DEFAULT 0,
+  Agosto bigint NOT NULL  DEFAULT 0,
+  Sept bigint NOT NULL  DEFAULT 0,
+  Octubre bigint NOT NULL  DEFAULT 0,
+  Noviembre bigint NOT NULL  DEFAULT 0,
+  Diciembre bigint NOT NULL  DEFAULT 0,
+
+  PRIMARY KEY (id),
+  CONSTRAINT FK_EJECUCION_FINANCIERA FOREIGN KEY (IdFinanciera) REFERENCES infofinanciera(id)
+
+)
+
+DROP TABLE IF EXISTS participantes;
+Go
+DROP TABLE IF EXISTS participante_proyectados;
+Go
+
+
+CREATE TABLE participante_proyectados (
+  id   [bigint] IDENTITY(1,1) NOT NULL,
+  id_proyecto bigint NOT NULL ,
+  TotalFamilias int default 0, 
+  Observaciones varchar(5000) , 
+  PRIMARY KEY (id),
+  CONSTRAINT FK_participantes_proyectos FOREIGN KEY (id_proyecto) REFERENCES proyectos(id)
+)
+GO
+
+
+DROP TABLE IF EXISTS participantes;
+Go
+
+
+CREATE TABLE participantes (
+  id   [bigint] IDENTITY(1,1) NOT NULL,
+  id_participantes bigint NOT NULL ,
+  Nombre varchar(500) , 
+  Rango_0_5 bigint  NULL  DEFAULT 0,
+  Rango_6_12 bigint  NULL  DEFAULT 0,
+  Rango_13_17 bigint  NULL  DEFAULT 0,
+  Rango_18_24 bigint  NULL  DEFAULT 0,
+  Rango_25_56 bigint  NULL  DEFAULT 0,
+  Mayores_60 bigint NULL  DEFAULT 0,
+  Total bigint  NULL  DEFAULT 0,
+  PRIMARY KEY (id),
+  CONSTRAINT FK_participantes_proyectados FOREIGN KEY (id_participantes) REFERENCES participante_proyectados(id)
+
+)
 GO

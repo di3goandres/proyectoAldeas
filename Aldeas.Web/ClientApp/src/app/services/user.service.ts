@@ -6,7 +6,7 @@ import { User } from '../models/user';
 import { Router } from '@angular/router';
 import { ConsultaDepartamentos } from '../models/ConsultaDepartamentos';
 import { Proyecto } from '../models/proyect';
-import { CentrosResponse } from '../models/comunes';
+import { CentrosResponse, Respuesta } from '../models/comunes';
 import { environment } from 'src/environments/environment.prod';
 
 
@@ -47,9 +47,9 @@ export class UserService {
     this.header = new HttpHeaders().set('Authorization', user.token);
 
     formData.append('file', fileToUpload);
-    formData.append('idProyecto', id.toString());
+    formData.append('Proyecto', id.toString());
    
-    return this.http.post(environment.ApiUrl + '/api/aldeas/GuardarProyectoArchivo/',
+    return this.http.post<Respuesta>(environment.ApiUrl + '/api/aldeas/GuardarProyectoArchivo/',
      formData, { headers: this.header });
     
 }
@@ -63,12 +63,12 @@ export class UserService {
 
 
   // tslint:disable-next-line: typedef con autorizacion
-  private ejecutarQueryPost(query: string, params: string) {
+  private ejecutarQueryPost<T>(query: string, params: string) {
    let user = this.currentUserSubject.value;
 
     this.header = new HttpHeaders().set('Authorization', user.token)
       .set('Content-Type', 'application/json');
-    return this.http.post(environment.ApiUrl + query, params, { headers: this.header });
+    return this.http.post<T>(environment.ApiUrl + query, params, { headers: this.header });
 
   }
 
@@ -116,7 +116,7 @@ export class UserService {
   guardarRegistroProyecto(infoproyecto: Proyecto) {
     this.json = JSON.stringify(infoproyecto);
     this.params = '' + this.json;
-    return this.ejecutarQueryPost('/api/aldeas/guardarproyecto', this.params);
+    return this.ejecutarQueryPost<Respuesta>('/api/aldeas/guardarproyecto', this.params);
 
   }
 

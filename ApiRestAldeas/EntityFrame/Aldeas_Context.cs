@@ -44,6 +44,10 @@ namespace ApiRestAldeas.EntityFrame
 
         public virtual DbSet<MunicipioProyectos> tbMunicipioProyectos { get; set; }
         public virtual DbSet<InformacionFinanciera> tbInformacionFinanciera { get; set; }
+        public virtual DbSet<TbEjecucion> tbEjecucion { get; set; }
+        public virtual DbSet<DBParticipantes> tbParticipantes { get; set; }
+        public virtual DbSet<DBParticipantesProyectados> tbParticipantesProyectados { get; set; }
+
 
 
 
@@ -52,6 +56,17 @@ namespace ApiRestAldeas.EntityFrame
         #region Required
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+            modelBuilder.Entity<DBParticipantesProyectados>(entity =>
+            {
+                entity.ToTable("participante_proyectados");
+            });
+
+            modelBuilder.Entity<DBParticipantes>(entity =>
+            {
+                entity.ToTable("participantes");
+            });
+
             modelBuilder.Entity<Proyectos>(entity =>
             {
                 entity.ToTable("Proyectos");
@@ -88,6 +103,15 @@ namespace ApiRestAldeas.EntityFrame
             {
                 entity.ToTable("infoFinanciera");
             });
+
+
+            modelBuilder.Entity<TbEjecucion>(entity =>
+            {
+                entity.ToTable("ejecucion_financiera");
+            });
+
+            
+
         }
         #endregion
     }

@@ -15,3 +15,11 @@ export interface SubCentro {
     codigoSubCentro: number;
     nombre:          string;
 }
+
+
+export interface Respuesta{
+    id:    number;
+    code: number;
+    status:  string;
+    message: string;
+}

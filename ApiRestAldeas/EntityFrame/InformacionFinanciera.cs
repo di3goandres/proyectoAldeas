@@ -28,6 +28,11 @@ namespace ApiRestAldeas.EntityFrame
 
         public int idSubCentroCostos { get; set; }
 
+        public string responsable  { get; set; }
+
+        public string lugar { get; set; }
+
+
 
     }
 }

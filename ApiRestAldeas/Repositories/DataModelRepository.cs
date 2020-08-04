@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using ApiRestAldeas.EntityFrame;
 using ApiRestAldeas.Factory;
 using ApiRestAldeas.Helper;
@@ -50,7 +51,15 @@ namespace ApiRestAldeas.Repositories
 
         public dynamic UploadFile([FromForm] FileInputModel data)
         {
-          return  ProyectoOperations.GuardarArchivo(_factory, _connectionDB, data.idProyecto, "", "");
+            byte[] ContenidoBase64;
+            using(var memoryStream = new MemoryStream())
+            {
+                data.File.CopyToAsync(memoryStream);
+
+                ContenidoBase64 = memoryStream.ToArray();
+            }
+
+            return  ProyectoOperations.GuardarArchivo(_factory, _connectionDB, data.Proyecto, ContenidoBase64, data.File.FileName);
               
         }
     }   

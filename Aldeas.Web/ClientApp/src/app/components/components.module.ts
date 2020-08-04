@@ -20,7 +20,7 @@ import { MatMomentDateModule, MomentDateAdapter } from "@angular/material-moment
 import { BrowserModule } from '@angular/platform-browser';
 import { MatButtonModule } from '@angular/material/button';
 import { FechasComponent } from './00-Comunes/fechas/fechas.component';
-
+import {MatCardModule} from '@angular/material/card';
 @NgModule({
   declarations: [LoginComponent, HomeComponent, HeaaderComponent, InformacionComponent, FechasComponent],
   imports: [
@@ -41,7 +41,8 @@ import { FechasComponent } from './00-Comunes/fechas/fechas.component';
     MatMomentDateModule,
     MatTableModule,
     BrowserModule,
-    MatButtonModule
+    MatButtonModule,
+    MatCardModule
 
   ],
   providers: [

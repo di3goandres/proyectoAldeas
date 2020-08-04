@@ -586,14 +586,17 @@ export class InformacionComponent implements OnInit {
 
     }
   }
+  Guardando: boolean = false;
   onGuardar() {
+    this.Guardando = true;
     this.infoProyecto.FechasInformes = [];
     this.infoProyecto.FechasComites = [];
     this.infoProyecto.Municipio = [];
     this.infoFinanciera.Desembolsos = [];
     this.infoProyecto.ListaEjecucion = [];
-
+    this.infoFinanciera.Visitas =  [];
     this.infoProyectados.ListaParticipantes = [];
+    this.infoProyectados.OtrosParticipantes =[];
 
 
 
@@ -601,24 +604,30 @@ export class InformacionComponent implements OnInit {
     this.infoProyecto.FechasComites.push(... this.dataSourceComites);
     this.infoProyecto.Municipio.push(...this.dataSourcemunicipio)
     this.infoFinanciera.Desembolsos.push(... this.dataSourceDesembolsos)
+
+
+    this.infoFinanciera.Visitas.push(...this.dataSourceVisita);
     this.infoProyecto.infoFinanciera = this.infoFinanciera;
     //dats de ejecucion y recuperacion
     this.infoProyecto.ListaEjecucion.push(... this.ejecucion);
     this.infoProyectados.ListaParticipantes.push(...this.participantes);
+    this.infoProyectados.OtrosParticipantes.push(...this.dataSourceOtros);
     this.infoProyecto.ParticiProyectados = this.infoProyectados;
-    console.log(this.fileToUpload);
-
-
-    console.log(JSON.stringify( this.infoProyecto))
-
 
     this.userService.guardarRegistroProyecto(this.infoProyecto).subscribe(
       response => {
-        console.log(response)
-     //   this.guardarArchivo("1")
+
+        if(response.status=="OK"){
+          
+          this.guardarArchivo(response.id)
+         
+        }
+       
       },
       error => {
         console.log(error)
+        this.Guardando = false;
+
       },
 
     )
@@ -627,13 +636,32 @@ export class InformacionComponent implements OnInit {
     this.userService.postFile(this.fileToUpload, id)
     .subscribe(
       response => {
-        console.log(response)
+       console.log(response);
+       if(response.status == "OK"){
+        this.reiniciar();
+       }
       },
       error => {
         console.log(error)
+        this.Guardando = false;
       },
 
     )
+  }
+  MostrarExitoso: boolean = false;
+  reiniciar(){
+    
+    this.MostrarExitoso = true
+    this.Guardando = false;
+    this.infoProyecto =new Proyecto();
+    this.infoFinanciera = new Financiera();
+    this.infoProyectados = new Proyectados();
+    this.dataSourceInformes = [];
+    this.dataSourceComites = [];
+    this.dataSourcemunicipio = [];
+    this.dataSourceDesembolsos = [];
+    this.dataSourceVisita = [];
+
   }
   handleFileInput(files: FileList) {
 
@@ -741,11 +769,11 @@ export class InformacionComponent implements OnInit {
 
     });
     this.thirdFormGroup = this._formBuilder.group({
-      thirdCtrl: ['', Validators.required],
+
       proyecto: ['', Validators.required],
       totalFamilias: ['', Validators.required],
       Observaciones: ['', Validators.required],
-      TipoP: ['', Validators.required],
+      TipoP: ['', Validators.nullValidator],
       TotalP: ['', Validators.nullValidator],
 
 

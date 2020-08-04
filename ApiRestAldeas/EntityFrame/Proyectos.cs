@@ -55,5 +55,13 @@ namespace ApiRestAldeas.EntityFrame
         /// 
         /// </summary>
         public string comite_tecnico { get; set; }
+
+
+        public byte[] archivo { get; set; }
+
+        public string Nombrearchivo { get; set; }
+
+
+
     }
 }

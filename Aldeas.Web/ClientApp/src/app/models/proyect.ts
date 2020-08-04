@@ -62,7 +62,7 @@ export class Ejecucion {
 
 export class Otros{
   constructor(
-     public Tipo: string,
+     public Nombre: string,
      public Total: number
 
   ){
@@ -118,7 +118,7 @@ export class Financiera {
 
 
   ) {
-    this.CostoTotal = "",
+    this.CostoTotal = 0,
     this.FuentePresupuesto = ""
     this.TipoFuente = ""
     this.MonedaDonacion = "";
@@ -128,9 +128,10 @@ export class Financiera {
     this.SubCentro = "";
     this.NavisionFacilitiy = "";
     this.Desembolsos = [];
+    this.Visitas = []
   }
 
-  public CostoTotal: string;
+  public CostoTotal: number;
   public FuentePresupuesto: string;
   public TipoFuente: string;
   public MonedaDonacion: string;
@@ -143,6 +144,8 @@ export class Financiera {
   public Lugar: string;
 
   public Desembolsos: FechaElement[];
+  public Visitas: FechaElement[];
+
 
 
 
@@ -193,6 +196,7 @@ export class Proyecto {
   public FechasComites: FechaElement[];
   public Municipio: MunicipioSeleccionado[];
   public infoFinanciera: Financiera;
+  
   public ListaEjecucion: Ejecucion[]; 
   public ParticiProyectados: Proyectados;
 

@@ -4,9 +4,53 @@ using Microsoft.AspNetCore.Http;
 
 namespace ApiRestAldeas.Models
 {
+
+    //public class Otros
+    //{
+    //    public string Nombre { get; set; }
+    //    public int Total { get; set; }
+
+    //}
+    public class Participantes {
+        public string Nombre { get; set; }
+        public long Rango_0_5 {get;set;}
+        public long Rango_6_12 {get;set;}
+        public long Rango_13_17 {get;set;}
+        public long Rango_18_24 {get;set;}
+        public long Rango_25_56 {get;set;}
+        public long Mayores_60 {get;set;}
+        public long Total {get;set;}
+    }
+
+    public class Proyectados
+    {
+        public int TotalFamilias { get; set; }
+
+        public string Observaciones{ get; set; }
+
+        public List<Participantes> ListaParticipantes { get; set; }
+
+        public List<Participantes> OtrosParticipantes { get; set; }
+    }
+    public class Ejecucion
+    {
+        public string Nombre{get;set;}
+        public long Enero{get;set;}
+        public long Febrero{get;set;}
+        public long Marzo{get;set;}
+        public long Abril{get;set;}
+        public long Mayo{get;set;}
+        public long Junio{get;set;}
+        public long Julio{get;set;}
+        public long Agosto{get;set;}
+        public long Sept{get;set;}
+        public long Octubre{get;set;}
+        public long Noviembre{get;set;}
+        public long Diciembre{get;set;}
+    }
     public class Financiera
     {
-            public string CostoTotal { get; set; }
+            public long CostoTotal { get; set; }
             public string FuentePresupuesto { get; set; }
             public string TipoFuente { get; set; }
             public string MonedaDonacion { get; set; }
@@ -14,8 +58,13 @@ namespace ApiRestAldeas.Models
             public string Cuenta { get; set; }
             public int CentroCostos { get; set; }
             public int SubCentro { get; set; }
+            public string Responsable { get; set; }
+            public string Lugar { get; set; }
+
             public string NavisionFacilitiy { get; set; }
             public List<Fechas> Desembolsos { get; set; }
+            public List<Fechas> Visitas { get; set; }
+
     }
 
 
@@ -98,15 +147,17 @@ namespace ApiRestAldeas.Models
         
         public List<Municipios> Municipio { get; set; }
 
-
         public Financiera InfoFinanciera { get; set; }
 
+        public List<Ejecucion> ListaEjecucion { get; set; }
+
+        public Proyectados ParticiProyectados { get; set; }
 
     }
 
     public class FileInputModel
     {
         public IFormFile File { get; set; }
-        public int idProyecto { get; set; }
+        public long Proyecto { get; set; }
     }
 }

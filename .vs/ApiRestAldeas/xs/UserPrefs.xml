@@ -1,16 +1,9 @@
 ﻿<Properties StartupConfiguration="{284B719A-C87D-4090-9B2C-AE032A895170}|Default">
   <MonoDevelop.Ide.Workbench ActiveDocument="ApiRestAldeas/Helper/ProyectoOperations.cs">
     <Files>
-      <File FileName="ApiRestAldeas/EntityFrame/Aldeas_Context.cs" />
-      <File FileName="ApiRestAldeas/Helper/AuthorizeAttribute.cs" />
-      <File FileName="ApiRestAldeas/Controllers/DatosController.cs" Line="56" Column="31" />
-      <File FileName="ApiRestAldeas/Services/ConfigureService.cs" Line="1" Column="1" />
-      <File FileName="ApiRestAldeas/Startup.cs" Line="68" Column="65" />
-      <File FileName="ApiRestAldeas/Helper/CentroCostosOperations.cs" Line="32" Column="1" />
-      <File FileName="ApiRestAldeas/Helper/MunicipioOperations.cs" Line="35" Column="1" />
-      <File FileName="ApiRestAldeas/appsettings.json" Line="11" Column="34" />
-      <File FileName="ApiRestAldeas/Repositories/DataModelRepository.cs" Line="48" Column="43" />
-      <File FileName="ApiRestAldeas/Helper/ProyectoOperations.cs" Line="31" Column="31" />
+      <File FileName="ApiRestAldeas/Controllers/DatosController.cs" Line="22" Column="35" />
+      <File FileName="ApiRestAldeas/Repositories/DataModelRepository.cs" Line="62" Column="47" />
+      <File FileName="ApiRestAldeas/Helper/ProyectoOperations.cs" Line="253" Column="31" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -37,7 +30,14 @@
   </DisabledProjects>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/diegomontealegregarcia/Projects/Github/proyectoAldeas/ApiRestAldeas/Controllers/DatosController.cs" relfile="ApiRestAldeas/Controllers/DatosController.cs" line="49" column="1" />
+      <Breakpoint file="/Users/diegomontealegregarcia/Projects/Github/proyectoAldeas/ApiRestAldeas/Helper/ProyectoOperations.cs" relfile="ApiRestAldeas/Helper/ProyectoOperations.cs" line="35" column="1" />
+      <Breakpoint file="/Users/diegomontealegregarcia/Projects/Github/proyectoAldeas/ApiRestAldeas/Helper/ProyectoOperations.cs" relfile="ApiRestAldeas/Helper/ProyectoOperations.cs" line="244" column="1" />
+      <Breakpoint file="/Users/diegomontealegregarcia/Projects/Github/proyectoAldeas/ApiRestAldeas/Controllers/DatosController.cs" relfile="ApiRestAldeas/Controllers/DatosController.cs" line="61" column="1" />
+      <Breakpoint file="/Users/diegomontealegregarcia/Projects/Github/proyectoAldeas/ApiRestAldeas/Repositories/DataModelRepository.cs" relfile="ApiRestAldeas/Repositories/DataModelRepository.cs" line="62" column="1" />
+      <Breakpoint file="/Users/diegomontealegregarcia/Projects/Github/proyectoAldeas/ApiRestAldeas/Helper/ProyectoOperations.cs" relfile="ApiRestAldeas/Helper/ProyectoOperations.cs" line="259" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.ItemProperties.ApiRestAldeas PreferredExecutionTarget="/Applications/Safari.app" />

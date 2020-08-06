@@ -21,9 +21,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { MatButtonModule } from '@angular/material/button';
 import { FechasComponent } from './00-Comunes/fechas/fechas.component';
 import {MatCardModule} from '@angular/material/card';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatRadioModule} from '@angular/material/radio'
 import { ColaboradorComponent } from './04-Colaboradores/colaborador/colaborador.component';
+import { RegistroparticipantesComponent } from './05-Registro/registroparticipantes/registroparticipantes.component';
+import { CheckboxComponent } from './00-Comunes/checkbox/checkbox.component';
 @NgModule({
-  declarations: [LoginComponent, HomeComponent, HeaaderComponent, InformacionComponent, FechasComponent, ColaboradorComponent],
+  declarations: [LoginComponent, HomeComponent, HeaaderComponent, InformacionComponent, FechasComponent, ColaboradorComponent, RegistroparticipantesComponent, CheckboxComponent],
   imports: [
 
     CommonModule,
@@ -43,7 +47,9 @@ import { ColaboradorComponent } from './04-Colaboradores/colaborador/colaborador
     MatTableModule,
     BrowserModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    MatCheckboxModule,
+    MatRadioModule
 
   ],
   providers: [

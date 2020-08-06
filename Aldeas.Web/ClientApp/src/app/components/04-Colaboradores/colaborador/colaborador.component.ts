@@ -53,7 +53,6 @@ export class ColaboradorComponent implements OnInit {
         this.colaborador.FechaFin = firstDate.toDate();
         secondDate = firstDate
       }
-     
 
     }
 

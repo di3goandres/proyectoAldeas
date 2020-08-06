@@ -1,0 +1,67 @@
+.example-radio-group {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+    /* width: 100px; */
+    /* display:inline-block;
+    flex-wrap: wrap */
+    
+  }
+  
+.break-word {
+    /* word-break: break-word !important; */
+    white-space: normal !important;
+
+}
+
+  .example-radio-button {
+    margin: 5px;
+  }
+
+  .mat-form-field {
+    width: 100%;
+}
+
+.centerlabel{
+    text-align: center;
+    
+}
+
+.centrarTabla{
+    float: none; margin: 0 auto;
+}
+
+
+ul {
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* flex-wrap: wrap; */
+  /* height: 4em; */
+  list-style-type: none;
+  margin-top: 4px;
+  margin-left: -22px;
+
+}
+/* text-align: center;
+line-height: 150%;
+font-size: .85em; */
+
+#example-radio-group-label{
+  font-weight: bold !important;
+  text-align: center;
+  display: block;
+  padding-left: 10px;
+  white-space: normal;
+  border: 0px dashed #f69c55;
+  /* font-size: x-large; */
+}
+/* 
+ul {
+  list-style-type: none;
+  margin-top: 4px;
+} */
+
+.mat-radio-label{
+  white-space: normal !important;
+}
+

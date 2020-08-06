@@ -23,6 +23,7 @@ import { InformacionComponent } from './components/03-InfoGeneral/informacion/in
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { ColaboradorComponent } from './components/04-Colaboradores/colaborador/colaborador.component';
+import { RegistroparticipantesComponent } from './components/05-Registro/registroparticipantes/registroparticipantes.component';
 
 
 const routes: Routes = [ 
@@ -36,6 +37,7 @@ const routes: Routes = [
   { path: 'logout/:sure', component: LoginComponent, pathMatch: 'full' },
   { path: 'Informacion', component: InformacionComponent, pathMatch: 'full', canActivate:[UsuarioGuard], canLoad: [UsuarioGuard]  },
   { path: 'Colaborador', component: ColaboradorComponent, pathMatch: 'full', canActivate:[UsuarioGuard], canLoad: [UsuarioGuard]  },
+  { path: 'RegistroParticipantes', component: RegistroparticipantesComponent, pathMatch: 'full', canActivate:[UsuarioGuard], canLoad: [UsuarioGuard]  },
 
 ];
 @NgModule({

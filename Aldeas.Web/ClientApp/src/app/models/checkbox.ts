@@ -23,6 +23,7 @@ export interface Task {
     completed: boolean;
     esOtro: boolean;
     color: ThemePalette;
+    formValid?:boolean;
     subtasks?: Task[];
     valorOtro?:string;
 

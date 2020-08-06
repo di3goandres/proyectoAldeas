@@ -31,7 +31,8 @@ export class CheckboxComponent implements OnInit {
       Otro: [{ value: '', disabled: true }, Validators.required],
 
     });
-
+    this.taskSeleccionado = this.tasks[0];
+    this.onChange(this.taskSeleccionado)
 
   }
 
@@ -49,6 +50,7 @@ export class CheckboxComponent implements OnInit {
     this.valid.emit(this.firstFormGroup.invalid)
   }
   onChange(task: Task) {
+    this.setStakeValidators()
 
     if (task.esOtro) {
       this.mostrarOtro = true;
@@ -61,6 +63,10 @@ export class CheckboxComponent implements OnInit {
 
     }
     this.taskSeleccionado = task;
+
+    // True es valid false esta invalidado el formulario
+    this.taskSeleccionado.formValid = !this.firstFormGroup.invalid;
+    // console.log('primer select',  this.taskSeleccionado.formValid)
     this.datoSalid.emit(this.taskSeleccionado);
 
     this.valid.emit(this.firstFormGroup.invalid)
@@ -69,6 +75,10 @@ export class CheckboxComponent implements OnInit {
   }
 
   onChangeValorOtro() {
+    this.setStakeValidators()
+
+    this.taskSeleccionado.formValid = !this.firstFormGroup.invalid;
+
     this.taskSeleccionado.valorOtro = this.otroValor;
     this.datoSalid.emit(this.taskSeleccionado);
 

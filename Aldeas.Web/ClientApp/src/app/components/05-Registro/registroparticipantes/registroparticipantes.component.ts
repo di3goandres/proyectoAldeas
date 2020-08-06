@@ -167,7 +167,7 @@ export class RegistroparticipantesComponent implements OnInit {
 
   }
   OnValidar(event, algo){
-    console.log(algo, event);
+    // console.log(algo, event);
   }
 
   cambioDepartamento(id) {
@@ -229,41 +229,94 @@ export class RegistroparticipantesComponent implements OnInit {
     }
 
   }
+
+  // si esta true significa que no puede pasar porque no han seleccionado
+
+  ValidarEtnico:boolean = true;
+  ValidarNacionalidad:boolean = true;
+  ValidarGenero:boolean = true;
+  ValidarSexo:boolean = true;
+  ValidarParticipante:boolean = true;
+  ValidarEstatus:boolean = true;
+  ValidarColegio:boolean = true;
+  ValidarDiscapacidad:boolean = true;
+  ValidarEscolaridad:boolean = true;
+
+  ValidaContinuar:boolean = false;
+
+  onContinuar(){
+
+ 
+    if(this.ValidarEtnico &&  this.ValidarNacionalidad && this.ValidarGenero
+       && this.ValidarSexo && this.ValidarParticipante && this.ValidarEstatus
+       && this.ValidarColegio && this.ValidarDiscapacidad && this.ValidarEscolaridad)
+       {
+        this.ValidaContinuar = true;
+       }else{
+        this.ValidaContinuar = false;
+
+       }
+       console.log(this.ValidarEtnico ,  this.ValidarNacionalidad ,this.ValidarGenero
+        ,this.ValidarSexo ,this.ValidarParticipante ,this.ValidarEstatus
+         , this.ValidarColegio ,this.ValidarDiscapacidad , this.ValidarEscolaridad)
+   
+       console.log('se puede',this.ValidaContinuar);
+  }
+
+
   onNotificar(event: Task, Tipo: any) {
+   
+    console.log(event)
     switch (Tipo) {
       case 'Etnico':
         this.datosParticipante.GrupoEtnico = this.retornarValor(event);
+        this.ValidarEtnico=event.formValid;
+        this.onContinuar();
+        console.log(event.formValid);
         break;
       case 'Nacionalidad':
         this.datosParticipante.Nacionalidad = this.retornarValor(event);
+        this.ValidarNacionalidad=event.formValid;
+        this.onContinuar();
         break;
       case 'Genero':
         this.datosParticipante.Genero = this.retornarValor(event);
+        this.ValidarGenero=event.formValid;
+        this.onContinuar();
         break;
       case 'Sexo':
         this.datosParticipante.Sexo = this.retornarValor(event);
+        this.ValidarSexo=event.formValid;
         break;
       case 'TipoParticipante':
         this.datosParticipante.TipoParticipante = this.retornarValor(event);
+        this.ValidarParticipante = event.formValid;
+        this.onContinuar();
         break;
       case 'Residencia':
-        this.datosParticipante.TipoParticipante = this.retornarValor(event);
+        this.datosParticipante.EstatusResidencia = this.retornarValor(event);
+        this.ValidarEstatus = event.formValid;
+        this.onContinuar();
         break;
       case 'Colegio':
         this.datosParticipante.AsisteAlColegio = this.retornarValor(event);
+        this.ValidarColegio = event.formValid;
+        this.onContinuar();
         break;
       case 'Discapacidad':
         this.datosParticipante.Discapacidad = this.retornarValor(event);
+        this.ValidarDiscapacidad = event.formValid;
+        this.onContinuar();
         break;
       case 'NivelEscolaridad':
         this.datosParticipante.NivelEscolaridad = this.retornarValor(event);
+        this.ValidarEscolaridad = event.formValid;
+        this.onContinuar();
         break;
-
-
       default:
         break;
     }
-
+    
   }
   ngOnInit(): void {
 

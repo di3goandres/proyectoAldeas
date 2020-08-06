@@ -226,8 +226,8 @@
             <div class="row">
                 <div class="col-12 centerlabel font-weight-bold">
                     <label>Ya casi esta listo pulsa guardar
-                        <!-- {{this.firstFormGroup.invalid }} - {{Guardando}}
-                            <br> {{!(this.firstFormGroup.invalid && Guardando)}} -->
+                        {{this.firstFormGroup.invalid }} - {{ValidaContinuar}}
+                          
                     </label>
                     <br>
                     <button mat-raised-button color="warn" [disabled]="this.firstFormGroup.invalid" (click)="onGuardar()">Guardar</button>

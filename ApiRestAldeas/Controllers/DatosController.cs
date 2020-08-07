@@ -91,6 +91,17 @@ namespace ApiRestAldeas.Controllers
 
 
 
+        //[Authorize]
+        [HttpGet]
+        [Route("/api/aldeas/datosProyectos/")]
+        public dynamic ConsultarProyectos()
+        {
+            return _dataModelRepository.ConsultarProyectos();
+        }
+
+
+
+
 
     }
 }

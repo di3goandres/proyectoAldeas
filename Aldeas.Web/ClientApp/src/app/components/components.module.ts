@@ -26,8 +26,9 @@ import {MatRadioModule} from '@angular/material/radio'
 import { ColaboradorComponent } from './04-Colaboradores/colaborador/colaborador.component';
 import { RegistroparticipantesComponent } from './05-Registro/registroparticipantes/registroparticipantes.component';
 import { CheckboxComponent } from './00-Comunes/checkbox/checkbox.component';
+import { ListcheckComponent } from './00-Comunes/listcheck/listcheck.component';
 @NgModule({
-  declarations: [LoginComponent, HomeComponent, HeaaderComponent, InformacionComponent, FechasComponent, ColaboradorComponent, RegistroparticipantesComponent, CheckboxComponent],
+  declarations: [LoginComponent, HomeComponent, HeaaderComponent, InformacionComponent, FechasComponent, ColaboradorComponent, RegistroparticipantesComponent, CheckboxComponent, ListcheckComponent],
   imports: [
 
     CommonModule,

@@ -1,4 +1,4 @@
-<mat-horizontal-stepper [linear]="true" #stepper>
+<mat-horizontal-stepper [linear]="false" #stepper>
 
     <mat-step [stepControl]="firstFormGroup">
         <form [formGroup]="firstFormGroup">
@@ -9,7 +9,18 @@
             </div>
             <!--Fechas-->
             <div class="row">
-                <div class="col-6">
+                <div class="col-4">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Proyecto</mat-label>
+
+                        <mat-select [(ngModel)]="datosParticipante.idProyecto" formControlName="Proyecto">
+                            <mat-option *ngFor="let proyecto of proyectos" [value]="proyecto.codigo" required>
+                                {{proyecto.nombre}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-4">
 
                     <mat-form-field appearance="fill">
                         <mat-label>Fecha de ingreso</mat-label>
@@ -24,7 +35,7 @@
                     </mat-form-field>
                 </div>
 
-                <div class="col-6">
+                <div class="col-4">
                     <mat-form-field appearance="fill">
                         <mat-label>Fecha de Salida del Proyecto</mat-label>
                         <input matInput formControlName="Fechafin" [matDatepicker]="pickerFin"
@@ -107,8 +118,8 @@
                 <div class="col-4">
                     <mat-form-field appearance="fill">
                         <mat-label>Localidad/Barrio/Comuna</mat-label>
-                        <input matInput [(ngModel)]="datosParticipante.Localidad" 
-                        formControlName="Localidad" required />
+                        <input matInput [(ngModel)]="datosParticipante.Localidad" formControlName="Localidad"
+                            required />
 
                     </mat-form-field>
                 </div>
@@ -119,62 +130,22 @@
             <div class="row">
                 <div class="col-3">
                     <app-checkbox [tasks]="grupoEtnico" [datoEntrada]="grupo" NombreChecbok='Grupo Étnico'
-                        (datoSalid)='onNotificar($event, "Etnico")'
-                        (valid)="OnValidar($event,'Etnico')"></app-checkbox>
+                        (datoSalid)='onNotificar($event, "Etnico")' (valid)="OnValidar($event,'Etnico')"></app-checkbox>
                 </div>
                 <div class="col-3">
                     <app-checkbox [tasks]="nacionalidadCheck" NombreChecbok='Nacionalidad' [datoEntrada]="nacionalidad"
-                    (datoSalid)='onNotificar($event, "Nacionalidad")'>
+                        (datoSalid)='onNotificar($event, "Nacionalidad")'>
                     </app-checkbox>
                 </div>
                 <div class="col-3">
                     <app-checkbox [tasks]="generoCheck" NombreChecbok='Genero Del Participante' [datoEntrada]="genero"
-                    (datoSalid)='onNotificar($event, "Genero")'>
+                        (datoSalid)='onNotificar($event, "Genero")'>
                     </app-checkbox>
                 </div>
                 <div class="col-3">
                     <app-checkbox [tasks]="sexoCheck" NombreChecbok='Sexo del participante' [datoEntrada]="sexo"
-                    (datoSalid)='onNotificar($event, "Sexo")'>
-                </app-checkbox>
-                </div>
-
-
-            </div>
-            <mat-divider></mat-divider>
-
-            <div class="row">
-                <div class="col-3">
-                    <app-checkbox [tasks]="tipoParticipanteCheck"
-                     NombreChecbok='Tipo Participante' [datoEntrada]="tipoParticipante"
-                     (datoSalid)='onNotificar($event, "TipoParticipante")'>
+                        (datoSalid)='onNotificar($event, "Sexo")'>
                     </app-checkbox>
-                    
-                </div>
-                <div class="col-3">
-                    <app-checkbox [tasks]="residenciaEstatusCheck"
-                    NombreChecbok='Estatus de Residencia' [datoEntrada]="residenciaEstatus"
-                    (datoSalid)='onNotificar($event, "Residencia")'>
-
-                   </app-checkbox>
-                </div>
-
-                <div class="col-3">
-                    <app-checkbox [tasks]="colegioCheck"
-                    NombreChecbok='Asiste Al Colegio' [datoEntrada]="colegio"
-                    (datoSalid)='onNotificar($event, "Colegio")'>
-
-                   </app-checkbox>
-
-
-                </div>
-
-
-                <div class="col-3">
-                    <app-checkbox [tasks]="discapacidadCheck"
-                    NombreChecbok='Participante con Discapacidad' [datoEntrada]="discapacidad"
-                    (datoSalid)='onNotificar($event, "Discapacidad")'>
-
-                   </app-checkbox>
                 </div>
 
 
@@ -183,54 +154,70 @@
 
             <div class="row">
                 <div class="col-3">
-                    <app-checkbox [tasks]="nivelEscolaridadCheck"
-                    NombreChecbok='Nivel de Escolaridad' [datoEntrada]="nivelEscolaridad"
-                    (datoSalid)='onNotificar($event, "NivelEscolaridad")'>
+                    <app-checkbox [tasks]="tipoParticipanteCheck" NombreChecbok='Tipo Participante'
+                        [datoEntrada]="tipoParticipante" (datoSalid)='onNotificar($event, "TipoParticipante")'>
+                    </app-checkbox>
 
-                   </app-checkbox>
+                </div>
+                <div class="col-3">
+                    <app-checkbox [tasks]="residenciaEstatusCheck" NombreChecbok='Estatus de Residencia'
+                        [datoEntrada]="residenciaEstatus" (datoSalid)='onNotificar($event, "Residencia")'>
+
+                    </app-checkbox>
                 </div>
 
                 <div class="col-3">
-                    <section class="example-section">
-                        <span class="example-list-section">
-                            <label id="example-radio-group-label">Línea del Proyecto</label>
-                            <mat-checkbox class="example-margin" aria-labelledby="example-radio-group-label"
-                                formControlName="Multiple" [checked]="allComplete" [indeterminate]="someComplete()"
-                                (change)="setAll($event.checked)">
-                                {{task.name}}
-                            </mat-checkbox>
-                        </span>
-                        <span class="example-list-section">
-                            <ul>
-                                <li *ngFor="let subtask of task.subtasks">
-                                    <mat-checkbox [(ngModel)]="subtask.completed" [color]="subtask.color"
-                                        (ngModelChange)="updateAllComplete()" formControlName="Multiple">
-                                        {{subtask.name}}
+                    <app-checkbox [tasks]="colegioCheck" NombreChecbok='Asiste Al Colegio' [datoEntrada]="colegio"
+                        (datoSalid)='onNotificar($event, "Colegio")'>
 
-                                    </mat-checkbox>
+                    </app-checkbox>
 
-                                    <mat-form-field appearance="fill" *ngIf="(subtask.esOtro&&subtask.completed)">
-                                        <mat-label>Cual</mat-label>
-                                        <input matInput type="Text" [(ngModel)]="datosParticipante.Linea"
-                                            formControlName="OtroMultiple" />
 
-                                    </mat-form-field>
-                                </li>
-                            </ul>
-                        </span>
-                    </section>
+                </div>
+
+
+                <div class="col-3">
+                    <app-checkbox [tasks]="discapacidadCheck" NombreChecbok='Participante con Discapacidad'
+                        [datoEntrada]="discapacidad" (datoSalid)='onNotificar($event, "Discapacidad")'>
+
+                    </app-checkbox>
+                </div>
+
+
+            </div>
+            <mat-divider></mat-divider>
+
+            <div class="row">
+                <div class="col-3">
+                    <app-checkbox [tasks]="nivelEscolaridadCheck" NombreChecbok='Nivel de Escolaridad'
+                        [datoEntrada]="nivelEscolaridad" (datoSalid)='onNotificar($event, "NivelEscolaridad")'>
+
+                    </app-checkbox>
+                </div>
+
+                <div class="col-3">
+                    <app-listcheck [task]="task" Nombre='Línea del Proyecto' (datoSalid)='onNotificar($event, "Linea")'>
+                    </app-listcheck>
+
+                </div>
+                <div class="col-3">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Ultimo Curso Aprobado</mat-label>
+                        <input matInput [(ngModel)]="datosParticipante.UltimoCursoAprobado"
+                            formControlName="UltimoCurso" required />
+
+                    </mat-form-field>
                 </div>
 
             </div>
             <mat-divider></mat-divider>
             <div class="row">
                 <div class="col-12 centerlabel font-weight-bold">
-                    <label>Ya casi esta listo pulsa guardar
-                        {{this.firstFormGroup.invalid }} - {{ValidaContinuar}}
-                          
-                    </label>
+
                     <br>
-                    <button mat-raised-button color="warn" [disabled]="this.firstFormGroup.invalid" (click)="onGuardar()">Guardar</button>
+                    <button matStepperNext mat-raised-button color="warn"
+                        [disabled]="!(this.firstFormGroup.invalid===false&&ValidaContinuar===false)"
+                        (click)="onGuardar()">Continuar</button>
 
                 </div>
 
@@ -238,5 +225,174 @@
             </div>
 
         </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+        <!-- <form [formGroup]="thirdFormGroup"> -->
+        <ng-template matStepLabel>Integrantes de la Familia</ng-template>
+        <div class="row">
+            <div class="col-12 centerlabel font-weight-bold"><label>Integrantes de la Familia</label></div>
+        </div>
+        <div class="row">
+
+            <div class="containerTable">
+
+                <table #Integrantes mat-table [dataSource]="participantes" class="mat-elevation-z8 participantes">
+
+
+
+                    <ng-container matColumnDef="position">
+                        <th mat-header-cell *matHeaderCellDef> No. </th>
+                        <td mat-cell *matCellDef="let element"> {{element.Nombre}} </td>
+                    </ng-container>
+
+
+                    <ng-container matColumnDef="0 - 5 Años">
+                        <th mat-header-cell *matHeaderCellDef> 0 - 5 Años </th>
+                        <td mat-cell *matCellDef="let element; let i  = index">
+
+                            <!-- <mat-form-field> -->
+                            <input matInput type="number" [(ngModel)]="element.Rango_0_5"
+                                (ngModelChange)="actualizar()">
+                            <!-- </mat-form-field> -->
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="6 - 12 años">
+                        <th mat-header-cell *matHeaderCellDef> 6 - 12 años </th>
+                        <td mat-cell *matCellDef="let element; let i  = index">
+
+                            <!-- <mat-form-field> -->
+                            <input matInput type="number" (ngModelChange)="actualizar()"
+                                [(ngModel)]="element.Rango_6_12">
+                            <!-- </mat-form-field> -->
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="13 - 15 años">
+                        <th mat-header-cell *matHeaderCellDef> 13 - 15 años </th>
+                        <td mat-cell *matCellDef="let element; let i  = index">
+
+                            <!-- <mat-form-field> -->
+                            <input matInput type="number" [(ngModel)]="element.Rango_13_17"
+                                (ngModelChange)="actualizar()">
+                            <!-- </mat-form-field> -->
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="18 - 24 años">
+                        <th mat-header-cell *matHeaderCellDef> 18 - 24 años </th>
+                        <td mat-cell *matCellDef="let element; let i  = index">
+
+                            <!-- <mat-form-field class="maxWidth"> -->
+                            <input matInput type="number" [(ngModel)]="element.Rango_18_24"
+                                (ngModelChange)="actualizar()">
+                            <!-- </mat-form-field> -->
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="25 - 56 años">
+                        <th mat-header-cell *matHeaderCellDef> 25 - 56 años </th>
+                        <td mat-cell *matCellDef="let element; let i  = index">
+
+                            <!-- <mat-form-field> -->
+                            <input matInput type="number" [(ngModel)]="element.Rango_25_56"
+                                (ngModelChange)="actualizar()">
+                            <!-- </mat-form-field> -->
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Mayores de 60 años">
+                        <th mat-header-cell *matHeaderCellDef> Mayores de 60 años </th>
+                        <td mat-cell *matCellDef="let element; let i  = index">
+
+                            <!-- <mat-form-field> -->
+                            <input matInput type="number" (ngModelChange)="actualizar()"
+                                [(ngModel)]="element.Mayores_60">
+                            <!-- </mat-form-field> -->
+                        </td>
+                    </ng-container>
+                    <mat-divider></mat-divider>
+                    <ng-container matColumnDef="Total">
+                        <th mat-header-cell *matHeaderCellDef> TOTAL </th>
+                        <td mat-cell *matCellDef="let element; let i  = index">
+
+                            <!-- <mat-form-field> -->
+                            <input disabled matInput type="number" [(ngModel)]="element.Total">
+                            <!-- </mat-form-field> -->
+                        </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumnsParticipante"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumnsParticipante;"></tr>
+                </table>
+
+
+            </div>
+
+
+
+
+        </div>
+
+        <div>
+
+            <button mat-raised-button color="warn" matStepperPrevious>Volver</button>
+
+
+            <button mat-raised-button color="warn" matStepperNext>Continuar</button>
+
+        </div>
+        <!-- </form> -->
+    </mat-step>
+
+    <mat-step [stepControl]="thirdFormGroup">
+        <!-- <form [formGroup]="thirdFormGroup"> -->
+        <ng-template matStepLabel>Indicadores Clave</ng-template>
+        <div class="row">
+            <div class="col-12 centerlabel font-weight-bold"><label>Indicadores Clave</label></div>
+        </div>
+        <div class="row">
+
+            <div class="col-3">
+                <app-listcheck [task]="taskServicio" Nombre='Servicio Que Recibe' (datoSalid)='onNotificar($event, "Linea")'>
+                </app-listcheck>
+            </div>
+            <div class="col-3">
+                <app-checkbox [tasks]="SinoCheck" NombreChecbok='Cuenta Con un Plan de Acompañamiento Psicopedagógico'
+                    [datoEntrada]="singo" (datoSalid)='onNotificar($event, "NivelEscolaridad")'>
+
+                </app-checkbox>
+            </div>
+
+            <div class="col-3">
+                <app-checkbox [tasks]="SinoCheck" NombreChecbok='NNA transitó a la educacion formal'
+                    [datoEntrada]="singo" (datoSalid)='onNotificar($event, "NivelEscolaridad")'>
+
+                </app-checkbox>
+            </div>
+
+            <div class="col-3">
+                <app-checkbox [tasks]="SinoCheck" NombreChecbok='Recibio Kit Escolar'
+                    [datoEntrada]="singo" (datoSalid)='onNotificar($event, "NivelEscolaridad")'>
+
+                </app-checkbox>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-3">
+                <app-checkbox [tasks]="SinoCheck" NombreChecbok='NNA participo en proyectos comunitarios'
+                    [datoEntrada]="singo" (datoSalid)='onNotificar($event, "NivelEscolaridad")'>
+
+                </app-checkbox>
+            </div>
+        </div>
+
+        <div>
+
+            <button mat-raised-button color="warn" matStepperPrevious>Volver</button>
+
+
+            <button mat-raised-button color="warn" matStepperNext>Continuar</button>
+
+        </div>
+        <!-- </form> -->
     </mat-step>
 </mat-horizontal-stepper>

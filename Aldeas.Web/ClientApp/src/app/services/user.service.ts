@@ -108,6 +108,10 @@ export class UserService {
     return this.ejecutarQuery<ConsultaDepartamentos>('/api/aldeas/datoscolombia/');
   }
 
+  getProyectos() {
+    return this.ejecutarQuery<ProyectoResponse>('/api/aldeas/datosproyectos');
+  }
+
 
   getCentrosResponse() {
     return this.ejecutarQuery<CentrosResponse>('/api/aldeas/datoscentrocostos/');

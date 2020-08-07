@@ -70,7 +70,7 @@ export class CheckboxComponent implements OnInit {
     this.valid.emit(this.firstFormGroup.invalid)
   }
   onChange(task: Task) {
-    console.log('1')
+
     this.setStakeValidators()
 
     if (task.esOtro) {
@@ -95,7 +95,7 @@ export class CheckboxComponent implements OnInit {
   }
 
   onChangeValorOtro() {
-    console.log('2')
+ 
 
     this.setStakeValidators()
 

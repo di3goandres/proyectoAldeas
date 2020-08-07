@@ -28,6 +28,12 @@ namespace ApiRestAldeas.Repositories
             return CentroCostosOperations.obtenerDatos(_factory, _connectionDB);
         }
 
+        public dynamic ConsultarProyectos()
+        {
+            return ProyectoOperations.ConsultarProyecto(_factory, _connectionDB);
+
+        }
+
         public dynamic DatosColombia()
         {
             return MunicipioOperations.obtenerDatos(_factory, _connectionDB);

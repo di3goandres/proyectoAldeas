@@ -16,16 +16,22 @@ namespace ApiRestAldeas.Helper
     {
         public static dynamic ConsultarProyecto(IContextFactory factory, IOptions<ConnectionDB> connection)
         {
+            ProyectoResponse retorno = new ProyectoResponse();
             using (Aldeas_Context db = factory.Create(connection))
             {
                 var data = from pro in db.tbProyectos
-                           select pro;
+                           select new Item
+                           {
+                               Codigo = pro.id,
+                               Nombre = pro.nombre
+                           };
 
-                var proyectos = JsonConvert.SerializeObject(data);
-                return proyectos;
+                retorno.ItemsProyectos = ( data.ToList());
+            
 
 
             }
+            return retorno;
         }
 
         public static dynamic Guardar(IContextFactory factory, IOptions<ConnectionDB> connection,

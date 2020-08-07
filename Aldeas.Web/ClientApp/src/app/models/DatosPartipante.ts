@@ -1,3 +1,5 @@
+import { Task } from "./checkbox";
+import { Participantes } from "./proyect";
 
 export class RegistroParticipante {
     constructor(
@@ -24,6 +26,7 @@ export class RegistroParticipante {
         this.AsisteAlColegio="";
         this.NivelEscolaridad="";
         this.UltimoCursoAprobado="";
+        this.participantes =[]
     }
    
     public idProyecto: number;
@@ -36,7 +39,7 @@ export class RegistroParticipante {
     public GrupoEtnico: string;
     public Discapacidad: string;
     public TipoParticipante: string;
-    public Linea: LineasProyecto[];
+    public Linea: Task[];
     public Edad: number;
     public Sexo: string;
     public Genero: string;
@@ -48,8 +51,7 @@ export class RegistroParticipante {
     public AsisteAlColegio: string;
     public NivelEscolaridad: string;
     public UltimoCursoAprobado: string;
+    public participantes: Participantes[];
    }
 
-   export class LineasProyecto{
-       public LineasDelProyecto: string;
-   }
+ 

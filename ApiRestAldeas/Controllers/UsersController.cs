@@ -43,13 +43,13 @@ namespace ApiRestAldeas.Controllers
         //    var users = _userService.GetAll();
         //    return Ok(users);
         //}
-        [Authorize]
-        [HttpGet]
-        public async Task<IActionResult> GetAll()
-        {
-            var users = await _userService.GetAll();
-            return Ok(users);
-        }
+        //[Authorize]
+        //[HttpGet]
+        //public async Task<IActionResult> GetAll()
+        //{
+        //    var users = await _userService.GetAll();
+        //    return Ok(users);
+        //}
 
     }
 }

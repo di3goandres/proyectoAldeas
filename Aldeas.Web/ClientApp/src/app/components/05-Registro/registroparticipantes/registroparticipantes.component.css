@@ -65,3 +65,31 @@ ul {
   white-space: normal !important;
 }
 
+/* ::ng-deep .mat-horizontal-stepper-header{
+  pointer-events: none !important;
+} */
+
+.participantes .mat-form-field {
+  display: block;
+  position: relative;
+  flex: auto;
+  min-width: 0;
+  width: 143px;
+  font-size: x-small;
+  padding-right: 3px;
+  padding-left: 0px;
+  padding-top: 4px;
+
+
+}
+
+.participantes  {
+  width: 90%;
+
+}
+
+.containerTable {
+  width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
+}

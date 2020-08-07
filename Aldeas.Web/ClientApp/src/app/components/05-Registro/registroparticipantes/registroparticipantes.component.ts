@@ -256,9 +256,9 @@ export class RegistroparticipantesComponent implements OnInit {
         this.ValidaContinuar = false;
 
        }
-       console.log(this.ValidarEtnico ,  this.ValidarNacionalidad ,this.ValidarGenero
-        ,this.ValidarSexo ,this.ValidarParticipante ,this.ValidarEstatus
-         , this.ValidarColegio ,this.ValidarDiscapacidad , this.ValidarEscolaridad)
+      //  console.log(this.ValidarEtnico ,  this.ValidarNacionalidad ,this.ValidarGenero
+      //   ,this.ValidarSexo ,this.ValidarParticipante ,this.ValidarEstatus
+      //    , this.ValidarColegio ,this.ValidarDiscapacidad , this.ValidarEscolaridad)
    
        console.log('se puede',this.ValidaContinuar);
   }

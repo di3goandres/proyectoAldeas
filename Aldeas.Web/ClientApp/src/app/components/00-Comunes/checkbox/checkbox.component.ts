@@ -28,15 +28,33 @@ export class CheckboxComponent implements OnInit {
     this.firstFormGroup = this._formBuilder.group({
       Estado: ['', Validators.required],
 
-      Otro: [{ value: '', disabled: true }, Validators.required],
+      Otro: [''],
 
     });
+
     this.taskSeleccionado = this.tasks[0];
-    this.onChange(this.taskSeleccionado)
+    this.setStakeValidators()
+    this.tasks.forEach(item => {
+      item.formValid = false;
+      item.valorOtro = ''
+
+    })
 
   }
 
+  ValidarEstado() {
+    let retorno: boolean = false;
+    switch (this.firstFormGroup.status) {
+      case 'VALID':
+        retorno = true;
+        break;
 
+      default:
+        retorno = false;
+        break;
+    }
+    return retorno
+  }
   setStakeValidators(): void {
     const stakeControl = this.firstFormGroup.get('Otro');
     if (this.mostrarOtro === true) {
@@ -45,18 +63,23 @@ export class CheckboxComponent implements OnInit {
       stakeControl.disable();
     }
     stakeControl.updateValueAndValidity();
+
+
   }
   onLoad() {
     this.valid.emit(this.firstFormGroup.invalid)
   }
   onChange(task: Task) {
+    console.log('1')
     this.setStakeValidators()
 
     if (task.esOtro) {
       this.mostrarOtro = true;
+      this.taskSeleccionado.formValid = false;
       this.setStakeValidators()
 
     } else {
+      this.taskSeleccionado.formValid = true;
       this.mostrarOtro = false;
       this.setStakeValidators()
 
@@ -64,9 +87,6 @@ export class CheckboxComponent implements OnInit {
     }
     this.taskSeleccionado = task;
 
-    // True es valid false esta invalidado el formulario
-    this.taskSeleccionado.formValid = !this.firstFormGroup.invalid;
-    // console.log('primer select',  this.taskSeleccionado.formValid)
     this.datoSalid.emit(this.taskSeleccionado);
 
     this.valid.emit(this.firstFormGroup.invalid)
@@ -75,14 +95,24 @@ export class CheckboxComponent implements OnInit {
   }
 
   onChangeValorOtro() {
+    console.log('2')
+
     this.setStakeValidators()
 
-    this.taskSeleccionado.formValid = !this.firstFormGroup.invalid;
+    if (this.otroValor.length === 0) {
+      this.taskSeleccionado.formValid = false;
 
+    } else {
+      this.taskSeleccionado.formValid = true;
+
+    }
     this.taskSeleccionado.valorOtro = this.otroValor;
+  
     this.datoSalid.emit(this.taskSeleccionado);
 
     this.valid.emit(this.firstFormGroup.invalid)
+
+
 
   }
 

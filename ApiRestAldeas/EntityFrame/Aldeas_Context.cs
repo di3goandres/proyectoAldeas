@@ -49,6 +49,9 @@ namespace ApiRestAldeas.EntityFrame
         public virtual DbSet<DBParticipantesProyectados> tbParticipantesProyectados { get; set; }
         public virtual DbSet<TbColaborador> TbColaboradors { get; set; }
 
+        public virtual DbSet<ColaboradorInforFinanciera> TbCICentroCostos { get; set; }
+
+
 
 
 
@@ -58,7 +61,10 @@ namespace ApiRestAldeas.EntityFrame
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
-
+            modelBuilder.Entity<ColaboradorInforFinanciera>(entity =>
+            {
+                entity.ToTable("Colaborador_InfoFinanciera_centrosCostos");
+            });
 
             modelBuilder.Entity<TbColaborador>(entity =>
             {

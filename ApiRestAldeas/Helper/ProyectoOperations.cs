@@ -116,7 +116,7 @@ namespace ApiRestAldeas.Helper
                     monedaDonacion = info.MonedaDonacion,
                     tasacambio = info.TasaCambio,
                     navision = info.NavisionFacilitiy,
-                    idSubCentroCostos = info.SubCentro,
+               
                     responsable = info.Responsable,
                     lugar = info.Lugar
 
@@ -177,6 +177,19 @@ namespace ApiRestAldeas.Helper
                     db.tbEjecucion.AddRange(ejecucions);
                 }
 
+                var infoCentroCostos = proyectoRequest.InfoFinanciera.ListCentroCostos;
+                List<ColaboradorInforFinanciera> listaCentroCostos = new List<ColaboradorInforFinanciera>();
+                foreach (var item in infoCentroCostos)
+                {
+                    listaCentroCostos.Add(new ColaboradorInforFinanciera()
+                    {
+                        Codigo = item.Name,
+                        id_SubCentroCosto = item.Codigo,
+                        id_InfoFinanciera = inforFinanciera.id,
+                        id_Colaboradores = null
+                    });
+                }
+                db.TbCICentroCostos.AddRange(listaCentroCostos);
                 db.SaveChanges();
 
 
@@ -212,7 +225,9 @@ namespace ApiRestAldeas.Helper
                         Rango_18_24 = item.Rango_18_24,
                         Rango_25_56 = item.Rango_25_56,
                         Mayores_60 = item.Mayores_60,
-                        Total = item.Total
+                        Total = item.Total,
+                        TotalDesagregado = item.TotalDesagregado,
+                        Porcentaje = item.Porcentaje
                     });
                 }
 
@@ -238,20 +253,6 @@ namespace ApiRestAldeas.Helper
                 }
                 db.tbParticipantes.AddRange(listParticipantes);
                 db.SaveChanges();
-
-
-
-
-
-
-
-
-
-                db.SaveChanges();
-
-
-
-
             }
             return new { id = idProyecto, status = idProyecto == 0 ? "error" : "OK", code = 200 };
         }

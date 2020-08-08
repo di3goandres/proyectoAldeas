@@ -82,7 +82,9 @@ ul {
 
 
 }
-
+.participantes .cdk-text-field-autofill-monitored{
+  text-align: center;
+}
 .participantes  {
   width: 90%;
 

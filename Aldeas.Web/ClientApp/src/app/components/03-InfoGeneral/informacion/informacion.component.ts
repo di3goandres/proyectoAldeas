@@ -1,12 +1,13 @@
 import { Component, OnInit, EventEmitter, Output, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Proyecto, FechaElement, MunicipioSeleccionado, Financiera, Participantes, Ejecucion, Proyectados, Otros } from '../../../models/proyect';
+import { Proyecto, FechaElement, MunicipioSeleccionado, Financiera, Participantes, Ejecucion, Proyectados, Otros, CentroCostosList } from '../../../models/proyect';
 import * as moment from 'moment';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { MatTable } from '@angular/material/table';
 import { UserService } from '../../../services/user.service';
 import { ConsultaDepartamentos, Municipio, Departamento } from '../../../models/ConsultaDepartamentos';
 import { CentrosCosto, SubCentro } from '../../../models/comunes';
+import { Task } from 'src/app/models/checkbox';
 
 interface Select {
   value: string;
@@ -29,13 +30,15 @@ export class InformacionComponent implements OnInit {
   @ViewChild('desebolsos') tableDesembolsos: MatTable<any>;
   @ViewChild('vistantes') tablevistantes: MatTable<any>;
   @ViewChild('otros') tableOtros: MatTable<any>;
+  @ViewChild('otros') participantesTable: MatTable<any>;
+
 
   ValidarArchivo: boolean = false;
   contentInclude = "application/pdf, application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
   fileToUpload: File = null;
 
   @Output() dateChange: EventEmitter<MatDatepickerInputEvent<any>>;
-  displayedOtros: string[] = ['position','Tipo', 'Total', 'Quitar'];
+  displayedOtros: string[] = ['position','Tipo', 'Total', 'otroPorcentaje', 'Quitar'];
 
   displayedColumns: string[] = ['position', 'Fecha', 'Quitar'];
   displayedColumnsDepartamento: string[] = ['position', 'Departamento', 'Municipio', 'Quitar'];
@@ -45,13 +48,13 @@ export class InformacionComponent implements OnInit {
   displayedColumnsParticipante: string[] =
     ['position', '0 - 5 Años', '6 - 12 años',
       '13 - 15 años', '18 - 24 años', '25 - 56 años',
-      'Mayores de 60 años', 'Total']
+      'Mayores de 60 años', 'Total', 'TotalDesagregado']
   dataSourceComites: FechaElement[] = [];
   dataSourceInformes: FechaElement[] = [];
   dataSourceDesembolsos: FechaElement[] = [];
   dataSourceVisita: FechaElement[] = [];
   dataSourceOtros: Otros[]=[];
-  otroItem: Otros= new Otros("", 0);
+  otroItem: Otros= new Otros("", 0, 0);
   dataSourcemunicipio: MunicipioSeleccionado[] = [];
 
   Fuente: Select[] = [
@@ -83,6 +86,13 @@ export class InformacionComponent implements OnInit {
     { value: 'Nacional', viewValue: 'Nacional' },
     { value: 'Internacional', viewValue: 'Internacional' }
   ];
+  mondea: string;
+  monedaChecK: Task[] = [
+    { name: 'USD', completed: false, esOtro: false, color: 'primary' },
+    { name: 'EURO', completed: false, esOtro: false, color: 'primary' },
+    { name: 'COP', completed: false, esOtro: false, color: 'primary' },
+    { name: 'Otra', completed: false, esOtro: true, color: 'primary' },
+  ]
   isLinear = false;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
@@ -105,6 +115,7 @@ export class InformacionComponent implements OnInit {
   AgregarMuni: boolean;
   validarNextPantalla_1: boolean;
   validarNextPantalla_2: boolean;
+  ValidarMoneda: boolean = false;
 
   validarDepartamentos: boolean;
   ValidarReuniones: boolean;
@@ -579,7 +590,9 @@ export class InformacionComponent implements OnInit {
 
   continuarPanatalla_2() {
 
-    if (this.ValidarDesembolsos && this.ValidarVisitas && this.ValidarArchivo) {
+
+    if (this.ValidarDesembolsos && this.ValidarVisitas && this.ValidarArchivo
+       && this.ValidarMoneda && this.validarCentroCosto) {
       this.validarNextPantalla_2 = false;
     } else {
       this.validarNextPantalla_2 = true;
@@ -679,15 +692,19 @@ export class InformacionComponent implements OnInit {
   }
   otroTipo:string =""
   otroTotal:number=0;
+  otroPorcentaje: number =0;
   AgregarOtro(){
+
    this.dataSourceOtros
     .push(
       new Otros(
         this.otroTipo,
-        this.otroTotal)
+        this.otroTotal,
+        this.otroPorcentaje)
    )
    this.otroTipo =""
    this.otroTotal =0;
+   this.otroPorcentaje =0;
    this.tableOtros.renderRows();
   }
 
@@ -697,7 +714,54 @@ export class InformacionComponent implements OnInit {
    this.tableOtros.renderRows();
 
   }
+  onNotificar(event: Task, Tipo: any) {
+    this.verificarMoneda(event);
+  }
 
+  validarCentroCosto: boolean =false;
+  onNotificarCentroCosto(list: CentroCostosList[]){
+
+    if(list.length === 0){
+      this.validarCentroCosto = false;
+    }else{
+      this.validarCentroCosto = true;
+
+    }
+    this.infoFinanciera.ListCentroCostos = [];
+    this.infoFinanciera.ListCentroCostos.push(...list) 
+    this.continuarPanatalla_2()
+  }
+
+
+  verificarMoneda(event: Task) {
+      if (event.esOtro) {
+        this.ValidarMoneda = event.formValid;
+        this.infoFinanciera.MonedaDonacion = event.valorOtro
+      } else {
+        this.ValidarMoneda = true;
+        this.infoFinanciera.MonedaDonacion = event.name
+      }
+      this.continuarPanatalla_2()
+  }
+  actualizar(){
+   
+    this.participantes.forEach(
+    
+      t =>{
+        t.Total =
+              t.Rango_13_17 +
+              t.Rango_18_24+
+              t.Rango_25_56 
+              + t.Rango_6_12 
+              + t.Mayores_60 
+              + t.Rango_0_5;
+      
+      });
+
+      this.participantesTable.renderRows()
+    
+   
+  }
   ngOnInit(): void {
     this.AgregarMuni = true;
     this.validarNextPantalla_1 = true;
@@ -756,33 +820,32 @@ export class InformacionComponent implements OnInit {
       TipoFuente: ['', Validators.required],
       TasaCambio: ['', Validators.required],
       Cuenta: ['', Validators.required],
-      CentroCosto: ['', Validators.required],
-      SubCentroCosto: ['', Validators.required],
+    
       Navision: ['', Validators.required],
       fechas: ['', Validators.required],
       responsable: ['', Validators.required],
       lugar: ['', Validators.required],
       proyecto: ['', Validators.required],
-      Moneda: ['', Validators.required],
+    
 
 
 
     });
     this.thirdFormGroup = this._formBuilder.group({
 
-      proyecto: ['', Validators.required],
+     
       totalFamilias: ['', Validators.required],
       Observaciones: ['', Validators.required],
       TipoP: ['', Validators.nullValidator],
       TotalP: ['', Validators.nullValidator],
 
-
+      Porcentaje: ['', Validators.nullValidator],
 
 
     });
 
     this.traerDepartamentos();
-    this.traerCentrosCostos();
+ 
 
   }
 

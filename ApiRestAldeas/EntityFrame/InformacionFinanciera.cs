@@ -26,7 +26,7 @@ namespace ApiRestAldeas.EntityFrame
 
         public string navision { get; set; }
 
-        public int idSubCentroCostos { get; set; }
+        
 
         public string responsable  { get; set; }
 

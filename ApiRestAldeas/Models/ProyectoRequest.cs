@@ -5,12 +5,12 @@ using Microsoft.AspNetCore.Http;
 namespace ApiRestAldeas.Models
 {
 
-    //public class Otros
-    //{
-    //    public string Nombre { get; set; }
-    //    public int Total { get; set; }
+    public class CentrosCostos
+    {
+        public string Name { get; set; }
+        public int Codigo { get; set; }
 
-    //}
+    }
     public class Participantes {
         public string Nombre { get; set; }
         public long Rango_0_5 {get;set;}
@@ -20,6 +20,11 @@ namespace ApiRestAldeas.Models
         public long Rango_25_56 {get;set;}
         public long Mayores_60 {get;set;}
         public long Total {get;set;}
+
+
+        public long TotalDesagregado { get; set; }
+        public long Porcentaje { get; set; }
+
     }
 
     public class Proyectados
@@ -56,14 +61,15 @@ namespace ApiRestAldeas.Models
             public string MonedaDonacion { get; set; }
             public string TasaCambio { get; set; }
             public string Cuenta { get; set; }
-            public int CentroCostos { get; set; }
-            public int SubCentro { get; set; }
+           
             public string Responsable { get; set; }
             public string Lugar { get; set; }
 
             public string NavisionFacilitiy { get; set; }
             public List<Fechas> Desembolsos { get; set; }
             public List<Fechas> Visitas { get; set; }
+
+            public List<CentrosCostos> ListCentroCostos { get; set; }
 
     }
 

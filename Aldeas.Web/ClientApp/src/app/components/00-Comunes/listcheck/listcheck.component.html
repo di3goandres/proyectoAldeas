@@ -1,7 +1,7 @@
 <form [formGroup]="firstFormGroup">
 <section class="example-section">
     <span class="example-list-section">
-        <label id="example-radio-group-label">{{Nombre}}</label>
+        <label id="example-radio-group-label" class="main-green-text-only">{{Nombre}}</label>
         <mat-checkbox class="example-margin" aria-labelledby="example-radio-group-label" formControlName="Multiple"
             [checked]="allComplete" [indeterminate]="someComplete()" (change)="setAll($event.checked)">
             <span class="break-word">  {{task.name}} </span>

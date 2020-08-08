@@ -6,7 +6,6 @@
 
 
   <ItemGroup>
-    <Folder Include="EntityFrame\" />
     <Folder Include="Entities\" />
     <Folder Include="Helper\" />
     <Folder Include="Factory\" />

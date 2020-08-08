@@ -82,6 +82,9 @@ width: 100%;
   
 }
 
+.participantes .cdk-text-field-autofill-monitored{
+    text-align: center;
+}
 
 .participantes th.mat-header-cell:first-of-type, td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type {
     padding-left: 6px;

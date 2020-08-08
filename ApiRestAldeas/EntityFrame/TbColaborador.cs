@@ -12,7 +12,7 @@ namespace ApiRestAldeas.EntityFrame
         public DateTime FechaInicio { get; set; }
         public DateTime FechaFin { get; set; }
         public long CostoMensual { get; set; }
-        public int SubCentroCosto { get; set; }
+       
         public int Porcentaje { get; set; }
         public long Contrapartida { get; set; }
         public long Aporte { get; set; }

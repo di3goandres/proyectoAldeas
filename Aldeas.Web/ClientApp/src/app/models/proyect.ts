@@ -1,3 +1,15 @@
+export class CentroCostosList{
+  constructor(
+    public Name: string,
+    public Codigo: number,
+    public position: number,
+  ){
+ 
+  }
+
+
+}
+
 export class FechaElement {
   constructor(
     public Fecha: Date,
@@ -63,7 +75,8 @@ export class Ejecucion {
 export class Otros{
   constructor(
      public Nombre: string,
-     public Total: number
+     public Total: number,
+     public Porcentaje: number
 
   ){
    
@@ -100,6 +113,10 @@ export class Participantes {
     this.Rango_25_56= 0;
     this.Mayores_60= 0;
     this.Total= 0;
+    this.TotalDesagregado= 0;
+    this.Porcentaje= 0;
+
+
   }
   public Nombre: string;
   public Rango_0_5: number;
@@ -109,6 +126,9 @@ export class Participantes {
   public Rango_25_56: number;
   public Mayores_60: number;
   public Total: number;
+  public TotalDesagregado: number;
+  public Porcentaje: number
+
 
 }
 
@@ -129,6 +149,8 @@ export class Financiera {
     this.NavisionFacilitiy = "";
     this.Desembolsos = [];
     this.Visitas = []
+    this.ListCentroCostos = []
+
   }
 
   public CostoTotal: number;
@@ -145,6 +167,8 @@ export class Financiera {
 
   public Desembolsos: FechaElement[];
   public Visitas: FechaElement[];
+  public ListCentroCostos: CentroCostosList[];
+
 
 
 

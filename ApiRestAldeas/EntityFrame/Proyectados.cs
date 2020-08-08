@@ -27,5 +27,7 @@ namespace ApiRestAldeas.EntityFrame
         public long Rango_25_56 { get; set; }
         public long Mayores_60 { get; set; }
         public long Total { get; set; }
+        public long TotalDesagregado { get; set; }
+        public long Porcentaje { get; set; }
     }
 }

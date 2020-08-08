@@ -17,7 +17,6 @@ namespace ApiRestAldeas.Helper
             {
                 var nuevo = new TbColaborador()
                 {
-                    SubCentroCosto = request.Subcentro,
                     Nombre = request.Nombre,
                     FechaNacimiento = request.Fecha,
                     Cargo = request.Cargo,

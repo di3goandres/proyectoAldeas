@@ -98,7 +98,7 @@ export class CheckboxComponent implements OnInit {
  
 
     this.setStakeValidators()
-
+   
     if (this.otroValor.length === 0) {
       this.taskSeleccionado.formValid = false;
 

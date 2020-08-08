@@ -157,6 +157,8 @@ export class RegistroparticipantesComponent implements OnInit {
   ) { }
   firstFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
+
   datosParticipante: RegistroParticipante = new RegistroParticipante();
   FechaInicio(event) {
     var firstDate = moment(this.datosParticipante.FechaIngreso);

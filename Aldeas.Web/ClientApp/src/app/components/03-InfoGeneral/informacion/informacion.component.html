@@ -79,37 +79,31 @@
 
                 </div>
 
-
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-12 main-green-text"><label>Implementación</label></div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
                         <mat-form-field appearance="fill">
                             <mat-label>Líder de Ejecución del Proyecto</mat-label>
                             <input matInput placeholder="Lider Ejecucion" formControlName="LiderEjecucion"
                                 [(ngModel)]="infoProyecto.LiderEjecucion" required>
                         </mat-form-field>
                     </div>
-                    <div class="col-4">
+                    <div class="col-3">
                         <mat-form-field appearance="fill">
                             <mat-label>Lider de la Coordinacion del Proyecto</mat-label>
                             <input matInput placeholder="Lider de la Coordinacion" formControlName="LiderCoordinacion"
                                 [(ngModel)]="infoProyecto.LiderCoordinacion" required>
                         </mat-form-field>
                     </div>
-                    <div class="col-4">
+                    <div class="col-3">
                         <mat-form-field appearance="fill">
                             <mat-label>Comite Técnico del Proyecto</mat-label>
                             <input matInput formControlName="ComiteTecnico" [(ngModel)]="infoProyecto.ComiteTecnico"
                                 placeholder="Comite Tecnico del Proyecto" required>
                         </mat-form-field>
                     </div>
-
-                </div>
-                <mat-divider></mat-divider>
-                <div class="row">
-                    <div class="col-12 main-green-text"><label>Implementación</label></div>
-                </div>
-
-                <div class="row">
                     <div class="col-3">
 
                         <mat-form-field appearance="fill">
@@ -122,6 +116,13 @@
                             </mat-select>
                         </mat-form-field>
                     </div>
+
+                </div>
+                <mat-divider></mat-divider>
+
+
+                <div class="row">
+
 
 
 
@@ -402,7 +403,9 @@
                             <mat-label>Costo Total Del Proyecto</mat-label>
 
                             <input matInput type="number" placeholder="Costo Total " formControlName="CostoTotal"
-                                [(ngModel)]="infoFinanciera.CostoTotal" required>
+                                [(ngModel)]="infoFinanciera.CostoTotal" 
+                               
+                                required>
                         </mat-form-field>
                     </div>
                 </div>
@@ -435,12 +438,11 @@
                 <mat-divider></mat-divider>
                 <div class="row">
                     <div class="col-4">
-                        <mat-form-field appearance="fill">
-                            <mat-label>Moneda Donación</mat-label>
-                            <input matInput formControlName="Moneda" [(ngModel)]="infoFinanciera.MonedaDonacion"
-                                required />
 
-                        </mat-form-field>
+                        <app-checkbox [tasks]="monedaChecK" NombreChecbok='Moneda Donación' [datoEntrada]="mondea"
+                            (datoSalid)='onNotificar($event, "Mondeda")'>
+
+                        </app-checkbox>
                     </div>
                     <div class="col-4">
                         <mat-form-field appearance="fill">
@@ -453,41 +455,15 @@
                     <div class="col-4">
                         <mat-form-field appearance="fill">
                             <mat-label>Cuenta a la que llegan los fondos</mat-label>
-
-
                             <input matInput placeholder="Cuenta a la que llegan los fondos" formControlName="Cuenta"
                                 [(ngModel)]="infoFinanciera.Cuenta" required />
-
                         </mat-form-field>
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-6">
-                        <mat-form-field appearance="fill">
-                            <mat-label>Centro de Costos</mat-label>
-                            <mat-select formControlName="CentroCosto" [(ngModel)]="infoFinanciera.CentroCostos"
-                                (selectionChange)="cambioCentroCosto($event.value)" required>
-                                <mat-option *ngFor="let item of centrosCostos" [value]="item.codigoCentro">
-                                    {{item.nombre}}
-                                </mat-option>
-                            </mat-select>
+                <app-listcentroscostos  (Salida)='onNotificarCentroCosto($event)'></app-listcentroscostos>
 
-                        </mat-form-field>
-                    </div>
-                    <div class="col-6">
-                        <mat-form-field appearance="fill">
-                            <mat-label>Sub Centro de Costos </mat-label>
-                            <mat-select formControlName="SubCentroCosto" [(ngModel)]="infoFinanciera.SubCentro"
-                                required>
-                                <mat-option *ngFor="let item of subCentroSeleccionado" [value]="item.codigoSubCentro">
-                                    {{item.nombre}}
-                                </mat-option>
-                            </mat-select>
 
-                        </mat-form-field>
-                    </div>
-                </div>
                 <div class="row">
                     <div class="col-12">
                         <mat-form-field appearance="fill">
@@ -833,111 +809,114 @@
             </form>
         </mat-step>
         <mat-step [stepControl]="thirdFormGroup">
+
+            <ng-template matStepLabel>Participantes Proyectados</ng-template>
+            <div class="row">
+                <div class="col-12 main-green-text"><label>Participantes Proyecto</label></div>
+            </div>
+            <div class="row">
+
+                <div class="containerTable">
+
+                    <table #participantesTable mat-table [dataSource]="participantes"
+                        class="mat-elevation-z8 participantes">
+
+
+                        <!-- Position Column -->
+                        <ng-container matColumnDef="position">
+                            <th mat-header-cell *matHeaderCellDef> No. </th>
+                            <td mat-cell *matCellDef="let element"> {{element.Nombre}} </td>
+                        </ng-container>
+
+                        <!-- Name Column -->
+                        <ng-container matColumnDef="0 - 5 Años">
+                            <th mat-header-cell *matHeaderCellDef> 0 - 5 Años </th>
+                            <td mat-cell *matCellDef="let element; let i  = index">
+
+                                <input matInput type="number" (ngModelChange)="actualizar()" (change)="actualizar()"
+                                    [(ngModel)]="element.Rango_0_5">
+
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="6 - 12 años">
+                            <th mat-header-cell *matHeaderCellDef> 6 - 12 años </th>
+                            <td mat-cell *matCellDef="let element; let i  = index">
+
+
+                                <input matInput type="number" (change)="actualizar()" (ngModelChange)="actualizar()"
+                                    [(ngModel)]="element.Rango_6_12">
+
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="13 - 15 años">
+                            <th mat-header-cell *matHeaderCellDef> 13 - 15 años </th>
+                            <td mat-cell *matCellDef="let element; let i  = index">
+
+
+                                <input matInput type="number" (change)="actualizar()" (ngModelChange)="actualizar()"
+                                    [(ngModel)]="element.Rango_13_17">
+
+                            </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="18 - 24 años">
+                            <th mat-header-cell *matHeaderCellDef> 18 - 24 años </th>
+                            <td mat-cell *matCellDef="let element; let i  = index">
+
+
+                                <input matInput type="number" (change)="actualizar()" (ngModelChange)="actualizar()"
+                                    [(ngModel)]="element.Rango_18_24">
+
+                            </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="25 - 56 años">
+                            <th mat-header-cell *matHeaderCellDef> 25 - 56 años </th>
+                            <td mat-cell *matCellDef="let element; let i  = index">
+
+
+                                <input matInput type="number" (change)="actualizar()" (ngModelChange)="actualizar()"
+                                    [(ngModel)]="element.Rango_25_56">
+                            </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="Mayores de 60 años">
+                            <th mat-header-cell *matHeaderCellDef> Mayores de 60 años </th>
+                            <td mat-cell *matCellDef="let element; let i  = index">
+
+
+                                <input matInput type="number" (change)="actualizar()" (ngModelChange)="actualizar()"
+                                    [(ngModel)]="element.Mayores_60">
+                            </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="Total">
+                            <th mat-header-cell *matHeaderCellDef> TOTAL </th>
+                            <td mat-cell *matCellDef="let element; let i  = index">
+
+                                <input matInput disabled type="number" [(ngModel)]="element.Total">
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="TotalDesagregado">
+                            <th mat-header-cell *matHeaderCellDef> TOTAL DESAGREGADO </th>
+                            <td mat-cell *matCellDef="let element; let i  = index">
+
+
+                                <input matInput type="number" [(ngModel)]="element.TotalDesagregado">
+                            </td>
+                        </ng-container>
+                        <tr mat-header-row *matHeaderRowDef="displayedColumnsParticipante"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumnsParticipante;"></tr>
+                    </table>
+
+
+                </div>
+
+
+
+
+            </div>
             <form [formGroup]="thirdFormGroup">
-                <ng-template matStepLabel>Participantes Proyectados</ng-template>
-                <div class="row">
-                    <div class="col-12 main-green-text"><label>Participantes Proyecto</label></div>
-                </div>
-                <div class="row">
-
-                    <div class="containerTable">
-
-                        <table #participantesTable mat-table [dataSource]="participantes"
-                            class="mat-elevation-z8 participantes">
-
-
-                            <!-- Position Column -->
-                            <ng-container matColumnDef="position">
-                                <th mat-header-cell *matHeaderCellDef> No. </th>
-                                <td mat-cell *matCellDef="let element"> {{element.Nombre}} </td>
-                            </ng-container>
-
-                            <!-- Name Column -->
-                            <ng-container matColumnDef="0 - 5 Años">
-                                <th mat-header-cell *matHeaderCellDef> 0 - 5 Años </th>
-                                <td mat-cell *matCellDef="let element; let i  = index">
-                                    <!-- <ng-template viewMode> -->
-                                    <mat-form-field>
-                                        <input matInput type="number" [(ngModel)]="element.Rango_0_5"
-                                            formControlName="proyecto">
-                                    </mat-form-field>
-                                </td>
-                            </ng-container>
-                            <ng-container matColumnDef="6 - 12 años">
-                                <th mat-header-cell *matHeaderCellDef> 6 - 12 años </th>
-                                <td mat-cell *matCellDef="let element; let i  = index">
-
-                                    <mat-form-field>
-                                        <input matInput type="number" [(ngModel)]="element.Rango_6_12"
-                                            formControlName="proyecto">
-                                    </mat-form-field>
-                                </td>
-                            </ng-container>
-                            <ng-container matColumnDef="13 - 15 años">
-                                <th mat-header-cell *matHeaderCellDef> 13 - 15 años </th>
-                                <td mat-cell *matCellDef="let element; let i  = index">
-
-                                    <mat-form-field>
-                                        <input matInput type="number" [(ngModel)]="element.Rango_13_17"
-                                            formControlName="proyecto">
-                                    </mat-form-field>
-                                </td>
-                            </ng-container>
-
-                            <ng-container matColumnDef="18 - 24 años">
-                                <th mat-header-cell *matHeaderCellDef> 18 - 24 años </th>
-                                <td mat-cell *matCellDef="let element; let i  = index">
-
-                                    <mat-form-field class="maxWidth">
-                                        <input matInput type="number" [(ngModel)]="element.Rango_18_24"
-                                            formControlName="proyecto">
-                                    </mat-form-field>
-                                </td>
-                            </ng-container>
-
-                            <ng-container matColumnDef="25 - 56 años">
-                                <th mat-header-cell *matHeaderCellDef> 25 - 56 años </th>
-                                <td mat-cell *matCellDef="let element; let i  = index">
-
-                                    <mat-form-field>
-                                        <input matInput type="number" [(ngModel)]="element.Rango_25_56"
-                                            formControlName="proyecto">
-                                    </mat-form-field>
-                                </td>
-                            </ng-container>
-
-                            <ng-container matColumnDef="Mayores de 60 años">
-                                <th mat-header-cell *matHeaderCellDef> Mayores de 60 años </th>
-                                <td mat-cell *matCellDef="let element; let i  = index">
-
-                                    <mat-form-field>
-                                        <input matInput type="number" [(ngModel)]="element.Mayores_60"
-                                            formControlName="proyecto">
-                                    </mat-form-field>
-                                </td>
-                            </ng-container>
-                            <mat-divider></mat-divider>
-                            <ng-container matColumnDef="Total">
-                                <th mat-header-cell *matHeaderCellDef> TOTAL </th>
-                                <td mat-cell *matCellDef="let element; let i  = index">
-
-                                    <mat-form-field>
-                                        <input matInput type="number" [(ngModel)]="element.Total"
-                                            formControlName="proyecto">
-                                    </mat-form-field>
-                                </td>
-                            </ng-container>
-                            <tr mat-header-row *matHeaderRowDef="displayedColumnsParticipante"></tr>
-                            <tr mat-row *matRowDef="let row; columns: displayedColumnsParticipante;"></tr>
-                        </table>
-
-
-                    </div>
-
-
-
-
-                </div>
                 <div class="row">
                     <div class="col-6">
                         <mat-form-field appearance="fill">
@@ -962,21 +941,29 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-3">
                         <mat-form-field appearance="fill">
                             <mat-label>Tipo de Participantes</mat-label>
                             <input matInput formControlName="TipoP" [(ngModel)]="otroTipo" />
 
                         </mat-form-field>
                     </div>
-                    <div class="col-4">
+                    <div class="col-3">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Porcentaje de Participantes</mat-label>
+                            <input matInput type="number" min="0" max="100" formControlName="Porcentaje"
+                                [(ngModel)]="otroPorcentaje" />
+
+                        </mat-form-field>
+                    </div>
+                    <div class="col-3">
                         <mat-form-field appearance="fill">
                             <mat-label>Total de Participantes</mat-label>
                             <input matInput type="number" formControlName="TotalP" [(ngModel)]="otroTotal" />
 
                         </mat-form-field>
                     </div>
-                    <div class="col-4" style="padding-right: 30px;">
+                    <div class="col-3" style="padding-right: 30px;">
                         <button mat-raised-button
                             class="btn buttton-aldea mat-focus-indicator btn btn-success pull-right bajar mat-raised-button mat-button-base mat-primary pull-right bajar"
                             color="primary" (click)="AgregarOtro()">Agregar
@@ -1003,6 +990,11 @@
                             <ng-container matColumnDef="Tipo">
                                 <th mat-header-cell *matHeaderCellDef> Tipo Participante </th>
                                 <td mat-cell *matCellDef="let element"> {{element.Nombre}}
+                                </td>
+                            </ng-container>
+                            <ng-container matColumnDef="otroPorcentaje">
+                                <th mat-header-cell *matHeaderCellDef> Porcentaje </th>
+                                <td mat-cell *matCellDef="let element"> {{element.Porcentaje}}%
                                 </td>
                             </ng-container>
                             <ng-container matColumnDef="Total">
@@ -1040,28 +1032,29 @@
         </mat-step>
         <mat-step>
             <ng-template matStepLabel>Guardar</ng-template>
-            <div class="row"  *ngIf="!MostrarExitoso">
+            <div class="row" *ngIf="!MostrarExitoso">
                 <div class="col-12 centerlabel font-weight-bold">
                     <label class="main-green-text-only">Ya casi esta listo pulsa guardar</label>
                     <br>
-                    <button mat-raised-button class="buttton-aldea"  style="color: white;" [disabled]="Guardando" (click)="onGuardar()">Guardar</button>
+                    <button mat-raised-button class="buttton-aldea" style="color: white;" [disabled]="Guardando"
+                        (click)="onGuardar()">Guardar</button>
 
                 </div>
 
 
             </div>
-            <div class="row centrarTabla"  *ngIf="MostrarExitoso" >
+            <div class="row centrarTabla" *ngIf="MostrarExitoso">
                 <div class="col-3"></div>
                 <div class="col-6 centerlabel">
                     <mat-card class="example-card" color="warn">
                         <mat-card-header class="centrarTabla" style="padding-left: 23%;">
                             <div mat-card-avatar class="example-header-image centerlabel"></div>
                             <mat-card-title class="centerlabel centrarTabla">Registro Exitoso</mat-card-title>
-                         
+
                         </mat-card-header>
 
                         <mat-card-content>
-                           
+
                         </mat-card-content>
                         <mat-card-actions>
                             <button mat-raised-button class="buttton-aldea" [routerLink]="['/Home']">Inicio</button>

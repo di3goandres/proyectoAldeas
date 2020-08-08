@@ -5,7 +5,7 @@
 
             <ng-template matStepLabel>Registro de Participantes</ng-template>
             <div class="row">
-                <div class="col-12 centerlabel font-weight-bold"><label>REGISTRO DE PARTICIPANTES</label></div>
+                <div class="col-12 main-green-text"><label>REGISTRO DE PARTICIPANTES</label></div>
             </div>
             <!--Fechas-->
             <div class="row">
@@ -230,7 +230,7 @@
         <!-- <form [formGroup]="thirdFormGroup"> -->
         <ng-template matStepLabel>Integrantes de la Familia</ng-template>
         <div class="row">
-            <div class="col-12 centerlabel font-weight-bold"><label>Integrantes de la Familia</label></div>
+            <div class="col-12 main-green-text"><label>Integrantes de la Familia</label></div>
         </div>
         <div class="row">
 
@@ -251,7 +251,7 @@
                         <td mat-cell *matCellDef="let element; let i  = index">
 
                             <!-- <mat-form-field> -->
-                            <input matInput type="number" [(ngModel)]="element.Rango_0_5"
+                            <input matInput type="number" [(ngModel)]="element.Rango_0_5" (change)="actualizar()"
                                 (ngModelChange)="actualizar()">
                             <!-- </mat-form-field> -->
                         </td>
@@ -261,7 +261,7 @@
                         <td mat-cell *matCellDef="let element; let i  = index">
 
                             <!-- <mat-form-field> -->
-                            <input matInput type="number" (ngModelChange)="actualizar()"
+                            <input matInput type="number" (ngModelChange)="actualizar()" (change)="actualizar()"
                                 [(ngModel)]="element.Rango_6_12">
                             <!-- </mat-form-field> -->
                         </td>
@@ -271,7 +271,7 @@
                         <td mat-cell *matCellDef="let element; let i  = index">
 
                             <!-- <mat-form-field> -->
-                            <input matInput type="number" [(ngModel)]="element.Rango_13_17"
+                            <input matInput type="number" [(ngModel)]="element.Rango_13_17" (change)="actualizar()"
                                 (ngModelChange)="actualizar()">
                             <!-- </mat-form-field> -->
                         </td>
@@ -282,7 +282,7 @@
                         <td mat-cell *matCellDef="let element; let i  = index">
 
                             <!-- <mat-form-field class="maxWidth"> -->
-                            <input matInput type="number" [(ngModel)]="element.Rango_18_24"
+                            <input matInput type="number" [(ngModel)]="element.Rango_18_24" (change)="actualizar()"
                                 (ngModelChange)="actualizar()">
                             <!-- </mat-form-field> -->
                         </td>
@@ -293,7 +293,7 @@
                         <td mat-cell *matCellDef="let element; let i  = index">
 
                             <!-- <mat-form-field> -->
-                            <input matInput type="number" [(ngModel)]="element.Rango_25_56"
+                            <input matInput type="number" [(ngModel)]="element.Rango_25_56" (change)="actualizar()"
                                 (ngModelChange)="actualizar()">
                             <!-- </mat-form-field> -->
                         </td>
@@ -304,7 +304,7 @@
                         <td mat-cell *matCellDef="let element; let i  = index">
 
                             <!-- <mat-form-field> -->
-                            <input matInput type="number" (ngModelChange)="actualizar()"
+                            <input matInput type="number" (ngModelChange)="actualizar()" (change)="actualizar()"
                                 [(ngModel)]="element.Mayores_60">
                             <!-- </mat-form-field> -->
                         </td>
@@ -346,12 +346,13 @@
         <!-- <form [formGroup]="thirdFormGroup"> -->
         <ng-template matStepLabel>Indicadores Clave</ng-template>
         <div class="row">
-            <div class="col-12 centerlabel font-weight-bold"><label>Indicadores Clave</label></div>
+            <div class="col-12 main-green-text"><label>Indicadores Clave</label></div>
         </div>
         <div class="row">
 
             <div class="col-3">
-                <app-listcheck [task]="taskServicio" Nombre='Servicio Que Recibe' (datoSalid)='onNotificar($event, "Linea")'>
+                <app-listcheck [task]="taskServicio" Nombre='Servicio Que Recibe'
+                    (datoSalid)='onNotificar($event, "Linea")'>
                 </app-listcheck>
             </div>
             <div class="col-3">
@@ -369,8 +370,8 @@
             </div>
 
             <div class="col-3">
-                <app-checkbox [tasks]="SinoCheck" NombreChecbok='Recibio Kit Escolar'
-                    [datoEntrada]="singo" (datoSalid)='onNotificar($event, "NivelEscolaridad")'>
+                <app-checkbox [tasks]="SinoCheck" NombreChecbok='Recibio Kit Escolar' [datoEntrada]="singo"
+                    (datoSalid)='onNotificar($event, "NivelEscolaridad")'>
 
                 </app-checkbox>
             </div>

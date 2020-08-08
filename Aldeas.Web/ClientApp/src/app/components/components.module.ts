@@ -27,8 +27,9 @@ import { ColaboradorComponent } from './04-Colaboradores/colaborador/colaborador
 import { RegistroparticipantesComponent } from './05-Registro/registroparticipantes/registroparticipantes.component';
 import { CheckboxComponent } from './00-Comunes/checkbox/checkbox.component';
 import { ListcheckComponent } from './00-Comunes/listcheck/listcheck.component';
+import { ListcentroscostosComponent } from './00-Comunes/listcentroscostos/listcentroscostos.component';
 @NgModule({
-  declarations: [LoginComponent, HomeComponent, HeaaderComponent, InformacionComponent, FechasComponent, ColaboradorComponent, RegistroparticipantesComponent, CheckboxComponent, ListcheckComponent],
+  declarations: [LoginComponent, HomeComponent, HeaaderComponent, InformacionComponent, FechasComponent, ColaboradorComponent, RegistroparticipantesComponent, CheckboxComponent, ListcheckComponent, ListcentroscostosComponent],
   imports: [
 
     CommonModule,

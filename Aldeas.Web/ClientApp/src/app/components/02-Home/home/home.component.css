@@ -1,7 +1,8 @@
 mat-grid-tile {
-    background: lightblue;
+    background:white;
   }
 
+ 
   section {
     display: table;
   }

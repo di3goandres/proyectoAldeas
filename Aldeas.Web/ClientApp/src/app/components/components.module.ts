@@ -57,5 +57,8 @@ import { ListcheckComponent } from './00-Comunes/listcheck/listcheck.component';
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },
     MatDatepickerModule
   ],
+  exports:[
+    HeaaderComponent
+  ]
 })
 export class ComponentsModule { }

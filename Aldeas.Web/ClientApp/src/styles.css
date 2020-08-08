@@ -17,9 +17,54 @@ code {
 }
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0;
+  font-family: Arial, Helvetica, sans-serif; }
 
 
 .example-spacer {
   flex: 1 1 auto;
 }
+
+
+.main-blue{
+  color: #009de0;
+}
+
+.main-red{
+  color: #e74361;
+}
+
+.main-green{
+  background-color: #77b856;
+  
+}
+.main-orange{
+  background-color: #ec7404;
+  
+}
+
+.main-green-toolbar {
+  background: #77b856 !important;
+  background-color: #77b856 !important;
+  color: white;
+  filter:  opacity(0.8);
+}
+
+
+
+.buttton-aldea
+{
+  background-color: #ec7404 !important;
+  font-size: bold;
+  border:0px solid transparent !important;
+}
+#cdk-step-label-0-0 > div.mat-step-icon.mat-step-icon-state-number.mat-step-icon-selected > div > span{
+  background-color: #ec7404 !important;
+
+}
+
+.mat-step-header .mat-step-icon{
+
+  background-color: #ec7404 !important;
+}
+

@@ -4,7 +4,9 @@
   <div class="container">
     <app-heaader></app-heaader>
     <mat-toolbar color="main-green-toolba" class="main-green-toolbar" *ngIf="currentUser!= null">
-    <!-- <mat-icon >menu</mat-icon>  -->
+      <button   [routerLink]="['/Home']" mat-icon-button class="menuButton" aria-label="Example icon-button with menu icon">
+        <mat-icon>menu</mat-icon>
+      </button>
       <span style="color: white;">Bienvenido {{currentUser.displayName}}</span>
       <span style="color: white;" class="example-spacer"></span>
   

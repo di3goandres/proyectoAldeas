@@ -75,6 +75,12 @@ mat-datepicker-toggle {
 }
 
 
+.buttton-aldea-login
+{
+  background-color: #009de0 !important;
+  font-size: bold;
+  border:0px solid transparent !important;
+}
 
 .buttton-aldea
 {
@@ -96,5 +102,12 @@ mat-datepicker-toggle {
   width: 100%;
   overflow-x: auto;
   white-space: nowrap;
+}
+
+.menuButton{
+  padding-top: 10px;
+  background: no-repeat;
+  border: none;
+  color: white;
 }
 

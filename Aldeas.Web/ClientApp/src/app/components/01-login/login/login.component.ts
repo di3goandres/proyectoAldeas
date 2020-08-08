@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   user: Login;
   title: string;
   error = '';
+  errorBolean:boolean = false;
   loading= false;
   constructor(
     private userService: UserService,
@@ -36,7 +37,7 @@ export class LoginComponent implements OnInit {
 
   onLogin(formulario): void {
     this.loading = true;
-
+    this.errorBolean = false;
     this.userService.loginUser(this.user)
       .pipe(first())
       .subscribe(
@@ -44,6 +45,8 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/Home'])
         },
         error =>{
+          this.errorBolean = true;
+
           this.error = error,
           this.loading = false;
         }

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace ApiRestAldeas.Models
 {
     public class ColaboradorRequest
@@ -11,10 +13,11 @@ namespace ApiRestAldeas.Models
         public DateTime FechaInicio { get; set; }
         public DateTime FechaFin { get; set; }
         public long CostoMensual { get; set; }
-        public int CentroCostos { get; set; }
-        public int Subcentro { get; set; }
+      
         public int Porcentaje { get; set; }
         public long Contrapartida { get; set; }
         public long Aporte { get; set; }
+
+        public List<CentrosCostos> ListCentroCostos { get; set; }
     }
 }

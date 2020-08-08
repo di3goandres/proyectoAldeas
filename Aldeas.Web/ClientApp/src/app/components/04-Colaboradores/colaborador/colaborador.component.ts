@@ -4,6 +4,7 @@ import { UserService } from '../../../services/user.service';
 import { SelectGlobal, CentrosCosto, SubCentro } from '../../../models/comunes';
 import * as moment from 'moment';
 import { Colaborador } from '../../../models/colaborador';
+import { CentroCostosList } from '../../../models/proyect';
 
 @Component({
   selector: 'app-colaborador',
@@ -97,6 +98,21 @@ export class ColaboradorComponent implements OnInit {
     );
 
   }
+
+  
+  validarCentroCosto: boolean =false;
+  onNotificarCentroCosto(list: CentroCostosList[]){
+
+    if(list.length === 0){
+      this.validarCentroCosto = false;
+    }else{
+      this.validarCentroCosto = true;
+
+    }
+    this.colaborador.ListCentroCostos = [];
+    this.colaborador.ListCentroCostos.push(...list) 
+   
+  }
   ngOnInit(): void {
     this.firstFormGroup = this._formBuilder.group({
 
@@ -109,15 +125,13 @@ export class ColaboradorComponent implements OnInit {
       Fechafin: ['', Validators.required],
       Costo: ['', Validators.required],
 
-      CentroCosto: ['', Validators.required],
-      SubCentroCosto: ['', Validators.required],
+     
       Porcentaje: ['', Validators.required],
       Contrapartida: ['', Validators.required],
       Aporte: ['', Validators.required]
 
     });
 
-    this.traerCentrosCostos();
 
   }
 

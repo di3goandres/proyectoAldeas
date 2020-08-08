@@ -1,3 +1,4 @@
+import { CentroCostosList } from './proyect';
 export class Colaborador {
     constructor(
   
@@ -17,6 +18,8 @@ export class Colaborador {
     this.Porcentaje= 0
     this.Contrapartida= 0
     this.Aporte =0
+    this.ListCentroCostos = []
+
     }
     public Nombre : string;
     public Fecha: Date;
@@ -31,6 +34,8 @@ export class Colaborador {
     public Porcentaje: number;
     public Contrapartida: number;
     public Aporte: number;
+     public ListCentroCostos: CentroCostosList[];
+
 
 
 

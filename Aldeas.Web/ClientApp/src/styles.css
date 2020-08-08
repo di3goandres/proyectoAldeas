@@ -87,6 +87,7 @@ mat-datepicker-toggle {
   background-color: #ec7404 !important;
   font-size: bold;
   border:0px solid transparent !important;
+  
 }
 #cdk-step-label-0-0 > div.mat-step-icon.mat-step-icon-state-number.mat-step-icon-selected > div > span{
   background-color: #ec7404 !important;

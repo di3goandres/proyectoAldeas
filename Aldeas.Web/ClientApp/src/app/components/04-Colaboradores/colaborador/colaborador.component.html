@@ -5,7 +5,7 @@
     <div *ngIf="!MostrarExitoso">
         <ng-template matStepLabel>Registro de Colaboradores</ng-template>
         <div class="row">
-            <div class="col-12 centerlabel font-weight-bold"><label>REGISTRO COLABORADORES</label></div>
+            <div class="col-12  main-green-text"><label>REGISTRO COLABORADORES</label></div>
         </div>
         <!--Nombre Colaborardor 
                 Fecha de Nacimiento
@@ -109,7 +109,7 @@
                % DE RECUPERACION  
             -->
         <div class="row">
-            <div class="col-3">
+            <div class="col-6">
                 <mat-form-field appearance="fill">
                     <mat-label>Costo Mensual</mat-label>
                     <input matInput type="number" [(ngModel)]="colaborador.CostoMensual" formControlName="Costo"
@@ -117,30 +117,8 @@
 
                 </mat-form-field>
             </div>
-            <div class="col-3">
-                <mat-form-field appearance="fill">
-                    <mat-label>Centro de Costos</mat-label>
-                    <mat-select formControlName="CentroCosto" (selectionChange)="cambioCentroCosto($event.value)"
-                        [(ngModel)]="colaborador.CentroCostos" required>
-                        <mat-option *ngFor="let item of centrosCostos" [value]="item.codigoCentro">
-                            {{item.nombre}}
-                        </mat-option>
-                    </mat-select>
-
-                </mat-form-field>
-            </div>
-            <div class="col-3">
-                <mat-form-field appearance="fill">
-                    <mat-label>Sub Centro de Costos </mat-label>
-                    <mat-select formControlName="SubCentroCosto" [(ngModel)]="colaborador.Subcentro" required>
-                        <mat-option *ngFor="let item of subCentroSeleccionado" [value]="item.codigoSubCentro">
-                            {{item.nombre}}
-                        </mat-option>
-                    </mat-select>
-
-                </mat-form-field>
-            </div>
-            <div class="col-3">
+           
+            <div class="col-6">
                 <mat-form-field appearance="fill">
                     <mat-label>% De recuperacion</mat-label>
                     <input [(ngModel)]="colaborador.Porcentaje" type="number" matInput min="0" max="100"
@@ -149,9 +127,10 @@
                 </mat-form-field>
             </div>
         </div>
+        <app-listcentroscostos  (Salida)='onNotificarCentroCosto($event)'></app-listcentroscostos>
 
         <div class="row">
-            <div class="col-12 centerlabel font-weight-bold">
+            <div class="col-12  main-green-text">
                 <label>FUENTE Y VALOR DE FINANCICIÓN</label></div>
         </div>
         <div class="row">
@@ -178,11 +157,12 @@
         <div class="row">
             <div class="col-12 centerlabel font-weight-bold">
                 <label>Ya casi esta listo pulsa guardar
-                    <!-- {{this.firstFormGroup.invalid }} - {{Guardando}}
-                        <br> {{!(this.firstFormGroup.invalid && Guardando)}} -->
+                    <!-- {{this.firstFormGroup.invalid==false && validarCentroCosto==true }} - {{Guardando}} -->
+                     
                 </label>
                 <br>
-                <button mat-raised-button color="warn" [disabled]="(this.firstFormGroup.invalid || Guardando)"
+                <button mat-raised-button color="warn" 
+                [disabled]="( (this.firstFormGroup.invalid==false && validarCentroCosto==false)  || Guardando)"
                     (click)="onGuardar()">Guardar</button>
 
             </div>

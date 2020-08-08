@@ -1,5 +1,5 @@
 <div class="container">
-    <mat-horizontal-stepper [linear]="true" #stepper>
+    <mat-horizontal-stepper [linear]="false" #stepper>
 
         <mat-step [stepControl]="firstFormGroup">
             <form [formGroup]="firstFormGroup">
@@ -44,7 +44,7 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-12 centerlabel font-weight-bold"><label>DATOS CONTACTO</label></div>
+                    <div class="col-12  main-green-text"><label>Datos de Contacto del Donante</label></div>
                 </div>
 
                 <div class="row">
@@ -106,7 +106,7 @@
                 </div>
                 <mat-divider></mat-divider>
                 <div class="row">
-                    <div class="col-12 centerlabel font-weight-bold"><label>IMPLEMENTACION</label></div>
+                    <div class="col-12 main-green-text"><label>Implementación</label></div>
                 </div>
 
                 <div class="row">
@@ -154,7 +154,7 @@
                     </div>
                     <div class="col-4">
                         <button mat-raised-button [disabled]="AgregarMuni"
-                            class="btn mat-focus-indicator btn btn-success pull-right bajar mat-raised-button mat-button-base mat-primary pull-right bajar"
+                            class="btn buttton-aldea mat-focus-indicator btn btn-success pull-right bajar mat-raised-button mat-button-base mat-primary pull-right bajar"
                             color="primary" (click)="agregarMunicipio()" value="Agregar Municipio">Agregar
                             Municipio</button>
 
@@ -185,7 +185,7 @@
                             <ng-container matColumnDef="Quitar">
                                 <th mat-header-cell *matHeaderCellDef> Quitar </th>
                                 <td mat-cell *matCellDef="let element">
-                                    <button type="button" mat-mini-fab color="primary" aria-label="fecha"
+                                    <button type="button" mat-mini-fab class="buttton-aldea" aria-label="fecha"
                                         (click)="eliminarMunicipio(element)">
                                         <mat-icon>delete_outline</mat-icon>
                                     </button> </td>
@@ -203,7 +203,7 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-12 centerlabel font-weight-bold"><label>FECHAS PROYECTO</label></div>
+                    <div class="col-12 main-green-text"><label>Fechas Proyecto</label></div>
                 </div>
                 <div class="row">
                     <div class="col-3">
@@ -247,7 +247,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-12 centerlabel font-weight-bold"><label>FECHA DE REUNIONES</label></div>
+                    <div class="col-12 main-green-text"><label>Fechas de Reuniones</label></div>
                 </div>
                 <div class="row">
                     <div class="col-6">
@@ -267,7 +267,7 @@
                             </div>
                             <div class="col-6">
                                 <button mat-raised-button
-                                    class="btn mat-focus-indicator btn btn-success pull-right bajar mat-raised-button mat-button-base mat-primary pull-right bajar"
+                                    class="btn buttton-aldea mat-focus-indicator btn buttton-aldea btn-success pull-right bajar mat-raised-button mat-button-base mat-primary pull-right bajar"
                                     [disabled]="!AgregarInfome" color="primary" (click)="AgregarFechaInforme()">Agregar
                                     Fecha</button>
 
@@ -296,7 +296,7 @@
                                     <ng-container matColumnDef="Quitar">
                                         <th mat-header-cell *matHeaderCellDef> Quitar </th>
                                         <td mat-cell *matCellDef="let element">
-                                            <button type="button" mat-mini-fab color="primary" aria-label="fecha"
+                                            <button type="button" mat-mini-fab class="buttton-aldea" aria-label="fecha"
                                                 (click)="eliminarFechaInforme(element)">
                                                 <mat-icon>delete_outline</mat-icon>
                                             </button> </td>
@@ -328,7 +328,7 @@
                             </div>
                             <div class="col-6">
                                 <button mat-raised-button
-                                    class="btn mat-focus-indicator btn btn-success pull-right bajar mat-raised-button mat-button-base mat-primary pull-right bajar"
+                                    class="btn buttton-aldea mat-focus-indicator btn btn-success pull-right bajar mat-raised-button mat-button-base mat-primary pull-right bajar"
                                     [disabled]="!agregarComite" color="primary" (click)="agregarFechaComite()">Agregar
                                     Fecha</button>
 
@@ -358,7 +358,7 @@
                                     <ng-container matColumnDef="Quitar">
                                         <th mat-header-cell *matHeaderCellDef> Quitar </th>
                                         <td mat-cell *matCellDef="let element">
-                                            <button type="button" mat-mini-fab color="primary" aria-label="fecha"
+                                            <button type="button" mat-mini-fab class="buttton-aldea" aria-label="fecha"
                                                 (click)="eliminarfechaComite(element)">
                                                 <mat-icon>delete_outline</mat-icon>
                                             </button> </td>
@@ -407,7 +407,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-12 centerlabel font-weight-bold"><label>PRESUPUESTO POR FUENTES</label></div>
+                    <div class="col-12 main-green-text"><label>Presupuesto por Fuentes</label></div>
                 </div>
                 <div class="row">
                     <div class="col-6">
@@ -518,7 +518,7 @@
                             </div>
                             <div class="col-3" style="padding-right: 30px;">
                                 <button mat-raised-button
-                                    class="btn mat-focus-indicator btn btn-success pull-right bajar mat-raised-button mat-button-base mat-primary pull-right bajar"
+                                    class="btn buttton-aldea mat-focus-indicator btn btn-success pull-right bajar mat-raised-button mat-button-base mat-primary pull-right bajar"
                                     [disabled]="!AgregarDesembolso" color="primary"
                                     (click)="agregarFechaDesembolso()">Agregar
                                     Fecha</button>
@@ -547,7 +547,7 @@
                                     <ng-container matColumnDef="Quitar">
                                         <th mat-header-cell *matHeaderCellDef> Quitar </th>
                                         <td mat-cell *matCellDef="let element">
-                                            <button type="button" mat-mini-fab color="primary" aria-label="fecha"
+                                            <button type="button" mat-mini-fab class="buttton-aldea" aria-label="fecha"
                                                 (click)="eliminarDesembolso(element)">
                                                 <mat-icon>delete_outline</mat-icon>
                                             </button> </td>
@@ -601,7 +601,7 @@
                     </div>
                     <div class="col-3" style="padding-right: 30px;">
                         <button mat-raised-button
-                            class="btn mat-focus-indicator btn btn-success pull-right bajar mat-raised-button mat-button-base mat-primary pull-right bajar"
+                            class="btn buttton-aldea mat-focus-indicator btn btn-success pull-right bajar mat-raised-button mat-button-base mat-primary pull-right bajar"
                             [disabled]="!AgregarVisita" color="primary" (click)="agregarVisita()">Agregar
                             Fecha</button>
 
@@ -633,7 +633,7 @@
                             <ng-container matColumnDef="Quitar">
                                 <th mat-header-cell *matHeaderCellDef> Quitar </th>
                                 <td mat-cell *matCellDef="let element">
-                                    <button type="button" mat-mini-fab color="primary" aria-label="fecha"
+                                    <button type="button" mat-mini-fab class="buttton-aldea" aria-label="fecha"
                                         (click)="eliminarVisita(element)">
                                         <mat-icon>delete_outline</mat-icon>
                                     </button> </td>
@@ -656,7 +656,7 @@
                 <mat-divider></mat-divider>
                 <div class="row">
 
-                    <div class="">
+                    <div class="containerTable">
 
                         <table mat-table [dataSource]="ejecucion" class="mat-elevation-z8 ajuste">
 
@@ -836,11 +836,11 @@
             <form [formGroup]="thirdFormGroup">
                 <ng-template matStepLabel>Participantes Proyectados</ng-template>
                 <div class="row">
-                    <div class="col-12 centerlabel font-weight-bold"><label>PARTICIPANTES PROYECTO</label></div>
+                    <div class="col-12 main-green-text"><label>Participantes Proyecto</label></div>
                 </div>
                 <div class="row">
 
-                    <div class="">
+                    <div class="containerTable">
 
                         <table #participantesTable mat-table [dataSource]="participantes"
                             class="mat-elevation-z8 participantes">
@@ -958,7 +958,7 @@
 
                 </div>
                 <div class="row">
-                    <div class="col-12 centerlabel font-weight-bold"><label>OTROS PARTICIPANTES</label></div>
+                    <div class="col-12 main-green-text"><label>Otros Participantes</label></div>
                 </div>
 
                 <div class="row">
@@ -978,7 +978,7 @@
                     </div>
                     <div class="col-4" style="padding-right: 30px;">
                         <button mat-raised-button
-                            class="btn mat-focus-indicator btn btn-success pull-right bajar mat-raised-button mat-button-base mat-primary pull-right bajar"
+                            class="btn buttton-aldea mat-focus-indicator btn btn-success pull-right bajar mat-raised-button mat-button-base mat-primary pull-right bajar"
                             color="primary" (click)="AgregarOtro()">Agregar
                             Participante</button>
 
@@ -1014,7 +1014,7 @@
                             <ng-container matColumnDef="Quitar">
                                 <th mat-header-cell *matHeaderCellDef> Quitar </th>
                                 <td mat-cell *matCellDef="let element">
-                                    <button type="button" mat-mini-fab color="primary" aria-label="fecha"
+                                    <button type="button" mat-mini-fab class="buttton-aldea" aria-label="fecha"
                                         (click)="eliminarOtro(element)">
                                         <mat-icon>delete_outline</mat-icon>
                                     </button> </td>
@@ -1031,10 +1031,7 @@
                     </div>
                 </div>
                 <div>
-                    {{this.thirdFormGroup.invalid}}
                     <button mat-button matStepperPrevious>Volver</button>
-
-
                     <button mat-raised-button color="warn" matStepperNext
                         [disabled]="this.thirdFormGroup.invalid">Continuar</button>
 
@@ -1045,9 +1042,9 @@
             <ng-template matStepLabel>Guardar</ng-template>
             <div class="row"  *ngIf="!MostrarExitoso">
                 <div class="col-12 centerlabel font-weight-bold">
-                    <label>Ya casi esta listo pulsa guardar</label>
+                    <label class="main-green-text-only">Ya casi esta listo pulsa guardar</label>
                     <br>
-                    <button mat-raised-button color="warn" [disabled]="Guardando" (click)="onGuardar()">Guardar</button>
+                    <button mat-raised-button class="buttton-aldea"  style="color: white;" [disabled]="Guardando" (click)="onGuardar()">Guardar</button>
 
                 </div>
 
@@ -1067,7 +1064,7 @@
                            
                         </mat-card-content>
                         <mat-card-actions>
-                            <button mat-raised-button color="warn" [routerLink]="['/Home']">Inicio</button>
+                            <button mat-raised-button class="buttton-aldea" [routerLink]="['/Home']">Inicio</button>
 
                         </mat-card-actions>
                     </mat-card>

@@ -38,11 +38,35 @@ body { margin: 0;
   background-color: #77b856;
   
 }
+
+
+.main-green-text{
+  color: #77b856;
+  font-size: xx-large;
+  filter:  opacity(0.8);
+
+}
+
+.main-green-text-only{
+  color: #77b856;
+  
+  filter:  opacity(0.8);
+}
 .main-orange{
   background-color: #ec7404;
   
 }
+mat-datepicker-toggle {
+  color: #77b856 !important;
+  
+  filter:  opacity(0.8);
+}
 
+.mat-calendar-body-selected {
+  background-color: #77b856 !important;
+  
+  filter:  opacity(0.8);
+}
 .main-green-toolbar {
   background: #77b856 !important;
   background-color: #77b856 !important;
@@ -66,5 +90,11 @@ body { margin: 0;
 .mat-step-header .mat-step-icon{
 
   background-color: #ec7404 !important;
+}
+
+.containerTable {
+  width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
 }
 

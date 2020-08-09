@@ -223,8 +223,16 @@ export class RegistroparticipantesComponent implements OnInit {
       }
     );
   }
+
+  MostrarExitoso:boolean = false;
+  Guardando:boolean = false;
+
+  reiniciar(){
+    this.datosParticipante =  new RegistroParticipante();
+  }
   onGuardar(event) {
 
+    this.Guardando = true;
  
     this.datosParticipante.participantes = []
     this.datosParticipante.participantes.push(...this.participantes)
@@ -240,9 +248,16 @@ export class RegistroparticipantesComponent implements OnInit {
     this.userService.guardarRegistroParticipantes(this.datosParticipante).subscribe(
       response=>{
         console.log(response)
+        this.Guardando = false;
+        if(response.status == "OK"){
+          this.MostrarExitoso = true;
+          this.reiniciar();
+         }
+
       },
       error => {
         console.log(error)
+        this.Guardando = false;
 
       }
     )

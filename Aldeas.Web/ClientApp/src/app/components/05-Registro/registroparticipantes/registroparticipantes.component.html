@@ -1,4 +1,4 @@
-<mat-horizontal-stepper [linear]="false" #stepper>
+<mat-horizontal-stepper [linear]="true" #stepper>
 
     <mat-step [stepControl]="firstFormGroup">
         <form [formGroup]="firstFormGroup">
@@ -217,7 +217,7 @@
                     <br>
                     <button matStepperNext mat-raised-button color="warn"
                         [disabled]="!(this.firstFormGroup.invalid===false&&ValidaContinuar===false)"
-                        (click)="onGuardar()">Continuar</button>
+                        >Continuar</button>
 
                 </div>
 
@@ -395,5 +395,50 @@
 
         </div>
         <!-- </form> -->
+    </mat-step>
+
+    <mat-step>
+        <ng-template matStepLabel>Guardar</ng-template>
+        <div class="row" *ngIf="!MostrarExitoso">
+            <div class="col-12 centerlabel font-weight-bold">
+                <label class="main-green-text-only">Ya casi esta listo pulsa guardar</label>
+                <br>
+                <button mat-raised-button class="buttton-aldea" style="color: white;"
+                 [disabled]="Guardando"
+                    (click)="onGuardar()">Guardar</button>
+
+            </div>
+
+
+        </div>
+        <div class="row centrarTabla" *ngIf="MostrarExitoso">
+            <div class="col-3"></div>
+            <div class="col-6 centerlabel">
+                <mat-card class="example-card" color="warn">
+                    <mat-card-header class="centrarTabla" style="padding-left: 23%;">
+                        <div mat-card-avatar class="example-header-image centerlabel"></div>
+                        <mat-card-title class="centerlabel centrarTabla">Registro Exitoso</mat-card-title>
+
+                    </mat-card-header>
+
+                    <mat-card-content>
+
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <button mat-raised-button class="buttton-aldea" [routerLink]="['/Home']">Inicio</button>
+
+                    </mat-card-actions>
+                </mat-card>
+            </div>
+            <div class="col-3"></div>
+
+
+        </div>
+
+
+        <!-- <div>
+            <button mat-button matStepperPrevious>Volver</button>
+            <button mat-button (click)="stepper.reset()">Reset</button>
+        </div> -->
     </mat-step>
 </mat-horizontal-stepper>

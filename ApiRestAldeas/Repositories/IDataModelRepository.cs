@@ -44,6 +44,7 @@ namespace ApiRestAldeas.Repositories
 
         dynamic GuardarRegistroColaborador(ColaboradorRequest request);
 
+        dynamic GuardarRegistroParticipantes(RegistroParticipantesRequest request);
 
         /// <summary>
         /// Metodo para consultar todos los proyectos

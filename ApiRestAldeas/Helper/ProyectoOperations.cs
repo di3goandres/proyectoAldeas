@@ -246,7 +246,9 @@ namespace ApiRestAldeas.Helper
                             Rango_18_24 = 0,
                             Rango_25_56 = 0,
                             Mayores_60 = 0,
-                            Total = item.Total
+                            Total = item.Total,
+                            Porcentaje = item.Porcentaje
+
                         });
                     }
 

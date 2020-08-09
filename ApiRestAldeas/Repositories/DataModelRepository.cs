@@ -55,6 +55,11 @@ namespace ApiRestAldeas.Repositories
             return ColaboradoresOperations.Guardar(_factory, _connectionDB, request);
         }
 
+        public dynamic GuardarRegistroParticipantes(RegistroParticipantesRequest request)
+        {
+            return RegistroParticipantesOperations.Guardar(_factory, _connectionDB,request);
+        }
+
         public dynamic GuardarRegistroProyecto(ProyectoRequest proyectoRequest)
         {
             return ProyectoOperations.Guardar(_factory, _connectionDB, proyectoRequest);

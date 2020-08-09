@@ -19,6 +19,7 @@ export class CheckBox {
 
 export interface Task {
    
+    pregunta:string;
     name: string;
     completed: boolean;
     esOtro: boolean;

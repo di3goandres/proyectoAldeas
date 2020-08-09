@@ -5,13 +5,13 @@ using static ApiRestAldeas.Entities.Appsettings;
 
 namespace ApiRestAldeas.EntityFrame
 {
-    public partial class Aldeas_Context: DbContext
+    public partial class Aldeas_Context : DbContext
     {
 
 
         private readonly IOptions<ConnectionDB> _ConnectionDB;
 
-        public Aldeas_Context( DbContextOptions<Aldeas_Context> options) :
+        public Aldeas_Context(DbContextOptions<Aldeas_Context> options) :
             base(options)
         {
         }
@@ -21,7 +21,7 @@ namespace ApiRestAldeas.EntityFrame
         }
 
 
-        public Aldeas_Context(DbContextOptions<Aldeas_Context> options, IOptions<ConnectionDB> ConnectionDB):
+        public Aldeas_Context(DbContextOptions<Aldeas_Context> options, IOptions<ConnectionDB> ConnectionDB) :
              base(options)
         {
             this._ConnectionDB = ConnectionDB;
@@ -52,14 +52,40 @@ namespace ApiRestAldeas.EntityFrame
         public virtual DbSet<ColaboradorInforFinanciera> TbCICentroCostos { get; set; }
 
 
+        #region Registro Participantes
+
+        public virtual DbSet<DBIntegrantes> tbIntegrantesFamilia { get; set; }
+
+        public virtual DbSet<RegistroParticipante> tbRegistroParticipantes { get; set; }
+
+        public virtual DbSet<RegistroPreguntas> tbRegistroPreguntas { get; set; }
 
 
 
 
+
+
+        #endregion
 
         #region Required
+ 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+            modelBuilder.Entity<RegistroParticipante>(entity =>
+            {
+                entity.ToTable("RegistroParticipantes");
+
+            });
+            modelBuilder.Entity<RegistroPreguntas>(entity =>
+            {
+                entity.ToTable("ParticipantePreguntas");
+            });
+            modelBuilder.Entity<DBIntegrantes>(entity =>
+            {
+                entity.ToTable("integrantesFamilia");
+                entity.Property(e => e.id_participantes).HasColumnName("id_registroParticipante");
+            });
 
             modelBuilder.Entity<ColaboradorInforFinanciera>(entity =>
             {
@@ -78,6 +104,8 @@ namespace ApiRestAldeas.EntityFrame
             modelBuilder.Entity<DBParticipantes>(entity =>
             {
                 entity.ToTable("participantes");
+                entity.Property(e => e.id_participantes).HasColumnName("id_participantes");
+
             });
 
             modelBuilder.Entity<Proyectos>(entity =>
@@ -123,7 +151,7 @@ namespace ApiRestAldeas.EntityFrame
                 entity.ToTable("ejecucion_financiera");
             });
 
-            
+
 
         }
         #endregion

@@ -48,8 +48,18 @@ namespace ApiRestAldeas.Controllers
         {
             return _dataModelRepository.GuardarRegistroProyecto(proyectoRequest);
         }
-        [Authorize]
 
+        [Authorize]
+        [HttpPost]
+        [Route("/api/aldeas/GuardarRegistroParticipantes/")]
+        public dynamic GuardarRegistroParticipantes([FromBody] RegistroParticipantesRequest request)
+        {
+
+            return _dataModelRepository.GuardarRegistroParticipantes(request);
+          
+        }
+
+        [Authorize]
         [HttpPost]
         [Route("/api/aldeas/GuardarColaborador/")]
         public dynamic GuardarColaborador([FromBody] ColaboradorRequest request)
@@ -86,7 +96,7 @@ namespace ApiRestAldeas.Controllers
         [Route("/api/aldeas/datosCentroCostos/")]
         public dynamic ConsultarCentroCostos()
         {
-            return  _dataModelRepository.CentroCostos();
+            return _dataModelRepository.CentroCostos();
         }
 
 

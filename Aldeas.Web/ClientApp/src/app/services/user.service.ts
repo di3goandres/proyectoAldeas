@@ -9,6 +9,7 @@ import { Proyecto } from '../models/proyect';
 import { CentrosResponse, Respuesta } from '../models/comunes';
 import { environment } from 'src/environments/environment.prod';
 import { Colaborador } from '../models/colaborador';
+import { RegistroParticipante } from '../models/DatosPartipante';
 
 
 @Injectable({
@@ -122,6 +123,13 @@ export class UserService {
     this.json = JSON.stringify(infoproyecto);
     this.params = '' + this.json;
     return this.ejecutarQueryPost<Respuesta>('/api/aldeas/guardarproyecto', this.params);
+
+  }
+
+  guardarRegistroParticipantes(info: RegistroParticipante) {
+    this.json = JSON.stringify(info);
+    this.params = '' + this.json;
+    return this.ejecutarQueryPost<Respuesta>('/api/aldeas/GuardarRegistroParticipantes/', this.params);
 
   }
 

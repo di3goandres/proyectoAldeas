@@ -30,26 +30,7 @@ namespace ApiRestAldeas.Services
         /// Configuaracion para permitir el llamado a las operaciones
         /// </summary>
         /// <param name="services"></param>
-        public static void AddCorsService(this IServiceCollection services)
-        {
-
-            services.AddCors(options =>
-            {
-                options.AddPolicy("AllowAllOrigins",
-                    builder =>
-                    {
-                        builder
-                            .AllowAnyOrigin()
-                            .AllowAnyHeader()
-                            .AllowAnyMethod()
-                            .WithOrigins("http://10.4.0.159/");
-
-
-
-                    });
-            });
-           
-        }
+      
 
         public static void AddSingletonServices(this IServiceCollection services)
         {

@@ -1,8 +1,8 @@
 export const environment = {
   production: true,
-  ApiUrl: "http://10.4.0.159/aldeas.rest"
+  ApiUrl: "https://sismopro.aldeasinfantiles.org.co:3521/aldeas.rest"
 
 };
 
 
-// http://10.4.0.159/aldeas.rest
+// https://sismopro.aldeasinfantiles.org.co:3521/aldeas.rest

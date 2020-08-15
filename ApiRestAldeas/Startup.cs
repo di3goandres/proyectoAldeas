@@ -47,14 +47,33 @@ namespace ApiRestAldeas
             }
         }
 
-       
+     
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddConfigureService(this.Configuration);
             services.AddOptions();
-            services.AddCorsService();
+            var value = this.Configuration.GetSection("CorsOrigins:Aldea").Value.Split(',');
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAllOrigins",
+                    builder =>
+                    {
+                        builder
+                            .WithOrigins(value)
+                            .AllowAnyHeader()
+                            .AllowAnyMethod();
+                           
+
+                    });
+              
+              
+
+
+
+
+            });
             services.AddSwaggerGen();
             services.AddSingletonServices();
             services.AddRouting(options => options.LowercaseUrls = true);
@@ -113,7 +132,8 @@ namespace ApiRestAldeas
             //}
 
             app.UseHttpsRedirection();
-
+            app.UseCors("AllowAllOrigins");
+          
             app.UseRouting();
            
             //app.UseAuthorization();
@@ -135,7 +155,7 @@ namespace ApiRestAldeas
                 c.SwaggerEndpoint(swaggerEndPoint, "API DataModel V1");
 
             });
-            app.UseCors("AllowAllOrigins");
+          
 
         }
     }

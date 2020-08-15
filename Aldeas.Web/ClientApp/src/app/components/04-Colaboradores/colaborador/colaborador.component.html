@@ -5,7 +5,7 @@
     <div *ngIf="!MostrarExitoso">
         <ng-template matStepLabel>Registro de Colaboradores</ng-template>
         <div class="row">
-            <div class="col-12  main-green-text"><label>REGISTRO COLABORADORES</label></div>
+            <div class="col-12  main-green-text"><label>Registro Colaboradores</label></div>
         </div>
         <!--Nombre Colaborardor 
                 Fecha de Nacimiento
@@ -131,7 +131,7 @@
 
         <div class="row">
             <div class="col-12  main-green-text">
-                <label>FUENTE Y VALOR DE FINANCICIÓN</label></div>
+                <label>Fuente y Valor de Financiación</label></div>
         </div>
         <div class="row">
             <div class="col-6">
@@ -157,12 +157,12 @@
         <div class="row">
             <div class="col-12 centerlabel font-weight-bold">
                 <label>Ya casi esta listo pulsa guardar
-                    <!-- {{this.firstFormGroup.invalid==false && validarCentroCosto==true }} - {{Guardando}} -->
+                    <!-- {{this.firstFormGroup.valid}} {{  validarCentroCosto }} - {{Guardando}} -->
                      
                 </label>
                 <br>
                 <button mat-raised-button color="warn" 
-                [disabled]="( (this.firstFormGroup.invalid==false && validarCentroCosto==false)  || Guardando)"
+                [disabled]="(!(this.firstFormGroup.valid && validarCentroCosto) || Guardando)"
                     (click)="onGuardar()">Guardar</button>
 
             </div>

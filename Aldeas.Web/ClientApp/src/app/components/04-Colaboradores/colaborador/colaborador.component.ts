@@ -113,6 +113,15 @@ export class ColaboradorComponent implements OnInit {
     this.colaborador.ListCentroCostos.push(...list) 
    
   }
+  cambiarGuardar(){  
+    if(this.firstFormGroup.valid && this.validarCentroCosto){
+      this.Guardando  = false;
+
+    }else{
+      this.Guardando  = true;
+
+    } 
+  }
   ngOnInit(): void {
     this.firstFormGroup = this._formBuilder.group({
 

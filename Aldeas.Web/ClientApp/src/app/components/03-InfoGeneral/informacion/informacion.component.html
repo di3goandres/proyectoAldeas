@@ -415,10 +415,10 @@
                 <div class="row">
                     <div class="col-6">
                         <mat-form-field appearance="fill">
-                            <mat-label>Fuente Presupuesto</mat-label>
+                            <mat-label>Contrapartida</mat-label>
                             <mat-select formControlName="Fuente" [(ngModel)]="infoFinanciera.FuentePresupuesto"
                                 required>
-                                <mat-option *ngFor="let item of Fuente" [value]="item.value">
+                                <mat-option *ngFor="let item of TipoFuente" [value]="item.value">
                                     {{item.viewValue}}
                                 </mat-option>
                             </mat-select>
@@ -426,7 +426,7 @@
                     </div>
                     <div class="col-6">
                         <mat-form-field appearance="fill">
-                            <mat-label>Tipo Fuente</mat-label>
+                            <mat-label>Aporte Donante</mat-label>
                             <mat-select formControlName="TipoFuente" [(ngModel)]="infoFinanciera.TipoFuente" required>
                                 <mat-option *ngFor="let item of TipoFuente" [value]="item.value">
                                     {{item.viewValue}}
@@ -549,7 +549,7 @@
                         <mat-form-field appearance="fill">
                             <mat-label>Responsable</mat-label>
                             <input [(ngModel)]="infoFinanciera.Responsable" matInput formControlName="responsable"
-                                required />
+                                 />
 
 
                         </mat-form-field>
@@ -557,7 +557,7 @@
                     <div class="centrarTabla col-3">
                         <mat-form-field appearance="fill">
                             <mat-label>Lugar</mat-label>
-                            <input matInput formControlName="lugar" [(ngModel)]="infoFinanciera.Lugar" required />
+                            <input matInput formControlName="lugar" [(ngModel)]="infoFinanciera.Lugar" />
 
 
                         </mat-form-field>

@@ -166,7 +166,14 @@ export class InformacionComponent implements OnInit {
     this.participantes.push(new Participantes("OTROS"))
 
   }
-  datediff(first, second) {
+  datediff(d1, d2) {
+    var months;
+    months = (d2.getFullYear() - d1.getFullYear()) * 12;
+    months -= d1.getMonth();
+    months += d2.getMonth();
+    return months <= 0 ? 0 : months;
+}
+  datediffday(first, second) {
     // Take the difference between the dates and divide by milliseconds per day.
     // Round to nearest whole number to deal with DST.
     return Math.round((second - first) / (1000 * 60 * 60 * 24));
@@ -178,7 +185,7 @@ export class InformacionComponent implements OnInit {
 
     let conteo = this.dataSourceInformes.length + 1
     let nuevo = new FechaElement(
-      this.FechaComite,
+      this.FechaInformes,
       conteo
     );
     this.dataSourceInformes.push(nuevo);
@@ -207,7 +214,7 @@ export class InformacionComponent implements OnInit {
       this.AgregarVisita = false;
 
     }
-    this.ValidarVisitas = true;
+    //this.ValidarVisitas = true;
     this.continuarPanatalla_2()
 
   }
@@ -590,7 +597,7 @@ export class InformacionComponent implements OnInit {
 
   continuarPanatalla_2() {
 
-
+    this.ValidarVisitas=true;
     if (this.ValidarDesembolsos && this.ValidarVisitas && this.ValidarArchivo
        && this.ValidarMoneda && this.validarCentroCosto) {
       this.validarNextPantalla_2 = false;
@@ -823,8 +830,8 @@ export class InformacionComponent implements OnInit {
     
       Navision: ['', Validators.required],
       fechas: ['', Validators.required],
-      responsable: ['', Validators.required],
-      lugar: ['', Validators.required],
+      responsable: ['', Validators.nullValidator],
+      lugar: ['', Validators.nullValidator],
       proyecto: ['', Validators.required],
     
 

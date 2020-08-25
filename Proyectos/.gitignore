@@ -1,0 +1,4 @@
+packages/
+/.vs/ApiRestAldeas
+/ApiRestAldeas/bin/
+ApiRestAldeas/obj/

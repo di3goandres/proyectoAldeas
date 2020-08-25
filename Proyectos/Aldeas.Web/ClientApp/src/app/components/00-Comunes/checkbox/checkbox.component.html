@@ -1,0 +1,34 @@
+<form [formGroup]="firstFormGroup">
+    <div>
+    
+        <label id="example-radio-group-label" class="break-word main-green-text-only">{{NombreChecbok}}</label>
+            <ul>
+                <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+                    [(ngModel)]="datoEntrada" 
+                    formControlName="Estado" required>
+                    <li *ngFor="let task of tasks" class="break-word">
+
+                        <mat-radio-button [value]="task.name" (change)="onChange(task)" required>
+                           <span class="break-word"> {{task.name}}</span>
+
+                        </mat-radio-button>
+                        
+                    </li>
+                
+                    
+                    <mat-form-field appearance="fill"
+                  
+                    
+                    *ngIf="(mostrarOtro)">
+                        <mat-label>Cúal</mat-label>
+                        <input matInput type="Text" 
+                        formControlName="Otro"
+                        [(ngModel)]="otroValor"
+                            (change)="onChangeValorOtro()" required >
+
+                    </mat-form-field>
+                </mat-radio-group>
+            </ul>
+    </div>
+  
+</form>

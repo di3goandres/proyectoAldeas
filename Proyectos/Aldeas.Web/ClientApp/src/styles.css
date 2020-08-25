@@ -1,0 +1,114 @@
+/* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
+}
+
+code {
+  color: #e01a76;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+html, body { height: 100%; }
+body { margin: 0;
+  font-family: Arial, Helvetica, sans-serif; }
+
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+
+.main-blue{
+  color: #009de0;
+}
+
+.main-red{
+  color: #e74361;
+}
+
+.main-green{
+  background-color: #77b856;
+  
+}
+
+
+.main-green-text{
+  color: #77b856;
+  font-size: xx-large;
+  filter:  opacity(0.8);
+
+}
+
+.main-green-text-only{
+  color: #77b856;
+  
+  filter:  opacity(0.8);
+}
+.main-orange{
+  background-color: #ec7404;
+  
+}
+mat-datepicker-toggle {
+  color: #77b856 !important;
+  
+  filter:  opacity(0.8);
+}
+
+.mat-calendar-body-selected {
+  background-color: #77b856 !important;
+  
+  filter:  opacity(0.8);
+}
+.main-green-toolbar {
+  background: #77b856 !important;
+  background-color: #77b856 !important;
+  color: white;
+  filter:  opacity(0.8);
+}
+
+
+.buttton-aldea-login
+{
+  background-color: #009de0 !important;
+  font-size: bold;
+  border:0px solid transparent !important;
+}
+
+.buttton-aldea
+{
+  background-color: #ec7404 !important;
+  font-size: bold;
+  border:0px solid transparent !important;
+  
+}
+#cdk-step-label-0-0 > div.mat-step-icon.mat-step-icon-state-number.mat-step-icon-selected > div > span{
+  background-color: #ec7404 !important;
+
+}
+
+.mat-step-header .mat-step-icon{
+
+  background-color: #ec7404 !important;
+}
+
+.containerTable {
+  width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.menuButton{
+  padding-top: 10px;
+  background: no-repeat;
+  border: none;
+  color: white;
+}
+

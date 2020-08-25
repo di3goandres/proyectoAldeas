@@ -1,0 +1,25 @@
+
+ul {
+ 
+    list-style-type: none;
+    margin-top: 4px;
+    margin-left: -22px;
+  
+  }
+
+
+  .break-word {
+    /* word-break: break-word !important; */
+    white-space: normal !important;
+
+}
+
+#example-radio-group-label{
+  font-weight: bold !important;
+  text-align: center;
+  display: block;
+  padding-left: 10px;
+  white-space: normal;
+  border: 0px dashed #f69c55;
+  /* font-size: x-large; */
+}

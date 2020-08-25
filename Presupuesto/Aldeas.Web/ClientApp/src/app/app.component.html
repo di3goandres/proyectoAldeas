@@ -1,0 +1,36 @@
+<body>
+  <!-- <app-nav-menu></app-nav-menu> -->
+ 
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item  [routerLink]="['/Home']">
+      <mat-icon>home</mat-icon>
+      <span>Home</span>
+    </button>
+    <button mat-menu-item  [routerLink]="['/Programas']">
+      <mat-icon>dashboard</mat-icon>
+      <span>Programas</span>
+    </button>
+  </mat-menu>
+  <div class="container">
+    <app-heaader></app-heaader>
+
+    <mat-toolbar color="main-green-toolba" class="main-green-toolbar" *ngIf="currentUser!= null">
+      <!-- <button   [routerLink]="['/Home']" mat-icon-button class="menuButton" aria-label="Example icon-button with menu icon">
+        <mat-icon>menu</mat-icon>
+      </button> -->
+      <button mat-icon-button [matMenuTriggerFor]="menu" class="menuButton"
+       aria-label="Example icon-button with a menu">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span style="color: white;">Bienvenido {{currentUser.displayName}}</span>
+      <span style="color: white;" class="example-spacer"></span>
+  
+          <div> <a   style="color: white;" [routerLink]="['logout/1']">Salir</a></div>
+  
+    </mat-toolbar>
+  
+  
+  
+    <router-outlet></router-outlet>
+  </div>
+</body>

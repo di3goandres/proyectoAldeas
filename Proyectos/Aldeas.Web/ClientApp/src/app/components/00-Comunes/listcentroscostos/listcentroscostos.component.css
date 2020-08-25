@@ -1,0 +1,16 @@
+.departamento
+{ 
+width: 100%;
+}
+
+.centrarTabla{
+    float: none; margin: 0 auto;
+}
+
+.mat-form-field {
+    width: 100%;
+}
+
+.bajar{
+    margin-top: 10px;
+}

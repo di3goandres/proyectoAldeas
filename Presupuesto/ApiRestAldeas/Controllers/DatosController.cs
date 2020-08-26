@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ApiRestAldeas.Models;
 using ApiRestAldeas.Repositories;
+using ApiRestAldeasPresupuesto.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -33,7 +34,7 @@ namespace ApiRestAldeas.Controllers
 
 
 
-        //[Authorize]
+        [Authorize]
         [HttpGet]
         [Route("/api/presupuesto/programas/")]
         public dynamic consultar()
@@ -41,13 +42,13 @@ namespace ApiRestAldeas.Controllers
             return _dataModelRepository.ConsultarProgramas();
         }
 
-        //[Authorize]
-        //[HttpPost]
-        //[Route("/api/aldeas/GuardarProyecto/")]
-        //public dynamic guardarProyecto([FromBody] ProyectoRequest proyectoRequest)
-        //{
-        //    return _dataModelRepository.GuardarRegistroProyecto(proyectoRequest);
-        //}
+        [AuthorizeUser]
+        [HttpPost]
+        [Route("/api/presupuesto/programas/Guardar/")]
+        public dynamic guardarProyecto([FromBody] ProgramasRequest programasRequest)
+        {
+            return _dataModelRepository.GuardarPrograma(programasRequest);
+        }
 
         //[Authorize]
         //[HttpPost]

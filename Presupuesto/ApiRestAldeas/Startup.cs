@@ -67,11 +67,7 @@ namespace ApiRestAldeas
                            
 
                     });
-              
-              
-
-
-
+             
 
             });
             services.AddSwaggerGen();

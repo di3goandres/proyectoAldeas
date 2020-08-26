@@ -6,8 +6,10 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using ApiRestAldeas.Controllers;
 using ApiRestAldeas.Entities;
 using ApiRestAldeas.Models;
+using ApiRestAldeas.Repositories;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using static ApiRestAldeas.Entities.Appsettings;
@@ -22,6 +24,8 @@ namespace ApiRestAldeas.Services
 
     public class UserService : IUserService
     {
+        private readonly IDataModelRepository _dataModelRepository;
+
         // users hardcoded for simplicity, store in a db with hashed passwords in production applications
         private List<User> _users = new List<User>
         {
@@ -35,10 +39,11 @@ namespace ApiRestAldeas.Services
         private readonly LdapConfig _config;
 
 
-        public UserService(IOptions<Token> appSettings, IOptions<LdapConfig> config)
+        public UserService(IOptions<Token> appSettings, IOptions<LdapConfig> config, IDataModelRepository dataModelRepository)
         {
             _appSettings = appSettings.Value;
             _config = config.Value;
+            _dataModelRepository = dataModelRepository;
 
         }
 
@@ -50,9 +55,9 @@ namespace ApiRestAldeas.Services
                 {
                     user.DisplayName = "Diego Andres Montealegre Garcia";
                     user.Username = model.Username;
-
+                    user.Administrador = _dataModelRepository.EsAdministrador(user.Username);
                     var token = generateJwtToken(user);
-
+                
                     return new AuthenticateResponse(user, token);
                 }
                 else
@@ -73,7 +78,7 @@ namespace ApiRestAldeas.Services
 
                                 user.DisplayName = displayName == null || displayName.Count <= 0 ? "" : displayName[0].ToString();
                                 user.Username = sameAccountName == null || sameAccountName.Count <= 0 ? "" : sameAccountName[0].ToString();
-
+                                user.Administrador = _dataModelRepository.EsAdministrador(user.Username);
                                 var token = generateJwtToken(user);
 
                                 return new AuthenticateResponse(user, token);
@@ -101,14 +106,7 @@ namespace ApiRestAldeas.Services
         {
             return await Task.Run(() => _users);
         }
-        //public IEnumerable<User> GetAll()
-        //{
-        //    return _users;
-        //}
-
-       
-
-        // helper methods
+    
 
         private string generateJwtToken(User user)
         {
@@ -117,7 +115,8 @@ namespace ApiRestAldeas.Services
             var key = Encoding.ASCII.GetBytes(_appSettings.JWT_SECRET_KEY);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(new[] { new Claim("id", user.Username.Replace('.', ' ')) }),
+                Subject = new ClaimsIdentity(new[] { new Claim("id", user.Username.Replace('.', ' ')),
+                 new Claim("Administrador", user.Administrador.ToString())}),
                 //Expires = DateTime.UtcNow.AddDays(7),
                 Expires = DateTime.UtcNow.AddDays(7),
 

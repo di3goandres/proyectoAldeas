@@ -63,7 +63,7 @@ export class InformacionComponent implements OnInit {
 
   ];
   TipoFuente: Select[] = [
-    { value: 'EFECTICO ', viewValue: 'EFECTIVO' },
+    { value: 'EFECTIVO ', viewValue: 'EFECTIVO' },
     { value: 'ESPECIE', viewValue: 'ESPECIE' },
 
   ];

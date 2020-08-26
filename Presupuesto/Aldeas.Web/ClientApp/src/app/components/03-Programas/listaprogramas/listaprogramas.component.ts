@@ -4,22 +4,10 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { Programa, Ceco } from 'src/app/models/programas/programas.response';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CrearprogramaComponent } from '../crearprograma/crearprograma.component';
+import { RegistroexitosoComponent } from '../../00-Comunes/registroexitoso/registroexitoso.component';
 
-export interface UserData {
-  id: string;
-  name: string;
-  progress: string;
-  color: string;
-}
-
-const COLORS: string[] = [
-  'maroon', 'red', 'orange', 'yellow', 'olive', 'green', 'purple', 'fuchsia', 'lime', 'teal',
-  'aqua', 'blue', 'navy', 'black', 'gray'
-];
-const NAMES: string[] = [
-  'Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack', 'Charlotte', 'Theodore', 'Isla', 'Oliver',
-  'Isabella', 'Jasper', 'Cora', 'Levi', 'Violet', 'Arthur', 'Mia', 'Thomas', 'Elizabeth'
-];
 
 @Component({
   selector: 'app-listaprogramas',
@@ -36,39 +24,69 @@ export class ListaprogramasComponent implements OnInit {
   programas: Programa[] = [];
   cecos: Ceco[] = [];
 
-  constructor(private servicePrograma:ProgramasService) { 
+  constructor(
+    private servicePrograma:ProgramasService,
+    private modalService: NgbModal) { 
 
-  //  const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
-
-  //   // Assign the data to the data source for the table to render
-  //   this.dataSource = new MatTableDataSource(users);
   }
 
+  openExitoso(){
+    const modalRef = this.modalService.open(RegistroexitosoComponent,
+       {size: 'md'});
+    modalRef.componentInstance.Actuales =this.cecos
+    modalRef.result.then((result) => {
+    
+    
+    }, (reason) => {
+    
+    
+    });
+  }
+  openCrear(){
+
+    const modalRef = this.modalService.open(CrearprogramaComponent, {size: 'lg'});
+    modalRef.componentInstance.Actuales =this.cecos
+    modalRef.result.then((result) => {
+      if(result==="OK"){
+        this.openExitoso();
+        this.cargaInicial()
+      }
+      console.log('result', result);
+    }, (reason) => {
+      // this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      if (reason === 'OK') {
+     
+       
+      }
+    });
+  }
   onChange(value){
-    console.log(value)
+ 
    let nuevos  = this.cecos.filter(item => {
      return  item.idPrograma == value;
     })
-    console.log(nuevos)
+    
     this.dataSource = new MatTableDataSource(nuevos);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort
   }
-  ngOnInit(): void {
+
+  cargaInicial(){
     this.servicePrograma.getProgramas().subscribe(
       OK => {
-        console.log(OK)
+      
         this.programas = [];
         this.programas.push(... OK.programas)
         this.cecos = [];
         this.cecos.push(... OK.cecos)
-        // this.dataSource = new MatTableDataSource(this.cecos);
-        // this.dataSource.paginator = this.paginator;
-        // this.dataSource.sort = this.sort
+
       },
       Errr => {console.log(Errr)}
 
     )
+  }
+  ngOnInit(): void {
+  this. cargaInicial();
 
  
   }
@@ -83,14 +101,3 @@ export class ListaprogramasComponent implements OnInit {
 
 }
 
-function createNewUser(id: number): UserData {
-  const name = NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
-      NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
-
-  return {
-    id: id.toString(),
-    name: name,
-    progress: Math.round(Math.random() * 100).toString(),
-    color: COLORS[Math.round(Math.random() * (COLORS.length - 1))]
-  };
-}

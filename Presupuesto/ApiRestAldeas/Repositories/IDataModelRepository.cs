@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using ApiRestAldeas.Models;
+using ApiRestAldeasPresupuesto.Models;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
 
@@ -14,6 +15,13 @@ namespace ApiRestAldeas.Repositories
         /// </summary>
         /// <returns></returns>
         dynamic ConsultarProgramas();
+
+
+        dynamic EsAdministrador(string user);
+
+
+        dynamic GuardarPrograma(ProgramasRequest programasRequest);
+
 
 
 

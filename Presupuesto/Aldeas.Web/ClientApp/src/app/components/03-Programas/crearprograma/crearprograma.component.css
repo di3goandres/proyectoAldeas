@@ -1,0 +1,13 @@
+.centrarTabla{
+    float: none; margin: 0 auto;
+}
+.tabla
+{ 
+    padding-top: 10px;
+    width: 100%;
+}
+
+.alerta{
+    color:red;
+    font-weight: bold
+}

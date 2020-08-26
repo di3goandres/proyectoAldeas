@@ -19,7 +19,12 @@
             <mat-label>Filtro</mat-label>
             <input matInput (keyup)="applyFilter($event)" placeholder="Ej. Cundinamarca" #input>
           </mat-form-field>
-          
+
+
+            
+            <button mat-mat-raised-button  class="btn  buttton-aldea btn-success pull-right" onc
+            (click)="openCrear()" >Crear</button>
+     
           <div class="mat-elevation-z8">
             <table mat-table [dataSource]="dataSource" matSort>
           

@@ -11,7 +11,7 @@ using Microsoft.IdentityModel.Tokens;
 
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
 public class AuthorizeAttribute : Attribute, IAuthorizationFilter
-{
+{ 
     public void OnAuthorization(AuthorizationFilterContext context)
     {
       
@@ -34,3 +34,34 @@ public class AuthorizeAttribute : Attribute, IAuthorizationFilter
         }
     }
 }
+
+
+//valida adiciona si es un administrador para poder guardar.
+[AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
+public class AuthorizeUserAttribute : AuthorizeAttribute, IAuthorizationFilter
+{
+
+    public new void OnAuthorization(AuthorizationFilterContext context)
+    {
+
+        var token = context.HttpContext.Request.Headers.ContainsKey("Authorization");
+        if (token)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var tokenHeader = context.HttpContext.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
+
+            if (!JwtMiddleware.Validate(tokenHeader) || !JwtMiddleware.ValidateIsAdmin(tokenHeader))
+            {
+                context.Result = new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
+            }
+
+        }
+        else
+        {
+            // not logged in
+            context.Result = new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
+        }
+    }
+}
+
+

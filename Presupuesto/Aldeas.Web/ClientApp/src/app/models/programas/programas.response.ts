@@ -12,7 +12,17 @@ export interface Programa {
   fechaActualizacion: string;
 }
 
-export interface Ceco {
+export class Ceco {
+  constructor(){
+  this.id = 0
+  this.idPrograma = 0
+  this.codigoCeco = 0
+  this.nombre = ""
+  this.subCentro = 0
+  this.nombreSubCentro = ""
+  this.facilityNav = ""
+  this.estado = true;
+  }
   id: number;
   idPrograma: number;
   codigoCeco: number;

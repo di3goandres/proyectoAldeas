@@ -14,14 +14,17 @@ namespace ApiRestAldeas.Controllers
     {
         #region propiedades
         private IUserService _userService;
-       
+        private readonly IDataModelRepository _dataModelRepository;
 
-       
+
+
         #endregion
 
-        public UsersController(IUserService userService)
+        public UsersController(IUserService userService, IDataModelRepository dataModelRepository)
         {
             _userService = userService;
+            _dataModelRepository = dataModelRepository;
+
         }
 
         [HttpPost]
@@ -29,10 +32,11 @@ namespace ApiRestAldeas.Controllers
         public IActionResult Authenticate(LoginRequest model)
         {
             var response = _userService.Authenticate(model);
-
+            
             if (response == null)
                 return BadRequest(new { message = "Username or password is incorrect"});
 
+            response.Administrador = _dataModelRepository.EsAdministrador(model.Username);
             return Ok(response);
         }
 

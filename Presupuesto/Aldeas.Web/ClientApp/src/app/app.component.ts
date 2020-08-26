@@ -7,8 +7,8 @@ import { User } from './models/user';
   selector: 'app-root',
   templateUrl: './app.component.html'
 })
-export class AppComponent implements OnInit, DoCheck    {
-
+export class AppComponent implements OnInit, DoCheck {
+  mostrarItemsAdministrador: boolean;
   currentUser: User;
   title = 'Aldeas Infantiles SOS';
   constructor(
@@ -17,16 +17,19 @@ export class AppComponent implements OnInit, DoCheck    {
 
 
   ) {
-   this.userService.currentUser.subscribe(x=> this.currentUser = x);
+    this.userService.currentUser.subscribe(x => this.currentUser = x);
   }
   ngDoCheck(): void {
-   
+    if (this.userService.currenUserValue != null)
+    this.mostrarItemsAdministrador = this.userService.currenUserValue.administrador
+
   }
   ngOnInit(): void {
-   
+  
+
   }
 
-  logout(){
+  logout() {
     this.userService.logut();
     this.router.navigate(['/login']);
   }

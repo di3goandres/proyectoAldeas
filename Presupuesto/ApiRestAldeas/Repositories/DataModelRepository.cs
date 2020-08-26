@@ -5,6 +5,7 @@ using ApiRestAldeas.Factory;
 using ApiRestAldeas.Helper;
 using ApiRestAldeas.Models;
 using ApiRestAldeasPresupuesto.Helper;
+using ApiRestAldeasPresupuesto.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json.Linq;
@@ -29,7 +30,16 @@ namespace ApiRestAldeas.Repositories
             return ProgramasOperations.ConsultarProgramas(_factory, _connectionDB);
         }
 
+        public dynamic EsAdministrador(string user)
+        {
+            return UserOperations.EsAdministrador(_factory, _connectionDB, user);
+        }
 
+        public dynamic GuardarPrograma(ProgramasRequest programasRequest)
+        {
+            return ProgramasOperations.GuardarProgramas(_factory, _connectionDB, programasRequest);
+        }
+    
     }   
 
 

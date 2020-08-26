@@ -1,0 +1,143 @@
+<div class="container">
+
+    <mat-card class="example-card">
+        <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>Creacion Programa Nuevo</mat-card-title>
+            <mat-card-subtitle>Nuevo</mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+            <form [formGroup]="formgroup">
+                <div class="row">
+                    <div class="col-3">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Nombre del Programa</mat-label>
+                            <input matInput placeholder="Nombre del Proyecto" [(ngModel)]="NombrePrograma" formControlName="nombre" required>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </form>
+            <mat-divider>
+            </mat-divider>
+            <mat-label>
+                <h1>Centros de costos</h1>
+            </mat-label>
+
+            <form [formGroup]="formgroup_2">
+                <div class="row">
+                    <div class="col-4 tabla">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Código Centro Costro</mat-label>
+                            <input matInput placeholder="Código Ceco" (ngModelChange)="onchangeModel()" [(ngModel)]="nuevoCeco.codigoCeco" type="number"
+                                formControlName="codigoCeco" required>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4 tabla">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Nombre Centro costo</mat-label>
+                            <input matInput placeholder="Nombre Centro costo"
+                            (ngModelChange)="onchangeModel()" [(ngModel)]="nuevoCeco.nombre"
+                                formControlName="NombreCeco" required>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4 tabla">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Sub Codigo Centro Costo</mat-label>
+                            <input matInput placeholder="Sub Codigo Centro Costo" type="number"  (ngModelChange)="onchangeModel()"
+                                [(ngModel)]="nuevoCeco.subCentro" formControlName="SubcodigoCeco" required>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4 tabla">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Nombre Nombre Sub Ceco</mat-label>
+                            <input matInput placeholder="Nombre Nombre Sub Ceco"  (ngModelChange)="onchangeModel()" [(ngModel)]="nuevoCeco.nombreSubCentro"
+                                formControlName="NombreSubCeco" required>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4 tabla">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Facility</mat-label>
+                            <input matInput placeholder="Facility"  (ngModelChange)="onchangeModel()" [(ngModel)]="nuevoCeco.facilityNav"
+                                formControlName="Facility" required>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4 tabla">
+                        <button mat-mat-raised-button class="btn  buttton-aldea btn-success pull-right"
+                            [disabled]="formgroup_2.invalid" (click)="Agregar()">Agregar</button>
+                    </div>
+                </div>
+                <div class="row" *ngIf="Validaciones">
+                    <div class="col-12 alerta">
+                        <mat-label>La combinación centro de costo / sub centro ya existe o estar por agregarse</mat-label>
+                    </div>
+                </div>
+            </form>
+            <div class="row">
+                <div class="col-12 tabla">
+                    <table #cecosTable mat-table [dataSource]="dataSourceCecos"
+                        class="mat-elevation-z8  centrarTabla tabla">
+
+
+                        <!-- Position Column -->
+                        <ng-container matColumnDef="position">
+                            <th mat-header-cell *matHeaderCellDef> No. </th>
+                            <td mat-cell *matCellDef="let element ;let i = index;"> {{i+1}}</td>
+                        </ng-container>
+                        <ng-container matColumnDef="CodicoCeco">
+                            <th mat-header-cell *matHeaderCellDef> Codigo Ceco </th>
+                            <td mat-cell *matCellDef="let element"> {{element.codigoCeco}}
+                            </td>
+                        </ng-container>
+                        <!-- Name Column -->
+                        <ng-container matColumnDef="NombreCeco">
+                            <th mat-header-cell *matHeaderCellDef> Nombre Ceco </th>
+                            <td mat-cell *matCellDef="let element"> {{element.nombre}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="CodigoSubCeco">
+                            <th mat-header-cell *matHeaderCellDef> Codigo SubCeco </th>
+                            <td mat-cell *matCellDef="let element"> {{element.subCentro}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="NombreSubCeco">
+                            <th mat-header-cell *matHeaderCellDef> Nombre SubCeco </th>
+                            <td mat-cell *matCellDef="let element"> {{element.nombreSubCentro}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Facility">
+                            <th mat-header-cell *matHeaderCellDef> Facility Nav </th>
+                            <td mat-cell *matCellDef="let element"> {{element.facilityNav}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Quitar">
+                            <th mat-header-cell *matHeaderCellDef> Quitar </th>
+                            <td mat-cell *matCellDef="let element">
+                                <button type="button" mat-mini-fab class="buttton-aldea" aria-label="fecha"
+                                    (click)="eliminar(element)">
+                                    <mat-icon>delete_outline</mat-icon>
+                                </button> </td>
+                        </ng-container>
+
+
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+
+
+                </div>
+
+            </div>
+        </mat-card-content>
+        <mat-card-actions>
+          
+            <button  mat-raised-button ngbAutofocus >Cancelar</button>
+            <button mat-raised-button class="buttton-aldea" 
+            [disabled]="!(formgroup.valid && PermitirGuardar)" (click)="onGuardar()">Guardar</button>
+        </mat-card-actions>
+    </mat-card>
+
+</div>

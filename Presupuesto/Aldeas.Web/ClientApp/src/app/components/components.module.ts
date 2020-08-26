@@ -29,12 +29,14 @@ import { ListcheckComponent } from './00-Comunes/listcheck/listcheck.component';
 import { ListcentroscostosComponent } from './00-Comunes/listcentroscostos/listcentroscostos.component';
 import { ListaprogramasComponent } from './03-Programas/listaprogramas/listaprogramas.component';
 import {MatMenuModule} from '@angular/material/menu';
+import { CrearprogramaComponent } from './03-Programas/crearprograma/crearprograma.component';
+import { RegistroexitosoComponent } from './00-Comunes/registroexitoso/registroexitoso.component';
 @NgModule({
   declarations: [LoginComponent, HomeComponent,
      HeaaderComponent, 
      FechasComponent, 
       
-   CheckboxComponent, ListcheckComponent, ListcentroscostosComponent, ListaprogramasComponent],
+   CheckboxComponent, ListcheckComponent, ListcentroscostosComponent, ListaprogramasComponent, CrearprogramaComponent, RegistroexitosoComponent],
   imports: [
 
     CommonModule,

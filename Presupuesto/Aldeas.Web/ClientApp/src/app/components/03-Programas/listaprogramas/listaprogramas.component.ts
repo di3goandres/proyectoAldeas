@@ -7,6 +7,7 @@ import { Programa, Ceco } from 'src/app/models/programas/programas.response';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CrearprogramaComponent } from '../crearprograma/crearprograma.component';
 import { RegistroexitosoComponent } from '../../00-Comunes/registroexitoso/registroexitoso.component';
+import { ActualizarprogramaComponent } from '../actualizarprograma/actualizarprograma.component';
 
 
 @Component({
@@ -42,6 +43,24 @@ export class ListaprogramasComponent implements OnInit {
     
     });
   }
+
+  openActualizar(element){
+    const modalRef = this.modalService.open(ActualizarprogramaComponent, {size: 'lg'});
+    // modalRef.componentInstance.Actuales =this.cecos
+    modalRef.result.then((result) => {
+      if(result==="OK"){
+        this.openExitoso();
+        this.cargaInicial()
+      }
+     
+    }, (reason) => {
+     
+      if (reason === 'OK') {
+     
+       
+      }
+    });
+  }
   openCrear(){
 
     const modalRef = this.modalService.open(CrearprogramaComponent, {size: 'lg'});
@@ -53,7 +72,7 @@ export class ListaprogramasComponent implements OnInit {
       }
       console.log('result', result);
     }, (reason) => {
-      // this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+     
       if (reason === 'OK') {
      
        

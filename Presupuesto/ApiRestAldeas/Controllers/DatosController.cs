@@ -49,7 +49,13 @@ namespace ApiRestAldeas.Controllers
         {
             return _dataModelRepository.GuardarPrograma(programasRequest);
         }
-
+        [AuthorizeUser]
+        [HttpPost]
+        [Route("/api/presupuesto/programas/actualizar/")]
+        public dynamic ActualizarProyecto([FromBody] ProgramaUpdateRequest programasRequest)
+        {
+            return _dataModelRepository.ActualizarPrograma(programasRequest);
+        }
         //[Authorize]
         //[HttpPost]
         //[Route("/api/aldeas/GuardarRegistroParticipantes/")]

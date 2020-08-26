@@ -23,6 +23,7 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { ListaprogramasComponent } from './components/03-Programas/listaprogramas/listaprogramas.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ListaonlyprogramaComponent } from './components/03-Programas/listaonlyprograma/listaonlyprograma.component';
 
 
 const routes: Routes = [ 
@@ -36,6 +37,8 @@ const routes: Routes = [
   canLoad: [UsuarioGuard] },
   { path: 'logout/:sure', component: LoginComponent, pathMatch: 'full' },
   { path: 'Programas', component: ListaprogramasComponent, pathMatch: 'full',
+    canActivate:[UsuarioGuard], canLoad: [UsuarioGuard] },
+    { path: 'OnlyProgramas', component: ListaonlyprogramaComponent, pathMatch: 'full',
     canActivate:[UsuarioGuard], canLoad: [UsuarioGuard] }
 
 

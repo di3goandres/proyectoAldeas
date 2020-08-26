@@ -19,7 +19,6 @@ namespace ApiRestAldeasPresupuesto.Helper
             using (Aldeas_Context db = factory.Create(connection))
             {
                 var data = from pro in db.TbProgramas
-                           where pro.Estado == true
                            select new Program
                            {
                                Estado = pro.Estado,
@@ -33,7 +32,6 @@ namespace ApiRestAldeasPresupuesto.Helper
                     retorno.Programas = data.ToList();
                 }
                 var dataCecos = from cecos in db.TbProgramasCecos
-                                where cecos.Estado == true
                                 select new ProgramCeco
                                 {
                                     Estado = cecos.Estado,
@@ -96,5 +94,27 @@ namespace ApiRestAldeasPresupuesto.Helper
             }
             return new { id = id, status = id == 0 ? "error" : "OK", code = 200 };
         }
+
+        public static dynamic ActualizarPrograma(IContextFactory factory, IOptions<ConnectionDB> connection, ProgramaUpdateRequest programasRequest)
+        {
+            ProgramasResponse retorno = new ProgramasResponse();
+            using (Aldeas_Context db = factory.Create(connection))
+            {
+                var data = from pro in db.TbProgramas
+                           where pro.id == programasRequest.Id
+                           select pro;
+                if (data.Any())
+                {
+                    data.First().Nombre = programasRequest.Nombre;
+                    data.First().Estado = programasRequest.Estado;
+                    data.First().FechaActualizacion = DateTime.Now;
+
+                    db.SaveChanges();
+                }
+            }
+            return new { id = 0, status = "OK", code = 200 };
+        }
+
+
     }
 }

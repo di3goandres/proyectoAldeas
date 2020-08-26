@@ -25,6 +25,11 @@ namespace ApiRestAldeas.Repositories
             _factory = factory;
         }
 
+        public dynamic ActualizarPrograma(ProgramaUpdateRequest programasRequest)
+        {
+            return ProgramasOperations.ActualizarPrograma(_factory, _connectionDB, programasRequest);
+        }
+
         public dynamic ConsultarProgramas()
         {
             return ProgramasOperations.ConsultarProgramas(_factory, _connectionDB);

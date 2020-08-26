@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { UserService } from './user.service';
-import { ProgramaResponse } from '../models/programas/programas.response';
+import { ProgramaResponse, Programa } from '../models/programas/programas.response';
 import { ProgramaRequest } from '../models/programas/programas.request';
 import { Respuesta } from '../models/comunes';
 
@@ -21,5 +21,12 @@ export class ProgramasService {
     let params = '' + json;
     return this.userService
        .ejecutarQueryPost<Respuesta>('/api/presupuesto/programas/Guardar/',params );
+  }
+
+  updateProgramas(programas: Programa) {
+    let json = JSON.stringify(programas);
+    let params = '' + json;
+    return this.userService
+       .ejecutarQueryPost<Respuesta>('/api/presupuesto/programas/actualizar/',params );
   }
 }

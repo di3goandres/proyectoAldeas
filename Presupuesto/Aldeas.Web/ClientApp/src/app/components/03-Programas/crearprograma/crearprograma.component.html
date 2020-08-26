@@ -64,6 +64,7 @@
                                 formControlName="Facility" required>
                         </mat-form-field>
                     </div>
+                
                     <div class="col-4 tabla">
                         <button mat-mat-raised-button class="btn  buttton-aldea btn-success pull-right"
                             [disabled]="formgroup_2.invalid" (click)="Agregar()">Agregar</button>
@@ -134,7 +135,7 @@
         </mat-card-content>
         <mat-card-actions>
           
-            <button  mat-raised-button ngbAutofocus >Cancelar</button>
+            <button  mat-raised-button ngbAutofocus (click)="cerrar()">Cancelar</button>
             <button mat-raised-button class="buttton-aldea" 
             [disabled]="!(formgroup.valid && PermitirGuardar)" (click)="onGuardar()">Guardar</button>
         </mat-card-actions>

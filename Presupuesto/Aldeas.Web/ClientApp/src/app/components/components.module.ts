@@ -31,12 +31,14 @@ import { ListaprogramasComponent } from './03-Programas/listaprogramas/listaprog
 import {MatMenuModule} from '@angular/material/menu';
 import { CrearprogramaComponent } from './03-Programas/crearprograma/crearprograma.component';
 import { RegistroexitosoComponent } from './00-Comunes/registroexitoso/registroexitoso.component';
+import { ActualizarprogramaComponent } from './03-Programas/actualizarprograma/actualizarprograma.component';
+import { ListaonlyprogramaComponent } from './03-Programas/listaonlyprograma/listaonlyprograma.component';
 @NgModule({
   declarations: [LoginComponent, HomeComponent,
      HeaaderComponent, 
      FechasComponent, 
       
-   CheckboxComponent, ListcheckComponent, ListcentroscostosComponent, ListaprogramasComponent, CrearprogramaComponent, RegistroexitosoComponent],
+   CheckboxComponent, ListcheckComponent, ListcentroscostosComponent, ListaprogramasComponent, CrearprogramaComponent, RegistroexitosoComponent, ActualizarprogramaComponent, ListaonlyprogramaComponent],
   imports: [
 
     CommonModule,

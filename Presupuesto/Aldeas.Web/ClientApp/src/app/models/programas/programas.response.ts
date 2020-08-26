@@ -21,6 +21,8 @@ export class Ceco {
   this.subCentro = 0
   this.nombreSubCentro = ""
   this.facilityNav = ""
+ 
+
   this.estado = true;
   }
   id: number;
@@ -30,5 +32,6 @@ export class Ceco {
   subCentro: number;
   nombreSubCentro: string;
   facilityNav: string;
+
   estado: boolean;
 }

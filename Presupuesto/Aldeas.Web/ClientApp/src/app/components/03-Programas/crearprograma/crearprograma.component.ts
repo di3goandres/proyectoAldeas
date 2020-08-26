@@ -82,6 +82,9 @@ export class CrearprogramaComponent implements OnInit {
       this.PermitirGuardar = true;
     }
   }
+  cerrar(){
+    this.activeModal.close('dismmiss')
+  }
   onGuardar() {
     this.guardar = new ProgramaRequest(this.NombrePrograma, this.dataSourceCecos);
     console.log(this.guardar)
@@ -99,7 +102,7 @@ export class CrearprogramaComponent implements OnInit {
 
   }
   ngOnInit(): void {
-    console.log(this.Actuales)
+    
     this.formgroup = this._formBuilder.group({
 
       nombre: ['', Validators.required],
@@ -113,6 +116,8 @@ export class CrearprogramaComponent implements OnInit {
       SubcodigoCeco: ['', Validators.required],
       NombreSubCeco: ['', Validators.required],
       Facility: ['', Validators.required],
+   
+
 
     })
   }

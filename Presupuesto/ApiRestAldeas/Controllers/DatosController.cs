@@ -56,6 +56,14 @@ namespace ApiRestAldeas.Controllers
         {
             return _dataModelRepository.ActualizarPrograma(programasRequest);
         }
+
+        [AuthorizeUser]
+        [HttpPost]
+        [Route("/api/presupuesto/ceco/actualizar/")]
+        public dynamic ActualizarCeco([FromBody] CecoUpdateRequest request)
+        {
+            return _dataModelRepository.ActualizarCeco(request);
+        }
         //[Authorize]
         //[HttpPost]
         //[Route("/api/aldeas/GuardarRegistroParticipantes/")]

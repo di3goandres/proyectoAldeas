@@ -33,12 +33,13 @@ import { CrearprogramaComponent } from './03-Programas/crearprograma/crearprogra
 import { RegistroexitosoComponent } from './00-Comunes/registroexitoso/registroexitoso.component';
 import { ActualizarprogramaComponent } from './03-Programas/actualizarprograma/actualizarprograma.component';
 import { ListaonlyprogramaComponent } from './03-Programas/listaonlyprograma/listaonlyprograma.component';
+import { ActualizarcecoComponent } from './03-Programas/actualizarceco/actualizarceco.component';
 @NgModule({
   declarations: [LoginComponent, HomeComponent,
      HeaaderComponent, 
      FechasComponent, 
       
-   CheckboxComponent, ListcheckComponent, ListcentroscostosComponent, ListaprogramasComponent, CrearprogramaComponent, RegistroexitosoComponent, ActualizarprogramaComponent, ListaonlyprogramaComponent],
+   CheckboxComponent, ListcheckComponent, ListcentroscostosComponent, ListaprogramasComponent, CrearprogramaComponent, RegistroexitosoComponent, ActualizarprogramaComponent, ListaonlyprogramaComponent, ActualizarcecoComponent],
   imports: [
 
     CommonModule,

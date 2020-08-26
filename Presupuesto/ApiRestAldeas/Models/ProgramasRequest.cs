@@ -19,4 +19,19 @@ namespace ApiRestAldeasPresupuesto.Models
         public bool Estado { get; set; }
 
     }
+
+    public class CecoUpdateRequest
+    {
+        public long Id { get; set; }
+
+
+        public string Nombre { get; set; }
+   
+        public string NombreSubCentro { get; set; }
+
+        public string FacilityNav { get; set; }
+
+        public bool Estado { get; set; }
+
+    }
 }

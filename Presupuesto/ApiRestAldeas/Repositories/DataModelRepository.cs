@@ -25,6 +25,11 @@ namespace ApiRestAldeas.Repositories
             _factory = factory;
         }
 
+        public dynamic ActualizarCeco(CecoUpdateRequest request)
+        {
+            return ProgramasOperations.ActualizarCeco(_factory, _connectionDB, request);
+        }
+
         public dynamic ActualizarPrograma(ProgramaUpdateRequest programasRequest)
         {
             return ProgramasOperations.ActualizarPrograma(_factory, _connectionDB, programasRequest);

@@ -115,7 +115,7 @@ namespace ApiRestAldeas.Services
             var key = Encoding.ASCII.GetBytes(_appSettings.JWT_SECRET_KEY);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(new[] { new Claim("id", user.Username.Replace('.', ' ')),
+                Subject = new ClaimsIdentity(new[] { new Claim("id", user.Username),
                  new Claim("Administrador", user.Administrador.ToString())}),
                 //Expires = DateTime.UtcNow.AddDays(7),
                 Expires = DateTime.UtcNow.AddDays(7),

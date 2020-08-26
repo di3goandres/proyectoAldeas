@@ -114,6 +114,28 @@ namespace ApiRestAldeasPresupuesto.Helper
             }
             return new { id = 0, status = "OK", code = 200 };
         }
+     
+        
+        public static dynamic ActualizarCeco(IContextFactory factory, IOptions<ConnectionDB> connection, CecoUpdateRequest cecoRequest)
+        {
+            ProgramasResponse retorno = new ProgramasResponse();
+            using (Aldeas_Context db = factory.Create(connection))
+            {
+                var data = from pro in db.TbProgramasCecos
+                           where pro.id == cecoRequest.Id
+                           select pro;
+                if (data.Any())
+                {
+                    data.First().Nombre = cecoRequest.Nombre;
+                    data.First().Estado = cecoRequest.Estado;
+                    data.First().NombreSubCentro = cecoRequest.NombreSubCentro;
+                    data.First().FacilityNav = cecoRequest.FacilityNav;
+                    db.SaveChanges();
+                }
+            }
+            return new { id = 0, status = "OK", code = 200 };
+        }
+
 
 
     }

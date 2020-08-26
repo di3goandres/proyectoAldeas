@@ -8,6 +8,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CrearprogramaComponent } from '../crearprograma/crearprograma.component';
 import { RegistroexitosoComponent } from '../../00-Comunes/registroexitoso/registroexitoso.component';
 import { ActualizarprogramaComponent } from '../actualizarprograma/actualizarprograma.component';
+import { ActualizarcecoComponent } from '../actualizarceco/actualizarceco.component';
 
 
 @Component({
@@ -18,7 +19,7 @@ import { ActualizarprogramaComponent } from '../actualizarprograma/actualizarpro
 export class ListaprogramasComponent implements OnInit {
 
   displayedColumns: string[] = [ 'codigoCeco', 'nombre',
-   'subCentro', 'nombreSubCentro', 'facilityNav', 'estado'];
+   'subCentro', 'nombreSubCentro', 'facilityNav', 'estado', 'Actualizar'];
   dataSource: MatTableDataSource<Ceco>;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
@@ -45,8 +46,8 @@ export class ListaprogramasComponent implements OnInit {
   }
 
   openActualizar(element){
-    const modalRef = this.modalService.open(ActualizarprogramaComponent, {size: 'lg'});
-    // modalRef.componentInstance.Actuales =this.cecos
+    const modalRef = this.modalService.open(ActualizarcecoComponent, {size: 'md'});
+     modalRef.componentInstance.cecoInput =element;
     modalRef.result.then((result) => {
       if(result==="OK"){
         this.openExitoso();

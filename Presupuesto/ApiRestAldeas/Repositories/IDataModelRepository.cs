@@ -23,6 +23,8 @@ namespace ApiRestAldeas.Repositories
         dynamic GuardarPrograma(ProgramasRequest programasRequest);
         dynamic ActualizarPrograma(ProgramaUpdateRequest programasRequest);
 
+        dynamic ActualizarCeco(CecoUpdateRequest request);
+
 
 
 

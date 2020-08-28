@@ -18,7 +18,7 @@ namespace ApiRestAldeas.EntityFrame
         public int Edad { get; set; }
 
         public DateTime FechaIngreso { get; set; }
-        public DateTime FechaSalida { get; set; }
+        public DateTime? FechaSalida { get; set; }
 
         public string Localidad { get; set; }
         public string Sexo { get; set; }

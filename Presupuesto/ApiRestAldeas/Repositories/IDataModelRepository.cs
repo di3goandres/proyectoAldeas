@@ -34,6 +34,7 @@ namespace ApiRestAldeas.Repositories
         dynamic ConsultarCategoriasPucs();
 
         dynamic ActualizarCategoria(CategoriUpdateRequest request);
+        dynamic ActualizarPuc(PucRequestUpdate request);
 
 
 

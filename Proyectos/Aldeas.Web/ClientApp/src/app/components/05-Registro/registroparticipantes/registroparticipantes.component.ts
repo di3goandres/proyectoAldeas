@@ -406,7 +406,7 @@ export class RegistroparticipantesComponent implements OnInit {
       Proyecto: ['', Validators.required],
 
       FechaInicio: ['', Validators.required],
-      Fechafin: ['', Validators.required],
+      Fechafin: ['', Validators.nullValidator],
       Nombre: ['', Validators.required],
       Apellidos: ['', Validators.required],
       Edad: ['', Validators.required],

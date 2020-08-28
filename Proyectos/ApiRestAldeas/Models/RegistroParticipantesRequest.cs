@@ -17,7 +17,7 @@ namespace ApiRestAldeas.Models
     {
         public long idProyecto { get; set; }
         public DateTime FechaIngreso { get; set; }
-        public DateTime FechaSalida { get; set; }
+        public DateTime? FechaSalida { get; set; }
         public DateTime FechaNacimiento { get; set; }
         public string Nombres { get; set; }
         public string Apellidos { get; set; }

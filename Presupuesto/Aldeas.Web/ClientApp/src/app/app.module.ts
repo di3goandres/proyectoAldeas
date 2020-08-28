@@ -25,6 +25,7 @@ import { ListaprogramasComponent } from './components/03-Programas/listaprograma
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ListaonlyprogramaComponent } from './components/03-Programas/listaonlyprograma/listaonlyprograma.component';
 import { ListaonlyrubrosComponent } from './components/04-Rubros/listaonlyrubros/listaonlyrubros.component';
+import { ListarubrospucsComponent } from './components/04-Rubros/listarubrospucs/listarubrospucs.component';
 
 
 const routes: Routes = [
@@ -50,6 +51,11 @@ const routes: Routes = [
   ,
   {
     path: 'OnlyCategorias', component: ListaonlyrubrosComponent, pathMatch: 'full',
+    canActivate: [UsuarioGuard], canLoad: [UsuarioGuard]
+  }
+  ,
+  {
+    path: 'CategoriasPucs', component: ListarubrospucsComponent, pathMatch: 'full',
     canActivate: [UsuarioGuard], canLoad: [UsuarioGuard]
   }
 

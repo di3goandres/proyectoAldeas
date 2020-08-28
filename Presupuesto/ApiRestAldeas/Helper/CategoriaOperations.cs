@@ -106,5 +106,35 @@ namespace ApiRestAldeasPresupuesto.Helper
             return new { id = 0, status = "OK", code = 200 };
         }
 
+        public static dynamic ActualizarPuc(IContextFactory factory, IOptions<ConnectionDB> connection, PucRequestUpdate request)
+        {
+            ProgramasResponse retorno = new ProgramasResponse();
+            using (Aldeas_Context db = factory.Create(connection))
+            {
+                var data = from pro in db.TbPucs
+                           where pro.id == request.Id
+                           select pro;
+                if (data.Any())
+                {
+                    data.First().Tipo = request.Tipo;
+                    data.First().CuentaSIIGO = request.CuentaSIIGO;
+                    data.First().DescripcionCuenta = request.DescripcionCuenta;
+                    data.First().CuentaNAV = request.CuentaNAV;
+                    data.First().TipoCuentaNav = request.TipoCuentaNav;
+
+                    data.First().RequiereNotaIngles = request.RequiereNotaIngles;
+
+                    data.First().DetalleCuentaNav = request.DetalleCuentaNav;
+                    data.First().FichaBanco = request.FichaBanco;
+                    data.First().Casa = request.Casa;
+                    data.First().Estado = request.Estado;
+                    data.First().FechaActualizacion = DateTime.Now;
+
+                    db.SaveChanges();
+                }
+            }
+            return new { id = 0, status = "OK", code = 200 };
+        }
+
     }
 }

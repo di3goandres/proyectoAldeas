@@ -27,7 +27,7 @@ namespace ApiRestAldeas.Helper
                    FechaNacimiento = request.FechaNacimiento,
                    Edad = request.Edad,
                    FechaIngreso = request.FechaIngreso,
-                   FechaSalida = request.FechaSalida,
+                   FechaSalida = request.FechaSalida == null? null : request.FechaSalida,
                    Localidad = request.Localidad,
                    Sexo = request.Sexo,
                    EstatusResidencia = request.EstatusResidencia,

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { UserService } from './user.service';
-import { CategoriaResponse, Categoria } from '../models/categorias/categoria.response';
+import { CategoriaResponse, Categoria, Puc } from '../models/categorias/categoria.response';
 import { Respuesta } from '../models/comunes';
 
 @Injectable({
@@ -25,5 +25,13 @@ export class CategoriasService {
     let params = '' + json;
     return this.userService
       .ejecutarQueryPost<Respuesta>('/api/presupuesto/categoria/update', params);
+  }
+
+  
+  updatePuc(pucs: Puc) {
+    let json = JSON.stringify(pucs);
+    let params = '' + json;
+    return this.userService
+      .ejecutarQueryPost<Respuesta>('/api/presupuesto/pucs/update', params);
   }
 }

@@ -11,7 +11,7 @@ export class Categoria {
     fechaActualizacion: string;
 }
 
-export interface Puc {
+export class Puc {
     id:                 number;
     idCategoria:        number;
     tipo:               string;//Tipo;

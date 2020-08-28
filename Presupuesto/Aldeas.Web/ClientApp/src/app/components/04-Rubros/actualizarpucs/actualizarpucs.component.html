@@ -1,0 +1,141 @@
+<div class="container" *ngIf="pucActualizar">
+
+    <mat-card class="example-card">
+        <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>Actualización </mat-card-title>
+            <mat-card-subtitle>Actualización - PUC</mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+
+            <form [formGroup]="formgroup">
+
+                <div class="row">
+
+                    <div class="col-6 tabla">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Cuenta SIIGO</mat-label>
+                            <input matInput placeholder="Nueva Cuenta SIIGO"
+                             [(ngModel)]="pucActualizar.cuentaSIIGO"
+                                formControlName="cuentaSIIGO" required>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-6 tabla">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Descripcion cuenta</mat-label>
+                            <input matInput placeholder="Nueva Cuenta SIIGO"
+                             [(ngModel)]="pucActualizar.descripcionCuenta"
+                                formControlName="descripcionCuenta" required>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-6 tabla">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Cuenta NAV</mat-label>
+                            <input matInput placeholder="Nueva Cuenta NAV" 
+                            [(ngModel)]="pucActualizar.cuentaNAV"
+                                formControlName="cuentaNAV" required>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-6 tabla">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Descripcion cuenta NAV</mat-label>
+                            <input matInput placeholder="Nueva Cuenta SIIGO"
+                             [(ngModel)]="pucActualizar.detalleCuentaNav"
+                                formControlName="detalleCuentaNav" required>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="row">
+
+
+                 <div class="col-6 tabla">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Ficha Banco</mat-label>
+                            <input matInput placeholder="Nueva Ficha Banco"
+                             [(ngModel)]="pucActualizar.fichaBanco"
+                                formControlName="fichaBanco">
+                        </mat-form-field>
+                    </div> 
+             
+                    <div class="col-6 tabla">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Casa</mat-label>
+                            <input matInput type="number" placeholder="Nuevo Casa" [(ngModel)]="pucActualizar.casa"
+                                formControlName="casa">
+                        </mat-form-field>
+                    </div>
+
+                </div>
+            </form>
+
+            <div class="row">
+
+
+                <div class="col-6 tabla">
+                    <label id="example-radio-group-label">Tipo</label>
+                    <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+                        [(ngModel)]="pucActualizar.tipo" [value]="pucActualizar.tipo">
+
+                        <mat-radio-button value="Según Cargo">Según Cargo</mat-radio-button>
+                        <mat-radio-button value="Uno a Uno">Uno a Uno</mat-radio-button>
+                    </mat-radio-group>
+
+                </div>
+                <div class="col-6 tabla">
+                    <label id="example-radio-group-label">Tipo Cuenta Nav</label>
+                    <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+                        [(ngModel)]="pucActualizar.tipoCuentaNav" [value]="pucActualizar.tipoCuentaNav">
+
+                        <mat-radio-button value="Cuenta">Cuenta</mat-radio-button>
+                        <mat-radio-button value="FICHA">Ficha</mat-radio-button>
+                        <mat-radio-button value="">Ninguna</mat-radio-button>
+
+                    </mat-radio-group>
+
+                </div>
+
+            </div>
+            <div class="row">
+
+
+                <div class="col-6 tabla">
+                    <label id="example-radio-group-label">Requiere Nota en Ingles</label>
+                    <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+                        [(ngModel)]="NotaIngles" [value]="NotaIngles">
+
+                        <mat-radio-button value="true">Si</mat-radio-button>
+                        <mat-radio-button value="false">No</mat-radio-button>
+                    </mat-radio-group>
+
+                </div>
+              
+                <div class="col-6 tabla">
+                    <label id="example-radio-group-label">Estado</label>
+                    <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+                        [(ngModel)]="activo" [value]="activo">
+
+                        <mat-radio-button value="true">Activar</mat-radio-button>
+                        <mat-radio-button value="false">Desactivar</mat-radio-button>
+                    </mat-radio-group>
+
+                </div>
+
+            </div>
+
+
+        </mat-card-content>
+        <mat-card-actions>
+
+            <button mat-raised-button ngbAutofocus (click)="cerrar()">Cancelar</button>
+            <button mat-raised-button class="buttton-aldea" [disabled]="!(formgroup.valid)"
+                (click)="onGuardar()">Guardar</button>
+        </mat-card-actions>
+    </mat-card>
+
+</div>

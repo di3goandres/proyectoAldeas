@@ -70,7 +70,7 @@ namespace ApiRestAldeas.Controllers
         [Authorize]
         [HttpGet]
         [Route("/api/presupuesto/categorias/")]
-        public dynamic consultarCategorias()
+        public dynamic ConsultarCategorias()
         {
             return _dataModelRepository.ConsultarCategorias();
         }
@@ -78,7 +78,7 @@ namespace ApiRestAldeas.Controllers
         [Authorize]
         [HttpGet]
         [Route("/api/presupuesto/categoriaspucs/")]
-        public dynamic consultarCategoriasPucs()
+        public dynamic ConsultarCategoriasPucs()
         {
             return _dataModelRepository.ConsultarCategoriasPucs();
         }
@@ -86,9 +86,18 @@ namespace ApiRestAldeas.Controllers
         [AuthorizeUser]
         [HttpPost]
         [Route("/api/presupuesto/categoria/update")]
-        public dynamic consultarCategoriasPucs(CategoriUpdateRequest request)
+        public dynamic ActualizarCategoria(CategoriUpdateRequest request)
         {
             return _dataModelRepository.ActualizarCategoria(request);
+        }
+
+
+        [AuthorizeUser]
+        [HttpPost]
+        [Route("/api/presupuesto/pucs/update")]
+        public dynamic ActualizarPuc(PucRequestUpdate request)
+        {
+            return _dataModelRepository.ActualizarPuc(request);
         }
 
 

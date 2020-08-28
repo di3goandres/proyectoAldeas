@@ -34,12 +34,14 @@ import { RegistroexitosoComponent } from './00-Comunes/registroexitoso/registroe
 import { ActualizarprogramaComponent } from './03-Programas/actualizarprograma/actualizarprograma.component';
 import { ListaonlyprogramaComponent } from './03-Programas/listaonlyprograma/listaonlyprograma.component';
 import { ActualizarcecoComponent } from './03-Programas/actualizarceco/actualizarceco.component';
+import { ListaonlyrubrosComponent } from './04-Rubros/listaonlyrubros/listaonlyrubros.component';
+import { ActualizarcategoriaComponent } from './04-Rubros/actualizarcategoria/actualizarcategoria.component';
 @NgModule({
   declarations: [LoginComponent, HomeComponent,
      HeaaderComponent, 
      FechasComponent, 
       
-   CheckboxComponent, ListcheckComponent, ListcentroscostosComponent, ListaprogramasComponent, CrearprogramaComponent, RegistroexitosoComponent, ActualizarprogramaComponent, ListaonlyprogramaComponent, ActualizarcecoComponent],
+   CheckboxComponent, ListcheckComponent, ListcentroscostosComponent, ListaprogramasComponent, CrearprogramaComponent, RegistroexitosoComponent, ActualizarprogramaComponent, ListaonlyprogramaComponent, ActualizarcecoComponent, ListaonlyrubrosComponent, ActualizarcategoriaComponent],
   imports: [
 
     CommonModule,

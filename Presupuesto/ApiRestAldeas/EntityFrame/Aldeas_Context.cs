@@ -39,12 +39,8 @@ namespace ApiRestAldeas.EntityFrame
 
         public virtual DbSet<DbCecos> TbProgramasCecos { get; set; }
 
-
-
-
-
-
-
+        public virtual DbSet<DbRubros> TbRubros { get; set; }
+        public virtual DbSet<DbPucs> TbPucs { get; set; }
 
         #region Required
 
@@ -65,6 +61,15 @@ namespace ApiRestAldeas.EntityFrame
             {
                 entity.ToTable("Cecos");
             });
+            modelBuilder.Entity<DbRubros>(entity =>
+            {
+                entity.ToTable("rubros");
+            });
+            modelBuilder.Entity<DbPucs>(entity =>
+            {
+                entity.ToTable("pucs");
+            });
+
 
 
 

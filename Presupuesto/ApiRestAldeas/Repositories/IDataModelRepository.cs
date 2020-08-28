@@ -9,6 +9,7 @@ namespace ApiRestAldeas.Repositories
 {
     public interface IDataModelRepository
     {
+        #region PROGRAMAS
 
         /// <summary>
         /// Metodo para consultar todos los proyectos
@@ -24,6 +25,19 @@ namespace ApiRestAldeas.Repositories
         dynamic ActualizarPrograma(ProgramaUpdateRequest programasRequest);
 
         dynamic ActualizarCeco(CecoUpdateRequest request);
+
+        #endregion
+
+        #region RUBROS / CATEGORIA
+        dynamic ConsultarCategorias();
+
+        dynamic ConsultarCategoriasPucs();
+
+        dynamic ActualizarCategoria(CategoriUpdateRequest request);
+
+
+
+        #endregion
 
 
 

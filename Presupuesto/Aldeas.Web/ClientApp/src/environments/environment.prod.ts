@@ -5,4 +5,3 @@ export const environment = {
 };
 
 
-// https://sismopro.aldeasinfantiles.org.co:3521/aldeas.rest

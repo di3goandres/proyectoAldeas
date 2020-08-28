@@ -64,67 +64,32 @@ namespace ApiRestAldeas.Controllers
         {
             return _dataModelRepository.ActualizarCeco(request);
         }
-        //[Authorize]
-        //[HttpPost]
-        //[Route("/api/aldeas/GuardarRegistroParticipantes/")]
-        //public dynamic GuardarRegistroParticipantes([FromBody] RegistroParticipantesRequest request)
-        //{
-
-        //    return _dataModelRepository.GuardarRegistroParticipantes(request);
-
-        //}
-
-        //[Authorize]
-        //[HttpPost]
-        //[Route("/api/aldeas/GuardarColaborador/")]
-        //public dynamic GuardarColaborador([FromBody] ColaboradorRequest request)
-        //{
-        //    return _dataModelRepository.GuardarRegistroColaborador(request);
-        //}
-
-        //[HttpPost]
-        //[Route("/api/aldeas/GuardarProyectoArchivo/")]
-        //public dynamic guardarProyecto([FromForm] FileInputModel proyectoRequest)
-        //{
-        //    var excelLargo = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-        //    if (proyectoRequest.File.ContentType.Contains("application/vnd.ms-excel")
-        //        || proyectoRequest.File.ContentType.Contains("application/pdf")
-        //        || proyectoRequest.File.ContentType.Contains("contenidoapplication/octet-stream")
-        //        || proyectoRequest.File.ContentType.Contains(excelLargo))
-        //    {
-        //        return _dataModelRepository.UploadFile(proyectoRequest);
-
-        //    }
-        //    else
-        //    {
-        //        return new
-        //        {
-        //            code = 200,
-        //            status = "error",
-        //            message = "No se permite este tipo de contenido" + proyectoRequest.File.ContentType
-        //        };
-        //    }
-        //}
-
-        //[Authorize]
-        //[HttpGet]
-        //[Route("/api/aldeas/datosCentroCostos/")]
-        //public dynamic ConsultarCentroCostos()
-        //{
-        //    return _dataModelRepository.CentroCostos();
-        //}
 
 
 
-        ////[Authorize]
-        //[HttpGet]
-        //[Route("/api/aldeas/datosProyectos/")]
-        //public dynamic ConsultarProyectos()
-        //{
-        //    return _dataModelRepository.ConsultarProyectos();
-        //}
+        [Authorize]
+        [HttpGet]
+        [Route("/api/presupuesto/categorias/")]
+        public dynamic consultarCategorias()
+        {
+            return _dataModelRepository.ConsultarCategorias();
+        }
 
+        [Authorize]
+        [HttpGet]
+        [Route("/api/presupuesto/categoriaspucs/")]
+        public dynamic consultarCategoriasPucs()
+        {
+            return _dataModelRepository.ConsultarCategoriasPucs();
+        }
 
+        [AuthorizeUser]
+        [HttpPost]
+        [Route("/api/presupuesto/categoria/update")]
+        public dynamic consultarCategoriasPucs(CategoriUpdateRequest request)
+        {
+            return _dataModelRepository.ActualizarCategoria(request);
+        }
 
 
 

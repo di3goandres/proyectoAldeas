@@ -1,8 +1,8 @@
 <mat-card class="example-card">
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>Programas</mat-card-title>
-      <mat-card-subtitle>Lista de programas</mat-card-subtitle>
+      <mat-card-title>Categorias</mat-card-title>
+      <mat-card-subtitle>Lista de Categorias</mat-card-subtitle>
     </mat-card-header>
   
     <mat-card-content>
@@ -10,7 +10,7 @@
           
           <mat-form-field>
             <mat-label>Filtro</mat-label>
-            <input matInput (keyup)="applyFilter($event)" placeholder="Ej. Cundinamarca" #input>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Ej. Nomina" #input>
           </mat-form-field>
 
           <div class="mat-elevation-z8">
@@ -60,7 +60,7 @@
               </tr>
             </table>
           
-            <mat-paginator [pageSizeOptions]="[10, 20, 30, 50]"></mat-paginator>
+            <mat-paginator [pageSizeOptions]="[15, 30, 50]"></mat-paginator>
           </div>
     </mat-card-content>
     <mat-card-actions>

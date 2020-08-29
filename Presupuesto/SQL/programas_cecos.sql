@@ -7,7 +7,7 @@ INSERT INTO [dbo].[Cecos]
            ,[Nombre]
            ,[SubCentro]
            ,[NombreSubCentro]
-           ,[FacilitiyNav]
+           ,[FacilityNav]
            ,[Estado])
      VALUES
 (1,2501,'NA COLOMBIA',1,'NA COLOMBIA','R0032501',1),

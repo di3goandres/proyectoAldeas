@@ -1,4 +1,4 @@
-<mat-card class="example-card">
+<mat-card class="example-card" *ngIf="programas">
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
       <mat-card-title>Programas/CECOS</mat-card-title>
@@ -31,7 +31,7 @@
             (click)="openAgregar()" >Agregar</button>
          
           <div class="mat-elevation-z8">
-            <table  #programas mat-table [dataSource]="dataSource" matSort>
+            <table  mat-table [dataSource]="dataSource" matSort>
           
          
           

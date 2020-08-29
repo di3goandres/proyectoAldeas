@@ -18,9 +18,9 @@ import { AgregarcecoaprogramaComponent } from '../agregarcecoaprograma/agregarce
   styleUrls: ['./listaprogramas.component.css']
 })
 export class ListaprogramasComponent implements OnInit {
-  @ViewChild('programas') table: MatTable<any>;
+  // @ViewChild('programas') table: MatTable<Ceco>;
 
-  idPrograma =0;
+  idPrograma:number =0;
   displayedColumns: string[] = [ 'codigoCeco', 'nombre',
    'subCentro', 'nombreSubCentro', 'facilityNav', 'estado', 'Actualizar'];
   dataSource: MatTableDataSource<Ceco>;
@@ -126,6 +126,7 @@ export class ListaprogramasComponent implements OnInit {
       
         this.programas = [];
         this.programas.push(... OK.programas)
+        console.log(this.programas)
         this.cecos = [];
         this.cecos.push(... OK.cecos)
         if(data){
@@ -140,6 +141,7 @@ export class ListaprogramasComponent implements OnInit {
     )
   }
   ngOnInit(): void {
+    this.idPrograma =0
   this. cargaInicial(false);
 
  

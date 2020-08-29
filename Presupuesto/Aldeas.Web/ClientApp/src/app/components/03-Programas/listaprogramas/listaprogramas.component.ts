@@ -18,133 +18,135 @@ import { AgregarcecoaprogramaComponent } from '../agregarcecoaprograma/agregarce
   styleUrls: ['./listaprogramas.component.css']
 })
 export class ListaprogramasComponent implements OnInit {
-  // @ViewChild('programas') table: MatTable<Ceco>;
+   @ViewChild('pucs') table: MatTable<Ceco>;
 
-  idPrograma:number =0;
-  displayedColumns: string[] = [ 'codigoCeco', 'nombre',
-   'subCentro', 'nombreSubCentro', 'facilityNav', 'estado', 'Actualizar'];
+  idPrograma: number;
+  displayedColumns: string[] = ['codigoCeco', 'nombre',
+    'subCentro', 'nombreSubCentro', 'facilityNav', 'estado', 'Actualizar'];
   dataSource: MatTableDataSource<Ceco>;
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
   programas: Programa[] = [];
-  programaSeleccionado:Programa;
+  programaSeleccionado: Programa;
   cecos: Ceco[] = [];
 
   constructor(
-    private servicePrograma:ProgramasService,
-    private modalService: NgbModal) { 
+    private servicePrograma: ProgramasService,
+    private modalService: NgbModal) {
 
   }
 
-  openExitoso(){
+  openExitoso() {
     const modalRef = this.modalService.open(RegistroexitosoComponent,
-       {size: 'md'});
-    modalRef.componentInstance.Actuales =this.cecos
+      { size: 'md' });
+    modalRef.componentInstance.Actuales = this.cecos
     modalRef.result.then((result) => {
-    
-    
+
+
     }, (reason) => {
-    
-    
+
+
     });
   }
 
-  openActualizar(element){
-    const modalRef = this.modalService.open(ActualizarcecoComponent, {size: 'md'});
-     modalRef.componentInstance.cecoInput =element;
+  openActualizar(element) {
+    const modalRef = this.modalService.open(ActualizarcecoComponent, { size: 'md' });
+    modalRef.componentInstance.cecoInput = element;
     modalRef.result.then((result) => {
-      if(result==="OK"){
+      if (result === "OK") {
         this.openExitoso();
         this.cargaInicial(true)
       }
-     
+
     }, (reason) => {
-     
+
       if (reason === 'OK') {
-     
-       
+
+
       }
     });
   }
 
-  openAgregar(){
+  openAgregar() {
 
-    const modalRef = this.modalService.open(AgregarcecoaprogramaComponent, {size: 'lg'});
-    modalRef.componentInstance.programaInput =this.programaSeleccionado
-    modalRef.componentInstance.Actuales =this.cecos
+    const modalRef = this.modalService.open(AgregarcecoaprogramaComponent, { size: 'lg' });
+    modalRef.componentInstance.programaInput = this.programaSeleccionado
+    modalRef.componentInstance.Actuales = this.cecos
 
     modalRef.result.then((result) => {
-      if(result==="OK"){
-        this.openExitoso();
-        this.cargaInicial(true)
-      }
-      console.log('result', result);
-    }, (reason) => {
-     
-      if (reason === 'OK') {
-     
-       
-      }
-    });
-  }
-  openCrear(){
-
-    const modalRef = this.modalService.open(CrearprogramaComponent, {size: 'lg'});
-    modalRef.componentInstance.Actuales =this.cecos
-    modalRef.result.then((result) => {
-      if(result==="OK"){
+      if (result === "OK") {
         this.openExitoso();
         this.cargaInicial(true)
       }
       console.log('result', result);
     }, (reason) => {
-     
+
       if (reason === 'OK') {
-     
-       
+
+
       }
     });
   }
-  onChange(value){
+  openCrear() {
+
+    const modalRef = this.modalService.open(CrearprogramaComponent, { size: 'lg' });
+    modalRef.componentInstance.Actuales = this.cecos
+    modalRef.result.then((result) => {
+      if (result === "OK") {
+        this.openExitoso();
+        this.cargaInicial(true)
+      }
+      console.log('result', result);
+    }, (reason) => {
+
+      if (reason === 'OK') {
+
+
+      }
+    });
+  }
+  onChange(value) {
     this.idPrograma = value;
-   let nuevos  = this.cecos.filter(item => {
-     return  item.idPrograma == value;
+    let nuevos = this.cecos.filter(item => {
+      return item.idPrograma == value;
     })
-    
 
-    this.programaSeleccionado = this.programas.find(item=>{
-      return item.id =value;
+
+    this.programaSeleccionado = this.programas.find(item => {
+      return item.id = value;
     })
     this.dataSource = new MatTableDataSource(nuevos);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort
+    // this.table.renderRows()
   }
 
-  cargaInicial(data){
+  cargaInicial(data) {
     this.servicePrograma.getProgramas().subscribe(
       OK => {
-      
+
         this.programas = [];
-        this.programas.push(... OK.programas)
-        console.log(this.programas)
+        this.programas.push(...OK.programas)
         this.cecos = [];
-        this.cecos.push(... OK.cecos)
-        if(data){
+        this.cecos.push(...OK.cecos)
+      
+        if (data) {
           this.onChange(this.idPrograma)
 
-          // this.table.renderRows()
+          // 
         }
 
       },
-      Errr => {console.log(Errr)}
+      Errr => { console.log(Errr) }
 
     )
   }
   ngOnInit(): void {
-    this.idPrograma =0
-  this. cargaInicial(false);
+  
+    this.idPrograma = 0
+    this.cargaInicial(false);
 
- 
+
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

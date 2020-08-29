@@ -124,7 +124,6 @@ export class ListarubrospucsComponent implements OnInit {
         this.categorias = [];
         this.categorias.push(...OK.categorias)
         this.pucs = [];
-
         this.pucs.push(...OK.pucs)
         if (dato) {
           this.onChange(this.idCategoria)

@@ -1,8 +1,8 @@
-<mat-card class="example-card" *ngIf="programas">
+<mat-card class="example-card" >
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
       <mat-card-title>Programas/CECOS</mat-card-title>
-      <mat-card-subtitle>Lista de programas/CECOA</mat-card-subtitle>
+      <mat-card-subtitle>Lista de programas/CECO</mat-card-subtitle>
     </mat-card-header>
   
     <mat-card-content>
@@ -26,15 +26,12 @@
             (click)="openCrear()" >Crear</button>
 
    
-            <button mat-mat-raised-button  *ngIf="idPrograma!=0"
+           <button mat-mat-raised-button  *ngIf="idPrograma!=0"
              class="btn  buttton-aldea btn-success pull-right" 
-            (click)="openAgregar()" >Agregar</button>
+            (click)="openAgregar()" >Agregar</button> 
          
           <div class="mat-elevation-z8">
-            <table  mat-table [dataSource]="dataSource" matSort>
-          
-         
-          
+            <table  id="customers" #pucs  mat-table [dataSource]="dataSource">
               <!-- Progress Column -->
               <ng-container matColumnDef="codigoCeco">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Código Ceco </th>

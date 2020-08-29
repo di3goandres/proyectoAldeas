@@ -9,6 +9,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { RegistroexitosoComponent } from '../../00-Comunes/registroexitoso/registroexitoso.component';
 import { ActualizarpucsComponent } from '../actualizarpucs/actualizarpucs.component';
 import { CrearcategoriaComponent } from '../crearcategoria/crearcategoria.component';
+import { AgregarpucarubroComponent } from '../agregarpucarubro/agregarpucarubro.component';
 
 @Component({
   selector: 'app-listarubrospucs',
@@ -16,7 +17,8 @@ import { CrearcategoriaComponent } from '../crearcategoria/crearcategoria.compon
   styleUrls: ['./listarubrospucs.component.css']
 })
 export class ListarubrospucsComponent implements OnInit {
-   idCategoria :number;
+  idCategoria: number;
+  categoriaSeleccionada: Categoria;
   @ViewChild('pucs') table: MatTable<any>;
   displayedColumns: string[] = ['tipo', 'cuentaSIIGO',
     'descripcionCuenta', 'cuentaNAV', 'detalleCuentaNav', 'tipoCuentaNav', 'fichaBanco',
@@ -65,12 +67,29 @@ export class ListarubrospucsComponent implements OnInit {
       }
     });
   }
+  openAgregar() {
+    const modalRef = this.modalService.open(AgregarpucarubroComponent, { size: 'lg' });
+    modalRef.componentInstance.categoria = this.categoriaSeleccionada;
+    modalRef.result.then((result) => {
+      if (result === "OK") {
+        this.openExitoso();
+        this.cargaInicial(true)
+      }
+      console.log('result', result);
+    }, (reason) => {
+
+      if (reason === 'OK') {
+
+
+      }
+    });
+  }
   openCrear() {
 
-    const modalRef = this.modalService.open(CrearcategoriaComponent, {size: 'xl'});
-  
+    const modalRef = this.modalService.open(CrearcategoriaComponent, { size: 'xl' });
+
     modalRef.result.then((result) => {
-      if(result==="OK"){
+      if (result === "OK") {
         this.openExitoso();
         this.cargaInicial(true)
       }
@@ -84,15 +103,17 @@ export class ListarubrospucsComponent implements OnInit {
     });
   }
   onChange(value) {
-  this.idCategoria =value;
+    this.idCategoria = value;
     let nuevos = this.pucs.filter(item => {
       return item.idCategoria == value;
     })
-
+    this.categoriaSeleccionada = this.categorias.find(item => {
+      return item.id == value;
+    });
     this.dataSource = new MatTableDataSource(nuevos);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort
-    this.table.renderRows()
+    // this.table.renderRows()
 
   }
 
@@ -103,11 +124,11 @@ export class ListarubrospucsComponent implements OnInit {
         this.categorias = [];
         this.categorias.push(...OK.categorias)
         this.pucs = [];
-      
+
         this.pucs.push(...OK.pucs)
         if (dato) {
           this.onChange(this.idCategoria)
-       
+
           this.table.renderRows()
 
         }

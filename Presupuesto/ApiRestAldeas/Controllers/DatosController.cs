@@ -108,6 +108,13 @@ namespace ApiRestAldeas.Controllers
             return _dataModelRepository.CrearCategoria(request);
         }
 
+        [AuthorizeUser]
+        [HttpPost]
+        [Route("/api/presupuesto/categoria/addpuc")]
+        public dynamic AgregarPucACategoria(PucRequestUpdate request)
+        {
+            return _dataModelRepository.AgregarPucACategoria(request);
+        }
 
 
     }

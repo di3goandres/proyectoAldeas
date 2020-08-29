@@ -13,6 +13,8 @@ namespace ApiRestAldeasPresupuesto.Models
     public class PucRequestUpdate
     {
         public long Id { get; set; }
+        public long IdCategoria { get; set; }
+
         public string Tipo { get; set; }
         public string CuentaSIIGO { get; set; }
         public string DescripcionCuenta { get; set; }
@@ -20,7 +22,7 @@ namespace ApiRestAldeasPresupuesto.Models
         public string DetalleCuentaNav { get; set; }
         public string TipoCuentaNav { get; set; }
         public string FichaBanco { get; set; }
-        public int Casa { get; set; }
+        public int? Casa { get; set; }
         public bool RequiereNotaIngles { get; set; }
         public bool Estado { get; set; }
     }

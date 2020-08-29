@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { UserService } from './user.service';
 import { CategoriaResponse, Categoria, Puc } from '../models/categorias/categoria.response';
 import { Respuesta } from '../models/comunes';
-import { CategoriaRequest } from '../models/categorias/categoria.request';
+import { CategoriaRequest, PucRequest } from '../models/categorias/categoria.request';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +25,12 @@ export class CategoriasService {
     let params = '' + json;
     return this.userService
       .ejecutarQueryPost<Respuesta>('/api/presupuesto/categoria/create', params);
+  }
+  storePuc(puc: Puc) {
+    let json = JSON.stringify(puc);
+    let params = '' + json;
+    return this.userService
+      .ejecutarQueryPost<Respuesta>('/api/presupuesto/categoria/addpuc', params);
   }
   updateCategoria(categoria: Categoria) {
     let json = JSON.stringify(categoria);

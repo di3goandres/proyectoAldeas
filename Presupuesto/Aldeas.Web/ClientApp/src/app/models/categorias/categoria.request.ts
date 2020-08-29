@@ -8,3 +8,12 @@ export class CategoriaRequest {
 
 
 }
+
+export class PucRequest {
+    constructor(
+        public pucs: Puc) {
+    }
+
+
+}
+

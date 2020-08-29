@@ -22,8 +22,13 @@
 
 
 
-        <button mat-mat-raised-button class="btn  buttton-aldea btn-success pull-right" onc
+        <button mat-mat-raised-button class="btn  buttton-aldea btn-success pull-right" 
             (click)="openCrear()">Crear</button>
+
+            
+        <button mat-mat-raised-button *ngIf="idCategoria!=0"
+        class="btn  buttton-aldea btn-success pull-right" 
+        (click)="openAgregar()">Agregar</button>
 
 
 

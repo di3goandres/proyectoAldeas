@@ -127,7 +127,7 @@ namespace ApiRestAldeasPresupuesto.Helper
 
                     data.First().DetalleCuentaNav = request.DetalleCuentaNav;
                     data.First().FichaBanco = request.FichaBanco;
-                    data.First().Casa = request.Casa;
+                    data.First().Casa = request.Casa == null ? 0 : int.Parse(request.Casa.ToString());
                     data.First().Estado = request.Estado;
                     data.First().FechaActualizacion = DateTime.Now;
 
@@ -179,6 +179,36 @@ namespace ApiRestAldeasPresupuesto.Helper
                 db.SaveChanges();
             }
             return new { id = id, status = id == 0 ? "error" : "OK", code = 200 };
+        }
+
+
+        public static dynamic AgregarPucACategoria(IContextFactory factory, IOptions<ConnectionDB> connection, PucRequestUpdate request)
+        {
+            ProgramasResponse retorno = new ProgramasResponse();
+            using (Aldeas_Context db = factory.Create(connection))
+            {
+               
+                 var nuevo  = new DbPucs()
+                    {
+                        Estado = true,
+                        FechaActualizacion = DateTime.Now,
+                        FechaCreacion = DateTime.Now,
+                        RequiereNotaIngles = request.RequiereNotaIngles,
+                        Casa = request.Casa == null ? 0 : int.Parse(request.Casa.ToString()),
+                        FichaBanco = request.FichaBanco == null ? "" : request.FichaBanco,
+                        TipoCuentaNav = request.TipoCuentaNav,
+                        DetalleCuentaNav = request.DetalleCuentaNav,
+                        CuentaNAV = request.CuentaNAV,
+                        DescripcionCuenta = request.DescripcionCuenta,
+                        CuentaSIIGO = request.CuentaSIIGO,
+                        idRubro = request.IdCategoria,
+                        Tipo = request.Tipo,
+                    };
+                
+                db.TbPucs.Add(nuevo);
+                db.SaveChanges();
+            }
+            return new { id = 0, status = "OK", code = 200 };
         }
 
     }

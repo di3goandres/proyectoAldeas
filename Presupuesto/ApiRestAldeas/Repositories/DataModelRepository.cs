@@ -73,6 +73,11 @@ namespace ApiRestAldeas.Repositories
         {
             return CategoriaOperations.ActualizarPuc(_factory, _connectionDB, request);
         }
+
+        public dynamic CrearCategoria(CategoriaRequest request)
+        {
+            return CategoriaOperations.CrearCategoria(_factory, _connectionDB, request);
+        }
         #endregion
     }
 

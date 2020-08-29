@@ -36,7 +36,7 @@ namespace ApiRestAldeas.Repositories
         dynamic ActualizarCategoria(CategoriUpdateRequest request);
         dynamic ActualizarPuc(PucRequestUpdate request);
 
-
+        dynamic CrearCategoria(CategoriaRequest request);
 
         #endregion
 

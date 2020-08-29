@@ -28,7 +28,7 @@ namespace ApiRestAldeasPresupuesto.Models
         public string DetalleCuentaNav { get; set; }
         public string TipoCuentaNav { get; set; }
         public string FichaBanco { get; set; }
-        public int Casa { get; set; }
+        public int? Casa { get; set; }
         public bool RequiereNotaIngles { get; set; }
         public bool Estado { get; set; }
         public DateTime FechaCreacion { get; set; }

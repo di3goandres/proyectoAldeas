@@ -5,6 +5,11 @@ using System.Threading.Tasks;
 
 namespace ApiRestAldeasPresupuesto.Models
 {
+    public class CategoriaRequest
+    {
+        public string Nombre { get; set; }
+        public List<CategoriaPuc> pucs { get; set; }
+    }
     public class PucRequestUpdate
     {
         public long Id { get; set; }

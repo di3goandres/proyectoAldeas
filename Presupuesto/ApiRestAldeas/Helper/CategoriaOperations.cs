@@ -1,5 +1,6 @@
 ﻿using ApiRestAldeas.EntityFrame;
 using ApiRestAldeas.Factory;
+using ApiRestAldeasPresupuesto.EntityFrame;
 using ApiRestAldeasPresupuesto.Models;
 using Microsoft.Extensions.Options;
 using System;
@@ -134,6 +135,50 @@ namespace ApiRestAldeasPresupuesto.Helper
                 }
             }
             return new { id = 0, status = "OK", code = 200 };
+        }
+        public static dynamic CrearCategoria(IContextFactory factory, IOptions<ConnectionDB> connection, CategoriaRequest request)
+        {
+
+            long id = 0;
+            using (Aldeas_Context db = factory.Create(connection))
+            {
+                var nuevo = new DbRubros()
+                {
+                    Estado = true,
+                    FechaCreacion = DateTime.Now,
+                    FechaActualizacion = DateTime.Now,
+                    Nombre = request.Nombre
+
+                };
+                db.TbRubros.Add(nuevo);
+                db.SaveChanges();
+                id = nuevo.id;
+
+                List<DbPucs> lista = new List<DbPucs>();
+
+                foreach (var item in request.pucs)
+                {
+                    lista.Add(new DbPucs()
+                    {
+                        Estado = true,
+                        FechaActualizacion = DateTime.Now,
+                        FechaCreacion = DateTime.Now,
+                        RequiereNotaIngles = item.RequiereNotaIngles,
+                        Casa = item.Casa == null? 0 : int.Parse( item.Casa.ToString()),
+                        FichaBanco = item.FichaBanco == null? "" : item.FichaBanco, 
+                        TipoCuentaNav = item.TipoCuentaNav,
+                        DetalleCuentaNav = item.DetalleCuentaNav,
+                        CuentaNAV= item.CuentaNAV,
+                        DescripcionCuenta = item.DescripcionCuenta,
+                        CuentaSIIGO = item.CuentaSIIGO,
+                        idRubro = id,
+                        Tipo = item.Tipo,
+                    });
+                }
+                db.TbPucs.AddRange(lista);
+                db.SaveChanges();
+            }
+            return new { id = id, status = id == 0 ? "error" : "OK", code = 200 };
         }
 
     }

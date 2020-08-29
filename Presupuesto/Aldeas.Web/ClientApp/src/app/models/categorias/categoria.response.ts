@@ -12,6 +12,11 @@ export class Categoria {
 }
 
 export class Puc {
+    constructor(){
+       this.tipo = "Uno a Uno" 
+       this.tipoCuentaNav = "" 
+
+    }
     id:                 number;
     idCategoria:        number;
     tipo:               string;//Tipo;

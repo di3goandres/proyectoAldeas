@@ -38,12 +38,13 @@ import { ListaonlyrubrosComponent } from './04-Rubros/listaonlyrubros/listaonlyr
 import { ActualizarcategoriaComponent } from './04-Rubros/actualizarcategoria/actualizarcategoria.component';
 import { ListarubrospucsComponent } from './04-Rubros/listarubrospucs/listarubrospucs.component';
 import { ActualizarpucsComponent } from './04-Rubros/actualizarpucs/actualizarpucs.component';
+import { CrearcategoriaComponent } from './04-Rubros/crearcategoria/crearcategoria.component';
 @NgModule({
   declarations: [LoginComponent, HomeComponent,
      HeaaderComponent, 
      FechasComponent, 
       
-   CheckboxComponent, ListcheckComponent, ListcentroscostosComponent, ListaprogramasComponent, CrearprogramaComponent, RegistroexitosoComponent, ActualizarprogramaComponent, ListaonlyprogramaComponent, ActualizarcecoComponent, ListaonlyrubrosComponent, ActualizarcategoriaComponent, ListarubrospucsComponent, ActualizarpucsComponent],
+   CheckboxComponent, ListcheckComponent, ListcentroscostosComponent, ListaprogramasComponent, CrearprogramaComponent, RegistroexitosoComponent, ActualizarprogramaComponent, ListaonlyprogramaComponent, ActualizarcecoComponent, ListaonlyrubrosComponent, ActualizarcategoriaComponent, ListarubrospucsComponent, ActualizarpucsComponent, CrearcategoriaComponent],
   imports: [
 
     CommonModule,

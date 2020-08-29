@@ -8,6 +8,7 @@ import { CategoriasService } from '../../../services/categorias.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { RegistroexitosoComponent } from '../../00-Comunes/registroexitoso/registroexitoso.component';
 import { ActualizarpucsComponent } from '../actualizarpucs/actualizarpucs.component';
+import { CrearcategoriaComponent } from '../crearcategoria/crearcategoria.component';
 
 @Component({
   selector: 'app-listarubrospucs',
@@ -15,7 +16,7 @@ import { ActualizarpucsComponent } from '../actualizarpucs/actualizarpucs.compon
   styleUrls: ['./listarubrospucs.component.css']
 })
 export class ListarubrospucsComponent implements OnInit {
-
+   idCategoria :number;
   @ViewChild('pucs') table: MatTable<any>;
   displayedColumns: string[] = ['tipo', 'cuentaSIIGO',
     'descripcionCuenta', 'cuentaNAV', 'detalleCuentaNav', 'tipoCuentaNav', 'fichaBanco',
@@ -66,24 +67,24 @@ export class ListarubrospucsComponent implements OnInit {
   }
   openCrear() {
 
-    // const modalRef = this.modalService.open(CrearprogramaComponent, {size: 'lg'});
-    // modalRef.componentInstance.Actuales =this.cecos
-    // modalRef.result.then((result) => {
-    //   if(result==="OK"){
-    //     this.openExitoso();
-    //     this.cargaInicial()
-    //   }
-    //   console.log('result', result);
-    // }, (reason) => {
+    const modalRef = this.modalService.open(CrearcategoriaComponent, {size: 'xl'});
+  
+    modalRef.result.then((result) => {
+      if(result==="OK"){
+        this.openExitoso();
+        this.cargaInicial(true)
+      }
+      console.log('result', result);
+    }, (reason) => {
 
-    //   if (reason === 'OK') {
+      if (reason === 'OK') {
 
 
-    //   }
-    // });
+      }
+    });
   }
   onChange(value) {
-
+  this.idCategoria =value;
     let nuevos = this.pucs.filter(item => {
       return item.idCategoria == value;
     })
@@ -91,6 +92,8 @@ export class ListarubrospucsComponent implements OnInit {
     this.dataSource = new MatTableDataSource(nuevos);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort
+    this.table.renderRows()
+
   }
 
   cargaInicial(dato) {
@@ -103,10 +106,8 @@ export class ListarubrospucsComponent implements OnInit {
       
         this.pucs.push(...OK.pucs)
         if (dato) {
-          this.dataSource = new MatTableDataSource( []);
-          this.dataSource = new MatTableDataSource(this.pucs);
-          this.dataSource.paginator = this.paginator;
-          this.dataSource.sort = this.sort
+          this.onChange(this.idCategoria)
+       
           this.table.renderRows()
 
         }
@@ -118,6 +119,7 @@ export class ListarubrospucsComponent implements OnInit {
     )
   }
   ngOnInit(): void {
+    this.idCategoria = 0;
     this.cargaInicial(false);
 
 

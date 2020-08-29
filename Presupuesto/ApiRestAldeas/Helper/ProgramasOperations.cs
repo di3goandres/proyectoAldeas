@@ -114,8 +114,8 @@ namespace ApiRestAldeasPresupuesto.Helper
             }
             return new { id = 0, status = "OK", code = 200 };
         }
-     
-        
+
+
         public static dynamic ActualizarCeco(IContextFactory factory, IOptions<ConnectionDB> connection, CecoUpdateRequest cecoRequest)
         {
             ProgramasResponse retorno = new ProgramasResponse();
@@ -132,6 +132,30 @@ namespace ApiRestAldeasPresupuesto.Helper
                     data.First().FacilityNav = cecoRequest.FacilityNav;
                     db.SaveChanges();
                 }
+            }
+            return new { id = 0, status = "OK", code = 200 };
+        }
+
+
+        public static dynamic AgregarCecoAPrograma(IContextFactory factory, IOptions<ConnectionDB> connection, CecoUpdateRequest cecoRequest)
+        {
+
+            using (Aldeas_Context db = factory.Create(connection))
+            {
+                var nuevo = new DbCecos()
+                {
+                    idPrograma = cecoRequest.IdPrograma,
+                    Nombre = cecoRequest.Nombre,
+                    CodigoCeco = cecoRequest.CodigoCeco,
+                    Estado = true,
+                    FacilityNav = cecoRequest.FacilityNav,
+                    NombreSubCentro = cecoRequest.NombreSubCentro,
+                    SubCentro = cecoRequest.SubCentro
+
+                };
+                db.TbProgramasCecos.Add(nuevo);
+                db.SaveChanges();
+
             }
             return new { id = 0, status = "OK", code = 200 };
         }

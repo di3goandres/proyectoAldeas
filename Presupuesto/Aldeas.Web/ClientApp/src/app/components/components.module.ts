@@ -40,12 +40,18 @@ import { ListarubrospucsComponent } from './04-Rubros/listarubrospucs/listarubro
 import { ActualizarpucsComponent } from './04-Rubros/actualizarpucs/actualizarpucs.component';
 import { CrearcategoriaComponent } from './04-Rubros/crearcategoria/crearcategoria.component';
 import { AgregarpucarubroComponent } from './04-Rubros/agregarpucarubro/agregarpucarubro.component';
+import { AgregarcecoaprogramaComponent } from './03-Programas/agregarcecoaprograma/agregarcecoaprograma.component';
+
 @NgModule({
   declarations: [LoginComponent, HomeComponent,
      HeaaderComponent, 
      FechasComponent, 
       
-   CheckboxComponent, ListcheckComponent, ListcentroscostosComponent, ListaprogramasComponent, CrearprogramaComponent, RegistroexitosoComponent, ActualizarprogramaComponent, ListaonlyprogramaComponent, ActualizarcecoComponent, ListaonlyrubrosComponent, ActualizarcategoriaComponent, ListarubrospucsComponent, ActualizarpucsComponent, CrearcategoriaComponent, AgregarpucarubroComponent],
+   CheckboxComponent, ListcheckComponent, ListcentroscostosComponent,
+    ListaprogramasComponent, CrearprogramaComponent, RegistroexitosoComponent, 
+    ActualizarprogramaComponent, ListaonlyprogramaComponent, ActualizarcecoComponent,
+     ListaonlyrubrosComponent, ActualizarcategoriaComponent, ListarubrospucsComponent,
+      ActualizarpucsComponent, CrearcategoriaComponent, AgregarpucarubroComponent, AgregarcecoaprogramaComponent],
   imports: [
 
     CommonModule,

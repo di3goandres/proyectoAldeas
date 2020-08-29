@@ -1,0 +1,87 @@
+<div class="container" *ngIf="programaInput">
+
+    <mat-card class="example-card">
+        <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>Agregar Ceco al Programa: {{programaInput.nombre|uppercase}} </mat-card-title>
+            <mat-card-subtitle>Actualización - CECO/SUBCECO</mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+
+            <form [formGroup]="formgroup">
+
+                <div class="row">
+
+                    <div class="col-6 tabla">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Codigo Ceco</mat-label>
+                            <input matInput placeholder="Codigo CECO"
+                            type="number"
+                             [(ngModel)]="cecoAgregar.codigoCeco"
+                                formControlName="CodigoCeco" required>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-6 tabla">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Nombre</mat-label>
+                            <input matInput placeholder="Nombre CECO" [(ngModel)]="cecoAgregar.nombre"
+                                formControlName="nombre" required>
+                        </mat-form-field>
+                    </div>
+
+
+                </div>
+
+                <div class="row">
+
+
+                    <div class="col-4 tabla">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Codigo Sub Centro</mat-label>
+                            <input matInput placeholder="Codigo Sub CECO" 
+                            type="number"
+                            [(ngModel)]="cecoAgregar.subCentro"
+                                formControlName="SubCentro" required>
+                        </mat-form-field>
+                    </div>
+           
+                    <div class="col-4 tabla">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Nombre Sub Centro</mat-label>
+                            <input matInput placeholder="Nombre Sub Centro"
+                             [(ngModel)]="cecoAgregar.nombreSubCentro"
+                                formControlName="NombreSubCentro" required>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4 tabla">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Facility Nav</mat-label>
+                            <input matInput placeholder="Nuevo Facility Nav"
+                             [(ngModel)]="cecoAgregar.facilityNav"
+                                formControlName="Facility" required>
+                        </mat-form-field>
+                    </div>
+                   
+
+                </div>
+                <div class="row" *ngIf="Validaciones">
+                    <div class="col-12 alerta">
+                        <mat-label>La combinación centro de costo / sub centro ya existe</mat-label>
+                    </div>
+                </div>
+            </form>
+
+           
+
+        </mat-card-content>
+        <mat-card-actions>
+
+            <button mat-raised-button ngbAutofocus (click)="cerrar()">Cancelar</button>
+            <button mat-raised-button class="buttton-aldea" [disabled]="!(formgroup.valid)"
+                (click)="onGuardar()">Guardar</button>
+        </mat-card-actions>
+    </mat-card>
+
+</div>

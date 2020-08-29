@@ -23,6 +23,13 @@ export class ProgramasService {
        .ejecutarQueryPost<Respuesta>('/api/presupuesto/programas/Guardar/',params );
   }
 
+  storeCeco(ceco: Ceco) {
+    let json = JSON.stringify(ceco);
+    let params = '' + json;
+    return this.userService
+       .ejecutarQueryPost<Respuesta>('/api/presupuesto/programas/addceco/',params );
+  }
+
   updateProgramas(programas: Programa) {
     let json = JSON.stringify(programas);
     let params = '' + json;

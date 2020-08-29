@@ -129,7 +129,7 @@ export class ListarubrospucsComponent implements OnInit {
         if (dato) {
           this.onChange(this.idCategoria)
 
-          this.table.renderRows()
+          // this.table.renderRows()
 
         }
 

@@ -51,6 +51,10 @@ namespace ApiRestAldeas.Repositories
             return ProgramasOperations.GuardarProgramas(_factory, _connectionDB, programasRequest);
         }
 
+        public dynamic AgregarCecoPrograma(CecoUpdateRequest request)
+        {
+            return ProgramasOperations.AgregarCecoAPrograma(_factory, _connectionDB, request);
+        }
 
         #region categorias
 
@@ -83,6 +87,8 @@ namespace ApiRestAldeas.Repositories
         {
             return CategoriaOperations.AgregarPucACategoria(_factory, _connectionDB, request);
         }
+
+      
         #endregion
     }
 

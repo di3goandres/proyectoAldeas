@@ -116,6 +116,14 @@ namespace ApiRestAldeas.Controllers
             return _dataModelRepository.AgregarPucACategoria(request);
         }
 
+        [AuthorizeUser]
+        [HttpPost]
+        [Route("/api/presupuesto/programas/addceco/")]
+        public dynamic AgregarCecoAPrograma( CecoUpdateRequest request)
+        {
+            return _dataModelRepository.AgregarCecoPrograma(request);
+        }
+
 
     }
 }

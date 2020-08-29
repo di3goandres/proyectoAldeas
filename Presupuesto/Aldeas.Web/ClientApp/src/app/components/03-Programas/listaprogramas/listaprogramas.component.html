@@ -22,13 +22,16 @@
 
 
             
-            <button mat-mat-raised-button  class="btn  buttton-aldea btn-success pull-right" onc
+            <button mat-mat-raised-button  class="btn  buttton-aldea btn-success pull-right" 
             (click)="openCrear()" >Crear</button>
 
-
+   
+            <button mat-mat-raised-button  *ngIf="idPrograma!=0"
+             class="btn  buttton-aldea btn-success pull-right" 
+            (click)="openAgregar()" >Agregar</button>
          
           <div class="mat-elevation-z8">
-            <table mat-table [dataSource]="dataSource" matSort>
+            <table  #programas mat-table [dataSource]="dataSource" matSort>
           
          
           

@@ -26,6 +26,10 @@ namespace ApiRestAldeas.Repositories
 
         dynamic ActualizarCeco(CecoUpdateRequest request);
 
+
+        dynamic AgregarCecoPrograma(CecoUpdateRequest request);
+
+
         #endregion
 
         #region RUBROS / CATEGORIA

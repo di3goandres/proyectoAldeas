@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ProgramasService } from '../../../services/programas.service';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatTableDataSource, MatTable } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { Programa, Ceco } from 'src/app/models/programas/programas.response';
@@ -9,6 +9,7 @@ import { CrearprogramaComponent } from '../crearprograma/crearprograma.component
 import { RegistroexitosoComponent } from '../../00-Comunes/registroexitoso/registroexitoso.component';
 import { ActualizarprogramaComponent } from '../actualizarprograma/actualizarprograma.component';
 import { ActualizarcecoComponent } from '../actualizarceco/actualizarceco.component';
+import { AgregarcecoaprogramaComponent } from '../agregarcecoaprograma/agregarcecoaprograma.component';
 
 
 @Component({
@@ -17,13 +18,16 @@ import { ActualizarcecoComponent } from '../actualizarceco/actualizarceco.compon
   styleUrls: ['./listaprogramas.component.css']
 })
 export class ListaprogramasComponent implements OnInit {
+  @ViewChild('programas') table: MatTable<any>;
 
+  idPrograma =0;
   displayedColumns: string[] = [ 'codigoCeco', 'nombre',
    'subCentro', 'nombreSubCentro', 'facilityNav', 'estado', 'Actualizar'];
   dataSource: MatTableDataSource<Ceco>;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   programas: Programa[] = [];
+  programaSeleccionado:Programa;
   cecos: Ceco[] = [];
 
   constructor(
@@ -51,9 +55,30 @@ export class ListaprogramasComponent implements OnInit {
     modalRef.result.then((result) => {
       if(result==="OK"){
         this.openExitoso();
-        this.cargaInicial()
+        this.cargaInicial(true)
       }
      
+    }, (reason) => {
+     
+      if (reason === 'OK') {
+     
+       
+      }
+    });
+  }
+
+  openAgregar(){
+
+    const modalRef = this.modalService.open(AgregarcecoaprogramaComponent, {size: 'lg'});
+    modalRef.componentInstance.programaInput =this.programaSeleccionado
+    modalRef.componentInstance.Actuales =this.cecos
+
+    modalRef.result.then((result) => {
+      if(result==="OK"){
+        this.openExitoso();
+        this.cargaInicial(true)
+      }
+      console.log('result', result);
     }, (reason) => {
      
       if (reason === 'OK') {
@@ -69,7 +94,7 @@ export class ListaprogramasComponent implements OnInit {
     modalRef.result.then((result) => {
       if(result==="OK"){
         this.openExitoso();
-        this.cargaInicial()
+        this.cargaInicial(true)
       }
       console.log('result', result);
     }, (reason) => {
@@ -81,17 +106,21 @@ export class ListaprogramasComponent implements OnInit {
     });
   }
   onChange(value){
- 
+    this.idPrograma = value;
    let nuevos  = this.cecos.filter(item => {
      return  item.idPrograma == value;
     })
     
+
+    this.programaSeleccionado = this.programas.find(item=>{
+      return item.id =value;
+    })
     this.dataSource = new MatTableDataSource(nuevos);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort
   }
 
-  cargaInicial(){
+  cargaInicial(data){
     this.servicePrograma.getProgramas().subscribe(
       OK => {
       
@@ -99,6 +128,11 @@ export class ListaprogramasComponent implements OnInit {
         this.programas.push(... OK.programas)
         this.cecos = [];
         this.cecos.push(... OK.cecos)
+        if(data){
+          this.onChange(this.idPrograma)
+
+          // this.table.renderRows()
+        }
 
       },
       Errr => {console.log(Errr)}
@@ -106,7 +140,7 @@ export class ListaprogramasComponent implements OnInit {
     )
   }
   ngOnInit(): void {
-  this. cargaInicial();
+  this. cargaInicial(false);
 
  
   }

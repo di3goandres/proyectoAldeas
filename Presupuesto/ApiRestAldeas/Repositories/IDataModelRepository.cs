@@ -47,7 +47,12 @@ namespace ApiRestAldeas.Repositories
 
         #endregion
 
+        #region presupuesto
+        dynamic PresupuestoObtenerPogramasCecos();
 
+
+
+        #endregion
 
 
 

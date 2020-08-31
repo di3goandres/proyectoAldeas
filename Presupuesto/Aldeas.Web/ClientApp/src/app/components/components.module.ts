@@ -17,6 +17,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTableModule } from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+
 import { MatMomentDateModule, MomentDateAdapter } from "@angular/material-moment-adapter";
 import { BrowserModule } from '@angular/platform-browser';
 import { MatButtonModule } from '@angular/material/button';
@@ -41,6 +43,8 @@ import { ActualizarpucsComponent } from './04-Rubros/actualizarpucs/actualizarpu
 import { CrearcategoriaComponent } from './04-Rubros/crearcategoria/crearcategoria.component';
 import { AgregarpucarubroComponent } from './04-Rubros/agregarpucarubro/agregarpucarubro.component';
 import { AgregarcecoaprogramaComponent } from './03-Programas/agregarcecoaprograma/agregarcecoaprograma.component';
+import { PrincipalpresupuestoComponent } from './05-Presupuesto/principalpresupuesto/principalpresupuesto.component';
+import { PrerubrospucsComponent } from './05-Presupuesto/prerubrospucs/prerubrospucs.component';
 
 @NgModule({
   declarations: [LoginComponent, HomeComponent,
@@ -51,7 +55,7 @@ import { AgregarcecoaprogramaComponent } from './03-Programas/agregarcecoaprogra
     ListaprogramasComponent, CrearprogramaComponent, RegistroexitosoComponent, 
     ActualizarprogramaComponent, ListaonlyprogramaComponent, ActualizarcecoComponent,
      ListaonlyrubrosComponent, ActualizarcategoriaComponent, ListarubrospucsComponent,
-      ActualizarpucsComponent, CrearcategoriaComponent, AgregarpucarubroComponent, AgregarcecoaprogramaComponent],
+      ActualizarpucsComponent, CrearcategoriaComponent, AgregarpucarubroComponent, AgregarcecoaprogramaComponent, PrincipalpresupuestoComponent, PrerubrospucsComponent],
   imports: [
 
     CommonModule,
@@ -75,7 +79,8 @@ import { AgregarcecoaprogramaComponent } from './03-Programas/agregarcecoaprogra
     MatCheckboxModule,
     MatRadioModule,
     MatMenuModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatAutocompleteModule
   ],
   providers: [
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },

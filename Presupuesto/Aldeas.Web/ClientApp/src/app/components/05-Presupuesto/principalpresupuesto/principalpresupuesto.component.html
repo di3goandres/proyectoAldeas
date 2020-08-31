@@ -1,0 +1,92 @@
+<mat-card class="example-card">
+    <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>PRESUPUESTO</mat-card-title>
+        <mat-card-subtitle>INGRESO DEL</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+        <div class="row">
+            <div class="col-3">
+                <mat-form-field appearance="fill">
+                    <mat-label>Selecciona Un programa</mat-label>
+                    <mat-select (selectionChange)="onChange($event.value)">
+                        <mat-option *ngFor="let programa of programas" [value]="programa.id">
+                            {{programa.nombre | uppercase}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+            </div>
+            <div class="col-6">
+                <mat-form-field appearance="fill">
+                    <mat-label>Selecciona Un Centro de Costo</mat-label>
+                    <mat-select (selectionChange)="onChangeCeco($event.value)">
+                        <mat-option *ngFor="let ceco of centroCostosSeleccionado" [value]="ceco.codigoCeco">
+                            {{ceco.codigoCeco}} - {{ceco.nombre | uppercase}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+            </div>
+
+            <div class="col-3">
+                <mat-form-field appearance="fill">
+                    <mat-label>Selecciona Un Servicio</mat-label>
+                    <mat-select >
+ 
+                        <mat-option *ngFor="let subceco of subCentrosSeleccionado" [value]="subceco.id">
+                           {{subceco.id}} - {{subceco.nombreSubCentro | uppercase}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-5">
+                <mat-form-field appearance="fill">
+                    <mat-label>Selecciona Una Categoria</mat-label>
+                    <mat-select (selectionChange)="onChangeCategoria($event.value)">
+                        <mat-option *ngFor="let categoria of categorias" [value]="categoria.id">
+                            {{categoria.nombre | uppercase}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+            </div>
+            <div class="col-5" *ngIf="pubGuardar.id!=0">
+                <mat-form-field appearance="fill">
+                    <mat-label>PUC SELECCIONADO</mat-label>
+                    <input matInput 
+                    [(value)]="pubGuardar.tipo + ' - '+ pubGuardar.cuentaSIIGO + ' - '+pubGuardar.descripcionCuenta"
+                     disabled="true">
+            
+                </mat-form-field>
+
+            </div>
+            <div class="col-2" *ngIf="pubGuardar.id!=0">
+                <button mat-mat-raised-button
+                class="btn  buttton-aldea btn-success pull-right" 
+                (click)="SeleccionarPUC()">Cambiar PUC</button>
+
+            </div>
+            <div class="col-2"  *ngIf="pubGuardar.id==0">
+
+                <button mat-mat-raised-button
+                class="btn  buttton-aldea btn-success pull-right" 
+                (click)="SeleccionarPUC()">Seleccionar PUC</button>
+
+            </div>
+
+          
+
+        </div>
+
+    </mat-card-content>
+    <mat-card-actions>
+
+    </mat-card-actions>
+</mat-card>

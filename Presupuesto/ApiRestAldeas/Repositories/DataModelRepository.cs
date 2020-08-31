@@ -25,7 +25,7 @@ namespace ApiRestAldeas.Repositories
             _factory = factory;
         }
 
-
+        #region programas
         public dynamic ActualizarCeco(CecoUpdateRequest request)
         {
             return ProgramasOperations.ActualizarCeco(_factory, _connectionDB, request);
@@ -55,7 +55,7 @@ namespace ApiRestAldeas.Repositories
         {
             return ProgramasOperations.AgregarCecoAPrograma(_factory, _connectionDB, request);
         }
-
+        #endregion
         #region categorias
 
         public dynamic ConsultarCategorias()
@@ -88,7 +88,18 @@ namespace ApiRestAldeas.Repositories
             return CategoriaOperations.AgregarPucACategoria(_factory, _connectionDB, request);
         }
 
-      
+
+
+
+        #endregion
+
+        #region PRESUPUESTO
+        public dynamic PresupuestoObtenerPogramasCecos()
+        {
+            return PresupuestoOperations.ConsultarProgramas(_factory, _connectionDB);
+        }
+
+     
         #endregion
     }
 

@@ -125,5 +125,18 @@ namespace ApiRestAldeas.Controllers
         }
 
 
+
+        #region PResupuesto
+
+        //[AuthorizeUser]
+        [HttpGet]
+        [Route("/api/presupuesto/getinfodata/")]
+        public dynamic ConsultarDatos()
+        {
+            return _dataModelRepository.PresupuestoObtenerPogramasCecos();
+        }
+        #endregion 
+
+
     }
 }

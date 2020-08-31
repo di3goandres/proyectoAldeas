@@ -26,6 +26,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ListaonlyprogramaComponent } from './components/03-Programas/listaonlyprograma/listaonlyprograma.component';
 import { ListaonlyrubrosComponent } from './components/04-Rubros/listaonlyrubros/listaonlyrubros.component';
 import { ListarubrospucsComponent } from './components/04-Rubros/listarubrospucs/listarubrospucs.component';
+import { PrincipalpresupuestoComponent } from './components/05-Presupuesto/principalpresupuesto/principalpresupuesto.component';
 
 
 const routes: Routes = [
@@ -56,6 +57,11 @@ const routes: Routes = [
   ,
   {
     path: 'CategoriasPucs', component: ListarubrospucsComponent, pathMatch: 'full',
+    canActivate: [UsuarioGuard], canLoad: [UsuarioGuard]
+  }
+  ,
+  {
+    path: 'GenerarPresupuesto', component: PrincipalpresupuestoComponent, pathMatch: 'full',
     canActivate: [UsuarioGuard], canLoad: [UsuarioGuard]
   }
 

@@ -1,0 +1,87 @@
+<mat-card class="example-card">
+    <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>CATEGORIAS/PUCS</mat-card-title>
+        <mat-card-subtitle>Lista de CATEGORIAS/PUCS</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+     
+
+        <mat-form-field>
+            <mat-label>Filtro</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Ej. Cundinamarca" #input>
+        </mat-form-field>
+
+
+
+  
+
+
+        <div class="mat-elevation-z8">
+            <table id="customers" #pucs mat-table [dataSource]="dataSource" matSort>
+                <!-- Progress Column -->
+                <ng-container matColumnDef="tipo">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Tipo </th>
+                    <td mat-cell *matCellDef="let row"> {{row.tipo}} </td>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="cuentaSIIGO">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Cuenta SIIGO </th>
+                    <td mat-cell *matCellDef="let row"> {{row.cuentaSIIGO |uppercase}} </td>
+                </ng-container>
+
+                <!-- Color Column -->
+                <ng-container matColumnDef="descripcionCuenta">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Descripción Cuenta </th>
+                    <td mat-cell *matCellDef="let row"> {{row.descripcionCuenta}} </td>
+                </ng-container>
+                <ng-container matColumnDef="cuentaNAV">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Cuenta NAV </th>
+                    <td mat-cell *matCellDef="let row"> {{row.cuentaNAV |uppercase}} </td>
+                </ng-container>
+                <ng-container matColumnDef="detalleCuentaNav">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Detalle Cuenta Nav </th>
+                    <td mat-cell *matCellDef="let row"> {{row.detalleCuentaNav}} </td>
+                </ng-container>
+                <ng-container matColumnDef="tipoCuentaNav">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Tipo Cuenta Nav </th>
+                    <td mat-cell *matCellDef="let row"> {{row.tipoCuentaNav}} </td>
+                </ng-container>
+
+             
+
+                <ng-container matColumnDef="requiereNotaIngles">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Requiere Nota </th>
+                    <td mat-cell *matCellDef="let row"> {{row.requiereNotaIngles==true? "Si":"No" }} </td>
+                </ng-container>
+
+            
+                <ng-container matColumnDef="seleccionar">
+                    <th mat-header-cell *matHeaderCellDef> Seleccionar </th>
+                    <td mat-cell *matCellDef="let element">
+                        <button type="button" mat-mini-fab class="buttton-aldea" aria-label="fecha"
+                            (click)="Seleccionar(element)">
+                            <mat-icon>get_app</mat-icon>
+                        </button> </td>
+                </ng-container>
+               
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                <!-- Row shown when there is no matching data. -->
+                <tr class="mat-row" *matNoDataRow>
+                    <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+                </tr>
+            </table>
+
+            <mat-paginator [pageSizeOptions]="[5, 15, 30, 50]"></mat-paginator>
+        </div>
+    </mat-card-content>
+    <mat-card-actions>
+
+        <button mat-raised-button ngbAutofocus (click)="cerrar()">Cancelar</button>
+        
+    </mat-card-actions>
+</mat-card>

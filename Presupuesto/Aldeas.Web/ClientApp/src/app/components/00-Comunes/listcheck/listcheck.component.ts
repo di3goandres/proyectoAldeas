@@ -15,7 +15,7 @@ export class ListcheckComponent implements OnInit {
   firstFormGroup: FormGroup;
   otroValor: string;
   taskSeleccionado: Task;
-
+  lista=[] =[0, 1, 2, 3]
   constructor(
     private _formBuilder: FormBuilder,
   ) { }
@@ -38,29 +38,12 @@ export class ListcheckComponent implements OnInit {
     })
 
   }
-  onChange(task: Task) {
+  onChange(tasksele: Task) {
 
 
 
-    let EsOtro = this.task.subtasks.find(item => {
-      return item.esOtro === true;
-    });
-    this.setStakeValidators()
-
-    if (EsOtro.completed) {
-      this.mostrarOtro = true;
-
-      this.taskSeleccionado.formValid = false;
-      this.setStakeValidators()
-
-    } else {
-      this.taskSeleccionado.formValid = true;
-      this.mostrarOtro = false;
-      this.setStakeValidators()
-
-
-    }
-    this.taskSeleccionado = task;
+   
+    this.taskSeleccionado = tasksele;
 
     this.datoSalid.emit(this.task);
 

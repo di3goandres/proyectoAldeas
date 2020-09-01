@@ -85,6 +85,19 @@
 
         </div>
 
+        <mat-divider></mat-divider>
+        <div class="row" style="text-align: center;">
+         
+            <div class="col-3"></div>
+            <div class="col-6" *ngIf="pubGuardar.id!=0">
+                <button mat-mat-raised-button
+                class="btn  buttton-aldea btn-success pull-right" 
+                (click)="AgregarPresupuesto()">Agregar Presupuesto</button>
+
+            </div>
+            <div class="col-3"></div>
+
+        </div>
     </mat-card-content>
     <mat-card-actions>
 

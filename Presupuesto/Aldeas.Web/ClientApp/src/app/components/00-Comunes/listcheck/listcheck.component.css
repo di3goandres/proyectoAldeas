@@ -23,3 +23,14 @@ ul {
   border: 0px dashed #f69c55;
   /* font-size: x-large; */
 }
+
+
+.checkboxes ul, .checkboxes li {
+  margin:0;
+  padding:0;
+  list-style:none;
+}
+.checkboxes li {
+  display:inline-block;
+  width:33.3333%;
+}

@@ -63,7 +63,7 @@
                 <td mat-cell *matCellDef="let row"> {{row.estado==true? "Activo":"No Activo" |uppercase}} </td>
               </ng-container>
               <ng-container matColumnDef="Actualizar">
-                <th mat-header-cell *matHeaderCellDef> Quitar </th>
+                <th mat-header-cell *matHeaderCellDef> Actualizar </th>
                 <td mat-cell *matCellDef="let element">
                     <button type="button" mat-mini-fab class="buttton-aldea" aria-label="fecha"
                         (click)="openActualizar(element)">

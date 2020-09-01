@@ -45,6 +45,7 @@ import { AgregarpucarubroComponent } from './04-Rubros/agregarpucarubro/agregarp
 import { AgregarcecoaprogramaComponent } from './03-Programas/agregarcecoaprograma/agregarcecoaprograma.component';
 import { PrincipalpresupuestoComponent } from './05-Presupuesto/principalpresupuesto/principalpresupuesto.component';
 import { PrerubrospucsComponent } from './05-Presupuesto/prerubrospucs/prerubrospucs.component';
+import { AgregarpresupuestoComponent } from './05-Presupuesto/agregarpresupuesto/agregarpresupuesto.component';
 
 @NgModule({
   declarations: [LoginComponent, HomeComponent,
@@ -55,7 +56,7 @@ import { PrerubrospucsComponent } from './05-Presupuesto/prerubrospucs/prerubros
     ListaprogramasComponent, CrearprogramaComponent, RegistroexitosoComponent, 
     ActualizarprogramaComponent, ListaonlyprogramaComponent, ActualizarcecoComponent,
      ListaonlyrubrosComponent, ActualizarcategoriaComponent, ListarubrospucsComponent,
-      ActualizarpucsComponent, CrearcategoriaComponent, AgregarpucarubroComponent, AgregarcecoaprogramaComponent, PrincipalpresupuestoComponent, PrerubrospucsComponent],
+      ActualizarpucsComponent, CrearcategoriaComponent, AgregarpucarubroComponent, AgregarcecoaprogramaComponent, PrincipalpresupuestoComponent, PrerubrospucsComponent, AgregarpresupuestoComponent],
   imports: [
 
     CommonModule,

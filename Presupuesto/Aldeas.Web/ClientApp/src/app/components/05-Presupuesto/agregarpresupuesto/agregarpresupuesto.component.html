@@ -1,0 +1,91 @@
+<mat-card class="example-card">
+    <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Agregar Presupuesto: {{datoRubro.nombre | uppercase}}</mat-card-title>
+        <mat-card-subtitle>Agregar</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+
+
+        <div *ngIf="datoRubro.esNomina === true">
+            <form [formGroup]="formgroupNomina">
+                <div class="row">
+
+                    <div class="col-6 tabla">
+                        <mat-form-field appearance="fill">
+                            <mat-label>No. Identificación</mat-label>
+                            <input matInput placeholder="Número de Identificación"
+                             type="number"
+                                [(ngModel)]="guardar.NumeroIdentificacion"
+                                 formControlName="numeroIdentificacion" required>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-6 tabla">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Nombre</mat-label>
+                            <input matInput placeholder="Nombre" [(ngModel)]="guardar.Nombre"
+                             formControlName="Nombre"
+                                required>
+                        </mat-form-field>
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-6 tabla">
+                        <mat-form-field appearance="fill">
+                            <mat-label>% Asignación</mat-label>
+                            <input matInput placeholder="% Asignación" type="number" min="0" max="100" 
+                                [(ngModel)]="guardar.Asignacion" formControlName="asignacion" required>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-6 tabla">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Cargo</mat-label>
+                            <input matInput placeholder="Cargo" [(ngModel)]="guardar.Cargo" formControlName="cargo"
+                                required>
+                        </mat-form-field>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+
+        <form [formGroup]="formgroupNormal">
+            <div class="row">
+
+                <div class="col-12 tabla">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Valor Anual</mat-label>
+                        <input matInput placeholder="Valor Anual"
+                         type="number"
+                            [(ngModel)]="valorMensual" (onchange)="Cambiar()"
+                             formControlName="valor" required>
+                    </mat-form-field>
+                </div>
+
+               
+            </div>
+
+           
+        </form>
+
+        <div class="row">
+            <div class="col-12">
+                <app-listcheck [task]="presupuestoCheck" Nombre='Presupuesto Anual'
+                    (datoSalid)='onNotificar($event, "Etnico")'></app-listcheck>
+            </div>
+        </div>
+
+
+    </mat-card-content>
+    <mat-card-actions>
+
+        <button mat-raised-button ngbAutofocus (click)="cerrar()">Cancelar</button>
+
+    </mat-card-actions>
+</mat-card>

@@ -146,6 +146,7 @@ export class PrincipalpresupuestoComponent implements OnInit {
      
       OK => {
         console.log(OK)
+        this.dataSourcePresupuesto = []
         this.dataSourcePresupuesto.push(...OK.detallePresupuesto)
        },
       Error => { console.log(Error) },

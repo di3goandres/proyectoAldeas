@@ -13,8 +13,7 @@
 
 
                     <ul clas="checkboxes">
-                        <li *ngFor="let subtask of  task.subtasks.slice(item * 3, (3* item)+3); let i = index"
-                         >
+                        <li *ngFor="let subtask of  task.subtasks.slice(item * 3, (3* item)+3)"  >
                             <mat-checkbox [(ngModel)]="subtask.completed" [color]="subtask.color"
                                 (change)="onChange(subtask)" formControlName="Multiple">
                                 <span class="break-word"> {{subtask.name}} </span>

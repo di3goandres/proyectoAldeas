@@ -4,6 +4,7 @@ import { PresupuestoCategoria, PresupuestoPuc } from '../../../models/presupuest
 import { PresupuestoRequest } from '../../../models/presupuesto/data.presupuesto.request';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Task } from '../../../models/checkbox';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-agregarpresupuesto',
@@ -14,10 +15,24 @@ export class AgregarpresupuestoComponent implements OnInit {
 
   @Input() datoRubro: PresupuestoCategoria;
   @Input() dataPuc: PresupuestoPuc;
+
+
+  pucMostrar: PresupuestoRequest[] = [];
   guardar = new PresupuestoRequest();
   formgroupNomina: FormGroup;
   formgroupNormal: FormGroup;
+  formgroupFamiliar: FormGroup;
   valorMensual = 12000000;
+  permitirGuardar = false;
+
+  displayedColumns: string[] = ['Enero', 'Febrero',
+    'Marzo', 'Abril', 'Mayo', 'Junio'];
+
+  displayedColumns2: string[] = ['Julio', 'Agosto', 'Septiembre',
+    'Octubre', 'Noviembre', 'Diciembre']
+  dataSource: MatTableDataSource<PresupuestoRequest>;
+
+
   presupuesto: string;
   presupuestoCheck: Task = {
     pregunta: 'Presupuesto Anual',
@@ -44,27 +59,35 @@ export class AgregarpresupuestoComponent implements OnInit {
 
 
   onNotificar(event: Task, Tipo: any) {
+
     this.presupuestoCheck = event;
     let seleccionados = event.subtasks.filter(t => {
       return t.completed == true;
     });
 
+    let numeroMeses = seleccionados.length;
     this.dejarEnceros();
-    if(this.valorMensual!=0){
-      let numeroMeses = seleccionados.length;
+    if (this.valorMensual != 0) {
+
       let valorMes = this.valorMensual / numeroMeses;
-      seleccionados.forEach(item=> {
-          this.agregarValorAlCampo(item, valorMes);
+      seleccionados.forEach(item => {
+        this.agregarValorAlCampo(item, valorMes);
       })
     }
-    console.log( this.guardar);
+
+
+    this.pucMostrar = [];
+    this.pucMostrar.push(this.guardar);
+    this.dataSource = new MatTableDataSource(this.pucMostrar);
+    this.validarFomularios();
   }
 
-  Cambiar(){
+  Cambiar() {
     this.onNotificar(this.presupuestoCheck, "")
+ 
   }
 
-  dejarEnceros(){
+  dejarEnceros() {
     this.guardar.Enero = 0;
     this.guardar.Febrero = 0;
     this.guardar.Marzo = 0;
@@ -129,30 +152,75 @@ export class AgregarpresupuestoComponent implements OnInit {
 
   ) { }
 
-  ngOnInit(): void {
+  validarFomularios() {
+    let seleccionados = this.presupuestoCheck.subtasks.filter(t => {
+      return t.completed == true;
+    });
 
+    let numeroMeses = seleccionados.length;
+    if (this.datoRubro.esNomina) {
+      this.permitirGuardar = this.formgroupNomina.valid && this.formgroupNormal.valid && numeroMeses > 0 
+     
+    }
+    if (this.datoRubro.esppto) {
+      this.permitirGuardar = this.formgroupFamiliar.valid && this.formgroupNormal.valid && numeroMeses > 0 
+     
+    }
+    if(this.datoRubro.esppto ==false &&this.datoRubro.esNomina==false ){
+      this.permitirGuardar =  this.formgroupNormal.valid && numeroMeses > 0 
+    
+    }
+  
+  }
+  ngOnInit(): void {
+    this.permitirGuardar = false;
+    this.pucMostrar = [];
+    this.pucMostrar.push(this.guardar);
+   
+    this.guardar.idRubroPucs =  this.dataPuc.id
+    this.guardar.esNomina = this.datoRubro.esNomina;
+    this.guardar.esPPTO = this.datoRubro.esppto;
+
+    this.dataSource = new MatTableDataSource(this.pucMostrar);
     this.formgroupNomina = this._formBuilder.group({
 
       numeroIdentificacion: ['', Validators.required],
       Nombre: ['', Validators.required],
-      asignacion: ['',  Validators.required ],
+      asignacion: ['', Validators.required],
       cargo: ['', Validators.required],
 
+    })
+    this.formgroupFamiliar = this._formBuilder.group({
+
+      NoCasa: ['', Validators.required],
+      NoKids: ['', Validators.required],
     })
 
     this.formgroupNormal = this._formBuilder.group({
 
       valor: ['', Validators.required],
-   
+      detalleGasto: ['', Validators.required],
+      Ingles: ['', Validators.nullValidator],
+
+
+
 
     })
+
+
+
   }
 
   cerrar() {
     this.activeModal.dismiss()
   }
 
-  
+  guardarData() {
+    this.activeModal.close(this.guardar)
+  }
+
+
+
 }
 
 

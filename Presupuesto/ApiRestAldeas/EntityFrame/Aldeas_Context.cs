@@ -41,11 +41,23 @@ namespace ApiRestAldeas.EntityFrame
 
         public virtual DbSet<DbRubros> TbRubros { get; set; }
         public virtual DbSet<DbPucs> TbPucs { get; set; }
+        public virtual DbSet<DbPresupuesto> TbPresupuestos { get; set; }
+        public virtual DbSet<DbPresupuestoPrograma> TbPresupuestosProgramas { get; set; }
 
         #region Required
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<DbPresupuestoPrograma>(entity =>
+            {
+                entity.ToTable("PresupuestoPrograma");
+            });
+
+            modelBuilder.Entity<DbPresupuesto>(entity =>
+            {
+                entity.ToTable("Presupuesto");
+            });
+
 
             modelBuilder.Entity<Administrador>(entity =>
             {

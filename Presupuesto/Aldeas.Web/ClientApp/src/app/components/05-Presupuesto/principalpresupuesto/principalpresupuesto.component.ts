@@ -7,6 +7,7 @@ import { startWith, map } from 'rxjs/operators';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PrerubrospucsComponent } from '../prerubrospucs/prerubrospucs.component';
 import { AgregarpresupuestoComponent } from '../agregarpresupuesto/agregarpresupuesto.component';
+import { PresupuestoRequest } from '../../../models/presupuesto/data.presupuesto.request';
 
 @Component({
   selector: 'app-principalpresupuesto',
@@ -23,10 +24,14 @@ export class PrincipalpresupuestoComponent implements OnInit {
 
   categorias: PresupuestoCategoria[] = []
   categoriaSeleccionada: PresupuestoCategoria;
-
+  guardar = new PresupuestoRequest();
   pucs: PresupuestoPuc[] = []
   pucSeleccionados: PresupuestoPuc[] = []
   pubGuardar= new PresupuestoPuc() ; 
+  idPrograma = 0;
+  servicioSeleccionado = 0;
+
+
 
 
 
@@ -37,6 +42,7 @@ export class PrincipalpresupuestoComponent implements OnInit {
 
 
   onChange(value) {
+    this.idPrograma = value
     this.subCentrosSeleccionado = []
     this.centroCostosSeleccionado = this.centroCostos.filter(item => {
       return item.idPrograma == value
@@ -63,6 +69,10 @@ export class PrincipalpresupuestoComponent implements OnInit {
     })
   
   }
+
+  onChangeServicio(value){
+    this.servicioSeleccionado = value
+  }
  
 
   SeleccionarPUC(element){
@@ -82,12 +92,20 @@ export class PrincipalpresupuestoComponent implements OnInit {
   }
 
   AgregarPresupuesto(){
+    this.guardar.idPresupuesto =  this.idPrograma
+
+
     const modalRef = this.modalService.open(AgregarpresupuestoComponent, {size: 'lg'});
     modalRef.componentInstance.datoRubro =this.categoriaSeleccionada;
     modalRef.componentInstance.dataPuc =this.pubGuardar  ;
     modalRef.result.then((result) => {
-      this.pubGuardar = result;
-      console.log(result)
+      this.guardar = result;
+     
+   
+
+
+      console.log( this.guardar)
+
      
     }, (reason) => {
      

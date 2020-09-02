@@ -3,11 +3,32 @@ export class PresupuestoRequest{
 
    }
 
+   idPresupuesto:                 number;
+   //servicio seleccionado
+   idProgramaCeco:             number;
+   idRubroPucs:                number;
+   esNomina:                   boolean;
+   esPPTO:                     boolean;
+
+
+
+   //datos Nomina
    NumeroIdentificacion:       number; 
    Nombre:                     string; 
    Cargo:                      string; 
-
    Asignacion:                 number; 
+
+   // Fin datos Nomina
+   // Inicio Datos Familiar
+   NoCasa:                     number; 
+   NoKids:                     number; 
+
+
+   //Comun a todos
+   NotaIngles:                 string; 
+   DetalleGasto:               string; 
+   //Fin comunes
+
    Enero:                      number; 
    Febrero:                    number; 
    Marzo:                      number; 

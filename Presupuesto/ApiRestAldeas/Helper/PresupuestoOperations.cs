@@ -1,5 +1,6 @@
 ﻿using ApiRestAldeas.EntityFrame;
 using ApiRestAldeas.Factory;
+using ApiRestAldeasPresupuesto.EntityFrame;
 using ApiRestAldeasPresupuesto.Models;
 using Microsoft.Extensions.Options;
 using System;
@@ -36,7 +37,7 @@ namespace ApiRestAldeasPresupuesto.Helper
                                     IdPrograma = cecos.idPrograma,
                                     CodigoCeco = cecos.CodigoCeco,
                                     Nombre = cecos.Nombre,
-                                
+
                                 };
                 if (dataCecos.Any())
                 {
@@ -44,16 +45,16 @@ namespace ApiRestAldeasPresupuesto.Helper
                 }
 
                 var dataSubCecos = from cecos in db.TbProgramasCecos
-                                where cecos.Estado == true
-                                select new PresupuestoSubCeco
-                                {
-                                    IdCeco = cecos.CodigoCeco,
-                                    SubCentro = cecos.SubCentro,
-                                    NombreSubCentro = cecos.NombreSubCentro,
-                                    FacilityNav = cecos.FacilityNav,
+                                   where cecos.Estado == true
+                                   select new PresupuestoSubCeco
+                                   {
+                                       IdCeco = cecos.CodigoCeco,
+                                       SubCentro = cecos.SubCentro,
+                                       NombreSubCentro = cecos.NombreSubCentro,
+                                       FacilityNav = cecos.FacilityNav,
 
-                                    Id = cecos.id,
-                                };
+                                       Id = cecos.id,
+                                   };
 
                 if (dataSubCecos.Any())
                 {
@@ -61,13 +62,13 @@ namespace ApiRestAldeasPresupuesto.Helper
                 }
                 var dataCategorias = from rubro in db.TbRubros
                                      where rubro.Estado == true
-                           select new PresupuestoCategoria
-                           {
-                               Id = rubro.id,
-                               Nombre = rubro.Nombre,
-                               EsNomina =rubro.esNomina,
-                               Esppto = rubro.EsPptp
-                           };
+                                     select new PresupuestoCategoria
+                                     {
+                                         Id = rubro.id,
+                                         Nombre = rubro.Nombre,
+                                         EsNomina = rubro.esNomina,
+                                         Esppto = rubro.EsPptp
+                                     };
                 if (dataCategorias.Any())
                 {
                     retorno.Categorias = dataCategorias.ToList();
@@ -76,7 +77,7 @@ namespace ApiRestAldeasPresupuesto.Helper
                                where puc.Estado == true
                                select new PresupuestoCategoriaPuc
                                {
-                                  
+
                                    Id = puc.id,
                                    IdCategoria = puc.idRubro,
                                    Tipo = puc.Tipo,
@@ -88,7 +89,7 @@ namespace ApiRestAldeasPresupuesto.Helper
                                    FichaBanco = puc.FichaBanco,
                                    Casa = puc.Casa,
                                    RequiereNotaIngles = puc.RequiereNotaIngles,
-                                  
+
                                };
                 if (dataPucs.Any())
                 {
@@ -99,6 +100,205 @@ namespace ApiRestAldeasPresupuesto.Helper
 
             return retorno;
         }
+
+
+
+        #region Tabla Presupuesto
+
+        public static dynamic GuardarPresupuesto(IContextFactory factory, IOptions<ConnectionDB> connection, DbPresupuesto datos)
+        {
+
+            using (Aldeas_Context db = factory.Create(connection))
+            {
+                var data = from pro in db.TbPresupuestos
+                           where pro.idPrograma == datos.idPrograma && pro.Anio == datos.Anio
+
+                           select pro;
+                if (data.Any())
+                {
+                    return new { id = 0, status = "Error", code = 200, message = "ya existe" };
+                }
+                else
+                {
+                    db.TbPresupuestos.Add(datos);
+                    db.SaveChanges();
+                }
+
+
+
+            }
+
+            return new { id = 0, status = "OK", code = 200 };
+        }
+
+
+        public static dynamic ActualizarPresupuesto(IContextFactory factory, IOptions<ConnectionDB> connection, DbPresupuesto datos)
+        {
+
+            using (Aldeas_Context db = factory.Create(connection))
+            {
+                var data = from pro in db.TbPresupuestos
+                           where pro.idPrograma == datos.idPrograma && pro.Anio == datos.Anio
+
+                           select pro;
+                if (data.Any())
+                {
+                    data.First().CoberturaAnual = datos.CoberturaAnual;
+                    data.First().CoberturaMensualEsperada = datos.CoberturaMensualEsperada;
+                    data.First().CoberturaMensual = datos.CoberturaMensual;
+                    data.First().CoberturaCasas = datos.CoberturaCasas;
+                    db.SaveChanges();
+                }
+
+
+
+
+            }
+
+            return new { id = 0, status = "OK", code = 200 };
+        }
+
+
+        public static dynamic ConsultarPresupuestos(IContextFactory factory, IOptions<ConnectionDB> connection)
+        {
+
+            List<DbPresupuesto> retorno = new List<DbPresupuesto>();
+
+            using (Aldeas_Context db = factory.Create(connection))
+            {
+                var data = from pro in db.TbPresupuestos
+                           select pro;
+                if (data.Any())
+                {
+                    retorno = data.ToList();
+                }
+
+            }
+
+            return retorno;
+        }
+
+        #endregion
+
+
+        #region Tabla PresupuestoProgramas
+
+        public static dynamic GuardarPresupuestoProgramas(IContextFactory factory, IOptions<ConnectionDB> connection, DbPresupuestoPrograma datos)
+        {
+
+            using (Aldeas_Context db = factory.Create(connection))
+            {
+                db.TbPresupuestosProgramas.Add(datos);
+                db.SaveChanges();
+            }
+
+            return new { id = 0, status = "OK", code = 200 };
+        }
+
+
+        public static dynamic ActualizarPresupuestoProgramas(IContextFactory factory, IOptions<ConnectionDB> connection, DbPresupuestoPrograma datos)
+        {
+
+            using (Aldeas_Context db = factory.Create(connection))
+            {
+                var data = from pro in db.TbPresupuestosProgramas
+                           where pro.id == datos.id
+
+                           select pro;
+                if (data.Any())
+                {
+                   
+                    data.First().NumeroIdentificacion = datos.NumeroIdentificacion == null? null: datos.NumeroIdentificacion;
+                    data.First().Nombre = datos.Nombre;
+                    data.First().Cargo = datos.Cargo;
+                    data.First().Asignacion =  datos.Asignacion == null ? null : datos.Asignacion;
+                    data.First().NoCasa = datos.NoCasa == null ? null : datos.NoCasa;
+                    data.First().NoKids = datos.NoKids == null ? null : datos.NoKids;
+                    data.First().Enero = datos.Enero;
+                    data.First().Febrero = datos.Febrero;
+                    data.First().Marzo = datos.Marzo;
+                    data.First().Abril = datos.Abril;
+                    data.First().Mayo = datos.Mayo;
+                    data.First().Junio = datos.Junio;
+                    data.First().Agosto = datos.Agosto;
+                    data.First().Septiembre = datos.Septiembre;
+                    data.First().Octubre = datos.Octubre;
+                    data.First().Noviembre = datos.Noviembre;
+                    data.First().Diciembre = datos.Diciembre;
+                    data.First().NotaIngles = datos.NotaIngles;
+                    data.First().DetalleGasto = datos.DetalleGasto;
+                    db.SaveChanges();
+                }
+
+
+
+
+            }
+
+            return new { id = 0, status = "OK", code = 200 };
+        }
+
+
+        public static dynamic ConsultarPresupuestosProgramas(IContextFactory factory, IOptions<ConnectionDB> connection, PresupuestoProgramRequest request)
+        {
+            List<PresupuestoProgramResponse> retorno = new List<PresupuestoProgramResponse>();
+            using (Aldeas_Context db = factory.Create(connection))
+            {
+                var data = from pro in db.TbProgramas
+                            join pre in db.TbPresupuestos on pro.id equals pre.idPrograma
+
+                           join prep in db.TbPresupuestosProgramas on pre.id equals prep.idPresupuesto
+                           join cec in db.TbProgramasCecos on prep.idProgramaCeco equals cec.id
+                           join puc in db.TbPucs on prep.idRubroPucs equals puc.id
+                           join rubro in db.TbRubros on puc.idRubro equals rubro.id
+                           where pre.id == request.IdPresupuesto
+                           select new PresupuestoProgramResponse
+                           {
+                              id = prep.id, 
+                               Programa = pro.Nombre,
+                              Anio = pre.Anio,
+                               CentroCosto = cec.CodigoCeco,
+                               SubCentroCosto = cec.SubCentro,
+                               esNomina = rubro.esNomina,
+                               EsPptp=   rubro.EsPptp,
+                               CuentaSIIGO =   puc.CuentaSIIGO,
+                               NombreCuenta = puc.DescripcionCuenta,
+                               CuentaCotable = puc.CuentaNAV,
+                               Facility = cec.FacilityNav,
+                               DetalleGasto =  prep.DetalleGasto,
+                               NotaIngles= prep.NotaIngles,
+                               NoCasa = prep.NoCasa,
+                               NoKids = prep.NoKids,
+                               NumeroIdentificacion= prep.NumeroIdentificacion,
+                               Nombre= prep.Nombre,
+                               Asignacion = prep.Asignacion,
+                               Enero =prep.Enero,
+                               Febrero = prep.Febrero,
+                               Marzo= prep.Marzo,
+                               Abril=  prep.Abril,
+                               Mayo = prep.Mayo,
+                               Junio= prep.Junio,
+                               Julio = prep.Julio,
+                               Agosto = prep.Agosto,
+                               Septiembre = prep.Septiembre,
+                               Octubre = prep.Octubre,
+                               Noviembre = prep.Noviembre,
+                               Diciembre=  prep.Diciembre
+
+                           };
+                if (data.Any())
+                {
+                    retorno = data.ToList(); 
+                }
+
+            }
+
+            return retorno;
+        }
+
+        #endregion
+
+
 
     }
 }

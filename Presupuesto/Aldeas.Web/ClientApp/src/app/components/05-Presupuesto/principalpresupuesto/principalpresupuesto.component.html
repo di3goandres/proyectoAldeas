@@ -1,27 +1,17 @@
-<mat-card class="example-card">
+<mat-card class="example-card" *ngIf="programas">
     <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>PRESUPUESTO</mat-card-title>
+        <mat-card-title>PRESUPUESTO PARA EL PROGRAMA: {{programas.nombre|uppercase}}</mat-card-title>
         <mat-card-subtitle>INGRESO DEL</mat-card-subtitle>
     </mat-card-header>
 
     <mat-card-content>
         <div class="row">
-            <div class="col-3">
-                <mat-form-field appearance="fill">
-                    <mat-label>Selecciona Un programa</mat-label>
-                    <mat-select (selectionChange)="onChange($event.value)">
-                        <mat-option *ngFor="let programa of programas" [value]="programa.id">
-                            {{programa.nombre | uppercase}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-
-            </div>
+  
             <div class="col-6">
                 <mat-form-field appearance="fill">
                     <mat-label>Selecciona Un Centro de Costo</mat-label>
-                    <mat-select (selectionChange)="onChangeCeco($event.value)">
+                    <mat-select (selectionChange)="onChangeCeco($event.value)" required>
                         <mat-option *ngFor="let ceco of centroCostosSeleccionado" [value]="ceco.codigoCeco">
                             {{ceco.codigoCeco}} - {{ceco.nombre | uppercase}}
                         </mat-option>
@@ -30,13 +20,13 @@
 
             </div>
 
-            <div class="col-3">
+            <div class="col-6">
                 <mat-form-field appearance="fill">
                     <mat-label>Selecciona Un Servicio</mat-label>
-                    <mat-select (selectionChange)="onChangeServicio($event.value)" >
+                    <mat-select (selectionChange)="onChangeServicio($event.value)" required >
  
                         <mat-option *ngFor="let subceco of subCentrosSeleccionado" [value]="subceco.id">
-                           {{subceco.id}} - {{subceco.nombreSubCentro | uppercase}}
+                           {{subceco.subCentro}} - {{subceco.nombreSubCentro | uppercase}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -49,7 +39,7 @@
             <div class="col-5">
                 <mat-form-field appearance="fill">
                     <mat-label>Selecciona Una Categoria</mat-label>
-                    <mat-select (selectionChange)="onChangeCategoria($event.value)">
+                    <mat-select required (selectionChange)="onChangeCategoria($event.value)">
                         <mat-option *ngFor="let categoria of categorias" [value]="categoria.id">
                             {{categoria.nombre | uppercase}}
                         </mat-option>
@@ -73,7 +63,7 @@
                 (click)="SeleccionarPUC()">Cambiar PUC</button>
 
             </div>
-            <div class="col-2"  *ngIf="pubGuardar.id==0">
+            <div class="col-5"  *ngIf="pubGuardar.id==0">
 
                 <button mat-mat-raised-button
                 class="btn  buttton-aldea btn-success pull-right" 
@@ -97,6 +87,28 @@
             </div>
             <div class="col-3"></div>
 
+        </div>
+        <mat-divider></mat-divider>
+        <div class="row" style="text-align: center;">
+            <div class="col-12"  style="padding-top: 10px;">
+                <app-detallepresupuestoprograma [detalle]="dataSourcePresupuesto" *ngIf="dataSourcePresupuesto.length>0"></app-detallepresupuestoprograma>
+
+            </div>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="row" style="text-align: center;">
+            <div class="col-12" style="padding-top: 10px;">
+                <app-detalle-familiarpresupuestoprograma [detalle]="dataSourcePresupuesto" *ngIf="dataSourcePresupuesto.length>0"></app-detalle-familiarpresupuestoprograma>
+
+            </div>
+        </div>
+
+        <mat-divider></mat-divider>
+        <div class="row" style="text-align: center;">
+            <div class="col-12"  style="padding-top: 10px;">
+                <app-detalle-otrospresupuestoprograma [detalle]="dataSourcePresupuesto" *ngIf="dataSourcePresupuesto.length>0"></app-detalle-otrospresupuestoprograma>
+
+            </div>
         </div>
     </mat-card-content>
     <mat-card-actions>

@@ -16,7 +16,7 @@ namespace ApiRestAldeasPresupuesto.EntityFrame
         public Decimal CoberturaAnual { get; set; }
         public Decimal CoberturaMensual { get; set; }
         public Decimal CoberturaMensualEsperada { get; set; }
-        public Decimal CoberturaCasas { get; set; }
+        public Decimal CoberturasCasas { get; set; }
 
 
 

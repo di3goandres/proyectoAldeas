@@ -4,6 +4,7 @@ using ApiRestAldeas.EntityFrame;
 using ApiRestAldeas.Factory;
 using ApiRestAldeas.Helper;
 using ApiRestAldeas.Models;
+using ApiRestAldeasPresupuesto.EntityFrame;
 using ApiRestAldeasPresupuesto.Helper;
 using ApiRestAldeasPresupuesto.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -94,12 +95,27 @@ namespace ApiRestAldeas.Repositories
         #endregion
 
         #region PRESUPUESTO
-        public dynamic PresupuestoObtenerPogramasCecos()
+        public dynamic PresupuestoObtenerPogramasCecos(long id)
         {
-            return PresupuestoOperations.ConsultarProgramas(_factory, _connectionDB);
+            return PresupuestoOperations.ConsultarProgramas(_factory, _connectionDB, id);
         }
 
-     
+        public dynamic ConsultarDetallePresupuestoPrograma(PresupuestoProgramRequest request)
+        {
+            return PresupuestoOperations.ConsultarDetallePresupuestosByProgramas(_factory, _connectionDB, request);
+        }
+
+        public dynamic ConsultarListaPresupuestoByProgram(PresupuestoProgramRequest request)
+        {
+            return PresupuestoOperations.ConsultarPresupuestosByProgram(_factory, _connectionDB, request);
+        }
+
+        public dynamic GuardarPresupuestoDetalle(DbPresupuestoPrograma request)
+        {
+            return PresupuestoOperations.GuardarDetallePresupuesto(_factory, _connectionDB, request);
+        }
+
+
         #endregion
     }
 

@@ -14,13 +14,14 @@ namespace ApiRestAldeasPresupuesto.Helper
     public class PresupuestoOperations
     {
 
-        public static dynamic ConsultarProgramas(IContextFactory factory, IOptions<ConnectionDB> connection)
+        public static dynamic ConsultarProgramas(IContextFactory factory, IOptions<ConnectionDB> connection, long id)
         {
             PresupuestoResponse retorno = new PresupuestoResponse();
             using (Aldeas_Context db = factory.Create(connection))
             {
                 var data = from pro in db.TbProgramas
                            where pro.Estado == true
+                           && pro.id == id
                            select new ProgramPresupuesto
                            {
                                Id = pro.id,
@@ -32,6 +33,7 @@ namespace ApiRestAldeasPresupuesto.Helper
                 }
                 var dataCecos = from cecos in db.TbProgramasCecos
                                 where cecos.Estado == true
+                                   && cecos.idPrograma == id
                                 select new PresupuestoProgramCeco
                                 {
                                     IdPrograma = cecos.idPrograma,
@@ -46,6 +48,7 @@ namespace ApiRestAldeasPresupuesto.Helper
 
                 var dataSubCecos = from cecos in db.TbProgramasCecos
                                    where cecos.Estado == true
+                                       && cecos.idPrograma == id
                                    select new PresupuestoSubCeco
                                    {
                                        IdCeco = cecos.CodigoCeco,
@@ -146,7 +149,7 @@ namespace ApiRestAldeasPresupuesto.Helper
                     data.First().CoberturaAnual = datos.CoberturaAnual;
                     data.First().CoberturaMensualEsperada = datos.CoberturaMensualEsperada;
                     data.First().CoberturaMensual = datos.CoberturaMensual;
-                    data.First().CoberturaCasas = datos.CoberturaCasas;
+                    data.First().CoberturasCasas = datos.CoberturasCasas;
                     db.SaveChanges();
                 }
 
@@ -159,18 +162,27 @@ namespace ApiRestAldeasPresupuesto.Helper
         }
 
 
-        public static dynamic ConsultarPresupuestos(IContextFactory factory, IOptions<ConnectionDB> connection)
+        public static dynamic ConsultarPresupuestosByProgram(IContextFactory factory, IOptions<ConnectionDB> connection, PresupuestoProgramRequest request)
         {
 
-            List<DbPresupuesto> retorno = new List<DbPresupuesto>();
+            PresupuestoByProgramResponse retorno = new PresupuestoByProgramResponse();
 
             using (Aldeas_Context db = factory.Create(connection))
             {
                 var data = from pro in db.TbPresupuestos
+                           where pro.idPrograma == request.IdPresupuesto
                            select pro;
                 if (data.Any())
                 {
-                    retorno = data.ToList();
+                    retorno.presupuesto = data.ToList();
+                }
+
+                var programa = from pro in db.TbProgramas
+                           where pro.id == request.IdPresupuesto
+                           select pro;
+                if (programa.Any())
+                {
+                    retorno.programa = programa.First();
                 }
 
             }
@@ -183,7 +195,7 @@ namespace ApiRestAldeasPresupuesto.Helper
 
         #region Tabla PresupuestoProgramas
 
-        public static dynamic GuardarPresupuestoProgramas(IContextFactory factory, IOptions<ConnectionDB> connection, DbPresupuestoPrograma datos)
+        public static dynamic GuardarDetallePresupuesto(IContextFactory factory, IOptions<ConnectionDB> connection, DbPresupuestoPrograma datos)
         {
 
             using (Aldeas_Context db = factory.Create(connection))
@@ -239,16 +251,16 @@ namespace ApiRestAldeasPresupuesto.Helper
         }
 
 
-        public static dynamic ConsultarPresupuestosProgramas(IContextFactory factory, IOptions<ConnectionDB> connection, PresupuestoProgramRequest request)
+        public static dynamic ConsultarDetallePresupuestosByProgramas(IContextFactory factory, IOptions<ConnectionDB> connection, PresupuestoProgramRequest request)
         {
-            List<PresupuestoProgramResponse> retorno = new List<PresupuestoProgramResponse>();
+            Presupuestodetalle retorno = new Presupuestodetalle();
             using (Aldeas_Context db = factory.Create(connection))
             {
                 var data = from pro in db.TbProgramas
                             join pre in db.TbPresupuestos on pro.id equals pre.idPrograma
 
                            join prep in db.TbPresupuestosProgramas on pre.id equals prep.idPresupuesto
-                           join cec in db.TbProgramasCecos on prep.idProgramaCeco equals cec.id
+                           join cec in db.TbProgramasCecos on prep.idProgramaCecos equals cec.id
                            join puc in db.TbPucs on prep.idRubroPucs equals puc.id
                            join rubro in db.TbRubros on puc.idRubro equals rubro.id
                            where pre.id == request.IdPresupuesto
@@ -259,6 +271,7 @@ namespace ApiRestAldeasPresupuesto.Helper
                               Anio = pre.Anio,
                                CentroCosto = cec.CodigoCeco,
                                SubCentroCosto = cec.SubCentro,
+                               NombreRubro = rubro.Nombre,
                                esNomina = rubro.esNomina,
                                EsPptp=   rubro.EsPptp,
                                CuentaSIIGO =   puc.CuentaSIIGO,
@@ -272,6 +285,7 @@ namespace ApiRestAldeasPresupuesto.Helper
                                NumeroIdentificacion= prep.NumeroIdentificacion,
                                Nombre= prep.Nombre,
                                Asignacion = prep.Asignacion,
+                               Cargo = prep.Cargo,
                                Enero =prep.Enero,
                                Febrero = prep.Febrero,
                                Marzo= prep.Marzo,
@@ -288,7 +302,7 @@ namespace ApiRestAldeasPresupuesto.Helper
                            };
                 if (data.Any())
                 {
-                    retorno = data.ToList(); 
+                    retorno.DetallePresupuesto = data.ToList(); 
                 }
 
             }

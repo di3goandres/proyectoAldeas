@@ -27,6 +27,7 @@ import { ListaonlyprogramaComponent } from './components/03-Programas/listaonlyp
 import { ListaonlyrubrosComponent } from './components/04-Rubros/listaonlyrubros/listaonlyrubros.component';
 import { ListarubrospucsComponent } from './components/04-Rubros/listarubrospucs/listarubrospucs.component';
 import { PrincipalpresupuestoComponent } from './components/05-Presupuesto/principalpresupuesto/principalpresupuesto.component';
+import { ListapresupuestoprogramaComponent } from './components/05-Presupuesto/listapresupuestoprograma/listapresupuestoprograma.component';
 
 
 const routes: Routes = [
@@ -64,6 +65,17 @@ const routes: Routes = [
     path: 'GenerarPresupuesto', component: PrincipalpresupuestoComponent, pathMatch: 'full',
     canActivate: [UsuarioGuard], canLoad: [UsuarioGuard]
   }
+  ,
+  {
+    path: 'VerPresupuesto/:id', component: ListapresupuestoprogramaComponent, pathMatch: 'full',
+    canActivate: [UsuarioGuard], canLoad: [UsuarioGuard]
+  }
+
+  ,
+  {
+    path: 'VerDetallePresupuesto/:id', component: PrincipalpresupuestoComponent, pathMatch: 'full',
+    canActivate: [UsuarioGuard], canLoad: [UsuarioGuard]
+  }
 
 
 ];
@@ -84,7 +96,7 @@ const routes: Routes = [
     FormsModule,
     ComponentsModule,
 
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes, {useHash: true}),
     BrowserAnimationsModule,
     NgbModule
   ],

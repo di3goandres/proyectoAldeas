@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ApiRestAldeas.Models;
 using ApiRestAldeas.Repositories;
+using ApiRestAldeasPresupuesto.EntityFrame;
 using ApiRestAldeasPresupuesto.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -119,7 +120,7 @@ namespace ApiRestAldeas.Controllers
         [AuthorizeUser]
         [HttpPost]
         [Route("/api/presupuesto/programas/addceco/")]
-        public dynamic AgregarCecoAPrograma( CecoUpdateRequest request)
+        public dynamic AgregarCecoAPrograma(CecoUpdateRequest request)
         {
             return _dataModelRepository.AgregarCecoPrograma(request);
         }
@@ -128,12 +129,39 @@ namespace ApiRestAldeas.Controllers
 
         #region PResupuesto
 
-        //[AuthorizeUser]
+        //[Authorize]
         [HttpGet]
-        [Route("/api/presupuesto/getinfodata/")]
-        public dynamic ConsultarDatos()
+        [Route("/api/presupuesto/getinfodata/{id}")]
+        public dynamic ConsultarDatos(long id)
         {
-            return _dataModelRepository.PresupuestoObtenerPogramasCecos();
+            return _dataModelRepository.PresupuestoObtenerPogramasCecos(id);
+        }
+
+
+        [Authorize]
+        [HttpGet]
+        [Route("/api/presupuesto/getdetalle/{id}")]
+        public dynamic ConsultarDetallePresupuestoPrograma(long id)
+        {
+            PresupuestoProgramRequest request = new PresupuestoProgramRequest();
+            request.IdPresupuesto = id;
+            return _dataModelRepository.ConsultarDetallePresupuestoPrograma(request);
+        }
+        [Authorize]
+        [HttpPost]
+        [Route("/api/presupuesto/getlistpresupuestobyProgram/")]
+        public dynamic ConsultarPresupuestoPrograma(PresupuestoProgramRequest request)
+        {
+            return _dataModelRepository.ConsultarListaPresupuestoByProgram(request);
+        }
+        //[Authorize]
+
+        [HttpPost]
+        [Route("/api/presupuesto/storedetalle/")]
+        public dynamic GuardarDetallePresupuesto(DbPresupuestoPrograma request)
+        {
+          
+            return _dataModelRepository.GuardarPresupuestoDetalle(request);
         }
         #endregion 
 

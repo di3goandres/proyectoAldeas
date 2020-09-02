@@ -16,7 +16,7 @@ import { CrearprogramaComponent } from '../crearprograma/crearprograma.component
 })
 export class ListaonlyprogramaComponent implements OnInit {
   displayedColumns: string[] = [ 'id', 'nombre',
-  'fechaCreacion', 'fechaActualizacion', 'estado', 'Actualizar'];
+  'fechaCreacion', 'fechaActualizacion', 'estado', 'Actualizar', 'Ver'];
  dataSource: MatTableDataSource<Programa>;
  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
  @ViewChild(MatSort, {static: true}) sort: MatSort;

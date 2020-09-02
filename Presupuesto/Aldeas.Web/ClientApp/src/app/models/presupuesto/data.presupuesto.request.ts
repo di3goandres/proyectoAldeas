@@ -5,7 +5,7 @@ export class PresupuestoRequest{
 
    idPresupuesto:                 number;
    //servicio seleccionado
-   idProgramaCeco:             number;
+   idProgramaCecos:             number;
    idRubroPucs:                number;
    esNomina:                   boolean;
    esPPTO:                     boolean;

@@ -12,7 +12,7 @@ namespace ApiRestAldeasPresupuesto.EntityFrame
         [Key]
         public long id { get; set; }
         public long idPresupuesto { get; set; }
-        public long idProgramaCeco { get; set; }
+        public long idProgramaCecos { get; set; }
         public long idRubroPucs { get; set; }
         public bool esNomina { get; set; }
         public bool esPPTO { get; set; }

@@ -8,6 +8,10 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PrerubrospucsComponent } from '../prerubrospucs/prerubrospucs.component';
 import { AgregarpresupuestoComponent } from '../agregarpresupuesto/agregarpresupuesto.component';
 import { PresupuestoRequest } from '../../../models/presupuesto/data.presupuesto.request';
+import { ActivatedRoute } from '@angular/router';
+import { PresupuestoListRequest } from 'src/app/models/presupuesto/list.presupuesto.response';
+import { DetallePresupuestoResponse, Detalle } from '../../../models/presupuesto/detalle.presupuesto.response';
+import { RegistroexitosoComponent } from '../../00-Comunes/registroexitoso/registroexitoso.component';
 
 @Component({
   selector: 'app-principalpresupuesto',
@@ -15,8 +19,10 @@ import { PresupuestoRequest } from '../../../models/presupuesto/data.presupuesto
   styleUrls: ['./principalpresupuesto.component.css']
 })
 export class PrincipalpresupuestoComponent implements OnInit {
+  programaRequest = new PresupuestoListRequest()
+  dataSourcePresupuesto: Detalle[] = [];
   myControl = new FormControl();
-  programas: PresupuestoPrograma[] = []
+  programas: PresupuestoPrograma
   centroCostos: PresupuestoCeco[] = []
   centroCostosSeleccionado: PresupuestoCeco[] = []
   subCentros: PresupuestoSubCeco[] = []
@@ -27,7 +33,7 @@ export class PrincipalpresupuestoComponent implements OnInit {
   guardar = new PresupuestoRequest();
   pucs: PresupuestoPuc[] = []
   pucSeleccionados: PresupuestoPuc[] = []
-  pubGuardar= new PresupuestoPuc() ; 
+  pubGuardar = new PresupuestoPuc();
   idPrograma = 0;
   servicioSeleccionado = 0;
 
@@ -38,6 +44,8 @@ export class PrincipalpresupuestoComponent implements OnInit {
 
   constructor(
     private presupuestoService: PresupuestoService,
+    private route: ActivatedRoute,
+
     private modalService: NgbModal) { }
 
 
@@ -52,79 +60,107 @@ export class PrincipalpresupuestoComponent implements OnInit {
   onChangeCategoria(value) {
 
 
-    this.pubGuardar= new PresupuestoPuc() ;  
+    this.pubGuardar = new PresupuestoPuc();
     this.pucSeleccionados = this.pucs.filter(item => {
       return item.idCategoria == value
     })
 
     this.categoriaSeleccionada = this.categorias.find(item => {
-      return item.id== value;
+      return item.id == value;
     })
- 
+
   }
   onChangeCeco(value) {
- 
+
     this.subCentrosSeleccionado = this.subCentros.filter(item => {
       return item.idCeco == value
     })
-  
+
   }
 
-  onChangeServicio(value){
+  onChangeServicio(value) {
     this.servicioSeleccionado = value
+    this.guardar.idProgramaCecos = this.servicioSeleccionado
   }
- 
 
-  SeleccionarPUC(element){
-    const modalRef = this.modalService.open(PrerubrospucsComponent, {size: 'lg'});
-    modalRef.componentInstance.rubrosPuc =this.pucSeleccionados
+
+  SeleccionarPUC(element) {
+    const modalRef = this.modalService.open(PrerubrospucsComponent, { size: 'lg' });
+    modalRef.componentInstance.rubrosPuc = this.pucSeleccionados
     modalRef.result.then((result) => {
       this.pubGuardar = result;
+      this.guardar.idRubroPucs = this.pubGuardar.id
+      
+    
       console.log(result)
-     
+
     }, (reason) => {
-     
+
       if (reason === 'OK') {
-     
-       
+
+
       }
     });
   }
 
-  AgregarPresupuesto(){
-    this.guardar.idPresupuesto =  this.idPrograma
+  openExitoso(){
+    const modalRef = this.modalService.open(RegistroexitosoComponent,
+       {size: 'md'});
+   
+    modalRef.result.then((result) => {
+    
+    
+    }, (reason) => {
+    
+    
+    });
+  }
+  AgregarPresupuesto() {
 
 
-    const modalRef = this.modalService.open(AgregarpresupuestoComponent, {size: 'lg'});
-    modalRef.componentInstance.datoRubro =this.categoriaSeleccionada;
-    modalRef.componentInstance.dataPuc =this.pubGuardar  ;
+    const modalRef = this.modalService.open(AgregarpresupuestoComponent, { size: 'lg' });
+    modalRef.componentInstance.datoRubro = this.categoriaSeleccionada;
+    modalRef.componentInstance.dataPuc = this.pubGuardar;
+    modalRef.componentInstance.guardar = this.guardar
     modalRef.result.then((result) => {
       this.guardar = result;
-     
-   
 
 
-      console.log( this.guardar)
+      this.openExitoso()
+      this.getDetalle() 
+    
 
-     
+
     }, (reason) => {
-     
+
       if (reason === 'OK') {
-     
-       
+
+
       }
     });
   }
 
 
-
-  ngOnInit(): void {
-
-    
-    this.presupuestoService.getDataInicial().subscribe(
+  getDetalle() {
+    this.presupuestoService.getDetallePresupuesto(this.programaRequest.idPresupuesto).subscribe(
+     
       OK => {
-        this.programas = []
-        this.programas.push(...OK.programas)
+        console.log(OK)
+        this.dataSourcePresupuesto.push(...OK.detallePresupuesto)
+       },
+      Error => { console.log(Error) },
+
+    )
+  }
+  ngOnInit(): void {
+    var y: number = +this.route.snapshot.paramMap.get('id');
+    this.programaRequest.idPresupuesto = y
+    this.guardar.idPresupuesto = this.programaRequest.idPresupuesto
+
+    this.presupuestoService.getDataInicial(this.programaRequest.idPresupuesto).subscribe(
+      OK => {
+        this.programas = OK.programas[0]
+        // this.programas.push(...OK.programas)
         this.centroCostos.push(...OK.cecos)
 
         this.subCentros = [];
@@ -135,8 +171,8 @@ export class PrincipalpresupuestoComponent implements OnInit {
         this.pucs.push(...OK.pucs)
         this.pucSeleccionados = []
 
-
-        console.log(OK)
+        this.onChange(this.programas.id)
+        this.getDetalle();
       },
       Error => { console.log(Error) },
 

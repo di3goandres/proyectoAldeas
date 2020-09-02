@@ -1,0 +1,69 @@
+<mat-card class="example-card" *ngIf="programa">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>Programa: {{programa.nombre | uppercase}}</mat-card-title>
+      <mat-card-subtitle>Lista de Presupuesto</mat-card-subtitle>
+    </mat-card-header>
+  
+    <mat-card-content>
+  
+  
+    
+  
+      <div class="mat-elevation-z8">
+        <table id="customers" mat-table [dataSource]="dataSource" matSort>
+  
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> # </th>
+            <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+          </ng-container>
+  
+          <!-- Name Column -->
+          <ng-container matColumnDef="anio">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Año </th>
+            <td mat-cell *matCellDef="let row"> {{row.anio}} </td>
+          </ng-container>
+  
+          <!-- Color Column -->
+          <ng-container matColumnDef="coberturaAnual">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Cobertura Anual </th>
+            <td mat-cell *matCellDef="let row"> {{row.coberturaAnual | number}} </td>
+          </ng-container>
+          <ng-container matColumnDef="coberturaMensual">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha coberturaMensual </th>
+            <td mat-cell *matCellDef="let row"> {{row.coberturaMensual |number}} </td>
+          </ng-container>
+  
+  
+          <ng-container matColumnDef="coberturaMensualEsperada">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Cobertura Mensual Esperada </th>
+            <td mat-cell *matCellDef="let row"> {{row.coberturaMensualEsperada |number}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="coberturasCasas">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Cobertura Casas </th>
+            <td mat-cell *matCellDef="let row"> {{row.coberturasCasas |number}} </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="Ver">
+            <th mat-header-cell *matHeaderCellDef> Ver Presupuesto </th>
+            <td mat-cell *matCellDef="let element">
+              <button type="button" mat-mini-fab class="buttton-aldea" aria-label="fecha"
+              [routerLink]="['/VerDetallePresupuesto/', element.id]">
+                <mat-icon>open_in_new</mat-icon>
+              </button> </td>
+          </ng-container> 
+  
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
+       
+        </table>
+  
+        <mat-paginator [pageSizeOptions]="[10, 20, 30, 50]"></mat-paginator>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+  
+    </mat-card-actions>
+  </mat-card>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using ApiRestAldeas.Models;
+using ApiRestAldeasPresupuesto.EntityFrame;
 using ApiRestAldeasPresupuesto.Models;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
@@ -48,10 +49,14 @@ namespace ApiRestAldeas.Repositories
         #endregion
 
         #region presupuesto
-        dynamic PresupuestoObtenerPogramasCecos();
+        dynamic PresupuestoObtenerPogramasCecos(long request);
+
+        dynamic ConsultarDetallePresupuestoPrograma(PresupuestoProgramRequest request);
+
+        dynamic ConsultarListaPresupuestoByProgram(PresupuestoProgramRequest request);
 
 
-
+        dynamic GuardarPresupuestoDetalle(DbPresupuestoPrograma request);
         #endregion
 
 

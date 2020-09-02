@@ -46,6 +46,11 @@ import { AgregarcecoaprogramaComponent } from './03-Programas/agregarcecoaprogra
 import { PrincipalpresupuestoComponent } from './05-Presupuesto/principalpresupuesto/principalpresupuesto.component';
 import { PrerubrospucsComponent } from './05-Presupuesto/prerubrospucs/prerubrospucs.component';
 import { AgregarpresupuestoComponent } from './05-Presupuesto/agregarpresupuesto/agregarpresupuesto.component';
+import { CrearpresupuestoComponent } from './05-Presupuesto/crearpresupuesto/crearpresupuesto.component';
+import { ListapresupuestoprogramaComponent } from './05-Presupuesto/listapresupuestoprograma/listapresupuestoprograma.component';
+import { DetallepresupuestoprogramaComponent } from './05-Presupuesto/detallepresupuestoprograma/detallepresupuestoprograma.component';
+import { DetalleFamiliarpresupuestoprogramaComponent } from './05-Presupuesto/detalle-familiarpresupuestoprograma/detalle-familiarpresupuestoprograma.component';
+import { DetalleOtrospresupuestoprogramaComponent } from './05-Presupuesto/detalle-otrospresupuestoprograma/detalle-otrospresupuestoprograma.component';
 
 @NgModule({
   declarations: [LoginComponent, HomeComponent,
@@ -56,7 +61,7 @@ import { AgregarpresupuestoComponent } from './05-Presupuesto/agregarpresupuesto
     ListaprogramasComponent, CrearprogramaComponent, RegistroexitosoComponent, 
     ActualizarprogramaComponent, ListaonlyprogramaComponent, ActualizarcecoComponent,
      ListaonlyrubrosComponent, ActualizarcategoriaComponent, ListarubrospucsComponent,
-      ActualizarpucsComponent, CrearcategoriaComponent, AgregarpucarubroComponent, AgregarcecoaprogramaComponent, PrincipalpresupuestoComponent, PrerubrospucsComponent, AgregarpresupuestoComponent],
+      ActualizarpucsComponent, CrearcategoriaComponent, AgregarpucarubroComponent, AgregarcecoaprogramaComponent, PrincipalpresupuestoComponent, PrerubrospucsComponent, AgregarpresupuestoComponent, CrearpresupuestoComponent, ListapresupuestoprogramaComponent, DetallepresupuestoprogramaComponent, DetalleFamiliarpresupuestoprogramaComponent, DetalleOtrospresupuestoprogramaComponent],
   imports: [
 
     CommonModule,

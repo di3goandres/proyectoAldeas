@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ApiRestAldeasPresupuesto.EntityFrame;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,7 +15,7 @@ namespace ApiRestAldeasPresupuesto.Models
     {
         public long id { get; set; }
 
-         public string Programa { get; set; }
+        public string Programa { get; set; }
 
         public int Anio { get; set; }
 
@@ -22,9 +23,11 @@ namespace ApiRestAldeasPresupuesto.Models
 
         public int SubCentroCosto { get; set; }
 
+        public string NombreRubro { get; set; }
         public bool esNomina { get; set; }
 
         public bool EsPptp { get; set; }
+        public string Cargo { get; set; }
 
         public string CuentaSIIGO { get; set; }
 
@@ -64,19 +67,18 @@ namespace ApiRestAldeasPresupuesto.Models
         public Decimal Octubre { get; set; }
         public Decimal Noviembre { get; set; }
         public Decimal Diciembre { get; set; }
-      
 
+    }
+    public class Presupuestodetalle
+    {
 
+        public List<PresupuestoProgramResponse> DetallePresupuesto { get; set; }
+    }
 
+    public class PresupuestoByProgramResponse
+    {
 
-
-
-
-
-
-
-
-
-
+        public DbProgramas programa { get; set; }
+        public List<DbPresupuesto> presupuesto { get; set; }
     }
 }

@@ -5,6 +5,7 @@ import { PresupuestoRequest } from '../../../models/presupuesto/data.presupuesto
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Task } from '../../../models/checkbox';
 import { MatTableDataSource } from '@angular/material/table';
+import { PresupuestoService } from '../../../services/presupuesto.service';
 
 @Component({
   selector: 'app-agregarpresupuesto',
@@ -15,10 +16,10 @@ export class AgregarpresupuestoComponent implements OnInit {
 
   @Input() datoRubro: PresupuestoCategoria;
   @Input() dataPuc: PresupuestoPuc;
-
+  @Input() guardar = new PresupuestoRequest();
 
   pucMostrar: PresupuestoRequest[] = [];
-  guardar = new PresupuestoRequest();
+
   formgroupNomina: FormGroup;
   formgroupNormal: FormGroup;
   formgroupFamiliar: FormGroup;
@@ -56,7 +57,13 @@ export class AgregarpresupuestoComponent implements OnInit {
     ]
   };
 
+  constructor(
+    private activeModal: NgbActiveModal,
+    private _formBuilder: FormBuilder,
+    private presupuestoService: PresupuestoService
 
+
+  ) { }
 
   onNotificar(event: Task, Tipo: any) {
 
@@ -84,7 +91,7 @@ export class AgregarpresupuestoComponent implements OnInit {
 
   Cambiar() {
     this.onNotificar(this.presupuestoCheck, "")
- 
+
   }
 
   dejarEnceros() {
@@ -146,11 +153,7 @@ export class AgregarpresupuestoComponent implements OnInit {
         break;
     }
   }
-  constructor(
-    private activeModal: NgbActiveModal,
-    private _formBuilder: FormBuilder,
 
-  ) { }
 
   validarFomularios() {
     let seleccionados = this.presupuestoCheck.subtasks.filter(t => {
@@ -159,25 +162,25 @@ export class AgregarpresupuestoComponent implements OnInit {
 
     let numeroMeses = seleccionados.length;
     if (this.datoRubro.esNomina) {
-      this.permitirGuardar = this.formgroupNomina.valid && this.formgroupNormal.valid && numeroMeses > 0 
-     
+      this.permitirGuardar = this.formgroupNomina.valid && this.formgroupNormal.valid && numeroMeses > 0
+
     }
     if (this.datoRubro.esppto) {
-      this.permitirGuardar = this.formgroupFamiliar.valid && this.formgroupNormal.valid && numeroMeses > 0 
-     
+      this.permitirGuardar = this.formgroupFamiliar.valid && this.formgroupNormal.valid && numeroMeses > 0
+
     }
-    if(this.datoRubro.esppto ==false &&this.datoRubro.esNomina==false ){
-      this.permitirGuardar =  this.formgroupNormal.valid && numeroMeses > 0 
-    
+    if (this.datoRubro.esppto == false && this.datoRubro.esNomina == false) {
+      this.permitirGuardar = this.formgroupNormal.valid && numeroMeses > 0
+
     }
-  
+
   }
   ngOnInit(): void {
     this.permitirGuardar = false;
     this.pucMostrar = [];
     this.pucMostrar.push(this.guardar);
-   
-    this.guardar.idRubroPucs =  this.dataPuc.id
+
+ 
     this.guardar.esNomina = this.datoRubro.esNomina;
     this.guardar.esPPTO = this.datoRubro.esppto;
 
@@ -216,7 +219,16 @@ export class AgregarpresupuestoComponent implements OnInit {
   }
 
   guardarData() {
-    this.activeModal.close(this.guardar)
+    console.log(this.guardar)
+    this.presupuestoService.guardarPresupuesto(this.guardar).subscribe(
+      OK => {
+
+        this.activeModal.close(this.guardar)
+      },
+      Error => { console.log(Error) },
+
+    )
+
   }
 
 

@@ -10,7 +10,8 @@ export interface DetallePresupuestoResponse {
     detallePresupuesto: Detalle[];
 }
 
-export interface Detalle {
+export class Detalle {
+    constructor(){}
     id:                   number;
     programa:             string;
     anio:                 number;

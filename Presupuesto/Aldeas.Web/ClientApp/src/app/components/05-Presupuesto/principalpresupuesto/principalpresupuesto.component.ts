@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { PresupuestoService } from '../../../services/presupuesto.service';
 import { PresupuestoPrograma, PresupuestoCeco, PresupuestoSubCeco, PresupuestoCategoria, PresupuestoPuc } from '../../../models/presupuesto/data.presupuesto.response';
 import { FormControl } from '@angular/forms';
@@ -12,6 +12,9 @@ import { ActivatedRoute } from '@angular/router';
 import { PresupuestoListRequest } from 'src/app/models/presupuesto/list.presupuesto.response';
 import { DetallePresupuestoResponse, Detalle } from '../../../models/presupuesto/detalle.presupuesto.response';
 import { RegistroexitosoComponent } from '../../00-Comunes/registroexitoso/registroexitoso.component';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource, MatTable } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-principalpresupuesto',
@@ -19,6 +22,23 @@ import { RegistroexitosoComponent } from '../../00-Comunes/registroexitoso/regis
   styleUrls: ['./principalpresupuesto.component.css']
 })
 export class PrincipalpresupuestoComponent implements OnInit {
+
+  /*
+  detalle familiares
+  */
+  mostrar = false;
+  dataSourceFamiliar: MatTableDataSource<Detalle>;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  displayedColumns: string[] = ['id', 'centroCosto',
+    'subCentroCosto', 'nombreRubro', 'NoCasa', 'NoKids',
+    'nombreCuenta', 'cuentaSIIGO', 'Enero', 'Febrero',
+    'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre',
+    'Octubre', 'Noviembre', 'Diciembre'];
+  @ViewChild('tableFamiliar') tableFamilia: MatTable<Detalle>;
+  /*
+    Fin detalle familiares
+    */
   programaRequest = new PresupuestoListRequest()
   dataSourcePresupuesto: Detalle[] = [];
   myControl = new FormControl();
@@ -45,7 +65,7 @@ export class PrincipalpresupuestoComponent implements OnInit {
   constructor(
     private presupuestoService: PresupuestoService,
     private route: ActivatedRoute,
-
+    private changeDetectorRefs: ChangeDetectorRef,
     private modalService: NgbModal) { }
 
 
@@ -90,8 +110,8 @@ export class PrincipalpresupuestoComponent implements OnInit {
     modalRef.result.then((result) => {
       this.pubGuardar = result;
       this.guardar.idRubroPucs = this.pubGuardar.id
-      
-    
+
+
       console.log(result)
 
     }, (reason) => {
@@ -103,16 +123,16 @@ export class PrincipalpresupuestoComponent implements OnInit {
     });
   }
 
-  openExitoso(){
+  openExitoso() {
     const modalRef = this.modalService.open(RegistroexitosoComponent,
-       {size: 'md'});
-   
+      { size: 'md' });
+
     modalRef.result.then((result) => {
-    
-    
+
+
     }, (reason) => {
-    
-    
+
+
     });
   }
   AgregarPresupuesto() {
@@ -127,8 +147,8 @@ export class PrincipalpresupuestoComponent implements OnInit {
 
 
       this.openExitoso()
-      this.getDetalle() 
-    
+      this.getDetalle()
+      this.getFamiliar();
 
 
     }, (reason) => {
@@ -143,17 +163,37 @@ export class PrincipalpresupuestoComponent implements OnInit {
 
   getDetalle() {
     this.presupuestoService.getDetallePresupuesto(this.programaRequest.idPresupuesto).subscribe(
-     
+
       OK => {
         console.log(OK)
         this.dataSourcePresupuesto = []
         this.dataSourcePresupuesto.push(...OK.detallePresupuesto)
-       },
+        this.changeDetectorRefs.detectChanges();
+        this.getFamiliar();
+      },
       Error => { console.log(Error) },
 
     )
   }
+  getFamiliar() {
+    //  this.changeDetectorRefs.detectChanges();
+
+    let detalleList = this.dataSourcePresupuesto.filter(item => {
+      return item.esPptp === true;
+    })
+    this.mostrar = true;
+    console.log(detalleList)
+    // this.dataSourceFamiliar =  new MatTableDataSource()
+    this.dataSourceFamiliar = new MatTableDataSource(detalleList);
+    this.dataSourceFamiliar.paginator = this.paginator;
+    this.dataSourceFamiliar.sort = this.sort
+  }
   ngOnInit(): void {
+     this.getDetalle();
+    // let inicio:  Detalle[]=[];
+    // this.dataSourceFamiliar = new MatTableDataSource(inicio);
+    // this.dataSourceFamiliar.paginator = this.paginator;
+    // this.dataSourceFamiliar.sort = this.sort
     var y: number = +this.route.snapshot.paramMap.get('id');
     this.programaRequest.idPresupuesto = y
     this.guardar.idPresupuesto = this.programaRequest.idPresupuesto
@@ -173,7 +213,8 @@ export class PrincipalpresupuestoComponent implements OnInit {
         this.pucSeleccionados = []
 
         this.onChange(this.programas.id)
-        this.getDetalle();
+       
+
       },
       Error => { console.log(Error) },
 

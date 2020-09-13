@@ -162,6 +162,7 @@ export class PrincipalpresupuestoComponent implements OnInit {
 
 
   getDetalle() {
+    this.dataSourcePresupuesto = []
     this.presupuestoService.getDetallePresupuesto(this.programaRequest.idPresupuesto).subscribe(
 
       OK => {
@@ -189,7 +190,7 @@ export class PrincipalpresupuestoComponent implements OnInit {
     this.dataSourceFamiliar.sort = this.sort
   }
   ngOnInit(): void {
-     this.getDetalle();
+    
     // let inicio:  Detalle[]=[];
     // this.dataSourceFamiliar = new MatTableDataSource(inicio);
     // this.dataSourceFamiliar.paginator = this.paginator;
@@ -197,7 +198,7 @@ export class PrincipalpresupuestoComponent implements OnInit {
     var y: number = +this.route.snapshot.paramMap.get('id');
     this.programaRequest.idPresupuesto = y
     this.guardar.idPresupuesto = this.programaRequest.idPresupuesto
-
+    this.getDetalle();
     this.presupuestoService.getDataInicial(this.programaRequest.idPresupuesto).subscribe(
       OK => {
         this.programas = OK.programas[0]

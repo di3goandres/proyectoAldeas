@@ -1,53 +1,58 @@
 <body>
   <!-- <app-nav-menu></app-nav-menu> -->
- 
   <mat-menu #menu="matMenu">
-    <button mat-menu-item  [routerLink]="['/Home']">
+    <button mat-menu-item [routerLink]="['/Home']">
       <mat-icon>home</mat-icon>
       <span>Home</span>
     </button>
-    <button mat-menu-item  [routerLink]="['/Programas']">
+    <button mat-menu-item [matMenuTriggerFor]="configuracion">
+      <mat-icon>handyman</mat-icon> <span>Presupuesto</span>
+    </button>
+
+
+
+  </mat-menu>
+  <mat-menu #configuracion="matMenu">
+
+    <button mat-menu-item [routerLink]="['/Programas']">
       <mat-icon>dashboard</mat-icon>
       <span>Programas/Cecos</span>
     </button>
-    <button mat-menu-item  [routerLink]="['/OnlyProgramas']">
+    <button mat-menu-item [routerLink]="['/OnlyProgramas']">
       <mat-icon>dashboard</mat-icon>
       <span>Programas</span>
     </button>
 
-    <button mat-menu-item  [routerLink]="['/OnlyCategorias']">
+    <button mat-menu-item [routerLink]="['/OnlyCategorias']">
       <mat-icon>dashboard</mat-icon>
       <span>Categorias</span>
     </button>
-    <button mat-menu-item  [routerLink]="['/CategoriasPucs']">
+    <button mat-menu-item [routerLink]="['/CategoriasPucs']">
       <mat-icon>dashboard</mat-icon>
       <span>Categorias /Pucs</span>
     </button>
-      <button mat-menu-item  [routerLink]="['/GenerarPresupuesto']">
-      <mat-icon>list</mat-icon>
-      <span>Presupuesto</span>
-    </button>
+ 
   </mat-menu>
   <div class="container">
     <app-heaader></app-heaader>
 
-    <mat-toolbar color="main-green-toolba" class="main-green-toolbar" *ngIf="currentUser!= null">
+    <mat-toolbar color="main-green-toolbar" class="main-green-toolbar" *ngIf="currentUser!= null">
       <!-- <button   [routerLink]="['/Home']" mat-icon-button class="menuButton" aria-label="Example icon-button with menu icon">
         <mat-icon>menu</mat-icon>
       </button> -->
-      <button mat-icon-button [matMenuTriggerFor]="menu" class="menuButton"
-       aria-label="Example icon-button with a menu">
+
+      <button [matMenuTriggerFor]="menu" mat-icon-button  class="main-green-toolbar">
         <mat-icon>menu</mat-icon>
       </button>
       <span style="color: white;">Bienvenido {{currentUser.displayName}}</span>
       <span style="color: white;" class="example-spacer"></span>
-  
-          <div> <a   style="color: white;" [routerLink]="['logout/1']">Salir</a></div>
-  
+
+      <div> <a style="color: white;" [routerLink]="['logout/1']">Salir</a></div>
+
     </mat-toolbar>
-  
-  
-  
+
+
+
     <router-outlet></router-outlet>
   </div>
 </body>

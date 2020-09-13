@@ -18,6 +18,8 @@ import { MatTableModule } from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatTabsModule} from '@angular/material/tabs';
+
 
 import { MatMomentDateModule, MomentDateAdapter } from "@angular/material-moment-adapter";
 import { BrowserModule } from '@angular/platform-browser';
@@ -51,6 +53,8 @@ import { ListapresupuestoprogramaComponent } from './05-Presupuesto/listapresupu
 import { DetallepresupuestoprogramaComponent } from './05-Presupuesto/detallepresupuestoprograma/detallepresupuestoprograma.component';
 import { DetalleFamiliarpresupuestoprogramaComponent } from './05-Presupuesto/detalle-familiarpresupuestoprograma/detalle-familiarpresupuestoprograma.component';
 import { DetalleOtrospresupuestoprogramaComponent } from './05-Presupuesto/detalle-otrospresupuestoprograma/detalle-otrospresupuestoprograma.component';
+import { GenerarPresupuestoComponent } from './05-Presupuesto/generar-presupuesto/generar-presupuesto.component';
+import { ActualizarPresupuestoComponent } from './05-Presupuesto/actualizar-presupuesto/actualizar-presupuesto.component';
 
 @NgModule({
   declarations: [LoginComponent, HomeComponent,
@@ -61,7 +65,7 @@ import { DetalleOtrospresupuestoprogramaComponent } from './05-Presupuesto/detal
     ListaprogramasComponent, CrearprogramaComponent, RegistroexitosoComponent, 
     ActualizarprogramaComponent, ListaonlyprogramaComponent, ActualizarcecoComponent,
      ListaonlyrubrosComponent, ActualizarcategoriaComponent, ListarubrospucsComponent,
-      ActualizarpucsComponent, CrearcategoriaComponent, AgregarpucarubroComponent, AgregarcecoaprogramaComponent, PrincipalpresupuestoComponent, PrerubrospucsComponent, AgregarpresupuestoComponent, CrearpresupuestoComponent, ListapresupuestoprogramaComponent, DetallepresupuestoprogramaComponent, DetalleFamiliarpresupuestoprogramaComponent, DetalleOtrospresupuestoprogramaComponent],
+      ActualizarpucsComponent, CrearcategoriaComponent, AgregarpucarubroComponent, AgregarcecoaprogramaComponent, PrincipalpresupuestoComponent, PrerubrospucsComponent, AgregarpresupuestoComponent, CrearpresupuestoComponent, ListapresupuestoprogramaComponent, DetallepresupuestoprogramaComponent, DetalleFamiliarpresupuestoprogramaComponent, DetalleOtrospresupuestoprogramaComponent, GenerarPresupuestoComponent, ActualizarPresupuestoComponent],
   imports: [
 
     CommonModule,
@@ -86,7 +90,8 @@ import { DetalleOtrospresupuestoprogramaComponent } from './05-Presupuesto/detal
     MatRadioModule,
     MatMenuModule,
     MatPaginatorModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatTabsModule
   ],
   providers: [
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },

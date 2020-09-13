@@ -13,6 +13,7 @@ import { ComponentsModule } from './components/components.module';
 import { HomeComponent } from './components/02-Home/home/home.component';
 
 
+import {MatTabsModule} from '@angular/material/tabs';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -95,7 +96,7 @@ const routes: Routes = [
     HttpClientModule,
     FormsModule,
     ComponentsModule,
-
+    MatTabsModule,
     RouterModule.forRoot(routes, {useHash: true}),
     BrowserAnimationsModule,
     NgbModule

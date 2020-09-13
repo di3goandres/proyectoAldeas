@@ -1,3 +1,8 @@
 body > div.cdk-overlay-container {
     z-index: 1100 !important;
  }
+
+ .modal{
+    z-index: 100 !important;
+
+ }

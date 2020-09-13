@@ -85,7 +85,9 @@ export class CheckboxComponent implements OnInit {
 
 
     }
+    task.completed = true;
     this.taskSeleccionado = task;
+
 
     this.datoSalid.emit(this.taskSeleccionado);
 

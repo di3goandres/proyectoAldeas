@@ -44,4 +44,6 @@ export class Detalle {
     octubre:              number;
     noviembre:            number;
     diciembre:            number;
+    total:                number;
+
 }

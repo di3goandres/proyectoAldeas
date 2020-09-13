@@ -17,10 +17,11 @@ export class DetalleFamiliarpresupuestoprogramaComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   displayedColumns: string[] = ['id', 'centroCosto',
-    'subCentroCosto', 'nombreRubro', 'NoCasa', 'NoKids',
+    'subCentroCosto', 'nombreRubro', 'noCasa', 'noKids',
     'nombreCuenta', 'cuentaSIIGO', 'Enero', 'Febrero',
     'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre',
-    'Octubre', 'Noviembre', 'Diciembre'];
+    'Octubre', 'Noviembre', 'Diciembre', 'total',
+    'detalleGasto', 'facility', 'cuentaCotable', 'notaIngles'];
   constructor() { }
 
   ngOnInit(): void {
@@ -31,6 +32,10 @@ export class DetalleFamiliarpresupuestoprogramaComponent implements OnInit {
     this.dataSource = new MatTableDataSource(this.detalle);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort
+  }
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
 

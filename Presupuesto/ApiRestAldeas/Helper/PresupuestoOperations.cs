@@ -14,14 +14,29 @@ namespace ApiRestAldeasPresupuesto.Helper
     public class PresupuestoOperations
     {
 
+        //llega el id del presupuesto
         public static dynamic ConsultarProgramas(IContextFactory factory, IOptions<ConnectionDB> connection, long id)
         {
             PresupuestoResponse retorno = new PresupuestoResponse();
             using (Aldeas_Context db = factory.Create(connection))
             {
+                long idPrograma = 0;
+
+                var presupuesto = from pro in db.TbPresupuestos
+                                  where pro.id == id
+                                  && pro.id == id
+                                  select new 
+                                  {
+                                      Id = pro.idPrograma,
+                                   
+                                  };
+                if(presupuesto.Any())
+                {
+                    idPrograma = presupuesto.FirstOrDefault().Id;
+                }
                 var data = from pro in db.TbProgramas
                            where pro.Estado == true
-                           && pro.id == id
+                           && pro.id == idPrograma
                            select new ProgramPresupuesto
                            {
                                Id = pro.id,
@@ -33,7 +48,7 @@ namespace ApiRestAldeasPresupuesto.Helper
                 }
                 var dataCecos = from cecos in db.TbProgramasCecos
                                 where cecos.Estado == true
-                                   && cecos.idPrograma == id
+                                   && cecos.idPrograma == idPrograma
                                 select new PresupuestoProgramCeco
                                 {
                                     IdPrograma = cecos.idPrograma,
@@ -48,7 +63,7 @@ namespace ApiRestAldeasPresupuesto.Helper
 
                 var dataSubCecos = from cecos in db.TbProgramasCecos
                                    where cecos.Estado == true
-                                       && cecos.idPrograma == id
+                                       && cecos.idPrograma == idPrograma
                                    select new PresupuestoSubCeco
                                    {
                                        IdCeco = cecos.CodigoCeco,
@@ -78,6 +93,7 @@ namespace ApiRestAldeasPresupuesto.Helper
                 }
                 var dataPucs = from puc in db.TbPucs
                                where puc.Estado == true
+                               
                                select new PresupuestoCategoriaPuc
                                {
 
@@ -208,6 +224,8 @@ namespace ApiRestAldeasPresupuesto.Helper
         }
 
 
+
+
         public static dynamic ActualizarPresupuestoProgramas(IContextFactory factory, IOptions<ConnectionDB> connection, DbPresupuestoPrograma datos)
         {
 
@@ -297,7 +315,8 @@ namespace ApiRestAldeasPresupuesto.Helper
                                Septiembre = prep.Septiembre,
                                Octubre = prep.Octubre,
                                Noviembre = prep.Noviembre,
-                               Diciembre=  prep.Diciembre
+                               Diciembre=  prep.Diciembre,
+                               Total = (prep.Enero + prep.Febrero + prep.Marzo + prep.Abril+ prep.Mayo + prep.Junio + prep.Agosto + prep.Septiembre + prep.Octubre + prep.Noviembre+ prep.Diciembre)
 
                            };
                 if (data.Any())

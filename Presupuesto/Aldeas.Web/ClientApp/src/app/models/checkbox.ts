@@ -17,7 +17,8 @@ export class CheckBox {
 
 
 
-export interface Task {
+export class Task {
+    constructor(){}
    
     pregunta:string;
     name: string;
@@ -25,6 +26,7 @@ export interface Task {
     esOtro: boolean;
     color: ThemePalette;
     formValid?:boolean;
+    disabled?:boolean
     subtasks?: Task[];
     valorOtro?:string;
 

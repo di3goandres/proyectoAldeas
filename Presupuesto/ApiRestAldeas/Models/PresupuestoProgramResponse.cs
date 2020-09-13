@@ -68,6 +68,11 @@ namespace ApiRestAldeasPresupuesto.Models
         public Decimal Noviembre { get; set; }
         public Decimal Diciembre { get; set; }
 
+        public Decimal Total { get; set; }
+
+
+
+
     }
     public class Presupuestodetalle
     {

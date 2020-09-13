@@ -154,7 +154,7 @@ namespace ApiRestAldeas.Controllers
         {
             return _dataModelRepository.ConsultarListaPresupuestoByProgram(request);
         }
-        //[Authorize]
+        [Authorize]
 
         [HttpPost]
         [Route("/api/presupuesto/storedetalle/")]
@@ -162,6 +162,21 @@ namespace ApiRestAldeas.Controllers
         {
           
             return _dataModelRepository.GuardarPresupuestoDetalle(request);
+        }
+
+        [Authorize]
+        [HttpPost]
+        [Route("/api/presupuesto/store/")]
+        public dynamic GuardarPresupuesto(DbPresupuesto request)
+        {
+            return _dataModelRepository.GuardarPresupuesto(request);
+        }
+        [Authorize]
+        [HttpPost]
+        [Route("/api/presupuesto/update/")]
+        public dynamic ActualizarPresupuesto(DbPresupuesto request)
+        {
+            return _dataModelRepository.ActualizarPresupuesto(request);
         }
         #endregion 
 

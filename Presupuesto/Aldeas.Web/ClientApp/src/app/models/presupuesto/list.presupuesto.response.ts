@@ -3,7 +3,7 @@ export interface ListaPresupuestoResponse {
   presupuesto: PresupuestoL[];
 }
 
-export interface PresupuestoL {
+export class PresupuestoL {
   id: number;
   idPrograma: number;
   anio: number;

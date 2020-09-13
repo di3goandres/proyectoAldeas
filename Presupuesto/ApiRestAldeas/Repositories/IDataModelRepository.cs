@@ -57,6 +57,13 @@ namespace ApiRestAldeas.Repositories
 
 
         dynamic GuardarPresupuestoDetalle(DbPresupuestoPrograma request);
+
+
+        dynamic GuardarPresupuesto(DbPresupuesto request);
+
+        dynamic ActualizarPresupuesto(DbPresupuesto request);
+
+
         #endregion
 
 

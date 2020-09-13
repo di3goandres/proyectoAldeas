@@ -8,15 +8,17 @@
                     formControlName="Estado" required>
                     <li *ngFor="let task of tasks" class="break-word">
 
-                        <mat-radio-button [value]="task.name" (change)="onChange(task)" required>
-                           <span class="break-word"> {{task.name}}</span>
+                        <mat-radio-button [value]="task.name" (change)="onChange(task)" required
+                        [disabled]="task.disabled"
+                        >
+                           <span class="break-word"> {{task.name}} </span>
 
                         </mat-radio-button>
                         
                     </li>
                 
                     
-                    <mat-form-field appearance="fill"
+                    <!-- <mat-form-field appearance="fill"
                   
                     
                     *ngIf="(mostrarOtro)">
@@ -26,7 +28,7 @@
                         [(ngModel)]="otroValor"
                             (change)="onChangeValorOtro()" required >
 
-                    </mat-form-field>
+                    </mat-form-field> -->
                 </mat-radio-group>
             </ul>
     </div>

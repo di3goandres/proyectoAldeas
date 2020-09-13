@@ -2,31 +2,43 @@
 
 export interface CentrosResponse {
     centrosCostos: CentrosCosto[];
-    subCentro:     SubCentro[];
+    subCentro: SubCentro[];
 }
 
 export interface CentrosCosto {
     codigoCentro: number;
-    nombre:       string;
+    nombre: string;
 }
 
 export interface SubCentro {
-    codigoCentro:    number;
+    codigoCentro: number;
     codigoSubCentro: number;
-    nombre:          string;
+    nombre: string;
 }
 
 
-export interface Respuesta{
-    id:    number;
+export interface Respuesta {
+    id: number;
     code: number;
-    status:  string;
+    status: string;
     message: string;
 }
 
 
-export interface SelectGlobal {
+export class SelectGlobal {
     value: string;
     viewValue: string;
-  }
-  
+}
+
+export class SelectItem {
+    constructor(
+        public value: any,
+        public viewValue: any,
+    ) {
+        this.deshabilidato = false
+    }
+
+    public deshabilidato: boolean;
+
+}
+

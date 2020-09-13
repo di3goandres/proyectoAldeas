@@ -18,7 +18,8 @@ export class DetallepresupuestoprogramaComponent implements OnInit {
   'subCentroCosto', 'nombreRubro', 'numeroIdentificacion', 'nombre', 'asignacion', 'cargo',
 'nombreCuenta', 'cuentaSIIGO', 'Enero', 'Febrero',
 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre',
-'Octubre', 'Noviembre', 'Diciembre'];
+'Octubre', 'Noviembre', 'Diciembre', 'total',
+ 'detalleGasto', 'facility', 'cuentaCotable', 'notaIngles'];
   constructor() { }
 
   ngOnInit(): void {
@@ -29,6 +30,11 @@ export class DetallepresupuestoprogramaComponent implements OnInit {
     this.dataSource = new MatTableDataSource(this.detalle);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
 }

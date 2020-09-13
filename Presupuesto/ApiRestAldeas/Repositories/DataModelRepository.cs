@@ -17,7 +17,7 @@ namespace ApiRestAldeas.Repositories
     public class DataModelRepository : IDataModelRepository
     {
         private readonly IOptions<ConnectionDB> _connectionDB;
-   
+
         private readonly IContextFactory _factory;
 
         public DataModelRepository(IOptions<ConnectionDB> connectionDB, IContextFactory factory)
@@ -113,6 +113,16 @@ namespace ApiRestAldeas.Repositories
         public dynamic GuardarPresupuestoDetalle(DbPresupuestoPrograma request)
         {
             return PresupuestoOperations.GuardarDetallePresupuesto(_factory, _connectionDB, request);
+        }
+
+        public dynamic GuardarPresupuesto(DbPresupuesto request)
+        {
+            return PresupuestoOperations.GuardarPresupuesto(_factory, _connectionDB, request);
+        }
+
+        public dynamic ActualizarPresupuesto(DbPresupuesto request)
+        {
+            return PresupuestoOperations.ActualizarPresupuesto(_factory, _connectionDB, request);
         }
 
 

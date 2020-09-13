@@ -1,0 +1,73 @@
+<div >
+    <mat-card class="example-card" *ngIf="noMostrar==true">
+        <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>Nuevo Presupuesto</mat-card-title>
+            <mat-card-subtitle>Para el programa: {{programa.nombre}} - {{guardar.anio}}</mat-card-subtitle>
+        </mat-card-header>
+    
+        <mat-card-content>
+    
+    
+            <div>
+               
+         
+                 <form [formGroup]="formGroup">
+                   
+                    <div class="row">
+    
+                        <div class="col-6 tabla">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Covertura Anual</mat-label>
+                                <input matInput placeholder="Covertura Anual" type="number" 
+                                (change)="validarFomularios()"
+                                    [(ngModel)]="update.coberturaAnual" formControlName="anual" required>
+                            </mat-form-field>
+                        </div>
+                        
+                        <div class="col-6 tabla">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Covertura Mensual</mat-label>
+                                <input matInput placeholder="Covertura Mensual" type="number" 
+                                (change)="validarFomularios()"
+                                    [(ngModel)]="update.coberturaMensual" formControlName="mensual" required>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+    
+                        <div class="col-6 tabla">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Covertura esperada</mat-label>
+                                <input matInput placeholder="Covertura Esperada" type="number" 
+                                (change)="validarFomularios()"
+                                    [(ngModel)]="update.coberturaMensualEsperada" formControlName="esperado" required>
+                            </mat-form-field>
+                        </div>
+                        
+                        <div class="col-6 tabla">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Covertura Casas</mat-label>
+                                <input matInput placeholder="Covertura Casas" type="number" 
+                                (change)="validarFomularios()"
+                                    [(ngModel)]="update.coberturasCasas" formControlName="casas" required>
+                            </mat-form-field>
+                        </div>
+                    </div>
+    
+                </form> 
+            </div>
+    
+    
+    
+        </mat-card-content>
+        <mat-card-actions>
+    
+            <button mat-raised-button ngbAutofocus (click)="cerrar()" >Cancelar</button>
+            <button mat-raised-button ngbAutofocus [disabled]="!permitirGuardar"
+             (click)="guardarData()">Guardar</button>
+    
+    
+        </mat-card-actions>
+    </mat-card>
+    </div>

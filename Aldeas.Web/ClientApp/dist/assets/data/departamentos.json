@@ -1,0 +1,6738 @@
+{
+    "departamentos": [
+        {
+            "codigo": 5,
+            "nombre": "ANTIOQUIA"
+        },
+        {
+            "codigo": 8,
+            "nombre": "ATLÁNTICO"
+        },
+        {
+            "codigo": 11,
+            "nombre": "BOGOTÁ, D.C."
+        },
+        {
+            "codigo": 13,
+            "nombre": "BOLÍVAR"
+        },
+        {
+            "codigo": 15,
+            "nombre": "BOYACÁ"
+        },
+        {
+            "codigo": 17,
+            "nombre": "CALDAS"
+        },
+        {
+            "codigo": 18,
+            "nombre": "CAQUETÁ"
+        },
+        {
+            "codigo": 19,
+            "nombre": "CAUCA"
+        },
+        {
+            "codigo": 20,
+            "nombre": "CESAR"
+        },
+        {
+            "codigo": 23,
+            "nombre": "CÓRDOBA"
+        },
+        {
+            "codigo": 25,
+            "nombre": "CUNDINAMARCA"
+        },
+        {
+            "codigo": 27,
+            "nombre": "CHOCÓ"
+        },
+        {
+            "codigo": 41,
+            "nombre": "HUILA"
+        },
+        {
+            "codigo": 44,
+            "nombre": "LA GUAJIRA"
+        },
+        {
+            "codigo": 47,
+            "nombre": "MAGDALENA"
+        },
+        {
+            "codigo": 50,
+            "nombre": "META"
+        },
+        {
+            "codigo": 52,
+            "nombre": "NARIÑO"
+        },
+        {
+            "codigo": 54,
+            "nombre": "NORTE DE SANTANDER"
+        },
+        {
+            "codigo": 63,
+            "nombre": "QUINDIO"
+        },
+        {
+            "codigo": 66,
+            "nombre": "RISARALDA"
+        },
+        {
+            "codigo": 68,
+            "nombre": "SANTANDER"
+        },
+        {
+            "codigo": 70,
+            "nombre": "SUCRE"
+        },
+        {
+            "codigo": 73,
+            "nombre": "TOLIMA"
+        },
+        {
+            "codigo": 76,
+            "nombre": "VALLE DEL CAUCA"
+        },
+        {
+            "codigo": 81,
+            "nombre": "ARAUCA"
+        },
+        {
+            "codigo": 85,
+            "nombre": "CASANARE"
+        },
+        {
+            "codigo": 86,
+            "nombre": "PUTUMAYO"
+        },
+        {
+            "codigo": 88,
+            "nombre": "ARCHIPIÉLAGO DE SAN ANDRÉS, PROVIDENCIA Y SANTA CATALINA"
+        },
+        {
+            "codigo": 91,
+            "nombre": "AMAZONAS"
+        },
+        {
+            "codigo": 94,
+            "nombre": "GUAINÍA"
+        },
+        {
+            "codigo": 95,
+            "nombre": "GUAVIARE"
+        },
+        {
+            "codigo": 97,
+            "nombre": "VAUPÉS"
+        },
+        {
+            "codigo": 99,
+            "nombre": "VICHADA"
+        }
+    ],
+    "municipios": [
+        {
+            "codigo": 1,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "MEDELLÍN"
+        },
+        {
+            "codigo": 2,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "ABEJORRAL"
+        },
+        {
+            "codigo": 3,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "ABRIAQUÍ"
+        },
+        {
+            "codigo": 4,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "ALEJANDRÍA"
+        },
+        {
+            "codigo": 5,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "AMAGÁ"
+        },
+        {
+            "codigo": 6,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "AMALFI"
+        },
+        {
+            "codigo": 7,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "ANDES"
+        },
+        {
+            "codigo": 8,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "ANGELÓPOLIS"
+        },
+        {
+            "codigo": 9,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "ANGOSTURA"
+        },
+        {
+            "codigo": 10,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "ANORÍ"
+        },
+        {
+            "codigo": 11,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "SANTA FÉ DE ANTIOQUIA"
+        },
+        {
+            "codigo": 12,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "ANZÁ"
+        },
+        {
+            "codigo": 13,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "APARTADÓ"
+        },
+        {
+            "codigo": 14,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "ARBOLETES"
+        },
+        {
+            "codigo": 15,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "ARGELIA"
+        },
+        {
+            "codigo": 16,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "ARMENIA"
+        },
+        {
+            "codigo": 17,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "BARBOSA"
+        },
+        {
+            "codigo": 18,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "BELMIRA"
+        },
+        {
+            "codigo": 19,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "BELLO"
+        },
+        {
+            "codigo": 20,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "BETANIA"
+        },
+        {
+            "codigo": 21,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "BETULIA"
+        },
+        {
+            "codigo": 22,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "CIUDAD BOLÍVAR"
+        },
+        {
+            "codigo": 23,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "BRICEÑO"
+        },
+        {
+            "codigo": 24,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "BURITICÁ"
+        },
+        {
+            "codigo": 25,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "CÁCERES"
+        },
+        {
+            "codigo": 26,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "CAICEDO"
+        },
+        {
+            "codigo": 27,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "CALDAS"
+        },
+        {
+            "codigo": 28,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "CAMPAMENTO"
+        },
+        {
+            "codigo": 29,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "CAÑASGORDAS"
+        },
+        {
+            "codigo": 30,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "CARACOLÍ"
+        },
+        {
+            "codigo": 31,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "CARAMANTA"
+        },
+        {
+            "codigo": 32,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "CAREPA"
+        },
+        {
+            "codigo": 33,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "EL CARMEN DE VIBORAL"
+        },
+        {
+            "codigo": 34,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "CAROLINA"
+        },
+        {
+            "codigo": 35,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "CAUCASIA"
+        },
+        {
+            "codigo": 36,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "CHIGORODÓ"
+        },
+        {
+            "codigo": 37,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "CISNEROS"
+        },
+        {
+            "codigo": 38,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "COCORNÁ"
+        },
+        {
+            "codigo": 39,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "CONCEPCIÓN"
+        },
+        {
+            "codigo": 40,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "CONCORDIA"
+        },
+        {
+            "codigo": 41,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "COPACABANA"
+        },
+        {
+            "codigo": 42,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "DABEIBA"
+        },
+        {
+            "codigo": 43,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "DONMATÍAS"
+        },
+        {
+            "codigo": 44,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "EBÉJICO"
+        },
+        {
+            "codigo": 45,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "EL BAGRE"
+        },
+        {
+            "codigo": 46,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "ENTRERRÍOS"
+        },
+        {
+            "codigo": 47,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "ENVIGADO"
+        },
+        {
+            "codigo": 48,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "FREDONIA"
+        },
+        {
+            "codigo": 49,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "FRONTINO"
+        },
+        {
+            "codigo": 50,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "GIRALDO"
+        },
+        {
+            "codigo": 51,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "GIRARDOTA"
+        },
+        {
+            "codigo": 52,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "GÓMEZ PLATA"
+        },
+        {
+            "codigo": 53,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "GRANADA"
+        },
+        {
+            "codigo": 54,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "GUADALUPE"
+        },
+        {
+            "codigo": 55,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "GUARNE"
+        },
+        {
+            "codigo": 56,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "GUATAPÉ"
+        },
+        {
+            "codigo": 57,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "HELICONIA"
+        },
+        {
+            "codigo": 58,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "HISPANIA"
+        },
+        {
+            "codigo": 59,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "ITAGÜÍ"
+        },
+        {
+            "codigo": 60,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "ITUANGO"
+        },
+        {
+            "codigo": 61,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "JARDÍN"
+        },
+        {
+            "codigo": 62,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "JERICÓ"
+        },
+        {
+            "codigo": 63,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "LA CEJA"
+        },
+        {
+            "codigo": 64,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "LA ESTRELLA"
+        },
+        {
+            "codigo": 65,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "LA PINTADA"
+        },
+        {
+            "codigo": 66,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "LA UNIÓN"
+        },
+        {
+            "codigo": 67,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "LIBORINA"
+        },
+        {
+            "codigo": 68,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "MACEO"
+        },
+        {
+            "codigo": 69,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "MARINILLA"
+        },
+        {
+            "codigo": 70,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "MONTEBELLO"
+        },
+        {
+            "codigo": 71,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "MURINDÓ"
+        },
+        {
+            "codigo": 72,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "MUTATÁ"
+        },
+        {
+            "codigo": 73,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "NARIÑO"
+        },
+        {
+            "codigo": 74,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "NECOCLÍ"
+        },
+        {
+            "codigo": 75,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "NECHÍ"
+        },
+        {
+            "codigo": 76,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "OLAYA"
+        },
+        {
+            "codigo": 77,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "PEÑOL"
+        },
+        {
+            "codigo": 78,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "PEQUE"
+        },
+        {
+            "codigo": 79,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "PUEBLORRICO"
+        },
+        {
+            "codigo": 80,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "PUERTO BERRÍO"
+        },
+        {
+            "codigo": 81,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "PUERTO NARE"
+        },
+        {
+            "codigo": 82,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "PUERTO TRIUNFO"
+        },
+        {
+            "codigo": 83,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "REMEDIOS"
+        },
+        {
+            "codigo": 84,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "RETIRO"
+        },
+        {
+            "codigo": 85,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "RIONEGRO"
+        },
+        {
+            "codigo": 86,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "SABANALARGA"
+        },
+        {
+            "codigo": 87,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "SABANETA"
+        },
+        {
+            "codigo": 88,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "SALGAR"
+        },
+        {
+            "codigo": 89,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "SAN ANDRÉS DE CUERQUÍA"
+        },
+        {
+            "codigo": 90,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "SAN CARLOS"
+        },
+        {
+            "codigo": 91,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "SAN FRANCISCO"
+        },
+        {
+            "codigo": 92,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "SAN JERÓNIMO"
+        },
+        {
+            "codigo": 93,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "SAN JOSÉ DE LA MONTAÑA"
+        },
+        {
+            "codigo": 94,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "SAN JUAN DE URABÁ"
+        },
+        {
+            "codigo": 95,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "SAN LUIS"
+        },
+        {
+            "codigo": 96,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "SAN PEDRO DE LOS MILAGROS"
+        },
+        {
+            "codigo": 97,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "SAN PEDRO DE URABÁ"
+        },
+        {
+            "codigo": 98,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "SAN RAFAEL"
+        },
+        {
+            "codigo": 99,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "SAN ROQUE"
+        },
+        {
+            "codigo": 100,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "SAN VICENTE FERRER"
+        },
+        {
+            "codigo": 101,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "SANTA BÁRBARA"
+        },
+        {
+            "codigo": 102,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "SANTA ROSA DE OSOS"
+        },
+        {
+            "codigo": 103,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "SANTO DOMINGO"
+        },
+        {
+            "codigo": 104,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "EL SANTUARIO"
+        },
+        {
+            "codigo": 105,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "SEGOVIA"
+        },
+        {
+            "codigo": 106,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "SONSÓN"
+        },
+        {
+            "codigo": 107,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "SOPETRÁN"
+        },
+        {
+            "codigo": 108,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "TÁMESIS"
+        },
+        {
+            "codigo": 109,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "TARAZÁ"
+        },
+        {
+            "codigo": 110,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "TARSO"
+        },
+        {
+            "codigo": 111,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "TITIRIBÍ"
+        },
+        {
+            "codigo": 112,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "TOLEDO"
+        },
+        {
+            "codigo": 113,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "TURBO"
+        },
+        {
+            "codigo": 114,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "URAMITA"
+        },
+        {
+            "codigo": 115,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "URRAO"
+        },
+        {
+            "codigo": 116,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "VALDIVIA"
+        },
+        {
+            "codigo": 117,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "VALPARAÍSO"
+        },
+        {
+            "codigo": 118,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "VEGACHÍ"
+        },
+        {
+            "codigo": 119,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "VENECIA"
+        },
+        {
+            "codigo": 120,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "VIGÍA DEL FUERTE"
+        },
+        {
+            "codigo": 121,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "YALÍ"
+        },
+        {
+            "codigo": 122,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "YARUMAL"
+        },
+        {
+            "codigo": 123,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "YOLOMBÓ"
+        },
+        {
+            "codigo": 124,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "YONDÓ"
+        },
+        {
+            "codigo": 125,
+            "activo": false,
+            "codigoDepartamento": 5,
+            "nombre": "ZARAGOZA"
+        },
+        {
+            "codigo": 126,
+            "activo": false,
+            "codigoDepartamento": 8,
+            "nombre": "BARRANQUILLA"
+        },
+        {
+            "codigo": 127,
+            "activo": false,
+            "codigoDepartamento": 8,
+            "nombre": "BARANOA"
+        },
+        {
+            "codigo": 128,
+            "activo": false,
+            "codigoDepartamento": 8,
+            "nombre": "CAMPO DE LA CRUZ"
+        },
+        {
+            "codigo": 129,
+            "activo": false,
+            "codigoDepartamento": 8,
+            "nombre": "CANDELARIA"
+        },
+        {
+            "codigo": 130,
+            "activo": false,
+            "codigoDepartamento": 8,
+            "nombre": "GALAPA"
+        },
+        {
+            "codigo": 131,
+            "activo": false,
+            "codigoDepartamento": 8,
+            "nombre": "JUAN DE ACOSTA"
+        },
+        {
+            "codigo": 132,
+            "activo": false,
+            "codigoDepartamento": 8,
+            "nombre": "LURUACO"
+        },
+        {
+            "codigo": 133,
+            "activo": false,
+            "codigoDepartamento": 8,
+            "nombre": "MALAMBO"
+        },
+        {
+            "codigo": 134,
+            "activo": false,
+            "codigoDepartamento": 8,
+            "nombre": "MANATÍ"
+        },
+        {
+            "codigo": 135,
+            "activo": false,
+            "codigoDepartamento": 8,
+            "nombre": "PALMAR DE VARELA"
+        },
+        {
+            "codigo": 136,
+            "activo": false,
+            "codigoDepartamento": 8,
+            "nombre": "PIOJÓ"
+        },
+        {
+            "codigo": 137,
+            "activo": false,
+            "codigoDepartamento": 8,
+            "nombre": "POLONUEVO"
+        },
+        {
+            "codigo": 138,
+            "activo": false,
+            "codigoDepartamento": 8,
+            "nombre": "PONEDERA"
+        },
+        {
+            "codigo": 139,
+            "activo": false,
+            "codigoDepartamento": 8,
+            "nombre": "PUERTO COLOMBIA"
+        },
+        {
+            "codigo": 140,
+            "activo": false,
+            "codigoDepartamento": 8,
+            "nombre": "REPELÓN"
+        },
+        {
+            "codigo": 141,
+            "activo": false,
+            "codigoDepartamento": 8,
+            "nombre": "SABANAGRANDE"
+        },
+        {
+            "codigo": 142,
+            "activo": false,
+            "codigoDepartamento": 8,
+            "nombre": "SABANALARGA"
+        },
+        {
+            "codigo": 143,
+            "activo": false,
+            "codigoDepartamento": 8,
+            "nombre": "SANTA LUCÍA"
+        },
+        {
+            "codigo": 144,
+            "activo": false,
+            "codigoDepartamento": 8,
+            "nombre": "SANTO TOMÁS"
+        },
+        {
+            "codigo": 145,
+            "activo": false,
+            "codigoDepartamento": 8,
+            "nombre": "SOLEDAD"
+        },
+        {
+            "codigo": 146,
+            "activo": false,
+            "codigoDepartamento": 8,
+            "nombre": "SUAN"
+        },
+        {
+            "codigo": 147,
+            "activo": false,
+            "codigoDepartamento": 8,
+            "nombre": "TUBARÁ"
+        },
+        {
+            "codigo": 148,
+            "activo": false,
+            "codigoDepartamento": 8,
+            "nombre": "USIACURÍ"
+        },
+        {
+            "codigo": 149,
+            "activo": false,
+            "codigoDepartamento": 11,
+            "nombre": "BOGOTÁ, D.C."
+        },
+        {
+            "codigo": 150,
+            "activo": false,
+            "codigoDepartamento": 13,
+            "nombre": "CARTAGENA DE INDIAS"
+        },
+        {
+            "codigo": 151,
+            "activo": false,
+            "codigoDepartamento": 13,
+            "nombre": "ACHÍ"
+        },
+        {
+            "codigo": 152,
+            "activo": false,
+            "codigoDepartamento": 13,
+            "nombre": "ALTOS DEL ROSARIO"
+        },
+        {
+            "codigo": 153,
+            "activo": false,
+            "codigoDepartamento": 13,
+            "nombre": "ARENAL"
+        },
+        {
+            "codigo": 154,
+            "activo": false,
+            "codigoDepartamento": 13,
+            "nombre": "ARJONA"
+        },
+        {
+            "codigo": 155,
+            "activo": false,
+            "codigoDepartamento": 13,
+            "nombre": "ARROYOHONDO"
+        },
+        {
+            "codigo": 156,
+            "activo": false,
+            "codigoDepartamento": 13,
+            "nombre": "BARRANCO DE LOBA"
+        },
+        {
+            "codigo": 157,
+            "activo": false,
+            "codigoDepartamento": 13,
+            "nombre": "CALAMAR"
+        },
+        {
+            "codigo": 158,
+            "activo": false,
+            "codigoDepartamento": 13,
+            "nombre": "CANTAGALLO"
+        },
+        {
+            "codigo": 159,
+            "activo": false,
+            "codigoDepartamento": 13,
+            "nombre": "CICUCO"
+        },
+        {
+            "codigo": 160,
+            "activo": false,
+            "codigoDepartamento": 13,
+            "nombre": "CÓRDOBA"
+        },
+        {
+            "codigo": 161,
+            "activo": false,
+            "codigoDepartamento": 13,
+            "nombre": "CLEMENCIA"
+        },
+        {
+            "codigo": 162,
+            "activo": false,
+            "codigoDepartamento": 13,
+            "nombre": "EL CARMEN DE BOLÍVAR"
+        },
+        {
+            "codigo": 163,
+            "activo": false,
+            "codigoDepartamento": 13,
+            "nombre": "EL GUAMO"
+        },
+        {
+            "codigo": 164,
+            "activo": false,
+            "codigoDepartamento": 13,
+            "nombre": "EL PEÑÓN"
+        },
+        {
+            "codigo": 165,
+            "activo": false,
+            "codigoDepartamento": 13,
+            "nombre": "HATILLO DE LOBA"
+        },
+        {
+            "codigo": 166,
+            "activo": false,
+            "codigoDepartamento": 13,
+            "nombre": "MAGANGUÉ"
+        },
+        {
+            "codigo": 167,
+            "activo": false,
+            "codigoDepartamento": 13,
+            "nombre": "MAHATES"
+        },
+        {
+            "codigo": 168,
+            "activo": false,
+            "codigoDepartamento": 13,
+            "nombre": "MARGARITA"
+        },
+        {
+            "codigo": 169,
+            "activo": false,
+            "codigoDepartamento": 13,
+            "nombre": "MARÍA LA BAJA"
+        },
+        {
+            "codigo": 170,
+            "activo": false,
+            "codigoDepartamento": 13,
+            "nombre": "MONTECRISTO"
+        },
+        {
+            "codigo": 171,
+            "activo": false,
+            "codigoDepartamento": 13,
+            "nombre": "SANTA CRUZ DE MOMPOX"
+        },
+        {
+            "codigo": 172,
+            "activo": false,
+            "codigoDepartamento": 13,
+            "nombre": "MORALES"
+        },
+        {
+            "codigo": 173,
+            "activo": false,
+            "codigoDepartamento": 13,
+            "nombre": "NOROSÍ"
+        },
+        {
+            "codigo": 174,
+            "activo": false,
+            "codigoDepartamento": 13,
+            "nombre": "PINILLOS"
+        },
+        {
+            "codigo": 175,
+            "activo": false,
+            "codigoDepartamento": 13,
+            "nombre": "REGIDOR"
+        },
+        {
+            "codigo": 176,
+            "activo": false,
+            "codigoDepartamento": 13,
+            "nombre": "RÍO VIEJO"
+        },
+        {
+            "codigo": 177,
+            "activo": false,
+            "codigoDepartamento": 13,
+            "nombre": "SAN CRISTÓBAL"
+        },
+        {
+            "codigo": 178,
+            "activo": false,
+            "codigoDepartamento": 13,
+            "nombre": "SAN ESTANISLAO"
+        },
+        {
+            "codigo": 179,
+            "activo": false,
+            "codigoDepartamento": 13,
+            "nombre": "SAN FERNANDO"
+        },
+        {
+            "codigo": 180,
+            "activo": false,
+            "codigoDepartamento": 13,
+            "nombre": "SAN JACINTO"
+        },
+        {
+            "codigo": 181,
+            "activo": false,
+            "codigoDepartamento": 13,
+            "nombre": "SAN JACINTO DEL CAUCA"
+        },
+        {
+            "codigo": 182,
+            "activo": false,
+            "codigoDepartamento": 13,
+            "nombre": "SAN JUAN NEPOMUCENO"
+        },
+        {
+            "codigo": 183,
+            "activo": false,
+            "codigoDepartamento": 13,
+            "nombre": "SAN MARTÍN DE LOBA"
+        },
+        {
+            "codigo": 184,
+            "activo": false,
+            "codigoDepartamento": 13,
+            "nombre": "SAN PABLO"
+        },
+        {
+            "codigo": 185,
+            "activo": false,
+            "codigoDepartamento": 13,
+            "nombre": "SANTA CATALINA"
+        },
+        {
+            "codigo": 186,
+            "activo": false,
+            "codigoDepartamento": 13,
+            "nombre": "SANTA ROSA"
+        },
+        {
+            "codigo": 187,
+            "activo": false,
+            "codigoDepartamento": 13,
+            "nombre": "SANTA ROSA DEL SUR"
+        },
+        {
+            "codigo": 188,
+            "activo": false,
+            "codigoDepartamento": 13,
+            "nombre": "SIMITÍ"
+        },
+        {
+            "codigo": 189,
+            "activo": false,
+            "codigoDepartamento": 13,
+            "nombre": "SOPLAVIENTO"
+        },
+        {
+            "codigo": 190,
+            "activo": false,
+            "codigoDepartamento": 13,
+            "nombre": "TALAIGUA NUEVO"
+        },
+        {
+            "codigo": 191,
+            "activo": false,
+            "codigoDepartamento": 13,
+            "nombre": "TIQUISIO"
+        },
+        {
+            "codigo": 192,
+            "activo": false,
+            "codigoDepartamento": 13,
+            "nombre": "TURBACO"
+        },
+        {
+            "codigo": 193,
+            "activo": false,
+            "codigoDepartamento": 13,
+            "nombre": "TURBANÁ"
+        },
+        {
+            "codigo": 194,
+            "activo": false,
+            "codigoDepartamento": 13,
+            "nombre": "VILLANUEVA"
+        },
+        {
+            "codigo": 195,
+            "activo": false,
+            "codigoDepartamento": 13,
+            "nombre": "ZAMBRANO"
+        },
+        {
+            "codigo": 196,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "TUNJA"
+        },
+        {
+            "codigo": 197,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "ALMEIDA"
+        },
+        {
+            "codigo": 198,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "AQUITANIA"
+        },
+        {
+            "codigo": 199,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "ARCABUCO"
+        },
+        {
+            "codigo": 200,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "BELÉN"
+        },
+        {
+            "codigo": 201,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "BERBEO"
+        },
+        {
+            "codigo": 202,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "BETÉITIVA"
+        },
+        {
+            "codigo": 203,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "BOAVITA"
+        },
+        {
+            "codigo": 204,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "BOYACÁ"
+        },
+        {
+            "codigo": 205,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "BRICEÑO"
+        },
+        {
+            "codigo": 206,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "BUENAVISTA"
+        },
+        {
+            "codigo": 207,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "BUSBANZÁ"
+        },
+        {
+            "codigo": 208,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "CALDAS"
+        },
+        {
+            "codigo": 209,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "CAMPOHERMOSO"
+        },
+        {
+            "codigo": 210,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "CERINZA"
+        },
+        {
+            "codigo": 211,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "CHINAVITA"
+        },
+        {
+            "codigo": 212,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "CHIQUINQUIRÁ"
+        },
+        {
+            "codigo": 213,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "CHISCAS"
+        },
+        {
+            "codigo": 214,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "CHITA"
+        },
+        {
+            "codigo": 215,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "CHITARAQUE"
+        },
+        {
+            "codigo": 216,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "CHIVATÁ"
+        },
+        {
+            "codigo": 217,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "CIÉNEGA"
+        },
+        {
+            "codigo": 218,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "CÓMBITA"
+        },
+        {
+            "codigo": 219,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "COPER"
+        },
+        {
+            "codigo": 220,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "CORRALES"
+        },
+        {
+            "codigo": 221,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "COVARACHÍA"
+        },
+        {
+            "codigo": 222,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "CUBARÁ"
+        },
+        {
+            "codigo": 223,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "CUCAITA"
+        },
+        {
+            "codigo": 224,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "CUÍTIVA"
+        },
+        {
+            "codigo": 225,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "CHÍQUIZA"
+        },
+        {
+            "codigo": 226,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "CHIVOR"
+        },
+        {
+            "codigo": 227,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "DUITAMA"
+        },
+        {
+            "codigo": 228,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "EL COCUY"
+        },
+        {
+            "codigo": 229,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "EL ESPINO"
+        },
+        {
+            "codigo": 230,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "FIRAVITOBA"
+        },
+        {
+            "codigo": 231,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "FLORESTA"
+        },
+        {
+            "codigo": 232,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "GACHANTIVÁ"
+        },
+        {
+            "codigo": 233,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "GÁMEZA"
+        },
+        {
+            "codigo": 234,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "GARAGOA"
+        },
+        {
+            "codigo": 235,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "GUACAMAYAS"
+        },
+        {
+            "codigo": 236,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "GUATEQUE"
+        },
+        {
+            "codigo": 237,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "GUAYATÁ"
+        },
+        {
+            "codigo": 238,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "GÜICÁN DE LA SIERRA"
+        },
+        {
+            "codigo": 239,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "IZA"
+        },
+        {
+            "codigo": 240,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "JENESANO"
+        },
+        {
+            "codigo": 241,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "JERICÓ"
+        },
+        {
+            "codigo": 242,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "LABRANZAGRANDE"
+        },
+        {
+            "codigo": 243,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "LA CAPILLA"
+        },
+        {
+            "codigo": 244,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "LA VICTORIA"
+        },
+        {
+            "codigo": 245,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "LA UVITA"
+        },
+        {
+            "codigo": 246,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "VILLA DE LEYVA"
+        },
+        {
+            "codigo": 247,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "MACANAL"
+        },
+        {
+            "codigo": 248,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "MARIPÍ"
+        },
+        {
+            "codigo": 249,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "MIRAFLORES"
+        },
+        {
+            "codigo": 250,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "MONGUA"
+        },
+        {
+            "codigo": 251,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "MONGUÍ"
+        },
+        {
+            "codigo": 252,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "MONIQUIRÁ"
+        },
+        {
+            "codigo": 253,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "MOTAVITA"
+        },
+        {
+            "codigo": 254,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "MUZO"
+        },
+        {
+            "codigo": 255,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "NOBSA"
+        },
+        {
+            "codigo": 256,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "NUEVO COLÓN"
+        },
+        {
+            "codigo": 257,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "OICATÁ"
+        },
+        {
+            "codigo": 258,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "OTANCHE"
+        },
+        {
+            "codigo": 259,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "PACHAVITA"
+        },
+        {
+            "codigo": 260,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "PÁEZ"
+        },
+        {
+            "codigo": 261,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "PAIPA"
+        },
+        {
+            "codigo": 262,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "PAJARITO"
+        },
+        {
+            "codigo": 263,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "PANQUEBA"
+        },
+        {
+            "codigo": 264,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "PAUNA"
+        },
+        {
+            "codigo": 265,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "PAYA"
+        },
+        {
+            "codigo": 266,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "PAZ DE RÍO"
+        },
+        {
+            "codigo": 267,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "PESCA"
+        },
+        {
+            "codigo": 268,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "PISBA"
+        },
+        {
+            "codigo": 269,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "PUERTO BOYACÁ"
+        },
+        {
+            "codigo": 270,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "QUÍPAMA"
+        },
+        {
+            "codigo": 271,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "RAMIRIQUÍ"
+        },
+        {
+            "codigo": 272,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "RÁQUIRA"
+        },
+        {
+            "codigo": 273,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "RONDÓN"
+        },
+        {
+            "codigo": 274,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "SABOYÁ"
+        },
+        {
+            "codigo": 275,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "SÁCHICA"
+        },
+        {
+            "codigo": 276,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "SAMACÁ"
+        },
+        {
+            "codigo": 277,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "SAN EDUARDO"
+        },
+        {
+            "codigo": 278,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "SAN JOSÉ DE PARE"
+        },
+        {
+            "codigo": 279,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "SAN LUIS DE GACENO"
+        },
+        {
+            "codigo": 280,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "SAN MATEO"
+        },
+        {
+            "codigo": 281,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "SAN MIGUEL DE SEMA"
+        },
+        {
+            "codigo": 282,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "SAN PABLO DE BORBUR"
+        },
+        {
+            "codigo": 283,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "SANTANA"
+        },
+        {
+            "codigo": 284,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "SANTA MARÍA"
+        },
+        {
+            "codigo": 285,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "SANTA ROSA DE VITERBO"
+        },
+        {
+            "codigo": 286,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "SANTA SOFÍA"
+        },
+        {
+            "codigo": 287,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "SATIVANORTE"
+        },
+        {
+            "codigo": 288,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "SATIVASUR"
+        },
+        {
+            "codigo": 289,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "SIACHOQUE"
+        },
+        {
+            "codigo": 290,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "SOATÁ"
+        },
+        {
+            "codigo": 291,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "SOCOTÁ"
+        },
+        {
+            "codigo": 292,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "SOCHA"
+        },
+        {
+            "codigo": 293,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "SOGAMOSO"
+        },
+        {
+            "codigo": 294,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "SOMONDOCO"
+        },
+        {
+            "codigo": 295,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "SORA"
+        },
+        {
+            "codigo": 296,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "SOTAQUIRÁ"
+        },
+        {
+            "codigo": 297,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "SORACÁ"
+        },
+        {
+            "codigo": 298,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "SUSACÓN"
+        },
+        {
+            "codigo": 299,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "SUTAMARCHÁN"
+        },
+        {
+            "codigo": 300,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "SUTATENZA"
+        },
+        {
+            "codigo": 301,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "TASCO"
+        },
+        {
+            "codigo": 302,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "TENZA"
+        },
+        {
+            "codigo": 303,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "TIBANÁ"
+        },
+        {
+            "codigo": 304,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "TIBASOSA"
+        },
+        {
+            "codigo": 305,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "TINJACÁ"
+        },
+        {
+            "codigo": 306,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "TIPACOQUE"
+        },
+        {
+            "codigo": 307,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "TOCA"
+        },
+        {
+            "codigo": 308,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "TOGÜÍ"
+        },
+        {
+            "codigo": 309,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "TÓPAGA"
+        },
+        {
+            "codigo": 310,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "TOTA"
+        },
+        {
+            "codigo": 311,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "TUNUNGUÁ"
+        },
+        {
+            "codigo": 312,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "TURMEQUÉ"
+        },
+        {
+            "codigo": 313,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "TUTA"
+        },
+        {
+            "codigo": 314,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "TUTAZÁ"
+        },
+        {
+            "codigo": 315,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "ÚMBITA"
+        },
+        {
+            "codigo": 316,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "VENTAQUEMADA"
+        },
+        {
+            "codigo": 317,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "VIRACACHÁ"
+        },
+        {
+            "codigo": 318,
+            "activo": false,
+            "codigoDepartamento": 15,
+            "nombre": "ZETAQUIRA"
+        },
+        {
+            "codigo": 319,
+            "activo": false,
+            "codigoDepartamento": 17,
+            "nombre": "MANIZALES"
+        },
+        {
+            "codigo": 320,
+            "activo": false,
+            "codigoDepartamento": 17,
+            "nombre": "AGUADAS"
+        },
+        {
+            "codigo": 321,
+            "activo": false,
+            "codigoDepartamento": 17,
+            "nombre": "ANSERMA"
+        },
+        {
+            "codigo": 322,
+            "activo": false,
+            "codigoDepartamento": 17,
+            "nombre": "ARANZAZU"
+        },
+        {
+            "codigo": 323,
+            "activo": false,
+            "codigoDepartamento": 17,
+            "nombre": "BELALCÁZAR"
+        },
+        {
+            "codigo": 324,
+            "activo": false,
+            "codigoDepartamento": 17,
+            "nombre": "CHINCHINÁ"
+        },
+        {
+            "codigo": 325,
+            "activo": false,
+            "codigoDepartamento": 17,
+            "nombre": "FILADELFIA"
+        },
+        {
+            "codigo": 326,
+            "activo": false,
+            "codigoDepartamento": 17,
+            "nombre": "LA DORADA"
+        },
+        {
+            "codigo": 327,
+            "activo": false,
+            "codigoDepartamento": 17,
+            "nombre": "LA MERCED"
+        },
+        {
+            "codigo": 328,
+            "activo": false,
+            "codigoDepartamento": 17,
+            "nombre": "MANZANARES"
+        },
+        {
+            "codigo": 329,
+            "activo": false,
+            "codigoDepartamento": 17,
+            "nombre": "MARMATO"
+        },
+        {
+            "codigo": 330,
+            "activo": false,
+            "codigoDepartamento": 17,
+            "nombre": "MARQUETALIA"
+        },
+        {
+            "codigo": 331,
+            "activo": false,
+            "codigoDepartamento": 17,
+            "nombre": "MARULANDA"
+        },
+        {
+            "codigo": 332,
+            "activo": false,
+            "codigoDepartamento": 17,
+            "nombre": "NEIRA"
+        },
+        {
+            "codigo": 333,
+            "activo": false,
+            "codigoDepartamento": 17,
+            "nombre": "NORCASIA"
+        },
+        {
+            "codigo": 334,
+            "activo": false,
+            "codigoDepartamento": 17,
+            "nombre": "PÁCORA"
+        },
+        {
+            "codigo": 335,
+            "activo": false,
+            "codigoDepartamento": 17,
+            "nombre": "PALESTINA"
+        },
+        {
+            "codigo": 336,
+            "activo": false,
+            "codigoDepartamento": 17,
+            "nombre": "PENSILVANIA"
+        },
+        {
+            "codigo": 337,
+            "activo": false,
+            "codigoDepartamento": 17,
+            "nombre": "RIOSUCIO"
+        },
+        {
+            "codigo": 338,
+            "activo": false,
+            "codigoDepartamento": 17,
+            "nombre": "RISARALDA"
+        },
+        {
+            "codigo": 339,
+            "activo": false,
+            "codigoDepartamento": 17,
+            "nombre": "SALAMINA"
+        },
+        {
+            "codigo": 340,
+            "activo": false,
+            "codigoDepartamento": 17,
+            "nombre": "SAMANÁ"
+        },
+        {
+            "codigo": 341,
+            "activo": false,
+            "codigoDepartamento": 17,
+            "nombre": "SAN JOSÉ"
+        },
+        {
+            "codigo": 342,
+            "activo": false,
+            "codigoDepartamento": 17,
+            "nombre": "SUPÍA"
+        },
+        {
+            "codigo": 343,
+            "activo": false,
+            "codigoDepartamento": 17,
+            "nombre": "VICTORIA"
+        },
+        {
+            "codigo": 344,
+            "activo": false,
+            "codigoDepartamento": 17,
+            "nombre": "VILLAMARÍA"
+        },
+        {
+            "codigo": 345,
+            "activo": false,
+            "codigoDepartamento": 17,
+            "nombre": "VITERBO"
+        },
+        {
+            "codigo": 346,
+            "activo": false,
+            "codigoDepartamento": 18,
+            "nombre": "FLORENCIA"
+        },
+        {
+            "codigo": 347,
+            "activo": false,
+            "codigoDepartamento": 18,
+            "nombre": "ALBANIA"
+        },
+        {
+            "codigo": 348,
+            "activo": false,
+            "codigoDepartamento": 18,
+            "nombre": "BELÉN DE LOS ANDAQUÍES"
+        },
+        {
+            "codigo": 349,
+            "activo": false,
+            "codigoDepartamento": 18,
+            "nombre": "CARTAGENA DEL CHAIRÁ"
+        },
+        {
+            "codigo": 350,
+            "activo": false,
+            "codigoDepartamento": 18,
+            "nombre": "CURILLO"
+        },
+        {
+            "codigo": 351,
+            "activo": false,
+            "codigoDepartamento": 18,
+            "nombre": "EL DONCELLO"
+        },
+        {
+            "codigo": 352,
+            "activo": false,
+            "codigoDepartamento": 18,
+            "nombre": "EL PAUJÍL"
+        },
+        {
+            "codigo": 353,
+            "activo": false,
+            "codigoDepartamento": 18,
+            "nombre": "LA MONTAÑITA"
+        },
+        {
+            "codigo": 354,
+            "activo": false,
+            "codigoDepartamento": 18,
+            "nombre": "MILÁN"
+        },
+        {
+            "codigo": 355,
+            "activo": false,
+            "codigoDepartamento": 18,
+            "nombre": "MORELIA"
+        },
+        {
+            "codigo": 356,
+            "activo": false,
+            "codigoDepartamento": 18,
+            "nombre": "PUERTO RICO"
+        },
+        {
+            "codigo": 357,
+            "activo": false,
+            "codigoDepartamento": 18,
+            "nombre": "SAN JOSÉ DEL FRAGUA"
+        },
+        {
+            "codigo": 358,
+            "activo": false,
+            "codigoDepartamento": 18,
+            "nombre": "SAN VICENTE DEL CAGUÁN"
+        },
+        {
+            "codigo": 359,
+            "activo": false,
+            "codigoDepartamento": 18,
+            "nombre": "SOLANO"
+        },
+        {
+            "codigo": 360,
+            "activo": false,
+            "codigoDepartamento": 18,
+            "nombre": "SOLITA"
+        },
+        {
+            "codigo": 361,
+            "activo": false,
+            "codigoDepartamento": 18,
+            "nombre": "VALPARAÍSO"
+        },
+        {
+            "codigo": 362,
+            "activo": false,
+            "codigoDepartamento": 19,
+            "nombre": "POPAYÁN"
+        },
+        {
+            "codigo": 363,
+            "activo": false,
+            "codigoDepartamento": 19,
+            "nombre": "ALMAGUER"
+        },
+        {
+            "codigo": 364,
+            "activo": false,
+            "codigoDepartamento": 19,
+            "nombre": "ARGELIA"
+        },
+        {
+            "codigo": 365,
+            "activo": false,
+            "codigoDepartamento": 19,
+            "nombre": "BALBOA"
+        },
+        {
+            "codigo": 366,
+            "activo": false,
+            "codigoDepartamento": 19,
+            "nombre": "BOLÍVAR"
+        },
+        {
+            "codigo": 367,
+            "activo": false,
+            "codigoDepartamento": 19,
+            "nombre": "BUENOS AIRES"
+        },
+        {
+            "codigo": 368,
+            "activo": false,
+            "codigoDepartamento": 19,
+            "nombre": "CAJIBÍO"
+        },
+        {
+            "codigo": 369,
+            "activo": false,
+            "codigoDepartamento": 19,
+            "nombre": "CALDONO"
+        },
+        {
+            "codigo": 370,
+            "activo": false,
+            "codigoDepartamento": 19,
+            "nombre": "CALOTO"
+        },
+        {
+            "codigo": 371,
+            "activo": false,
+            "codigoDepartamento": 19,
+            "nombre": "CORINTO"
+        },
+        {
+            "codigo": 372,
+            "activo": false,
+            "codigoDepartamento": 19,
+            "nombre": "EL TAMBO"
+        },
+        {
+            "codigo": 373,
+            "activo": false,
+            "codigoDepartamento": 19,
+            "nombre": "FLORENCIA"
+        },
+        {
+            "codigo": 374,
+            "activo": false,
+            "codigoDepartamento": 19,
+            "nombre": "GUACHENÉ"
+        },
+        {
+            "codigo": 375,
+            "activo": false,
+            "codigoDepartamento": 19,
+            "nombre": "GUAPI"
+        },
+        {
+            "codigo": 376,
+            "activo": false,
+            "codigoDepartamento": 19,
+            "nombre": "INZÁ"
+        },
+        {
+            "codigo": 377,
+            "activo": false,
+            "codigoDepartamento": 19,
+            "nombre": "JAMBALÓ"
+        },
+        {
+            "codigo": 378,
+            "activo": false,
+            "codigoDepartamento": 19,
+            "nombre": "LA SIERRA"
+        },
+        {
+            "codigo": 379,
+            "activo": false,
+            "codigoDepartamento": 19,
+            "nombre": "LA VEGA"
+        },
+        {
+            "codigo": 380,
+            "activo": false,
+            "codigoDepartamento": 19,
+            "nombre": "LÓPEZ DE MICAY"
+        },
+        {
+            "codigo": 381,
+            "activo": false,
+            "codigoDepartamento": 19,
+            "nombre": "MERCADERES"
+        },
+        {
+            "codigo": 382,
+            "activo": false,
+            "codigoDepartamento": 19,
+            "nombre": "MIRANDA"
+        },
+        {
+            "codigo": 383,
+            "activo": false,
+            "codigoDepartamento": 19,
+            "nombre": "MORALES"
+        },
+        {
+            "codigo": 384,
+            "activo": false,
+            "codigoDepartamento": 19,
+            "nombre": "PADILLA"
+        },
+        {
+            "codigo": 385,
+            "activo": false,
+            "codigoDepartamento": 19,
+            "nombre": "PÁEZ"
+        },
+        {
+            "codigo": 386,
+            "activo": false,
+            "codigoDepartamento": 19,
+            "nombre": "PATÍA"
+        },
+        {
+            "codigo": 387,
+            "activo": false,
+            "codigoDepartamento": 19,
+            "nombre": "PIAMONTE"
+        },
+        {
+            "codigo": 388,
+            "activo": false,
+            "codigoDepartamento": 19,
+            "nombre": "PIENDAMÓ - TUNÍA"
+        },
+        {
+            "codigo": 389,
+            "activo": false,
+            "codigoDepartamento": 19,
+            "nombre": "PUERTO TEJADA"
+        },
+        {
+            "codigo": 390,
+            "activo": false,
+            "codigoDepartamento": 19,
+            "nombre": "PURACÉ"
+        },
+        {
+            "codigo": 391,
+            "activo": false,
+            "codigoDepartamento": 19,
+            "nombre": "ROSAS"
+        },
+        {
+            "codigo": 392,
+            "activo": false,
+            "codigoDepartamento": 19,
+            "nombre": "SAN SEBASTIÁN"
+        },
+        {
+            "codigo": 393,
+            "activo": false,
+            "codigoDepartamento": 19,
+            "nombre": "SANTANDER DE QUILICHAO"
+        },
+        {
+            "codigo": 394,
+            "activo": false,
+            "codigoDepartamento": 19,
+            "nombre": "SANTA ROSA"
+        },
+        {
+            "codigo": 395,
+            "activo": false,
+            "codigoDepartamento": 19,
+            "nombre": "SILVIA"
+        },
+        {
+            "codigo": 396,
+            "activo": false,
+            "codigoDepartamento": 19,
+            "nombre": "SOTARÁ PAISPAMBA"
+        },
+        {
+            "codigo": 397,
+            "activo": false,
+            "codigoDepartamento": 19,
+            "nombre": "SUÁREZ"
+        },
+        {
+            "codigo": 398,
+            "activo": false,
+            "codigoDepartamento": 19,
+            "nombre": "SUCRE"
+        },
+        {
+            "codigo": 399,
+            "activo": false,
+            "codigoDepartamento": 19,
+            "nombre": "TIMBÍO"
+        },
+        {
+            "codigo": 400,
+            "activo": false,
+            "codigoDepartamento": 19,
+            "nombre": "TIMBIQUÍ"
+        },
+        {
+            "codigo": 401,
+            "activo": false,
+            "codigoDepartamento": 19,
+            "nombre": "TORIBÍO"
+        },
+        {
+            "codigo": 402,
+            "activo": false,
+            "codigoDepartamento": 19,
+            "nombre": "TOTORÓ"
+        },
+        {
+            "codigo": 403,
+            "activo": false,
+            "codigoDepartamento": 19,
+            "nombre": "VILLA RICA"
+        },
+        {
+            "codigo": 404,
+            "activo": false,
+            "codigoDepartamento": 20,
+            "nombre": "VALLEDUPAR"
+        },
+        {
+            "codigo": 405,
+            "activo": false,
+            "codigoDepartamento": 20,
+            "nombre": "AGUACHICA"
+        },
+        {
+            "codigo": 406,
+            "activo": false,
+            "codigoDepartamento": 20,
+            "nombre": "AGUSTÍN CODAZZI"
+        },
+        {
+            "codigo": 407,
+            "activo": false,
+            "codigoDepartamento": 20,
+            "nombre": "ASTREA"
+        },
+        {
+            "codigo": 408,
+            "activo": false,
+            "codigoDepartamento": 20,
+            "nombre": "BECERRIL"
+        },
+        {
+            "codigo": 409,
+            "activo": false,
+            "codigoDepartamento": 20,
+            "nombre": "BOSCONIA"
+        },
+        {
+            "codigo": 410,
+            "activo": false,
+            "codigoDepartamento": 20,
+            "nombre": "CHIMICHAGUA"
+        },
+        {
+            "codigo": 411,
+            "activo": false,
+            "codigoDepartamento": 20,
+            "nombre": "CHIRIGUANÁ"
+        },
+        {
+            "codigo": 412,
+            "activo": false,
+            "codigoDepartamento": 20,
+            "nombre": "CURUMANÍ"
+        },
+        {
+            "codigo": 413,
+            "activo": false,
+            "codigoDepartamento": 20,
+            "nombre": "EL COPEY"
+        },
+        {
+            "codigo": 414,
+            "activo": false,
+            "codigoDepartamento": 20,
+            "nombre": "EL PASO"
+        },
+        {
+            "codigo": 415,
+            "activo": false,
+            "codigoDepartamento": 20,
+            "nombre": "GAMARRA"
+        },
+        {
+            "codigo": 416,
+            "activo": false,
+            "codigoDepartamento": 20,
+            "nombre": "GONZÁLEZ"
+        },
+        {
+            "codigo": 417,
+            "activo": false,
+            "codigoDepartamento": 20,
+            "nombre": "LA GLORIA"
+        },
+        {
+            "codigo": 418,
+            "activo": false,
+            "codigoDepartamento": 20,
+            "nombre": "LA JAGUA DE IBIRICO"
+        },
+        {
+            "codigo": 419,
+            "activo": false,
+            "codigoDepartamento": 20,
+            "nombre": "MANAURE BALCÓN DEL CESAR"
+        },
+        {
+            "codigo": 420,
+            "activo": false,
+            "codigoDepartamento": 20,
+            "nombre": "PAILITAS"
+        },
+        {
+            "codigo": 421,
+            "activo": false,
+            "codigoDepartamento": 20,
+            "nombre": "PELAYA"
+        },
+        {
+            "codigo": 422,
+            "activo": false,
+            "codigoDepartamento": 20,
+            "nombre": "PUEBLO BELLO"
+        },
+        {
+            "codigo": 423,
+            "activo": false,
+            "codigoDepartamento": 20,
+            "nombre": "RÍO DE ORO"
+        },
+        {
+            "codigo": 424,
+            "activo": false,
+            "codigoDepartamento": 20,
+            "nombre": "LA PAZ"
+        },
+        {
+            "codigo": 425,
+            "activo": false,
+            "codigoDepartamento": 20,
+            "nombre": "SAN ALBERTO"
+        },
+        {
+            "codigo": 426,
+            "activo": false,
+            "codigoDepartamento": 20,
+            "nombre": "SAN DIEGO"
+        },
+        {
+            "codigo": 427,
+            "activo": false,
+            "codigoDepartamento": 20,
+            "nombre": "SAN MARTÍN"
+        },
+        {
+            "codigo": 428,
+            "activo": false,
+            "codigoDepartamento": 20,
+            "nombre": "TAMALAMEQUE"
+        },
+        {
+            "codigo": 429,
+            "activo": false,
+            "codigoDepartamento": 23,
+            "nombre": "MONTERÍA"
+        },
+        {
+            "codigo": 430,
+            "activo": false,
+            "codigoDepartamento": 23,
+            "nombre": "AYAPEL"
+        },
+        {
+            "codigo": 431,
+            "activo": false,
+            "codigoDepartamento": 23,
+            "nombre": "BUENAVISTA"
+        },
+        {
+            "codigo": 432,
+            "activo": false,
+            "codigoDepartamento": 23,
+            "nombre": "CANALETE"
+        },
+        {
+            "codigo": 433,
+            "activo": false,
+            "codigoDepartamento": 23,
+            "nombre": "CERETÉ"
+        },
+        {
+            "codigo": 434,
+            "activo": false,
+            "codigoDepartamento": 23,
+            "nombre": "CHIMÁ"
+        },
+        {
+            "codigo": 435,
+            "activo": false,
+            "codigoDepartamento": 23,
+            "nombre": "CHINÚ"
+        },
+        {
+            "codigo": 436,
+            "activo": false,
+            "codigoDepartamento": 23,
+            "nombre": "CIÉNAGA DE ORO"
+        },
+        {
+            "codigo": 437,
+            "activo": false,
+            "codigoDepartamento": 23,
+            "nombre": "COTORRA"
+        },
+        {
+            "codigo": 438,
+            "activo": false,
+            "codigoDepartamento": 23,
+            "nombre": "LA APARTADA"
+        },
+        {
+            "codigo": 439,
+            "activo": false,
+            "codigoDepartamento": 23,
+            "nombre": "LORICA"
+        },
+        {
+            "codigo": 440,
+            "activo": false,
+            "codigoDepartamento": 23,
+            "nombre": "LOS CÓRDOBAS"
+        },
+        {
+            "codigo": 441,
+            "activo": false,
+            "codigoDepartamento": 23,
+            "nombre": "MOMIL"
+        },
+        {
+            "codigo": 442,
+            "activo": false,
+            "codigoDepartamento": 23,
+            "nombre": "MONTELÍBANO"
+        },
+        {
+            "codigo": 443,
+            "activo": false,
+            "codigoDepartamento": 23,
+            "nombre": "MOÑITOS"
+        },
+        {
+            "codigo": 444,
+            "activo": false,
+            "codigoDepartamento": 23,
+            "nombre": "PLANETA RICA"
+        },
+        {
+            "codigo": 445,
+            "activo": false,
+            "codigoDepartamento": 23,
+            "nombre": "PUEBLO NUEVO"
+        },
+        {
+            "codigo": 446,
+            "activo": false,
+            "codigoDepartamento": 23,
+            "nombre": "PUERTO ESCONDIDO"
+        },
+        {
+            "codigo": 447,
+            "activo": false,
+            "codigoDepartamento": 23,
+            "nombre": "PUERTO LIBERTADOR"
+        },
+        {
+            "codigo": 448,
+            "activo": false,
+            "codigoDepartamento": 23,
+            "nombre": "PURÍSIMA DE LA CONCEPCIÓN"
+        },
+        {
+            "codigo": 449,
+            "activo": false,
+            "codigoDepartamento": 23,
+            "nombre": "SAHAGÚN"
+        },
+        {
+            "codigo": 450,
+            "activo": false,
+            "codigoDepartamento": 23,
+            "nombre": "SAN ANDRÉS DE SOTAVENTO"
+        },
+        {
+            "codigo": 451,
+            "activo": false,
+            "codigoDepartamento": 23,
+            "nombre": "SAN ANTERO"
+        },
+        {
+            "codigo": 452,
+            "activo": false,
+            "codigoDepartamento": 23,
+            "nombre": "SAN BERNARDO DEL VIENTO"
+        },
+        {
+            "codigo": 453,
+            "activo": false,
+            "codigoDepartamento": 23,
+            "nombre": "SAN CARLOS"
+        },
+        {
+            "codigo": 454,
+            "activo": false,
+            "codigoDepartamento": 23,
+            "nombre": "SAN JOSÉ DE URÉ"
+        },
+        {
+            "codigo": 455,
+            "activo": false,
+            "codigoDepartamento": 23,
+            "nombre": "SAN PELAYO"
+        },
+        {
+            "codigo": 456,
+            "activo": false,
+            "codigoDepartamento": 23,
+            "nombre": "TIERRALTA"
+        },
+        {
+            "codigo": 457,
+            "activo": false,
+            "codigoDepartamento": 23,
+            "nombre": "TUCHÍN"
+        },
+        {
+            "codigo": 458,
+            "activo": false,
+            "codigoDepartamento": 23,
+            "nombre": "VALENCIA"
+        },
+        {
+            "codigo": 459,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "AGUA DE DIOS"
+        },
+        {
+            "codigo": 460,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "ALBÁN"
+        },
+        {
+            "codigo": 461,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "ANAPOIMA"
+        },
+        {
+            "codigo": 462,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "ANOLAIMA"
+        },
+        {
+            "codigo": 463,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "ARBELÁEZ"
+        },
+        {
+            "codigo": 464,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "BELTRÁN"
+        },
+        {
+            "codigo": 465,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "BITUIMA"
+        },
+        {
+            "codigo": 466,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "BOJACÁ"
+        },
+        {
+            "codigo": 467,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "CABRERA"
+        },
+        {
+            "codigo": 468,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "CACHIPAY"
+        },
+        {
+            "codigo": 469,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "CAJICÁ"
+        },
+        {
+            "codigo": 470,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "CAPARRAPÍ"
+        },
+        {
+            "codigo": 471,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "CÁQUEZA"
+        },
+        {
+            "codigo": 472,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "CARMEN DE CARUPA"
+        },
+        {
+            "codigo": 473,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "CHAGUANÍ"
+        },
+        {
+            "codigo": 474,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "CHÍA"
+        },
+        {
+            "codigo": 475,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "CHIPAQUE"
+        },
+        {
+            "codigo": 476,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "CHOACHÍ"
+        },
+        {
+            "codigo": 477,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "CHOCONTÁ"
+        },
+        {
+            "codigo": 478,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "COGUA"
+        },
+        {
+            "codigo": 479,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "COTA"
+        },
+        {
+            "codigo": 480,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "CUCUNUBÁ"
+        },
+        {
+            "codigo": 481,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "EL COLEGIO"
+        },
+        {
+            "codigo": 482,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "EL PEÑÓN"
+        },
+        {
+            "codigo": 483,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "EL ROSAL"
+        },
+        {
+            "codigo": 484,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "FACATATIVÁ"
+        },
+        {
+            "codigo": 485,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "FÓMEQUE"
+        },
+        {
+            "codigo": 486,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "FOSCA"
+        },
+        {
+            "codigo": 487,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "FUNZA"
+        },
+        {
+            "codigo": 488,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "FÚQUENE"
+        },
+        {
+            "codigo": 489,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "FUSAGASUGÁ"
+        },
+        {
+            "codigo": 490,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "GACHALÁ"
+        },
+        {
+            "codigo": 491,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "GACHANCIPÁ"
+        },
+        {
+            "codigo": 492,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "GACHETÁ"
+        },
+        {
+            "codigo": 493,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "GAMA"
+        },
+        {
+            "codigo": 494,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "GIRARDOT"
+        },
+        {
+            "codigo": 495,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "GRANADA"
+        },
+        {
+            "codigo": 496,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "GUACHETÁ"
+        },
+        {
+            "codigo": 497,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "GUADUAS"
+        },
+        {
+            "codigo": 498,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "GUASCA"
+        },
+        {
+            "codigo": 499,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "GUATAQUÍ"
+        },
+        {
+            "codigo": 500,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "GUATAVITA"
+        },
+        {
+            "codigo": 501,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "GUAYABAL DE SÍQUIMA"
+        },
+        {
+            "codigo": 502,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "GUAYABETAL"
+        },
+        {
+            "codigo": 503,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "GUTIÉRREZ"
+        },
+        {
+            "codigo": 504,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "JERUSALÉN"
+        },
+        {
+            "codigo": 505,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "JUNÍN"
+        },
+        {
+            "codigo": 506,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "LA CALERA"
+        },
+        {
+            "codigo": 507,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "LA MESA"
+        },
+        {
+            "codigo": 508,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "LA PALMA"
+        },
+        {
+            "codigo": 509,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "LA PEÑA"
+        },
+        {
+            "codigo": 510,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "LA VEGA"
+        },
+        {
+            "codigo": 511,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "LENGUAZAQUE"
+        },
+        {
+            "codigo": 512,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "MACHETÁ"
+        },
+        {
+            "codigo": 513,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "MADRID"
+        },
+        {
+            "codigo": 514,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "MANTA"
+        },
+        {
+            "codigo": 515,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "MEDINA"
+        },
+        {
+            "codigo": 516,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "MOSQUERA"
+        },
+        {
+            "codigo": 517,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "NARIÑO"
+        },
+        {
+            "codigo": 518,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "NEMOCÓN"
+        },
+        {
+            "codigo": 519,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "NILO"
+        },
+        {
+            "codigo": 520,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "NIMAIMA"
+        },
+        {
+            "codigo": 521,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "NOCAIMA"
+        },
+        {
+            "codigo": 522,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "VENECIA"
+        },
+        {
+            "codigo": 523,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "PACHO"
+        },
+        {
+            "codigo": 524,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "PAIME"
+        },
+        {
+            "codigo": 525,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "PANDI"
+        },
+        {
+            "codigo": 526,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "PARATEBUENO"
+        },
+        {
+            "codigo": 527,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "PASCA"
+        },
+        {
+            "codigo": 528,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "PUERTO SALGAR"
+        },
+        {
+            "codigo": 529,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "PULÍ"
+        },
+        {
+            "codigo": 530,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "QUEBRADANEGRA"
+        },
+        {
+            "codigo": 531,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "QUETAME"
+        },
+        {
+            "codigo": 532,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "QUIPILE"
+        },
+        {
+            "codigo": 533,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "APULO"
+        },
+        {
+            "codigo": 534,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "RICAURTE"
+        },
+        {
+            "codigo": 535,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "SAN ANTONIO DEL TEQUENDAMA"
+        },
+        {
+            "codigo": 536,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "SAN BERNARDO"
+        },
+        {
+            "codigo": 537,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "SAN CAYETANO"
+        },
+        {
+            "codigo": 538,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "SAN FRANCISCO"
+        },
+        {
+            "codigo": 539,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "SAN JUAN DE RIOSECO"
+        },
+        {
+            "codigo": 540,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "SASAIMA"
+        },
+        {
+            "codigo": 541,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "SESQUILÉ"
+        },
+        {
+            "codigo": 542,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "SIBATÉ"
+        },
+        {
+            "codigo": 543,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "SILVANIA"
+        },
+        {
+            "codigo": 544,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "SIMIJACA"
+        },
+        {
+            "codigo": 545,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "SOACHA"
+        },
+        {
+            "codigo": 546,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "SOPÓ"
+        },
+        {
+            "codigo": 547,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "SUBACHOQUE"
+        },
+        {
+            "codigo": 548,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "SUESCA"
+        },
+        {
+            "codigo": 549,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "SUPATÁ"
+        },
+        {
+            "codigo": 550,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "SUSA"
+        },
+        {
+            "codigo": 551,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "SUTATAUSA"
+        },
+        {
+            "codigo": 552,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "TABIO"
+        },
+        {
+            "codigo": 553,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "TAUSA"
+        },
+        {
+            "codigo": 554,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "TENA"
+        },
+        {
+            "codigo": 555,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "TENJO"
+        },
+        {
+            "codigo": 556,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "TIBACUY"
+        },
+        {
+            "codigo": 557,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "TIBIRITA"
+        },
+        {
+            "codigo": 558,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "TOCAIMA"
+        },
+        {
+            "codigo": 559,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "TOCANCIPÁ"
+        },
+        {
+            "codigo": 560,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "TOPAIPÍ"
+        },
+        {
+            "codigo": 561,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "UBALÁ"
+        },
+        {
+            "codigo": 562,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "UBAQUE"
+        },
+        {
+            "codigo": 563,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "VILLA DE SAN DIEGO DE UBATÉ"
+        },
+        {
+            "codigo": 564,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "UNE"
+        },
+        {
+            "codigo": 565,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "ÚTICA"
+        },
+        {
+            "codigo": 566,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "VERGARA"
+        },
+        {
+            "codigo": 567,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "VIANÍ"
+        },
+        {
+            "codigo": 568,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "VILLAGÓMEZ"
+        },
+        {
+            "codigo": 569,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "VILLAPINZÓN"
+        },
+        {
+            "codigo": 570,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "VILLETA"
+        },
+        {
+            "codigo": 571,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "VIOTÁ"
+        },
+        {
+            "codigo": 572,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "YACOPÍ"
+        },
+        {
+            "codigo": 573,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "ZIPACÓN"
+        },
+        {
+            "codigo": 574,
+            "activo": false,
+            "codigoDepartamento": 25,
+            "nombre": "ZIPAQUIRÁ"
+        },
+        {
+            "codigo": 575,
+            "activo": false,
+            "codigoDepartamento": 27,
+            "nombre": "QUIBDÓ"
+        },
+        {
+            "codigo": 576,
+            "activo": false,
+            "codigoDepartamento": 27,
+            "nombre": "ACANDÍ"
+        },
+        {
+            "codigo": 577,
+            "activo": false,
+            "codigoDepartamento": 27,
+            "nombre": "ALTO BAUDÓ"
+        },
+        {
+            "codigo": 578,
+            "activo": false,
+            "codigoDepartamento": 27,
+            "nombre": "ATRATO"
+        },
+        {
+            "codigo": 579,
+            "activo": false,
+            "codigoDepartamento": 27,
+            "nombre": "BAGADÓ"
+        },
+        {
+            "codigo": 580,
+            "activo": false,
+            "codigoDepartamento": 27,
+            "nombre": "BAHÍA SOLANO"
+        },
+        {
+            "codigo": 581,
+            "activo": false,
+            "codigoDepartamento": 27,
+            "nombre": "BAJO BAUDÓ"
+        },
+        {
+            "codigo": 582,
+            "activo": false,
+            "codigoDepartamento": 27,
+            "nombre": "BOJAYÁ"
+        },
+        {
+            "codigo": 583,
+            "activo": false,
+            "codigoDepartamento": 27,
+            "nombre": "EL CANTÓN DEL SAN PABLO"
+        },
+        {
+            "codigo": 584,
+            "activo": false,
+            "codigoDepartamento": 27,
+            "nombre": "CARMEN DEL DARIÉN"
+        },
+        {
+            "codigo": 585,
+            "activo": false,
+            "codigoDepartamento": 27,
+            "nombre": "CÉRTEGUI"
+        },
+        {
+            "codigo": 586,
+            "activo": false,
+            "codigoDepartamento": 27,
+            "nombre": "CONDOTO"
+        },
+        {
+            "codigo": 587,
+            "activo": false,
+            "codigoDepartamento": 27,
+            "nombre": "EL CARMEN DE ATRATO"
+        },
+        {
+            "codigo": 588,
+            "activo": false,
+            "codigoDepartamento": 27,
+            "nombre": "EL LITORAL DEL SAN JUAN"
+        },
+        {
+            "codigo": 589,
+            "activo": false,
+            "codigoDepartamento": 27,
+            "nombre": "ISTMINA"
+        },
+        {
+            "codigo": 590,
+            "activo": false,
+            "codigoDepartamento": 27,
+            "nombre": "JURADÓ"
+        },
+        {
+            "codigo": 591,
+            "activo": false,
+            "codigoDepartamento": 27,
+            "nombre": "LLORÓ"
+        },
+        {
+            "codigo": 592,
+            "activo": false,
+            "codigoDepartamento": 27,
+            "nombre": "MEDIO ATRATO"
+        },
+        {
+            "codigo": 593,
+            "activo": false,
+            "codigoDepartamento": 27,
+            "nombre": "MEDIO BAUDÓ"
+        },
+        {
+            "codigo": 594,
+            "activo": false,
+            "codigoDepartamento": 27,
+            "nombre": "MEDIO SAN JUAN"
+        },
+        {
+            "codigo": 595,
+            "activo": false,
+            "codigoDepartamento": 27,
+            "nombre": "NÓVITA"
+        },
+        {
+            "codigo": 596,
+            "activo": false,
+            "codigoDepartamento": 27,
+            "nombre": "NUQUÍ"
+        },
+        {
+            "codigo": 597,
+            "activo": false,
+            "codigoDepartamento": 27,
+            "nombre": "RÍO IRÓ"
+        },
+        {
+            "codigo": 598,
+            "activo": false,
+            "codigoDepartamento": 27,
+            "nombre": "RÍO QUITO"
+        },
+        {
+            "codigo": 599,
+            "activo": false,
+            "codigoDepartamento": 27,
+            "nombre": "RIOSUCIO"
+        },
+        {
+            "codigo": 600,
+            "activo": false,
+            "codigoDepartamento": 27,
+            "nombre": "SAN JOSÉ DEL PALMAR"
+        },
+        {
+            "codigo": 601,
+            "activo": false,
+            "codigoDepartamento": 27,
+            "nombre": "SIPÍ"
+        },
+        {
+            "codigo": 602,
+            "activo": false,
+            "codigoDepartamento": 27,
+            "nombre": "TADÓ"
+        },
+        {
+            "codigo": 603,
+            "activo": false,
+            "codigoDepartamento": 27,
+            "nombre": "UNGUÍA"
+        },
+        {
+            "codigo": 604,
+            "activo": false,
+            "codigoDepartamento": 27,
+            "nombre": "UNIÓN PANAMERICANA"
+        },
+        {
+            "codigo": 605,
+            "activo": false,
+            "codigoDepartamento": 41,
+            "nombre": "NEIVA"
+        },
+        {
+            "codigo": 606,
+            "activo": false,
+            "codigoDepartamento": 41,
+            "nombre": "ACEVEDO"
+        },
+        {
+            "codigo": 607,
+            "activo": false,
+            "codigoDepartamento": 41,
+            "nombre": "AGRADO"
+        },
+        {
+            "codigo": 608,
+            "activo": false,
+            "codigoDepartamento": 41,
+            "nombre": "AIPE"
+        },
+        {
+            "codigo": 609,
+            "activo": false,
+            "codigoDepartamento": 41,
+            "nombre": "ALGECIRAS"
+        },
+        {
+            "codigo": 610,
+            "activo": false,
+            "codigoDepartamento": 41,
+            "nombre": "ALTAMIRA"
+        },
+        {
+            "codigo": 611,
+            "activo": false,
+            "codigoDepartamento": 41,
+            "nombre": "BARAYA"
+        },
+        {
+            "codigo": 612,
+            "activo": false,
+            "codigoDepartamento": 41,
+            "nombre": "CAMPOALEGRE"
+        },
+        {
+            "codigo": 613,
+            "activo": false,
+            "codigoDepartamento": 41,
+            "nombre": "COLOMBIA"
+        },
+        {
+            "codigo": 614,
+            "activo": false,
+            "codigoDepartamento": 41,
+            "nombre": "ELÍAS"
+        },
+        {
+            "codigo": 615,
+            "activo": false,
+            "codigoDepartamento": 41,
+            "nombre": "GARZÓN"
+        },
+        {
+            "codigo": 616,
+            "activo": false,
+            "codigoDepartamento": 41,
+            "nombre": "GIGANTE"
+        },
+        {
+            "codigo": 617,
+            "activo": false,
+            "codigoDepartamento": 41,
+            "nombre": "GUADALUPE"
+        },
+        {
+            "codigo": 618,
+            "activo": false,
+            "codigoDepartamento": 41,
+            "nombre": "HOBO"
+        },
+        {
+            "codigo": 619,
+            "activo": false,
+            "codigoDepartamento": 41,
+            "nombre": "ÍQUIRA"
+        },
+        {
+            "codigo": 620,
+            "activo": false,
+            "codigoDepartamento": 41,
+            "nombre": "ISNOS"
+        },
+        {
+            "codigo": 621,
+            "activo": false,
+            "codigoDepartamento": 41,
+            "nombre": "LA ARGENTINA"
+        },
+        {
+            "codigo": 622,
+            "activo": false,
+            "codigoDepartamento": 41,
+            "nombre": "LA PLATA"
+        },
+        {
+            "codigo": 623,
+            "activo": false,
+            "codigoDepartamento": 41,
+            "nombre": "NÁTAGA"
+        },
+        {
+            "codigo": 624,
+            "activo": false,
+            "codigoDepartamento": 41,
+            "nombre": "OPORAPA"
+        },
+        {
+            "codigo": 625,
+            "activo": false,
+            "codigoDepartamento": 41,
+            "nombre": "PAICOL"
+        },
+        {
+            "codigo": 626,
+            "activo": false,
+            "codigoDepartamento": 41,
+            "nombre": "PALERMO"
+        },
+        {
+            "codigo": 627,
+            "activo": false,
+            "codigoDepartamento": 41,
+            "nombre": "PALESTINA"
+        },
+        {
+            "codigo": 628,
+            "activo": false,
+            "codigoDepartamento": 41,
+            "nombre": "PITAL"
+        },
+        {
+            "codigo": 629,
+            "activo": false,
+            "codigoDepartamento": 41,
+            "nombre": "PITALITO"
+        },
+        {
+            "codigo": 630,
+            "activo": false,
+            "codigoDepartamento": 41,
+            "nombre": "RIVERA"
+        },
+        {
+            "codigo": 631,
+            "activo": false,
+            "codigoDepartamento": 41,
+            "nombre": "SALADOBLANCO"
+        },
+        {
+            "codigo": 632,
+            "activo": false,
+            "codigoDepartamento": 41,
+            "nombre": "SAN AGUSTÍN"
+        },
+        {
+            "codigo": 633,
+            "activo": false,
+            "codigoDepartamento": 41,
+            "nombre": "SANTA MARÍA"
+        },
+        {
+            "codigo": 634,
+            "activo": false,
+            "codigoDepartamento": 41,
+            "nombre": "SUAZA"
+        },
+        {
+            "codigo": 635,
+            "activo": false,
+            "codigoDepartamento": 41,
+            "nombre": "TARQUI"
+        },
+        {
+            "codigo": 636,
+            "activo": false,
+            "codigoDepartamento": 41,
+            "nombre": "TESALIA"
+        },
+        {
+            "codigo": 637,
+            "activo": false,
+            "codigoDepartamento": 41,
+            "nombre": "TELLO"
+        },
+        {
+            "codigo": 638,
+            "activo": false,
+            "codigoDepartamento": 41,
+            "nombre": "TERUEL"
+        },
+        {
+            "codigo": 639,
+            "activo": false,
+            "codigoDepartamento": 41,
+            "nombre": "TIMANÁ"
+        },
+        {
+            "codigo": 640,
+            "activo": false,
+            "codigoDepartamento": 41,
+            "nombre": "VILLAVIEJA"
+        },
+        {
+            "codigo": 641,
+            "activo": false,
+            "codigoDepartamento": 41,
+            "nombre": "YAGUARÁ"
+        },
+        {
+            "codigo": 642,
+            "activo": false,
+            "codigoDepartamento": 44,
+            "nombre": "RIOHACHA"
+        },
+        {
+            "codigo": 643,
+            "activo": false,
+            "codigoDepartamento": 44,
+            "nombre": "ALBANIA"
+        },
+        {
+            "codigo": 644,
+            "activo": false,
+            "codigoDepartamento": 44,
+            "nombre": "BARRANCAS"
+        },
+        {
+            "codigo": 645,
+            "activo": false,
+            "codigoDepartamento": 44,
+            "nombre": "DIBULLA"
+        },
+        {
+            "codigo": 646,
+            "activo": false,
+            "codigoDepartamento": 44,
+            "nombre": "DISTRACCIÓN"
+        },
+        {
+            "codigo": 647,
+            "activo": false,
+            "codigoDepartamento": 44,
+            "nombre": "EL MOLINO"
+        },
+        {
+            "codigo": 648,
+            "activo": false,
+            "codigoDepartamento": 44,
+            "nombre": "FONSECA"
+        },
+        {
+            "codigo": 649,
+            "activo": false,
+            "codigoDepartamento": 44,
+            "nombre": "HATONUEVO"
+        },
+        {
+            "codigo": 650,
+            "activo": false,
+            "codigoDepartamento": 44,
+            "nombre": "LA JAGUA DEL PILAR"
+        },
+        {
+            "codigo": 651,
+            "activo": false,
+            "codigoDepartamento": 44,
+            "nombre": "MAICAO"
+        },
+        {
+            "codigo": 652,
+            "activo": false,
+            "codigoDepartamento": 44,
+            "nombre": "MANAURE"
+        },
+        {
+            "codigo": 653,
+            "activo": false,
+            "codigoDepartamento": 44,
+            "nombre": "SAN JUAN DEL CESAR"
+        },
+        {
+            "codigo": 654,
+            "activo": false,
+            "codigoDepartamento": 44,
+            "nombre": "URIBIA"
+        },
+        {
+            "codigo": 655,
+            "activo": false,
+            "codigoDepartamento": 44,
+            "nombre": "URUMITA"
+        },
+        {
+            "codigo": 656,
+            "activo": false,
+            "codigoDepartamento": 44,
+            "nombre": "VILLANUEVA"
+        },
+        {
+            "codigo": 657,
+            "activo": false,
+            "codigoDepartamento": 47,
+            "nombre": "SANTA MARTA"
+        },
+        {
+            "codigo": 658,
+            "activo": false,
+            "codigoDepartamento": 47,
+            "nombre": "ALGARROBO"
+        },
+        {
+            "codigo": 659,
+            "activo": false,
+            "codigoDepartamento": 47,
+            "nombre": "ARACATACA"
+        },
+        {
+            "codigo": 660,
+            "activo": false,
+            "codigoDepartamento": 47,
+            "nombre": "ARIGUANÍ"
+        },
+        {
+            "codigo": 661,
+            "activo": false,
+            "codigoDepartamento": 47,
+            "nombre": "CERRO DE SAN ANTONIO"
+        },
+        {
+            "codigo": 662,
+            "activo": false,
+            "codigoDepartamento": 47,
+            "nombre": "CHIVOLO"
+        },
+        {
+            "codigo": 663,
+            "activo": false,
+            "codigoDepartamento": 47,
+            "nombre": "CIÉNAGA"
+        },
+        {
+            "codigo": 664,
+            "activo": false,
+            "codigoDepartamento": 47,
+            "nombre": "CONCORDIA"
+        },
+        {
+            "codigo": 665,
+            "activo": false,
+            "codigoDepartamento": 47,
+            "nombre": "EL BANCO"
+        },
+        {
+            "codigo": 666,
+            "activo": false,
+            "codigoDepartamento": 47,
+            "nombre": "EL PIÑÓN"
+        },
+        {
+            "codigo": 667,
+            "activo": false,
+            "codigoDepartamento": 47,
+            "nombre": "EL RETÉN"
+        },
+        {
+            "codigo": 668,
+            "activo": false,
+            "codigoDepartamento": 47,
+            "nombre": "FUNDACIÓN"
+        },
+        {
+            "codigo": 669,
+            "activo": false,
+            "codigoDepartamento": 47,
+            "nombre": "GUAMAL"
+        },
+        {
+            "codigo": 670,
+            "activo": false,
+            "codigoDepartamento": 47,
+            "nombre": "NUEVA GRANADA"
+        },
+        {
+            "codigo": 671,
+            "activo": false,
+            "codigoDepartamento": 47,
+            "nombre": "PEDRAZA"
+        },
+        {
+            "codigo": 672,
+            "activo": false,
+            "codigoDepartamento": 47,
+            "nombre": "PIJIÑO DEL CARMEN"
+        },
+        {
+            "codigo": 673,
+            "activo": false,
+            "codigoDepartamento": 47,
+            "nombre": "PIVIJAY"
+        },
+        {
+            "codigo": 674,
+            "activo": false,
+            "codigoDepartamento": 47,
+            "nombre": "PLATO"
+        },
+        {
+            "codigo": 675,
+            "activo": false,
+            "codigoDepartamento": 47,
+            "nombre": "PUEBLOVIEJO"
+        },
+        {
+            "codigo": 676,
+            "activo": false,
+            "codigoDepartamento": 47,
+            "nombre": "REMOLINO"
+        },
+        {
+            "codigo": 677,
+            "activo": false,
+            "codigoDepartamento": 47,
+            "nombre": "SABANAS DE SAN ÁNGEL"
+        },
+        {
+            "codigo": 678,
+            "activo": false,
+            "codigoDepartamento": 47,
+            "nombre": "SALAMINA"
+        },
+        {
+            "codigo": 679,
+            "activo": false,
+            "codigoDepartamento": 47,
+            "nombre": "SAN SEBASTIÁN DE BUENAVISTA"
+        },
+        {
+            "codigo": 680,
+            "activo": false,
+            "codigoDepartamento": 47,
+            "nombre": "SAN ZENÓN"
+        },
+        {
+            "codigo": 681,
+            "activo": false,
+            "codigoDepartamento": 47,
+            "nombre": "SANTA ANA"
+        },
+        {
+            "codigo": 682,
+            "activo": false,
+            "codigoDepartamento": 47,
+            "nombre": "SANTA BÁRBARA DE PINTO"
+        },
+        {
+            "codigo": 683,
+            "activo": false,
+            "codigoDepartamento": 47,
+            "nombre": "SITIONUEVO"
+        },
+        {
+            "codigo": 684,
+            "activo": false,
+            "codigoDepartamento": 47,
+            "nombre": "TENERIFE"
+        },
+        {
+            "codigo": 685,
+            "activo": false,
+            "codigoDepartamento": 47,
+            "nombre": "ZAPAYÁN"
+        },
+        {
+            "codigo": 686,
+            "activo": false,
+            "codigoDepartamento": 47,
+            "nombre": "ZONA BANANERA"
+        },
+        {
+            "codigo": 687,
+            "activo": false,
+            "codigoDepartamento": 50,
+            "nombre": "VILLAVICENCIO"
+        },
+        {
+            "codigo": 688,
+            "activo": false,
+            "codigoDepartamento": 50,
+            "nombre": "ACACÍAS"
+        },
+        {
+            "codigo": 689,
+            "activo": false,
+            "codigoDepartamento": 50,
+            "nombre": "BARRANCA DE UPÍA"
+        },
+        {
+            "codigo": 690,
+            "activo": false,
+            "codigoDepartamento": 50,
+            "nombre": "CABUYARO"
+        },
+        {
+            "codigo": 691,
+            "activo": false,
+            "codigoDepartamento": 50,
+            "nombre": "CASTILLA LA NUEVA"
+        },
+        {
+            "codigo": 692,
+            "activo": false,
+            "codigoDepartamento": 50,
+            "nombre": "CUBARRAL"
+        },
+        {
+            "codigo": 693,
+            "activo": false,
+            "codigoDepartamento": 50,
+            "nombre": "CUMARAL"
+        },
+        {
+            "codigo": 694,
+            "activo": false,
+            "codigoDepartamento": 50,
+            "nombre": "EL CALVARIO"
+        },
+        {
+            "codigo": 695,
+            "activo": false,
+            "codigoDepartamento": 50,
+            "nombre": "EL CASTILLO"
+        },
+        {
+            "codigo": 696,
+            "activo": false,
+            "codigoDepartamento": 50,
+            "nombre": "EL DORADO"
+        },
+        {
+            "codigo": 697,
+            "activo": false,
+            "codigoDepartamento": 50,
+            "nombre": "FUENTE DE ORO"
+        },
+        {
+            "codigo": 698,
+            "activo": false,
+            "codigoDepartamento": 50,
+            "nombre": "GRANADA"
+        },
+        {
+            "codigo": 699,
+            "activo": false,
+            "codigoDepartamento": 50,
+            "nombre": "GUAMAL"
+        },
+        {
+            "codigo": 700,
+            "activo": false,
+            "codigoDepartamento": 50,
+            "nombre": "MAPIRIPÁN"
+        },
+        {
+            "codigo": 701,
+            "activo": false,
+            "codigoDepartamento": 50,
+            "nombre": "MESETAS"
+        },
+        {
+            "codigo": 702,
+            "activo": false,
+            "codigoDepartamento": 50,
+            "nombre": "LA MACARENA"
+        },
+        {
+            "codigo": 703,
+            "activo": false,
+            "codigoDepartamento": 50,
+            "nombre": "URIBE"
+        },
+        {
+            "codigo": 704,
+            "activo": false,
+            "codigoDepartamento": 50,
+            "nombre": "LEJANÍAS"
+        },
+        {
+            "codigo": 705,
+            "activo": false,
+            "codigoDepartamento": 50,
+            "nombre": "PUERTO CONCORDIA"
+        },
+        {
+            "codigo": 706,
+            "activo": false,
+            "codigoDepartamento": 50,
+            "nombre": "PUERTO GAITÁN"
+        },
+        {
+            "codigo": 707,
+            "activo": false,
+            "codigoDepartamento": 50,
+            "nombre": "PUERTO LÓPEZ"
+        },
+        {
+            "codigo": 708,
+            "activo": false,
+            "codigoDepartamento": 50,
+            "nombre": "PUERTO LLERAS"
+        },
+        {
+            "codigo": 709,
+            "activo": false,
+            "codigoDepartamento": 50,
+            "nombre": "PUERTO RICO"
+        },
+        {
+            "codigo": 710,
+            "activo": false,
+            "codigoDepartamento": 50,
+            "nombre": "RESTREPO"
+        },
+        {
+            "codigo": 711,
+            "activo": false,
+            "codigoDepartamento": 50,
+            "nombre": "SAN CARLOS DE GUAROA"
+        },
+        {
+            "codigo": 712,
+            "activo": false,
+            "codigoDepartamento": 50,
+            "nombre": "SAN JUAN DE ARAMA"
+        },
+        {
+            "codigo": 713,
+            "activo": false,
+            "codigoDepartamento": 50,
+            "nombre": "SAN JUANITO"
+        },
+        {
+            "codigo": 714,
+            "activo": false,
+            "codigoDepartamento": 50,
+            "nombre": "SAN MARTÍN"
+        },
+        {
+            "codigo": 715,
+            "activo": false,
+            "codigoDepartamento": 50,
+            "nombre": "VISTAHERMOSA"
+        },
+        {
+            "codigo": 716,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "PASTO"
+        },
+        {
+            "codigo": 717,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "ALBÁN"
+        },
+        {
+            "codigo": 718,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "ALDANA"
+        },
+        {
+            "codigo": 719,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "ANCUYA"
+        },
+        {
+            "codigo": 720,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "ARBOLEDA"
+        },
+        {
+            "codigo": 721,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "BARBACOAS"
+        },
+        {
+            "codigo": 722,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "BELÉN"
+        },
+        {
+            "codigo": 723,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "BUESACO"
+        },
+        {
+            "codigo": 724,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "COLÓN"
+        },
+        {
+            "codigo": 725,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "CONSACÁ"
+        },
+        {
+            "codigo": 726,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "CONTADERO"
+        },
+        {
+            "codigo": 727,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "CÓRDOBA"
+        },
+        {
+            "codigo": 728,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "CUASPUD CARLOSAMA"
+        },
+        {
+            "codigo": 729,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "CUMBAL"
+        },
+        {
+            "codigo": 730,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "CUMBITARA"
+        },
+        {
+            "codigo": 731,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "CHACHAGÜÍ"
+        },
+        {
+            "codigo": 732,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "EL CHARCO"
+        },
+        {
+            "codigo": 733,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "EL PEÑOL"
+        },
+        {
+            "codigo": 734,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "EL ROSARIO"
+        },
+        {
+            "codigo": 735,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "EL TABLÓN DE GÓMEZ"
+        },
+        {
+            "codigo": 736,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "EL TAMBO"
+        },
+        {
+            "codigo": 737,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "FUNES"
+        },
+        {
+            "codigo": 738,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "GUACHUCAL"
+        },
+        {
+            "codigo": 739,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "GUAITARILLA"
+        },
+        {
+            "codigo": 740,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "GUALMATÁN"
+        },
+        {
+            "codigo": 741,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "ILES"
+        },
+        {
+            "codigo": 742,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "IMUÉS"
+        },
+        {
+            "codigo": 743,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "IPIALES"
+        },
+        {
+            "codigo": 744,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "LA CRUZ"
+        },
+        {
+            "codigo": 745,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "LA FLORIDA"
+        },
+        {
+            "codigo": 746,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "LA LLANADA"
+        },
+        {
+            "codigo": 747,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "LA TOLA"
+        },
+        {
+            "codigo": 748,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "LA UNIÓN"
+        },
+        {
+            "codigo": 749,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "LEIVA"
+        },
+        {
+            "codigo": 750,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "LINARES"
+        },
+        {
+            "codigo": 751,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "LOS ANDES"
+        },
+        {
+            "codigo": 752,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "MAGÜÍ"
+        },
+        {
+            "codigo": 753,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "MALLAMA"
+        },
+        {
+            "codigo": 754,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "MOSQUERA"
+        },
+        {
+            "codigo": 755,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "NARIÑO"
+        },
+        {
+            "codigo": 756,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "OLAYA HERRERA"
+        },
+        {
+            "codigo": 757,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "OSPINA"
+        },
+        {
+            "codigo": 758,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "FRANCISCO PIZARRO"
+        },
+        {
+            "codigo": 759,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "POLICARPA"
+        },
+        {
+            "codigo": 760,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "POTOSÍ"
+        },
+        {
+            "codigo": 761,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "PROVIDENCIA"
+        },
+        {
+            "codigo": 762,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "PUERRES"
+        },
+        {
+            "codigo": 763,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "PUPIALES"
+        },
+        {
+            "codigo": 764,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "RICAURTE"
+        },
+        {
+            "codigo": 765,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "ROBERTO PAYÁN"
+        },
+        {
+            "codigo": 766,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "SAMANIEGO"
+        },
+        {
+            "codigo": 767,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "SANDONÁ"
+        },
+        {
+            "codigo": 768,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "SAN BERNARDO"
+        },
+        {
+            "codigo": 769,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "SAN LORENZO"
+        },
+        {
+            "codigo": 770,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "SAN PABLO"
+        },
+        {
+            "codigo": 771,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "SAN PEDRO DE CARTAGO"
+        },
+        {
+            "codigo": 772,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "SANTA BÁRBARA"
+        },
+        {
+            "codigo": 773,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "SANTACRUZ"
+        },
+        {
+            "codigo": 774,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "SAPUYES"
+        },
+        {
+            "codigo": 775,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "TAMINANGO"
+        },
+        {
+            "codigo": 776,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "TANGUA"
+        },
+        {
+            "codigo": 777,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "SAN ANDRÉS DE TUMACO"
+        },
+        {
+            "codigo": 778,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "TÚQUERRES"
+        },
+        {
+            "codigo": 779,
+            "activo": false,
+            "codigoDepartamento": 52,
+            "nombre": "YACUANQUER"
+        },
+        {
+            "codigo": 780,
+            "activo": false,
+            "codigoDepartamento": 54,
+            "nombre": "SAN JOSÉ DE CÚCUTA"
+        },
+        {
+            "codigo": 781,
+            "activo": false,
+            "codigoDepartamento": 54,
+            "nombre": "ÁBREGO"
+        },
+        {
+            "codigo": 782,
+            "activo": false,
+            "codigoDepartamento": 54,
+            "nombre": "ARBOLEDAS"
+        },
+        {
+            "codigo": 783,
+            "activo": false,
+            "codigoDepartamento": 54,
+            "nombre": "BOCHALEMA"
+        },
+        {
+            "codigo": 784,
+            "activo": false,
+            "codigoDepartamento": 54,
+            "nombre": "BUCARASICA"
+        },
+        {
+            "codigo": 785,
+            "activo": false,
+            "codigoDepartamento": 54,
+            "nombre": "CÁCOTA"
+        },
+        {
+            "codigo": 786,
+            "activo": false,
+            "codigoDepartamento": 54,
+            "nombre": "CÁCHIRA"
+        },
+        {
+            "codigo": 787,
+            "activo": false,
+            "codigoDepartamento": 54,
+            "nombre": "CHINÁCOTA"
+        },
+        {
+            "codigo": 788,
+            "activo": false,
+            "codigoDepartamento": 54,
+            "nombre": "CHITAGÁ"
+        },
+        {
+            "codigo": 789,
+            "activo": false,
+            "codigoDepartamento": 54,
+            "nombre": "CONVENCIÓN"
+        },
+        {
+            "codigo": 790,
+            "activo": false,
+            "codigoDepartamento": 54,
+            "nombre": "CUCUTILLA"
+        },
+        {
+            "codigo": 791,
+            "activo": false,
+            "codigoDepartamento": 54,
+            "nombre": "DURANIA"
+        },
+        {
+            "codigo": 792,
+            "activo": false,
+            "codigoDepartamento": 54,
+            "nombre": "EL CARMEN"
+        },
+        {
+            "codigo": 793,
+            "activo": false,
+            "codigoDepartamento": 54,
+            "nombre": "EL TARRA"
+        },
+        {
+            "codigo": 794,
+            "activo": false,
+            "codigoDepartamento": 54,
+            "nombre": "EL ZULIA"
+        },
+        {
+            "codigo": 795,
+            "activo": false,
+            "codigoDepartamento": 54,
+            "nombre": "GRAMALOTE"
+        },
+        {
+            "codigo": 796,
+            "activo": false,
+            "codigoDepartamento": 54,
+            "nombre": "HACARÍ"
+        },
+        {
+            "codigo": 797,
+            "activo": false,
+            "codigoDepartamento": 54,
+            "nombre": "HERRÁN"
+        },
+        {
+            "codigo": 798,
+            "activo": false,
+            "codigoDepartamento": 54,
+            "nombre": "LABATECA"
+        },
+        {
+            "codigo": 799,
+            "activo": false,
+            "codigoDepartamento": 54,
+            "nombre": "LA ESPERANZA"
+        },
+        {
+            "codigo": 800,
+            "activo": false,
+            "codigoDepartamento": 54,
+            "nombre": "LA PLAYA"
+        },
+        {
+            "codigo": 801,
+            "activo": false,
+            "codigoDepartamento": 54,
+            "nombre": "LOS PATIOS"
+        },
+        {
+            "codigo": 802,
+            "activo": false,
+            "codigoDepartamento": 54,
+            "nombre": "LOURDES"
+        },
+        {
+            "codigo": 803,
+            "activo": false,
+            "codigoDepartamento": 54,
+            "nombre": "MUTISCUA"
+        },
+        {
+            "codigo": 804,
+            "activo": false,
+            "codigoDepartamento": 54,
+            "nombre": "OCAÑA"
+        },
+        {
+            "codigo": 805,
+            "activo": false,
+            "codigoDepartamento": 54,
+            "nombre": "PAMPLONA"
+        },
+        {
+            "codigo": 806,
+            "activo": false,
+            "codigoDepartamento": 54,
+            "nombre": "PAMPLONITA"
+        },
+        {
+            "codigo": 807,
+            "activo": false,
+            "codigoDepartamento": 54,
+            "nombre": "PUERTO SANTANDER"
+        },
+        {
+            "codigo": 808,
+            "activo": false,
+            "codigoDepartamento": 54,
+            "nombre": "RAGONVALIA"
+        },
+        {
+            "codigo": 809,
+            "activo": false,
+            "codigoDepartamento": 54,
+            "nombre": "SALAZAR"
+        },
+        {
+            "codigo": 810,
+            "activo": false,
+            "codigoDepartamento": 54,
+            "nombre": "SAN CALIXTO"
+        },
+        {
+            "codigo": 811,
+            "activo": false,
+            "codigoDepartamento": 54,
+            "nombre": "SAN CAYETANO"
+        },
+        {
+            "codigo": 812,
+            "activo": false,
+            "codigoDepartamento": 54,
+            "nombre": "SANTIAGO"
+        },
+        {
+            "codigo": 813,
+            "activo": false,
+            "codigoDepartamento": 54,
+            "nombre": "SARDINATA"
+        },
+        {
+            "codigo": 814,
+            "activo": false,
+            "codigoDepartamento": 54,
+            "nombre": "SILOS"
+        },
+        {
+            "codigo": 815,
+            "activo": false,
+            "codigoDepartamento": 54,
+            "nombre": "TEORAMA"
+        },
+        {
+            "codigo": 816,
+            "activo": false,
+            "codigoDepartamento": 54,
+            "nombre": "TIBÚ"
+        },
+        {
+            "codigo": 817,
+            "activo": false,
+            "codigoDepartamento": 54,
+            "nombre": "TOLEDO"
+        },
+        {
+            "codigo": 818,
+            "activo": false,
+            "codigoDepartamento": 54,
+            "nombre": "VILLA CARO"
+        },
+        {
+            "codigo": 819,
+            "activo": false,
+            "codigoDepartamento": 54,
+            "nombre": "VILLA DEL ROSARIO"
+        },
+        {
+            "codigo": 820,
+            "activo": false,
+            "codigoDepartamento": 63,
+            "nombre": "ARMENIA"
+        },
+        {
+            "codigo": 821,
+            "activo": false,
+            "codigoDepartamento": 63,
+            "nombre": "BUENAVISTA"
+        },
+        {
+            "codigo": 822,
+            "activo": false,
+            "codigoDepartamento": 63,
+            "nombre": "CALARCÁ"
+        },
+        {
+            "codigo": 823,
+            "activo": false,
+            "codigoDepartamento": 63,
+            "nombre": "CIRCASIA"
+        },
+        {
+            "codigo": 824,
+            "activo": false,
+            "codigoDepartamento": 63,
+            "nombre": "CÓRDOBA"
+        },
+        {
+            "codigo": 825,
+            "activo": false,
+            "codigoDepartamento": 63,
+            "nombre": "FILANDIA"
+        },
+        {
+            "codigo": 826,
+            "activo": false,
+            "codigoDepartamento": 63,
+            "nombre": "GÉNOVA"
+        },
+        {
+            "codigo": 827,
+            "activo": false,
+            "codigoDepartamento": 63,
+            "nombre": "LA TEBAIDA"
+        },
+        {
+            "codigo": 828,
+            "activo": false,
+            "codigoDepartamento": 63,
+            "nombre": "MONTENEGRO"
+        },
+        {
+            "codigo": 829,
+            "activo": false,
+            "codigoDepartamento": 63,
+            "nombre": "PIJAO"
+        },
+        {
+            "codigo": 830,
+            "activo": false,
+            "codigoDepartamento": 63,
+            "nombre": "QUIMBAYA"
+        },
+        {
+            "codigo": 831,
+            "activo": false,
+            "codigoDepartamento": 63,
+            "nombre": "SALENTO"
+        },
+        {
+            "codigo": 832,
+            "activo": false,
+            "codigoDepartamento": 66,
+            "nombre": "PEREIRA"
+        },
+        {
+            "codigo": 833,
+            "activo": false,
+            "codigoDepartamento": 66,
+            "nombre": "APÍA"
+        },
+        {
+            "codigo": 834,
+            "activo": false,
+            "codigoDepartamento": 66,
+            "nombre": "BALBOA"
+        },
+        {
+            "codigo": 835,
+            "activo": false,
+            "codigoDepartamento": 66,
+            "nombre": "BELÉN DE UMBRÍA"
+        },
+        {
+            "codigo": 836,
+            "activo": false,
+            "codigoDepartamento": 66,
+            "nombre": "DOSQUEBRADAS"
+        },
+        {
+            "codigo": 837,
+            "activo": false,
+            "codigoDepartamento": 66,
+            "nombre": "GUÁTICA"
+        },
+        {
+            "codigo": 838,
+            "activo": false,
+            "codigoDepartamento": 66,
+            "nombre": "LA CELIA"
+        },
+        {
+            "codigo": 839,
+            "activo": false,
+            "codigoDepartamento": 66,
+            "nombre": "LA VIRGINIA"
+        },
+        {
+            "codigo": 840,
+            "activo": false,
+            "codigoDepartamento": 66,
+            "nombre": "MARSELLA"
+        },
+        {
+            "codigo": 841,
+            "activo": false,
+            "codigoDepartamento": 66,
+            "nombre": "MISTRATÓ"
+        },
+        {
+            "codigo": 842,
+            "activo": false,
+            "codigoDepartamento": 66,
+            "nombre": "PUEBLO RICO"
+        },
+        {
+            "codigo": 843,
+            "activo": false,
+            "codigoDepartamento": 66,
+            "nombre": "QUINCHÍA"
+        },
+        {
+            "codigo": 844,
+            "activo": false,
+            "codigoDepartamento": 66,
+            "nombre": "SANTA ROSA DE CABAL"
+        },
+        {
+            "codigo": 845,
+            "activo": false,
+            "codigoDepartamento": 66,
+            "nombre": "SANTUARIO"
+        },
+        {
+            "codigo": 846,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "BUCARAMANGA"
+        },
+        {
+            "codigo": 847,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "AGUADA"
+        },
+        {
+            "codigo": 848,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "ALBANIA"
+        },
+        {
+            "codigo": 849,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "ARATOCA"
+        },
+        {
+            "codigo": 850,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "BARBOSA"
+        },
+        {
+            "codigo": 851,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "BARICHARA"
+        },
+        {
+            "codigo": 852,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "BARRANCABERMEJA"
+        },
+        {
+            "codigo": 853,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "BETULIA"
+        },
+        {
+            "codigo": 854,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "BOLÍVAR"
+        },
+        {
+            "codigo": 855,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "CABRERA"
+        },
+        {
+            "codigo": 856,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "CALIFORNIA"
+        },
+        {
+            "codigo": 857,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "CAPITANEJO"
+        },
+        {
+            "codigo": 858,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "CARCASÍ"
+        },
+        {
+            "codigo": 859,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "CEPITÁ"
+        },
+        {
+            "codigo": 860,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "CERRITO"
+        },
+        {
+            "codigo": 861,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "CHARALÁ"
+        },
+        {
+            "codigo": 862,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "CHARTA"
+        },
+        {
+            "codigo": 863,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "CHIMA"
+        },
+        {
+            "codigo": 864,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "CHIPATÁ"
+        },
+        {
+            "codigo": 865,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "CIMITARRA"
+        },
+        {
+            "codigo": 866,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "CONCEPCIÓN"
+        },
+        {
+            "codigo": 867,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "CONFINES"
+        },
+        {
+            "codigo": 868,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "CONTRATACIÓN"
+        },
+        {
+            "codigo": 869,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "COROMORO"
+        },
+        {
+            "codigo": 870,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "CURITÍ"
+        },
+        {
+            "codigo": 871,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "EL CARMEN DE CHUCURI"
+        },
+        {
+            "codigo": 872,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "EL GUACAMAYO"
+        },
+        {
+            "codigo": 873,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "EL PEÑÓN"
+        },
+        {
+            "codigo": 874,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "EL PLAYÓN"
+        },
+        {
+            "codigo": 875,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "ENCINO"
+        },
+        {
+            "codigo": 876,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "ENCISO"
+        },
+        {
+            "codigo": 877,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "FLORIÁN"
+        },
+        {
+            "codigo": 878,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "FLORIDABLANCA"
+        },
+        {
+            "codigo": 879,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "GALÁN"
+        },
+        {
+            "codigo": 880,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "GÁMBITA"
+        },
+        {
+            "codigo": 881,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "GIRÓN"
+        },
+        {
+            "codigo": 882,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "GUACA"
+        },
+        {
+            "codigo": 883,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "GUADALUPE"
+        },
+        {
+            "codigo": 884,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "GUAPOTÁ"
+        },
+        {
+            "codigo": 885,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "GUAVATÁ"
+        },
+        {
+            "codigo": 886,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "GÜEPSA"
+        },
+        {
+            "codigo": 887,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "HATO"
+        },
+        {
+            "codigo": 888,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "JESÚS MARÍA"
+        },
+        {
+            "codigo": 889,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "JORDÁN"
+        },
+        {
+            "codigo": 890,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "LA BELLEZA"
+        },
+        {
+            "codigo": 891,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "LANDÁZURI"
+        },
+        {
+            "codigo": 892,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "LA PAZ"
+        },
+        {
+            "codigo": 893,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "LEBRIJA"
+        },
+        {
+            "codigo": 894,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "LOS SANTOS"
+        },
+        {
+            "codigo": 895,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "MACARAVITA"
+        },
+        {
+            "codigo": 896,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "MÁLAGA"
+        },
+        {
+            "codigo": 897,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "MATANZA"
+        },
+        {
+            "codigo": 898,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "MOGOTES"
+        },
+        {
+            "codigo": 899,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "MOLAGAVITA"
+        },
+        {
+            "codigo": 900,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "OCAMONTE"
+        },
+        {
+            "codigo": 901,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "OIBA"
+        },
+        {
+            "codigo": 902,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "ONZAGA"
+        },
+        {
+            "codigo": 903,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "PALMAR"
+        },
+        {
+            "codigo": 904,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "PALMAS DEL SOCORRO"
+        },
+        {
+            "codigo": 905,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "PÁRAMO"
+        },
+        {
+            "codigo": 906,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "PIEDECUESTA"
+        },
+        {
+            "codigo": 907,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "PINCHOTE"
+        },
+        {
+            "codigo": 908,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "PUENTE NACIONAL"
+        },
+        {
+            "codigo": 909,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "PUERTO PARRA"
+        },
+        {
+            "codigo": 910,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "PUERTO WILCHES"
+        },
+        {
+            "codigo": 911,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "RIONEGRO"
+        },
+        {
+            "codigo": 912,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "SABANA DE TORRES"
+        },
+        {
+            "codigo": 913,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "SAN ANDRÉS"
+        },
+        {
+            "codigo": 914,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "SAN BENITO"
+        },
+        {
+            "codigo": 915,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "SAN GIL"
+        },
+        {
+            "codigo": 916,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "SAN JOAQUÍN"
+        },
+        {
+            "codigo": 917,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "SAN JOSÉ DE MIRANDA"
+        },
+        {
+            "codigo": 918,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "SAN MIGUEL"
+        },
+        {
+            "codigo": 919,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "SAN VICENTE DE CHUCURÍ"
+        },
+        {
+            "codigo": 920,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "SANTA BÁRBARA"
+        },
+        {
+            "codigo": 921,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "SANTA HELENA DEL OPÓN"
+        },
+        {
+            "codigo": 922,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "SIMACOTA"
+        },
+        {
+            "codigo": 923,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "SOCORRO"
+        },
+        {
+            "codigo": 924,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "SUAITA"
+        },
+        {
+            "codigo": 925,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "SUCRE"
+        },
+        {
+            "codigo": 926,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "SURATÁ"
+        },
+        {
+            "codigo": 927,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "TONA"
+        },
+        {
+            "codigo": 928,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "VALLE DE SAN JOSÉ"
+        },
+        {
+            "codigo": 929,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "VÉLEZ"
+        },
+        {
+            "codigo": 930,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "VETAS"
+        },
+        {
+            "codigo": 931,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "VILLANUEVA"
+        },
+        {
+            "codigo": 932,
+            "activo": false,
+            "codigoDepartamento": 68,
+            "nombre": "ZAPATOCA"
+        },
+        {
+            "codigo": 933,
+            "activo": false,
+            "codigoDepartamento": 70,
+            "nombre": "SINCELEJO"
+        },
+        {
+            "codigo": 934,
+            "activo": false,
+            "codigoDepartamento": 70,
+            "nombre": "BUENAVISTA"
+        },
+        {
+            "codigo": 935,
+            "activo": false,
+            "codigoDepartamento": 70,
+            "nombre": "CAIMITO"
+        },
+        {
+            "codigo": 936,
+            "activo": false,
+            "codigoDepartamento": 70,
+            "nombre": "COLOSÓ"
+        },
+        {
+            "codigo": 937,
+            "activo": false,
+            "codigoDepartamento": 70,
+            "nombre": "COROZAL"
+        },
+        {
+            "codigo": 938,
+            "activo": false,
+            "codigoDepartamento": 70,
+            "nombre": "COVEÑAS"
+        },
+        {
+            "codigo": 939,
+            "activo": false,
+            "codigoDepartamento": 70,
+            "nombre": "CHALÁN"
+        },
+        {
+            "codigo": 940,
+            "activo": false,
+            "codigoDepartamento": 70,
+            "nombre": "EL ROBLE"
+        },
+        {
+            "codigo": 941,
+            "activo": false,
+            "codigoDepartamento": 70,
+            "nombre": "GALERAS"
+        },
+        {
+            "codigo": 942,
+            "activo": false,
+            "codigoDepartamento": 70,
+            "nombre": "GUARANDA"
+        },
+        {
+            "codigo": 943,
+            "activo": false,
+            "codigoDepartamento": 70,
+            "nombre": "LA UNIÓN"
+        },
+        {
+            "codigo": 944,
+            "activo": false,
+            "codigoDepartamento": 70,
+            "nombre": "LOS PALMITOS"
+        },
+        {
+            "codigo": 945,
+            "activo": false,
+            "codigoDepartamento": 70,
+            "nombre": "MAJAGUAL"
+        },
+        {
+            "codigo": 946,
+            "activo": false,
+            "codigoDepartamento": 70,
+            "nombre": "MORROA"
+        },
+        {
+            "codigo": 947,
+            "activo": false,
+            "codigoDepartamento": 70,
+            "nombre": "OVEJAS"
+        },
+        {
+            "codigo": 948,
+            "activo": false,
+            "codigoDepartamento": 70,
+            "nombre": "PALMITO"
+        },
+        {
+            "codigo": 949,
+            "activo": false,
+            "codigoDepartamento": 70,
+            "nombre": "SAMPUÉS"
+        },
+        {
+            "codigo": 950,
+            "activo": false,
+            "codigoDepartamento": 70,
+            "nombre": "SAN BENITO ABAD"
+        },
+        {
+            "codigo": 951,
+            "activo": false,
+            "codigoDepartamento": 70,
+            "nombre": "SAN JUAN DE BETULIA"
+        },
+        {
+            "codigo": 952,
+            "activo": false,
+            "codigoDepartamento": 70,
+            "nombre": "SAN MARCOS"
+        },
+        {
+            "codigo": 953,
+            "activo": false,
+            "codigoDepartamento": 70,
+            "nombre": "SAN ONOFRE"
+        },
+        {
+            "codigo": 954,
+            "activo": false,
+            "codigoDepartamento": 70,
+            "nombre": "SAN PEDRO"
+        },
+        {
+            "codigo": 955,
+            "activo": false,
+            "codigoDepartamento": 70,
+            "nombre": "SAN LUIS DE SINCÉ"
+        },
+        {
+            "codigo": 956,
+            "activo": false,
+            "codigoDepartamento": 70,
+            "nombre": "SUCRE"
+        },
+        {
+            "codigo": 957,
+            "activo": false,
+            "codigoDepartamento": 70,
+            "nombre": "SANTIAGO DE TOLÚ"
+        },
+        {
+            "codigo": 958,
+            "activo": false,
+            "codigoDepartamento": 70,
+            "nombre": "SAN JOSÉ DE TOLUVIEJO"
+        },
+        {
+            "codigo": 959,
+            "activo": false,
+            "codigoDepartamento": 73,
+            "nombre": "IBAGUÉ"
+        },
+        {
+            "codigo": 960,
+            "activo": false,
+            "codigoDepartamento": 73,
+            "nombre": "ALPUJARRA"
+        },
+        {
+            "codigo": 961,
+            "activo": false,
+            "codigoDepartamento": 73,
+            "nombre": "ALVARADO"
+        },
+        {
+            "codigo": 962,
+            "activo": false,
+            "codigoDepartamento": 73,
+            "nombre": "AMBALEMA"
+        },
+        {
+            "codigo": 963,
+            "activo": false,
+            "codigoDepartamento": 73,
+            "nombre": "ANZOÁTEGUI"
+        },
+        {
+            "codigo": 964,
+            "activo": false,
+            "codigoDepartamento": 73,
+            "nombre": "ARMERO"
+        },
+        {
+            "codigo": 965,
+            "activo": false,
+            "codigoDepartamento": 73,
+            "nombre": "ATACO"
+        },
+        {
+            "codigo": 966,
+            "activo": false,
+            "codigoDepartamento": 73,
+            "nombre": "CAJAMARCA"
+        },
+        {
+            "codigo": 967,
+            "activo": false,
+            "codigoDepartamento": 73,
+            "nombre": "CARMEN DE APICALÁ"
+        },
+        {
+            "codigo": 968,
+            "activo": false,
+            "codigoDepartamento": 73,
+            "nombre": "CASABIANCA"
+        },
+        {
+            "codigo": 969,
+            "activo": false,
+            "codigoDepartamento": 73,
+            "nombre": "CHAPARRAL"
+        },
+        {
+            "codigo": 970,
+            "activo": false,
+            "codigoDepartamento": 73,
+            "nombre": "COELLO"
+        },
+        {
+            "codigo": 971,
+            "activo": false,
+            "codigoDepartamento": 73,
+            "nombre": "COYAIMA"
+        },
+        {
+            "codigo": 972,
+            "activo": false,
+            "codigoDepartamento": 73,
+            "nombre": "CUNDAY"
+        },
+        {
+            "codigo": 973,
+            "activo": false,
+            "codigoDepartamento": 73,
+            "nombre": "DOLORES"
+        },
+        {
+            "codigo": 974,
+            "activo": false,
+            "codigoDepartamento": 73,
+            "nombre": "ESPINAL"
+        },
+        {
+            "codigo": 975,
+            "activo": false,
+            "codigoDepartamento": 73,
+            "nombre": "FALAN"
+        },
+        {
+            "codigo": 976,
+            "activo": false,
+            "codigoDepartamento": 73,
+            "nombre": "FLANDES"
+        },
+        {
+            "codigo": 977,
+            "activo": false,
+            "codigoDepartamento": 73,
+            "nombre": "FRESNO"
+        },
+        {
+            "codigo": 978,
+            "activo": false,
+            "codigoDepartamento": 73,
+            "nombre": "GUAMO"
+        },
+        {
+            "codigo": 979,
+            "activo": false,
+            "codigoDepartamento": 73,
+            "nombre": "HERVEO"
+        },
+        {
+            "codigo": 980,
+            "activo": false,
+            "codigoDepartamento": 73,
+            "nombre": "HONDA"
+        },
+        {
+            "codigo": 981,
+            "activo": false,
+            "codigoDepartamento": 73,
+            "nombre": "ICONONZO"
+        },
+        {
+            "codigo": 982,
+            "activo": false,
+            "codigoDepartamento": 73,
+            "nombre": "LÉRIDA"
+        },
+        {
+            "codigo": 983,
+            "activo": false,
+            "codigoDepartamento": 73,
+            "nombre": "LÍBANO"
+        },
+        {
+            "codigo": 984,
+            "activo": false,
+            "codigoDepartamento": 73,
+            "nombre": "SAN SEBASTIÁN DE MARIQUITA"
+        },
+        {
+            "codigo": 985,
+            "activo": false,
+            "codigoDepartamento": 73,
+            "nombre": "MELGAR"
+        },
+        {
+            "codigo": 986,
+            "activo": false,
+            "codigoDepartamento": 73,
+            "nombre": "MURILLO"
+        },
+        {
+            "codigo": 987,
+            "activo": false,
+            "codigoDepartamento": 73,
+            "nombre": "NATAGAIMA"
+        },
+        {
+            "codigo": 988,
+            "activo": false,
+            "codigoDepartamento": 73,
+            "nombre": "ORTEGA"
+        },
+        {
+            "codigo": 989,
+            "activo": false,
+            "codigoDepartamento": 73,
+            "nombre": "PALOCABILDO"
+        },
+        {
+            "codigo": 990,
+            "activo": false,
+            "codigoDepartamento": 73,
+            "nombre": "PIEDRAS"
+        },
+        {
+            "codigo": 991,
+            "activo": false,
+            "codigoDepartamento": 73,
+            "nombre": "PLANADAS"
+        },
+        {
+            "codigo": 992,
+            "activo": false,
+            "codigoDepartamento": 73,
+            "nombre": "PRADO"
+        },
+        {
+            "codigo": 993,
+            "activo": false,
+            "codigoDepartamento": 73,
+            "nombre": "PURIFICACIÓN"
+        },
+        {
+            "codigo": 994,
+            "activo": false,
+            "codigoDepartamento": 73,
+            "nombre": "RIOBLANCO"
+        },
+        {
+            "codigo": 995,
+            "activo": false,
+            "codigoDepartamento": 73,
+            "nombre": "RONCESVALLES"
+        },
+        {
+            "codigo": 996,
+            "activo": false,
+            "codigoDepartamento": 73,
+            "nombre": "ROVIRA"
+        },
+        {
+            "codigo": 997,
+            "activo": false,
+            "codigoDepartamento": 73,
+            "nombre": "SALDAÑA"
+        },
+        {
+            "codigo": 998,
+            "activo": false,
+            "codigoDepartamento": 73,
+            "nombre": "SAN ANTONIO"
+        },
+        {
+            "codigo": 999,
+            "activo": false,
+            "codigoDepartamento": 73,
+            "nombre": "SAN LUIS"
+        },
+        {
+            "codigo": 1000,
+            "activo": false,
+            "codigoDepartamento": 73,
+            "nombre": "SANTA ISABEL"
+        },
+        {
+            "codigo": 1001,
+            "activo": false,
+            "codigoDepartamento": 73,
+            "nombre": "SUÁREZ"
+        },
+        {
+            "codigo": 1002,
+            "activo": false,
+            "codigoDepartamento": 73,
+            "nombre": "VALLE DE SAN JUAN"
+        },
+        {
+            "codigo": 1003,
+            "activo": false,
+            "codigoDepartamento": 73,
+            "nombre": "VENADILLO"
+        },
+        {
+            "codigo": 1004,
+            "activo": false,
+            "codigoDepartamento": 73,
+            "nombre": "VILLAHERMOSA"
+        },
+        {
+            "codigo": 1005,
+            "activo": false,
+            "codigoDepartamento": 73,
+            "nombre": "VILLARRICA"
+        },
+        {
+            "codigo": 1006,
+            "activo": false,
+            "codigoDepartamento": 76,
+            "nombre": "CALI"
+        },
+        {
+            "codigo": 1007,
+            "activo": false,
+            "codigoDepartamento": 76,
+            "nombre": "ALCALÁ"
+        },
+        {
+            "codigo": 1008,
+            "activo": false,
+            "codigoDepartamento": 76,
+            "nombre": "ANDALUCÍA"
+        },
+        {
+            "codigo": 1009,
+            "activo": false,
+            "codigoDepartamento": 76,
+            "nombre": "ANSERMANUEVO"
+        },
+        {
+            "codigo": 1010,
+            "activo": false,
+            "codigoDepartamento": 76,
+            "nombre": "ARGELIA"
+        },
+        {
+            "codigo": 1011,
+            "activo": false,
+            "codigoDepartamento": 76,
+            "nombre": "BOLÍVAR"
+        },
+        {
+            "codigo": 1012,
+            "activo": false,
+            "codigoDepartamento": 76,
+            "nombre": "BUENAVENTURA"
+        },
+        {
+            "codigo": 1013,
+            "activo": false,
+            "codigoDepartamento": 76,
+            "nombre": "GUADALAJARA DE BUGA"
+        },
+        {
+            "codigo": 1014,
+            "activo": false,
+            "codigoDepartamento": 76,
+            "nombre": "BUGALAGRANDE"
+        },
+        {
+            "codigo": 1015,
+            "activo": false,
+            "codigoDepartamento": 76,
+            "nombre": "CAICEDONIA"
+        },
+        {
+            "codigo": 1016,
+            "activo": false,
+            "codigoDepartamento": 76,
+            "nombre": "CALIMA"
+        },
+        {
+            "codigo": 1017,
+            "activo": false,
+            "codigoDepartamento": 76,
+            "nombre": "CANDELARIA"
+        },
+        {
+            "codigo": 1018,
+            "activo": false,
+            "codigoDepartamento": 76,
+            "nombre": "CARTAGO"
+        },
+        {
+            "codigo": 1019,
+            "activo": false,
+            "codigoDepartamento": 76,
+            "nombre": "DAGUA"
+        },
+        {
+            "codigo": 1020,
+            "activo": false,
+            "codigoDepartamento": 76,
+            "nombre": "EL ÁGUILA"
+        },
+        {
+            "codigo": 1021,
+            "activo": false,
+            "codigoDepartamento": 76,
+            "nombre": "EL CAIRO"
+        },
+        {
+            "codigo": 1022,
+            "activo": false,
+            "codigoDepartamento": 76,
+            "nombre": "EL CERRITO"
+        },
+        {
+            "codigo": 1023,
+            "activo": false,
+            "codigoDepartamento": 76,
+            "nombre": "EL DOVIO"
+        },
+        {
+            "codigo": 1024,
+            "activo": false,
+            "codigoDepartamento": 76,
+            "nombre": "FLORIDA"
+        },
+        {
+            "codigo": 1025,
+            "activo": false,
+            "codigoDepartamento": 76,
+            "nombre": "GINEBRA"
+        },
+        {
+            "codigo": 1026,
+            "activo": false,
+            "codigoDepartamento": 76,
+            "nombre": "GUACARÍ"
+        },
+        {
+            "codigo": 1027,
+            "activo": false,
+            "codigoDepartamento": 76,
+            "nombre": "JAMUNDÍ"
+        },
+        {
+            "codigo": 1028,
+            "activo": false,
+            "codigoDepartamento": 76,
+            "nombre": "LA CUMBRE"
+        },
+        {
+            "codigo": 1029,
+            "activo": false,
+            "codigoDepartamento": 76,
+            "nombre": "LA UNIÓN"
+        },
+        {
+            "codigo": 1030,
+            "activo": false,
+            "codigoDepartamento": 76,
+            "nombre": "LA VICTORIA"
+        },
+        {
+            "codigo": 1031,
+            "activo": false,
+            "codigoDepartamento": 76,
+            "nombre": "OBANDO"
+        },
+        {
+            "codigo": 1032,
+            "activo": false,
+            "codigoDepartamento": 76,
+            "nombre": "PALMIRA"
+        },
+        {
+            "codigo": 1033,
+            "activo": false,
+            "codigoDepartamento": 76,
+            "nombre": "PRADERA"
+        },
+        {
+            "codigo": 1034,
+            "activo": false,
+            "codigoDepartamento": 76,
+            "nombre": "RESTREPO"
+        },
+        {
+            "codigo": 1035,
+            "activo": false,
+            "codigoDepartamento": 76,
+            "nombre": "RIOFRÍO"
+        },
+        {
+            "codigo": 1036,
+            "activo": false,
+            "codigoDepartamento": 76,
+            "nombre": "ROLDANILLO"
+        },
+        {
+            "codigo": 1037,
+            "activo": false,
+            "codigoDepartamento": 76,
+            "nombre": "SAN PEDRO"
+        },
+        {
+            "codigo": 1038,
+            "activo": false,
+            "codigoDepartamento": 76,
+            "nombre": "SEVILLA"
+        },
+        {
+            "codigo": 1039,
+            "activo": false,
+            "codigoDepartamento": 76,
+            "nombre": "TORO"
+        },
+        {
+            "codigo": 1040,
+            "activo": false,
+            "codigoDepartamento": 76,
+            "nombre": "TRUJILLO"
+        },
+        {
+            "codigo": 1041,
+            "activo": false,
+            "codigoDepartamento": 76,
+            "nombre": "TULUÁ"
+        },
+        {
+            "codigo": 1042,
+            "activo": false,
+            "codigoDepartamento": 76,
+            "nombre": "ULLOA"
+        },
+        {
+            "codigo": 1043,
+            "activo": false,
+            "codigoDepartamento": 76,
+            "nombre": "VERSALLES"
+        },
+        {
+            "codigo": 1044,
+            "activo": false,
+            "codigoDepartamento": 76,
+            "nombre": "VIJES"
+        },
+        {
+            "codigo": 1045,
+            "activo": false,
+            "codigoDepartamento": 76,
+            "nombre": "YOTOCO"
+        },
+        {
+            "codigo": 1046,
+            "activo": false,
+            "codigoDepartamento": 76,
+            "nombre": "YUMBO"
+        },
+        {
+            "codigo": 1047,
+            "activo": false,
+            "codigoDepartamento": 76,
+            "nombre": "ZARZAL"
+        },
+        {
+            "codigo": 1048,
+            "activo": false,
+            "codigoDepartamento": 81,
+            "nombre": "ARAUCA"
+        },
+        {
+            "codigo": 1049,
+            "activo": false,
+            "codigoDepartamento": 81,
+            "nombre": "ARAUQUITA"
+        },
+        {
+            "codigo": 1050,
+            "activo": false,
+            "codigoDepartamento": 81,
+            "nombre": "CRAVO NORTE"
+        },
+        {
+            "codigo": 1051,
+            "activo": false,
+            "codigoDepartamento": 81,
+            "nombre": "FORTUL"
+        },
+        {
+            "codigo": 1052,
+            "activo": false,
+            "codigoDepartamento": 81,
+            "nombre": "PUERTO RONDÓN"
+        },
+        {
+            "codigo": 1053,
+            "activo": false,
+            "codigoDepartamento": 81,
+            "nombre": "SARAVENA"
+        },
+        {
+            "codigo": 1054,
+            "activo": false,
+            "codigoDepartamento": 81,
+            "nombre": "TAME"
+        },
+        {
+            "codigo": 1055,
+            "activo": false,
+            "codigoDepartamento": 85,
+            "nombre": "YOPAL"
+        },
+        {
+            "codigo": 1056,
+            "activo": false,
+            "codigoDepartamento": 85,
+            "nombre": "AGUAZUL"
+        },
+        {
+            "codigo": 1057,
+            "activo": false,
+            "codigoDepartamento": 85,
+            "nombre": "CHÁMEZA"
+        },
+        {
+            "codigo": 1058,
+            "activo": false,
+            "codigoDepartamento": 85,
+            "nombre": "HATO COROZAL"
+        },
+        {
+            "codigo": 1059,
+            "activo": false,
+            "codigoDepartamento": 85,
+            "nombre": "LA SALINA"
+        },
+        {
+            "codigo": 1060,
+            "activo": false,
+            "codigoDepartamento": 85,
+            "nombre": "MANÍ"
+        },
+        {
+            "codigo": 1061,
+            "activo": false,
+            "codigoDepartamento": 85,
+            "nombre": "MONTERREY"
+        },
+        {
+            "codigo": 1062,
+            "activo": false,
+            "codigoDepartamento": 85,
+            "nombre": "NUNCHÍA"
+        },
+        {
+            "codigo": 1063,
+            "activo": false,
+            "codigoDepartamento": 85,
+            "nombre": "OROCUÉ"
+        },
+        {
+            "codigo": 1064,
+            "activo": false,
+            "codigoDepartamento": 85,
+            "nombre": "PAZ DE ARIPORO"
+        },
+        {
+            "codigo": 1065,
+            "activo": false,
+            "codigoDepartamento": 85,
+            "nombre": "PORE"
+        },
+        {
+            "codigo": 1066,
+            "activo": false,
+            "codigoDepartamento": 85,
+            "nombre": "RECETOR"
+        },
+        {
+            "codigo": 1067,
+            "activo": false,
+            "codigoDepartamento": 85,
+            "nombre": "SABANALARGA"
+        },
+        {
+            "codigo": 1068,
+            "activo": false,
+            "codigoDepartamento": 85,
+            "nombre": "SÁCAMA"
+        },
+        {
+            "codigo": 1069,
+            "activo": false,
+            "codigoDepartamento": 85,
+            "nombre": "SAN LUIS DE PALENQUE"
+        },
+        {
+            "codigo": 1070,
+            "activo": false,
+            "codigoDepartamento": 85,
+            "nombre": "TÁMARA"
+        },
+        {
+            "codigo": 1071,
+            "activo": false,
+            "codigoDepartamento": 85,
+            "nombre": "TAURAMENA"
+        },
+        {
+            "codigo": 1072,
+            "activo": false,
+            "codigoDepartamento": 85,
+            "nombre": "TRINIDAD"
+        },
+        {
+            "codigo": 1073,
+            "activo": false,
+            "codigoDepartamento": 85,
+            "nombre": "VILLANUEVA"
+        },
+        {
+            "codigo": 1074,
+            "activo": false,
+            "codigoDepartamento": 86,
+            "nombre": "MOCOA"
+        },
+        {
+            "codigo": 1075,
+            "activo": false,
+            "codigoDepartamento": 86,
+            "nombre": "COLÓN"
+        },
+        {
+            "codigo": 1076,
+            "activo": false,
+            "codigoDepartamento": 86,
+            "nombre": "ORITO"
+        },
+        {
+            "codigo": 1077,
+            "activo": false,
+            "codigoDepartamento": 86,
+            "nombre": "PUERTO ASÍS"
+        },
+        {
+            "codigo": 1078,
+            "activo": false,
+            "codigoDepartamento": 86,
+            "nombre": "PUERTO CAICEDO"
+        },
+        {
+            "codigo": 1079,
+            "activo": false,
+            "codigoDepartamento": 86,
+            "nombre": "PUERTO GUZMÁN"
+        },
+        {
+            "codigo": 1080,
+            "activo": false,
+            "codigoDepartamento": 86,
+            "nombre": "PUERTO LEGUÍZAMO"
+        },
+        {
+            "codigo": 1081,
+            "activo": false,
+            "codigoDepartamento": 86,
+            "nombre": "SIBUNDOY"
+        },
+        {
+            "codigo": 1082,
+            "activo": false,
+            "codigoDepartamento": 86,
+            "nombre": "SAN FRANCISCO"
+        },
+        {
+            "codigo": 1083,
+            "activo": false,
+            "codigoDepartamento": 86,
+            "nombre": "SAN MIGUEL"
+        },
+        {
+            "codigo": 1084,
+            "activo": false,
+            "codigoDepartamento": 86,
+            "nombre": "SANTIAGO"
+        },
+        {
+            "codigo": 1085,
+            "activo": false,
+            "codigoDepartamento": 86,
+            "nombre": "VALLE DEL GUAMUEZ"
+        },
+        {
+            "codigo": 1086,
+            "activo": false,
+            "codigoDepartamento": 86,
+            "nombre": "VILLAGARZÓN"
+        },
+        {
+            "codigo": 1087,
+            "activo": false,
+            "codigoDepartamento": 88,
+            "nombre": "SAN ANDRÉS"
+        },
+        {
+            "codigo": 1088,
+            "activo": false,
+            "codigoDepartamento": 88,
+            "nombre": "PROVIDENCIA"
+        },
+        {
+            "codigo": 1089,
+            "activo": false,
+            "codigoDepartamento": 91,
+            "nombre": "LETICIA"
+        },
+        {
+            "codigo": 1090,
+            "activo": false,
+            "codigoDepartamento": 91,
+            "nombre": "EL ENCANTO"
+        },
+        {
+            "codigo": 1091,
+            "activo": false,
+            "codigoDepartamento": 91,
+            "nombre": "LA CHORRERA"
+        },
+        {
+            "codigo": 1092,
+            "activo": false,
+            "codigoDepartamento": 91,
+            "nombre": "LA PEDRERA"
+        },
+        {
+            "codigo": 1093,
+            "activo": false,
+            "codigoDepartamento": 91,
+            "nombre": "LA VICTORIA"
+        },
+        {
+            "codigo": 1094,
+            "activo": false,
+            "codigoDepartamento": 91,
+            "nombre": "MIRITÍ - PARANÁ"
+        },
+        {
+            "codigo": 1095,
+            "activo": false,
+            "codigoDepartamento": 91,
+            "nombre": "PUERTO ALEGRÍA"
+        },
+        {
+            "codigo": 1096,
+            "activo": false,
+            "codigoDepartamento": 91,
+            "nombre": "PUERTO ARICA"
+        },
+        {
+            "codigo": 1097,
+            "activo": false,
+            "codigoDepartamento": 91,
+            "nombre": "PUERTO NARIÑO"
+        },
+        {
+            "codigo": 1098,
+            "activo": false,
+            "codigoDepartamento": 91,
+            "nombre": "PUERTO SANTANDER"
+        },
+        {
+            "codigo": 1099,
+            "activo": false,
+            "codigoDepartamento": 91,
+            "nombre": "TARAPACÁ"
+        },
+        {
+            "codigo": 1100,
+            "activo": false,
+            "codigoDepartamento": 94,
+            "nombre": "INÍRIDA"
+        }
+    ]
+}

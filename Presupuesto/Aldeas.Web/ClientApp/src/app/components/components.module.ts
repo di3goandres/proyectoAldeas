@@ -55,6 +55,7 @@ import { DetalleFamiliarpresupuestoprogramaComponent } from './05-Presupuesto/de
 import { DetalleOtrospresupuestoprogramaComponent } from './05-Presupuesto/detalle-otrospresupuestoprograma/detalle-otrospresupuestoprograma.component';
 import { GenerarPresupuestoComponent } from './05-Presupuesto/generar-presupuesto/generar-presupuesto.component';
 import { ActualizarPresupuestoComponent } from './05-Presupuesto/actualizar-presupuesto/actualizar-presupuesto.component';
+import { ActualizardetalleComponent } from './05-Presupuesto/actualizardetalle/actualizardetalle.component';
 
 @NgModule({
   declarations: [LoginComponent, HomeComponent,
@@ -65,7 +66,7 @@ import { ActualizarPresupuestoComponent } from './05-Presupuesto/actualizar-pres
     ListaprogramasComponent, CrearprogramaComponent, RegistroexitosoComponent, 
     ActualizarprogramaComponent, ListaonlyprogramaComponent, ActualizarcecoComponent,
      ListaonlyrubrosComponent, ActualizarcategoriaComponent, ListarubrospucsComponent,
-      ActualizarpucsComponent, CrearcategoriaComponent, AgregarpucarubroComponent, AgregarcecoaprogramaComponent, PrincipalpresupuestoComponent, PrerubrospucsComponent, AgregarpresupuestoComponent, CrearpresupuestoComponent, ListapresupuestoprogramaComponent, DetallepresupuestoprogramaComponent, DetalleFamiliarpresupuestoprogramaComponent, DetalleOtrospresupuestoprogramaComponent, GenerarPresupuestoComponent, ActualizarPresupuestoComponent],
+      ActualizarpucsComponent, CrearcategoriaComponent, AgregarpucarubroComponent, AgregarcecoaprogramaComponent, PrincipalpresupuestoComponent, PrerubrospucsComponent, AgregarpresupuestoComponent, CrearpresupuestoComponent, ListapresupuestoprogramaComponent, DetallepresupuestoprogramaComponent, DetalleFamiliarpresupuestoprogramaComponent, DetalleOtrospresupuestoprogramaComponent, GenerarPresupuestoComponent, ActualizarPresupuestoComponent, ActualizardetalleComponent],
   imports: [
 
     CommonModule,

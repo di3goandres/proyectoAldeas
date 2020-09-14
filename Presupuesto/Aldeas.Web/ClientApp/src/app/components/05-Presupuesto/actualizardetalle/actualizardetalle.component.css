@@ -1,0 +1,70 @@
+
+  mat-form-field{
+    width: 100%;
+}
+table {
+  width: 100%;
+}
+
+#customers {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  width: 16.667%;
+
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  width: 16.667%;
+  text-align: center;
+  background-color: #77b856;;
+  color: white;
+}
+
+
+ul {
+ 
+    list-style-type: none;
+    margin-top: 4px;
+    margin-left: -22px;
+  
+  }
+
+
+  .break-word {
+    /* word-break: break-word !important; */
+    white-space: normal !important;
+
+}
+
+#example-radio-group-label{
+  font-weight: bold !important;
+  text-align: center;
+  display: block;
+  padding-left: 10px;
+  white-space: normal;
+  border: 0px dashed #f69c55;
+  /* font-size: x-large; */
+}
+
+
+.checkboxes ul, .checkboxes li {
+  margin:0;
+  padding:0;
+  list-style:none;
+}
+.checkboxes li {
+  display:inline-block;
+  width:33.3333%;
+}

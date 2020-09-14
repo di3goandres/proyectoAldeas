@@ -63,7 +63,9 @@ namespace ApiRestAldeas.Repositories
 
         dynamic ActualizarPresupuesto(DbPresupuesto request);
 
+        dynamic ObtenerPucByRubro(long request);
 
+        dynamic ActualizarPresupuesto(DbPresupuestoPrograma request);
         #endregion
 
 

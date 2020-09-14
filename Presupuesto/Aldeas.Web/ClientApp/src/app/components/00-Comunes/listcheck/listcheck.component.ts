@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectorRef, AfterViewChecked } from '@angular/core';
 import { Task } from '../../../models/checkbox';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
@@ -7,18 +7,24 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   templateUrl: './listcheck.component.html',
   styleUrls: ['./listcheck.component.css']
 })
-export class ListcheckComponent implements OnInit {
+export class ListcheckComponent implements OnInit, AfterViewChecked {
   @Input() Nombre: string;
   @Input() task: Task;
   @Output() datoSalid = new EventEmitter<Task>();
   mostrarOtro: boolean = false;
   firstFormGroup: FormGroup;
   otroValor: string;
+  allComplete: boolean = false;
+
   taskSeleccionado: Task;
-  lista=[] =[0, 1, 2, 3]
+  lista = [] = [0, 1, 2, 3]
   constructor(
     private _formBuilder: FormBuilder,
+    private changeDetectorRef: ChangeDetectorRef
   ) { }
+  ngAfterViewChecked(): void {
+    this.changeDetectorRef.detectChanges();
+  }
 
   ngOnInit(): void {
 
@@ -30,32 +36,36 @@ export class ListcheckComponent implements OnInit {
 
     });
 
-    this.taskSeleccionado = this.task.subtasks[0];
+    this.taskSeleccionado = this.task;
     this.task.subtasks.forEach(item => {
       item.formValid = false;
       item.valorOtro = ''
 
     })
 
+    this.allComplete = false;
+    this.datoSalid.emit(this.task);
+
+
+
   }
   onChange(tasksele: Task) {
 
 
 
-   
     this.taskSeleccionado = tasksele;
-
     this.datoSalid.emit(this.task);
+    this.changeDetectorRef.detectChanges();
 
 
   }
 
-  allComplete: boolean = false;
   updateAllComplete() {
 
     this.allComplete = this.task.subtasks != null && this.task.subtasks.every(t => t.completed);
 
     this.datoSalid.emit(this.task);
+    this.changeDetectorRef.detectChanges();
 
   }
 
@@ -64,7 +74,7 @@ export class ListcheckComponent implements OnInit {
     if (this.task.subtasks == null) {
       return false;
     }
-    this.datoSalid.emit(this.task);
+
 
     return this.task.subtasks.filter(t => t.completed).length > 0 && !this.allComplete;
   }
@@ -77,6 +87,7 @@ export class ListcheckComponent implements OnInit {
     }
     this.task.subtasks.forEach(t => t.completed = completed);
     this.datoSalid.emit(this.task);
+    this.changeDetectorRef.detectChanges();
 
 
   }
@@ -94,6 +105,7 @@ export class ListcheckComponent implements OnInit {
     }
 
     this.datoSalid.emit(this.task);
+
 
 
 

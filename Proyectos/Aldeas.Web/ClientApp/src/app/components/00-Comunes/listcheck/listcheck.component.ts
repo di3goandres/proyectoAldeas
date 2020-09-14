@@ -15,6 +15,7 @@ export class ListcheckComponent implements OnInit {
   firstFormGroup: FormGroup;
   otroValor: string;
   taskSeleccionado: Task;
+  allComplete: boolean = false;
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -67,7 +68,6 @@ export class ListcheckComponent implements OnInit {
 
   }
 
-  allComplete: boolean = false;
   updateAllComplete() {
 
     this.allComplete = this.task.subtasks != null && this.task.subtasks.every(t => t.completed);

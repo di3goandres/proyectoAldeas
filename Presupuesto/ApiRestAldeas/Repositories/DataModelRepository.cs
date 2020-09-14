@@ -125,6 +125,16 @@ namespace ApiRestAldeas.Repositories
             return PresupuestoOperations.ActualizarPresupuesto(_factory, _connectionDB, request);
         }
 
+        public dynamic ObtenerPucByRubro(long request)
+        {
+            return PresupuestoOperations.ConsultarPucsByRubro(_factory, _connectionDB, request);
+        }
+
+        public dynamic ActualizarPresupuesto(DbPresupuestoPrograma request)
+        {
+            return PresupuestoOperations.ActualizarPresupuestoProgramas(_factory, _connectionDB, request);
+        }
+
 
         #endregion
     }

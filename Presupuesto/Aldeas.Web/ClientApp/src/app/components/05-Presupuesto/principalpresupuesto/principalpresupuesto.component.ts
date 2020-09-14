@@ -70,6 +70,8 @@ export class PrincipalpresupuestoComponent implements OnInit {
 
 
   onChange(value) {
+
+ 
     this.idPrograma = value
     this.subCentrosSeleccionado = []
     this.centroCostosSeleccionado = this.centroCostos.filter(item => {
@@ -79,15 +81,12 @@ export class PrincipalpresupuestoComponent implements OnInit {
 
   onChangeCategoria(value) {
 
-
-    this.pubGuardar = new PresupuestoPuc();
-    this.pucSeleccionados = this.pucs.filter(item => {
-      return item.idCategoria == value
-    })
-
     this.categoriaSeleccionada = this.categorias.find(item => {
       return item.id == value;
     })
+    this.getPucsRubro(value)
+
+  
 
   }
   onChangeCeco(value) {
@@ -106,7 +105,7 @@ export class PrincipalpresupuestoComponent implements OnInit {
 
   SeleccionarPUC(element) {
     const modalRef = this.modalService.open(PrerubrospucsComponent, { size: 'lg' });
-    modalRef.componentInstance.rubrosPuc = this.pucSeleccionados
+    modalRef.componentInstance.rubrosPuc = this.pucs
     modalRef.result.then((result) => {
       this.pubGuardar = result;
       this.guardar.idRubroPucs = this.pubGuardar.id
@@ -147,7 +146,7 @@ export class PrincipalpresupuestoComponent implements OnInit {
 
 
       this.openExitoso()
-      this.getDetalle()
+      this.getDetalle(null)
       this.getFamiliar();
 
 
@@ -160,10 +159,31 @@ export class PrincipalpresupuestoComponent implements OnInit {
     });
   }
 
+  getPucsRubro(id) {
+  
+    this.presupuestoService.getDataPucsRubro(id).subscribe(
 
-  getDetalle() {
+      OK => {
+
+        this.pucs = []
+        this.pucs.push(...OK.pucs)
+        this.changeDetectorRefs.detectChanges();
+
+      },
+      Error => { console.log(Error) },
+
+    )
+  }
+  getDetalle(id) {
+    let number = 0;
     this.dataSourcePresupuesto = []
-    this.presupuestoService.getDetallePresupuesto(this.programaRequest.idPresupuesto).subscribe(
+    if(id== null){
+      number = this.programaRequest.idPresupuesto
+    }else{
+      number = id;
+    
+    }
+    this.presupuestoService.getDetallePresupuesto(number).subscribe(
 
       OK => {
         console.log(OK)
@@ -190,7 +210,7 @@ export class PrincipalpresupuestoComponent implements OnInit {
     this.dataSourceFamiliar.sort = this.sort
   }
   ngOnInit(): void {
-    
+
     // let inicio:  Detalle[]=[];
     // this.dataSourceFamiliar = new MatTableDataSource(inicio);
     // this.dataSourceFamiliar.paginator = this.paginator;
@@ -198,7 +218,7 @@ export class PrincipalpresupuestoComponent implements OnInit {
     var y: number = +this.route.snapshot.paramMap.get('id');
     this.programaRequest.idPresupuesto = y
     this.guardar.idPresupuesto = this.programaRequest.idPresupuesto
-    this.getDetalle();
+    this.getDetalle(null);
     this.presupuestoService.getDataInicial(this.programaRequest.idPresupuesto).subscribe(
       OK => {
         this.programas = OK.programas[0]
@@ -209,12 +229,12 @@ export class PrincipalpresupuestoComponent implements OnInit {
         this.subCentros.push(...OK.presupuestoSubCeco)
         this.categorias = []
         this.categorias.push(...OK.categorias)
-        this.pucs = []
-        this.pucs.push(...OK.pucs)
+        // this.pucs = []
+        // this.pucs.push(...OK.pucs)
         this.pucSeleccionados = []
 
         this.onChange(this.programas.id)
-       
+
 
       },
       Error => { console.log(Error) },

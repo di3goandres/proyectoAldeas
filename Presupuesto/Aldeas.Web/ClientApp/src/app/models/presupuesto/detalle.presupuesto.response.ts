@@ -13,6 +13,8 @@ export interface DetallePresupuestoResponse {
 export class Detalle {
     constructor(){}
     id:                   number;
+    idPresupuesto:        number;
+
     programa:             string;
     anio:                 number;
     centroCosto:          number;

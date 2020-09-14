@@ -107,4 +107,10 @@ namespace ApiRestAldeasPresupuesto.Models
         public List<PresupuestoCategoriaPuc> Pucs { get; set; }
 
     }
+
+    public class PucsListResponse
+    {
+        public List<PresupuestoCategoriaPuc> Pucs { get; set; }
+
+    }
 }

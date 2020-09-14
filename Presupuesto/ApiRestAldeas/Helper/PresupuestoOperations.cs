@@ -121,6 +121,40 @@ namespace ApiRestAldeasPresupuesto.Helper
         }
 
 
+    
+        public static dynamic ConsultarPucsByRubro(IContextFactory factory, IOptions<ConnectionDB> connection, long id)
+        {
+            PucsListResponse retorno = new PucsListResponse();
+            using (Aldeas_Context db = factory.Create(connection))
+            {
+              
+                var dataPucs = from puc in db.TbPucs
+                               where puc.Estado == true && puc.idRubro == id
+                               select new PresupuestoCategoriaPuc
+                               {
+                                   Id = puc.id,
+                                   IdCategoria = puc.idRubro,
+                                   Tipo = puc.Tipo,
+                                   CuentaSIIGO = puc.CuentaSIIGO,
+                                   DescripcionCuenta = puc.DescripcionCuenta,
+                                   CuentaNAV = puc.CuentaNAV,
+                                   DetalleCuentaNav = puc.DetalleCuentaNav,
+                                   TipoCuentaNav = puc.TipoCuentaNav,
+                                   FichaBanco = puc.FichaBanco,
+                                   Casa = puc.Casa,
+                                   RequiereNotaIngles = puc.RequiereNotaIngles,
+
+                               };
+                if (dataPucs.Any())
+                {
+                    retorno.Pucs = dataPucs.ToList();
+                }
+
+            }
+
+            return retorno;
+        }
+
 
         #region Tabla Presupuesto
 
@@ -232,7 +266,7 @@ namespace ApiRestAldeasPresupuesto.Helper
             using (Aldeas_Context db = factory.Create(connection))
             {
                 var data = from pro in db.TbPresupuestosProgramas
-                           where pro.id == datos.id
+                           where pro.id == datos.idPresupuesto
 
                            select pro;
                 if (data.Any())
@@ -250,6 +284,8 @@ namespace ApiRestAldeasPresupuesto.Helper
                     data.First().Abril = datos.Abril;
                     data.First().Mayo = datos.Mayo;
                     data.First().Junio = datos.Junio;
+                    data.First().Julio = datos.Julio;
+
                     data.First().Agosto = datos.Agosto;
                     data.First().Septiembre = datos.Septiembre;
                     data.First().Octubre = datos.Octubre;
@@ -284,7 +320,8 @@ namespace ApiRestAldeasPresupuesto.Helper
                            where pre.id == request.IdPresupuesto
                            select new PresupuestoProgramResponse
                            {
-                              id = prep.id, 
+                              id = prep.id,
+                               idPresupuesto = pre.id,
                                Programa = pro.Nombre,
                               Anio = pre.Anio,
                                CentroCosto = cec.CodigoCeco,
@@ -316,7 +353,7 @@ namespace ApiRestAldeasPresupuesto.Helper
                                Octubre = prep.Octubre,
                                Noviembre = prep.Noviembre,
                                Diciembre=  prep.Diciembre,
-                               Total = (prep.Enero + prep.Febrero + prep.Marzo + prep.Abril+ prep.Mayo + prep.Junio + prep.Agosto + prep.Septiembre + prep.Octubre + prep.Noviembre+ prep.Diciembre)
+                               Total = (prep.Enero + prep.Febrero + prep.Marzo + prep.Abril+ prep.Mayo + prep.Junio +prep.Julio + prep.Agosto + prep.Septiembre + prep.Octubre + prep.Noviembre+ prep.Diciembre)
 
                            };
                 if (data.Any())

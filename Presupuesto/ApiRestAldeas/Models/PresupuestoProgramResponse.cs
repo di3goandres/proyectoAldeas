@@ -15,6 +15,9 @@ namespace ApiRestAldeasPresupuesto.Models
     {
         public long id { get; set; }
 
+        public long idPresupuesto { get; set; }
+
+
         public string Programa { get; set; }
 
         public int Anio { get; set; }

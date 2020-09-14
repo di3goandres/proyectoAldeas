@@ -19,6 +19,10 @@ export class PresupuestoService {
     return this.userService.ejecutarQuery<PresupuestoResponse>('/api/presupuesto/getinfodata/' + id)
   }
 
+  
+  getDataPucsRubro(id) {
+    return this.userService.ejecutarQuery<PresupuestoResponse>('/api/presupuesto/getlistpuc/' + id)
+  }
   getPresupuestoByProgram(data: PresupuestoListRequest) {
     let json = JSON.stringify(data);
     let params = '' + json;
@@ -35,6 +39,12 @@ export class PresupuestoService {
     let json = JSON.stringify(data);
     let params = '' + json;
     return this.userService.ejecutarQueryPost<Respuesta>('/api/presupuesto/storedetalle/', params)
+  }
+
+  updatePresupuesto(data: PresupuestoRequest) {
+    let json = JSON.stringify(data);
+    let params = '' + json;
+    return this.userService.ejecutarQueryPost<Respuesta>('/api/presupuesto/updatedetalle/', params)
   }
 
   guardar(data: PresupuestoL) {

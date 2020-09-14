@@ -40,6 +40,7 @@ export class CheckboxComponent implements OnInit {
 
     })
 
+
   }
 
   ValidarEstado() {

@@ -50,27 +50,37 @@ export class GenerarPresupuestoComponent implements OnInit {
   }
   agregarAnio(newDate) {
     let nuevo = new SelectItem(newDate, newDate);
-    let existe = this.presupuesto.filter(item => {
-      return item.anio == newDate
-    });
-    nuevo.deshabilidato = existe.length === 0 ? false : true;
-    if (nuevo.deshabilidato) {
-      nuevo.viewValue = newDate + ' - Ya generado'
-    }
-
     let nuevoTask = new Task()
-
-    nuevoTask.pregunta = 'Año Presupuesto'
-    if (nuevo.deshabilidato) {
-      nuevoTask.name = newDate + ' - Ya generado'
-    } else {
-
-      nuevoTask.name = newDate
-    }
     nuevoTask.completed = false;
     nuevoTask.esOtro = false;
     nuevoTask.color = 'primary'
+    nuevoTask.pregunta = 'Año Presupuesto'
+
+    if (this.presupuesto!= null  && this.presupuesto.length > 0) {
+
+      let existe = this.presupuesto.filter(item => {
+        return item.anio == newDate
+      });
+      nuevo.deshabilidato = existe.length === 0 ? false : true;
+      if (nuevo.deshabilidato) {
+        nuevo.viewValue = newDate + ' - Ya generado'
+      }
+
+
+      if (nuevo.deshabilidato) {
+        nuevoTask.name = newDate + ' - Ya generado'
+      } else {
+
+        nuevoTask.name = newDate
+      }
+     
+    
+    } else{
+      nuevo.deshabilidato = false
+      nuevoTask.name = newDate
+    }
     nuevoTask.disabled = nuevo.deshabilidato;
+    
     this.aniosCheck.push(nuevoTask);
     this.anioList.push(nuevo);
   }
@@ -80,8 +90,8 @@ export class GenerarPresupuestoComponent implements OnInit {
 
   guardarData() {
     this.service.guardar(this.guardar).subscribe(
-      OK => {   
-        
+      OK => {
+
         this.activeModal.close("OK");
       },
       Error => { console.log(Error) },
@@ -95,7 +105,7 @@ export class GenerarPresupuestoComponent implements OnInit {
 
     this.agregarAnio(newDate - 1);
     this.anios.forEach(element => {
-    
+
       this.agregarAnio(newDate);
 
       newDate = newDate + 1

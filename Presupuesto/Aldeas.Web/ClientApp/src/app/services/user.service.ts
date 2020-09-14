@@ -7,9 +7,10 @@ import { Router } from '@angular/router';
 import { ConsultaDepartamentos } from '../models/ConsultaDepartamentos';
 import { Proyecto } from '../models/proyect';
 import { CentrosResponse, Respuesta } from '../models/comunes';
-import { environment } from 'src/environments/environment';
+
 import { Colaborador } from '../models/colaborador';
 import { RegistroParticipante } from '../models/DatosPartipante';
+import { environment } from '../../environments/environment';
 
 
 @Injectable({

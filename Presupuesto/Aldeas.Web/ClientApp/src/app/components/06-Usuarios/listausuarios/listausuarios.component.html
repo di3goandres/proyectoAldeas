@@ -1,0 +1,61 @@
+<mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>LISTA DE USUARIOS</mat-card-title>
+    
+    </mat-card-header>
+  
+    <mat-card-content>
+  
+     
+    
+  
+      <div class="mat-elevation-z8">
+        <table id="customers" mat-table [dataSource]="dataSource" matSort>
+  
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> # </th>
+            <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+          </ng-container>
+  
+          <!-- Name Column -->
+          <ng-container matColumnDef="usuario">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Usuario </th>
+            <td mat-cell *matCellDef="let row"> {{row.username}} </td>
+          </ng-container>
+  
+          <!-- Color Column -->
+          <ng-container matColumnDef="administrador">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Administrador </th>
+            <td mat-cell *matCellDef="let row"> {{row.administrador== true? "ADMINISTRADOR": "USUARIO" }} </td>
+          </ng-container>
+          <ng-container matColumnDef="asociar">
+            <th mat-header-cell *matHeaderCellDef> Asociar Programas </th>
+            <td mat-cell *matCellDef="let element">
+              <button type="button" mat-mini-fab class="buttton-aldea" aria-label="fecha"
+              (click)="OpenAsociar(element)">
+                <mat-icon>open_in_new</mat-icon>
+              </button> </td>
+          </ng-container> 
+          <ng-container matColumnDef="Ver">
+            <th mat-header-cell *matHeaderCellDef> Ver Programas </th>
+            <td mat-cell *matCellDef="let element">
+              <button type="button" mat-mini-fab class="buttton-aldea" aria-label="fecha"
+              (click)="OpenProgramas(element)">
+                <mat-icon>open_in_new</mat-icon>
+              </button> </td>
+          </ng-container> 
+  
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
+       
+        </table>
+  
+        <mat-paginator [pageSizeOptions]="[5, 15, 30, 50]"></mat-paginator>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+  
+    </mat-card-actions>
+  </mat-card>

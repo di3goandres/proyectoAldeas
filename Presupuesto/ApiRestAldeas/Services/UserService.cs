@@ -10,6 +10,7 @@ using ApiRestAldeas.Controllers;
 using ApiRestAldeas.Entities;
 using ApiRestAldeas.Models;
 using ApiRestAldeas.Repositories;
+using ApiRestAldeasPresupuesto.EntityFrame;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using static ApiRestAldeas.Entities.Appsettings;
@@ -18,6 +19,12 @@ namespace ApiRestAldeas.Services
 {
     public interface IUserService
     {
+    
+        Boolean Existe(DBAdministrador model);
+
+     
+
+
         AuthenticateResponse Authenticate(LoginRequest model);
         Task<IEnumerable<User>> GetAll();
     }
@@ -49,15 +56,16 @@ namespace ApiRestAldeas.Services
 
         public AuthenticateResponse Authenticate(LoginRequest model)
         {
-            try {
+            try
+            {
                 var user = new User();
-                if(model.Username == "local.local")
+                if (model.Username == "local.local")
                 {
                     user.DisplayName = "Diego Andres Montealegre Garcia";
                     user.Username = model.Username;
                     user.Administrador = _dataModelRepository.EsAdministrador(user.Username);
                     var token = generateJwtToken(user);
-                
+
                     return new AuthenticateResponse(user, token);
                 }
                 else
@@ -87,18 +95,54 @@ namespace ApiRestAldeas.Services
                         }
                     }
                 }
-               
 
-                  
+
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
-             
+
             }
             return null;
 
-          
+
+        }
+
+
+        public Boolean Existe(DBAdministrador model)
+        {
+            bool existe = false;
+            try
+            {
+                var user = new User();
+
+                using (DirectoryEntry entry = new DirectoryEntry(_config.Path))
+                {
+                    using (DirectorySearcher searcher = new DirectorySearcher(entry))
+                    {
+                        searcher.Filter = String.Format("({0}={1})", SAMAccountNameAttribute, model.username);
+                        searcher.PropertiesToLoad.Add(DisplayName);
+                        searcher.PropertiesToLoad.Add(SAMAccountNameAttribute);
+                        var result = searcher.FindOne();
+                        if (result != null)
+                        {
+                         
+                            existe = true;
+
+                        }
+                    }
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return existe;
+
+
         }
 
 
@@ -106,7 +150,7 @@ namespace ApiRestAldeas.Services
         {
             return await Task.Run(() => _users);
         }
-    
+
 
         private string generateJwtToken(User user)
         {
@@ -121,10 +165,11 @@ namespace ApiRestAldeas.Services
                 Expires = DateTime.UtcNow.AddDays(7),
 
                 SigningCredentials =
-                new SigningCredentials(new SymmetricSecurityKey(key),SecurityAlgorithms.HmacSha256Signature)
+                new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
             return tokenHandler.WriteToken(token);
         }
+
     }
 }

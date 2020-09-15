@@ -56,6 +56,46 @@ namespace ApiRestAldeasPresupuesto.Helper
             return retorno;
         }
 
+
+        /// <summary>
+        /// consulta los programas faltantes del usuario.
+        /// </summary>
+        /// <param name="factory"></param>
+        /// <param name="connection"></param>
+        /// <param name="id">usuario</param>
+        /// <returns></returns>
+        public static dynamic ConsultarSoloProgramas(IContextFactory factory, IOptions<ConnectionDB> connection, long id)
+        {
+            ProgramasResponse retorno = new ProgramasResponse();
+            using (Aldeas_Context db = factory.Create(connection))
+            {
+                var dataUsuario = from usu in db.TbUsuariosProgramas
+                                  where usu.id_usuario == id
+                                  select new
+                                  {
+                                      id = usu.id_programa
+                                  };
+
+                var data = from pro in db.TbProgramas
+                           where !dataUsuario.Any(d => d.id == pro.id) && pro.Estado == true
+                           select new Program
+                           {
+                               Estado = pro.Estado,
+                               FechaActualizacion = pro.FechaActualizacion,
+                               FechaCreacion = pro.FechaCreacion,
+                               Id = pro.id,
+                               Nombre = pro.Nombre
+                           };
+                if (data.Any())
+                {
+                  
+                    retorno.Programas = data.ToList();
+                }
+            }
+
+            return retorno;
+        }
+
         public static dynamic GuardarProgramas(IContextFactory factory, IOptions<ConnectionDB> connection, ProgramasRequest programasRequest)
         {
             long id = 0;

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using ApiRestAldeas.EntityFrame;
 using ApiRestAldeas.Factory;
@@ -42,6 +43,10 @@ namespace ApiRestAldeas.Repositories
             return ProgramasOperations.ConsultarProgramas(_factory, _connectionDB);
         }
 
+        public dynamic ConsultarSoloProgramas(long id)
+        {
+            return ProgramasOperations.ConsultarSoloProgramas(_factory, _connectionDB, id);
+        }
         public dynamic EsAdministrador(string user)
         {
             return UserOperations.EsAdministrador(_factory, _connectionDB, user);
@@ -133,6 +138,38 @@ namespace ApiRestAldeas.Repositories
         public dynamic ActualizarPresupuesto(DbPresupuestoPrograma request)
         {
             return PresupuestoOperations.ActualizarPresupuestoProgramas(_factory, _connectionDB, request);
+        }
+
+
+
+
+        #endregion
+
+
+        #region USUARIOS
+        public dynamic AgregarUsuario(DBAdministrador usuario)
+        {
+            return UserOperations.AgregarUsuario(_factory, _connectionDB, usuario);
+        }
+
+        public dynamic ListaUsuarios()
+        {
+            return UserOperations.ListaUsuarios(_factory, _connectionDB);
+        }
+
+        public dynamic ListaProgramasUsuarios(long idUsuario)
+        {
+            return UserOperations.ListaProgramasUsuarios(_factory, _connectionDB, idUsuario);
+        }
+
+        public dynamic AsociarProgramasUsuarios(List<UsuarioProgramaRequest> request)
+        {
+            return UserOperations.AsociarProgramasUsuarios(_factory, _connectionDB, request);
+        }
+
+        public dynamic QuitarProgramasUsuarios(List<UsuarioProgramaRequest> request)
+        {
+            return UserOperations.QuitarProgramasUsuarios(_factory, _connectionDB, request);
         }
 
 

@@ -34,7 +34,10 @@ namespace ApiRestAldeas.EntityFrame
         {
             optionsBuilder.UseSqlServer(_ConnectionDB.Value.Conexion);
         }
-        public virtual DbSet<Administrador> TbAdministradores { get; set; }
+        public virtual DbSet<DBAdministrador> TbAdministradores { get; set; }
+
+        public virtual DbSet<DBUsuariosProgramas> TbUsuariosProgramas { get; set; }
+
         public virtual DbSet<DbProgramas> TbProgramas { get; set; }
 
         public virtual DbSet<DbCecos> TbProgramasCecos { get; set; }
@@ -59,9 +62,15 @@ namespace ApiRestAldeas.EntityFrame
             });
 
 
-            modelBuilder.Entity<Administrador>(entity =>
+            modelBuilder.Entity<DBAdministrador>(entity =>
             {
                 entity.ToTable("usuarios_administradores");
+            });
+
+
+            modelBuilder.Entity<DBUsuariosProgramas>(entity =>
+            {
+                entity.ToTable("usuario_programa");
             });
 
             modelBuilder.Entity<DbProgramas>(entity =>

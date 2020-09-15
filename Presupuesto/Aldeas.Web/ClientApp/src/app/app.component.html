@@ -8,9 +8,26 @@
     <button mat-menu-item [matMenuTriggerFor]="configuracion">
       <mat-icon>handyman</mat-icon> <span>Presupuesto</span>
     </button>
+    <button mat-menu-item [matMenuTriggerFor]="usuarios">
+      <mat-icon>handyman</mat-icon> <span>Usuarios</span>
+    </button>
 
 
 
+  </mat-menu>
+  <mat-menu #usuarios="matMenu">
+
+  
+    <button mat-menu-item [routerLink]="['/VerUsuarios']">
+      <mat-icon>people</mat-icon>
+      <span>Lista</span>
+    </button>
+    <button mat-menu-item [routerLink]="['/AgregarUsuario']">
+      <mat-icon>person_add_alt_1</mat-icon>
+      <span>Agregar</span>
+    </button>
+  
+ 
   </mat-menu>
   <mat-menu #configuracion="matMenu">
 

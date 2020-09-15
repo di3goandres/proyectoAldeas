@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using ApiRestAldeas.Models;
 using ApiRestAldeasPresupuesto.EntityFrame;
@@ -18,6 +19,7 @@ namespace ApiRestAldeas.Repositories
         /// <returns></returns>
         dynamic ConsultarProgramas();
 
+        dynamic ConsultarSoloProgramas(long id);
 
         dynamic EsAdministrador(string user);
 
@@ -68,6 +70,22 @@ namespace ApiRestAldeas.Repositories
         dynamic ActualizarPresupuesto(DbPresupuestoPrograma request);
         #endregion
 
+
+
+        #region USUARIO
+        dynamic AgregarUsuario(DBAdministrador usuario);
+
+
+        dynamic ListaUsuarios();
+
+        dynamic ListaProgramasUsuarios(long idUsuario);
+
+        dynamic AsociarProgramasUsuarios(List<UsuarioProgramaRequest> request);
+
+        dynamic QuitarProgramasUsuarios(List<UsuarioProgramaRequest> request);
+
+
+        #endregion
 
 
     }

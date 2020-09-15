@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using ApiRestAldeas.Models;
 using ApiRestAldeas.Repositories;
 using ApiRestAldeas.Services;
+using ApiRestAldeasPresupuesto.EntityFrame;
+using ApiRestAldeasPresupuesto.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -32,15 +35,70 @@ namespace ApiRestAldeas.Controllers
         public IActionResult Authenticate(LoginRequest model)
         {
             var response = _userService.Authenticate(model);
-            
+
             if (response == null)
-                return BadRequest(new { message = "Username or password is incorrect"});
+                return BadRequest(new { message = "Username or password is incorrect" });
 
             response.Administrador = _dataModelRepository.EsAdministrador(model.Username);
             return Ok(response);
         }
 
-      
 
+
+
+        [Authorize]
+        [HttpPost]
+        [Route("/api/user/agregar/")]
+        public dynamic AgregarUsuario(DBAdministrador usuario)
+        {
+            var response = _userService.Existe(usuario);
+            if (response)
+            {
+                return _dataModelRepository.AgregarUsuario(usuario);
+
+            }
+            else
+            {
+                return new { id = 0, status = "ERROR", code = 200, message = "NO EXISTE" };
+
+            }
+        }
+        [Authorize]
+        [HttpGet]
+        [Route("/api/user/listar/")]
+        public dynamic ListaUsuarios()
+        {
+            return _dataModelRepository.ListaUsuarios();
+        }
+        [Authorize]
+        [HttpGet]
+        [Route("/api/user/listarProgramas/{id}")]
+        public dynamic ListaProgramasUsuarios(long id)
+        {
+            return _dataModelRepository.ListaProgramasUsuarios(id);
+        }
+        [Authorize]
+        [HttpPost]
+        [Route("/api/user/asociarPrograma/")]
+        public dynamic AsociarProgramasUsuarios(List<UsuarioProgramaRequest> request)
+        {
+            return _dataModelRepository.AsociarProgramasUsuarios(request);
+        }
+
+        [Authorize]
+        [HttpPost]
+        [Route("/api/user/quitarPrograma/")]
+        public dynamic QuitarProgramasUsuarios(List<UsuarioProgramaRequest> request)
+        {
+            return _dataModelRepository.QuitarProgramasUsuarios(request);
+        }
+
+        //[Authorize]
+        [HttpGet]
+        [Route("/api/user/soloprogramas/{id}")]
+        public dynamic ConsultarProgramas(long id)
+        {
+            return _dataModelRepository.ConsultarSoloProgramas(id);
+        }
     }
 }

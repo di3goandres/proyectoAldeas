@@ -17,7 +17,7 @@ export class ListcheckComponent implements OnInit, AfterViewChecked {
   allComplete: boolean = false;
 
   taskSeleccionado: Task;
-  lista = [] = [0, 1, 2, 3]
+  lista = [] = [0, 1, 2, 3,4,5,6,7,8]
   constructor(
     private _formBuilder: FormBuilder,
     private changeDetectorRef: ChangeDetectorRef

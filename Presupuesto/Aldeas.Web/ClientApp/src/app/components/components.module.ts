@@ -56,6 +56,11 @@ import { DetalleOtrospresupuestoprogramaComponent } from './05-Presupuesto/detal
 import { GenerarPresupuestoComponent } from './05-Presupuesto/generar-presupuesto/generar-presupuesto.component';
 import { ActualizarPresupuestoComponent } from './05-Presupuesto/actualizar-presupuesto/actualizar-presupuesto.component';
 import { ActualizardetalleComponent } from './05-Presupuesto/actualizardetalle/actualizardetalle.component';
+import { ListausuariosComponent } from './06-Usuarios/listausuarios/listausuarios.component';
+import { AgregarusuarioComponent } from './06-Usuarios/agregarusuario/agregarusuario.component';
+import { NoexitosoComponent } from './00-Comunes/noexitoso/noexitoso.component';
+import { VerprogramasasociadosComponent } from './06-Usuarios/verprogramasasociados/verprogramasasociados.component';
+import { AsociarprogramasComponent } from './06-Usuarios/asociarprogramas/asociarprogramas.component';
 
 @NgModule({
   declarations: [LoginComponent, HomeComponent,
@@ -66,7 +71,9 @@ import { ActualizardetalleComponent } from './05-Presupuesto/actualizardetalle/a
     ListaprogramasComponent, CrearprogramaComponent, RegistroexitosoComponent, 
     ActualizarprogramaComponent, ListaonlyprogramaComponent, ActualizarcecoComponent,
      ListaonlyrubrosComponent, ActualizarcategoriaComponent, ListarubrospucsComponent,
-      ActualizarpucsComponent, CrearcategoriaComponent, AgregarpucarubroComponent, AgregarcecoaprogramaComponent, PrincipalpresupuestoComponent, PrerubrospucsComponent, AgregarpresupuestoComponent, CrearpresupuestoComponent, ListapresupuestoprogramaComponent, DetallepresupuestoprogramaComponent, DetalleFamiliarpresupuestoprogramaComponent, DetalleOtrospresupuestoprogramaComponent, GenerarPresupuestoComponent, ActualizarPresupuestoComponent, ActualizardetalleComponent],
+      ActualizarpucsComponent, CrearcategoriaComponent, AgregarpucarubroComponent,
+       AgregarcecoaprogramaComponent, PrincipalpresupuestoComponent, PrerubrospucsComponent,
+        AgregarpresupuestoComponent, CrearpresupuestoComponent, ListapresupuestoprogramaComponent, DetallepresupuestoprogramaComponent, DetalleFamiliarpresupuestoprogramaComponent, DetalleOtrospresupuestoprogramaComponent, GenerarPresupuestoComponent, ActualizarPresupuestoComponent, ActualizardetalleComponent, ListausuariosComponent, AgregarusuarioComponent, NoexitosoComponent, VerprogramasasociadosComponent, AsociarprogramasComponent],
   imports: [
 
     CommonModule,

@@ -29,6 +29,8 @@ import { ListaonlyrubrosComponent } from './components/04-Rubros/listaonlyrubros
 import { ListarubrospucsComponent } from './components/04-Rubros/listarubrospucs/listarubrospucs.component';
 import { PrincipalpresupuestoComponent } from './components/05-Presupuesto/principalpresupuesto/principalpresupuesto.component';
 import { ListapresupuestoprogramaComponent } from './components/05-Presupuesto/listapresupuestoprograma/listapresupuestoprograma.component';
+import { ListausuariosComponent } from './components/06-Usuarios/listausuarios/listausuarios.component';
+import { AgregarusuarioComponent } from './components/06-Usuarios/agregarusuario/agregarusuario.component';
 
 
 const routes: Routes = [
@@ -75,6 +77,17 @@ const routes: Routes = [
   ,
   {
     path: 'VerDetallePresupuesto/:id', component: PrincipalpresupuestoComponent, pathMatch: 'full',
+    canActivate: [UsuarioGuard], canLoad: [UsuarioGuard]
+  }
+  // rutas usuarios
+  ,
+  {
+    path: 'VerUsuarios', component: ListausuariosComponent, pathMatch: 'full',
+    canActivate: [UsuarioGuard], canLoad: [UsuarioGuard]
+  }
+  ,
+  {
+    path: 'AgregarUsuario', component: AgregarusuarioComponent, pathMatch: 'full',
     canActivate: [UsuarioGuard], canLoad: [UsuarioGuard]
   }
 

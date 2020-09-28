@@ -61,6 +61,7 @@ import { AgregarusuarioComponent } from './06-Usuarios/agregarusuario/agregarusu
 import { NoexitosoComponent } from './00-Comunes/noexitoso/noexitoso.component';
 import { VerprogramasasociadosComponent } from './06-Usuarios/verprogramasasociados/verprogramasasociados.component';
 import { AsociarprogramasComponent } from './06-Usuarios/asociarprogramas/asociarprogramas.component';
+import { ProgramatipoComponent } from './06-TipoProgramas/programatipo/programatipo.component';
 
 @NgModule({
   declarations: [LoginComponent, HomeComponent,
@@ -73,7 +74,7 @@ import { AsociarprogramasComponent } from './06-Usuarios/asociarprogramas/asocia
      ListaonlyrubrosComponent, ActualizarcategoriaComponent, ListarubrospucsComponent,
       ActualizarpucsComponent, CrearcategoriaComponent, AgregarpucarubroComponent,
        AgregarcecoaprogramaComponent, PrincipalpresupuestoComponent, PrerubrospucsComponent,
-        AgregarpresupuestoComponent, CrearpresupuestoComponent, ListapresupuestoprogramaComponent, DetallepresupuestoprogramaComponent, DetalleFamiliarpresupuestoprogramaComponent, DetalleOtrospresupuestoprogramaComponent, GenerarPresupuestoComponent, ActualizarPresupuestoComponent, ActualizardetalleComponent, ListausuariosComponent, AgregarusuarioComponent, NoexitosoComponent, VerprogramasasociadosComponent, AsociarprogramasComponent],
+        AgregarpresupuestoComponent, CrearpresupuestoComponent, ListapresupuestoprogramaComponent, DetallepresupuestoprogramaComponent, DetalleFamiliarpresupuestoprogramaComponent, DetalleOtrospresupuestoprogramaComponent, GenerarPresupuestoComponent, ActualizarPresupuestoComponent, ActualizardetalleComponent, ListausuariosComponent, AgregarusuarioComponent, NoexitosoComponent, VerprogramasasociadosComponent, AsociarprogramasComponent, ProgramatipoComponent],
   imports: [
 
     CommonModule,

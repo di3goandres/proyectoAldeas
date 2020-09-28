@@ -12,6 +12,11 @@ namespace ApiRestAldeasPresupuesto.EntityFrame
         public long id { get; set; }
 
         public string Nombre { get; set; }
+        public int id_tipo_programa { get; set; }
+
+        public decimal per_nomina { get; set; }
+
+        public decimal per_capacitacion { get; set; }
 
         public bool Estado { get; set; }
 

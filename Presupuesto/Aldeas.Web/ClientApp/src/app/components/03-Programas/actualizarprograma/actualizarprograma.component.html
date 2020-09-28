@@ -9,18 +9,42 @@
 
         <mat-card-content>
 
-
+            <form [formGroup]="formgroup">
             <div class="row">
-                <form [formGroup]="formgroup">
-                    <div class="col-6 tabla">
+               
+                    <div class="col-12 tabla">
                         <mat-form-field appearance="fill">
                             <mat-label>Nombre</mat-label>
                             <input matInput placeholder="Nuevo Nombre" [(ngModel)]="NuevoNombre" 
                                 formControlName="nombre" required >
                         </mat-form-field>
                     </div>
-                </form>
+                </div>
+                <div class="row"> 
+                    <div class="col-12 tabla">
+                        <mat-form-field appearance="fill">
+                            <mat-label>% Capacitación</mat-label>
+                            <input matInput placeholder="Nuevo %" 
+                            type="number" min="1" max="5" [(ngModel)]="perCapacitacion" 
+                            formControlName="perCapacitacion" required >
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 tabla">
+                        <mat-form-field appearance="fill">
+                            <mat-label>% Salud y Seguridad</mat-label>
+                            <input matInput placeholder="Nuevo %"
+                            type="number" min="1" max="15" [(ngModel)]="perNomina" 
+                            formControlName="perNomina" required >
+                        </mat-form-field>
+                    </div>
+            </div>
+            
+        </form>
 
+
+                <div class="row">
                 <div class="col-6 tabla">
                     <label id="example-radio-group-label">Estado del Programa</label>
                     <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"

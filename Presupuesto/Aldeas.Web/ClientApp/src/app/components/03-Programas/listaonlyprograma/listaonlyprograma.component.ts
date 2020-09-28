@@ -15,7 +15,8 @@ import { CrearprogramaComponent } from '../crearprograma/crearprograma.component
   styleUrls: ['./listaonlyprograma.component.css']
 })
 export class ListaonlyprogramaComponent implements OnInit {
-  displayedColumns: string[] = [ 'id', 'nombre',
+  displayedColumns: string[] = [ 'id', 'nombre', 'cobertura', 'tipoPrograma',
+  'perNomina',  'perCapacitacion',
   'fechaCreacion', 'fechaActualizacion', 'estado', 'Actualizar', 'Ver'];
  dataSource: MatTableDataSource<Programa>;
  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -42,7 +43,7 @@ export class ListaonlyprogramaComponent implements OnInit {
    });
  }
 
- openActualizar(element){
+ openActualizar(element: Programa){
    const modalRef = this.modalService.open(ActualizarprogramaComponent, {size: 'md'});
    modalRef.componentInstance.programa =element
    modalRef.result.then((result) => {
@@ -82,7 +83,7 @@ export class ListaonlyprogramaComponent implements OnInit {
  cargaInicial(){
    this.servicePrograma.getProgramas().subscribe(
      OK => {
-     
+      console.log(OK)
        this.programas = [];
        this.programas.push(... OK.programas)
        this.cecos = [];

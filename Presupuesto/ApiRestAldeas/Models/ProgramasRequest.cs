@@ -18,6 +18,9 @@ namespace ApiRestAldeasPresupuesto.Models
 
         public bool Estado { get; set; }
 
+        public decimal perNomina { get; set; }
+
+        public decimal perCapacitacion { get; set; }
     }
 
     public class CecoUpdateRequest

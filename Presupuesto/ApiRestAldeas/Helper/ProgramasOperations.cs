@@ -19,13 +19,20 @@ namespace ApiRestAldeasPresupuesto.Helper
             using (Aldeas_Context db = factory.Create(connection))
             {
                 var data = from pro in db.TbProgramas
+                           join tipo in db.TbTipoPrograma on pro.id_tipo_programa equals tipo.id
                            select new Program
                            {
                                Estado = pro.Estado,
                                FechaActualizacion = pro.FechaActualizacion,
                                FechaCreacion = pro.FechaCreacion,
                                Id = pro.id,
-                               Nombre = pro.Nombre
+                               Nombre = pro.Nombre,
+                               IdTipoPrograma = tipo.id,
+                               TipoProgramaNombre  = tipo.nombre,
+                               Cobertura = tipo.cobertura,
+                               PerCapacitacion = pro.per_capacitacion,
+                               PerNomina = pro.per_nomina,
+
                            };
                 if (data.Any())
                 {
@@ -77,6 +84,7 @@ namespace ApiRestAldeasPresupuesto.Helper
                                   };
 
                 var data = from pro in db.TbProgramas
+                           join tipo in db.TbTipoPrograma on pro.id_tipo_programa equals tipo.id
                            where !dataUsuario.Any(d => d.id == pro.id) && pro.Estado == true
                            select new Program
                            {
@@ -84,7 +92,12 @@ namespace ApiRestAldeasPresupuesto.Helper
                                FechaActualizacion = pro.FechaActualizacion,
                                FechaCreacion = pro.FechaCreacion,
                                Id = pro.id,
-                               Nombre = pro.Nombre
+                               Nombre = pro.Nombre,
+                               IdTipoPrograma = tipo.id,
+                               TipoProgramaNombre = tipo.nombre,
+                               Cobertura = tipo.cobertura,
+                               PerCapacitacion = pro.per_capacitacion,
+                               PerNomina = pro.per_nomina,
                            };
                 if (data.Any())
                 {
@@ -147,6 +160,8 @@ namespace ApiRestAldeasPresupuesto.Helper
                 {
                     data.First().Nombre = programasRequest.Nombre;
                     data.First().Estado = programasRequest.Estado;
+                    data.First().per_capacitacion = programasRequest.perCapacitacion;
+                    data.First().per_nomina = programasRequest.perNomina;
                     data.First().FechaActualizacion = DateTime.Now;
 
                     db.SaveChanges();

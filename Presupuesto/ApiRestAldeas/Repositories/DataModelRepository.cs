@@ -173,6 +173,15 @@ namespace ApiRestAldeas.Repositories
         }
 
 
+
+        #endregion
+
+        #region tiposProgramas
+        public dynamic ConsultarTiposPrograma()
+        {
+            return TipoProgramaOperations.ConsultarTipoProgramas(_factory, _connectionDB);
+        }
+
         #endregion
     }
 

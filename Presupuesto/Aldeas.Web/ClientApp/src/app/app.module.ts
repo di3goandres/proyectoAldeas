@@ -31,6 +31,7 @@ import { PrincipalpresupuestoComponent } from './components/05-Presupuesto/princ
 import { ListapresupuestoprogramaComponent } from './components/05-Presupuesto/listapresupuestoprograma/listapresupuestoprograma.component';
 import { ListausuariosComponent } from './components/06-Usuarios/listausuarios/listausuarios.component';
 import { AgregarusuarioComponent } from './components/06-Usuarios/agregarusuario/agregarusuario.component';
+import { ProgramatipoComponent } from './components/06-TipoProgramas/programatipo/programatipo.component';
 
 
 const routes: Routes = [
@@ -45,6 +46,10 @@ const routes: Routes = [
     canLoad: [UsuarioGuard]
   },
   { path: 'logout/:sure', component: LoginComponent, pathMatch: 'full' },
+  {
+    path: 'TipoProgramas', component: ProgramatipoComponent, pathMatch: 'full',
+    canActivate: [UsuarioGuard], canLoad: [UsuarioGuard]
+  },
   {
     path: 'Programas', component: ListaprogramasComponent, pathMatch: 'full',
     canActivate: [UsuarioGuard], canLoad: [UsuarioGuard]

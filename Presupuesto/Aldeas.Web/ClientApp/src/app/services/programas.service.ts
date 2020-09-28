@@ -3,6 +3,7 @@ import { UserService } from './user.service';
 import { ProgramaResponse, Programa, Ceco } from '../models/programas/programas.response';
 import { ProgramaRequest } from '../models/programas/programas.request';
 import { Respuesta } from '../models/comunes';
+import { TipoProgramaResponse } from '../models/tipoprograma/TipoPrograma.response';
 
 
 @Injectable({
@@ -42,5 +43,10 @@ export class ProgramasService {
     let params = '' + json;
     return this.userService
        .ejecutarQueryPost<Respuesta>('/api/presupuesto/ceco/actualizar/',params );
+  }
+
+
+  getTipoProgramas() {
+    return this.userService.ejecutarQuery<TipoProgramaResponse>('api/tipoprograma/get');
   }
 }

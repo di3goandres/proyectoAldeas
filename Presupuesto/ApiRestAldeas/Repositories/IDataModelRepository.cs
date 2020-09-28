@@ -88,5 +88,11 @@ namespace ApiRestAldeas.Repositories
         #endregion
 
 
+        #region "TIPOS DE PROGRAMA"
+        dynamic ConsultarTiposPrograma();
+
+        #endregion
+
+
     }
 }

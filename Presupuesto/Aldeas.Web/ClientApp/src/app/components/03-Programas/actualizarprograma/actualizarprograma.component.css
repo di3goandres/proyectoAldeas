@@ -7,3 +7,11 @@
   .example-radio-button {
     margin: 5px;
   }
+
+  table {
+    width: 100%;
+}
+
+mat-form-field{
+  width: 100%;
+}

@@ -8,6 +8,11 @@ export interface Programa {
   id: number;
   nombre: string;
   estado: boolean;
+  cobertura:boolean;
+  idTipoPrograma: number
+  tipoProgramaNombre:string;
+  perCapacitacion: number;
+  perNomina: number;
   fechaCreacion: string;
   fechaActualizacion: string;
 }

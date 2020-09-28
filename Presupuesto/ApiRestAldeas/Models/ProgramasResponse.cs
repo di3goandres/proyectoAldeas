@@ -14,6 +14,18 @@ namespace ApiRestAldeasPresupuesto.Models
 
         public string Nombre { get; set; }
 
+        public int IdTipoPrograma { get; set; }
+
+        public string TipoProgramaNombre { get; set; }
+
+        public bool Cobertura { get; set; }
+
+
+        public decimal PerNomina { get; set; }
+
+        public decimal PerCapacitacion { get; set; }
+
+
         public bool Estado { get; set; }
 
         public DateTime FechaCreacion { get; set; }

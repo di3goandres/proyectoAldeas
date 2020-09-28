@@ -27,6 +27,26 @@
           <td mat-cell *matCellDef="let row"> {{row.nombre |uppercase}} </td>
         </ng-container>
 
+        <ng-container matColumnDef="cobertura">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Cobertura </th>
+          <td mat-cell *matCellDef="let row" style="text-align: center;"> {{row.cobertura ==true ? "SI":"NO" }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="tipoPrograma">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Tipo Programa </th>
+          <td mat-cell *matCellDef="let row"> {{row.tipoProgramaNombre |uppercase }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="perNomina">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> % Salud y seguridad </th>
+          <td mat-cell *matCellDef="let row" style="text-align: center;"> {{row.perNomina }}% </td>
+        </ng-container>
+      
+
+        <ng-container matColumnDef="perCapacitacion">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> % Capacitacion </th>
+          <td mat-cell *matCellDef="let row" style="text-align: center;"> {{row.perCapacitacion }}% </td>
+        </ng-container>
         <!-- Color Column -->
         <ng-container matColumnDef="fechaCreacion">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha Creacion </th>

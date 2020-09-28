@@ -31,7 +31,10 @@
   </mat-menu>
   <mat-menu #configuracion="matMenu">
 
-  
+    <button mat-menu-item [routerLink]="['/TipoProgramas']">
+      <mat-icon>dashboard</mat-icon>
+      <span>Tipo de Programas</span>
+    </button>
     <button mat-menu-item [routerLink]="['/OnlyProgramas']">
       <mat-icon>dashboard</mat-icon>
       <span>Programas</span>

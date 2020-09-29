@@ -114,11 +114,17 @@ namespace ApiRestAldeasPresupuesto.Helper
             long id = 0;
             using (Aldeas_Context db = factory.Create(connection))
             {
+                decimal decimalNum = new decimal(1.5);
+              
                 var nuevo = new DbProgramas()
                 {
                     Estado = true,
                     FechaCreacion = DateTime.Now,
+                    id_tipo_programa = programasRequest.Tipo,
                     FechaActualizacion = DateTime.Now,
+                    per_capacitacion = 1.5M,
+                    per_nomina = 10,
+
                     Nombre = programasRequest.Nombre
 
                 };

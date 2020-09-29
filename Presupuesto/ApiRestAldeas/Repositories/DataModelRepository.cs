@@ -182,6 +182,26 @@ namespace ApiRestAldeas.Repositories
             return TipoProgramaOperations.ConsultarTipoProgramas(_factory, _connectionDB);
         }
 
+
+        #endregion
+
+        #region "Cargos"
+        public dynamic ConsultarCargos()
+        {
+            return CargosOperations.ConsultarCargos(_factory, _connectionDB);
+        }
+
+        public dynamic GuardarCargos(CargosRequest data)
+        {
+            return CargosOperations.GuardarCargos(_factory, _connectionDB, data);
+        }
+
+        public dynamic ActualizarCargos(CargosRequest data)
+        {
+            return CargosOperations.ActualizarCargo(_factory, _connectionDB, data);
+        }
+
+
         #endregion
     }
 

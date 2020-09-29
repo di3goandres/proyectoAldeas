@@ -15,24 +15,24 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTableModule } from '@angular/material/table';
-import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
-import {MatTabsModule} from '@angular/material/tabs';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatTabsModule } from '@angular/material/tabs';
 
 
 import { MatMomentDateModule, MomentDateAdapter } from "@angular/material-moment-adapter";
 import { BrowserModule } from '@angular/platform-browser';
 import { MatButtonModule } from '@angular/material/button';
 import { FechasComponent } from './00-Comunes/fechas/fechas.component';
-import {MatCardModule} from '@angular/material/card';
-import {MatCheckboxModule} from '@angular/material/checkbox';
-import {MatRadioModule} from '@angular/material/radio'
+import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatRadioModule } from '@angular/material/radio'
 import { CheckboxComponent } from './00-Comunes/checkbox/checkbox.component';
 import { ListcheckComponent } from './00-Comunes/listcheck/listcheck.component';
 import { ListcentroscostosComponent } from './00-Comunes/listcentroscostos/listcentroscostos.component';
 import { ListaprogramasComponent } from './03-Programas/listaprogramas/listaprogramas.component';
-import {MatMenuModule} from '@angular/material/menu';
+import { MatMenuModule } from '@angular/material/menu';
 import { CrearprogramaComponent } from './03-Programas/crearprograma/crearprograma.component';
 import { RegistroexitosoComponent } from './00-Comunes/registroexitoso/registroexitoso.component';
 import { ActualizarprogramaComponent } from './03-Programas/actualizarprograma/actualizarprograma.component';
@@ -62,19 +62,27 @@ import { NoexitosoComponent } from './00-Comunes/noexitoso/noexitoso.component';
 import { VerprogramasasociadosComponent } from './06-Usuarios/verprogramasasociados/verprogramasasociados.component';
 import { AsociarprogramasComponent } from './06-Usuarios/asociarprogramas/asociarprogramas.component';
 import { ProgramatipoComponent } from './06-TipoProgramas/programatipo/programatipo.component';
+import { ListacargosComponent } from './07-Cargos/listacargos/listacargos.component';
+import { ActualizarcargoComponent } from './07-Cargos/actualizarcargo/actualizarcargo.component';
+import { AgregarcargoComponent } from './07-Cargos/agregarcargo/agregarcargo.component';
 
 @NgModule({
   declarations: [LoginComponent, HomeComponent,
-     HeaaderComponent, 
-     FechasComponent, 
-      
-   CheckboxComponent, ListcheckComponent, ListcentroscostosComponent,
-    ListaprogramasComponent, CrearprogramaComponent, RegistroexitosoComponent, 
+    HeaaderComponent,
+    FechasComponent,
+
+    CheckboxComponent, ListcheckComponent, ListcentroscostosComponent,
+    ListaprogramasComponent, CrearprogramaComponent, RegistroexitosoComponent,
     ActualizarprogramaComponent, ListaonlyprogramaComponent, ActualizarcecoComponent,
-     ListaonlyrubrosComponent, ActualizarcategoriaComponent, ListarubrospucsComponent,
-      ActualizarpucsComponent, CrearcategoriaComponent, AgregarpucarubroComponent,
-       AgregarcecoaprogramaComponent, PrincipalpresupuestoComponent, PrerubrospucsComponent,
-        AgregarpresupuestoComponent, CrearpresupuestoComponent, ListapresupuestoprogramaComponent, DetallepresupuestoprogramaComponent, DetalleFamiliarpresupuestoprogramaComponent, DetalleOtrospresupuestoprogramaComponent, GenerarPresupuestoComponent, ActualizarPresupuestoComponent, ActualizardetalleComponent, ListausuariosComponent, AgregarusuarioComponent, NoexitosoComponent, VerprogramasasociadosComponent, AsociarprogramasComponent, ProgramatipoComponent],
+    ListaonlyrubrosComponent, ActualizarcategoriaComponent, ListarubrospucsComponent,
+    ActualizarpucsComponent, CrearcategoriaComponent, AgregarpucarubroComponent,
+    AgregarcecoaprogramaComponent, PrincipalpresupuestoComponent, PrerubrospucsComponent,
+    AgregarpresupuestoComponent, CrearpresupuestoComponent, ListapresupuestoprogramaComponent,
+    DetallepresupuestoprogramaComponent, DetalleFamiliarpresupuestoprogramaComponent,
+    DetalleOtrospresupuestoprogramaComponent, GenerarPresupuestoComponent,
+    ActualizarPresupuestoComponent, ActualizardetalleComponent, ListausuariosComponent,
+    AgregarusuarioComponent, NoexitosoComponent, VerprogramasasociadosComponent, AsociarprogramasComponent,
+    ProgramatipoComponent, ListacargosComponent, ActualizarcargoComponent, AgregarcargoComponent],
   imports: [
 
     CommonModule,
@@ -106,7 +114,7 @@ import { ProgramatipoComponent } from './06-TipoProgramas/programatipo/programat
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },
     MatDatepickerModule
   ],
-  exports:[
+  exports: [
     HeaaderComponent,
     MatMenuModule
 

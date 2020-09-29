@@ -17,7 +17,7 @@
   </mat-menu>
   <mat-menu #usuarios="matMenu">
 
-  
+
     <button mat-menu-item [routerLink]="['/VerUsuarios']">
       <mat-icon>people</mat-icon>
       <span>Lista</span>
@@ -26,11 +26,14 @@
       <mat-icon>person_add_alt_1</mat-icon>
       <span>Agregar</span>
     </button>
-  
- 
+
+
   </mat-menu>
   <mat-menu #configuracion="matMenu">
-
+    <button mat-menu-item [routerLink]="['/Cargos']">
+      <mat-icon>face</mat-icon>
+      <span>Cargos</span>
+    </button>
     <button mat-menu-item [routerLink]="['/TipoProgramas']">
       <mat-icon>dashboard</mat-icon>
       <span>Tipo de Programas</span>
@@ -52,7 +55,7 @@
       <mat-icon>dashboard</mat-icon>
       <span>Categorias /Pucs</span>
     </button>
- 
+
   </mat-menu>
   <div class="container">
     <app-heaader></app-heaader>
@@ -62,7 +65,7 @@
         <mat-icon>menu</mat-icon>
       </button> -->
 
-      <button [matMenuTriggerFor]="menu" mat-icon-button  class="main-green-toolbar">
+      <button [matMenuTriggerFor]="menu" mat-icon-button class="main-green-toolbar">
         <mat-icon>menu</mat-icon>
       </button>
       <span style="color: white;">Bienvenido {{currentUser.displayName}}</span>

@@ -94,5 +94,17 @@ namespace ApiRestAldeas.Repositories
         #endregion
 
 
+        #region "Cargos"
+        dynamic ConsultarCargos();
+
+        dynamic GuardarCargos( CargosRequest data);
+
+        dynamic ActualizarCargos(CargosRequest data);
+
+
+
+        #endregion
+
+
     }
 }

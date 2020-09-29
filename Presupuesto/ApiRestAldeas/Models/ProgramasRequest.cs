@@ -7,6 +7,8 @@ namespace ApiRestAldeasPresupuesto.Models
 {
     public class ProgramasRequest
     {
+        public int Tipo { get; set; }
+
         public string Nombre { get; set; }
         public List<ProgramCeco> Cecos { get; set; }
     }

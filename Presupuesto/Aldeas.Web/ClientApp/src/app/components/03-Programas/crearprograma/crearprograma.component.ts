@@ -6,6 +6,7 @@ import { MatTable } from '@angular/material/table';
 import { Ceco } from '../../../models/programas/programas.response';
 import { ProgramaRequest } from '../../../models/programas/programas.request';
 import { ProgramasService } from '../../../services/programas.service';
+import { TipoProgramaResponseData } from '../../../models/tipoprograma/TipoPrograma.response';
 
 @Component({
   selector: 'app-crearprograma',
@@ -25,9 +26,13 @@ export class CrearprogramaComponent implements OnInit {
   nuevoCeco: Ceco = new Ceco();
   formgroup: FormGroup;
   formgroup_2: FormGroup;
+  tipoProgramas: TipoProgramaResponseData[] = []
+  TipoPrograma = "1";
   constructor(private _formBuilder: FormBuilder,
     private activeModal: NgbActiveModal,
-    private programasService: ProgramasService
+    private programasService: ProgramasService,
+    private servicePrograma: ProgramasService,
+
   ) { }
 
   eliminar(element: Ceco) {
@@ -86,7 +91,7 @@ export class CrearprogramaComponent implements OnInit {
     this.activeModal.close('dismmiss')
   }
   onGuardar() {
-    this.guardar = new ProgramaRequest(this.NombrePrograma, this.dataSourceCecos);
+    this.guardar = new ProgramaRequest(this.NombrePrograma, this.TipoPrograma, this.dataSourceCecos);
     console.log(this.guardar)
 
     this.programasService.storeProgramas(this.guardar).subscribe(
@@ -100,12 +105,29 @@ export class CrearprogramaComponent implements OnInit {
 
     );
 
+
+  }
+  cargaInicial() {
+    this.servicePrograma.getTipoProgramas().subscribe(
+      OK => {
+
+        this.tipoProgramas = [];
+        this.tipoProgramas.push(...OK.data)
+      
+
+      },
+      Errr => { console.log(Errr) }
+
+    )
   }
   ngOnInit(): void {
     
+    this.cargaInicial();
     this.formgroup = this._formBuilder.group({
 
       nombre: ['', Validators.required],
+      tipoProgroma: ['', Validators.required],
+
     })
 
 

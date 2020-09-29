@@ -13,7 +13,7 @@ import { ComponentsModule } from './components/components.module';
 import { HomeComponent } from './components/02-Home/home/home.component';
 
 
-import {MatTabsModule} from '@angular/material/tabs';
+import { MatTabsModule } from '@angular/material/tabs';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -32,6 +32,7 @@ import { ListapresupuestoprogramaComponent } from './components/05-Presupuesto/l
 import { ListausuariosComponent } from './components/06-Usuarios/listausuarios/listausuarios.component';
 import { AgregarusuarioComponent } from './components/06-Usuarios/agregarusuario/agregarusuario.component';
 import { ProgramatipoComponent } from './components/06-TipoProgramas/programatipo/programatipo.component';
+import { ListacargosComponent } from './components/07-Cargos/listacargos/listacargos.component';
 
 
 const routes: Routes = [
@@ -44,6 +45,10 @@ const routes: Routes = [
   {
     path: 'Home', component: HomeComponent, pathMatch: 'full', canActivate: [UsuarioGuard],
     canLoad: [UsuarioGuard]
+  },
+  {
+    path: 'Cargos', component: ListacargosComponent, pathMatch: 'full',
+    canActivate: [UsuarioGuard], canLoad: [UsuarioGuard]
   },
   { path: 'logout/:sure', component: LoginComponent, pathMatch: 'full' },
   {
@@ -115,7 +120,7 @@ const routes: Routes = [
     FormsModule,
     ComponentsModule,
     MatTabsModule,
-    RouterModule.forRoot(routes, {useHash: true}),
+    RouterModule.forRoot(routes, { useHash: true }),
     BrowserAnimationsModule,
     NgbModule
   ],

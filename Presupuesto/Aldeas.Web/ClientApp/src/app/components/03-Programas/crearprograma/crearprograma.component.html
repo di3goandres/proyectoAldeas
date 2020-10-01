@@ -22,10 +22,10 @@
 
                         <mat-form-field appearance="fill">
                             <mat-label>TIPO PROGRAMA</mat-label>
-                            <mat-select [(ngModel)]="TipoPrograma" formControlName="tipoProgroma"  required>
+                            <mat-select [(ngModel)]="TipoPrograma" formControlName="tipoProgroma" required>
                                 <mat-option *ngFor="let tipo of tipoProgramas" [value]="tipo.id">
                                     {{tipo.nombre |uppercase}}
-                                  </mat-option>
+                                </mat-option>
                             </mat-select>
                         </mat-form-field>
                     </div>
@@ -78,10 +78,28 @@
                         </mat-form-field>
                     </div>
 
-                    <div class="col-4 tabla">
+                    <div class="col-4">
+
+
+                        <mat-form-field appearance="fill">
+                            <mat-label>FINANCIADOR</mat-label>
+                            <mat-select [(ngModel)]="nuevoCeco.idFinanciador" formControlName="financiador" required>
+                                <mat-option *ngFor="let financiador of financiadores" [value]="financiador.id">
+                                    {{financiador.nombre |uppercase}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    
+                </div>
+                <div dlass="row">
+                    <div class="col-4"></div>
+                    <div class="col-4 centrarTabla" style="text-align: center;">
                         <button mat-mat-raised-button class="btn  buttton-aldea btn-success pull-right"
                             [disabled]="formgroup_2.invalid" (click)="Agregar()">Agregar</button>
                     </div>
+                    <div class="col-4"></div>
+
                 </div>
                 <div class="row" *ngIf="Validaciones">
                     <div class="col-12 alerta">
@@ -127,6 +145,11 @@
                             <td mat-cell *matCellDef="let element"> {{element.facilityNav}}
                             </td>
                         </ng-container>
+                        <ng-container matColumnDef="Financiador">
+                            <th mat-header-cell *matHeaderCellDef> Financiador </th>
+                            <td mat-cell *matCellDef="let element"> {{element.nombreFinanciador}}
+                            </td>
+                        </ng-container>
                         <ng-container matColumnDef="Quitar">
                             <th mat-header-cell *matHeaderCellDef> Quitar </th>
                             <td mat-cell *matCellDef="let element">
@@ -148,10 +171,17 @@
             </div>
         </mat-card-content>
         <mat-card-actions>
-
-            <button mat-raised-button ngbAutofocus (click)="cerrar()">Cancelar</button>
-            <button mat-raised-button class="buttton-aldea" [disabled]="!(formgroup.valid && PermitirGuardar)"
+            <div dlass="row">
+                <div class="col-4"></div>
+                <div class="col-4 centrarTabla" style="text-align: center;">
+                    <button mat-raised-button class="buttton-aldea" [disabled]="!(formgroup.valid && PermitirGuardar)"
                 (click)="onGuardar()">Guardar</button>
+                </div>
+                <div class="col-4"></div>
+
+            </div>
+
+          
         </mat-card-actions>
     </mat-card>
 

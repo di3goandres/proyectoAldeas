@@ -22,7 +22,7 @@ export class ListaprogramasComponent implements OnInit {
 
   idPrograma: number;
   displayedColumns: string[] = ['codigoCeco', 'nombre',
-    'subCentro', 'nombreSubCentro', 'facilityNav', 'estado', 'Actualizar'];
+    'subCentro', 'nombreSubCentro', 'facilityNav', 'financiador' ,'estado', 'Actualizar'];
   dataSource: MatTableDataSource<Ceco>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -128,6 +128,7 @@ export class ListaprogramasComponent implements OnInit {
         this.programas = [];
         this.programas.push(...OK.programas)
         this.cecos = [];
+        console.log(OK.cecos)
         this.cecos.push(...OK.cecos)
       
         if (data) {

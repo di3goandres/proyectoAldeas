@@ -1,1 +1,61 @@
-<p>agregarcargo works!</p>
+<div class="container">
+
+    <mat-card class="example-card">
+        <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>Crear un Cargo </mat-card-title>
+            <mat-card-subtitle>Creación</mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+
+            <form [formGroup]="formGroupCargo">
+            <div class="row">
+               
+                    <div class="col-12 tabla">
+                        <mat-form-field appearance="fill">
+                            <mat-label> Tipo</mat-label>
+        
+                            <mat-select [(ngModel)]="cargo.tipo"  formControlName="tipo" >
+                                <mat-option *ngFor="let tipo of tiposCargos" [value]="tipo.value">
+                                    {{tipo.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row"> 
+                    <div class="col-12 tabla">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Nombre Cargo</mat-label>
+                            <input matInput placeholder="Nombre" 
+                            type="text" [(ngModel)]="cargo.cargo" 
+                            formControlName="nombre" required >
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 tabla">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Código </mat-label>
+                            <input matInput placeholder="Código"
+                            type="number" min="1" max="10000" [(ngModel)]="cargo.cod_cargo" 
+                            formControlName="codigo" required >
+                        </mat-form-field>
+                    </div>
+            </div>
+            
+        </form>
+
+
+
+        </mat-card-content>
+        <mat-card-actions>
+
+            <button mat-raised-button ngbAutofocus (click)="cerrar()">Cancelar</button>
+            <button mat-raised-button class="buttton-aldea" [disabled]="!(formGroupCargo.valid)"
+                (click)="onGuardar()">Guardar</button>
+        </mat-card-actions>
+    </mat-card>
+
+</div>

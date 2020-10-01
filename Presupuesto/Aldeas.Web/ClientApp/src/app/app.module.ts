@@ -33,6 +33,8 @@ import { ListausuariosComponent } from './components/06-Usuarios/listausuarios/l
 import { AgregarusuarioComponent } from './components/06-Usuarios/agregarusuario/agregarusuario.component';
 import { ProgramatipoComponent } from './components/06-TipoProgramas/programatipo/programatipo.component';
 import { ListacargosComponent } from './components/07-Cargos/listacargos/listacargos.component';
+import { CrearprogramaComponent } from './components/03-Programas/crearprograma/crearprograma.component';
+import { ListaFinanciadoresComponent } from './components/08-Financiadores/lista-financiadores/lista-financiadores.component';
 
 
 const routes: Routes = [
@@ -98,6 +100,19 @@ const routes: Routes = [
   ,
   {
     path: 'AgregarUsuario', component: AgregarusuarioComponent, pathMatch: 'full',
+    canActivate: [UsuarioGuard], canLoad: [UsuarioGuard]
+  }
+
+  /**creacion de programas */
+
+  ,
+  {
+    path: 'CrearPrograma', component: CrearprogramaComponent, pathMatch: 'full',
+    canActivate: [UsuarioGuard], canLoad: [UsuarioGuard]
+  }
+  ,
+  {
+    path: 'Financiadores', component: ListaFinanciadoresComponent, pathMatch: 'full',
     canActivate: [UsuarioGuard], canLoad: [UsuarioGuard]
   }
 

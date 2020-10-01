@@ -11,6 +11,7 @@ import { AgregarcargoComponent } from '../agregarcargo/agregarcargo.component';
 import { CargosService } from '../../../services/cargos.service';
 import { CargosDatum } from '../../../models/cargos/cargos';
 import { SelectGlobal } from '../../../models/comunes';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-listacargos',
@@ -60,7 +61,7 @@ export class ListacargosComponent implements OnInit {
 
   openActualizar(element) {
     const modalRef = this.modalService.open(ActualizarcargoComponent, { size: 'md' });
-    modalRef.componentInstance.cecoInput = element;
+    modalRef.componentInstance.update = element;
     modalRef.result.then((result) => {
       if (result === "OK") {
         this.openExitoso();
@@ -78,7 +79,7 @@ export class ListacargosComponent implements OnInit {
 
   openAgregar() {
 
-    const modalRef = this.modalService.open(AgregarcargoComponent, { size: 'lg' });
+    const modalRef = this.modalService.open(AgregarcargoComponent, { size: 'md' });
 
 
     modalRef.result.then((result) => {

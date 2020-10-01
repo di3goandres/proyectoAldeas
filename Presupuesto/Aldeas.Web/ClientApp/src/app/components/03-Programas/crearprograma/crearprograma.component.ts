@@ -1,12 +1,14 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from '../../../services/user.service';
 import { MatTable } from '@angular/material/table';
 import { Ceco } from '../../../models/programas/programas.response';
 import { ProgramaRequest } from '../../../models/programas/programas.request';
 import { ProgramasService } from '../../../services/programas.service';
 import { TipoProgramaResponseData } from '../../../models/tipoprograma/TipoPrograma.response';
+import { FinanciadoresDatum } from 'src/app/models/financiadores/financiadores.response';
+import { RegistroexitosoComponent } from '../../00-Comunes/registroexitoso/registroexitoso.component';
 
 @Component({
   selector: 'app-crearprograma',
@@ -19,17 +21,22 @@ export class CrearprogramaComponent implements OnInit {
   Validaciones: boolean = false;
   NombrePrograma: string = "";
   PermitirGuardar: boolean = false;
-  @Input() Actuales: Ceco[] = [];
+  Actuales: Ceco[] = [];
   displayedColumns: string[] = ['position',
-    'CodicoCeco', 'NombreCeco', 'CodigoSubCeco', 'NombreSubCeco', 'Facility', 'Quitar'];
+    'CodicoCeco', 'NombreCeco', 'CodigoSubCeco', 'NombreSubCeco', 'Facility', 'Financiador','Quitar'];
   dataSourceCecos: Ceco[] = []
   nuevoCeco: Ceco = new Ceco();
   formgroup: FormGroup;
   formgroup_2: FormGroup;
   tipoProgramas: TipoProgramaResponseData[] = []
   TipoPrograma = "1";
+  
+
+  financiadores: FinanciadoresDatum[] = [];
+
   constructor(private _formBuilder: FormBuilder,
-    private activeModal: NgbActiveModal,
+ 
+    private modalService: NgbModal,
     private programasService: ProgramasService,
     private servicePrograma: ProgramasService,
 
@@ -52,6 +59,19 @@ export class CrearprogramaComponent implements OnInit {
 
   onchangeModel() {
     this.Validaciones = false
+  }
+
+  openExitoso() {
+    const modalRef = this.modalService.open(RegistroexitosoComponent,
+      { size: 'md' });
+   
+    modalRef.result.then((result) => {
+
+
+    }, (reason) => {
+
+
+    });
   }
   Agregar() {
 
@@ -81,14 +101,21 @@ export class CrearprogramaComponent implements OnInit {
       this.Validaciones = false
     }
     if (!this.Validaciones) {
+      let nombre = this.financiadores.find(item=> {
+        return item.id == this.nuevoCeco.idFinanciador
+      })
+
+      this.nuevoCeco.nombreFinanciador = nombre.nombre;
+      console.log(this.nuevoCeco);
+
       this.dataSourceCecos.push(this.nuevoCeco);
       this.nuevoCeco = new Ceco();
       this.table.renderRows();
       this.PermitirGuardar = true;
     }
   }
-  cerrar(){
-    this.activeModal.close('dismmiss')
+  cerrar() {
+    // this.activeModal.close('dismmiss')
   }
   onGuardar() {
     this.guardar = new ProgramaRequest(this.NombrePrograma, this.TipoPrograma, this.dataSourceCecos);
@@ -97,7 +124,11 @@ export class CrearprogramaComponent implements OnInit {
     this.programasService.storeProgramas(this.guardar).subscribe(
       OK => {
         if (OK.code == 200 && OK.status == "OK") {
-          this.activeModal.close('OK')
+          // this.activeModal.close('OK')
+          this.openExitoso();
+          this.dataSourceCecos= [];
+          this.formgroup.reset()
+           this.formgroup_2.reset()
         }
         console.log(OK)
       },
@@ -107,21 +138,47 @@ export class CrearprogramaComponent implements OnInit {
 
 
   }
-  cargaInicial() {
-    this.servicePrograma.getTipoProgramas().subscribe(
+  async cargaInicial() {
+    await this.servicePrograma.getTipoProgramas().subscribe(
       OK => {
 
         this.tipoProgramas = [];
         this.tipoProgramas.push(...OK.data)
-      
+
 
       },
       Errr => { console.log(Errr) }
 
     )
+
+    await this.servicePrograma.getFinanciadores().subscribe(
+      OK => {
+
+        this.financiadores = [];
+        this.financiadores.push(...OK.financiadoresData)
+
+
+      },
+      Errr => { console.log(Errr) }
+
+    )
+
+    await this.servicePrograma.getProgramas().subscribe(
+      OK => {
+
+
+        this.Actuales = [];
+        this.Actuales.push(...OK.cecos)
+
+
+
+      },
+      Errr => { console.log(Errr) }
+
+    ) 
   }
   ngOnInit(): void {
-    
+
     this.cargaInicial();
     this.formgroup = this._formBuilder.group({
 
@@ -138,7 +195,9 @@ export class CrearprogramaComponent implements OnInit {
       SubcodigoCeco: ['', Validators.required],
       NombreSubCeco: ['', Validators.required],
       Facility: ['', Validators.required],
-   
+      financiador: ['', Validators.required],
+
+
 
 
     })

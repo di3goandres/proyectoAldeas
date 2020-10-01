@@ -189,14 +189,14 @@ export class AgregarpresupuestoComponent implements OnInit {
 
       numeroIdentificacion: ['', Validators.required],
       Nombre: ['', Validators.required],
-      asignacion: ['', Validators.required],
+      asignacion: ['', [Validators.max(100), Validators.min(1)]],
       cargo: ['', Validators.required],
 
     })
     this.formgroupFamiliar = this._formBuilder.group({
 
-      NoCasa: ['', Validators.required],
-      NoKids: ['', Validators.required],
+      NoCasa: ['', [Validators.max(15), Validators.min(1)]],
+      NoKids:['', [Validators.max(15), Validators.min(1)]],
     })
 
     this.formgroupNormal = this._formBuilder.group({

@@ -14,6 +14,9 @@ namespace ApiRestAldeasPresupuesto.EntityFrame
 
         public long idPrograma { get; set; }
 
+        public int idFinanciador { get; set; }
+
+
         public int CodigoCeco { get; set; }
 
 
@@ -28,6 +31,10 @@ namespace ApiRestAldeasPresupuesto.EntityFrame
 
 
         public bool Estado { get; set; }
+
+        public DateTime fecha_creacion { get; set; }
+        public DateTime fecha_actualizacion { get; set; }
+
 
     }
 }

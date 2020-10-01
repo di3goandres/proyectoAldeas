@@ -4,6 +4,7 @@ import { ProgramaResponse, Programa, Ceco } from '../models/programas/programas.
 import { ProgramaRequest } from '../models/programas/programas.request';
 import { Respuesta } from '../models/comunes';
 import { TipoProgramaResponse } from '../models/tipoprograma/TipoPrograma.response';
+import { FinanciadoresResponse } from '../models/financiadores/financiadores.response';
 
 
 @Injectable({
@@ -48,5 +49,9 @@ export class ProgramasService {
 
   getTipoProgramas() {
     return this.userService.ejecutarQuery<TipoProgramaResponse>('api/tipoprograma/get');
+  }
+
+  getFinanciadores() {
+    return this.userService.ejecutarQuery<FinanciadoresResponse>('api/financiadores/get');
   }
 }

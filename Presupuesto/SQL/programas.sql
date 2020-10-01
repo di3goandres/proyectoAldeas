@@ -3,33 +3,31 @@ GO
 SET IDENTITY_INSERT [dbo].[programas] ON
 INSERT INTO [dbo].[programas]
 
-           ([id_tipo_programa], id, 
+           ( id, [id_tipo_programa],
 		   [Nombre]
            ,[Estado]
            ,[FechaCreacion]
            ,[FechaActualizacion])
      VALUES
-(2,1,'AN', 1, getdate(), getdate()),
-(2,2,'Bolivar', 1, getdate(), getdate()),
-(1,3,'CC', 1, getdate(), getdate()),
-(1,4,'CF', 1, getdate(), getdate()),
-(2,5,'Cundinamarca', 1, getdate(), getdate()),
-(4,6,'DFC', 1, getdate(), getdate()),
-(1,7,'ET', 1, getdate(), getdate()),
-(1,8,'INFRAESTRUCTURA', 1, getdate(), getdate()),
-(2,9,'Nariño', 1, getdate(), getdate()),
-(1,10,'NO USAR', 1, getdate(), getdate()),
-(2,11,'Nor Occidente', 1, getdate(), getdate()),
-(1,12,'ON', 1, getdate(), getdate()),
-(1,13,'OR', 1, getdate(), getdate()),
-(3,14,'Proyectos', 1, getdate(), getdate()),
-(2,15,'Quibdo', 1, getdate(), getdate()),
-(2,16,'Riosucio', 1, getdate(), getdate()),
-(2,17,'Santander', 1, getdate(), getdate()),
-(2,18,'Tolima', 1, getdate(), getdate()),
-(2,19,'Tumaco', 1, getdate(), getdate()),
-(2,20,'Valle del Cauca', 1, getdate(), getdate()),
-(1,21,'#N/A', 1, getdate(), getdate())
+(1,1,'AN',1, GETDATE(),GETDATE()),
+(2,2,'Bolivar',1, GETDATE(),GETDATE()),
+(3,1,'CC',1, GETDATE(),GETDATE()),
+(4,1,'CF',1, GETDATE(),GETDATE()),
+(5,2,'Cundinamarca',1, GETDATE(),GETDATE()),
+(6,4,'DFC',1, GETDATE(),GETDATE()),
+(7,1,'ET',1, GETDATE(),GETDATE()),
+(8,1,'INFRAESTRUCTURA',1, GETDATE(),GETDATE()),
+(9,2,'Nariño',1, GETDATE(),GETDATE()),
+(10,2,'Nor Occidente',1, GETDATE(),GETDATE()),
+(11,1,'ON',1, GETDATE(),GETDATE()),
+(12,1,'OR',1, GETDATE(),GETDATE()),
+(13,3,'Proyectos',1, GETDATE(),GETDATE()),
+(14,2,'Riosucio',1, GETDATE(),GETDATE()),
+(15,2,'Santander',1, GETDATE(),GETDATE()),
+(16,2,'Tolima',1, GETDATE(),GETDATE()),
+(17,2,'Tumaco',1, GETDATE(),GETDATE()),
+(18,2,'Valle del Cauca',1, GETDATE(),GETDATE())
+
 
 
 SET IDENTITY_INSERT [dbo].[programas] OFF

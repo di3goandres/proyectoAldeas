@@ -15,6 +15,26 @@
 
 
   </mat-menu>
+
+  <mat-menu #programa="matMenu">
+    <button mat-menu-item [routerLink]="['/CrearPrograma']">
+      <mat-icon>add</mat-icon>
+      <span>Crear</span>
+    </button>
+    <button mat-menu-item [routerLink]="['/TipoProgramas']">
+      <mat-icon>assignment</mat-icon>
+      <span>Tipo de Programas</span>
+    </button>
+    <button mat-menu-item [routerLink]="['/OnlyProgramas']">
+      <mat-icon>article</mat-icon>
+      <span>Programas</span>
+    </button>
+    <button mat-menu-item [routerLink]="['/Programas']">
+      <mat-icon>assignment</mat-icon>
+      <span>Programas/Cecos</span>
+    </button>
+
+  </mat-menu>
   <mat-menu #usuarios="matMenu">
 
 
@@ -34,25 +54,21 @@
       <mat-icon>face</mat-icon>
       <span>Cargos</span>
     </button>
-    <button mat-menu-item [routerLink]="['/TipoProgramas']">
-      <mat-icon>dashboard</mat-icon>
-      <span>Tipo de Programas</span>
+    <button mat-menu-item [routerLink]="['/Financiadores']">
+      <mat-icon>attach_money</mat-icon>
+      <span>Financiadores</span>
     </button>
-    <button mat-menu-item [routerLink]="['/OnlyProgramas']">
-      <mat-icon>dashboard</mat-icon>
+    <button mat-menu-item [matMenuTriggerFor]="programa">
+      <mat-icon>list</mat-icon>
       <span>Programas</span>
-    </button>
-    <button mat-menu-item [routerLink]="['/Programas']">
-      <mat-icon>dashboard</mat-icon>
-      <span>Programas/Cecos</span>
     </button>
 
     <button mat-menu-item [routerLink]="['/OnlyCategorias']">
-      <mat-icon>dashboard</mat-icon>
+      <mat-icon>category</mat-icon>
       <span>Categorias</span>
     </button>
     <button mat-menu-item [routerLink]="['/CategoriasPucs']">
-      <mat-icon>dashboard</mat-icon>
+      <mat-icon>compare_arrows</mat-icon>
       <span>Categorias /Pucs</span>
     </button>
 

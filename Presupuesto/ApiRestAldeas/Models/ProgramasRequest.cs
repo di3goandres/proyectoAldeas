@@ -32,6 +32,9 @@ namespace ApiRestAldeasPresupuesto.Models
 
         public long IdPrograma { get; set; }
 
+        public int IdFinanciador { get; set; }
+
+
         public int CodigoCeco { get; set; }
 
         public string Nombre { get; set; }

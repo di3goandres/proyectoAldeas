@@ -106,5 +106,12 @@ namespace ApiRestAldeas.Repositories
         #endregion
 
 
+        #region "Financiadores"
+        dynamic ConsultarFinanciadores();
+
+        #endregion
+
+
+
     }
 }

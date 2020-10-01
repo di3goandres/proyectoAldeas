@@ -22,8 +22,7 @@
 
 
             
-            <button mat-mat-raised-button  class="btn  buttton-aldea btn-success pull-right" 
-            (click)="openCrear()" >Crear</button>
+       
 
    
            <button mat-mat-raised-button  *ngIf="idPrograma!=0"
@@ -57,6 +56,11 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> FacilityNav </th>
                 <td mat-cell *matCellDef="let row"> {{row.facilityNav}} </td>
               </ng-container>
+              <ng-container matColumnDef="financiador">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Financiador </th>
+                <td mat-cell *matCellDef="let row"> {{row.nombreFinanciador}} </td>
+              </ng-container>
+
 
               <ng-container matColumnDef="estado">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Activo </th>

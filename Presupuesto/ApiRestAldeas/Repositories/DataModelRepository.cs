@@ -202,6 +202,15 @@ namespace ApiRestAldeas.Repositories
         }
 
 
+
+        #endregion
+
+        #region FINANCIADORES
+        public dynamic ConsultarFinanciadores()
+        {
+            return FinanciadoresOperations.ConsultarFinanciadores(_factory, _connectionDB);
+        }
+
         #endregion
     }
 

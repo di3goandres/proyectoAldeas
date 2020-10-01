@@ -65,6 +65,7 @@ import { ProgramatipoComponent } from './06-TipoProgramas/programatipo/programat
 import { ListacargosComponent } from './07-Cargos/listacargos/listacargos.component';
 import { ActualizarcargoComponent } from './07-Cargos/actualizarcargo/actualizarcargo.component';
 import { AgregarcargoComponent } from './07-Cargos/agregarcargo/agregarcargo.component';
+import { ListaFinanciadoresComponent } from './08-Financiadores/lista-financiadores/lista-financiadores.component';
 
 @NgModule({
   declarations: [LoginComponent, HomeComponent,
@@ -82,7 +83,7 @@ import { AgregarcargoComponent } from './07-Cargos/agregarcargo/agregarcargo.com
     DetalleOtrospresupuestoprogramaComponent, GenerarPresupuestoComponent,
     ActualizarPresupuestoComponent, ActualizardetalleComponent, ListausuariosComponent,
     AgregarusuarioComponent, NoexitosoComponent, VerprogramasasociadosComponent, AsociarprogramasComponent,
-    ProgramatipoComponent, ListacargosComponent, ActualizarcargoComponent, AgregarcargoComponent],
+    ProgramatipoComponent, ListacargosComponent, ActualizarcargoComponent, AgregarcargoComponent, ListaFinanciadoresComponent],
   imports: [
 
     CommonModule,

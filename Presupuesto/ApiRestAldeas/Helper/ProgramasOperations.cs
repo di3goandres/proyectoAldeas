@@ -39,6 +39,7 @@ namespace ApiRestAldeasPresupuesto.Helper
                     retorno.Programas = data.ToList();
                 }
                 var dataCecos = from cecos in db.TbProgramasCecos
+                                join financiado  in db.TbFinanciadores  on cecos.idFinanciador equals financiado.id
                                 select new ProgramCeco
                                 {
                                     Estado = cecos.Estado,
@@ -48,7 +49,9 @@ namespace ApiRestAldeasPresupuesto.Helper
                                     SubCentro = cecos.SubCentro,
                                     NombreSubCentro = cecos.NombreSubCentro,
                                     Id = cecos.id,
-                                    FacilityNav = cecos.FacilityNav
+                                    FacilityNav = cecos.FacilityNav,
+                                    IdFinanciador = financiado.id,
+                                    NombreFinanciador = financiado.nombre
                                 };
                 if (dataCecos.Any())
                 {
@@ -114,7 +117,7 @@ namespace ApiRestAldeasPresupuesto.Helper
             long id = 0;
             using (Aldeas_Context db = factory.Create(connection))
             {
-                decimal decimalNum = new decimal(1.5);
+               
               
                 var nuevo = new DbProgramas()
                 {
@@ -139,12 +142,16 @@ namespace ApiRestAldeasPresupuesto.Helper
                     listCeCos.Add(new DbCecos()
                     {
                         idPrograma = id,
+                        idFinanciador = item.IdFinanciador,
                         Nombre = item.Nombre,
                         CodigoCeco = item.CodigoCeco,
                         Estado = true,
                         FacilityNav = item.FacilityNav,
                         NombreSubCentro = item.NombreSubCentro,
-                        SubCentro = item.SubCentro
+                        SubCentro = item.SubCentro,
+                        fecha_creacion = DateTime.Now,
+                        fecha_actualizacion = DateTime.Now,
+
 
                     });
                 }
@@ -191,6 +198,8 @@ namespace ApiRestAldeasPresupuesto.Helper
                     data.First().Estado = cecoRequest.Estado;
                     data.First().NombreSubCentro = cecoRequest.NombreSubCentro;
                     data.First().FacilityNav = cecoRequest.FacilityNav;
+                    data.First().fecha_actualizacion = DateTime.Now;
+
                     db.SaveChanges();
                 }
             }

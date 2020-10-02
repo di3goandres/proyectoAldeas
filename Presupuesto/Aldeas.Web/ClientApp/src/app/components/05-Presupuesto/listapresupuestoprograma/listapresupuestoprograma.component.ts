@@ -9,6 +9,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { GenerarPresupuestoComponent } from '../generar-presupuesto/generar-presupuesto.component';
 import { ActualizarPresupuestoComponent } from '../actualizar-presupuesto/actualizar-presupuesto.component';
 import { RegistroexitosoComponent } from '../../00-Comunes/registroexitoso/registroexitoso.component';
+import { PresupuestoAnioResponse, PresupuestoAnioDatum } from '../../../models/presupuestoanio/anio.response';
 
 
 @Component({
@@ -17,14 +18,16 @@ import { RegistroexitosoComponent } from '../../00-Comunes/registroexitoso/regis
   styleUrls: ['./listapresupuestoprograma.component.css']
 })
 export class ListapresupuestoprogramaComponent implements OnInit {
+  response: PresupuestoAnioResponse;
+  presupuestoResponse: PresupuestoAnioDatum[] = []
   programaRequest = new PresupuestoListRequest()
   programa: ProgramaL;
   presupuesto: PresupuestoL[];
-  dataSource: MatTableDataSource<PresupuestoL>;
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
-  displayedColumns: string[] = [ 'id', 'anio',
-  'coberturaAnual', 'coberturaMensual', 'coberturaMensualEsperada', 'coberturasCasas','update',  'Ver'];
+  dataSource: MatTableDataSource<PresupuestoAnioDatum>;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  displayedColumns: string[] = ['id', 'anio',
+    'nombrePrograma', 'tipoPrograma', 'Cobertura','numeroVersion',  'Ver'];
   constructor(
     private route: ActivatedRoute,
     private service: PresupuestoService,
@@ -37,16 +40,16 @@ export class ListapresupuestoprogramaComponent implements OnInit {
     this.programaRequest.idPresupuesto = y
     this.cargaInicial();
   }
-  Actualizar(element){
+  Actualizar(element) {
     const modalRef = this.modalService.open(ActualizarPresupuestoComponent, { size: 'md' });
     modalRef.componentInstance.programa = this.programa;
     modalRef.componentInstance.guardar = element;
     modalRef.result.then((result) => {
       if (result === "OK") {
-     
+
         this.openExitoso();
         this.cargaInicial();
-        
+
         // this.cargaInicial(true)
       }
       console.log('result', result);
@@ -72,10 +75,10 @@ export class ListapresupuestoprogramaComponent implements OnInit {
     });
   }
 
-  AbrirCrearPresupuesto(element){
+  AbrirCrearPresupuesto(element) {
     const modalRef = this.modalService.open(GenerarPresupuestoComponent, { size: 'md' });
     modalRef.componentInstance.programa = this.programa;
-    modalRef.componentInstance.presupuesto = this.presupuesto;
+    modalRef.componentInstance.presupuesto = this.presupuestoResponse;
     modalRef.result.then((result) => {
       if (result === "OK") {
         this.openExitoso();
@@ -90,17 +93,24 @@ export class ListapresupuestoprogramaComponent implements OnInit {
       }
     });
   }
-  cargaInicial() {
-    this.service.getPresupuestoByProgram(this.programaRequest).subscribe(
-      OK => { 
+  async cargaInicial() {
+    await this.service.getPresupuestoPrograma(this.programaRequest.idPresupuesto).subscribe(
+      OK => {
 
-      this.programa = OK.programa;
-      this.presupuesto = []
-      this.presupuesto = OK.presupuesto;  
-      this.dataSource = new MatTableDataSource(this.presupuesto);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort
-      
+        console.log(OK)
+        this.presupuestoResponse = []
+
+        this.presupuestoResponse = OK.presupuestoAnioData;
+     
+        this.programa = new ProgramaL();
+        this.programa.nombre = this.presupuestoResponse[0].nombrePrograma
+        this.programa.id = this.presupuestoResponse[0].idPrograma
+
+
+        this.dataSource = new MatTableDataSource(this.presupuestoResponse);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort
+
       },
       Error => { console.log(Error) },
 

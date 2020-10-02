@@ -1,5 +1,6 @@
 ﻿using ApiRestAldeas.Factory;
 using ApiRestAldeasPresupuesto.Helper;
+using ApiRestAldeasPresupuesto.Models;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,12 @@ namespace ApiRestAldeasPresupuesto.Repositories
         public dynamic Consultar(long id)
         {
             return PresupuestoAnioOperations.Consultar( _factory, _connectionDB, id);
+        }
+
+        public dynamic Guardar(PresupuestoAnioData request)
+        { 
+            return PresupuestoAnioOperations.Guardar( _factory, _connectionDB, request);
+         
         }
     }
 }

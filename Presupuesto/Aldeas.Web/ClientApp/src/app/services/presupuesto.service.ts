@@ -6,6 +6,7 @@ import { ListaPresupuestoResponse, PresupuestoListRequest, PresupuestoL } from '
 import { DetallePresupuestoResponse } from '../models/presupuesto/detalle.presupuesto.response';
 import { PresupuestoRequest } from '../models/presupuesto/data.presupuesto.request';
 import { Respuesta } from '../models/comunes';
+import { PresupuestoAnioResponse, PresupuestoAnioDatum } from '../models/presupuestoanio/anio.response';
 
 @Injectable({
   providedIn: 'root'
@@ -56,5 +57,17 @@ export class PresupuestoService {
     let json = JSON.stringify(data);
     let params = '' + json;
     return this.userService.ejecutarQueryPost<Respuesta>('/api/presupuesto/update/', params)
+  }
+
+
+  getPresupuestoPrograma(id) {
+    
+    return this.userService.ejecutarQuery<PresupuestoAnioResponse>('/api/presupuestoanio/consultar/' + id)
+  }
+
+  guardarPresupuestoAnio(data: PresupuestoAnioDatum) {
+    let json = JSON.stringify(data);
+    let params = '' + json;
+    return this.userService.ejecutarQueryPost<Respuesta>('/api/presupuestoanio/save/', params)
   }
 }

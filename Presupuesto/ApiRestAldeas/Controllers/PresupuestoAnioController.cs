@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ApiRestAldeasPresupuesto.Models;
 using ApiRestAldeasPresupuesto.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -33,6 +34,15 @@ namespace ApiRestAldeasPresupuesto.Controllers
         public dynamic Consultar(long id)
         {
             return _dataModelRepository.Consultar(id);
+        }
+
+        //[Authorize]
+
+        [HttpPost]
+        [Route("/api/presupuestoanio/save/")]
+        public dynamic Guardar(PresupuestoAnioData request)
+        {
+            return _dataModelRepository.Guardar(request);
         }
     }
 }

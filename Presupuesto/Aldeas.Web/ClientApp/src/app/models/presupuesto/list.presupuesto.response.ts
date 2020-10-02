@@ -13,7 +13,7 @@ export class PresupuestoL {
   coberturasCasas: number;
 }
 
-export interface ProgramaL {
+export class ProgramaL {
   id: number;
   nombre: string;
   estado: boolean;

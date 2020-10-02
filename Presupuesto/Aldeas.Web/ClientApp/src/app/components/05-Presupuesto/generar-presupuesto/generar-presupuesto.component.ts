@@ -6,6 +6,7 @@ import { SelectItem } from '../../../models/comunes';
 import { Task } from 'src/app/models/checkbox';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { PresupuestoService } from '../../../services/presupuesto.service';
+import { PresupuestoAnioDatum } from 'src/app/models/presupuestoanio/anio.response';
 
 @Component({
   selector: 'app-generar-presupuesto',
@@ -15,9 +16,9 @@ import { PresupuestoService } from '../../../services/presupuesto.service';
 export class GenerarPresupuestoComponent implements OnInit {
 
   @Input() programa: ProgramaL;
-  @Input() presupuesto: PresupuestoL[];
+  @Input() presupuesto: PresupuestoAnioDatum[];
   anioList: SelectItem[] = [];
-  guardar: PresupuestoL = new PresupuestoL();
+  guardar: PresupuestoAnioDatum = new PresupuestoAnioDatum();
   formGroup: FormGroup;
   anios: any[] = [1]
   noMostrar = false;
@@ -85,11 +86,11 @@ export class GenerarPresupuestoComponent implements OnInit {
     this.anioList.push(nuevo);
   }
   validarFomularios() {
-    this.permitirGuardar = this.formGroup.valid && this.seleccionaAnio;
+    this.permitirGuardar = this.seleccionaAnio;
   }
 
   guardarData() {
-    this.service.guardar(this.guardar).subscribe(
+    this.service.guardarPresupuestoAnio(this.guardar).subscribe(
       OK => {
 
         this.activeModal.close("OK");
@@ -103,12 +104,13 @@ export class GenerarPresupuestoComponent implements OnInit {
     this.guardar.idPrograma = this.programa.id;
     let newDate = (new Date()).getFullYear()
 
-    this.agregarAnio(newDate - 1);
+    this.agregarAnio(newDate);
     this.anios.forEach(element => {
+
+      newDate = newDate + 1
 
       this.agregarAnio(newDate);
 
-      newDate = newDate + 1
 
 
 

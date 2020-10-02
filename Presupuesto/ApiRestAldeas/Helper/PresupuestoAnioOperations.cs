@@ -61,21 +61,33 @@ namespace ApiRestAldeasPresupuesto.Helper
             {
 
 
-                var nuevo = new DbPresupuestoAnio()
+                var data = from pro in db.TbPresupuestos
+                           where pro.idPrograma == request.idPrograma && pro.Anio == request.Anio
+
+                           select pro;
+                if (data.Any())
                 {
-                    actual = true,
-                    fecha_creacion = DateTime.Now,
-                    fecha_actualizacion = DateTime.Now,
+                    return new { id = 0, status = "Error", code = 200, message = "ya existe" };
+                }
+                else
+                {
+                    var nuevo = new DbPresupuestoAnio()
+                    {
+                        actual = true,
+                        fecha_creacion = DateTime.Now,
+                        fecha_actualizacion = DateTime.Now,
 
-                    idPrograma = request.idPrograma,
-                    numeroVersion  = 1,
-                    Anio  = request.Anio,
-                  
+                        idPrograma = request.idPrograma,
+                        numeroVersion = 1,
+                        Anio = request.Anio,
 
-                };
-                db.TbPresupuestoAnio.Add(nuevo);
-                db.SaveChanges();
-                id = nuevo.id;
+
+                    };
+                    db.TbPresupuestoAnio.Add(nuevo);
+                    db.SaveChanges();
+                    id = nuevo.id;
+                }
+                
 
               
             }

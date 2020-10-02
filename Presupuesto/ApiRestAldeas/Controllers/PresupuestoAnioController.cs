@@ -44,5 +44,18 @@ namespace ApiRestAldeasPresupuesto.Controllers
         {
             return _dataModelRepository.Guardar(request);
         }
+
+        [HttpGet]
+        [Route("/api/presupuestoanio/consultarAnio/{id}")]
+        public dynamic ConsultaPresupuestoAnio(long id)
+        {
+            return _dataModelRepository.ConsultarPresupuestoAnio(id);
+        }
+        [HttpGet]
+        [Route("/api/presupuestoanio/faltante/{id}")]
+        public dynamic ConsultarFinanciadorFaltante(long id)
+        {
+            return _dataModelRepository.ConsultarFinanciadorFaltante(id);
+        }
     }
 }

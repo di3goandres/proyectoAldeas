@@ -10,6 +10,7 @@ import { GenerarPresupuestoComponent } from '../generar-presupuesto/generar-pres
 import { ActualizarPresupuestoComponent } from '../actualizar-presupuesto/actualizar-presupuesto.component';
 import { RegistroexitosoComponent } from '../../00-Comunes/registroexitoso/registroexitoso.component';
 import { PresupuestoAnioResponse, PresupuestoAnioDatum } from '../../../models/presupuestoanio/anio.response';
+import { AsociarfinanciadoranioComponent } from '../Gestion/asociarfinanciadoranio/asociarfinanciadoranio.component';
 
 
 @Component({
@@ -27,7 +28,7 @@ export class ListapresupuestoprogramaComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   displayedColumns: string[] = ['id', 'anio',
-    'nombrePrograma', 'tipoPrograma', 'Cobertura','numeroVersion',  'Ver'];
+    'nombrePrograma', 'tipoPrograma', 'Cobertura','numeroVersion', 'Financiador',   'Ver'];
   constructor(
     private route: ActivatedRoute,
     private service: PresupuestoService,
@@ -75,6 +76,24 @@ export class ListapresupuestoprogramaComponent implements OnInit {
     });
   }
 
+  AbrirAsociarPresupuesto(element){
+    const modalRef = this.modalService.open(AsociarfinanciadoranioComponent, { size: 'md' });
+
+    modalRef.componentInstance.presupuesto = element;
+    modalRef.result.then((result) => {
+      if (result === "OK") {
+        this.openExitoso();
+        this.cargaInicial();
+      }
+      console.log('result', result);
+    }, (reason) => {
+
+      if (reason === 'OK') {
+
+
+      }
+    });
+  }
   AbrirCrearPresupuesto(element) {
     const modalRef = this.modalService.open(GenerarPresupuestoComponent, { size: 'md' });
     modalRef.componentInstance.programa = this.programa;

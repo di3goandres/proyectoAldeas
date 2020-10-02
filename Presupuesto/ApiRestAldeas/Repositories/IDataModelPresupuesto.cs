@@ -13,5 +13,17 @@ namespace ApiRestAldeasPresupuesto.Repositories
         dynamic Guardar(PresupuestoAnioData request);
 
 
+
+        /// <summary>
+        /// retorna todos los financiadores.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        dynamic ConsultarPresupuestoAnio(long id);
+
+        dynamic ConsultarFinanciadorFaltante(long id);
+
+
+
     }
 }

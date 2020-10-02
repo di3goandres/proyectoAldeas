@@ -50,6 +50,15 @@
           <td mat-cell *matCellDef="let row"> {{row.numeroVersion |number}} </td>
         </ng-container>
 
+        <ng-container matColumnDef="Financiador">
+          <th mat-header-cell *matHeaderCellDef> Asociar Financiador </th>
+          <td mat-cell *matCellDef="let element">
+            <button type="button" mat-mini-fab class="buttton-aldea" aria-label="fecha"
+            (click)="AbrirAsociarPresupuesto(element)">
+              <mat-icon>open_in_new</mat-icon>
+            </button> </td>
+        </ng-container>
+
        
         <ng-container matColumnDef="Ver">
           <th mat-header-cell *matHeaderCellDef> Ver Presupuesto </th>

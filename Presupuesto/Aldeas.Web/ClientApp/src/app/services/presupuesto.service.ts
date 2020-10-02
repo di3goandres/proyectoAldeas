@@ -7,6 +7,7 @@ import { DetallePresupuestoResponse } from '../models/presupuesto/detalle.presup
 import { PresupuestoRequest } from '../models/presupuesto/data.presupuesto.request';
 import { Respuesta } from '../models/comunes';
 import { PresupuestoAnioResponse, PresupuestoAnioDatum } from '../models/presupuestoanio/anio.response';
+import { FinanciadorFaltanteResponse } from '../models/financiadores/financiadorFaltante.response';
 
 @Injectable({
   providedIn: 'root'
@@ -69,5 +70,10 @@ export class PresupuestoService {
     let json = JSON.stringify(data);
     let params = '' + json;
     return this.userService.ejecutarQueryPost<Respuesta>('/api/presupuestoanio/save/', params)
+  }
+
+  getFinanciadoresFaltantes(id) {
+   
+    return this.userService.ejecutarQuery<FinanciadorFaltanteResponse>('/api/presupuestoanio/faltante/' +id)
   }
 }

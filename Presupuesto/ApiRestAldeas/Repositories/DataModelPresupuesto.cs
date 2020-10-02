@@ -27,6 +27,17 @@ namespace ApiRestAldeasPresupuesto.Repositories
             return PresupuestoAnioOperations.Consultar( _factory, _connectionDB, id);
         }
 
+        public dynamic ConsultarFinanciadorFaltante(long id)
+        {
+            return PresupuestoAnioOperations.ConsultarFinanciadorFaltante(_factory, _connectionDB, id);
+        }
+
+        public dynamic ConsultarPresupuestoAnio(long id)
+        {
+            return PresupuestoAnioOperations.ConsultarPresupuestoAnio(_factory, _connectionDB, id);
+
+        }
+
         public dynamic Guardar(PresupuestoAnioData request)
         { 
             return PresupuestoAnioOperations.Guardar( _factory, _connectionDB, request);

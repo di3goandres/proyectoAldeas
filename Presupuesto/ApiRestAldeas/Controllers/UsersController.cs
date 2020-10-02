@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using ApiRestAldeas.Helper;
 using ApiRestAldeas.Models;
 using ApiRestAldeas.Repositories;
 using ApiRestAldeas.Services;
@@ -93,12 +94,22 @@ namespace ApiRestAldeas.Controllers
             return _dataModelRepository.QuitarProgramasUsuarios(request);
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpGet]
         [Route("/api/user/soloprogramas/{id}")]
         public dynamic ConsultarProgramas(long id)
         {
             return _dataModelRepository.ConsultarSoloProgramas(id);
+        }
+
+        [Authorize]
+        [HttpGet]
+        [Route("/api/user/soloprogramasToken/")]
+        public dynamic ConsultarProgramasToken()
+        {
+            var data = JwtMiddleware.returnId();
+            var id = _dataModelRepository.ObtenerID(data);
+            return _dataModelRepository.ConsultarTokenProgramas(id);
         }
     }
 }

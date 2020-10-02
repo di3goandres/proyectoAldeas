@@ -47,11 +47,20 @@ namespace ApiRestAldeas.Repositories
         {
             return ProgramasOperations.ConsultarSoloProgramas(_factory, _connectionDB, id);
         }
+
+        public dynamic ConsultarTokenProgramas(long id)
+        {
+            return ProgramasOperations.ConsultarTokenProgramas(_factory, _connectionDB, id);
+        }
         public dynamic EsAdministrador(string user)
         {
             return UserOperations.EsAdministrador(_factory, _connectionDB, user);
         }
 
+        public dynamic ObtenerID(string user)
+        {
+            return UserOperations.ObtenerID(_factory, _connectionDB, user);
+        }
         public dynamic GuardarPrograma(ProgramasRequest programasRequest)
         {
             return ProgramasOperations.GuardarProgramas(_factory, _connectionDB, programasRequest);
@@ -210,6 +219,8 @@ namespace ApiRestAldeas.Repositories
         {
             return FinanciadoresOperations.ConsultarFinanciadores(_factory, _connectionDB);
         }
+
+      
 
         #endregion
     }

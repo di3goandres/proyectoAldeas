@@ -5,6 +5,7 @@ import { ProgramaRequest } from '../models/programas/programas.request';
 import { Respuesta } from '../models/comunes';
 import { TipoProgramaResponse } from '../models/tipoprograma/TipoPrograma.response';
 import { FinanciadoresResponse } from '../models/financiadores/financiadores.response';
+import { UsuarioProgramaResponse } from '../models/usuarios/usuario.programas.response';
 
 
 @Injectable({
@@ -53,5 +54,11 @@ export class ProgramasService {
 
   getFinanciadores() {
     return this.userService.ejecutarQuery<FinanciadoresResponse>('api/financiadores/get');
+  }
+
+
+  
+  getProgramasUsuario() {
+    return this.userService.ejecutarQuery<UsuarioProgramaResponse>('/api/user/soloprogramastoken' )
   }
 }

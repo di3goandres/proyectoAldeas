@@ -12,10 +12,24 @@
       <mat-icon>handyman</mat-icon> <span>Usuarios</span>
     </button>
 
+    <button mat-menu-item [matMenuTriggerFor]="gestionPresupuesto">
+      <mat-icon>handyman</mat-icon> <span>Gestión Presupuesto</span>
+    </button>
+
 
 
   </mat-menu>
+  <mat-menu #gestionPresupuesto="matMenu">
 
+
+    <button mat-menu-item [routerLink]="['/GestionProgramas']">
+      <mat-icon>assignment_turned_in</mat-icon>
+      <span>Programas Asociados</span>
+    </button>
+    
+
+
+  </mat-menu>
   <mat-menu #programa="matMenu">
     <button mat-menu-item [routerLink]="['/CrearPrograma']">
       <mat-icon>add</mat-icon>

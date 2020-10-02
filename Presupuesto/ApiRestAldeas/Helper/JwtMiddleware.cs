@@ -16,8 +16,13 @@ namespace ApiRestAldeas.Helper
         private readonly RequestDelegate _next;
         private readonly Token _appSettings;
         private static  Token _apps;
+        public static string Id;
 
 
+        public static string returnId()
+        {
+            return Id;
+        }
         public JwtMiddleware(RequestDelegate next, IOptions<Token> appSettings)
         {
             _next = next;
@@ -53,9 +58,11 @@ namespace ApiRestAldeas.Helper
                     // set clockskew to zero so tokens expire exactly at token expiration time (instead of 5 minutes later)
                     ClockSkew = TimeSpan.Zero
                 }, out SecurityToken validatedToken);
-
+           
                 var jwtToken = (JwtSecurityToken)validatedToken;
                 //jwtToken.Claims.ToArray()[1].Value;
+                var name = jwtToken.Claims.ToArray()[0].Value;
+                Id = name;
                 return true;
             }
             catch(Exception ex)
@@ -82,6 +89,8 @@ namespace ApiRestAldeas.Helper
                 }, out SecurityToken validatedToken);
 
                 var jwtToken = (JwtSecurityToken)validatedToken;
+                var name =jwtToken.Claims.ToArray()[0].Value;
+                Id = name;
                 var isAdmin = Convert.ToBoolean(jwtToken.Claims.ToArray()[1].Value);
                 return isAdmin;
             }

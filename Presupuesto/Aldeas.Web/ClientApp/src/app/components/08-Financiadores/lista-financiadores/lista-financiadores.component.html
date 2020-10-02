@@ -1,8 +1,8 @@
 <mat-card class="example-card">
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>Programas</mat-card-title>
-      <mat-card-subtitle>Lista de programas</mat-card-subtitle>
+      <mat-card-title>FINANACIADORES</mat-card-title>
+      <mat-card-subtitle>Lista de Financiadores</mat-card-subtitle>
     </mat-card-header>
   
     <mat-card-content>
@@ -13,7 +13,7 @@
         <input matInput (keyup)="applyFilter($event)" placeholder="Ej. Cundinamarca" #input>
       </mat-form-field>
   
-      <div class="mat-elevation-z8">
+      <div class="mat-elevation-z8  table-responsive">
         <table id="customers" mat-table [dataSource]="dataSource" matSort>
   
           <ng-container matColumnDef="id">

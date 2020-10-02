@@ -34,6 +34,26 @@ namespace ApiRestAldeasPresupuesto.Helper
             return retorno;
         }
 
+        public static dynamic ObtenerID(IContextFactory factory, IOptions<ConnectionDB> connection, String usuario)
+        {
+
+            long retorno = 0;
+            using (Aldeas_Context db = factory.Create(connection))
+            {
+                var data = from user in db.TbAdministradores
+                           where user.username == usuario
+                           select user;
+
+                if (data.Any())
+                {
+
+                    retorno = data.FirstOrDefault().id;
+                }
+
+            }
+            return retorno;
+        }
+
         public static dynamic AgregarUsuario(IContextFactory factory, IOptions<ConnectionDB> connection, DBAdministrador usuario)
         {
 

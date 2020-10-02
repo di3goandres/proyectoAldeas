@@ -21,7 +21,11 @@ namespace ApiRestAldeas.Repositories
 
         dynamic ConsultarSoloProgramas(long id);
 
+        dynamic ConsultarTokenProgramas(long id);
         dynamic EsAdministrador(string user);
+
+        dynamic ObtenerID(string user);
+
 
 
         dynamic GuardarPrograma(ProgramasRequest programasRequest);

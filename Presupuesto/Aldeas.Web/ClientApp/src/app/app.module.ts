@@ -35,6 +35,7 @@ import { ProgramatipoComponent } from './components/06-TipoProgramas/programatip
 import { ListacargosComponent } from './components/07-Cargos/listacargos/listacargos.component';
 import { CrearprogramaComponent } from './components/03-Programas/crearprograma/crearprograma.component';
 import { ListaFinanciadoresComponent } from './components/08-Financiadores/lista-financiadores/lista-financiadores.component';
+import { GestionarprogramasComponent } from './components/05-Presupuesto/Gestion/gestionarprogramas/gestionarprogramas.component';
 
 
 const routes: Routes = [
@@ -113,6 +114,12 @@ const routes: Routes = [
   ,
   {
     path: 'Financiadores', component: ListaFinanciadoresComponent, pathMatch: 'full',
+    canActivate: [UsuarioGuard], canLoad: [UsuarioGuard]
+  }
+/**Gestion presupuesto */
+  ,
+  {
+    path: 'GestionProgramas', component: GestionarprogramasComponent, pathMatch: 'full',
     canActivate: [UsuarioGuard], canLoad: [UsuarioGuard]
   }
 

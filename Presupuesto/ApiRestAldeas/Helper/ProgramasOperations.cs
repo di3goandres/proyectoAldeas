@@ -112,6 +112,44 @@ namespace ApiRestAldeasPresupuesto.Helper
             return retorno;
         }
 
+        public static dynamic ConsultarTokenProgramas(IContextFactory factory, IOptions<ConnectionDB> connection, long id)
+        {
+            ProgramasResponse retorno = new ProgramasResponse();
+            using (Aldeas_Context db = factory.Create(connection))
+            {
+                var dataUsuario = from usu in db.TbUsuariosProgramas
+                                  where usu.id_usuario == id
+                                  select new
+                                  {
+                                      id = usu.id_programa
+                                  };
+
+                var data = from pro in db.TbProgramas
+                           join tipo in db.TbTipoPrograma on pro.id_tipo_programa equals tipo.id
+                           where dataUsuario.Any(d => d.id == pro.id) && pro.Estado == true
+                           select new Program
+                           {
+                               Estado = pro.Estado,
+                               FechaActualizacion = pro.FechaActualizacion,
+                               FechaCreacion = pro.FechaCreacion,
+                               Id = pro.id,
+                               Nombre = pro.Nombre,
+                               IdTipoPrograma = tipo.id,
+                               TipoProgramaNombre = tipo.nombre,
+                               Cobertura = tipo.cobertura,
+                               PerCapacitacion = pro.per_capacitacion,
+                               PerNomina = pro.per_nomina,
+                           };
+                if (data.Any())
+                {
+
+                    retorno.Programas = data.ToList();
+                }
+            }
+
+            return retorno;
+        }
+
         public static dynamic GuardarProgramas(IContextFactory factory, IOptions<ConnectionDB> connection, ProgramasRequest programasRequest)
         {
             long id = 0;

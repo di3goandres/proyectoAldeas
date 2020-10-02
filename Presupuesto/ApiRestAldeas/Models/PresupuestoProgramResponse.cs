@@ -6,6 +6,45 @@ using System.Threading.Tasks;
 
 namespace ApiRestAldeasPresupuesto.Models
 {
+
+    public class ResponsePrograma
+    {
+       
+        public long id { get; set; }
+
+        public string Nombre { get; set; }
+        public Boolean Cobertura { get; set; }
+
+        public decimal per_nomina { get; set; }
+
+        public decimal per_capacitacion { get; set; }
+
+        public bool Estado { get; set; }
+
+        public DateTime FechaCreacion { get; set; }
+
+        public DateTime FechaActualizacion { get; set; }
+
+
+
+    }
+    public class ResponsePresupuesto
+    {
+
+     
+        public long id { get; set; }
+        public long idPrograma { get; set; }
+
+        public string Financiador { get; set; }
+        public int Anio { get; set; }
+        public Decimal CoberturaAnual { get; set; }
+        public Decimal CoberturaMensual { get; set; }
+        public Decimal CoberturaMensualEsperada { get; set; }
+        public Decimal CoberturasCasas { get; set; }
+
+
+
+    }
     public class PresupuestoProgramRequest
     {
         public long IdPresupuesto { get; set; }
@@ -86,7 +125,15 @@ namespace ApiRestAldeasPresupuesto.Models
     public class PresupuestoByProgramResponse
     {
 
-        public DbProgramas programa { get; set; }
-        public List<DbPresupuesto> presupuesto { get; set; }
+        public Program programa { get; set; }
+        public List<ResponsePresupuesto> presupuesto { get; set; }
+    }
+
+    public class AnioPresupuestoPrograma
+    {
+        public long Id { get; set; }
+
+        public long Anio { get; set; }
+
     }
 }

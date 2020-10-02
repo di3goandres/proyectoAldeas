@@ -54,7 +54,11 @@ namespace ApiRestAldeas.EntityFrame
         public virtual DbSet<DbFinanciadores> TbFinanciadores { get; set; }
 
 
-        
+        public virtual DbSet<DbPresupuestoAnio> TbPresupuestoAnio { get; set; }
+
+
+
+
 
 
         #region Required
@@ -62,6 +66,10 @@ namespace ApiRestAldeas.EntityFrame
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
+            modelBuilder.Entity<DbPresupuestoAnio>(entity =>
+            {
+                entity.ToTable("PresupuestoAnio");
+            });
 
             modelBuilder.Entity<DbFinanciadores>(entity =>
             {

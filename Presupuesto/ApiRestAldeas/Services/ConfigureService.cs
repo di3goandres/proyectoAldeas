@@ -1,6 +1,7 @@
 ﻿using System;
 using ApiRestAldeas.Entities;
 using ApiRestAldeas.Repositories;
+using ApiRestAldeasPresupuesto.Repositories;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -35,6 +36,8 @@ namespace ApiRestAldeas.Services
         public static void AddSingletonServices(this IServiceCollection services)
         {
             services.AddSingleton<IDataModelRepository, DataModelRepository>();
+            services.AddSingleton<IDataModelPresupuesto, DataModelPresupuesto>();
+
             services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
 
         }

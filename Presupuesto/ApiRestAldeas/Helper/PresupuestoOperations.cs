@@ -219,17 +219,34 @@ namespace ApiRestAldeasPresupuesto.Helper
 
             using (Aldeas_Context db = factory.Create(connection))
             {
-                var data = from pro in db.TbPresupuestos
-                           where pro.idPrograma == request.IdPresupuesto
-                           select pro;
+                var data = from pre in db.TbPresupuestos
+                           join ceco in db.TbProgramasCecos on pre.idPrograma equals ceco.idPrograma
+                       
+                           join finan in db.TbFinanciadores on ceco.idFinanciador equals finan.id
+                           where pre.idPrograma == request.IdPresupuesto
+                           select new ResponsePresupuesto
+                           { 
+                              idPrograma = pre.idPrograma,
+                              Anio = pre.Anio,
+                              CoberturaAnual = pre.CoberturaAnual,
+                              CoberturaMensual = pre.CoberturaMensual,
+                              CoberturasCasas = pre.CoberturasCasas,
+                              CoberturaMensualEsperada = pre.CoberturaMensualEsperada,
+                              id = pre.id,
+                              Financiador = finan.nombre
+                           };
                 if (data.Any())
                 {
                     retorno.presupuesto = data.ToList();
                 }
 
                 var programa = from pro in db.TbProgramas
-                           where pro.id == request.IdPresupuesto
-                           select pro;
+                               join Tprograma in db.TbTipoPrograma on pro.id_tipo_programa equals Tprograma.id
+                               where pro.id == request.IdPresupuesto
+                           select new Program
+                           {
+                               Cobertura = Tprograma.cobertura
+                           };
                 if (programa.Any())
                 {
                     retorno.programa = programa.First();
@@ -369,6 +386,6 @@ namespace ApiRestAldeasPresupuesto.Helper
         #endregion
 
 
-
+      
     }
 }

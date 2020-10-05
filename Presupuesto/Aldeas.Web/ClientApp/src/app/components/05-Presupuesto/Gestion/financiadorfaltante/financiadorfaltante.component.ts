@@ -2,8 +2,9 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { FinanciadoresCecoFaltante } from 'src/app/models/financiadores/financiadorFaltante.response';
+
 import { PresupuestoService } from '../../../../services/presupuesto.service';
+import { FinanciadoresDatum } from '../../../../models/financiadores/financiadores.response';
 
 @Component({
   selector: 'app-financiadorfaltante',
@@ -24,7 +25,7 @@ export class FinanciadorfaltanteComponent implements OnInit {
    await this.service.getFinanciadoresFaltantes(this.idPresupuestoAnio).subscribe(
       OK => { console.log(OK)
         this.datasourceFaltantes = [];
-        this.datasourceFaltantes.push(...OK.cecos);
+        this.datasourceFaltantes.push(...OK.financiadoresData);
         this.show = true;
         this.dataSource = new MatTableDataSource(this.datasourceFaltantes);
         this.dataSource.paginator = this.paginator;
@@ -36,16 +37,14 @@ export class FinanciadorfaltanteComponent implements OnInit {
   }
 
 
-  datasourceFaltantes: FinanciadoresCecoFaltante[] = [];
+  datasourceFaltantes: FinanciadoresDatum[] = [];
 
   pedidoMinimo: number;
   show: boolean;
   urlPeticion: string;
-  displayedColumns: string[] = ['position', 'nombreFinanciador', 'codigoCeco',
-    'nombre',
-    'subCentro','nombreSubCentro', 'seleccionar'];
+  displayedColumns: string[] = ['position', 'nombreFinanciador', 'seleccionar'];
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-  dataSource = new MatTableDataSource<FinanciadoresCecoFaltante>();
+  dataSource = new MatTableDataSource<FinanciadoresDatum>();
   selectedValue: number;
 
 
@@ -54,7 +53,7 @@ export class FinanciadorfaltanteComponent implements OnInit {
   Cerrar(){
     this.activeModal.dismiss("Nothing")
   }
-  seleccionar(element: FinanciadoresCecoFaltante ){
+  seleccionar(element: FinanciadoresDatum ){
     this.activeModal.close(element)
   }
 

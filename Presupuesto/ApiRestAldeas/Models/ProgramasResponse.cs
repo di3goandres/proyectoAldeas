@@ -71,7 +71,7 @@ namespace ApiRestAldeasPresupuesto.Models
 
     public class FinanciadoresResponse
     {
-        public List<ProgramCeco> Cecos { get; set; }
+        public List<FinanciadorData> financiadoresData { get; set; }
        
 
     }

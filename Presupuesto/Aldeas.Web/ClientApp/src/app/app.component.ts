@@ -2,6 +2,8 @@ import { Component, OnInit, DoCheck } from '@angular/core';
 import { UserService } from './services/user.service';
 import { Router } from '@angular/router';
 import { User } from './models/user';
+import {Location} from '@angular/common';
+
 
 @Component({
   selector: 'app-root',
@@ -13,7 +15,8 @@ export class AppComponent implements OnInit, DoCheck {
   title = 'Aldeas Infantiles SOS';
   constructor(
     public userService: UserService,
-    private router: Router
+    private router: Router,
+    private _location: Location
 
 
   ) {
@@ -32,5 +35,8 @@ export class AppComponent implements OnInit, DoCheck {
   logout() {
     this.userService.logut();
     this.router.navigate(['/login']);
+  }
+  backClicked() {
+    this._location.back();
   }
 }

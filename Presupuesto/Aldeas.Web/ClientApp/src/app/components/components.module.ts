@@ -19,6 +19,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatTabsModule } from '@angular/material/tabs';
+import  {MatCurrencyFormatModule} from 'mat-currency-format';
 
 
 import { MatMomentDateModule, MomentDateAdapter } from "@angular/material-moment-adapter";
@@ -69,6 +70,8 @@ import { ListaFinanciadoresComponent } from './08-Financiadores/lista-financiado
 import { GestionarprogramasComponent } from './05-Presupuesto/Gestion/gestionarprogramas/gestionarprogramas.component';
 import { AsociarfinanciadoranioComponent } from './05-Presupuesto/Gestion/asociarfinanciadoranio/asociarfinanciadoranio.component';
 import { FinanciadorfaltanteComponent } from './05-Presupuesto/Gestion/financiadorfaltante/financiadorfaltante.component';
+import { AsociaritemspresupuestoComponent } from './05-Presupuesto/Gestion/asociaritemspresupuesto/asociaritemspresupuesto.component';
+import { VeritemspresupuestonioComponent } from './05-Presupuesto/Gestion/veritemspresupuestonio/veritemspresupuestonio.component';
 
 @NgModule({
   declarations: [LoginComponent, HomeComponent,
@@ -86,7 +89,7 @@ import { FinanciadorfaltanteComponent } from './05-Presupuesto/Gestion/financiad
     DetalleOtrospresupuestoprogramaComponent, GenerarPresupuestoComponent,
     ActualizarPresupuestoComponent, ActualizardetalleComponent, ListausuariosComponent,
     AgregarusuarioComponent, NoexitosoComponent, VerprogramasasociadosComponent, AsociarprogramasComponent,
-    ProgramatipoComponent, ListacargosComponent, ActualizarcargoComponent, AgregarcargoComponent, ListaFinanciadoresComponent, GestionarprogramasComponent, AsociarfinanciadoranioComponent, FinanciadorfaltanteComponent],
+    ProgramatipoComponent, ListacargosComponent, ActualizarcargoComponent, AgregarcargoComponent, ListaFinanciadoresComponent, GestionarprogramasComponent, AsociarfinanciadoranioComponent, FinanciadorfaltanteComponent, AsociaritemspresupuestoComponent, VeritemspresupuestonioComponent],
   imports: [
 
     CommonModule,
@@ -112,7 +115,8 @@ import { FinanciadorfaltanteComponent } from './05-Presupuesto/Gestion/financiad
     MatMenuModule,
     MatPaginatorModule,
     MatAutocompleteModule,
-    MatTabsModule
+    MatTabsModule,
+    MatCurrencyFormatModule
   ],
   providers: [
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },

@@ -9,7 +9,7 @@ export interface PresupuestoResponse {
     pucs:               PresupuestoPuc[];
 }
 
-export interface PresupuestoCategoria {
+export class PresupuestoCategoria {
     id:       number;
     nombre:   string;
     esppto:   boolean;
@@ -33,6 +33,8 @@ export interface PresupuestoSubCeco {
 export interface PresupuestoPrograma {
     id:     number;
     nombre: string;
+    financiador: string;
+
 }
 
 export class PresupuestoPuc {

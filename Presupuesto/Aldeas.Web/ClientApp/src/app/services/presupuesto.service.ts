@@ -7,7 +7,9 @@ import { DetallePresupuestoResponse } from '../models/presupuesto/detalle.presup
 import { PresupuestoRequest } from '../models/presupuesto/data.presupuesto.request';
 import { Respuesta } from '../models/comunes';
 import { PresupuestoAnioResponse, PresupuestoAnioDatum } from '../models/presupuestoanio/anio.response';
-import { FinanciadorFaltanteResponse } from '../models/financiadores/financiadorFaltante.response';
+
+import { FinanciadoresResponse } from '../models/financiadores/financiadores.response';
+import { CoberturaAnioResponse } from '../models/presupuestoanio/consulta.anio.response';
 
 @Injectable({
   providedIn: 'root'
@@ -21,20 +23,20 @@ export class PresupuestoService {
     return this.userService.ejecutarQuery<PresupuestoResponse>('/api/presupuesto/getinfodata/' + id)
   }
 
-  
+
   getDataPucsRubro(id) {
     return this.userService.ejecutarQuery<PresupuestoResponse>('/api/presupuesto/getlistpuc/' + id)
   }
   getPresupuestoByProgram(data: PresupuestoListRequest) {
     let json = JSON.stringify(data);
     let params = '' + json;
-    
+
     return this.userService.ejecutarQueryPost<ListaPresupuestoResponse>('/api/presupuesto/getlistpresupuestobyProgram/', params)
   }
 
   getDetallePresupuesto(id) {
-  
-    return this.userService.ejecutarQuery<DetallePresupuestoResponse>('/api/presupuesto/getdetalle/'+id)
+
+    return this.userService.ejecutarQuery<DetallePresupuestoResponse>('/api/presupuesto/getdetalle/' + id)
   }
 
   guardarPresupuesto(data: PresupuestoRequest) {
@@ -62,7 +64,7 @@ export class PresupuestoService {
 
 
   getPresupuestoPrograma(id) {
-    
+
     return this.userService.ejecutarQuery<PresupuestoAnioResponse>('/api/presupuestoanio/consultar/' + id)
   }
 
@@ -73,7 +75,13 @@ export class PresupuestoService {
   }
 
   getFinanciadoresFaltantes(id) {
-   
-    return this.userService.ejecutarQuery<FinanciadorFaltanteResponse>('/api/presupuestoanio/faltante/' +id)
+
+    return this.userService.ejecutarQuery<FinanciadoresResponse>('/api/presupuestoanio/faltante/' + id)
+  }
+
+
+  getFinanciadoresCobertura(id) {
+
+    return this.userService.ejecutarQuery<CoberturaAnioResponse>('/api/presupuestoanio/consultaranio/' + id)
   }
 }

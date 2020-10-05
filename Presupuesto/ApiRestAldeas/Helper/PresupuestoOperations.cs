@@ -21,26 +21,38 @@ namespace ApiRestAldeasPresupuesto.Helper
             using (Aldeas_Context db = factory.Create(connection))
             {
                 long idPrograma = 0;
+                long idFinanciador = 0;
+                string Financiacodr = "";
+
+
 
                 var presupuesto = from pro in db.TbPresupuestos
+                                  join finan in db.TbFinanciadores on pro.idFinanciador equals finan.id
                                   where pro.id == id
                                   && pro.id == id
                                   select new 
                                   {
                                       Id = pro.idPrograma,
+                                      pro.idFinanciador,
+                                      finan.nombre
                                    
                                   };
                 if(presupuesto.Any())
                 {
                     idPrograma = presupuesto.FirstOrDefault().Id;
+                    idFinanciador = presupuesto.FirstOrDefault().idFinanciador;
+                    Financiacodr = presupuesto.FirstOrDefault().nombre;
+
+
                 }
                 var data = from pro in db.TbProgramas
                            where pro.Estado == true
-                           && pro.id == idPrograma
+                           && pro.id == idPrograma 
                            select new ProgramPresupuesto
                            {
                                Id = pro.id,
-                               Nombre = pro.Nombre
+                               Nombre = pro.Nombre,
+                               Financiador = Financiacodr
                            };
                 if (data.Any())
                 {
@@ -48,7 +60,7 @@ namespace ApiRestAldeasPresupuesto.Helper
                 }
                 var dataCecos = from cecos in db.TbProgramasCecos
                                 where cecos.Estado == true
-                                   && cecos.idPrograma == idPrograma
+                                   && cecos.idPrograma == idPrograma && cecos.idFinanciador == idFinanciador
                                 select new PresupuestoProgramCeco
                                 {
                                     IdPrograma = cecos.idPrograma,
@@ -64,6 +76,9 @@ namespace ApiRestAldeasPresupuesto.Helper
                 var dataSubCecos = from cecos in db.TbProgramasCecos
                                    where cecos.Estado == true
                                        && cecos.idPrograma == idPrograma
+                                       && cecos.idPrograma == idPrograma && cecos.idFinanciador == idFinanciador
+
+
                                    select new PresupuestoSubCeco
                                    {
                                        IdCeco = cecos.CodigoCeco,
@@ -164,7 +179,8 @@ namespace ApiRestAldeasPresupuesto.Helper
             using (Aldeas_Context db = factory.Create(connection))
             {
                 var data = from pro in db.TbPresupuestos
-                           where pro.idPrograma == datos.idPrograma && pro.Anio == datos.Anio
+                           where pro.idPrograma == datos.idPrograma && pro.Anio == datos.Anio 
+                           && pro.idFinanciador == datos.idFinanciador
 
                            select pro;
                 if (data.Any())
@@ -173,6 +189,9 @@ namespace ApiRestAldeasPresupuesto.Helper
                 }
                 else
                 {
+                    datos.fecha_actualizacion = DateTime.Now;
+                    datos.fecha_creacion = DateTime.Now;
+
                     db.TbPresupuestos.Add(datos);
                     db.SaveChanges();
                 }

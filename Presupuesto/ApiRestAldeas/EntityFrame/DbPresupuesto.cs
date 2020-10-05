@@ -13,7 +13,7 @@ namespace ApiRestAldeasPresupuesto.EntityFrame
         public long id { get; set; }
         public long idPresupuestoAnio { get; set; }
         public long idPrograma { get; set; }
-        public long idCeco { get; set; }
+        public long idFinanciador { get; set; }
         public int Anio { get; set; }
         public Decimal CoberturaAnual { get; set; }
         public Decimal CoberturaMensual { get; set; }

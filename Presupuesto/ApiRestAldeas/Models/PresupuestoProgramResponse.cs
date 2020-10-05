@@ -40,14 +40,7 @@ namespace ApiRestAldeasPresupuesto.Models
 
         public string Financiador { get; set; }
 
-        public int CodigoCeco { get; set; }
-
-        public string NombreCodigoCeco { get; set; }
-
-        public int SubCeco { get; set; }
-
-        public string NombreSubCeco { get; set; }
-
+     
 
 
 

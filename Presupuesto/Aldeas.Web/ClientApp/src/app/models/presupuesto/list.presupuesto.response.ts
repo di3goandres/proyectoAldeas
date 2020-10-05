@@ -5,6 +5,8 @@ export interface ListaPresupuestoResponse {
 
 export class PresupuestoL {
   id: number;
+  idPresupuestoAnio: number
+  idFinanciador: number;
   idPrograma: number;
   anio: number;
   coberturaAnual: number;

@@ -13,6 +13,8 @@ namespace ApiRestAldeasPresupuesto.Models
 
         public string Nombre { get; set; }
 
+        public string Financiador  { get; set; }
+
 
     }
 

@@ -211,10 +211,8 @@ export class PrincipalpresupuestoComponent implements OnInit {
   }
   ngOnInit(): void {
 
-    // let inicio:  Detalle[]=[];
-    // this.dataSourceFamiliar = new MatTableDataSource(inicio);
-    // this.dataSourceFamiliar.paginator = this.paginator;
-    // this.dataSourceFamiliar.sort = this.sort
+
+    //IdPresupuesto
     var y: number = +this.route.snapshot.paramMap.get('id');
     this.programaRequest.idPresupuesto = y
     this.guardar.idPresupuesto = this.programaRequest.idPresupuesto

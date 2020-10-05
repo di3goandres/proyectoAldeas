@@ -7,8 +7,8 @@ import { PresupuestoAnioDatum } from 'src/app/models/presupuestoanio/anio.respon
 import { PresupuestoService } from 'src/app/services/presupuesto.service';
 import { Task } from '../../../../models/checkbox';
 import { PresupuestoL } from '../../../../models/presupuesto/list.presupuesto.response';
-import { FinanciadoresCecoFaltante } from '../../../../models/financiadores/financiadorFaltante.response';
 import { FinanciadorfaltanteComponent } from '../financiadorfaltante/financiadorfaltante.component';
+import { FinanciadoresDatum } from '../../../../models/financiadores/financiadores.response';
 
 @Component({
   selector: 'app-asociarfinanciadoranio',
@@ -22,6 +22,7 @@ export class AsociarfinanciadoranioComponent implements OnInit {
   anioList: SelectItem[] = [];
   guardar=new PresupuestoL();
   formGroup: FormGroup;
+  financiador: FinanciadoresDatum;
   anios: any[] = [1]
   noMostrar = false;
   seleccionaAnio = false;
@@ -39,9 +40,10 @@ export class AsociarfinanciadoranioComponent implements OnInit {
     const modalRef = this.modalService.open(FinanciadorfaltanteComponent, { size: 'lg' });
     modalRef.componentInstance.idPresupuestoAnio = this.presupuesto.id;
    
-    modalRef.result.then((result) => {
-     console.log(result);
- 
+    modalRef.result.then((result: FinanciadoresDatum) => {
+     this.financiador = result;
+     this.guardar.idFinanciador = this.financiador.id;
+     this.validarFomularios();
     }, (reason) => {
 
       if (reason === 'OK') {
@@ -66,19 +68,19 @@ export class AsociarfinanciadoranioComponent implements OnInit {
   }
   
   validarFomularios() {
-    this.permitirGuardar = this.seleccionaAnio;
+    this.permitirGuardar = this.formGroup.valid  &&    this.financiador != null ;
   }
 
   guardarData() {
-    // this.service.guardarPresupuestoAnio(this.guardar).subscribe(
-    //   OK => {
+    this.service.guardar(this.guardar).subscribe(
+      OK => {
 
-    //     this.activeModal.close("OK");
-    //   },
-    //   Error => { console.log(Error) },
+        this.activeModal.close("OK");
+      },
+      Error => { console.log(Error) },
 
-    // )
-    // console.log(this.guardar)
+    )
+    console.log(this.guardar)
   }
 
   cargaInicial() {
@@ -92,7 +94,11 @@ export class AsociarfinanciadoranioComponent implements OnInit {
 
   
 
- 
+ console.log(this.presupuesto)
+ this.guardar.idPrograma = this.presupuesto.idPrograma;
+ this.guardar.idPresupuestoAnio = this.presupuesto.id;
+ this.guardar.anio = this.presupuesto.anio;
+
     this.noMostrar = true;
     this.formGroup = this._formBuilder.group({
 

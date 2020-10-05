@@ -102,9 +102,8 @@ namespace ApiRestAldeasPresupuesto.Helper
             using (Aldeas_Context db = factory.Create(connection))
             {
                 var data = from pre in db.TbPresupuestos
-                           join ceco in db.TbProgramasCecos on pre.idCeco equals ceco.id
-                           join pro in db.TbProgramas on ceco.idPrograma equals pro.id
-                           join finan in db.TbFinanciadores on ceco.idFinanciador equals finan.id
+                           join pro in db.TbProgramas on pre.idPrograma equals pro.id
+                           join finan in db.TbFinanciadores on pre.idFinanciador equals finan.id
                            where pre.idPresupuestoAnio == id
                            select new ResponsePresupuesto
                            {
@@ -116,16 +115,17 @@ namespace ApiRestAldeasPresupuesto.Helper
                                CoberturaMensualEsperada = pre.CoberturaMensualEsperada,
                                id = pre.id,
                                Financiador = finan.nombre,
-                               NombreCodigoCeco = ceco.Nombre,
-                               CodigoCeco = ceco.CodigoCeco,
-                               NombreSubCeco = ceco.NombreSubCentro,
-                               SubCeco = ceco.SubCentro,
                                NombrePrograma = pro.Nombre
+
 
                            };
                 if (data.Any())
                 {
                     retorno.presupuesto = data.ToList();
+                }
+                else
+                {
+                    retorno.presupuesto = new List<ResponsePresupuesto>();
                 }
                 var programa = from pro in db.TbProgramas
                                join pre in db.TbPresupuestos on pro.id equals pre.idPrograma
@@ -163,64 +163,64 @@ namespace ApiRestAldeasPresupuesto.Helper
                                     where pre.idPresupuestoAnio == id
                                     select new
                                     {
-                                        id = pre.idCeco,
+                                        id = pre.idFinanciador,
                                         pre.idPrograma
                                     };
                 if (dataAgregados.Any())
                 {
 
-                    var dataCecos = from ceco in db.TbProgramasCecos
-                                    join pro in db.TbProgramas on ceco.idPrograma equals pro.id
-                                    join finan in db.TbFinanciadores on ceco.idFinanciador equals finan.id
-                                    where !dataAgregados.Any(d => d.id == ceco.id)
-                                    && dataAgregados.Any(d => d.idPrograma == pro.id)
+                    var datafinanciadores = from programa in db.TbProgramas
+                                            join cecos in db.TbProgramasCecos on programa.id equals cecos.idPrograma
 
-                                    select new ProgramCeco
-                                    {
-                                        Estado = ceco.Estado,
-                                        IdPrograma = ceco.idPrograma,
-                                        CodigoCeco = ceco.CodigoCeco,
-                                        Nombre = ceco.Nombre,
-                                        SubCentro = ceco.SubCentro,
-                                        NombreSubCentro = ceco.NombreSubCentro,
-                                        Id = ceco.id,
-                                        FacilityNav = ceco.FacilityNav,
-                                        IdFinanciador = finan.id,
-                                        NombreFinanciador = finan.nombre
-                                    };
+                                            join finan in db.TbFinanciadores on cecos.idFinanciador equals  finan.id
+                                             
+                                            where !dataAgregados.Any(d => d.id == finan.id) 
+                                            && dataAgregados.Any( d=> d.idPrograma == programa.id)
 
 
+                                            select new FinanciadorData
+                                            {
+                                                Estado = finan.activo,
+                                                Nombre = finan.nombre,
+                                                Id = finan.id,
+                                                FechaCreacion = finan.fecha_creacion,
+                                                FechaActualizacion = finan.fecha_actualizacion
 
-                    retorno.Cecos = dataCecos.ToList();
+                                            };
+
+
+
+                    retorno.financiadoresData = datafinanciadores.Distinct().ToList();
                 }
                 else
                 {
-                    var data = from tpre in db.TbPresupuestoAnio
-                               where tpre.id == id
-                               select new
-                               {
-                                   tpre.idPrograma
-                               };
+                    var data = from pre in db.TbPresupuestoAnio
+                                        where pre.id == id
+                                        select new
+                                        {
+                                            pre.id,
+                                            pre.idPrograma
+                                        };
 
 
-                    var dataCecos = from ceco in db.TbProgramasCecos
-                                    join finan in db.TbFinanciadores on ceco.idFinanciador equals finan.id
-                                    where data.Any(d => d.idPrograma == ceco.idPrograma)
-                                    select new ProgramCeco
-                                    {
-                                        Estado = ceco.Estado,
-                                        IdPrograma = ceco.idPrograma,
-                                        CodigoCeco = ceco.CodigoCeco,
-                                        Nombre = ceco.Nombre,
-                                        SubCentro = ceco.SubCentro,
-                                        NombreSubCentro = ceco.NombreSubCentro,
-                                        Id = ceco.id,
-                                        FacilityNav = ceco.FacilityNav,
-                                        IdFinanciador = finan.id,
-                                        NombreFinanciador = finan.nombre
-                                    };
+                    var datafinanciadores = from programa in db.TbProgramas
+                                                join cecos in db.TbProgramasCecos on programa.id equals cecos.idPrograma
+                                                join finan in db.TbFinanciadores on cecos.idFinanciador equals finan.id
+                                                where data.Any(d => d.idPrograma == programa.id)
+                                                select new FinanciadorData
+                                                {
+                                                    Estado = finan.activo,
+                                                    Nombre = finan.nombre,
+                                                    Id = finan.id,
+                                                    FechaCreacion = finan.fecha_creacion,
+                                                    FechaActualizacion = finan.fecha_actualizacion
 
-                    retorno.Cecos = dataCecos.ToList();
+                                                };
+
+
+
+                        retorno.financiadoresData = datafinanciadores.Distinct().ToList();
+                    
 
                 }
             }

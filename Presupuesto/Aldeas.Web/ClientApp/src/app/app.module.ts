@@ -11,7 +11,7 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { LoginComponent } from './components/01-login/login/login.component';
 import { ComponentsModule } from './components/components.module';
 import { HomeComponent } from './components/02-Home/home/home.component';
-
+import  {MatCurrencyFormatModule} from 'mat-currency-format';
 
 import { MatTabsModule } from '@angular/material/tabs';
 
@@ -36,6 +36,8 @@ import { ListacargosComponent } from './components/07-Cargos/listacargos/listaca
 import { CrearprogramaComponent } from './components/03-Programas/crearprograma/crearprograma.component';
 import { ListaFinanciadoresComponent } from './components/08-Financiadores/lista-financiadores/lista-financiadores.component';
 import { GestionarprogramasComponent } from './components/05-Presupuesto/Gestion/gestionarprogramas/gestionarprogramas.component';
+import { VeritemspresupuestonioComponent } from './components/05-Presupuesto/Gestion/veritemspresupuestonio/veritemspresupuestonio.component';
+import { AsociaritemspresupuestoComponent } from './components/05-Presupuesto/Gestion/asociaritemspresupuesto/asociaritemspresupuesto.component';
 
 
 const routes: Routes = [
@@ -87,11 +89,7 @@ const routes: Routes = [
     canActivate: [UsuarioGuard], canLoad: [UsuarioGuard]
   }
 
-  ,
-  {
-    path: 'VerDetallePresupuesto/:id', component: PrincipalpresupuestoComponent, pathMatch: 'full',
-    canActivate: [UsuarioGuard], canLoad: [UsuarioGuard]
-  }
+  
   // rutas usuarios
   ,
   {
@@ -122,6 +120,17 @@ const routes: Routes = [
     path: 'GestionProgramas', component: GestionarprogramasComponent, pathMatch: 'full',
     canActivate: [UsuarioGuard], canLoad: [UsuarioGuard]
   }
+  ,
+  {
+    path: 'GestionProgramas/PresupuestoAnio/:id', component: VeritemspresupuestonioComponent, pathMatch: 'full',
+    canActivate: [UsuarioGuard], canLoad: [UsuarioGuard]
+  }
+  ,
+  {
+    path: 'VerDetallePresupuesto/:id', component: AsociaritemspresupuestoComponent, pathMatch: 'full',
+    canActivate: [UsuarioGuard], canLoad: [UsuarioGuard]
+  }
+
 
 
 ];
@@ -144,7 +153,8 @@ const routes: Routes = [
     MatTabsModule,
     RouterModule.forRoot(routes, { useHash: true }),
     BrowserAnimationsModule,
-    NgbModule
+    NgbModule,
+    MatCurrencyFormatModule
   ],
   providers: [
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },

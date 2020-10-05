@@ -300,7 +300,7 @@ export class ActualizardetalleComponent implements OnInit {
     this.guardar.NoCasa = this.entrada.noCasa;
     this.guardar.NoKids = this.entrada.noKids;
 
-    this.guardar.Cargo = this.entrada.cargo;
+  
     this.ponerdatosMes()
 
     this.valorMensual = this.entrada.total;

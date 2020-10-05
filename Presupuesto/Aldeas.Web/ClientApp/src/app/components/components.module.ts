@@ -72,6 +72,7 @@ import { AsociarfinanciadoranioComponent } from './05-Presupuesto/Gestion/asocia
 import { FinanciadorfaltanteComponent } from './05-Presupuesto/Gestion/financiadorfaltante/financiadorfaltante.component';
 import { AsociaritemspresupuestoComponent } from './05-Presupuesto/Gestion/asociaritemspresupuesto/asociaritemspresupuesto.component';
 import { VeritemspresupuestonioComponent } from './05-Presupuesto/Gestion/veritemspresupuestonio/veritemspresupuestonio.component';
+import { CargoselectComponent } from './07-Cargos/cargoselect/cargoselect.component';
 
 @NgModule({
   declarations: [LoginComponent, HomeComponent,
@@ -89,7 +90,7 @@ import { VeritemspresupuestonioComponent } from './05-Presupuesto/Gestion/verite
     DetalleOtrospresupuestoprogramaComponent, GenerarPresupuestoComponent,
     ActualizarPresupuestoComponent, ActualizardetalleComponent, ListausuariosComponent,
     AgregarusuarioComponent, NoexitosoComponent, VerprogramasasociadosComponent, AsociarprogramasComponent,
-    ProgramatipoComponent, ListacargosComponent, ActualizarcargoComponent, AgregarcargoComponent, ListaFinanciadoresComponent, GestionarprogramasComponent, AsociarfinanciadoranioComponent, FinanciadorfaltanteComponent, AsociaritemspresupuestoComponent, VeritemspresupuestonioComponent],
+    ProgramatipoComponent, ListacargosComponent, ActualizarcargoComponent, AgregarcargoComponent, ListaFinanciadoresComponent, GestionarprogramasComponent, AsociarfinanciadoranioComponent, FinanciadorfaltanteComponent, AsociaritemspresupuestoComponent, VeritemspresupuestonioComponent, CargoselectComponent],
   imports: [
 
     CommonModule,
@@ -124,7 +125,8 @@ import { VeritemspresupuestonioComponent } from './05-Presupuesto/Gestion/verite
   ],
   exports: [
     HeaaderComponent,
-    MatMenuModule
+    MatMenuModule,
+    MatStepperModule
 
   ]
 })

@@ -85,7 +85,7 @@ namespace ApiRestAldeas.EntityFrame
             }); 
             modelBuilder.Entity<DbPresupuestoPrograma>(entity =>
             {
-                entity.ToTable("PresupuestoPrograma");
+                entity.ToTable("PresupuestoPrograma").Property(x => x.Cargo).HasColumnName("idCargo");
             });
 
             modelBuilder.Entity<DbPresupuesto>(entity =>

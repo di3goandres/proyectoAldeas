@@ -13,6 +13,9 @@ import { MatSort } from '@angular/material/sort';
 import { PresupuestoListRequest } from 'src/app/models/presupuesto/list.presupuesto.response';
 import { PrerubrospucsComponent } from '../../prerubrospucs/prerubrospucs.component';
 import { RegistroexitosoComponent } from '../../../00-Comunes/registroexitoso/registroexitoso.component';
+import { CargosDatum } from '../../../../models/cargos/cargos';
+import { CargoselectComponent } from '../../../07-Cargos/cargoselect/cargoselect.component';
+import { MatStepper } from '@angular/material/stepper';
 
 @Component({
   selector: 'app-asociaritemspresupuesto',
@@ -37,6 +40,7 @@ export class AsociaritemspresupuestoComponent implements OnInit {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   @ViewChild('tableFamiliar') tableFamilia: MatTable<Detalle>;
+  @ViewChild('stepper') private myStepper: MatStepper;
   /*
     Fin detalle familiares
     */
@@ -237,11 +241,18 @@ export class AsociaritemspresupuestoComponent implements OnInit {
   // }
 
   guardarData() {
+    this.guardar.esNomina = this.datoRubro.esNomina;
+    this.guardar.esPPTO = this.datoRubro.esppto;
     console.log(this.guardar)
     this.presupuestoService.guardarPresupuesto(this.guardar).subscribe(
       OK => {
 
         // this.activeModal.close(this.guardar)
+        this.openExitoso()
+        this.getDetalle(null)
+        this.getFamiliar();
+        this.clearFormularios();
+  
       },
       Error => { console.log(Error) },
 
@@ -249,9 +260,7 @@ export class AsociaritemspresupuestoComponent implements OnInit {
 
   }
 
-  onGuardar() {
 
-  }
  
 
   getPucsRubro(id) {
@@ -352,6 +361,25 @@ export class AsociaritemspresupuestoComponent implements OnInit {
     this.guardar.idProgramaCecos = this.servicioSeleccionado
   }
 
+  datoCargo = new CargosDatum();
+  SeleccionarCargo(){
+    const modalRef = this.modalService.open(CargoselectComponent, { size: 'lg' });
+    
+    modalRef.result.then((result: CargosDatum) => {
+      this.datoCargo = result;
+      this.guardar.Cargo = result.id;
+      this.guardar.idRubroPucs = this.pubGuardar.id
+     
+
+
+    }, (reason) => {
+
+      if (reason === 'OK') {
+
+
+      }
+    });
+  }
 
   SeleccionarPUC(element) {
     const modalRef = this.modalService.open(PrerubrospucsComponent, { size: 'lg' });
@@ -389,15 +417,8 @@ export class AsociaritemspresupuestoComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
-
-    //datos primera pantalla
-
-    //IdPresupuesto
-    var y: number = +this.route.snapshot.paramMap.get('id');
-    this.programaRequest.idPresupuesto = y
-    this.guardar.idPresupuesto = this.programaRequest.idPresupuesto
-    this.getDetalle(null);
+  
+  datosIniciales (){
     this.presupuestoService.getDataInicial(this.programaRequest.idPresupuesto).subscribe(
       OK => {
         console.log(OK)
@@ -420,6 +441,17 @@ export class AsociaritemspresupuestoComponent implements OnInit {
       Error => { console.log(Error) },
 
     )
+  }
+  ngOnInit(): void {
+
+    //datos primera pantalla
+
+    //IdPresupuesto
+    var y: number = +this.route.snapshot.paramMap.get('id');
+    this.programaRequest.idPresupuesto = y
+    this.guardar.idPresupuesto = this.programaRequest.idPresupuesto
+    this.getDetalle(null);
+    this.datosIniciales();
 
     //fin primera pantalla
 
@@ -448,7 +480,7 @@ export class AsociaritemspresupuestoComponent implements OnInit {
       numeroIdentificacion: ['', Validators.required],
       Nombre: ['', Validators.required],
       asignacion: ['', [Validators.max(100), Validators.min(1)]],
-      cargo: ['', Validators.required],
+      
 
     })
     this.formgroupFamiliar = this._formBuilder.group({
@@ -472,10 +504,18 @@ export class AsociaritemspresupuestoComponent implements OnInit {
 
 
 
+   clearFormularios(){
+     this.formgroupFamiliar.reset();
+     this.formgroupNormal.reset();
+     this.formgroupNomina.reset();
+     this.firstFormGroup.reset();
+     this.datoCargo= new CargosDatum();
+     this.myStepper.reset();
+   }
 
   updateUSAmount(event){
     this.valorMensual =  event.target.value;
-    console.log( event.target.value)
+  
  
   }
 

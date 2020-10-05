@@ -351,6 +351,7 @@ namespace ApiRestAldeasPresupuesto.Helper
 
                            join prep in db.TbPresupuestosProgramas on pre.id equals prep.idPresupuesto
                            join cec in db.TbProgramasCecos on prep.idProgramaCecos equals cec.id
+                           join cargo in db.TbCargos on pre.id equals cargo.id
                            join puc in db.TbPucs on prep.idRubroPucs equals puc.id
                            join rubro in db.TbRubros on puc.idRubro equals rubro.id
                            where pre.id == request.IdPresupuesto
@@ -376,7 +377,7 @@ namespace ApiRestAldeasPresupuesto.Helper
                                NumeroIdentificacion= prep.NumeroIdentificacion,
                                Nombre= prep.Nombre,
                                Asignacion = prep.Asignacion,
-                               Cargo = prep.Cargo,
+                               Cargo = cargo.cargo,
                                Enero =prep.Enero,
                                Febrero = prep.Febrero,
                                Marzo= prep.Marzo,

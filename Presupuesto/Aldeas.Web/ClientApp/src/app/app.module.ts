@@ -38,6 +38,7 @@ import { ListaFinanciadoresComponent } from './components/08-Financiadores/lista
 import { GestionarprogramasComponent } from './components/05-Presupuesto/Gestion/gestionarprogramas/gestionarprogramas.component';
 import { VeritemspresupuestonioComponent } from './components/05-Presupuesto/Gestion/veritemspresupuestonio/veritemspresupuestonio.component';
 import { AsociaritemspresupuestoComponent } from './components/05-Presupuesto/Gestion/asociaritemspresupuesto/asociaritemspresupuesto.component';
+import { MatStepperModule } from '@angular/material/stepper';
 
 
 const routes: Routes = [
@@ -154,7 +155,8 @@ const routes: Routes = [
     RouterModule.forRoot(routes, { useHash: true }),
     BrowserAnimationsModule,
     NgbModule,
-    MatCurrencyFormatModule
+    MatCurrencyFormatModule,
+    MatStepperModule
   ],
   providers: [
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },

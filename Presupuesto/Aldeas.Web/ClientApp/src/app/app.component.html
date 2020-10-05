@@ -108,7 +108,7 @@
 
 
     <router-outlet>
-      <button mat-mat-raised-button class="btn  buttton-aldea btn-success pull-right"
+      <button  *ngIf="currentUser!= null" mat-mat-raised-button class="btn  buttton-aldea btn-success pull-right"
       (click)="backClicked()"><mat-icon>keyboard_backspace</mat-icon></button>
     </router-outlet>
   </div>

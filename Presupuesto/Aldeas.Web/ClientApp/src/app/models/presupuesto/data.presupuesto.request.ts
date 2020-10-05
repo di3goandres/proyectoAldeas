@@ -15,7 +15,7 @@ export class PresupuestoRequest{
    //datos Nomina
    NumeroIdentificacion:       number; 
    Nombre:                     string; 
-   Cargo:                      string; 
+   Cargo:                      number; 
    Asignacion:                 number; 
 
    // Fin datos Nomina

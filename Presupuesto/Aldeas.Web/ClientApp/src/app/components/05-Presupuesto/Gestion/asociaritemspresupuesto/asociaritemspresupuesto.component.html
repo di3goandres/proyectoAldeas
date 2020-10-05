@@ -3,7 +3,7 @@
         <mat-card-header>
             <mat-card-title>PRESUPUESTO PARA EL PROGRAMA: {{programas.nombre|uppercase}} - Financiador
                 {{programas.financiador|uppercase}}</mat-card-title>
-            <mat-card-subtitle>INGRESO DEL</mat-card-subtitle>
+          
         </mat-card-header>
         <mat-card-content>
             <mat-horizontal-stepper [linear]="true" #stepper>
@@ -156,11 +156,16 @@
                                         </div>
         
                                         <div class="col-6 tabla">
-                                            <mat-form-field appearance="fill">
-                                                <mat-label>Cargo</mat-label>
-                                                <input matInput placeholder="Cargo" [(ngModel)]="guardar.Cargo" type="text"
-                                                    (change)="validarFomularios()" formControlName="cargo" required>
-                                            </mat-form-field>
+                                           
+                                                <button mat-mat-raised-button class="btn  buttton-aldea btn-success pull-right"
+                                                    (click)="SeleccionarCargo()">Seleccionar un cargo</button>
+                                                    <div class="col-xs-12 col-12  form-group" *ngIf="datoCargo.id!=0">
+                                                        <label>Cargo</label>
+                                
+                                                        <input disabled="true" class="form-control" [(value)]="datoCargo.cargo" />
+                                                    </div>
+                                           
+                                           
                                         </div>
         
                                     </div>
@@ -339,8 +344,42 @@
         
         
             </mat-horizontal-stepper>
-        
+            
         </mat-card-content>
     </mat-card>
- 
+ <mat-card>
+    <mat-card-header>
+        <mat-card-title>DETALLE PRESUPUESTO </mat-card-title>
+   
+    </mat-card-header>
+     <mat-card-content>
+        <mat-tab-group mat-align-tabs="center">
+            <mat-tab label="PPTO NOMINA">
+                <div class="row" style="text-align: center;">
+                    <div class="col-12"  style="padding-top: 10px;">
+                        <app-detallepresupuestoprograma [detalle]="dataSourcePresupuesto" *ngIf="dataSourcePresupuesto.length>0"></app-detallepresupuestoprograma>
+        
+                    </div>
+                </div>
+            </mat-tab>
+            <mat-tab label="PPTO Familiar">
+                <div class="row" style="text-align: center;"  *ngIf="mostrar">
+                    <div class="col-12" style="padding-top: 10px;">
+                         <app-detalle-familiarpresupuestoprograma [detalle]="dataSourcePresupuesto" *ngIf="dataSourcePresupuesto.length>0"></app-detalle-familiarpresupuestoprograma> 
+                  
+        
+                    </div>
+                </div>
+            </mat-tab>
+            <mat-tab label="Otros Presupuestos">
+                <div class="row" style="text-align: center;">
+                    <div class="col-12"  style="padding-top: 10px;">
+                        <app-detalle-otrospresupuestoprograma [detalle]="dataSourcePresupuesto" *ngIf="dataSourcePresupuesto.length>0"></app-detalle-otrospresupuestoprograma>
+        
+                    </div>
+                </div>
+            </mat-tab>
+          </mat-tab-group>
+     </mat-card-content>
+ </mat-card>
 </div>

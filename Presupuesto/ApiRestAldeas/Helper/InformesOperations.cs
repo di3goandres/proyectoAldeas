@@ -23,7 +23,7 @@ namespace ApiRestAldeasPresupuesto.Helper
             string retornoFinal = "";
             try
             {
-
+                
                 string[] files = Directory.GetFiles("Informes/");
                 foreach (string file in files)
                 {
@@ -82,7 +82,7 @@ namespace ApiRestAldeasPresupuesto.Helper
                 worksheet.Cells[row, 28] = new ExcelLibrary.SpreadSheet.Cell("FACILITY");
                 worksheet.Cells[row, 29] = new ExcelLibrary.SpreadSheet.Cell("CUENTA CONTABLE");
 
-
+                
                 foreach (var data in retorno.DetallePresupuesto.Where(x => x.esNomina == true))
                 {
                     row = i + 3;

@@ -29,7 +29,7 @@ namespace ApiRestAldeasPresupuesto.Helper
                 var data = from tpre in db.TbPresupuestoAnio
                            join pro in db.TbProgramas on tpre.idPrograma equals pro.id
                            join tpro in db.TbTipoPrograma on pro.id_tipo_programa equals tpro.id
-                           where tpre.actual == true
+                           where tpre.actual == true && pro.id == idPrograma
                            select new PresupuestoAnioData
                            {
                                id = tpre.id,
@@ -49,6 +49,23 @@ namespace ApiRestAldeasPresupuesto.Helper
                     retorno.presupuestoAnioData = data.ToList();
 
                 }
+                else
+                {
+                    retorno.presupuestoAnioData = new List<PresupuestoAnioData>();
+
+                }
+
+                var dataPrograma = from pro in db.TbProgramas
+                                  where pro.id == idPrograma
+                                  select pro;
+
+                if (dataPrograma.Any())
+                {
+                    retorno.idPrograma = dataPrograma.First().id;
+                    retorno.NombrePrograma = dataPrograma.First().Nombre;
+
+                }
+
             }
 
             return retorno;
@@ -172,10 +189,10 @@ namespace ApiRestAldeasPresupuesto.Helper
                     var datafinanciadores = from programa in db.TbProgramas
                                             join cecos in db.TbProgramasCecos on programa.id equals cecos.idPrograma
 
-                                            join finan in db.TbFinanciadores on cecos.idFinanciador equals  finan.id
-                                             
-                                            where !dataAgregados.Any(d => d.id == finan.id) 
-                                            && dataAgregados.Any( d=> d.idPrograma == programa.id)
+                                            join finan in db.TbFinanciadores on cecos.idFinanciador equals finan.id
+
+                                            where !dataAgregados.Any(d => d.id == finan.id)
+                                            && dataAgregados.Any(d => d.idPrograma == programa.id)
 
 
                                             select new FinanciadorData
@@ -195,32 +212,32 @@ namespace ApiRestAldeasPresupuesto.Helper
                 else
                 {
                     var data = from pre in db.TbPresupuestoAnio
-                                        where pre.id == id
-                                        select new
-                                        {
-                                            pre.id,
-                                            pre.idPrograma
-                                        };
+                               where pre.id == id
+                               select new
+                               {
+                                   pre.id,
+                                   pre.idPrograma
+                               };
 
 
                     var datafinanciadores = from programa in db.TbProgramas
-                                                join cecos in db.TbProgramasCecos on programa.id equals cecos.idPrograma
-                                                join finan in db.TbFinanciadores on cecos.idFinanciador equals finan.id
-                                                where data.Any(d => d.idPrograma == programa.id)
-                                                select new FinanciadorData
-                                                {
-                                                    Estado = finan.activo,
-                                                    Nombre = finan.nombre,
-                                                    Id = finan.id,
-                                                    FechaCreacion = finan.fecha_creacion,
-                                                    FechaActualizacion = finan.fecha_actualizacion
+                                            join cecos in db.TbProgramasCecos on programa.id equals cecos.idPrograma
+                                            join finan in db.TbFinanciadores on cecos.idFinanciador equals finan.id
+                                            where data.Any(d => d.idPrograma == programa.id)
+                                            select new FinanciadorData
+                                            {
+                                                Estado = finan.activo,
+                                                Nombre = finan.nombre,
+                                                Id = finan.id,
+                                                FechaCreacion = finan.fecha_creacion,
+                                                FechaActualizacion = finan.fecha_actualizacion
 
-                                                };
+                                            };
 
 
 
-                        retorno.financiadoresData = datafinanciadores.Distinct().ToList();
-                    
+                    retorno.financiadoresData = datafinanciadores.Distinct().ToList();
+
 
                 }
             }

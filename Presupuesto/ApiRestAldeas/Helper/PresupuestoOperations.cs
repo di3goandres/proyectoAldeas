@@ -402,8 +402,13 @@ namespace ApiRestAldeasPresupuesto.Helper
                            };
                 if (data.Any())
                 {
-                    retorno.DetallePresupuesto = data.ToList(); 
+                    retorno.DetallePresupuesto = data.ToList();
                 }
+                else {
+                    retorno.DetallePresupuesto = new List<PresupuestoProgramResponse>();
+
+                }
+
 
             }
 

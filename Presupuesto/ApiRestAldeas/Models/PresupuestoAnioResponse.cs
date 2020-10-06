@@ -32,6 +32,9 @@ namespace ApiRestAldeasPresupuesto.Models
     public class PresupuestoAnioResponse
     {
         public List<PresupuestoAnioData> presupuestoAnioData { get; set; }
+        public long idPrograma { get; set; }
+        public string NombrePrograma { get; set; }
+    
     }
 
 }

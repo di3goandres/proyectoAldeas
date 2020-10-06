@@ -52,7 +52,7 @@ namespace ApiRestAldeasPresupuesto.Controllers
            var nombre= _dataModelRepository.GenerarInforme(request);
 
             var stream = new FileStream(@nombre, FileMode.Open);
-            return File(stream, "application/octet-stream");
+            return File(stream, "application/octet-stream", nombre);
         }
     }
 }

@@ -1,5 +1,8 @@
 export interface PresupuestoAnioResponse {
   presupuestoAnioData: PresupuestoAnioDatum[];
+  idPrograma: number;
+  nombrePrograma: string;
+
 }
 
 export class PresupuestoAnioDatum {

@@ -126,8 +126,8 @@ export class ListapresupuestoprogramaComponent implements OnInit {
         this.presupuestoResponse = OK.presupuestoAnioData;
      
         this.programa = new ProgramaL();
-        this.programa.nombre = this.presupuestoResponse[0].nombrePrograma
-        this.programa.id = this.presupuestoResponse[0].idPrograma
+        this.programa.nombre = OK.nombrePrograma
+        this.programa.id = OK.idPrograma
 
 
         this.presupuestoResponse.forEach(item=>{

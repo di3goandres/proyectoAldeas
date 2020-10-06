@@ -64,14 +64,19 @@ namespace ApiRestAldeasPresupuesto.Models
 
         public long idPresupuesto { get; set; }
 
+        public string ClasificacionGasto { get; set; }
 
         public string Programa { get; set; }
 
         public int Anio { get; set; }
 
         public int CentroCosto { get; set; }
+        public string NombreCentroCosto { get; set; }
+
 
         public int SubCentroCosto { get; set; }
+        public string NombreSubCentroCosto { get; set; }
+
 
         public string NombreRubro { get; set; }
         public bool esNomina { get; set; }

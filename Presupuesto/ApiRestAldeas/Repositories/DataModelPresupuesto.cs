@@ -38,6 +38,11 @@ namespace ApiRestAldeasPresupuesto.Repositories
 
         }
 
+        public dynamic GenerarInforme(PresupuestoProgramRequest request)
+        {
+            return InformesOperations.GenerarInforme(_factory, _connectionDB, request);
+        }
+
         public dynamic Guardar(PresupuestoAnioData request)
         { 
             return PresupuestoAnioOperations.Guardar( _factory, _connectionDB, request);

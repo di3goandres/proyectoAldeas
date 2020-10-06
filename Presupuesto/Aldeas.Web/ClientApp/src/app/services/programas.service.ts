@@ -49,11 +49,11 @@ export class ProgramasService {
 
 
   getTipoProgramas() {
-    return this.userService.ejecutarQuery<TipoProgramaResponse>('api/tipoprograma/get');
+    return this.userService.ejecutarQuery<TipoProgramaResponse>('/api/tipoprograma/get');
   }
 
   getFinanciadores() {
-    return this.userService.ejecutarQuery<FinanciadoresResponse>('api/financiadores/get');
+    return this.userService.ejecutarQuery<FinanciadoresResponse>('/api/financiadores/get');
   }
 
 

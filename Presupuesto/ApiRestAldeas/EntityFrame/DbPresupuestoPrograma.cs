@@ -18,7 +18,7 @@ namespace ApiRestAldeasPresupuesto.EntityFrame
         public bool esPPTO { get; set; }
         public long? NumeroIdentificacion { get; set; }
         public string Nombre { get; set; }
-        public int Cargo { get; set; }
+        public int? Cargo { get; set; }
         public int? Asignacion { get; set; }
         public int? NoCasa { get; set; }
         public int? NoKids { get; set; }

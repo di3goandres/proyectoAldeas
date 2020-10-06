@@ -286,6 +286,10 @@ namespace ApiRestAldeasPresupuesto.Helper
 
             using (Aldeas_Context db = factory.Create(connection))
             {
+                if (datos.Cargo == 0)
+                {
+                    datos.Cargo = null;
+                }
                 db.TbPresupuestosProgramas.Add(datos);
                 db.SaveChanges();
             }
@@ -347,8 +351,8 @@ namespace ApiRestAldeasPresupuesto.Helper
             using (Aldeas_Context db = factory.Create(connection))
             {
                 var data = from pro in db.TbProgramas
-                            join pre in db.TbPresupuestos on pro.id equals pre.idPrograma
-
+                           join pre in db.TbPresupuestos on pro.id equals pre.idPrograma
+                           join tpro in db.TbTipoPrograma on pro.id_tipo_programa equals tpro.id
                            join prep in db.TbPresupuestosProgramas on pre.id equals prep.idPresupuesto
                            join cec in db.TbProgramasCecos on prep.idProgramaCecos equals cec.id
                            join cargo in db.TbCargos on pre.id equals cargo.id
@@ -360,9 +364,12 @@ namespace ApiRestAldeasPresupuesto.Helper
                               id = prep.id,
                                idPresupuesto = pre.id,
                                Programa = pro.Nombre,
-                              Anio = pre.Anio,
+                               Anio = pre.Anio,
+                               ClasificacionGasto = tpro.cobertura == true? "OPERACIONAL" : "ADMINISTRATIVO",
                                CentroCosto = cec.CodigoCeco,
+                               NombreCentroCosto = cec.Nombre,
                                SubCentroCosto = cec.SubCentro,
+                               NombreSubCentroCosto = cec.NombreSubCentro,
                                NombreRubro = rubro.Nombre,
                                esNomina = rubro.esNomina,
                                EsPptp=   rubro.EsPptp,

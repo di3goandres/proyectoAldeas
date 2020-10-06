@@ -10,6 +10,7 @@ export class PresupuestoAnioDatum {
   cobertura: boolean;
   anio: number;
   actual: boolean;
+  urlReporte: string;
   numeroVersion: number;
   fecha_creacion: string;
   fecha_actualizacion: string;

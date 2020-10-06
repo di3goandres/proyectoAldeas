@@ -103,7 +103,9 @@ export class ListacargosComponent implements OnInit {
       OK => {
 
         this.cargos = [];
-        this.cargos.push(...OK.cargosData)
+        if (OK.cargosData != null)
+          this.cargos.push(...OK.cargosData)
+
         this.dataSource = new MatTableDataSource(this.cargos);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort
@@ -129,13 +131,13 @@ export class ListacargosComponent implements OnInit {
     }
   }
 
-  Cambiar(){
+  Cambiar() {
 
-    let cambio = this.cargos.filter(item=> {
+    let cambio = this.cargos.filter(item => {
       return item.tipo == this.Tipo
     })
-    
-    
+
+
     this.dataSource = new MatTableDataSource(cambio);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort

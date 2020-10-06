@@ -16,7 +16,8 @@ import { CoberturaAnioResponse } from '../models/presupuestoanio/consulta.anio.r
 })
 export class PresupuestoService {
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService,
+    ) { }
 
 
   getDataInicial(id) {
@@ -83,5 +84,9 @@ export class PresupuestoService {
   getFinanciadoresCobertura(id) {
 
     return this.userService.ejecutarQuery<CoberturaAnioResponse>('/api/presupuestoanio/consultaranio/' + id)
+  }
+
+  gerReporte(id) {
+    return this.userService.getUrl() + '/api/generarinforme/consultar/' + id;
   }
 }

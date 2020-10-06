@@ -12,6 +12,8 @@ import { Colaborador } from '../models/colaborador';
 import { RegistroParticipante } from '../models/DatosPartipante';
 import { environment } from '../../environments/environment';
 
+import * as FileSaver from 'file-saver';
+
 
 @Injectable({
   providedIn: 'root'
@@ -142,6 +144,13 @@ export class UserService {
 
   }
 
+// getExcel(metodo){
+//   this.http.post(environment.ApiUrl + metodo , { responseType: 'blob' })
+//  .subscribe((resp: any) => {
+//     saveAs(resp, `filename.csv`)
+//  });
+// }
+
   getIdentity() {
     let token = localStorage.getItem('currentUser');
     // tslint:disable-next-line: triple-equals
@@ -170,5 +179,9 @@ export class UserService {
         resolve(true);
       }
     })
+  }
+
+  getUrl(){
+    return environment.ApiUrl ;
   }
 }

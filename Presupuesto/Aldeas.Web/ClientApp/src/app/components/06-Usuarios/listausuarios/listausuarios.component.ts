@@ -17,21 +17,21 @@ import { AsociarprogramasComponent } from '../asociarprogramas/asociarprogramas.
 export class ListausuariosComponent implements OnInit {
 
 
-  usuarios: Usuario[] =[];
+  usuarios: Usuario[] = [];
   dataSource: MatTableDataSource<Usuario>;
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
-  displayedColumns: string[] = [ 'id', 'usuario',
-  'administrador',  'asociar','Ver'];
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  displayedColumns: string[] = ['id', 'usuario',
+    'administrador', 'asociar', 'Ver'];
   constructor(
     private service: UsuarioService,
     private modalService: NgbModal,
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     this.cargaInicial()
   }
-  OpenAsociar(element: Usuario){
+  OpenAsociar(element: Usuario) {
     const modalRef = this.modalService.open(AsociarprogramasComponent, { size: 'lg' });
     modalRef.componentInstance.idUsuario = element.id;
     modalRef.result.then((result) => {
@@ -41,7 +41,7 @@ export class ListausuariosComponent implements OnInit {
 
     });
   }
-  OpenProgramas(element: Usuario){
+  OpenProgramas(element: Usuario) {
     const modalRef = this.modalService.open(VerprogramasasociadosComponent, { size: 'lg' });
     modalRef.componentInstance.idUsuario = element.id;
     modalRef.result.then((result) => {
@@ -54,11 +54,13 @@ export class ListausuariosComponent implements OnInit {
   cargaInicial() {
     this.service.getListUsuarios().subscribe(
       OK => {
-      this.usuarios = []
-      this.usuarios = OK.usuarios;  
-      this.dataSource = new MatTableDataSource(this.usuarios);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort
+        this.usuarios = []
+        if (OK.usuarios != null)
+          this.usuarios = OK.usuarios;
+
+        this.dataSource = new MatTableDataSource(this.usuarios);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort
       },
       Error => { console.log(Error) },
 

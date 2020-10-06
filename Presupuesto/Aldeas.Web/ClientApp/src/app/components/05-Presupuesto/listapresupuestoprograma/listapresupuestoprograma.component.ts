@@ -12,7 +12,6 @@ import { RegistroexitosoComponent } from '../../00-Comunes/registroexitoso/regis
 import { PresupuestoAnioResponse, PresupuestoAnioDatum } from '../../../models/presupuestoanio/anio.response';
 import { AsociarfinanciadoranioComponent } from '../Gestion/asociarfinanciadoranio/asociarfinanciadoranio.component';
 
-
 @Component({
   selector: 'app-listapresupuestoprograma',
   templateUrl: './listapresupuestoprograma.component.html',
@@ -28,7 +27,7 @@ export class ListapresupuestoprogramaComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   displayedColumns: string[] = ['id', 'anio',
-    'nombrePrograma', 'tipoPrograma', 'Cobertura','numeroVersion', 'Financiador',   'Ver'];
+    'nombrePrograma', 'tipoPrograma', 'Cobertura','numeroVersion', 'Financiador',   'Ver', 'descargar'];
   constructor(
     private route: ActivatedRoute,
     private service: PresupuestoService,
@@ -112,6 +111,10 @@ export class ListapresupuestoprogramaComponent implements OnInit {
       }
     });
   }
+
+
+
+
   async cargaInicial() {
     await this.service.getPresupuestoPrograma(this.programaRequest.idPresupuesto).subscribe(
       OK => {
@@ -119,6 +122,7 @@ export class ListapresupuestoprogramaComponent implements OnInit {
         console.log(OK)
         this.presupuestoResponse = []
 
+        
         this.presupuestoResponse = OK.presupuestoAnioData;
      
         this.programa = new ProgramaL();
@@ -126,6 +130,10 @@ export class ListapresupuestoprogramaComponent implements OnInit {
         this.programa.id = this.presupuestoResponse[0].idPrograma
 
 
+        this.presupuestoResponse.forEach(item=>{
+          item.urlReporte = this.service.gerReporte(item.id)
+
+        })
         this.dataSource = new MatTableDataSource(this.presupuestoResponse);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort

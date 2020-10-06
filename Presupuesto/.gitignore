@@ -2,3 +2,5 @@ packages/
 /.vs/ApiRestAldeas
 /ApiRestAldeas/bin/
 ApiRestAldeas/obj/
+./ApiRestAldeas/Informes/
+*.xls

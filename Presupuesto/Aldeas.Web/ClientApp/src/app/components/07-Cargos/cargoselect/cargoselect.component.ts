@@ -15,77 +15,79 @@ import { CargosService } from 'src/app/services/cargos.service';
 export class CargoselectComponent implements OnInit {
 
   displayedColumns: string[] = ['position', 'tipo',
-  'codcargo', 'cargo', 'seleccionar'];
-dataSource: MatTableDataSource<CargosDatum>;
-@ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-@ViewChild(MatSort, { static: true }) sort: MatSort;
-cargos: CargosDatum[] = [];
-Tipo = 'Administrativo';
+    'codcargo', 'cargo', 'seleccionar'];
+  dataSource: MatTableDataSource<CargosDatum>;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  cargos: CargosDatum[] = [];
+  Tipo = 'Administrativo';
 
-tiposCargos: SelectGlobal[] = [
-  { value: 'Administrativo', viewValue: 'Administrativo' },
-  { value: 'Mama', viewValue: 'Mama' },
-  { value: 'Pedagogia', viewValue: 'Pedagogia' },
-  { value: 'Servicios Generales', viewValue: 'Servicios Generales' },
-  { value: 'Tias', viewValue: 'Tias' },
-  { value: 'TIC', viewValue: 'TIC' }
+  tiposCargos: SelectGlobal[] = [
+    { value: 'Administrativo', viewValue: 'Administrativo' },
+    { value: 'Mama', viewValue: 'Mama' },
+    { value: 'Pedagogia', viewValue: 'Pedagogia' },
+    { value: 'Servicios Generales', viewValue: 'Servicios Generales' },
+    { value: 'Tias', viewValue: 'Tias' },
+    { value: 'TIC', viewValue: 'TIC' }
 
-]
-
-
-constructor(
-  private service: CargosService,
-  private activeModal: NgbActiveModal){
-
-}
-
-cargaInicial(data) {
-  this.service.getCargos().subscribe(
-    OK => {
-
-      this.cargos = [];
-      this.cargos.push(...OK.cargosData)
-      this.dataSource = new MatTableDataSource(this.cargos);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort
-    },
-    Errr => { console.log(Errr) }
-
-  )
-}
-ngOnInit(): void {
-
-  this.cargaInicial(false);
+  ]
 
 
-}
-cerrar(){
-  
-  this.activeModal.dismiss("close");
-}
+  constructor(
+    private service: CargosService,
+    private activeModal: NgbActiveModal) {
 
-seleccionar(element: CargosDatum){
-  this.activeModal.close(element);
-}
-applyFilter(event: Event) {
-  const filterValue = (event.target as HTMLInputElement).value;
-  this.dataSource.filter = filterValue.trim().toLowerCase();
-
-  if (this.dataSource.paginator) {
-    this.dataSource.paginator.firstPage();
   }
-}
 
-Cambiar(){
+  cargaInicial(data) {
+    this.service.getCargos().subscribe(
+      OK => {
 
-  let cambio = this.cargos.filter(item=> {
-    return item.tipo == this.Tipo
-  })
-  
-  
-  this.dataSource = new MatTableDataSource(cambio);
-  this.dataSource.paginator = this.paginator;
-  this.dataSource.sort = this.sort
-}
+        this.cargos = [];
+        if (OK.cargosData != null)
+          this.cargos.push(...OK.cargosData)
+
+        this.dataSource = new MatTableDataSource(this.cargos);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort
+      },
+      Errr => { console.log(Errr) }
+
+    )
+  }
+  ngOnInit(): void {
+
+    this.cargaInicial(false);
+
+
+  }
+  cerrar() {
+
+    this.activeModal.dismiss("close");
+  }
+
+  seleccionar(element: CargosDatum) {
+    this.activeModal.close(element);
+  }
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
+  Cambiar() {
+
+    let cambio = this.cargos.filter(item => {
+      return item.tipo == this.Tipo
+    })
+
+
+    this.dataSource = new MatTableDataSource(cambio);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort
+  }
 
 }

@@ -24,6 +24,9 @@ namespace ApiRestAldeasPresupuesto.Repositories
         dynamic ConsultarFinanciadorFaltante(long id);
 
 
+        dynamic GenerarInforme(PresupuestoProgramRequest request);
+
+
 
     }
 }

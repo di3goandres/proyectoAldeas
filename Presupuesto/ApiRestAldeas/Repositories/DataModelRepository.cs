@@ -116,6 +116,7 @@ namespace ApiRestAldeas.Repositories
 
         public dynamic ConsultarDetallePresupuestoPrograma(PresupuestoProgramRequest request)
         {
+         
             return PresupuestoOperations.ConsultarDetallePresupuestosByProgramas(_factory, _connectionDB, request);
         }
 

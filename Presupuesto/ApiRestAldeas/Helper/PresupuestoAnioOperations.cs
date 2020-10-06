@@ -145,7 +145,7 @@ namespace ApiRestAldeasPresupuesto.Helper
                     retorno.presupuesto = new List<ResponsePresupuesto>();
                 }
                 var programa = from pro in db.TbProgramas
-                               join pre in db.TbPresupuestos on pro.id equals pre.idPrograma
+                               join pre in db.TbPresupuestoAnio on pro.id equals pre.idPrograma
                                join Tprograma in db.TbTipoPrograma on pro.id_tipo_programa equals Tprograma.id
                                where pre.id == id
                                select new Program
@@ -163,6 +163,7 @@ namespace ApiRestAldeasPresupuesto.Helper
                 {
                     retorno.programa = programa.First();
                 }
+                
 
 
             }

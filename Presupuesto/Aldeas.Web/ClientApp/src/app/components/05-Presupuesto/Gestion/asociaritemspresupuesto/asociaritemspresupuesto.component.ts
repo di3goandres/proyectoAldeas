@@ -16,6 +16,7 @@ import { RegistroexitosoComponent } from '../../../00-Comunes/registroexitoso/re
 import { CargosDatum } from '../../../../models/cargos/cargos';
 import { CargoselectComponent } from '../../../07-Cargos/cargoselect/cargoselect.component';
 import { MatStepper } from '@angular/material/stepper';
+import { MatTabGroup } from '@angular/material/tabs';
 
 @Component({
   selector: 'app-asociaritemspresupuesto',
@@ -28,6 +29,7 @@ export class AsociaritemspresupuestoComponent implements OnInit {
   isLinear = false;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
+  Manual = false;
 
   /**infro de la primera pantalla */
 
@@ -38,6 +40,7 @@ export class AsociaritemspresupuestoComponent implements OnInit {
   dataSourceFamiliar: MatTableDataSource<Detalle>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
+  @ViewChild(MatTabGroup) tabGroup: MatTabGroup;
 
   @ViewChild('tableFamiliar') tableFamilia: MatTable<Detalle>;
   @ViewChild('stepper') private myStepper: MatStepper;
@@ -124,6 +127,15 @@ export class AsociaritemspresupuestoComponent implements OnInit {
 
   ) { }
 
+  tabActivo(data) {
+    this.Manual = data;
+    console.log(this.Manual)
+  }
+
+  Notificar(event: boolean){
+    console.log(event)
+    this.getDetalle(null);
+  }
   onNotificar(event: Task, Tipo: any) {
 
     this.presupuestoCheck = event;
@@ -146,10 +158,21 @@ export class AsociaritemspresupuestoComponent implements OnInit {
     this.pucMostrar.push(this.guardar);
     this.dataSource = new MatTableDataSource(this.pucMostrar);
     this.validarFomularios();
+ 
+
   }
 
   Cambiar() {
     this.onNotificar(this.presupuestoCheck, "")
+
+  }
+
+  Actualizar() {
+   
+    this.pucMostrar = [];
+    this.pucMostrar.push(this.guardar);
+    this.dataSource = new MatTableDataSource(this.pucMostrar);
+    this.validarFomularios();
 
   }
 
@@ -215,23 +238,40 @@ export class AsociaritemspresupuestoComponent implements OnInit {
 
 
   validarFomularios() {
-    let seleccionados = this.presupuestoCheck.subtasks.filter(t => {
-      return t.completed == true;
-    });
+   
+    if ( this.tabGroup.selectedIndex ==1 ) {
+      if (this.datoRubro.esNomina) {
+        this.permitirGuardar = this.formgroupNomina.valid && this.formgroupNormal.valid
 
-    let numeroMeses = seleccionados.length;
-    if (this.datoRubro.esNomina) {
-      this.permitirGuardar = this.formgroupNomina.valid && this.formgroupNormal.valid && numeroMeses > 0
+      }
+      if (this.datoRubro.esppto) {
+        this.permitirGuardar = this.formgroupFamiliar.valid && this.formgroupNormal.valid
 
+      }
+      if (this.datoRubro.esppto == false && this.datoRubro.esNomina == false) {
+        this.permitirGuardar = this.formgroupNormal.valid
+
+      }
+    } else {
+      let seleccionados = this.presupuestoCheck.subtasks.filter(t => {
+        return t.completed == true;
+      });
+
+      let numeroMeses = seleccionados.length;
+      if (this.datoRubro.esNomina) {
+        this.permitirGuardar = this.formgroupNomina.valid && this.formgroupNormal.valid && numeroMeses > 0
+
+      }
+      if (this.datoRubro.esppto) {
+        this.permitirGuardar = this.formgroupFamiliar.valid && this.formgroupNormal.valid && numeroMeses > 0
+
+      }
+      if (this.datoRubro.esppto == false && this.datoRubro.esNomina == false) {
+        this.permitirGuardar = this.formgroupNormal.valid && numeroMeses > 0
+
+      }
     }
-    if (this.datoRubro.esppto) {
-      this.permitirGuardar = this.formgroupFamiliar.valid && this.formgroupNormal.valid && numeroMeses > 0
 
-    }
-    if (this.datoRubro.esppto == false && this.datoRubro.esNomina == false) {
-      this.permitirGuardar = this.formgroupNormal.valid && numeroMeses > 0
-
-    }
 
   }
 
@@ -243,7 +283,7 @@ export class AsociaritemspresupuestoComponent implements OnInit {
   guardarData() {
     this.guardar.esNomina = this.datoRubro.esNomina;
     this.guardar.esPPTO = this.datoRubro.esppto;
-    console.log(this.guardar)
+    console.log('GUARDANDO', this.guardar)
     this.presupuestoService.guardarPresupuesto(this.guardar).subscribe(
       OK => {
 
@@ -252,7 +292,7 @@ export class AsociaritemspresupuestoComponent implements OnInit {
         this.getDetalle(null)
         this.getFamiliar();
         this.clearFormularios();
-  
+
       },
       Error => { console.log(Error) },
 
@@ -261,7 +301,7 @@ export class AsociaritemspresupuestoComponent implements OnInit {
   }
 
 
- 
+
 
   getPucsRubro(id) {
 
@@ -290,11 +330,11 @@ export class AsociaritemspresupuestoComponent implements OnInit {
     this.presupuestoService.getDetallePresupuesto(number).subscribe(
 
       OK => {
-        console.log(OK)
+      
         this.dataSourcePresupuesto = []
         if (OK.detallePresupuesto != null)
           this.dataSourcePresupuesto.push(...OK.detallePresupuesto)
-        this.changeDetectorRefs.detectChanges();
+        // this.changeDetectorRefs.detectChanges();
         this.getFamiliar();
       },
       Error => { console.log(Error) },
@@ -339,12 +379,12 @@ export class AsociaritemspresupuestoComponent implements OnInit {
       return item.id == value;
     })
 
-    this.datoRubro =  this.categoriaSeleccionada;
+    this.datoRubro = this.categoriaSeleccionada;
 
     this.pubGuardar.id = 0;
 
     this.getPucsRubro(value)
-    
+
 
 
   }
@@ -362,14 +402,14 @@ export class AsociaritemspresupuestoComponent implements OnInit {
   }
 
   datoCargo = new CargosDatum();
-  SeleccionarCargo(){
+  SeleccionarCargo() {
     const modalRef = this.modalService.open(CargoselectComponent, { size: 'lg' });
-    
+
     modalRef.result.then((result: CargosDatum) => {
       this.datoCargo = result;
       this.guardar.Cargo = result.id;
       this.guardar.idRubroPucs = this.pubGuardar.id
-     
+
 
 
     }, (reason) => {
@@ -387,7 +427,7 @@ export class AsociaritemspresupuestoComponent implements OnInit {
     modalRef.result.then((result) => {
       this.pubGuardar = result;
       this.guardar.idRubroPucs = this.pubGuardar.id
-     
+
 
 
     }, (reason) => {
@@ -410,15 +450,15 @@ export class AsociaritemspresupuestoComponent implements OnInit {
 
 
     });
-   
 
-    
+
+
 
 
   }
 
-  
-  datosIniciales (){
+
+  datosIniciales() {
     this.presupuestoService.getDataInicial(this.programaRequest.idPresupuesto).subscribe(
       OK => {
         console.log(OK)
@@ -480,7 +520,7 @@ export class AsociaritemspresupuestoComponent implements OnInit {
       numeroIdentificacion: ['', Validators.required],
       Nombre: ['', Validators.required],
       asignacion: ['', [Validators.max(100), Validators.min(1)]],
-      
+
 
     })
     this.formgroupFamiliar = this._formBuilder.group({
@@ -504,19 +544,25 @@ export class AsociaritemspresupuestoComponent implements OnInit {
 
 
 
-   clearFormularios(){
-     this.formgroupFamiliar.reset();
-     this.formgroupNormal.reset();
-     this.formgroupNomina.reset();
-     this.firstFormGroup.reset();
-     this.datoCargo= new CargosDatum();
-     this.myStepper.reset();
-   }
+  clearFormularios() {
+    this.formgroupFamiliar.reset();
+    this.formgroupNormal.reset();
+    this.formgroupNomina.reset();
+    this.firstFormGroup.reset();
+    this.datoCargo = new CargosDatum();
+    this.myStepper.reset();
+  }
 
-  updateUSAmount(event){
-    this.valorMensual =  event.target.value;
-  
- 
+  updateUSAmount(event) {
+    this.valorMensual = event.target.value;
+
+
+  }
+
+  return(event) {
+    event.target.value;
+
+
   }
 
 }

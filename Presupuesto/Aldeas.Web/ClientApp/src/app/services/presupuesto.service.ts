@@ -40,6 +40,12 @@ export class PresupuestoService {
     return this.userService.ejecutarQuery<DetallePresupuestoResponse>('/api/presupuesto/getdetalle/' + id)
   }
 
+
+ borrarDetallePresupuesto(id) {
+
+    return this.userService.ejecutarQuery<Respuesta>('/api/presupuestoanio/borrardetalle/' + id)
+  }
+
   guardarPresupuesto(data: PresupuestoRequest) {
     let json = JSON.stringify(data);
     let params = '' + json;

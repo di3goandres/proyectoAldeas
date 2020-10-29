@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { DetallePresupuestoResponse, Detalle } from 'src/app/models/presupuesto/detalle.presupuesto.response';
 import { MatPaginator } from '@angular/material/paginator';
@@ -6,6 +6,9 @@ import { MatSort } from '@angular/material/sort';
 import { ActualizardetalleComponent } from '../actualizardetalle/actualizardetalle.component';
 import { PresupuestoService } from '../../../services/presupuesto.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { BorrardetallepresupuestoComponent } from '../borrardetallepresupuesto/borrardetallepresupuesto.component';
+import { RegistroexitosoComponent } from '../../00-Comunes/registroexitoso/registroexitoso.component';
+import { NoexitosoComponent } from '../../00-Comunes/noexitoso/noexitoso.component';
 
 @Component({
   selector: 'app-detallepresupuestoprograma',
@@ -13,7 +16,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./detallepresupuestoprograma.component.css']
 })
 export class DetallepresupuestoprogramaComponent implements OnInit {
-  @Input() detalle: Detalle[] = []
+  @Input() detalle: Detalle[] = [];
+  @Output() elimine = new EventEmitter<boolean>();
   dataSource: MatTableDataSource<Detalle>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -22,7 +26,7 @@ export class DetallepresupuestoprogramaComponent implements OnInit {
     'nombreCuenta', 'cuentaSIIGO', 'Enero', 'Febrero',
     'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre',
     'Octubre', 'Noviembre', 'Diciembre', 'total',
-    'detalleGasto', 'facility', 'cuentaCotable', 'notaIngles', 'editar'];
+    'detalleGasto', 'facility', 'cuentaCotable', 'notaIngles', 'editar', 'borrar'];
   constructor(
 
     private service: PresupuestoService,
@@ -51,6 +55,58 @@ export class DetallepresupuestoprogramaComponent implements OnInit {
     modalRef.result.then((result) => {
 
       this.getDetalle(result)
+
+
+    }, (reason) => {
+
+      if (reason === 'OK') {
+
+
+      }
+    });
+  }
+
+  openExitoso() {
+    const modalRef = this.modalService.open(RegistroexitosoComponent,
+      { size: 'md' });
+
+    modalRef.result.then((result) => {
+
+
+    }, (reason) => {
+
+
+    });
+  }
+
+  openNoExitoso() {
+    const modalRef = this.modalService.open(NoexitosoComponent,
+      { size: 'md' });
+
+    modalRef.result.then((result) => {
+
+
+    }, (reason) => {
+
+
+    });
+  }
+  async Borrar(element: Detalle) {
+    const modalRef = this.modalService.open(BorrardetallepresupuestoComponent, { size: 'md' });
+
+    modalRef.result.then((result) => {
+
+      if (result == "BORRAR") {
+
+        this.service.borrarDetallePresupuesto(element.id).subscribe(
+          OK => {
+            this.openExitoso()
+            this.elimine.emit(true);
+          },
+          Error => { this.openNoExitoso() },
+
+        )
+      }
 
 
     }, (reason) => {

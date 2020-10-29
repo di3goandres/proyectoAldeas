@@ -1,6 +1,6 @@
 USE [Presupuesto]
 GO
-/****** Object:  Table [dbo].[cargos]    Script Date: 30/09/2020 10:42:49 p. m. ******/
+/****** Object:  Table [dbo].[cargos]    Script Date: 5/10/2020 8:13:20 a. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -16,7 +16,7 @@ CREATE TABLE [dbo].[cargos](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Cecos]    Script Date: 30/09/2020 10:42:49 p. m. ******/
+/****** Object:  Table [dbo].[Cecos]    Script Date: 5/10/2020 8:13:20 a. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -39,7 +39,7 @@ CREATE TABLE [dbo].[Cecos](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Financiadores]    Script Date: 30/09/2020 10:42:49 p. m. ******/
+/****** Object:  Table [dbo].[Financiadores]    Script Date: 5/10/2020 8:13:20 a. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -56,26 +56,49 @@ CREATE TABLE [dbo].[Financiadores](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Presupuesto]    Script Date: 30/09/2020 10:42:49 p. m. ******/
+/****** Object:  Table [dbo].[Presupuesto]    Script Date: 5/10/2020 8:13:20 a. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Presupuesto](
 	[id] [bigint] IDENTITY(1,1) NOT NULL,
+	[idPresupuestoAnio] [bigint] NOT NULL,
 	[idPrograma] [bigint] NOT NULL,
+	[idFinanciador] [bigint] NOT NULL,
 	[Anio] [int] NOT NULL,
 	[CoberturaAnual] [decimal](18, 5) NOT NULL,
 	[CoberturaMensual] [decimal](18, 5) NOT NULL,
 	[CoberturaMensualEsperada] [decimal](18, 5) NOT NULL,
 	[CoberturasCasas] [decimal](18, 5) NOT NULL,
+	[fecha_creacion] [datetime] NOT NULL,
+	[fecha_actualizacion] [datetime] NOT NULL,
  CONSTRAINT [PK_Presupuesto] PRIMARY KEY CLUSTERED 
 (
 	[id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[PresupuestoPrograma]    Script Date: 30/09/2020 10:42:49 p. m. ******/
+/****** Object:  Table [dbo].[PresupuestoAnio]    Script Date: 5/10/2020 8:13:20 a. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[PresupuestoAnio](
+	[id] [bigint] IDENTITY(1,1) NOT NULL,
+	[idPrograma] [bigint] NOT NULL,
+	[Anio] [int] NOT NULL,
+	[Actual] [bit] NOT NULL,
+	[numeroVersion] [int] NOT NULL,
+	[fecha_creacion] [datetime] NOT NULL,
+	[fecha_actualizacion] [datetime] NOT NULL,
+ CONSTRAINT [PK_PresupuestoAnio] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[PresupuestoPrograma]    Script Date: 5/10/2020 8:13:20 a. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -89,7 +112,7 @@ CREATE TABLE [dbo].[PresupuestoPrograma](
 	[EsPPTO] [bit] NOT NULL,
 	[NumeroIdentificacion] [bigint] NULL,
 	[Nombre] [varchar](max) NULL,
-	[Cargo] [varchar](max) NULL,
+	[idCargo] [int] NULL,
 	[Asignacion] [int] NULL,
 	[NoCasa] [int] NULL,
 	[NoKids] [int] NULL,
@@ -113,7 +136,7 @@ CREATE TABLE [dbo].[PresupuestoPrograma](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[programas]    Script Date: 30/09/2020 10:42:49 p. m. ******/
+/****** Object:  Table [dbo].[programas]    Script Date: 5/10/2020 8:13:21 a. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -133,7 +156,7 @@ CREATE TABLE [dbo].[programas](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[pucs]    Script Date: 30/09/2020 10:42:49 p. m. ******/
+/****** Object:  Table [dbo].[pucs]    Script Date: 5/10/2020 8:13:21 a. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -162,7 +185,7 @@ CREATE TABLE [dbo].[pucs](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[rubros]    Script Date: 30/09/2020 10:42:49 p. m. ******/
+/****** Object:  Table [dbo].[rubros]    Script Date: 5/10/2020 8:13:21 a. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -181,7 +204,7 @@ CREATE TABLE [dbo].[rubros](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[tipo_programa]    Script Date: 30/09/2020 10:42:49 p. m. ******/
+/****** Object:  Table [dbo].[tipo_programa]    Script Date: 5/10/2020 8:13:21 a. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -198,7 +221,7 @@ CREATE TABLE [dbo].[tipo_programa](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[usuario_programa]    Script Date: 30/09/2020 10:42:49 p. m. ******/
+/****** Object:  Table [dbo].[usuario_programa]    Script Date: 5/10/2020 8:13:21 a. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -213,7 +236,7 @@ CREATE TABLE [dbo].[usuario_programa](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[usuarios_administradores]    Script Date: 30/09/2020 10:42:49 p. m. ******/
+/****** Object:  Table [dbo].[usuarios_administradores]    Script Date: 5/10/2020 8:13:21 a. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -256,10 +279,25 @@ REFERENCES [dbo].[programas] ([id])
 GO
 ALTER TABLE [dbo].[Cecos] CHECK CONSTRAINT [FK_Cecos_programas]
 GO
+ALTER TABLE [dbo].[Presupuesto]  WITH CHECK ADD  CONSTRAINT [FK_Presupuesto_PresupuestoAnio] FOREIGN KEY([idPresupuestoAnio])
+REFERENCES [dbo].[PresupuestoAnio] ([id])
+GO
+ALTER TABLE [dbo].[Presupuesto] CHECK CONSTRAINT [FK_Presupuesto_PresupuestoAnio]
+GO
 ALTER TABLE [dbo].[Presupuesto]  WITH CHECK ADD  CONSTRAINT [FK_Presupuesto_programas] FOREIGN KEY([idPrograma])
 REFERENCES [dbo].[programas] ([id])
 GO
 ALTER TABLE [dbo].[Presupuesto] CHECK CONSTRAINT [FK_Presupuesto_programas]
+GO
+ALTER TABLE [dbo].[PresupuestoAnio]  WITH CHECK ADD  CONSTRAINT [FK_PresupuestoAnio_programas] FOREIGN KEY([idPrograma])
+REFERENCES [dbo].[programas] ([id])
+GO
+ALTER TABLE [dbo].[PresupuestoAnio] CHECK CONSTRAINT [FK_PresupuestoAnio_programas]
+GO
+ALTER TABLE [dbo].[PresupuestoPrograma]  WITH CHECK ADD  CONSTRAINT [FK_PresupuestoPrograma_cargos] FOREIGN KEY([idCargo])
+REFERENCES [dbo].[cargos] ([id])
+GO
+ALTER TABLE [dbo].[PresupuestoPrograma] CHECK CONSTRAINT [FK_PresupuestoPrograma_cargos]
 GO
 ALTER TABLE [dbo].[PresupuestoPrograma]  WITH CHECK ADD  CONSTRAINT [FK_PresupuestoPrograma_Cecos] FOREIGN KEY([IdProgramaCecos])
 REFERENCES [dbo].[Cecos] ([id])

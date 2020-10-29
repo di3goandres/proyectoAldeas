@@ -73,6 +73,7 @@ import { FinanciadorfaltanteComponent } from './05-Presupuesto/Gestion/financiad
 import { AsociaritemspresupuestoComponent } from './05-Presupuesto/Gestion/asociaritemspresupuesto/asociaritemspresupuesto.component';
 import { VeritemspresupuestonioComponent } from './05-Presupuesto/Gestion/veritemspresupuestonio/veritemspresupuestonio.component';
 import { CargoselectComponent } from './07-Cargos/cargoselect/cargoselect.component';
+import { BorrardetallepresupuestoComponent } from './05-Presupuesto/borrardetallepresupuesto/borrardetallepresupuesto.component';
 
 @NgModule({
   declarations: [LoginComponent, HomeComponent,
@@ -90,7 +91,7 @@ import { CargoselectComponent } from './07-Cargos/cargoselect/cargoselect.compon
     DetalleOtrospresupuestoprogramaComponent, GenerarPresupuestoComponent,
     ActualizarPresupuestoComponent, ActualizardetalleComponent, ListausuariosComponent,
     AgregarusuarioComponent, NoexitosoComponent, VerprogramasasociadosComponent, AsociarprogramasComponent,
-    ProgramatipoComponent, ListacargosComponent, ActualizarcargoComponent, AgregarcargoComponent, ListaFinanciadoresComponent, GestionarprogramasComponent, AsociarfinanciadoranioComponent, FinanciadorfaltanteComponent, AsociaritemspresupuestoComponent, VeritemspresupuestonioComponent, CargoselectComponent],
+    ProgramatipoComponent, ListacargosComponent, ActualizarcargoComponent, AgregarcargoComponent, ListaFinanciadoresComponent, GestionarprogramasComponent, AsociarfinanciadoranioComponent, FinanciadorfaltanteComponent, AsociaritemspresupuestoComponent, VeritemspresupuestonioComponent, CargoselectComponent, BorrardetallepresupuestoComponent],
   imports: [
 
     CommonModule,

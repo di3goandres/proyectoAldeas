@@ -112,6 +112,29 @@ namespace ApiRestAldeasPresupuesto.Helper
         }
 
 
+        public static dynamic Borrar(IContextFactory factory, IOptions<ConnectionDB> connection, long Id)
+        {
+            long id = 0;
+            using (Aldeas_Context db = factory.Create(connection))
+            {
+
+                id = Id;
+                var data = from pro in db.TbPresupuestosProgramas
+                           where pro.id == Id
+
+                           select pro;
+                if (data.Any())
+                {
+                    db.TbPresupuestosProgramas.Remove(data.First());
+                    db.SaveChanges();
+                }
+
+            }
+            return new { id = id, status = id == 0 ? "error" : "OK", code = 200 };
+        }
+
+
+
         public static dynamic ConsultarPresupuestoAnio(IContextFactory factory, IOptions<ConnectionDB> connection, long id)
         {
             PresupuestoByProgramResponse retorno = new PresupuestoByProgramResponse();

@@ -57,5 +57,13 @@ namespace ApiRestAldeasPresupuesto.Controllers
         {
             return _dataModelRepository.ConsultarFinanciadorFaltante(id);
         }
+
+
+        [HttpGet]
+        [Route("/api/presupuestoanio/borrardetalle/{id}")]
+        public dynamic BorrarDetalle(long id)
+        {
+            return _dataModelRepository.Borrar(id);
+        }
     }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Detalle } from 'src/app/models/presupuesto/detalle.presupuesto.response';
 import { MatPaginator } from '@angular/material/paginator';
@@ -6,6 +6,9 @@ import { MatSort } from '@angular/material/sort';
 import { PresupuestoService } from '../../../services/presupuesto.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ActualizardetalleComponent } from '../actualizardetalle/actualizardetalle.component';
+import { BorrardetallepresupuestoComponent } from '../borrardetallepresupuesto/borrardetallepresupuesto.component';
+import { NoexitosoComponent } from '../../00-Comunes/noexitoso/noexitoso.component';
+import { RegistroexitosoComponent } from '../../00-Comunes/registroexitoso/registroexitoso.component';
 
 @Component({
   selector: 'app-detalle-familiarpresupuestoprograma',
@@ -14,6 +17,7 @@ import { ActualizardetalleComponent } from '../actualizardetalle/actualizardetal
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DetalleFamiliarpresupuestoprogramaComponent implements OnInit {
+  @Output() elimine = new EventEmitter<boolean>();
 
   @Input() detalle: Detalle[] = []
   dataSource: MatTableDataSource<Detalle>;
@@ -24,7 +28,7 @@ export class DetalleFamiliarpresupuestoprogramaComponent implements OnInit {
     'nombreCuenta', 'cuentaSIIGO', 'Enero', 'Febrero',
     'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre',
     'Octubre', 'Noviembre', 'Diciembre', 'total',
-    'detalleGasto', 'facility', 'cuentaCotable', 'notaIngles', 'editar'];
+    'detalleGasto', 'facility', 'cuentaCotable', 'notaIngles', 'editar', 'borrar'];
   constructor(
     private service: PresupuestoService,
     private modalService: NgbModal
@@ -85,6 +89,56 @@ export class DetalleFamiliarpresupuestoprogramaComponent implements OnInit {
 
     )
   }
+  openExitoso() {
+    const modalRef = this.modalService.open(RegistroexitosoComponent,
+      { size: 'md' });
 
+    modalRef.result.then((result) => {
+
+
+    }, (reason) => {
+
+
+    });
+  }
+
+  openNoExitoso() {
+    const modalRef = this.modalService.open(NoexitosoComponent,
+      { size: 'md' });
+
+    modalRef.result.then((result) => {
+
+
+    }, (reason) => {
+
+
+    });
+  }
+  async Borrar(element: Detalle) {
+    const modalRef = this.modalService.open(BorrardetallepresupuestoComponent, { size: 'md' });
+
+    modalRef.result.then((result) => {
+
+      if (result == "BORRAR") {
+
+        this.service.borrarDetallePresupuesto(element.id).subscribe(
+          OK => {
+            this.openExitoso()
+            this.elimine.emit(true);
+          },
+          Error => { this.openNoExitoso() },
+
+        )
+      }
+
+
+    }, (reason) => {
+
+      if (reason === 'OK') {
+
+
+      }
+    });
+  }
 
 }

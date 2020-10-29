@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, Output, EventEmitter } from '@angular/core';
 import { Detalle } from 'src/app/models/presupuesto/detalle.presupuesto.response';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
@@ -6,6 +6,9 @@ import { MatPaginator } from '@angular/material/paginator';
 import { PresupuestoService } from '../../../services/presupuesto.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ActualizardetalleComponent } from '../actualizardetalle/actualizardetalle.component';
+import { BorrardetallepresupuestoComponent } from '../borrardetallepresupuesto/borrardetallepresupuesto.component';
+import { RegistroexitosoComponent } from '../../00-Comunes/registroexitoso/registroexitoso.component';
+import { NoexitosoComponent } from '../../00-Comunes/noexitoso/noexitoso.component';
 
 @Component({
   selector: 'app-detalle-otrospresupuestoprograma',
@@ -13,7 +16,7 @@ import { ActualizardetalleComponent } from '../actualizardetalle/actualizardetal
   styleUrls: ['./detalle-otrospresupuestoprograma.component.css']
 })
 export class DetalleOtrospresupuestoprogramaComponent implements OnInit {
-
+  @Output() elimine = new EventEmitter<boolean>();
   @Input() detalle: Detalle[] = []
   dataSource: MatTableDataSource<Detalle>;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -22,7 +25,7 @@ export class DetalleOtrospresupuestoprogramaComponent implements OnInit {
   'subCentroCosto', 'nombreRubro',
 'nombreCuenta', 'cuentaSIIGO', 'Enero', 'Febrero',
 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre',
-'Octubre', 'Noviembre', 'Diciembre' ,'total' ,'detalleGasto', 'facility', 'cuentaCotable', 'notaIngles', 'editar'];
+'Octubre', 'Noviembre', 'Diciembre' ,'total' ,'detalleGasto', 'facility', 'cuentaCotable', 'notaIngles', 'editar', 'borrar'];
   constructor(
     private service: PresupuestoService,
     private modalService: NgbModal
@@ -81,5 +84,57 @@ export class DetalleOtrospresupuestoprogramaComponent implements OnInit {
       Error => { console.log(Error) },
 
     )
+  }
+
+  openExitoso() {
+    const modalRef = this.modalService.open(RegistroexitosoComponent,
+      { size: 'md' });
+
+    modalRef.result.then((result) => {
+
+
+    }, (reason) => {
+
+
+    });
+  }
+
+  openNoExitoso() {
+    const modalRef = this.modalService.open(NoexitosoComponent,
+      { size: 'md' });
+
+    modalRef.result.then((result) => {
+
+
+    }, (reason) => {
+
+
+    });
+  }
+  async Borrar(element: Detalle) {
+    const modalRef = this.modalService.open(BorrardetallepresupuestoComponent, { size: 'md' });
+
+    modalRef.result.then((result) => {
+
+      if (result == "BORRAR") {
+
+        this.service.borrarDetallePresupuesto(element.id).subscribe(
+          OK => {
+            this.openExitoso()
+            this.elimine.emit(true);
+          },
+          Error => { this.openNoExitoso() },
+
+        )
+      }
+
+
+    }, (reason) => {
+
+      if (reason === 'OK') {
+
+
+      }
+    });
   }
 }

@@ -1,23 +1,23 @@
-<div class="container" *ngIf="programas">
+<div class="container" *ngIf="programas!=null">
     <mat-card>
         <mat-card-header>
             <mat-card-title>PRESUPUESTO PARA EL PROGRAMA: {{programas.nombre|uppercase}} - Financiador
                 {{programas.financiador|uppercase}}</mat-card-title>
-          
+
         </mat-card-header>
         <mat-card-content>
-            <mat-horizontal-stepper [linear]="true" #stepper>
+            <mat-horizontal-stepper [linear]="false" #stepper>
 
                 <mat-step [stepControl]="firstFormGroup">
                     <form [formGroup]="firstFormGroup">
-        
+
                         <ng-template matStepLabel>Seleccion Servicio</ng-template>
                         <mat-card class="example-card">
-                          
-        
+
+
                             <mat-card-content>
                                 <div class="row">
-        
+
                                     <div class="col-6">
                                         <mat-form-field appearance="fill">
                                             <mat-label>Selecciona Un Servicio</mat-label>
@@ -29,25 +29,26 @@
                                                 </mat-option>
                                             </mat-select>
                                         </mat-form-field>
-        
+
                                     </div>
-        
+
                                     <div class="col-6">
                                         <mat-form-field appearance="fill">
                                             <mat-label>Selecciona Un Financiador</mat-label>
                                             <mat-select formControlName="Servicio"
                                                 (selectionChange)="onChangeServicio($event.value)" required>
-        
-                                                <mat-option *ngFor="let subceco of subCentrosSeleccionado" [value]="subceco.id">
+
+                                                <mat-option *ngFor="let subceco of subCentrosSeleccionado"
+                                                    [value]="subceco.id">
                                                     {{subceco.subCentro}} - {{subceco.nombreSubCentro | uppercase}}
                                                 </mat-option>
                                             </mat-select>
                                         </mat-form-field>
-        
+
                                     </div>
-        
+
                                 </div>
-        
+
                                 <div class="row">
                                     <div class="col-5">
                                         <mat-form-field appearance="fill">
@@ -59,7 +60,7 @@
                                                 </mat-option>
                                             </mat-select>
                                         </mat-form-field>
-        
+
                                     </div>
                                     <div class="col-5" *ngIf="pubGuardar.id!=0">
                                         <mat-form-field appearance="fill">
@@ -67,47 +68,47 @@
                                             <input matInput
                                                 [(value)]="pubGuardar.tipo + ' - '+ pubGuardar.cuentaSIIGO + ' - '+pubGuardar.descripcionCuenta"
                                                 disabled="true">
-        
+
                                         </mat-form-field>
-        
+
                                     </div>
                                     <div class="col-2" *ngIf="pubGuardar.id!=0">
                                         <button mat-mat-raised-button class="btn  buttton-aldea btn-success pull-right"
                                             (click)="SeleccionarPUC()">Cambiar PUC</button>
-        
+
                                     </div>
                                     <div class="col-5" *ngIf="pubGuardar.id==0">
-        
+
                                         <button mat-mat-raised-button class="btn  buttton-aldea btn-success pull-right"
                                             (click)="SeleccionarPUC()">Seleccionar PUC</button>
-        
+
                                     </div>
-        
-        
-        
+
+
+
                                 </div>
-        
+
                                 <mat-divider></mat-divider>
-        
+
                                 <mat-divider></mat-divider>
-        
-        
+
+
                                 <mat-divider></mat-divider>
-        
-        
+
+
                                 <mat-divider></mat-divider>
-        
+
                             </mat-card-content>
                             <mat-card-actions>
                                 <div>
-        
+
                                     <button mat-raised-button color="warn" matStepperNext
                                         [disabled]="!(this.firstFormGroup.invalid== false && this.pubGuardar.id != 0 )">Continuar</button>
                                 </div>
                             </mat-card-actions>
                         </mat-card>
                     </form>
-        
+
                 </mat-step>
                 <mat-step [stepControl]="secondFormGroup">
                     <ng-template matStepLabel>Agregar Presupuesto</ng-template>
@@ -117,23 +118,24 @@
                             <mat-card-title>Agregar Presupuesto: {{datoRubro.nombre | uppercase}}</mat-card-title>
                             <mat-card-subtitle>Agregar</mat-card-subtitle>
                         </mat-card-header>
-        
+
                         <mat-card-content>
-        
-        
+
+
                             <div *ngIf="datoRubro.esNomina === true">
                                 <form [formGroup]="formgroupNomina">
                                     <div class="row">
-        
+
                                         <div class="col-6 tabla">
                                             <mat-form-field appearance="fill">
                                                 <mat-label>No. Identificación</mat-label>
                                                 <input matInput placeholder="Número de Identificación" type="number"
-                                                    [(ngModel)]="guardar.NumeroIdentificacion" (change)="validarFomularios()"
+                                                    [(ngModel)]="guardar.NumeroIdentificacion"
+                                                    (change)="validarFomularios()"
                                                     formControlName="numeroIdentificacion" required>
                                             </mat-form-field>
                                         </div>
-        
+
                                         <div class="col-6 tabla">
                                             <mat-form-field appearance="fill">
                                                 <mat-label>Nombre</mat-label>
@@ -141,245 +143,375 @@
                                                     (change)="validarFomularios()" formControlName="Nombre" required>
                                             </mat-form-field>
                                         </div>
-        
+
                                     </div>
-        
+
                                     <div class="row">
-        
+
                                         <div class="col-6 tabla">
                                             <mat-form-field appearance="fill">
                                                 <mat-label>% Asignación</mat-label>
-                                                <input matInput placeholder="% Asignación" type="number" min="1" max="100"
-                                                    (change)="validarFomularios()" [(ngModel)]="guardar.Asignacion"
-                                                    formControlName="asignacion" required>
+                                                <input matInput placeholder="% Asignación" type="number" min="1"
+                                                    max="100" (change)="validarFomularios()"
+                                                    [(ngModel)]="guardar.Asignacion" formControlName="asignacion"
+                                                    required>
                                             </mat-form-field>
                                         </div>
-        
+
                                         <div class="col-6 tabla">
-                                           
-                                                <button mat-mat-raised-button class="btn  buttton-aldea btn-success pull-right"
-                                                    (click)="SeleccionarCargo()">Seleccionar un cargo</button>
-                                                    <div class="col-xs-12 col-12  form-group" *ngIf="datoCargo.id!=0">
-                                                        <label>Cargo</label>
-                                
-                                                        <input disabled="true" class="form-control" [(value)]="datoCargo.cargo" />
-                                                    </div>
-                                           
-                                           
+
+                                            <button mat-mat-raised-button
+                                                class="btn  buttton-aldea btn-success pull-right"
+                                                (click)="SeleccionarCargo()">Seleccionar un cargo</button>
+                                            <div class="col-xs-12 col-12  form-group" *ngIf="datoCargo.id!=0">
+                                                <label>Cargo</label>
+
+                                                <input disabled="true" class="form-control"
+                                                    [(value)]="datoCargo.cargo" />
+                                            </div>
+
+
                                         </div>
-        
+
                                     </div>
                                 </form>
                             </div>
-        
+
                             <div *ngIf="datoRubro.esppto === true">
                                 <form [formGroup]="formgroupFamiliar">
                                     <div class="row">
-        
+
                                         <div class="col-6 tabla">
                                             <mat-form-field appearance="fill">
                                                 <mat-label>No. de Casa</mat-label>
-                                                <input matInput placeholder="Número de Identificación" type="number" min="1"
-                                                    max="15" (ngModelChange)="validarFomularios()" [(ngModel)]="guardar.NoCasa"
-                                                    formControlName="NoCasa" required>
+                                                <input matInput placeholder="Número de Identificación" type="number"
+                                                    min="1" max="15" (ngModelChange)="validarFomularios()"
+                                                    [(ngModel)]="guardar.NoCasa" formControlName="NoCasa" required>
                                             </mat-form-field>
                                         </div>
-        
+
                                         <div class="col-6 tabla">
                                             <mat-form-field appearance="fill">
                                                 <mat-label>No. de Niños</mat-label>
-                                                <input matInput placeholder="Nombre" (ngModelChange)="validarFomularios()"
-                                                    type="number" min="1" max="15" [(ngModel)]="guardar.NoKids"
-                                                    formControlName="NoKids" required>
+                                                <input matInput placeholder="Nombre"
+                                                    (ngModelChange)="validarFomularios()" type="number" min="1" max="15"
+                                                    [(ngModel)]="guardar.NoKids" formControlName="NoKids" required>
                                             </mat-form-field>
                                         </div>
-        
+
                                     </div>
-        
-        
+
+
                                 </form>
                             </div>
-        
+
                             <form [formGroup]="formgroupNormal">
                                 <div class="row">
-        
+
                                     <div class="col-12 tabla">
                                         <mat-form-field appearance="fill">
                                             <mat-label>Valor Anual</mat-label>
-                                            <input matInput placeholder="Valor Anual"
-                                            mvndrMatCurrencyFormat 
-                                            (blur)="updateUSAmount($event)"
-                                            [currencyCode]="'USD'" type="text" [(ngModel)]="valorMensual"
-                                                (ngModelChange)="Cambiar()" formControlName="valor" required>
+                                            <input matInput placeholder="Valor Anual" mvndrMatCurrencyFormat
+                                                (blur)="updateUSAmount($event)" [currencyCode]="'USD'" type="text"
+                                                [(ngModel)]="valorMensual" (ngModelChange)="Cambiar()"
+                                                formControlName="valor" required>
                                         </mat-form-field>
                                     </div>
-        
-        
+
+
                                 </div>
-        
+
                                 <div class="row">
-        
+
                                     <div class="col-12 tabla">
                                         <mat-form-field appearance="fill">
                                             <mat-label>Observaciones del Rubro</mat-label>
-                                            <input matInput placeholder="Observaciones del Rubro" (ngModelChange)="validarFomularios()"
-                                                [(ngModel)]="guardar.DetalleGasto" formControlName="detalleGasto" required>
+                                            <input matInput placeholder="Observaciones del Rubro"
+                                                (ngModelChange)="validarFomularios()" [(ngModel)]="guardar.DetalleGasto"
+                                                formControlName="detalleGasto" required>
                                         </mat-form-field>
                                     </div>
-        
-        
+
+
                                 </div>
-        
-        
+
+
                                 <div class="row" *ngIf="pubGuardar.requiereNotaIngles === true">
-        
+
                                     <div class="col-12 tabla">
                                         <mat-form-field appearance="fill">
                                             <mat-label>Nota Ingles</mat-label>
-                                            <input matInput placeholder="Nota Ingles" (ngModelChange)="validarFomularios()"
-                                                [(ngModel)]="guardar.NotaIngles" formControlName="Ingles" required>
+                                            <input matInput placeholder="Nota Ingles"
+                                                (ngModelChange)="validarFomularios()" [(ngModel)]="guardar.NotaIngles"
+                                                formControlName="Ingles" required>
                                         </mat-form-field>
                                     </div>
-        
-        
+
+
                                 </div>
-        
-        
+
+
                             </form>
-        
-                            <div class="row">
-                                <div class="col-12">
-                                    <app-listcheck [task]="presupuestoCheck" Nombre='Presupuesto Anual'
-                                        (datoSalid)='onNotificar($event, "Etnico")'></app-listcheck>
-                                </div>
-                            </div>
-                            <div class="mat-elevation-z8  table-responsive">
-                                <table id="customers" #pucs mat-table [dataSource]="dataSource" matSort style="width:100%;">
-                                    <!-- Progress Column -->
-                                    <ng-container matColumnDef="Enero">
-                                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Ene </th>
-                                        <td mat-cell *matCellDef="let row"> ${{row.Enero|number}} </td>
-                                    </ng-container>
-        
-                                    <!-- Name Column -->
-                                    <ng-container matColumnDef="Febrero">
-                                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Feb </th>
-                                        <td mat-cell *matCellDef="let row"> ${{row.Febrero|number}} </td>
-                                    </ng-container>
-        
-                                    <!-- Color Column -->
-                                    <ng-container matColumnDef="Marzo">
-                                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Mar</th>
-                                        <td mat-cell *matCellDef="let row">$ {{row.Marzo|number}} </td>
-                                    </ng-container>
-                                    <ng-container matColumnDef="Abril">
-                                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Abr </th>
-                                        <td mat-cell *matCellDef="let row"> ${{row.Abril |number}} </td>
-                                    </ng-container>
-                                    <ng-container matColumnDef="Mayo">
-                                        <th mat-header-cell *matHeaderCellDef mat-sort-header>May </th>
-                                        <td mat-cell *matCellDef="let row"> ${{row.Mayo|number}} </td>
-                                    </ng-container>
-                                    <ng-container matColumnDef="Junio">
-                                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Jun </th>
-                                        <td mat-cell *matCellDef="let row"> ${{row.Junio|number}} </td>
-                                    </ng-container>
-        
-                                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        
-        
-                                </table>
-        
-                                <table id="customers" mat-table [dataSource]="dataSource" style="width:100%;">
-        
-                                    <ng-container matColumnDef="Julio">
-                                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Jul </th>
-                                        <td mat-cell *matCellDef="let row"> ${{row.Julio|number}} </td>
-                                    </ng-container>
-        
-                                    <ng-container matColumnDef="Agosto">
-                                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Ago </th>
-                                        <td mat-cell *matCellDef="let row"> ${{row.Agosto|number}} </td>
-                                    </ng-container>
-                                    <ng-container matColumnDef="Septiembre">
-                                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Sept </th>
-                                        <td mat-cell *matCellDef="let row"> ${{row.Septiembre|number}} </td>
-                                    </ng-container>
-        
-                                    <ng-container matColumnDef="Octubre">
-                                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Oct </th>
-                                        <td mat-cell *matCellDef="let row"> ${{row.Octubre|number}} </td>
-                                    </ng-container>
-                                    <ng-container matColumnDef="Noviembre">
-                                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nov </th>
-                                        <td mat-cell *matCellDef="let row"> ${{row.Noviembre|number}} </td>
-                                    </ng-container>
-        
-                                    <ng-container matColumnDef="Diciembre">
-                                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Dic </th>
-                                        <td mat-cell *matCellDef="let row"> ${{row.Diciembre|number}} </td>
-                                    </ng-container>
-        
-        
-                                    <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
-                                    <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
-                                </table>
-        
-        
-                            </div>
-        
-        
+
+
+
+                            <mat-tab-group>
+                                <mat-tab label="Por Meses" (click)="tabActivo(false)">
+
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <app-listcheck [task]="presupuestoCheck" Nombre='Presupuesto Anual'
+                                                (datoSalid)='onNotificar($event, "Etnico")'></app-listcheck>
+                                        </div>
+                                    </div>
+                                    <div class="mat-elevation-z8  table-responsive">
+                                        <table id="customers" #pucs mat-table [dataSource]="dataSource" matSort
+                                            style="width:100%;">
+                                            <!-- Progress Column -->
+                                            <ng-container matColumnDef="Enero">
+                                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Ene </th>
+                                                <td mat-cell *matCellDef="let row"> ${{row.Enero|number}} </td>
+                                            </ng-container>
+
+                                            <!-- Name Column -->
+                                            <ng-container matColumnDef="Febrero">
+                                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Feb </th>
+                                                <td mat-cell *matCellDef="let row"> ${{row.Febrero|number}} </td>
+                                            </ng-container>
+
+                                            <!-- Color Column -->
+                                            <ng-container matColumnDef="Marzo">
+                                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Mar</th>
+                                                <td mat-cell *matCellDef="let row">$ {{row.Marzo|number}} </td>
+                                            </ng-container>
+                                            <ng-container matColumnDef="Abril">
+                                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Abr </th>
+                                                <td mat-cell *matCellDef="let row"> ${{row.Abril |number}} </td>
+                                            </ng-container>
+                                            <ng-container matColumnDef="Mayo">
+                                                <th mat-header-cell *matHeaderCellDef mat-sort-header>May </th>
+                                                <td mat-cell *matCellDef="let row"> ${{row.Mayo|number}} </td>
+                                            </ng-container>
+                                            <ng-container matColumnDef="Junio">
+                                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Jun </th>
+                                                <td mat-cell *matCellDef="let row"> ${{row.Junio|number}} </td>
+                                            </ng-container>
+
+                                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+
+                                        </table>
+
+                                        <table id="customers" mat-table [dataSource]="dataSource" style="width:100%;">
+
+                                            <ng-container matColumnDef="Julio">
+                                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Jul </th>
+                                                <td mat-cell *matCellDef="let row"> ${{row.Julio|number}} </td>
+                                            </ng-container>
+
+                                            <ng-container matColumnDef="Agosto">
+                                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Ago </th>
+                                                <td mat-cell *matCellDef="let row"> ${{row.Agosto|number}} </td>
+                                            </ng-container>
+                                            <ng-container matColumnDef="Septiembre">
+                                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Sept </th>
+                                                <td mat-cell *matCellDef="let row"> ${{row.Septiembre|number}} </td>
+                                            </ng-container>
+
+                                            <ng-container matColumnDef="Octubre">
+                                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Oct </th>
+                                                <td mat-cell *matCellDef="let row"> ${{row.Octubre|number}} </td>
+                                            </ng-container>
+                                            <ng-container matColumnDef="Noviembre">
+                                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Nov </th>
+                                                <td mat-cell *matCellDef="let row"> ${{row.Noviembre|number}} </td>
+                                            </ng-container>
+
+                                            <ng-container matColumnDef="Diciembre">
+                                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Dic </th>
+                                                <td mat-cell *matCellDef="let row"> ${{row.Diciembre|number}} </td>
+                                            </ng-container>
+
+
+                                            <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+                                            <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
+                                        </table>
+
+
+                                    </div>
+                                </mat-tab>
+                                <mat-tab label="Manual" (click)="tabActivo(true)">
+
+                                    <mat-grid-list cols="6" rowHeight="2:1">
+                                        <mat-grid-tile>
+
+                                            <mat-form-field class="example-full-width" >
+                                                <mat-label>Enero</mat-label>
+                                                <input matInput placeholder="Enero" [(ngModel)]="guardar.Enero"
+                                                    (ngModelChange)="Actualizar()" type="number">
+                                            </mat-form-field>
+
+
+                                        </mat-grid-tile>
+                                        <mat-grid-tile>
+
+                                            <mat-form-field class="example-full-width">
+                                                <mat-label>Febrero</mat-label>
+                                                <input matInput placeholder="Febrero" [(ngModel)]="guardar.Febrero"
+                                                    (ngModelChange)="Actualizar()" type="number">
+                                            </mat-form-field>
+
+
+                                        </mat-grid-tile>
+                                        <mat-grid-tile>
+
+                                            <mat-form-field class="example-full-width">
+                                                <mat-label>Marzo</mat-label>
+                                                <input matInput placeholder="Marzo" [(ngModel)]="guardar.Marzo"
+                                                    (ngModelChange)="Actualizar()" type="text">
+                                            </mat-form-field>
+
+
+                                        </mat-grid-tile>
+                                        <mat-grid-tile>
+                                            <mat-form-field class="example-full-width">
+                                                <mat-label>Abril</mat-label>
+                                                <input matInput placeholder="Abril" [(ngModel)]="guardar.Abril"
+                                                    (ngModelChange)="Actualizar()" type="number">
+                                            </mat-form-field>
+                                        </mat-grid-tile>
+                                        <mat-grid-tile>
+                                            <mat-form-field class="example-full-width">
+                                                <mat-label>Mayo</mat-label>
+                                                <input matInput placeholder="Mayo" [(ngModel)]="guardar.Mayo"
+                                                    (ngModelChange)="Actualizar()" type="text">
+                                            </mat-form-field>
+                                        </mat-grid-tile>
+                                        <mat-grid-tile>
+                                            <mat-form-field class="example-full-width">
+                                                <mat-label>Junio</mat-label>
+                                                <input matInput placeholder="Junio" [(ngModel)]="guardar.Junio"
+                                                    (ngModelChange)="Actualizar()" type="number">
+                                            </mat-form-field>
+                                        </mat-grid-tile>
+
+                                        <mat-grid-tile>
+                                            <mat-form-field class="example-full-width">
+                                                <mat-label>Julio</mat-label>
+                                                <input matInput placeholder="Julio" [(ngModel)]="guardar.Julio"
+                                                    (ngModelChange)="Actualizar()" type="number">
+                                            </mat-form-field>
+                                        </mat-grid-tile>
+
+                                        <mat-grid-tile>
+                                            <mat-form-field class="example-full-width">
+                                                <mat-label>Agosto</mat-label>
+                                                <input matInput placeholder="Agosto" [(ngModel)]="guardar.Agosto"
+                                                    (ngModelChange)="Actualizar()" type="number">
+                                            </mat-form-field>
+                                        </mat-grid-tile>
+                                        <mat-grid-tile>
+                                            <mat-form-field class="example-full-width">
+                                                <mat-label>Septiembre</mat-label>
+                                                <input matInput placeholder="Septiembre" [(ngModel)]="guardar.Septiembre"
+                                                    (ngModelChange)="Actualizar()" type="number">
+                                            </mat-form-field>
+
+                                        </mat-grid-tile>
+                                        <mat-grid-tile>
+                                            <mat-form-field class="example-full-width">
+                                                <mat-label>Octubre</mat-label>
+                                                <input matInput placeholder="Octubre" [(ngModel)]="guardar.Octubre"
+                                                    (ngModelChange)="Actualizar()" type="number">
+                                            </mat-form-field>
+                                        </mat-grid-tile>
+
+                                        <mat-grid-tile>
+                                            <mat-form-field class="example-full-width">
+                                                <mat-label>Noviembre</mat-label>
+                                                <input matInput placeholder="Noviembre" [(ngModel)]="guardar.Noviembre"
+                                                    (ngModelChange)="Actualizar()" type="number">
+                                            </mat-form-field>
+                                        </mat-grid-tile>
+
+                                        <mat-grid-tile>
+                                            <mat-form-field class="example-full-width">
+                                                <mat-label>Diciembre</mat-label>
+                                                <input matInput placeholder="Diciembre" [(ngModel)]="guardar.Diciembre"
+                                                    (ngModelChange)="Actualizar()" type="number">
+                                            </mat-form-field>
+                                        </mat-grid-tile>
+                                    </mat-grid-list>
+
+
+                                </mat-tab>
+
+                            </mat-tab-group>
+
+
+
                         </mat-card-content>
                         <mat-card-actions>
-        
-        
+
+
                             <button mat-raised-button ngbAutofocus [disabled]="!permitirGuardar"
                                 (click)="guardarData()">Guardar</button>
-        
-        
+
+
                         </mat-card-actions>
                     </mat-card>
                 </mat-step>
-        
-        
+
+
             </mat-horizontal-stepper>
-            
+
         </mat-card-content>
     </mat-card>
- <mat-card>
-    <mat-card-header>
-        <mat-card-title>DETALLE PRESUPUESTO </mat-card-title>
-   
-    </mat-card-header>
-     <mat-card-content>
-        <mat-tab-group mat-align-tabs="center">
-            <mat-tab label="PPTO NOMINA">
-                <div class="row" style="text-align: center;">
-                    <div class="col-12"  style="padding-top: 10px;">
-                        <app-detallepresupuestoprograma [detalle]="dataSourcePresupuesto" *ngIf="dataSourcePresupuesto.length>0"></app-detallepresupuestoprograma>
-        
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>DETALLE PRESUPUESTO </mat-card-title>
+
+        </mat-card-header>
+        <mat-card-content>
+            <mat-tab-group mat-align-tabs="center">
+                <mat-tab label="PPTO NOMINA">
+                    <div class="row" style="text-align: center;">
+                        <div class="col-12" style="padding-top: 10px;">
+                            <app-detallepresupuestoprograma [detalle]="dataSourcePresupuesto"
+                                *ngIf="dataSourcePresupuesto.length>0"
+                                (elimine)='Notificar($event)'
+                                ></app-detallepresupuestoprograma>
+
+                        </div>
                     </div>
-                </div>
-            </mat-tab>
-            <mat-tab label="PPTO Familiar">
-                <div class="row" style="text-align: center;"  *ngIf="mostrar">
-                    <div class="col-12" style="padding-top: 10px;">
-                         <app-detalle-familiarpresupuestoprograma [detalle]="dataSourcePresupuesto" *ngIf="dataSourcePresupuesto.length>0"></app-detalle-familiarpresupuestoprograma> 
-                  
-        
+                </mat-tab>
+                <mat-tab label="PPTO Familiar">
+                    <div class="row" style="text-align: center;" *ngIf="mostrar">
+                        <div class="col-12" style="padding-top: 10px;">
+                            <app-detalle-familiarpresupuestoprograma [detalle]="dataSourcePresupuesto"
+                                *ngIf="dataSourcePresupuesto.length>0"
+                                (elimine)='Notificar($event)'
+                                
+                                ></app-detalle-familiarpresupuestoprograma>
+
+
+                        </div>
                     </div>
-                </div>
-            </mat-tab>
-            <mat-tab label="Otros Presupuestos">
-                <div class="row" style="text-align: center;">
-                    <div class="col-12"  style="padding-top: 10px;">
-                        <app-detalle-otrospresupuestoprograma [detalle]="dataSourcePresupuesto" *ngIf="dataSourcePresupuesto.length>0"></app-detalle-otrospresupuestoprograma>
-        
+                </mat-tab>
+                <mat-tab label="Otros Presupuestos">
+                    <div class="row" style="text-align: center;">
+                        <div class="col-12" style="padding-top: 10px;">
+                            <app-detalle-otrospresupuestoprograma [detalle]="dataSourcePresupuesto"
+                                *ngIf="dataSourcePresupuesto.length>0"
+                                (elimine)='Notificar($event)'
+                                
+                                ></app-detalle-otrospresupuestoprograma>
+
+                        </div>
                     </div>
-                </div>
-            </mat-tab>
-          </mat-tab-group>
-     </mat-card-content>
- </mat-card>
+                </mat-tab>
+            </mat-tab-group>
+        </mat-card-content>
+    </mat-card>
 </div>

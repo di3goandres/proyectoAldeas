@@ -115,6 +115,14 @@ export class ActualizardetalleComponent implements OnInit {
     this.onNotificar(null, true)
 
   }
+  Actualizar() {
+   
+    this.pucMostrar = [];
+    this.pucMostrar.push(this.guardar);
+    this.dataSource = new MatTableDataSource(this.pucMostrar);
+    this.validarFomularios();
+
+  }
 
   dejarEnceros() {
     this.guardar.Enero = 0;
@@ -319,7 +327,7 @@ export class ActualizardetalleComponent implements OnInit {
       numeroIdentificacion: ['', Validators.required],
       Nombre: ['', Validators.required],
       asignacion: ['', Validators.required],
-      cargo: ['', Validators.required],
+      // cargo: ['', Validators.required],
 
     })
     this.formgroupFamiliar = this._formBuilder.group({

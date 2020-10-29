@@ -31,7 +31,10 @@ namespace ApiRestAldeasPresupuesto.Repositories
         {
             return PresupuestoAnioOperations.ConsultarFinanciadorFaltante(_factory, _connectionDB, id);
         }
-
+        public dynamic Borrar(long id)
+        {
+            return PresupuestoAnioOperations.Borrar(_factory, _connectionDB, id);
+        }
         public dynamic ConsultarPresupuestoAnio(long id)
         {
             return PresupuestoAnioOperations.ConsultarPresupuestoAnio(_factory, _connectionDB, id);

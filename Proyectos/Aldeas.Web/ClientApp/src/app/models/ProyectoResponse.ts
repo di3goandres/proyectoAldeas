@@ -1,8 +1,8 @@
-interface ProyectoResponse {
+export interface ProyectoResponse {
   itemsProyectos: ItemsProyecto[];
 }
 
-interface ItemsProyecto {
+export interface ItemsProyecto {
   codigo: number;
   nombre: string;
 }

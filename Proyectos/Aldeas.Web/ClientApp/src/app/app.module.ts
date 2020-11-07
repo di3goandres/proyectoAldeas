@@ -11,6 +11,7 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { LoginComponent } from './components/01-login/login/login.component';
 import { ComponentsModule } from './components/components.module';
 import { HomeComponent } from './components/02-Home/home/home.component';
+import { MatMenuModule } from '@angular/material/menu';
 
 
 
@@ -24,7 +25,9 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { ColaboradorComponent } from './components/04-Colaboradores/colaborador/colaborador.component';
 import { RegistroparticipantesComponent } from './components/05-Registro/registroparticipantes/registroparticipantes.component';
-
+import { RegistrarindicadorComponent } from './components/05-Registro/registrarindicador/registrarindicador.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { AuthInterceptor } from './services/interceptor/auth.interceptor';
 
 const routes: Routes = [ 
   { path: 'login', component: LoginComponent, pathMatch: 'full' },
@@ -38,6 +41,7 @@ const routes: Routes = [
   { path: 'Informacion', component: InformacionComponent, pathMatch: 'full', canActivate:[UsuarioGuard], canLoad: [UsuarioGuard]  },
   { path: 'Colaborador', component: ColaboradorComponent, pathMatch: 'full', canActivate:[UsuarioGuard], canLoad: [UsuarioGuard]  },
   { path: 'RegistroParticipantes', component: RegistroparticipantesComponent, pathMatch: 'full', canActivate:[UsuarioGuard], canLoad: [UsuarioGuard]  },
+  { path: 'RegistroIndicador', component: RegistrarindicadorComponent, pathMatch: 'full', canActivate:[UsuarioGuard], canLoad: [UsuarioGuard]  },
 
 ];
 @NgModule({
@@ -56,24 +60,14 @@ const routes: Routes = [
     HttpClientModule,
     FormsModule,
     ComponentsModule,
-    // RouterModule.forRoot([
-    //   { path: '', component: LoginComponent, pathMatch: 'full' },
-      
-    //   { path: 'Home', component: HomeComponent, pathMatch: 'full',   canLoad: [UsuarioGuard] },
-    //   { path: 'logout/:sure', component: LoginComponent, pathMatch: 'full' },
-
-    //   {
-    //     path: '**',
-    //     redirectTo: '',
-    //     pathMatch: 'full'
-    //   }
-
-
-    // ]),
+    MatMenuModule,
+    NgxSpinnerModule,
+  
     RouterModule.forRoot(routes),
     BrowserAnimationsModule
   ],
   providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },
   ],
   bootstrap: [AppComponent]

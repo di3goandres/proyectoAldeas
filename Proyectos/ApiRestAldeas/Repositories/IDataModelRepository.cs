@@ -53,6 +53,7 @@ namespace ApiRestAldeas.Repositories
         dynamic ConsultarProyectos();
 
 
+        dynamic ConsultarParticipantesProyecto(long id);
 
 
 

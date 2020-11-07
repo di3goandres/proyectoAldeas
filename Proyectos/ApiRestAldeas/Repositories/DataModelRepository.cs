@@ -28,6 +28,11 @@ namespace ApiRestAldeas.Repositories
             return CentroCostosOperations.obtenerDatos(_factory, _connectionDB);
         }
 
+        public dynamic ConsultarParticipantesProyecto(long id)
+        {
+            return ProyectoOperations.ConsultarParticipantes(_factory, _connectionDB, id);
+        }
+
         public dynamic ConsultarProyectos()
         {
             return ProyectoOperations.ConsultarProyecto(_factory, _connectionDB);

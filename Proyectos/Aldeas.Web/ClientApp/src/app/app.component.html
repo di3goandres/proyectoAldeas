@@ -1,21 +1,87 @@
 <body>
   <!-- <app-nav-menu></app-nav-menu> -->
 
+  <mat-menu #menu="matMenu">
+
+
+    <button mat-menu-item [routerLink]="['/Home']">
+      <mat-icon>home</mat-icon>
+      <span>Home</span>
+    </button>
+
+    <button mat-menu-item [matMenuTriggerFor]="gestionRegistroProyectos">
+      <mat-icon>list</mat-icon> <span>Proyectos</span>
+    </button>
+    <button mat-menu-item [matMenuTriggerFor]="gestionRegistroParticipantes">
+      <mat-icon>accessibility</mat-icon> <span>Participantes</span>
+    </button>
+    <button mat-menu-item [matMenuTriggerFor]="gestionRegistroColaboradores">
+      <mat-icon>assignment_ind</mat-icon> <span>Colaboradores</span>
+    </button>
+
+
+
+
+
+  </mat-menu>
+
+  <mat-menu #gestionRegistroParticipantes="matMenu">
+
+    <button mat-menu-item [routerLink]="['/RegistroParticipantes']">
+      <mat-icon>assignment_turned_in</mat-icon>
+      <span>Registro Participantes</span>
+    </button>
+
+    <button mat-menu-item [routerLink]="['/RegistroIndicador']">
+      <mat-icon>assignment_turned_in</mat-icon>
+      <span>Registro Indicador Participante</span>
+    </button>
+
+  </mat-menu>
+
+  <mat-menu #gestionRegistroColaboradores="matMenu">
+
+    <button mat-menu-item [routerLink]="['/Colaborador']">
+      <mat-icon>assignment_turned_in</mat-icon>
+      <span>Registro Colaboradores</span>
+    </button>
+
+  </mat-menu>
+
+
+  <mat-menu #gestionRegistroProyectos="matMenu">
+
+    <button mat-menu-item [routerLink]="['/Informacion']">
+      <mat-icon>assignment_turned_in</mat-icon>
+      <span>Registro Proyectos</span>
+    </button>
+
+  </mat-menu>
+
   <div class="container">
     <app-heaader></app-heaader>
     <mat-toolbar color="main-green-toolba" class="main-green-toolbar" *ngIf="currentUser!= null">
-      <button   [routerLink]="['/Home']" mat-icon-button class="menuButton" aria-label="Example icon-button with menu icon">
+
+      <button [matMenuTriggerFor]="menu" mat-icon-button class="main-green-toolbar">
         <mat-icon>menu</mat-icon>
       </button>
+      <!-- <button   [routerLink]="['/Home']" mat-icon-button class="menuButton" aria-label="Example icon-button with menu icon">
+        <mat-icon>menu</mat-icon>
+      </button> -->
       <span style="color: white;">Bienvenido {{currentUser.displayName}}</span>
       <span style="color: white;" class="example-spacer"></span>
-  
-          <div> <a   style="color: white;" [routerLink]="['logout/1']">Salir</a></div>
-  
+
+      <div> <a style="color: white;" [routerLink]="['logout/1']">Salir</a></div>
+
     </mat-toolbar>
-  
-  
-  
+
+
+
     <router-outlet></router-outlet>
   </div>
 </body>
+
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)"
+size="large" color="#fff" type="ball-atom" [fullScreen]="true">
+ <p style="color: white"> Estamos procesando tu solicitud </p>
+</ngx-spinner>

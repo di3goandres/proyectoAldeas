@@ -287,5 +287,30 @@ namespace ApiRestAldeas.Helper
             return new { id = idProyecto, status =  "OK", code = 200 };
         }
 
+
+        public static dynamic ConsultarParticipantes(IContextFactory factory, IOptions<ConnectionDB> connection,
+           long idProyecto)
+        {
+
+            RegistroParticipantesProyectosResponse retorno = new RegistroParticipantesProyectosResponse();
+
+
+            using (Aldeas_Context db = factory.Create(connection))
+            {
+
+                var ParticipantesRegistrados = from participantes in db.tbRegistroParticipantes
+                                               where participantes.idProyecto == idProyecto
+                                               select participantes;
+
+
+                if(ParticipantesRegistrados.Any())
+                {
+                    retorno.Registros = (ParticipantesRegistrados.ToList());
+                }
+
+            }
+            return retorno;
+        }
+
     }
 }

@@ -7,11 +7,12 @@ export class RegistroParticipante {
     ){
         this.idProyecto = 0;
         this.FechaIngreso = new Date();
-        this.FechaSalida = new Date();
+        // this.FechaSalida = new Date();
         this.FechaNacimiento = new Date();
         this.Nombres="";
         this.Apellidos="";
         this.GrupoEtnico="";
+        this.GrupoPoblacional =""
         this.Discapacidad="";
         this.TipoParticipante="";
         this.Linea= [];
@@ -44,6 +45,8 @@ export class RegistroParticipante {
     public Sexo: string;
     public Genero: string;
     public Nacionalidad: string;
+    public GrupoPoblacional: string;
+
     public EstatusResidencia: string;
     public CodDepartamento: string;
     public CodMunicipio: string;

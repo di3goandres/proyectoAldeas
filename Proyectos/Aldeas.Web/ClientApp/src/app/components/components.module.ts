@@ -28,8 +28,13 @@ import { RegistroparticipantesComponent } from './05-Registro/registroparticipan
 import { CheckboxComponent } from './00-Comunes/checkbox/checkbox.component';
 import { ListcheckComponent } from './00-Comunes/listcheck/listcheck.component';
 import { ListcentroscostosComponent } from './00-Comunes/listcentroscostos/listcentroscostos.component';
+
+import { MatMenuModule } from '@angular/material/menu';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
+import { RegistrarindicadorComponent } from './05-Registro/registrarindicador/registrarindicador.component';
 @NgModule({
-  declarations: [LoginComponent, HomeComponent, HeaaderComponent, InformacionComponent, FechasComponent, ColaboradorComponent, RegistroparticipantesComponent, CheckboxComponent, ListcheckComponent, ListcentroscostosComponent],
+  declarations: [LoginComponent, HomeComponent, HeaaderComponent, InformacionComponent, FechasComponent, ColaboradorComponent, RegistroparticipantesComponent, CheckboxComponent, ListcheckComponent, ListcentroscostosComponent, RegistrarindicadorComponent],
   imports: [
 
     CommonModule,
@@ -51,7 +56,9 @@ import { ListcentroscostosComponent } from './00-Comunes/listcentroscostos/listc
     MatButtonModule,
     MatCardModule,
     MatCheckboxModule,
-    MatRadioModule
+    MatRadioModule,
+    MatMenuModule,
+    MatSnackBarModule
 
   ],
   providers: [

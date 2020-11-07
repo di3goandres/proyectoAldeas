@@ -10,6 +10,7 @@ import { CentrosResponse, Respuesta } from '../models/comunes';
 import { environment } from 'src/environments/environment';
 import { Colaborador } from '../models/colaborador';
 import { RegistroParticipante } from '../models/DatosPartipante';
+import { ProyectoResponse } from '../models/ProyectoResponse';
 
 
 @Injectable({
@@ -27,7 +28,7 @@ export class UserService {
 
   public header = new HttpHeaders({
     // tslint:disable-next-line: object-literal-key-quotes
-    'Autorization': this.token
+    // 'Autorization': this.token
   });
 
   constructor(
@@ -57,20 +58,24 @@ export class UserService {
 }
 
   ///metodo par ejecutar metodos get
-  private ejecutarQuery<T>(query: string) {
+  public ejecutarQuery<T>(query: string) {
    let user = this.currentUserSubject.value;
-    this.header = new HttpHeaders().set('Authorization', user.token);
-    return this.http.get<T>(environment.ApiUrl + query, { headers: this.header });
+    // this.header = new HttpHeaders().set('Authorization', user.token);
+    // return this.http.get<T>(environment.ApiUrl + query, { headers: this.header });
+    return this.http.get<T>(environment.ApiUrl + query);
+
   }
 
 
   // tslint:disable-next-line: typedef con autorizacion
-  private ejecutarQueryPost<T>(query: string, params: string) {
+  public ejecutarQueryPost<T>(query: string, params: string) {
    let user = this.currentUserSubject.value;
 
-    this.header = new HttpHeaders().set('Authorization', user.token)
-      .set('Content-Type', 'application/json');
-    return this.http.post<T>(environment.ApiUrl + query, params, { headers: this.header });
+    // this.header = new HttpHeaders().set('Authorization', user.token)
+    //   .set('Content-Type', 'application/json');
+    // return this.http.post<T>(environment.ApiUrl + query, params, { headers: this.header });
+    return this.http.post<T>(environment.ApiUrl + query, params);
+
 
   }
 

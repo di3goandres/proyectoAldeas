@@ -6,17 +6,15 @@
       <File FileName="Controllers/PresupuestoAnioController.cs" Line="36" Column="50" />
       <File FileName="Repositories/DataModelPresupuesto.cs" Line="37" Column="61" />
       <File FileName="Repositories/DataModelRepository.cs" Line="43" Column="40" />
-      <File FileName="Helper/PresupuestoAnioOperations.cs" Line="115" Column="31" />
+      <File FileName="Helper/PresupuestoAnioOperations.cs" Line="169" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="ApiRestAldeasPresupuesto" expanded="True">
-            <Node name="ApiRestAldeasPresupuesto" expanded="True">
+            <Node name="ApiRestAldeasPresupuesto" expanded="True" selected="True">
               <Node name="Controllers" expanded="True" />
-              <Node name="Helper" expanded="True">
-                <Node name="PresupuestoAnioOperations.cs" selected="True" />
-              </Node>
+              <Node name="Helper" expanded="True" />
               <Node name="Models" expanded="True" />
               <Node name="Repositories" expanded="True" />
             </Node>

@@ -32,7 +32,17 @@ namespace ApiRestAldeas.Helper
                    Sexo = request.Sexo,
                    EstatusResidencia = request.EstatusResidencia,
                    UltimoCursoAprobado = request.UltimoCursoAprobado,
-                   AsisteAlColegio = request.AsisteAlColegio
+                   AsisteAlColegio = request.AsisteAlColegio,
+                   GrupoPoblacional = request.GrupoPoblacional,
+                   GrupoEtnico = request.GrupoEtnico,
+                   Nacionalidad = request.Nacionalidad,
+                   Genero = request.Genero,
+                   TipoParticipante = request.TipoParticipante,
+                  
+                   Discapacidad = request.Discapacidad =="SI"? true:false,
+                    NivelEscolaridad = request.NivelEscolaridad
+
+
 
 
                 };

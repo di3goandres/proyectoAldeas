@@ -28,6 +28,17 @@ namespace ApiRestAldeas.Models
         public string Localidad { get; set; }
         public string UltimoCursoAprobado { get; set; }
         public string AsisteAlColegio { get; set; }
+        public string GrupoPoblacional { get; set; }
+        public string GrupoEtnico { get; set; }
+        public string Nacionalidad { get; set; }
+        public string Genero { get; set; }
+        public string TipoParticipante { get; set; }
+        public string AsisteColegio { get; set; }
+        public string Discapacidad { get; set; }
+        public string NivelEscolaridad { get; set; }
+
+
+
         public int Edad { get; set; }
         public List<Preguntas> Linea { get; set; }
 

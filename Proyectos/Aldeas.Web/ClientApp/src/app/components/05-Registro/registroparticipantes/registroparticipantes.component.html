@@ -200,6 +200,14 @@
                     </app-listcheck>
 
                 </div>
+
+                <div class="col-3">
+                    <app-checkbox [tasks]="gruposPoblacionalesCheck" NombreChecbok='Grupo Poblacional'
+                    [datoEntrada]="gruposPoblacionales" (datoSalid)='onNotificar($event, "GrupoPoblacional")'>
+
+                </app-checkbox>
+
+                </div>
                 <div class="col-3">
                     <mat-form-field appearance="fill">
                         <mat-label>Ultimo Curso Aprobado</mat-label>

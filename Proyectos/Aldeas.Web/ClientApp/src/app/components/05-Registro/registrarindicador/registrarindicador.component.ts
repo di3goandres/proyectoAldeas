@@ -58,7 +58,6 @@ export class RegistrarindicadorComponent implements OnInit {
 
 
   obtenerPartipantes(id) {
-    console.log(id);
     this.service.obtenerParticipantes(id).subscribe(
       OK => {
         this.participantes = [];

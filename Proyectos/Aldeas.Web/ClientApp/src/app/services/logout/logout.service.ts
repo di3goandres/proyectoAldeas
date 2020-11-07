@@ -14,8 +14,7 @@ export class LogoutService {
 
   logout(){
    
-    localStorage.removeItem('identity');
-    localStorage.removeItem('token');
+    localStorage.removeItem('currentUser');
     // redireccion a la pagina principal.
     this.router.navigate(['login']);
   }

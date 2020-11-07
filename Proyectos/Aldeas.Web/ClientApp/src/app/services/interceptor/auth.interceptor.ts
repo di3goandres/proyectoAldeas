@@ -25,20 +25,25 @@ export class AuthInterceptor implements HttpInterceptor {
 
   ) {
 
-    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
-    this.currentUser = this.currentUserSubject.asObservable();
+
   }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     this.Service.openModal();
 
 
+    let usuario = localStorage.getItem('currentUser');
 
-    let user = this.currentUserSubject.value;
-    let token = user.token
 
-    if (token != null)
+
+
+    if (usuario != null) {
+      this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
+      let user = this.currentUserSubject.value;
+      let token = user.token
       request = this.addToken(request, token);
+    }
+
     return next.handle(request)
       .pipe(
         tap(evt => {
@@ -47,6 +52,7 @@ export class AuthInterceptor implements HttpInterceptor {
           }
         }),
         catchError(Error => {
+          console.log(Error)
           if (Error.status == 401) {
             this.Service.logout();
           }

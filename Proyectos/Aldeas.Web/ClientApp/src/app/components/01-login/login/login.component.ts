@@ -14,13 +14,13 @@ export class LoginComponent implements OnInit {
   user: Login;
   title: string;
   error = '';
-  errorBolean:boolean = false;
-  loading= false;
+  errorBolean: boolean = false;
+  loading = false;
   constructor(
     private userService: UserService,
     private router: Router,
     private route: ActivatedRoute
-  ) { 
+  ) {
     this.user = new Login('', '');
     this.title = "BASE DE DATOS PROYECTOS ALDEAS INFANTILES SOS COLOMBIA";
     //Si tiene el token lo redirigimos al home// pantalla tres botone
@@ -29,9 +29,9 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.logOut()
-    if( this.userService.currenUserValue){
+    if (this.userService.currenUserValue) {
       this.router.navigate(['/Home']);
-     }
+    }
 
   }
 
@@ -39,20 +39,21 @@ export class LoginComponent implements OnInit {
     this.loading = true;
     this.errorBolean = false;
     this.userService.loginUser(this.user)
-      .pipe(first())
+   
       .subscribe(
-        data=>{
+        data => {
+       
           this.router.navigate(['/Home'])
         },
-        error =>{
+        error => {
           this.errorBolean = true;
 
           this.error = error,
-          this.loading = false;
+            this.loading = false;
         }
       )
 
-    
+
 
   }
 
@@ -62,10 +63,10 @@ export class LoginComponent implements OnInit {
     this.route.params.subscribe(
       params => {
         let logout = +params.sure;
-    console.log('Entre', logout);
+        console.log('Entre', logout);
 
         if (logout === 1) {
-         this.userService.logut();
+          this.userService.logut();
           // redireccion a la pagina principal.
           this.router.navigate(['login']);
 

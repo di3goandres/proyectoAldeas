@@ -20,9 +20,9 @@ import { MatMomentDateModule, MomentDateAdapter } from "@angular/material-moment
 import { BrowserModule } from '@angular/platform-browser';
 import { MatButtonModule } from '@angular/material/button';
 import { FechasComponent } from './00-Comunes/fechas/fechas.component';
-import {MatCardModule} from '@angular/material/card';
-import {MatCheckboxModule} from '@angular/material/checkbox';
-import {MatRadioModule} from '@angular/material/radio'
+import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatRadioModule } from '@angular/material/radio'
 import { ColaboradorComponent } from './04-Colaboradores/colaborador/colaborador.component';
 import { RegistroparticipantesComponent } from './05-Registro/registroparticipantes/registroparticipantes.component';
 import { CheckboxComponent } from './00-Comunes/checkbox/checkbox.component';
@@ -30,11 +30,24 @@ import { ListcheckComponent } from './00-Comunes/listcheck/listcheck.component';
 import { ListcentroscostosComponent } from './00-Comunes/listcentroscostos/listcentroscostos.component';
 
 import { MatMenuModule } from '@angular/material/menu';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { RegistrarindicadorComponent } from './05-Registro/registrarindicador/registrarindicador.component';
+import { SinocheckpreguntaComponent } from './00-Comunes/sinocheckpregunta/sinocheckpregunta.component';
 @NgModule({
-  declarations: [LoginComponent, HomeComponent, HeaaderComponent, InformacionComponent, FechasComponent, ColaboradorComponent, RegistroparticipantesComponent, CheckboxComponent, ListcheckComponent, ListcentroscostosComponent, RegistrarindicadorComponent],
+  declarations: [
+    LoginComponent,
+    HomeComponent,
+    HeaaderComponent,
+    InformacionComponent,
+    FechasComponent,
+    ColaboradorComponent,
+    RegistroparticipantesComponent,
+    CheckboxComponent,
+    SinocheckpreguntaComponent,
+    ListcheckComponent,
+    ListcentroscostosComponent,
+    RegistrarindicadorComponent],
   imports: [
 
     CommonModule,
@@ -65,7 +78,7 @@ import { RegistrarindicadorComponent } from './05-Registro/registrarindicador/re
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },
     MatDatepickerModule
   ],
-  exports:[
+  exports: [
     HeaaderComponent
   ]
 })

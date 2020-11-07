@@ -57,5 +57,13 @@ namespace ApiRestAldeas.Repositories
 
 
 
+        #region indicadores
+        dynamic ConsultarIndicadores();
+        dynamic ConsultarPreguntasIndicadores(long id);
+
+
+        #endregion
+
+
     }
 }

@@ -28,10 +28,13 @@ namespace ApiRestAldeas.Repositories
             return CentroCostosOperations.obtenerDatos(_factory, _connectionDB);
         }
 
+      
         public dynamic ConsultarParticipantesProyecto(long id)
         {
             return ProyectoOperations.ConsultarParticipantes(_factory, _connectionDB, id);
         }
+
+       
 
         public dynamic ConsultarProyectos()
         {
@@ -83,7 +86,19 @@ namespace ApiRestAldeas.Repositories
             return  ProyectoOperations.GuardarArchivo(_factory, _connectionDB, data.Proyecto, ContenidoBase64, data.File.FileName);
               
         }
-    }   
+
+
+        #region indicadores
+        public dynamic ConsultarPreguntasIndicadores(long id)
+        {
+            return IndicadoresOperations.ConsultarPreguntasIndicador(_factory, _connectionDB, id);
+        }
+        public dynamic ConsultarIndicadores()
+        {
+            return IndicadoresOperations.ConsultarListaIndicadores(_factory, _connectionDB);
+        }
+        #endregion
+    }
 
 
 }

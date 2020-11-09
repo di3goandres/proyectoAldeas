@@ -9,6 +9,7 @@ import { IndicadoresService } from '../../../services/indicadores/indicadores.se
 import { Indicadores } from '../../../models/indicadores/indicadores.response';
 import { IndicadoresPreguntasResponse, ListaPregunta, Preguntas } from '../../../models/indicadores/preguntasIndicador.response';
 import { Task } from '../../../models/checkbox';
+import { IndicadoresRequest, RespuestaIndicadores } from '../../../models/indicadores/Respuesta.Indicadores';
 
 @Component({
   selector: 'app-registrarindicador',
@@ -18,17 +19,25 @@ import { Task } from '../../../models/checkbox';
 export class RegistrarindicadorComponent implements OnInit {
   proyectos: ItemsProyecto[] = [];
   participantes: RegistroParticipantes[] = []
+
+  Respuestas: RespuestaIndicadores[] = [];
   indicadores: Indicadores[] = [];
   indicadorPreguntas: IndicadoresPreguntasResponse;
   listaPreguntas: ListaPregunta[];
+  listaPreguntasSeleccionadas: ListaPregunta[] = [];
+  indicadoresConsultar: any = "";
+  PermitirGuardar = false;
   Respuesta: string;
   RespuestaCheck: Task[] = [
     { pregunta: 'Nacionalidad', name: 'Si', completed: false, esOtro: false, color: 'primary' },
     { pregunta: 'Nacionalidad', name: 'No', completed: false, esOtro: false, color: 'primary' },
-  
+
   ]
   encabezado: Preguntas;
-  preguntas:  Preguntas[];
+  preguntas: Preguntas[];
+
+  indicadoresRequest= new IndicadoresRequest();
+  respuestaIndicadores: RespuestaIndicadores[] = []
   constructor(
     private _formBuilder: FormBuilder,
     public userService: UserService,
@@ -42,15 +51,7 @@ export class RegistrarindicadorComponent implements OnInit {
       Proyecto: ['', Validators.required],
 
       participante: ['', Validators.required],
-      Indicadores: ['', Validators.nullValidator],
-      // Nombre: ['', Validators.required],
-      // Apellidos: ['', Validators.required],
-      // Edad: ['', Validators.required],
-      // FechaNacimiento: ['', Validators.required],
-      // Departamento: ['', Validators.required],
-      // Municipio: ['', Validators.required],
-      // Localidad: ['', Validators.required],
-      // UltimoCurso: ['', Validators.required],
+      Indicadores: ['', Validators.nullValidator]
 
 
     });
@@ -77,11 +78,9 @@ export class RegistrarindicadorComponent implements OnInit {
   traerIndicador() {
     this.indicadorService.ObtenerIndicadores().subscribe(
       OK => {
-
-
         this.indicadores = [];
         this.indicadores.push(...OK.indicadores)
-     
+
       },
       ERROR => { console.log(ERROR) },
     )
@@ -89,17 +88,52 @@ export class RegistrarindicadorComponent implements OnInit {
 
 
   obtenerPreguntasIndicadores(id) {
-    this.indicadorService.ObtenerPreguntasIndicadores(id).subscribe(
-      OK => { 
+    this.indicadoresConsultar = [];
+    this.indicadoresConsultar = id;
+    console.log(this.indicadoresConsultar);
 
-        console.log(OK)
+   
+  }
+
+
+  crearRespuestas(){
+    this.listaPreguntas.forEach(element => {
+
+      element.listaPreguntas.forEach(preguntas => {
+
+        preguntas.preguntas.forEach(pregunta => {
+          let nueva = new RespuestaIndicadores();
+
+
+          nueva.idIndicadorPregunta = pregunta.id
+          nueva.Tipo = pregunta.tipo;
+
+          this.respuestaIndicadores.push(nueva);
+
+        })
+      
+
+      });
+      
+    });
+
+    console.log(this.respuestaIndicadores);
+  }
+  consultarIndicadoresPreguntas(){
+    this.indicadorService.ObtenerPreguntasIndicadores(this.indicadoresConsultar).subscribe(
+      OK => {
         this.indicadorPreguntas = OK
-
         this.listaPreguntas = [];
         this.listaPreguntas.push(...OK.listaPreguntas)
+        this.crearRespuestas();
+        
       },
       ERROR => { console.log(ERROR) },
     )
+  }
+  agregarQuitar(id, listaPreguntas: ListaPregunta ){
+    this.listaPreguntasSeleccionadas.push()
+
   }
   obtenerPartipantes(id) {
     this.service.obtenerParticipantes(id).subscribe(
@@ -126,7 +160,35 @@ export class RegistrarindicadorComponent implements OnInit {
   }
 
   onNotificar(event: any, Tipo: any) {
-    console.log(event, ' - ', Tipo)
+    // console.log(event, ' - ', Tipo)
+
+
+    this.respuestaIndicadores.forEach(item=> {
+      if(item.idIndicadorPregunta == Tipo){
+        item.Valido = true;
+        if(item.Tipo==1){
+          item.respuestaSi_No = event.name == "No" ? false:true;
+        }else if (item.Tipo == 2){
+
+        }
+      }
+    })
+  
+    this.validarGuardado()
   }
 
+
+  seleccionarIndicador( ){
+    let itemIndicador = 
+    this.seleccionarIndicador 
+  }
+  validarGuardado(){
+    let valido = this.respuestaIndicadores.filter(item=>{
+      return item.Valido == false;
+    })
+
+    this.PermitirGuardar = valido.length == 0? true: false
+
+    console.log(this.PermitirGuardar)
+  }
 }

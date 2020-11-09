@@ -1,64 +1,108 @@
-<form [formGroup]="firstFormGroup">
+<mat-horizontal-stepper [linear]="false" #stepper>
 
-    <ng-template matStepLabel>Registro de Indicadores</ng-template>
-    <div class="row">
-        <div class="col-12 main-green-text"><label>Registro de Indicadores</label></div>
-    </div>
-    <!--Fechas-->
-    <div class="row">
-        <div class="col-12">
-            <mat-form-field appearance="fill">
-                <mat-label>Proyecto</mat-label>
+    <mat-step [stepControl]="firstFormGroup">
 
-                <mat-select formControlName="Proyecto" (selectionChange)="obtenerPartipantes($event.value)">
-                    <mat-option *ngFor="let proyecto of proyectos" [value]="proyecto.codigo" required>
-                        {{proyecto.nombre}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
+        <form [formGroup]="firstFormGroup">
+
+            <ng-template matStepLabel>Registro de Indicadores</ng-template>
+            <div class="row">
+                <div class="col-12 main-green-text"><label>Registro de Indicadores</label></div>
+            </div>
+            <!--Fechas-->
+            <div class="row">
+                <div class="col-12">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Proyecto</mat-label>
+
+                        <mat-select formControlName="Proyecto" (selectionChange)="obtenerPartipantes($event.value)">
+                            <mat-option *ngFor="let proyecto of proyectos" [value]="proyecto.codigo" required>
+                                {{proyecto.nombre}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-6">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Participantes</mat-label>
+
+                        <mat-select formControlName="participante">
+                            <mat-option *ngFor="let participante of participantes" [value]="participante.id" required>
+                                {{participante.nombres + ' - ' + participante.apellidos}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-6">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Indicador</mat-label>
+                        <mat-select formControlName="Indicadores" multiple
+                            (selectionChange)="obtenerPreguntasIndicadores($event.value)">
+
+                            <mat-option *ngFor="let indicador of indicadores" [value]="indicador.id" required>
+                                {{indicador.nombreIndicador | uppercase}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div>
+                <button mat-button matStepperNext (click)="consultarIndicadoresPreguntas()">Siguiente</button>
+            </div>
+
+        </form>
+
+    </mat-step>
+
+
+    <mat-step>
+        <ng-template matStepLabel>Preguntas de Indicadores</ng-template>
+
+        <div *ngFor="let indicadores of listaPreguntas">
+
+            <div class="row">
+                <div class="col-12  main-green-text">
+                    <mat-label>{{indicadores.indicador}}</mat-label>
+                </div>
+            </div>
+            
+            <mat-grid-list [cols]="item.preguntas.length" rowHeight="70px"
+                *ngFor="let item of indicadores.listaPreguntas">
+                <mat-grid-tile [colspan]="item.preguntas.length" rowspan="1">
+                    <mat-grid-tile-header>
+                        <mat-label>{{item.encabezado.descripcion}}</mat-label>
+                    </mat-grid-tile-header>
+
+                </mat-grid-tile>
+                <mat-grid-tile *ngFor="let pregunta of item.preguntas" colspan="1" rowspan="2">
+
+                    <app-sinocheckpregunta [NombreChecbok]='pregunta.descripcion'
+                        (datoSalid)='onNotificar($event, pregunta.id)'>
+                    </app-sinocheckpregunta>
+
+                </mat-grid-tile>
+            </mat-grid-list>
+
         </div>
-    </div>
+        <!-- <mat-grid-list [cols]="item.preguntas.length" rowHeight="70px" *ngFor="let item of listaPreguntas">
 
-    <div class="row">
-        <div class="col-6">
-            <mat-form-field appearance="fill">
-                <mat-label>Participantes</mat-label>
+            <mat-grid-tile [colspan]="item.preguntas.length" rowspan="1">
+                <mat-grid-tile-header>
+                    <mat-label>{{item.encabezado.descripcion}}</mat-label>
+                </mat-grid-tile-header>
 
-                <mat-select formControlName="participante">
-                    <mat-option *ngFor="let participante of participantes" [value]="participante.id" required>
-                        {{participante.nombres + ' - ' + participante.apellidos}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </div>
+            </mat-grid-tile>
+            <mat-grid-tile *ngFor="let pregunta of item.preguntas" colspan="1" rowspan="2">
 
-        <div class="col-6">
-            <mat-form-field appearance="fill">
-                <mat-label>Indicador</mat-label>
-                <mat-select formControlName="Indicadores" (selectionChange)="obtenerPreguntasIndicadores($event.value)">
-                    <mat-option *ngFor="let indicador of indicadores" [value]="indicador.id" required>
-                        {{indicador.nombreIndicador | uppercase}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </div>
-    </div>
+                <app-sinocheckpregunta [NombreChecbok]='pregunta.descripcion'
+                    (datoSalid)='onNotificar($event, pregunta.id)'>
+                </app-sinocheckpregunta>
 
+            </mat-grid-tile>
+        </mat-grid-list> -->
+    </mat-step>
 
-</form>
-
-<mat-grid-list cols="3" rowHeight="70px" *ngFor="let item of listaPreguntas">
-
-    <mat-grid-tile colspan="3" rowspan="1">
-        <mat-grid-tile-header>
-            <mat-label>{{item.encabezado.descripcion}}</mat-label>
-        </mat-grid-tile-header>
-       
-    </mat-grid-tile>
-    <mat-grid-tile *ngFor="let pregunta of item.preguntas"  colspan="1" rowspan="2">
-
-        <app-sinocheckpregunta [NombreChecbok]='pregunta.descripcion' (datoSalid)='onNotificar($event, pregunta.id)'>
-        </app-sinocheckpregunta>
-
-    </mat-grid-tile>
-</mat-grid-list>
+</mat-horizontal-stepper>

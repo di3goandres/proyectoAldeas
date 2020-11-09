@@ -35,7 +35,7 @@ namespace ApiRestAldeas.Controllers
         //[Authorize]
         [HttpGet]
         [Route("/api/aldeas/indicadores/obtenerPreguntas/{id}")]
-        public dynamic ObtenerPreguntasIndicadores(long id)
+        public dynamic ObtenerPreguntasIndicadores(string id)
         {
             return _dataModelRepository.ConsultarPreguntasIndicadores(id);
         }

@@ -34,18 +34,19 @@ namespace ApiRestAldeas.Helper
 
 
 
-        public static dynamic ConsultarPreguntasIndicador(IContextFactory factory, IOptions<ConnectionDB> connection, long id)
+        public static dynamic ConsultarPreguntasIndicador(IContextFactory factory, IOptions<ConnectionDB> connection, string id)
         {
             IndicadoresPreguntasResponse retorno = new IndicadoresPreguntasResponse();
-           
+
             List<ListaPreguntas> listaPreguntas = new List<ListaPreguntas>();
 
             using (Aldeas_Context db = factory.Create(connection))
             {
 
+                var splitIds = id.Split(",").ToList();
 
                 var indicadores = from datos in db.TbIndicadoresPreguntas
-                                  where datos.id_indicador == id
+                                  where splitIds.Contains(datos.id_indicador.ToString())
                                   select new PreguntasIndicadores
                                   {
                                       id = datos.id,
@@ -53,54 +54,73 @@ namespace ApiRestAldeas.Helper
                                       id_indicador_pregunta_padre = datos.id_indicador_pregunta_padre,
                                       esPadre = datos.esPadre,
                                       descripcion = datos.descripcion,
-                                      Tipo=datos.Tipo,
+                                      Tipo = datos.Tipo,
                                       fechaActualizacion = datos.fechaActualizacion,
                                       fechaCreacion = datos.fechaCreacion
 
                                   };
-            
 
-              
-                    if (indicadores.Any())
+
+
+                if (indicadores.Any())
                 {
-                    var padres = indicadores.Where(x => x.esPadre == true).ToList();
-                    var hijos = indicadores.Where(x => x.esPadre == false).ToList();
-
-
-                    foreach (var padre in padres)
+                    foreach (var idIndicador in splitIds)
                     {
-                        ListaPreguntas item = new ListaPreguntas();
-                        item.Encabezado = padre;
-                        foreach (var hijo in hijos.Where(x => x.id_indicador_pregunta_padre == padre.id).ToList())
+
+                        IndicadorPreguntas indicador = new IndicadorPreguntas();
+
+
+                        var idInd = Int64.Parse(idIndicador);
+
+                        var padres = indicadores.Where(x => x.esPadre == true && x.id_indicador == idInd).ToList();
+                        var hijos = indicadores.Where(x => x.esPadre == false).ToList();
+                        var nombre = from datos in db.tbIndicadores
+                                     where datos.id == idInd
+                                     select datos;
+
+                        if (nombre.Any())
                         {
-                            if(hijo.Tipo == 2)
+                            indicador.Indicador = nombre.First().NombreIndicador;
+                        }
+
+                        foreach (var padre in padres)
+                        {
+                            ListaPreguntas item = new ListaPreguntas();
+                            item.Encabezado = padre;
+                            foreach (var hijo in hijos.Where(x => x.id_indicador_pregunta_padre == padre.id).ToList())
                             {
-                                long idPregunta = hijo.id;
-                                hijo.Complemento = new List<DBIndicadorComplemento>();
-                                var complemento = from datos in db.TbIndicadorComplemento
-                                                  where datos.idPregunta == idPregunta
-                                                  select datos;
-                                if (complemento.Any())
+                                if (hijo.Tipo == 2)
                                 {
-                                
-                                    hijo.Complemento.AddRange(complemento.ToList());
+                                    long idPregunta = hijo.id;
+                                    hijo.Complemento = new List<DBIndicadorComplemento>();
+                                    var complemento = from datos in db.TbIndicadorComplemento
+                                                      where datos.idPregunta == idPregunta
+                                                      select datos;
+                                    if (complemento.Any())
+                                    {
+
+                                        hijo.Complemento.AddRange(complemento.ToList());
+
+                                    }
+
+                                    item.Preguntas.Add(hijo);
+
+                                }
+                                else
+                                {
+                                    item.Preguntas.Add(hijo);
 
                                 }
 
-                                item.Preguntas.Add(hijo);
-
                             }
-                            else
-                            {
-                                item.Preguntas.Add(hijo);
+                            indicador.ListaPreguntas.Add(item);
 
-                            }
 
                         }
-
-                        retorno.ListaPreguntas.Add(item);
-
+                        retorno.ListaPreguntas.Add(indicador);
                     }
+
+
 
                 }
 

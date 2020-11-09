@@ -8,12 +8,23 @@ namespace ApiRestAldeas.Models
     {
         public IndicadoresPreguntasResponse()
         {
+            this.ListaPreguntas = new List<IndicadorPreguntas>();
+
+        }
+        public List<IndicadorPreguntas> ListaPreguntas { get; set; }
+    }
+
+    public class IndicadorPreguntas
+    {
+
+        public IndicadorPreguntas()
+        {
             this.ListaPreguntas = new List<ListaPreguntas>();
 
         }
+        public string Indicador { get; set; }
         public List<ListaPreguntas> ListaPreguntas { get; set; }
     }
-
 
     public class ListaPreguntas{
 

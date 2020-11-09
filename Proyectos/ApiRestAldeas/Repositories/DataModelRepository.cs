@@ -89,7 +89,7 @@ namespace ApiRestAldeas.Repositories
 
 
         #region indicadores
-        public dynamic ConsultarPreguntasIndicadores(long id)
+        public dynamic ConsultarPreguntasIndicadores(string id)
         {
             return IndicadoresOperations.ConsultarPreguntasIndicador(_factory, _connectionDB, id);
         }

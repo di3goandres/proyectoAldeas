@@ -4,7 +4,12 @@ export interface IndicadoresPreguntasResponse {
     listaPreguntas: ListaPregunta[];
 }
 
+
 export interface ListaPregunta {
+    indicador:      string;
+    listaPreguntas: ListaPreguntaListaPregunta[];
+}
+export interface ListaPreguntaListaPregunta {
     encabezado: Preguntas;
     preguntas:  Preguntas[];
 }

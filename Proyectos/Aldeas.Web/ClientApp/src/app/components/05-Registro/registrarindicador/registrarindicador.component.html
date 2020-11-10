@@ -1,4 +1,4 @@
-<mat-horizontal-stepper [linear]="false" #stepper>
+<mat-horizontal-stepper [linear]="true" #stepper>
 
     <mat-step [stepControl]="firstFormGroup">
 
@@ -28,7 +28,7 @@
                     <mat-form-field appearance="fill">
                         <mat-label>Participantes</mat-label>
 
-                        <mat-select formControlName="participante">
+                        <mat-select formControlName="participante" (selectionChange)="AsignarParticipante($event.value)"> 
                             <mat-option *ngFor="let participante of participantes" [value]="participante.id" required>
                                 {{participante.nombres + ' - ' + participante.apellidos}}
                             </mat-option>
@@ -39,7 +39,7 @@
                 <div class="col-6">
                     <mat-form-field appearance="fill">
                         <mat-label>Indicador</mat-label>
-                        <mat-select formControlName="Indicadores" multiple
+                        <mat-select formControlName="Indicadores" multiple required
                             (selectionChange)="obtenerPreguntasIndicadores($event.value)">
 
                             <mat-option *ngFor="let indicador of indicadores" [value]="indicador.id" required>
@@ -50,7 +50,8 @@
                 </div>
             </div>
             <div>
-                <button mat-button matStepperNext (click)="consultarIndicadoresPreguntas()">Siguiente</button>
+                <button [disabled]="!firstFormGroup.valid" mat-raised-button class="buttton-aldea" style="color: white;"
+                    matStepperNext (click)="consultarIndicadoresPreguntas()">Siguiente</button>
             </div>
 
         </form>
@@ -68,7 +69,7 @@
                     <mat-label>{{indicadores.indicador}}</mat-label>
                 </div>
             </div>
-            
+
             <mat-grid-list [cols]="item.preguntas.length" rowHeight="70px"
                 *ngFor="let item of indicadores.listaPreguntas">
                 <mat-grid-tile [colspan]="item.preguntas.length" rowspan="1">
@@ -79,30 +80,47 @@
                 </mat-grid-tile>
                 <mat-grid-tile *ngFor="let pregunta of item.preguntas" colspan="1" rowspan="2">
 
-                    <app-sinocheckpregunta [NombreChecbok]='pregunta.descripcion'
+
+
+                    <app-sinocheckpregunta [NombreChecbok]='pregunta.descripcion' *ngIf="pregunta.tipo==1"
                         (datoSalid)='onNotificar($event, pregunta.id)'>
                     </app-sinocheckpregunta>
+                    <app-complementocheckpregunta [NombreChecbok]='pregunta.descripcion' [tasks]="pregunta.complemento"
+                        *ngIf="pregunta.tipo==2" (datoSalid)='onNotificar($event, pregunta.id)'>>
 
+                    </app-complementocheckpregunta>
                 </mat-grid-tile>
             </mat-grid-list>
 
         </div>
-        <!-- <mat-grid-list [cols]="item.preguntas.length" rowHeight="70px" *ngFor="let item of listaPreguntas">
+        <div class="centrarBotones">
 
-            <mat-grid-tile [colspan]="item.preguntas.length" rowspan="1">
-                <mat-grid-tile-header>
-                    <mat-label>{{item.encabezado.descripcion}}</mat-label>
-                </mat-grid-tile-header>
 
-            </mat-grid-tile>
-            <mat-grid-tile *ngFor="let pregunta of item.preguntas" colspan="1" rowspan="2">
+            <div class="row">
+                <div class="col-6">
+                    <button mat-raised-button class="buttton-aldea" style="color: white;"
+                        matStepperPrevious>Volver</button>
+                </div>
+                <div class="col-6">
+                    <button mat-raised-button class="buttton-aldea-login" style="color: white;"
+                        matStepperNext [disabled]="!PermitirGuardar">Siguiente</button>
+                </div>
+            </div>
 
-                <app-sinocheckpregunta [NombreChecbok]='pregunta.descripcion'
-                    (datoSalid)='onNotificar($event, pregunta.id)'>
-                </app-sinocheckpregunta>
+        </div>
+    </mat-step>
 
-            </mat-grid-tile>
-        </mat-grid-list> -->
+    <mat-step>
+        <ng-template matStepLabel>Guardar</ng-template>
+
+        <div clas="row" style="text-align: center;" >
+            <div class="col-12">
+              <button matStepperNext mat-raised-button color="secondary" (click)="Guardar()">Guardar</button>
+            </div>
+      
+           
+      
+          </div>
     </mat-step>
 
 </mat-horizontal-stepper>

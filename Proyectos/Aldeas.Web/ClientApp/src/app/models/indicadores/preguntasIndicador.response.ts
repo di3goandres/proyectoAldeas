@@ -30,6 +30,9 @@ export interface Complemento {
     idPregunta:         number;
     opcion:             string;
     esOtro:             boolean;
+    formValid?:         boolean;
+    valorOtro?:         string;
     fechaCreacion:      string;
     fechaActualizacion: string;
 }
+

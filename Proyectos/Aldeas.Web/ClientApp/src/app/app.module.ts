@@ -28,6 +28,7 @@ import { RegistroparticipantesComponent } from './components/05-Registro/registr
 import { RegistrarindicadorComponent } from './components/05-Registro/registrarindicador/registrarindicador.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { AuthInterceptor } from './services/interceptor/auth.interceptor';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const routes: Routes = [ 
   { path: 'login', component: LoginComponent, pathMatch: 'full' },
@@ -64,7 +65,8 @@ const routes: Routes = [
     NgxSpinnerModule,
   
     RouterModule.forRoot(routes),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgbModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

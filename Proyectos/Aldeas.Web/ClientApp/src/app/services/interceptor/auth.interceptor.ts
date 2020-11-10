@@ -64,7 +64,7 @@ export class AuthInterceptor implements HttpInterceptor {
   private addToken(request: HttpRequest<any>, token: string) {
     const headers = new HttpHeaders({
       'Authorization': token,
-      'Content-Type': 'application/x-www-form-urlencoded'
+      'Content-Type': 'application/json'
     });
     return request.clone({
       headers,

@@ -66,13 +66,25 @@ namespace ApiRestAldeas.EntityFrame
         #region indicadores
         public virtual DbSet<DBIndicadores> tbIndicadores { get; set; }
         public virtual DbSet<DBIndicadoresPreguntas> TbIndicadoresPreguntas { get; set; }
+
+        
         public virtual DbSet<DBIndicadorComplemento> TbIndicadorComplemento { get; set; }
+        public virtual DbSet<DBIndicadorRespuestas> TBIndicadorRespuestas { get; set; }
+
         #endregion
 
         #region Required
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+
+            modelBuilder.Entity<DBIndicadorRespuestas>(entity =>
+            {
+                entity.ToTable("indicadores_Respuestas");
+
+
+            });
             modelBuilder.Entity<DBIndicadorComplemento>(entity =>
             {
                 entity.ToTable("Indicadores_PreguntasComplemento");

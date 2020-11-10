@@ -128,5 +128,38 @@ namespace ApiRestAldeas.Helper
             return retorno;
         }
 
+        public static dynamic AsociarIndicadorParticipante(IContextFactory factory, IOptions<ConnectionDB> connection, IndicadoresRequest request)
+        {
+            long idrespuesta = 0;
+            using (Aldeas_Context db = factory.Create(connection))
+            {
+                List<DBIndicadorRespuestas> respuestas = new List<DBIndicadorRespuestas>();
+
+                foreach(var datos in request.Respuestas)
+                {
+                    respuestas.Add(new DBIndicadorRespuestas()
+                    {
+                        idProyecto = request.idProyecto,
+                        idRegistroParticipante = request.idRegistroParticipante,
+                        idIndicadorPregunta = datos.idIndicadorPregunta,
+                        respuestaSi_No = datos.respuestaSi_No == null ? null : datos.respuestaSi_No,
+                        esOtro = datos.esOtro == null ? false : datos.esOtro,
+                        Respuesta = datos.Respuesta == null ? "" : datos.Respuesta,
+                        idComplemento = datos.idComplemento == null ? null : datos.idComplemento,
+                        fechaCreacion = DateTime.Now,
+                        fechaActualizacion = DateTime.Now
+
+                    });
+                }
+                db.TBIndicadorRespuestas.AddRange(respuestas);
+                db.SaveChanges();
+                idrespuesta = 1;
+
+            }
+            return new { id = idrespuesta, status = idrespuesta == 0 ? "error" : "OK", code = 200 };
+        }
+
+
     }
+
 }

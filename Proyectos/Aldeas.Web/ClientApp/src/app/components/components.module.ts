@@ -34,6 +34,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { RegistrarindicadorComponent } from './05-Registro/registrarindicador/registrarindicador.component';
 import { SinocheckpreguntaComponent } from './00-Comunes/sinocheckpregunta/sinocheckpregunta.component';
+import { ComplementocheckpreguntaComponent } from './00-Comunes/complementocheckpregunta/complementocheckpregunta.component';
+import { RegistroExitosoComponent } from './00-Comunes/registro-exitoso/registro-exitoso.component';
+import { RegistroNoexitosoComponent } from './00-Comunes/registro-noexitoso/registro-noexitoso.component';
 @NgModule({
   declarations: [
     LoginComponent,
@@ -47,7 +50,10 @@ import { SinocheckpreguntaComponent } from './00-Comunes/sinocheckpregunta/sinoc
     SinocheckpreguntaComponent,
     ListcheckComponent,
     ListcentroscostosComponent,
-    RegistrarindicadorComponent],
+    RegistrarindicadorComponent,
+    ComplementocheckpreguntaComponent,
+    RegistroExitosoComponent,
+    RegistroNoexitosoComponent],
   imports: [
 
     CommonModule,

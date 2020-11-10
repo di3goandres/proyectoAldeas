@@ -1,4 +1,5 @@
 ﻿using System;
+using ApiRestAldeas.Models;
 using ApiRestAldeas.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -32,12 +33,20 @@ namespace ApiRestAldeas.Controllers
             return _dataModelRepository.ConsultarIndicadores();
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpGet]
         [Route("/api/aldeas/indicadores/obtenerPreguntas/{id}")]
         public dynamic ObtenerPreguntasIndicadores(string id)
         {
             return _dataModelRepository.ConsultarPreguntasIndicadores(id);
+        }
+
+        [Authorize]
+        [HttpPost]
+        [Route("/api/aldeas/indicadores/GuardarRespuestas/")]
+        public dynamic GuardarRespuestasIndicadores([FromBody]  IndicadoresRequest request)
+        {
+            return _dataModelRepository.AsociarIndicadorParticipante(request);
         }
     }
 }

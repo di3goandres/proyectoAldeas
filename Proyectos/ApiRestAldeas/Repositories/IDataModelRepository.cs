@@ -60,7 +60,7 @@ namespace ApiRestAldeas.Repositories
         #region indicadores
         dynamic ConsultarIndicadores();
         dynamic ConsultarPreguntasIndicadores(string id);
-
+        dynamic AsociarIndicadorParticipante(IndicadoresRequest request);
 
         #endregion
 

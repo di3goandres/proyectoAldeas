@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { ItemsProyecto } from '../../../models/ProyectoResponse';
@@ -10,6 +10,10 @@ import { Indicadores } from '../../../models/indicadores/indicadores.response';
 import { IndicadoresPreguntasResponse, ListaPregunta, Preguntas } from '../../../models/indicadores/preguntasIndicador.response';
 import { Task } from '../../../models/checkbox';
 import { IndicadoresRequest, RespuestaIndicadores } from '../../../models/indicadores/Respuesta.Indicadores';
+import { RegistroExitosoComponent } from '../../00-Comunes/registro-exitoso/registro-exitoso.component';
+import { RegistroNoexitosoComponent } from '../../00-Comunes/registro-noexitoso/registro-noexitoso.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { MatStepper } from '@angular/material/stepper';
 
 @Component({
   selector: 'app-registrarindicador',
@@ -17,6 +21,7 @@ import { IndicadoresRequest, RespuestaIndicadores } from '../../../models/indica
   styleUrls: ['./registrarindicador.component.css']
 })
 export class RegistrarindicadorComponent implements OnInit {
+  @ViewChild('stepper') private myStepper: MatStepper;
   proyectos: ItemsProyecto[] = [];
   participantes: RegistroParticipantes[] = []
 
@@ -27,6 +32,8 @@ export class RegistrarindicadorComponent implements OnInit {
   listaPreguntasSeleccionadas: ListaPregunta[] = [];
   indicadoresConsultar: any = "";
   PermitirGuardar = false;
+
+  indicadoresRequest = new IndicadoresRequest();
   Respuesta: string;
   RespuestaCheck: Task[] = [
     { pregunta: 'Nacionalidad', name: 'Si', completed: false, esOtro: false, color: 'primary' },
@@ -36,7 +43,7 @@ export class RegistrarindicadorComponent implements OnInit {
   encabezado: Preguntas;
   preguntas: Preguntas[];
 
-  indicadoresRequest= new IndicadoresRequest();
+
   respuestaIndicadores: RespuestaIndicadores[] = []
   constructor(
     private _formBuilder: FormBuilder,
@@ -44,6 +51,8 @@ export class RegistrarindicadorComponent implements OnInit {
     public indicadorService: IndicadoresService,
     public service: RegparticipantesService,
     private _snackBar: MatSnackBar,
+    private modalService: NgbModal,
+
 
   ) {
 
@@ -60,6 +69,7 @@ export class RegistrarindicadorComponent implements OnInit {
   ngOnInit(): void {
     this.traerProyectos()
     this.traerIndicador()
+
   }
   firstFormGroup: FormGroup;
 
@@ -92,11 +102,12 @@ export class RegistrarindicadorComponent implements OnInit {
     this.indicadoresConsultar = id;
     console.log(this.indicadoresConsultar);
 
-   
+
   }
 
 
-  crearRespuestas(){
+  crearRespuestas() {
+    this.respuestaIndicadores = []
     this.listaPreguntas.forEach(element => {
 
       element.listaPreguntas.forEach(preguntas => {
@@ -111,31 +122,32 @@ export class RegistrarindicadorComponent implements OnInit {
           this.respuestaIndicadores.push(nueva);
 
         })
-      
+
 
       });
-      
+
     });
 
     console.log(this.respuestaIndicadores);
   }
-  consultarIndicadoresPreguntas(){
+  consultarIndicadoresPreguntas() {
     this.indicadorService.ObtenerPreguntasIndicadores(this.indicadoresConsultar).subscribe(
       OK => {
         this.indicadorPreguntas = OK
         this.listaPreguntas = [];
         this.listaPreguntas.push(...OK.listaPreguntas)
         this.crearRespuestas();
-        
+
       },
       ERROR => { console.log(ERROR) },
     )
   }
-  agregarQuitar(id, listaPreguntas: ListaPregunta ){
+  agregarQuitar(id, listaPreguntas: ListaPregunta) {
     this.listaPreguntasSeleccionadas.push()
 
   }
   obtenerPartipantes(id) {
+    this.indicadoresRequest.idProyecto = id;
     this.service.obtenerParticipantes(id).subscribe(
       OK => {
         this.participantes = [];
@@ -159,36 +171,111 @@ export class RegistrarindicadorComponent implements OnInit {
     });
   }
 
-  onNotificar(event: any, Tipo: any) {
-    // console.log(event, ' - ', Tipo)
+  onNotificar(event: any, IdPregunta: any) {
+     console.log(event, ' - ', IdPregunta)
 
 
-    this.respuestaIndicadores.forEach(item=> {
-      if(item.idIndicadorPregunta == Tipo){
+    this.respuestaIndicadores.forEach(item => {
+      if (item.idIndicadorPregunta == IdPregunta) {
         item.Valido = true;
-        if(item.Tipo==1){
-          item.respuestaSi_No = event.name == "No" ? false:true;
-        }else if (item.Tipo == 2){
+        if (item.Tipo == 1) {
+          item.respuestaSi_No = event.name == "No" ? false : true;
+        } else if (item.Tipo == 2) {
+          item.idComplemento = event.id;
+          item.Valido = event.formValid;
+          item.Respuesta = event.valorOtro;
+          item.esOtro = event.esOtro;
+          if (item.esOtro) {
+
+            if (event.formValid) {
+              item.Respuesta = event.valorOtro;
+
+
+            }
+          }
 
         }
       }
     })
-  
+
     this.validarGuardado()
+
+  }
+  AsignarParticipante(id) {
+    this.indicadoresRequest.idRegistroParticipante = id;
+
   }
 
-
-  seleccionarIndicador( ){
-    let itemIndicador = 
-    this.seleccionarIndicador 
+  seleccionarIndicador() {
+    let itemIndicador =
+      this.seleccionarIndicador
   }
-  validarGuardado(){
-    let valido = this.respuestaIndicadores.filter(item=>{
+  validarGuardado() {
+    let valido = this.respuestaIndicadores.filter(item => {
       return item.Valido == false;
     })
 
-    this.PermitirGuardar = valido.length == 0? true: false
+    this.PermitirGuardar = valido.length == 0 ? true : false
 
     console.log(this.PermitirGuardar)
+
+    if (this.PermitirGuardar) {
+      this.openSnackBar("Ya podemos guardar la información", "");
+    }
+  }
+
+  Guardar() {
+
+    this.indicadoresRequest.Respuestas = []
+    this.indicadoresRequest.Respuestas.push(... this.respuestaIndicadores);
+    console.log(this.indicadoresRequest);
+
+    this.indicadorService.GuardarIndicador(this.indicadoresRequest).subscribe(
+      OK => { 
+        this.registroExitoso();
+      },
+      ERROR => {
+        this.registroNoExitoso("Registro No exitoso", "por favor intentelo nuevamente")
+
+      },
+    )
+
+  }
+
+  reiniciarForumulario() {
+
+    this.indicadoresRequest = new IndicadoresRequest();
+    this.myStepper.reset();
+    this.firstFormGroup.reset()
+
+  }
+
+  registroExitoso() {
+    const modalRef = this.modalService.open(RegistroExitosoComponent, { size: 'md' });
+
+    modalRef.result.then((result) => {
+       this.reiniciarForumulario()
+    }, (reason) => {
+
+      if (reason === 'OK') {
+
+
+      }
+    });
+  }
+
+  registroNoExitoso(Titulo, Mensaje) {
+    const modalRef = this.modalService.open(RegistroNoexitosoComponent, { size: 'md' });
+    modalRef.componentInstance.Titulo = Titulo;
+    modalRef.componentInstance.mensaje = Mensaje
+    modalRef.result.then((result) => {
+
+    }, (reason) => {
+
+      if (reason === 'OK') {
+
+
+      }
+    });
   }
 }

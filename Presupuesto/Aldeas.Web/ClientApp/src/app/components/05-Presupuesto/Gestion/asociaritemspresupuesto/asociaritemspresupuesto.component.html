@@ -6,7 +6,7 @@
 
         </mat-card-header>
         <mat-card-content>
-            <mat-horizontal-stepper [linear]="false" #stepper>
+            <mat-horizontal-stepper [linear]="true" #stepper>
 
                 <mat-step [stepControl]="firstFormGroup">
                     <form [formGroup]="firstFormGroup">
@@ -369,7 +369,7 @@
                                             <mat-form-field class="example-full-width">
                                                 <mat-label>Marzo</mat-label>
                                                 <input matInput placeholder="Marzo" [(ngModel)]="guardar.Marzo"
-                                                    (ngModelChange)="Actualizar()" type="text">
+                                                    (ngModelChange)="Actualizar()" type="number">
                                             </mat-form-field>
 
 
@@ -385,7 +385,7 @@
                                             <mat-form-field class="example-full-width">
                                                 <mat-label>Mayo</mat-label>
                                                 <input matInput placeholder="Mayo" [(ngModel)]="guardar.Mayo"
-                                                    (ngModelChange)="Actualizar()" type="text">
+                                                    (ngModelChange)="Actualizar()" type="number">
                                             </mat-form-field>
                                         </mat-grid-tile>
                                         <mat-grid-tile>

@@ -36,12 +36,16 @@ export class AuthInterceptor implements HttpInterceptor {
 
 
 
+    console.log(request.url)
 
     if (usuario != null) {
       this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
       let user = this.currentUserSubject.value;
       let token = user.token
-      request = this.addToken(request, token);
+
+      if(request.url !='/api/aldeas/GuardarProyectoArchivo/'){
+        request = this.addToken(request, token);
+      }
     }
 
     return next.handle(request)
@@ -65,6 +69,17 @@ export class AuthInterceptor implements HttpInterceptor {
     const headers = new HttpHeaders({
       'Authorization': token,
       'Content-Type': 'application/json'
+    });
+    return request.clone({
+      headers,
+
+    })
+
+  }
+  private addTokenFile(request: HttpRequest<any>, token: string) {
+    const headers = new HttpHeaders({
+      'Authorization': token,
+      "Content-Type": "multipart/form-data" 
     });
     return request.clone({
       headers,

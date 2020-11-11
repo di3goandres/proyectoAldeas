@@ -53,7 +53,7 @@ export class UserService {
     formData.append('Proyecto', id.toString());
    
     return this.http.post<Respuesta>(environment.ApiUrl + '/api/aldeas/GuardarProyectoArchivo/',
-     formData, { headers: this.header });
+     formData);
     
 }
 

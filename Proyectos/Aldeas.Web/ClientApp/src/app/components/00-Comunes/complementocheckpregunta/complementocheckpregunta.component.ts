@@ -70,7 +70,7 @@ export class ComplementocheckpreguntaComponent implements OnInit {
     this.valid.emit(this.firstFormGroup.invalid)
   }
   onChange(task: Complemento) {
-
+    this.taskSeleccionado = task;
     this.setStakeValidators()
 
     if (task.esOtro) {
@@ -85,7 +85,8 @@ export class ComplementocheckpreguntaComponent implements OnInit {
 
 
     }
-    this.taskSeleccionado = task;
+   
+
 
     this.datoSalid.emit(this.taskSeleccionado);
 

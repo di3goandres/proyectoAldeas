@@ -1,1 +1,73 @@
-<p>verindicadorparticipante works!</p>
+<mat-horizontal-stepper [linear]="true" #stepper>
+
+    <mat-step [stepControl]="firstFormGroup">
+
+        <form [formGroup]="firstFormGroup">
+
+            <ng-template matStepLabel>Ver indicadores de Indicadores</ng-template>
+            <div class="row">
+                <div class="col-12 main-green-text"><label>Ver Indicadores Participante</label></div>
+            </div>
+            <!--Fechas-->
+            <div class="row">
+                <div class="col-6">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Proyecto</mat-label>
+
+                        <mat-select formControlName="Proyecto" (selectionChange)="obtenerPartipantes($event.value)">
+                            <mat-option *ngFor="let proyecto of proyectos" [value]="proyecto.codigo" required>
+                                {{proyecto.nombre}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-6">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Participantes</mat-label>
+
+                        <mat-select formControlName="participante" (selectionChange)="traerIndicador($event.value)">
+                            <mat-option *ngFor="let participante of participantes" [value]="participante.id" required>
+                                {{participante.nombres + ' - ' + participante.apellidos}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-6">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Atención</mat-label>
+                        <mat-select formControlName="atencion" required
+                            (selectionChange)="TraerRespuestas($event.value)">
+
+                            <mat-option *ngFor="let indicador of atencion" [value]="indicador.id" required>
+                                {{indicador.nombreIndicador | uppercase}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-6">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Indicador</mat-label>
+
+                        <mat-select formControlName="indicador" (selectionChange)="MostrarRespuestas($event.value)">
+                            <mat-option color="primary" *ngFor="let indicador of  indicadores; let  i= index" [value]="indicador.id"
+                                required>
+                                {{(i+1) +' - '+ indicador.indicador}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+
+            </div>
+
+
+        </form>
+
+    </mat-step>
+
+
+
+</mat-horizontal-stepper>

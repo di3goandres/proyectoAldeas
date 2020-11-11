@@ -102,6 +102,14 @@ namespace ApiRestAldeas.Repositories
         {
             return IndicadoresOperations.AsociarIndicadorParticipante(_factory, _connectionDB, request);
         }
+        public dynamic ConsultarRespuestasIndicadoresParticipante(long id, long idIndicador)
+        {
+            return IndicadoresOperations.ConsultarPreguntasIndicadorParticipante(_factory, _connectionDB, id, idIndicador);
+        }
+        public dynamic ConsultarIndicadorParticipante(long id)
+        {
+            return IndicadoresOperations.ConsultarIndicadorParticipante(_factory, _connectionDB, id);
+        }
         #endregion
     }
 

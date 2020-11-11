@@ -100,7 +100,7 @@ export class RegistrarindicadorComponent implements OnInit {
   obtenerPreguntasIndicadores(id) {
     this.indicadoresConsultar = [];
     this.indicadoresConsultar = id;
-    console.log(this.indicadoresConsultar);
+
 
 
   }

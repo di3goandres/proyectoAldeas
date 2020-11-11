@@ -29,6 +29,7 @@ import { RegistrarindicadorComponent } from './components/05-Registro/registrari
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { AuthInterceptor } from './services/interceptor/auth.interceptor';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { VerindicadorparticipanteComponent } from './components/05-Registro/verindicadorparticipante/verindicadorparticipante.component';
 
 const routes: Routes = [ 
   { path: 'login', component: LoginComponent, pathMatch: 'full' },
@@ -43,6 +44,7 @@ const routes: Routes = [
   { path: 'Colaborador', component: ColaboradorComponent, pathMatch: 'full', canActivate:[UsuarioGuard], canLoad: [UsuarioGuard]  },
   { path: 'RegistroParticipantes', component: RegistroparticipantesComponent, pathMatch: 'full', canActivate:[UsuarioGuard], canLoad: [UsuarioGuard]  },
   { path: 'RegistroIndicador', component: RegistrarindicadorComponent, pathMatch: 'full', canActivate:[UsuarioGuard], canLoad: [UsuarioGuard]  },
+  { path: 'VerIndicadorParticipante', component: VerindicadorparticipanteComponent, pathMatch: 'full', canActivate:[UsuarioGuard], canLoad: [UsuarioGuard]  },
 
 ];
 @NgModule({

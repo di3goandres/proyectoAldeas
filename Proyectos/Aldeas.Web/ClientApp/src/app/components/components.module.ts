@@ -37,6 +37,7 @@ import { SinocheckpreguntaComponent } from './00-Comunes/sinocheckpregunta/sinoc
 import { ComplementocheckpreguntaComponent } from './00-Comunes/complementocheckpregunta/complementocheckpregunta.component';
 import { RegistroExitosoComponent } from './00-Comunes/registro-exitoso/registro-exitoso.component';
 import { RegistroNoexitosoComponent } from './00-Comunes/registro-noexitoso/registro-noexitoso.component';
+import { VerindicadorparticipanteComponent } from './05-Registro/verindicadorparticipante/verindicadorparticipante.component';
 @NgModule({
   declarations: [
     LoginComponent,
@@ -53,7 +54,8 @@ import { RegistroNoexitosoComponent } from './00-Comunes/registro-noexitoso/regi
     RegistrarindicadorComponent,
     ComplementocheckpreguntaComponent,
     RegistroExitosoComponent,
-    RegistroNoexitosoComponent],
+    RegistroNoexitosoComponent,
+    VerindicadorparticipanteComponent],
   imports: [
 
     CommonModule,

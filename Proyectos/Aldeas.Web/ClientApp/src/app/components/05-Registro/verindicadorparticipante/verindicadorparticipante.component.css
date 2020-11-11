@@ -1,0 +1,37 @@
+.mat-form-field {
+    width: 100%;
+}
+
+.example-additional-selection {
+    opacity: 0.75;
+    font-size: 0.75em;
+  }
+
+
+  .mat-stepper-vertical {
+    margin-top: 8px;
+  }
+  
+  .mat-form-field {
+    margin-top: 16px;
+  }
+
+  .centrarBotones{
+    display: flex;
+
+    align-items: center;
+    justify-content: center;  
+  }
+
+  ::ng-deep .mat-horizontal-stepper-header{
+    pointer-events: none !important;
+}
+
+
+/deep/ .mat-select-panel mat-option.mat-option {
+  height: unset;
+}
+
+/deep/ .mat-option-text.mat-option-text {
+  white-space: normal;
+}

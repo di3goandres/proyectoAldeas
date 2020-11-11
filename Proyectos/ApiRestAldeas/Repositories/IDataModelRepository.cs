@@ -61,7 +61,8 @@ namespace ApiRestAldeas.Repositories
         dynamic ConsultarIndicadores();
         dynamic ConsultarPreguntasIndicadores(string id);
         dynamic AsociarIndicadorParticipante(IndicadoresRequest request);
-
+        dynamic ConsultarRespuestasIndicadoresParticipante(long id, long idIndicador);
+        dynamic ConsultarIndicadorParticipante(long id);
         #endregion
 
 

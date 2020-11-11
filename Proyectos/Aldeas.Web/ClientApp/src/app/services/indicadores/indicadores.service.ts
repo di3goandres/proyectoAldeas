@@ -4,6 +4,10 @@ import { IndicadoresResponse } from '../../models/indicadores/indicadores.respon
 import { IndicadoresPreguntasResponse } from '../../models/indicadores/preguntasIndicador.response';
 import { IndicadoresRequest } from '../../models/indicadores/Respuesta.Indicadores';
 import { Respuesta } from '../../models/comunes';
+import { ProyectoResponse } from '../../models/ProyectoResponse';
+import { RegistroParticipantesResponse } from '../../models/registroparticipantes/registro.participantes.response';
+import { RespuestaIndicadoresResponse } from 'src/app/models/indicadores/Respuesta.indicadores.response';
+import { RespuestasResponse } from '../../models/indicadores/Respuestas.response';
 
 @Injectable({
   providedIn: 'root'
@@ -14,10 +18,18 @@ export class IndicadoresService {
     private service: UserService
 
   ) { }
-
+  obtenerParticipantes(id) {
+    return this.service
+      .ejecutarQuery<RegistroParticipantesResponse>('/api/aldeas/proyectos/obtenerparticipantes/' + id);
+  }
   ObtenerIndicadores() {
     return this.service
       .ejecutarQuery<IndicadoresResponse>('/api/aldeas/indicadores/obtener');
+  }
+
+  ObtenerIndicadoresParticipante(id) {
+    return this.service
+      .ejecutarQuery<RespuestaIndicadoresResponse>('/api/aldeas/indicadores/obteneindicadorparticipante/' + id);
   }
 
   ObtenerPreguntasIndicadores(id) {
@@ -32,5 +44,14 @@ export class IndicadoresService {
     console.log(params)
     return this.service
     .ejecutarQueryPost<Respuesta>('/api/aldeas/indicadores/GuardarRespuestas/', params);
+  }
+
+  getProyectos() {
+    return this.service.ejecutarQuery<ProyectoResponse>('/api/aldeas/datosproyectos');
+  }
+
+  ObtenerRespuestasIndicadores(participante, indicador) {
+    return this.service
+      .ejecutarQuery<RespuestasResponse>('/api/aldeas/indicadores/obtenerespuestas/' + participante + '/'+indicador);
   }
 }

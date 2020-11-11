@@ -5,8 +5,28 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class FiltroPipe implements PipeTransform {
 
-  transform(value: unknown, ...args: unknown[]): unknown {
-    return null;
+  transform(
+    arreglo: any[],
+    texto: any,
+    columna: string
+  ): any[] {
+
+
+    if (arreglo == null) {
+      return arreglo
+    }
+    if (texto === '') {
+      return arreglo;
+    }
+
+   
+
+
+    return arreglo.filter(item => {
+      return item[columna] == texto
+       
+    });
+
   }
 
 }

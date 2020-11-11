@@ -38,6 +38,7 @@ import { ComplementocheckpreguntaComponent } from './00-Comunes/complementocheck
 import { RegistroExitosoComponent } from './00-Comunes/registro-exitoso/registro-exitoso.component';
 import { RegistroNoexitosoComponent } from './00-Comunes/registro-noexitoso/registro-noexitoso.component';
 import { VerindicadorparticipanteComponent } from './05-Registro/verindicadorparticipante/verindicadorparticipante.component';
+import { PipesModule } from '../pipes/pipes.module';
 @NgModule({
   declarations: [
     LoginComponent,
@@ -79,7 +80,8 @@ import { VerindicadorparticipanteComponent } from './05-Registro/verindicadorpar
     MatCheckboxModule,
     MatRadioModule,
     MatMenuModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    PipesModule
 
   ],
   providers: [

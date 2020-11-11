@@ -30,6 +30,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { AuthInterceptor } from './services/interceptor/auth.interceptor';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { VerindicadorparticipanteComponent } from './components/05-Registro/verindicadorparticipante/verindicadorparticipante.component';
+import { PipesModule } from './pipes/pipes.module';
+
 
 const routes: Routes = [ 
   { path: 'login', component: LoginComponent, pathMatch: 'full' },
@@ -52,7 +54,8 @@ const routes: Routes = [
     AppComponent,
     NavMenuComponent,
     CounterComponent,
-    FetchDataComponent
+    FetchDataComponent,
+
   ],
   imports: [
     MatToolbarModule,
@@ -68,7 +71,8 @@ const routes: Routes = [
   
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,
-    NgbModule
+    NgbModule,
+    PipesModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

@@ -16,7 +16,7 @@
 
                         <mat-select formControlName="Proyecto" (selectionChange)="obtenerPartipantes($event.value)">
                             <mat-option *ngFor="let proyecto of proyectos" [value]="proyecto.codigo" required>
-                                {{proyecto.nombre}}
+                                {{proyecto.codigo + ' - '+ proyecto.nombre}}
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
@@ -30,7 +30,7 @@
 
                         <mat-select formControlName="participante" (selectionChange)="AsignarParticipante($event.value)"> 
                             <mat-option *ngFor="let participante of participantes" [value]="participante.id" required>
-                                {{participante.nombres + ' - ' + participante.apellidos}}
+                                {{participante.id + ' - ' + participante.nombres + ' - ' + participante.apellidos}}
                             </mat-option>
                         </mat-select>
                     </mat-form-field>

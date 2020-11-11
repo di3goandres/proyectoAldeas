@@ -16,7 +16,7 @@
 
                         <mat-select formControlName="Proyecto" (selectionChange)="obtenerPartipantes($event.value)">
                             <mat-option *ngFor="let proyecto of proyectos" [value]="proyecto.codigo" required>
-                                {{proyecto.nombre}}
+                                {{proyecto.codigo + ' - '+ proyecto.nombre}}
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
@@ -27,7 +27,7 @@
 
                         <mat-select formControlName="participante" (selectionChange)="traerIndicador($event.value)">
                             <mat-option *ngFor="let participante of participantes" [value]="participante.id" required>
-                                {{participante.nombres + ' - ' + participante.apellidos}}
+                                {{participante.id + ' - ' + participante.nombres + ' - ' + participante.apellidos}}
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
@@ -52,8 +52,8 @@
                         <mat-label>Indicador</mat-label>
 
                         <mat-select formControlName="indicador" (selectionChange)="MostrarRespuestas($event.value)">
-                            <mat-option color="primary" *ngFor="let indicador of  indicadores; let  i= index" [value]="indicador.id"
-                                required>
+                            <mat-option color="primary" *ngFor="let indicador of  indicadores; let  i= index"
+                                [value]="indicador.id" required>
                                 {{(i+1) +' - '+ indicador.indicador}}
                             </mat-option>
                         </mat-select>
@@ -63,6 +63,61 @@
 
             </div>
 
+
+
+
+
+
+
+            <mat-grid-list [cols]="rcols" rowHeight="120px">
+
+
+                <mat-grid-tile *ngFor="let respuesta of respuestasSeleccionadas" colspan="1" rowspan="2">
+
+                    <mat-grid-tile-header>
+
+                        <mat-label>{{respuesta.pregunta}}</mat-label>
+
+                    </mat-grid-tile-header>
+
+
+                    <div *ngIf="respuesta.tipoPregunta==1">
+
+
+                        <ul>
+                            <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+                                [value]="respuesta.respuestaSiNO==true? 'SI':'NO'">
+                                <li class="break-word">
+
+                                    <mat-radio-button value="SI" disabled>
+                                        <span class="break-word"> SI</span>
+
+                                    </mat-radio-button>
+
+                                </li>
+                                <li>
+                                    <mat-radio-button value="NO" disabled>
+                                        <span class="break-word"> NO</span>
+
+                                    </mat-radio-button>
+
+                                </li>
+
+
+
+                            </mat-radio-group>
+                        </ul>
+                    </div>
+
+                    <div *ngIf="respuesta.tipoPregunta==2">
+
+                        <mat-label *ngIf="respuesta.esOtro==true">{{respuesta.respuestaOTRA}}</mat-label>
+                        <mat-label *ngIf="respuesta.esOtro==false">{{respuesta.valorOtra}}</mat-label>
+
+
+                    </div>
+                </mat-grid-tile>
+            </mat-grid-list>
 
         </form>
 

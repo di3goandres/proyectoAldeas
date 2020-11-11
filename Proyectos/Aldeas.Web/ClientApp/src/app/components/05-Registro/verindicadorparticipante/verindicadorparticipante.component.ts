@@ -21,8 +21,10 @@ export class VerindicadorparticipanteComponent implements OnInit {
   atencion: IndicadoresParticipante[] = [];
   firstFormGroup: FormGroup;
   respuestas: RespuestasIndicadoresParticipante[] = [];
-  indicadores:                         Indicador[];
+  respuestasSeleccionadas: RespuestasIndicadoresParticipante[] = [];
 
+  indicadores: Indicador[];
+  idIndicador = 0;
   idParticipante = 0;
   constructor(
     private _formBuilder: FormBuilder,
@@ -36,11 +38,18 @@ export class VerindicadorparticipanteComponent implements OnInit {
 
       participante: ['', Validators.required],
       atencion: ['', Validators.nullValidator],
-      indicador:['', Validators.required],
+      indicador: ['', Validators.required],
 
     });
   }
   traerProyectos() {
+
+    this.atencion = [];
+
+    this.respuestas = [];
+    this.indicadores = [];
+    this.idIndicador = 0;
+    this.idParticipante = 0;
     this.indicadorService.getProyectos().subscribe(
       response => {
         this.proyectos.push(...response.itemsProyectos)
@@ -64,8 +73,8 @@ export class VerindicadorparticipanteComponent implements OnInit {
         if (OK.respuestasIndicadoresParticipante.length == 0) {
           this.openSnackBar("No se han registrados respuetas para este participante", "")
         }
-        else { 
-          this.respuestas.push(...OK.respuestasIndicadoresParticipante); 
+        else {
+          this.respuestas.push(...OK.respuestasIndicadoresParticipante);
           this.indicadores.push(...OK.indicador)
         }
       },
@@ -94,16 +103,40 @@ export class VerindicadorparticipanteComponent implements OnInit {
       ERROR => { console.log(ERROR) },
     )
   }
-
+  rcols = 0;
   MostrarRespuestas(id) {
 
+    console.log(id)
+    if (id == '') {
+      id = 0
+    }
 
+    this.idIndicador = id;
+
+    this.respuestasSeleccionadas = this.respuestas.filter(item =>
+      {
+        return item.idPregunta == id
+      })
+
+    console.log(this.respuestasSeleccionadas.length)
+
+    if(this.respuestasSeleccionadas.length>3){
+      this.rcols = 4
+    }else{
+      this.rcols = this.respuestasSeleccionadas.length
+
+    }
 
   }
 
 
   obtenerPartipantes(id) {
+    this.atencion = [];
 
+    this.respuestas = [];
+    this.indicadores = [];
+    this.idIndicador = 0;
+   
     this.indicadorService.obtenerParticipantes(id).subscribe(
       OK => {
         this.participantes = [];

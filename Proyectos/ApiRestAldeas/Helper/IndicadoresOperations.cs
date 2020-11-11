@@ -203,7 +203,7 @@ namespace ApiRestAldeas.Helper
 
                     retorno.Indicador = indicadores.Select(x => new IndicadorPResponse
                     {
-                        id = x.idIndicador,
+                        id = x.idPregunta,
                         Indicador = x.Indicador
                     }).Distinct().ToList();
 

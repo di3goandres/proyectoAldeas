@@ -38,13 +38,10 @@ export interface RespuestasIndicadoresParticipante {
     pregunta:      string;
     tipoPregunta:  number;
     esOtro:        boolean;
-    respuestaOTRA: RespuestaOTRA;
+    respuestaOTRA: string;
     valorOtra:     null | string;
     respuestaSiNO: boolean | null;
 }
 
-export enum RespuestaOTRA {
-    Empty = "",
-    Pesca = "pesca",
-}
+
 

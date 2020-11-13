@@ -16,6 +16,10 @@ namespace ApiRestAldeas.EntityFrame
 
         public string fuente { get; set; }
 
+        public Decimal plataContrapartida { get; set; }
+        public Decimal plataDonante { get; set; }
+
+
         public string tipoFuente { get; set; }
 
         public string monedaDonacion { get; set; }

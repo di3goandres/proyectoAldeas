@@ -5,6 +5,9 @@ namespace ApiRestAldeas.Models
 {
     public class ColaboradorRequest
     {
+
+        public long Proyecto { get; set; }
+
         public string Nombre { get; set; }
         public DateTime Fecha { get; set; }
         public string Cargo { get; set; }

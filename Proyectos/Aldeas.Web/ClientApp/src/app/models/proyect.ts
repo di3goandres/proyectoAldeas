@@ -139,6 +139,9 @@ export class Financiera {
 
   ) {
     this.CostoTotal = 0,
+    this.PlatContrapartida = 0,
+    this.PlataDonante = 0,
+
     this.FuentePresupuesto = ""
     this.TipoFuente = ""
     this.MonedaDonacion = "";
@@ -155,7 +158,10 @@ export class Financiera {
 
   public CostoTotal: number;
   public FuentePresupuesto: string;
+  public PlatContrapartida: number;
   public TipoFuente: string;
+  public PlataDonante: number;
+
   public MonedaDonacion: string;
   public TasaCambio: string;
   public Cuenta: string;

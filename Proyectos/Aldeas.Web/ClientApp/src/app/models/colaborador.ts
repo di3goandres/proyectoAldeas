@@ -21,6 +21,7 @@ export class Colaborador {
     this.ListCentroCostos = []
 
     }
+    public Proyecto: number;
     public Nombre : string;
     public Fecha: Date;
     public Cargo: string;

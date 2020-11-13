@@ -56,7 +56,11 @@ namespace ApiRestAldeas.Models
     {
             public long CostoTotal { get; set; }
             public string FuentePresupuesto { get; set; }
+            public Decimal PlatContrapartida { get; set; }
+
             public string TipoFuente { get; set; }
+            public Decimal PlataDonante { get; set; }
+
             public string MonedaDonacion { get; set; }
             public string TasaCambio { get; set; }
             public string Cuenta { get; set; }

@@ -5,6 +5,7 @@ import { SelectGlobal, CentrosCosto, SubCentro } from '../../../models/comunes';
 import * as moment from 'moment';
 import { Colaborador } from '../../../models/colaborador';
 import { CentroCostosList } from '../../../models/proyect';
+import { ItemsProyecto } from '../../../models/ProyectoResponse';
 
 @Component({
   selector: 'app-colaborador',
@@ -19,11 +20,13 @@ export class ColaboradorComponent implements OnInit {
   centrosCostos: CentrosCosto[] = [];
   subCentro: SubCentro[] = [];
   subCentroSeleccionado: SubCentro[] = [];
+  proyectos: ItemsProyecto[] = [];
   
   firstFormGroup: FormGroup;
   tipoContrado: SelectGlobal [] = [
     { value: 'FIJO ', viewValue: 'FIJO' },
     { value: 'INDEFINIDO ', viewValue: 'INDEFINIDO' },
+    { value: 'OBRA LABOR', viewValue: 'OBRA LABOR' },
     { value: 'PRESTACION DE SERVICIOS', viewValue: 'PRESTACION DE SERVICIOS' },
 
   ];
@@ -35,13 +38,20 @@ export class ColaboradorComponent implements OnInit {
   fechaNacimiento(event) {
     console.log(event)
     var fecha = moment(this.FechaNacimiento);
-    // if (fecha.isValid()) {
-    //   this.FechaNacimiento  = true;
-    // } else {
-    //   this.AgregarDesembolso = false;
-   
-    // }
 
+
+  }
+
+
+  traerProyectos() {
+    this.userService.getProyectos().subscribe(
+      response => {
+        this.proyectos.push(...response.itemsProyectos)
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
   FechaInicio(event) {
     var firstDate = moment(this.colaborador.FechaInicio);
@@ -123,7 +133,9 @@ export class ColaboradorComponent implements OnInit {
     } 
   }
   ngOnInit(): void {
+    this.traerProyectos();
     this.firstFormGroup = this._formBuilder.group({
+      Proyecto: ['', Validators.required],
 
       NombreColaborador: ['', Validators.required],
       FechaNacimiento: ['', Validators.required],

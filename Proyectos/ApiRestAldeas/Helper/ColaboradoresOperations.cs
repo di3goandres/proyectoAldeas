@@ -18,6 +18,7 @@ namespace ApiRestAldeas.Helper
             {
                 var nuevo = new TbColaborador()
                 {
+                    idProyecto = request.Proyecto,
                     Nombre = request.Nombre,
                     FechaNacimiento = request.Fecha,
                     Cargo = request.Cargo,

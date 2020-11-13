@@ -823,6 +823,8 @@ export class InformacionComponent implements OnInit {
     this.secondFormGroup = this._formBuilder.group({
 
       CostoTotal: ['', Validators.required],
+      valorContrapartida:  ['', Validators.required],
+      valorDonante: ['', Validators.required],
       Fuente: ['', Validators.required],
       TipoFuente: ['', Validators.required],
       TasaCambio: ['', Validators.required],

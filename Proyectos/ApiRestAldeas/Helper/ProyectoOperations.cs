@@ -116,7 +116,8 @@ namespace ApiRestAldeas.Helper
                     monedaDonacion = info.MonedaDonacion,
                     tasacambio = info.TasaCambio,
                     navision = info.NavisionFacilitiy,
-               
+                    plataContrapartida = info.PlatContrapartida,
+                    plataDonante = info.PlataDonante,
                     responsable = info.Responsable,
                     lugar = info.Lugar
 

@@ -4,6 +4,8 @@ namespace ApiRestAldeas.EntityFrame
     public class TbColaborador
     {
         public long Id { get; set; }
+        public long idProyecto { get; set; }
+
         public string Nombre { get; set; }
         public DateTime FechaNacimiento { get; set; }
         public string Cargo { get; set; }

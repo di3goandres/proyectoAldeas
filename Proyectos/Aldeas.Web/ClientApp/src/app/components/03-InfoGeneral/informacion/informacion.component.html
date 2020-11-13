@@ -426,12 +426,34 @@
                     </div>
                     <div class="col-6">
                         <mat-form-field appearance="fill">
+                            <mat-label>Valor Contrapartida</mat-label>
+
+                            <input matInput type="number" placeholder="Valor Contrapartida" formControlName="valorContrapartida"
+                                [(ngModel)]="infoFinanciera.PlatContrapartida" 
+                               
+                                required>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <mat-form-field appearance="fill">
                             <mat-label>Aporte Donante</mat-label>
                             <mat-select formControlName="TipoFuente" [(ngModel)]="infoFinanciera.TipoFuente" required>
                                 <mat-option *ngFor="let item of TipoFuente" [value]="item.value">
                                     {{item.viewValue}}
                                 </mat-option>
                             </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-6">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Valor Aporte del donante</mat-label>
+
+                            <input matInput type="number" placeholder="Valor Aporte del donante " formControlName="valorDonante"
+                                [(ngModel)]="infoFinanciera.PlataDonante" 
+                               
+                                required>
                         </mat-form-field>
                     </div>
                 </div>

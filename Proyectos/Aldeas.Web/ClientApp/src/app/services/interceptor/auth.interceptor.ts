@@ -43,7 +43,7 @@ export class AuthInterceptor implements HttpInterceptor {
       let user = this.currentUserSubject.value;
       let token = user.token
 
-      if(request.url !='/api/aldeas/GuardarProyectoArchivo/'){
+      if (!request.url.includes('/api/aldeas/GuardarProyectoArchivo/')) {
         request = this.addToken(request, token);
       }
     }
@@ -79,7 +79,7 @@ export class AuthInterceptor implements HttpInterceptor {
   private addTokenFile(request: HttpRequest<any>, token: string) {
     const headers = new HttpHeaders({
       'Authorization': token,
-      "Content-Type": "multipart/form-data" 
+      "Content-Type": "multipart/form-data"
     });
     return request.clone({
       headers,

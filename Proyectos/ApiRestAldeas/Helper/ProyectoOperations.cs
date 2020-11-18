@@ -34,6 +34,108 @@ namespace ApiRestAldeas.Helper
             return retorno;
         }
 
+        /// <summary>
+        /// Metodo para consultar los proyctos para mostrar en listas
+        /// </summary>
+        /// <param name="factory"></param>
+        /// <param name="connection"></param>
+        /// <returns></returns>
+        public static dynamic ConsultarProyectoListas(IContextFactory factory, IOptions<ConnectionDB> connection)
+        {
+            ProyectoListaResponse retorno = new ProyectoListaResponse();
+            using (Aldeas_Context db = factory.Create(connection))
+            {
+                var data = from pro in db.tbProyectos
+                           select pro;
+                retorno.ItemsProyectos = (data.ToList());
+            }
+            return retorno;
+        }
+
+
+        public static dynamic ConsultarProyectobyID(IContextFactory factory, IOptions<ConnectionDB> connection, long id)
+        {
+            ProyectoUnicoResponse retorno = new ProyectoUnicoResponse();
+            using (Aldeas_Context db = factory.Create(connection))
+            {
+                var data = from pro in db.tbProyectos
+                           where pro.id == id
+                           select pro ;
+                if (data.Any())
+                {
+                    long idProyecto = 0;
+                    retorno.ItemProyecto = data.First();
+
+                    idProyecto = retorno.ItemProyecto.id;
+                    var financiaera = from finacie in db.tbInformacionFinanciera
+                               where finacie.id_proyecto == idProyecto
+                                      select finacie;
+
+                    long idFinanciera = 0;
+                    if (financiaera.Any())
+                    {
+
+                        retorno.ItemFinanciera = financiaera.First();
+                        idFinanciera = retorno.ItemFinanciera.id;
+                    }
+
+                    var dataFechas = from fechas in db.tbFechaEntregas
+                                      where fechas.id_proyecto == idProyecto
+                                      select fechas;
+
+                    if (dataFechas.Any())
+                    {
+                        retorno.ItemsFechas = dataFechas.ToList();
+                    }
+
+                    var dataMunicipios = from muni in db.tbMunicipioProyectos
+                                     where muni.id_proyecto == idProyecto
+                                     select muni;
+
+                    if (dataMunicipios.Any())
+                    {
+                        retorno.ItemsMunicipios = dataMunicipios.ToList();
+                    }
+
+                    var dataCentros = from centros in db.TbCICentroCostos
+                                      where centros.id_InfoFinanciera == idFinanciera
+                                      select centros;
+
+                    if (dataCentros.Any())
+                    {
+                        retorno.ItemsCentroCostos = dataCentros.ToList();
+                    }
+                    var dataEjecucion = from ejecu in db.tbEjecucion
+                                         where ejecu.IdFinanciera == idFinanciera
+                                        select ejecu;
+
+                    if (dataEjecucion.Any())
+                    {
+                        retorno.ItemsEjecucion = dataEjecucion.ToList();
+                    }
+
+                    var Proyectado = from proyectado in db.tbParticipantesProyectados
+                                     where proyectado.id_proyecto == idProyecto
+                                     select proyectado;
+
+                    if (Proyectado.Any())
+                    {
+
+                        retorno.ItemProyectados = new ProyectadosResponse();
+                        retorno.ItemProyectados.id = Proyectado.First().id;
+                        retorno.ItemProyectados.TotalFamilias = Proyectado.First().TotalFamilias;
+                        retorno.ItemProyectados.Observaciones = Proyectado.First().Observaciones;
+
+                        var Participantes = from participante in db.tbParticipantes
+                                            where participante.id_participantes == retorno.ItemProyectados.id
+                                            select participante;
+
+                    }
+                }
+             
+            }
+            return retorno;
+        }
         public static dynamic Guardar(IContextFactory factory, IOptions<ConnectionDB> connection,
             ProyectoRequest proyectoRequest)
         {
@@ -55,6 +157,7 @@ namespace ApiRestAldeas.Helper
                     lider_coordinacion = proyectoRequest.LiderCoordinacion,
                     comite_tecnico = proyectoRequest.ComiteTecnico,
                     Nombrearchivo = null,
+                    requiereLiquidacion = proyectoRequest.Requiere.ToUpper() =="TRUE" ? true:false,
                     archivo = null
                     
                 };

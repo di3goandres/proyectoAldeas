@@ -1,0 +1,18 @@
+ <mat-tab-group  (selectedTabChange)="cambioTab($event)">
+    <mat-tab label="COMITES"> COMITES 
+
+      <app-listafechas *ngIf="fechas.length>0" [fechas]="fechas" filtro="COMITES"></app-listafechas>
+    </mat-tab>
+    <mat-tab label="INFORMES"> INFORMES
+      
+      <app-listafechas *ngIf="fechas.length>0" [fechas]="fechas" filtro="INFORMES"></app-listafechas>
+    </mat-tab>
+    <mat-tab label="FECHAS DESEMBOLSO"> FECHAS DESEMBOLSO
+      
+      <app-listafechas *ngIf="fechas.length>0" [fechas]="fechas" filtro="FECHAS DESEMBOLSO"></app-listafechas>
+    </mat-tab>
+    <mat-tab label="VISITAS"> FECHAS DESEMBOLSO
+      
+      <app-listafechas *ngIf="fechas.length>0" [fechas]="fechas" filtro="VISITAS"></app-listafechas>
+    </mat-tab>
+  </mat-tab-group>

@@ -66,5 +66,17 @@ namespace ApiRestAldeas.Repositories
         #endregion
 
 
+        #region Proyectos
+        /// <summary>
+        /// metodo para Consultar los proyectos para mostrar en las listas tablas.
+        /// </summary>
+        /// <returns></returns>
+        dynamic ConsultarListaProyectos();
+
+        dynamic ConsultarProyectosByID(long id);
+
+
+        #endregion
+
     }
 }

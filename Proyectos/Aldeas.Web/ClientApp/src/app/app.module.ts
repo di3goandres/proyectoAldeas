@@ -31,6 +31,8 @@ import { AuthInterceptor } from './services/interceptor/auth.interceptor';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { VerindicadorparticipanteComponent } from './components/05-Registro/verindicadorparticipante/verindicadorparticipante.component';
 import { PipesModule } from './pipes/pipes.module';
+import { VerproyectosComponent } from './components/03-InfoGeneral/verproyectos/verproyectos.component';
+import { DetalleproyectosComponent } from './components/03-InfoGeneral/detalleproyectos/detalleproyectos.component';
 
 
 const routes: Routes = [ 
@@ -40,6 +42,12 @@ const routes: Routes = [
     redirectTo: 'login',
     pathMatch: 'full'
   },
+
+  {
+    path: '**',
+    redirectTo: 'home',
+    pathMatch: 'full'
+  },
   { path: 'Home', component: HomeComponent, pathMatch: 'full',  canActivate:[UsuarioGuard], canLoad: [UsuarioGuard] },
   { path: 'logout/:sure', component: LoginComponent, pathMatch: 'full' },
   { path: 'Informacion', component: InformacionComponent, pathMatch: 'full', canActivate:[UsuarioGuard], canLoad: [UsuarioGuard]  },
@@ -47,6 +55,9 @@ const routes: Routes = [
   { path: 'RegistroParticipantes', component: RegistroparticipantesComponent, pathMatch: 'full', canActivate:[UsuarioGuard], canLoad: [UsuarioGuard]  },
   { path: 'RegistroIndicador', component: RegistrarindicadorComponent, pathMatch: 'full', canActivate:[UsuarioGuard], canLoad: [UsuarioGuard]  },
   { path: 'VerIndicadorParticipante', component: VerindicadorparticipanteComponent, pathMatch: 'full', canActivate:[UsuarioGuard], canLoad: [UsuarioGuard]  },
+  { path: 'VerProyectos', component: VerproyectosComponent, pathMatch: 'full', canActivate:[UsuarioGuard], canLoad: [UsuarioGuard]  },
+  { path: 'VerDetalleProyectos/:id', component: DetalleproyectosComponent, pathMatch: 'full', canActivate:[UsuarioGuard], canLoad: [UsuarioGuard]  },
+
 
 ];
 @NgModule({
@@ -69,7 +80,8 @@ const routes: Routes = [
     MatMenuModule,
     NgxSpinnerModule,
   
-    RouterModule.forRoot(routes),
+    // RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes, { useHash: true }),
     BrowserAnimationsModule,
     NgbModule,
     PipesModule

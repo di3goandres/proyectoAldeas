@@ -56,6 +56,8 @@ namespace ApiRestAldeas.EntityFrame
         /// </summary>
         public string comite_tecnico { get; set; }
 
+        public bool requiereLiquidacion { get; set; }
+
 
         public byte[] archivo { get; set; }
 

@@ -49,7 +49,7 @@ namespace ApiRestAldeas.Controllers
             return _dataModelRepository.AsociarIndicadorParticipante(request);
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpGet]
         [Route("/api/aldeas/indicadores/obteneRespuestas/{id}/{idIndicador}")]
         public dynamic OObtenerRespuestasIndicadores(long id, long idIndicador)
@@ -57,7 +57,7 @@ namespace ApiRestAldeas.Controllers
             return _dataModelRepository.ConsultarRespuestasIndicadoresParticipante(id, idIndicador);
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpGet]
         [Route("/api/aldeas/indicadores/obteneIndicadorParticipante/{id}")]
         public dynamic OObtenerIndicadoresParticipante(long id)

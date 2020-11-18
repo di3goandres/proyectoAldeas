@@ -110,6 +110,27 @@ namespace ApiRestAldeas.Repositories
         {
             return IndicadoresOperations.ConsultarIndicadorParticipante(_factory, _connectionDB, id);
         }
+
+
+        #endregion
+
+
+        #region
+
+        /// <summary>
+        /// Metodo para consultar los proyectos para listas.
+        /// </summary>
+        /// <returns></returns>
+        public dynamic ConsultarListaProyectos()
+        {
+            return ProyectoOperations.ConsultarProyectoListas(_factory, _connectionDB);
+
+        }
+
+        public dynamic ConsultarProyectosByID(long id)
+        {
+            return ProyectoOperations.ConsultarProyectobyID(_factory, _connectionDB, id);
+        }
         #endregion
     }
 

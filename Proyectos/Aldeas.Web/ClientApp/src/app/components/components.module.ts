@@ -28,10 +28,10 @@ import { RegistroparticipantesComponent } from './05-Registro/registroparticipan
 import { CheckboxComponent } from './00-Comunes/checkbox/checkbox.component';
 import { ListcheckComponent } from './00-Comunes/listcheck/listcheck.component';
 import { ListcentroscostosComponent } from './00-Comunes/listcentroscostos/listcentroscostos.component';
-
+import {MatTabsModule} from '@angular/material/tabs';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { RegistrarindicadorComponent } from './05-Registro/registrarindicador/registrarindicador.component';
 import { SinocheckpreguntaComponent } from './00-Comunes/sinocheckpregunta/sinocheckpregunta.component';
 import { ComplementocheckpreguntaComponent } from './00-Comunes/complementocheckpregunta/complementocheckpregunta.component';
@@ -39,6 +39,9 @@ import { RegistroExitosoComponent } from './00-Comunes/registro-exitoso/registro
 import { RegistroNoexitosoComponent } from './00-Comunes/registro-noexitoso/registro-noexitoso.component';
 import { VerindicadorparticipanteComponent } from './05-Registro/verindicadorparticipante/verindicadorparticipante.component';
 import { PipesModule } from '../pipes/pipes.module';
+import { VerproyectosComponent } from './03-InfoGeneral/verproyectos/verproyectos.component';
+import { DetalleproyectosComponent } from './03-InfoGeneral/detalleproyectos/detalleproyectos.component';
+import { ListafechasComponent } from './00-Comunes/listafechas/listafechas.component';
 @NgModule({
   declarations: [
     LoginComponent,
@@ -56,7 +59,10 @@ import { PipesModule } from '../pipes/pipes.module';
     ComplementocheckpreguntaComponent,
     RegistroExitosoComponent,
     RegistroNoexitosoComponent,
-    VerindicadorparticipanteComponent],
+    VerindicadorparticipanteComponent,
+    VerproyectosComponent,
+    DetalleproyectosComponent,
+    ListafechasComponent],
   imports: [
 
     CommonModule,
@@ -81,7 +87,9 @@ import { PipesModule } from '../pipes/pipes.module';
     MatRadioModule,
     MatMenuModule,
     MatSnackBarModule,
-    PipesModule
+    PipesModule,
+    MatPaginatorModule,
+    MatTabsModule
 
   ],
   providers: [

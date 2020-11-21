@@ -19,7 +19,7 @@ export class ProyectoService {
   }
 
   getProyectosById(id) {
-    return this.service.ejecutarQuery<UnicoProyecto>(' /api/aldeas/proyectos/obtenerproyectosbyid/' + id);
+    return this.service.ejecutarQuery<UnicoProyecto>('/api/aldeas/proyectos/obtenerproyectosbyid/' + id);
   }
 
  

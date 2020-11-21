@@ -130,12 +130,43 @@ namespace ApiRestAldeas.Helper
                                             where participante.id_participantes == retorno.ItemProyectados.id
                                             select participante;
 
+                        if (Participantes.Any())
+                        {
+                            retorno.ItemProyectados.ListParticipantes = Participantes.ToList();
+
+                        }
+
                     }
                 }
              
             }
             return retorno;
         }
+
+        public static dynamic ConsultarCecosProyectobyID(IContextFactory factory, IOptions<ConnectionDB> connection, long id)
+        {
+            ProyectoCecoResponse retorno = new ProyectoCecoResponse();
+            using (Aldeas_Context db = factory.Create(connection))
+            {
+                long idFinanciera = 0;
+                var financiaera = from finacie in db.tbInformacionFinanciera
+                                  where finacie.id_proyecto == id
+                                  select finacie;
+                if (financiaera.Any())
+                {
+                    var dataCentros = from centros in db.TbCICentroCostos
+                                      where centros.id_InfoFinanciera == idFinanciera
+                                      select centros;
+                    if (dataCentros.Any())
+                    {
+                        retorno.ItemsCentroCostos = dataCentros.ToList();
+                    }
+                }
+            }
+            return retorno;
+        }
+
+
         public static dynamic Guardar(IContextFactory factory, IOptions<ConnectionDB> connection,
             ProyectoRequest proyectoRequest)
         {
@@ -156,6 +187,7 @@ namespace ApiRestAldeas.Helper
                     lider_ejecucion = proyectoRequest.LiderEjecucion,
                     lider_coordinacion = proyectoRequest.LiderCoordinacion,
                     comite_tecnico = proyectoRequest.ComiteTecnico,
+                    tipo_implementacion = proyectoRequest.TipoImplementacion,
                     Nombrearchivo = null,
                     requiereLiquidacion = proyectoRequest.Requiere.ToUpper() =="TRUE" ? true:false,
                     archivo = null

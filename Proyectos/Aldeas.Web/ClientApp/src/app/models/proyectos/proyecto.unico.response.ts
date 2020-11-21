@@ -27,10 +27,27 @@ export interface ItemFinanciera {
 }
 
 export interface ItemProyectados {
-    id:            number;
-    totalFamilias: number;
-    observaciones: string;
+    id:                number;
+    totalFamilias:     number;
+    observaciones:     string;
+    listParticipantes: ListParticipante[];
 }
+
+export interface ListParticipante {
+    id:               number;
+    id_participantes: number;
+    nombre:           string;
+    rango_0_5:        number;
+    rango_6_12:       number;
+    rango_13_17:      number;
+    rango_18_24:      number;
+    rango_25_56:      number;
+    mayores_60:       number;
+    total:            number;
+    totalDesagregado: number;
+    porcentaje:       number;
+}
+
 
 export interface ItemProyecto {
     id:                  number;
@@ -45,6 +62,7 @@ export interface ItemProyecto {
     fecha_finalizacion:  string;
     lider_ejecucion:     string;
     lider_coordinacion:  string;
+    tipo_implementacion: string;
     comite_tecnico:      string;
     requiereLiquidacion: boolean;
     archivo:             string;

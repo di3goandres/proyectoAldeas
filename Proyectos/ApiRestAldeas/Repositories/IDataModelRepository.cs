@@ -75,6 +75,9 @@ namespace ApiRestAldeas.Repositories
 
         dynamic ConsultarProyectosByID(long id);
 
+        dynamic ConsultarCecosProyectosByID(long id);
+
+
 
         #endregion
 

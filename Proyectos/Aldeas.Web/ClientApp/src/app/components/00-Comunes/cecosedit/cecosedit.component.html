@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="col-2"></div>
+    <div class="table-responsive col-8">
+        <table id="customers"  #lista mat-table [dataSource]="dataSource" class="mat-elevation-z8  centrarTabla departamento">
+
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="position">
+            <th mat-header-cell *matHeaderCellDef> No. </th>
+            <td mat-cell *matCellDef="let element ;let i = index;"> {{i+1}}</td>
+        </ng-container>
+       
+        <ng-container matColumnDef="Nombre">
+            <th mat-header-cell *matHeaderCellDef> Nombre </th>
+            <td mat-cell *matCellDef="let element"> {{element.codigo}}
+            </td>
+        </ng-container>
+      
+
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+    </div>
+    <div class="col-2"></div>
+
+</div>

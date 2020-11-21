@@ -23,7 +23,7 @@ export class ListafechasComponent implements OnInit {
   ngOnInit(): void {
 
   
-    console.log(this.fechas);
+  
     this.dataSource = new MatTableDataSource(this.fechas);
     this.dataSource.paginator = this.paginator;
     this.dataSource.filter = this.filtro.trim().toLowerCase();

@@ -51,6 +51,10 @@ namespace ApiRestAldeas.EntityFrame
         /// 
         /// </summary>
         public string lider_coordinacion { get; set; }
+
+
+        public string tipo_implementacion { get; set; }
+
         /// <summary>
         /// 
         /// </summary>

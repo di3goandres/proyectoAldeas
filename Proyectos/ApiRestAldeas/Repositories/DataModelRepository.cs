@@ -131,6 +131,10 @@ namespace ApiRestAldeas.Repositories
         {
             return ProyectoOperations.ConsultarProyectobyID(_factory, _connectionDB, id);
         }
+        public dynamic ConsultarCecosProyectosByID(long id)
+        {
+            return ProyectoOperations.ConsultarCecosProyectobyID(_factory, _connectionDB, id);
+        }
         #endregion
     }
 

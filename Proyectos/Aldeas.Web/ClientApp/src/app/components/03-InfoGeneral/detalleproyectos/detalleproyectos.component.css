@@ -1,0 +1,23 @@
+.example-card {
+  padding-top: 10px;
+    max-width: 100%;
+  }
+  .example-card2 {
+    max-width: 100%;
+  }
+  
+  .example-header-image {
+    /* background-image: url('assets/avatars/av-1.png'); */
+    background-size: cover;
+  }
+
+  .descripcion{
+    font-weight: bold;
+    color: #77b856
+  }
+
+  .descripcionTexto{
+   color: black;
+   padding-left: 1px;
+  
+  }

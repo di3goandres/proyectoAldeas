@@ -37,14 +37,23 @@ namespace ApiRestAldeas.Models
         public ProyectadosResponse ItemProyectados { get; set; }
     }
 
+    public class ProyectoCecoResponse
+    {
+        public List<ColaboradorInforFinanciera> ItemsCentroCostos { get; set; }
+    }
+
     public class ProyectadosResponse
     {
+        public ProyectadosResponse()
+        {
+            this.ListParticipantes = new List<DBParticipantes>();
+        }
         public  long id { get; set; }
         public long TotalFamilias { get; set; }
         public string Observaciones { get; set; }
         ///  Mujeres, Hombres, Otros, Adicionales
         /// </summary>
-        public List<DBParticipantes> ListParticipantes = new List<DBParticipantes>();
+        public List<DBParticipantes> ListParticipantes { get; set; } 
 
     }
 

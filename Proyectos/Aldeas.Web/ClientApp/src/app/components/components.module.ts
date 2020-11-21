@@ -42,6 +42,7 @@ import { PipesModule } from '../pipes/pipes.module';
 import { VerproyectosComponent } from './03-InfoGeneral/verproyectos/verproyectos.component';
 import { DetalleproyectosComponent } from './03-InfoGeneral/detalleproyectos/detalleproyectos.component';
 import { ListafechasComponent } from './00-Comunes/listafechas/listafechas.component';
+import { CecoseditComponent } from './00-Comunes/cecosedit/cecosedit.component';
 @NgModule({
   declarations: [
     LoginComponent,
@@ -62,7 +63,8 @@ import { ListafechasComponent } from './00-Comunes/listafechas/listafechas.compo
     VerindicadorparticipanteComponent,
     VerproyectosComponent,
     DetalleproyectosComponent,
-    ListafechasComponent],
+    ListafechasComponent,
+    CecoseditComponent],
   imports: [
 
     CommonModule,

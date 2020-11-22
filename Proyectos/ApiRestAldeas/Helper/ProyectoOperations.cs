@@ -434,9 +434,38 @@ namespace ApiRestAldeas.Helper
             using (Aldeas_Context db = factory.Create(connection))
             {
 
-                var ParticipantesRegistrados = from participantes in db.tbRegistroParticipantes
-                                               where participantes.idProyecto == idProyecto
-                                               select participantes;
+                var ParticipantesRegistrados = from dato in db.tbRegistroParticipantes
+                                               join muni in db.tbMunicipios on dato.idMunicipio equals  muni.id
+                                               join dep in db.tbDepartamentos on muni.cod_dane_departamento equals dep.id_departamento
+
+                                               where dato.idProyecto == idProyecto
+                                               select new RegistroParticipanteResponse
+                                               {
+                                                   id = dato.id,
+                                                    idProyecto = dato.idProyecto,
+                                                    idMunicipio = dato.idMunicipio,
+                                                    Municipio = muni.municipio,
+                                                    Departamento = dep.departamento,
+                                                    Nombres = dato.Nombres,
+                                                    Apellidos = dato.Apellidos,
+                                                    FechaNacimiento = dato.FechaNacimiento,
+                                                    Edad = dato.Edad,
+                                                    FechaIngreso = dato.FechaIngreso,
+                                                    FechaSalida = dato.FechaSalida,
+                                                    Localidad = dato.Localidad,
+                                                    Sexo = dato.Sexo,
+                                                    EstatusResidencia = dato.EstatusResidencia,
+                                                    UltimoCursoAprobado = dato.UltimoCursoAprobado,
+                                                    AsisteAlColegio = dato.AsisteAlColegio,
+                                                    GrupoPoblacional = dato.GrupoPoblacional,
+                                                    GrupoEtnico = dato.GrupoEtnico,
+                                                    Nacionalidad = dato.Nacionalidad,
+                                                    Genero = dato.Genero,
+                                                    TipoParticipante = dato.TipoParticipante,
+                                                    Discapacidad = dato.Discapacidad,
+                                                    NivelEscolaridad = dato.NivelEscolaridad
+
+                                               };
 
 
                 if(ParticipantesRegistrados.Any())

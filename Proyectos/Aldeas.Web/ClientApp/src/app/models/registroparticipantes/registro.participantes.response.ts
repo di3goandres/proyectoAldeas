@@ -8,8 +8,12 @@ export interface RegistroParticipantes {
     id:                  number;
     idProyecto:          number;
     idMunicipio:         number;
+    municipio:           string;
+    departamento:        string;   
+
     nombres:             string;
     apellidos:           string;
+
     fechaNacimiento:     string;
     edad:                number;
     fechaIngreso:        string;

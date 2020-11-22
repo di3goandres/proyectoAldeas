@@ -43,6 +43,7 @@ import { VerproyectosComponent } from './03-InfoGeneral/verproyectos/verproyecto
 import { DetalleproyectosComponent } from './03-InfoGeneral/detalleproyectos/detalleproyectos.component';
 import { ListafechasComponent } from './00-Comunes/listafechas/listafechas.component';
 import { CecoseditComponent } from './00-Comunes/cecosedit/cecosedit.component';
+import { VerproyectosparticipantesComponent } from './05-Registro/verproyectosparticipantes/verproyectosparticipantes.component';
 @NgModule({
   declarations: [
     LoginComponent,
@@ -64,7 +65,8 @@ import { CecoseditComponent } from './00-Comunes/cecosedit/cecosedit.component';
     VerproyectosComponent,
     DetalleproyectosComponent,
     ListafechasComponent,
-    CecoseditComponent],
+    CecoseditComponent,
+    VerproyectosparticipantesComponent],
   imports: [
 
     CommonModule,

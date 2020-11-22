@@ -1,0 +1,274 @@
+<div class="container alternate-theme">
+    <mat-horizontal-stepper [linear]="false" #stepper>
+        <mat-step>
+            <ng-template matStepLabel>Participantes</ng-template>
+            <mat-card class="example-card">
+                <mat-card-header>
+
+
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="table-responsive">
+                        <table id="customers" matTableExporter mat-table [dataSource]="dataSource"
+                            class="mat-elevation-z8">
+                            <ng-container matColumnDef="position">
+                                <th mat-header-cell *matHeaderCellDef> No. </th>
+                                <td mat-cell *matCellDef="let element; let i = index"> {{i + 1}} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="nombre">
+                                <th mat-header-cell *matHeaderCellDef> Nombre</th>
+                                <td mat-cell *matCellDef="let element"> {{element.nombres |uppercase}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="apellidos">
+                                <th mat-header-cell *matHeaderCellDef> Apellidos</th>
+                                <td mat-cell *matCellDef="let element"> {{element.apellidos |uppercase}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="fechaNacimiento">
+                                <th mat-header-cell *matHeaderCellDef> Fecha Nacimiento </th>
+                                <td mat-cell *matCellDef="let element">
+                                    {{ element.fechaNacimiento }} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="departamento">
+                                <th mat-header-cell *matHeaderCellDef> Departamento </th>
+                                <td mat-cell *matCellDef="let element">
+                                    {{element.departamento | uppercase }} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="municipio">
+                                <th mat-header-cell *matHeaderCellDef> Municipio </th>
+                                <td mat-cell *matCellDef="let element">
+                                    {{element.municipio | uppercase }} </td>
+                            </ng-container>
+
+
+                            <ng-container matColumnDef="detalle">
+                                <th mat-header-cell *matHeaderCellDef> Ver Participante</th>
+                                <td mat-cell *matCellDef="let element">
+                                    <button mat-raised-button color="primary" id="logout-button"
+                                        class="btn btn-primary btn-block" style="width:50%" (click)="Ver(element)">
+                                        <mat-icon>face</mat-icon>
+                                    </button>
+
+                                </td>
+                            </ng-container>
+
+
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                        </table>
+                        <mat-paginator [pageSizeOptions]="[15, 30, 50]" showFirstLastButtons></mat-paginator>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </mat-step>
+
+        <mat-step>
+            <ng-template matStepLabel>Detalle Participantes</ng-template>
+
+            <mat-card *ngIf="seleccionado!=null">
+                <mat-card-header>
+                    <mat-card-title>
+                        Nombres: {{seleccionado.nombres + ', '+ seleccionado.apellidos |uppercase}}
+                    </mat-card-title>
+                    <mat-card-subtitle>
+                        Departamento: {{seleccionado.departamento}}
+                    </mat-card-subtitle>
+                    <mat-card-subtitle>
+                        Municipio: {{seleccionado.municipio}}
+                    </mat-card-subtitle>
+                    <mat-card-subtitle>
+                        Fecha Nacimiento: {{seleccionado.fechaNacimiento}}
+                    </mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+
+                    <mat-grid-list cols="2" rowHeight="250px">
+                        <mat-grid-tile>
+                            <table width="100%" border="0">
+                                <tr>
+                                    <td>
+                                        <mat-label class="descripcion">
+                                            Fecha Ingreso
+                                        </mat-label>
+                                    </td>
+                                    <td>
+                                        <mat-label class="descripcionTexto">
+                                            {{seleccionado.fechaIngreso}}
+                                        </mat-label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <mat-label class="descripcion">
+                                            Fecha Ingreso
+                                        </mat-label>
+                                    </td>
+                                    <td>
+                                        <mat-label class="descripcionTexto">
+                                            {{seleccionado.fechaSalida}}
+                                        </mat-label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <mat-label class="descripcion">
+                                            Localidad
+                                        </mat-label>
+                                    </td>
+                                    <td>
+                                        <mat-label class="descripcionTexto">
+                                            {{seleccionado.localidad}}
+                                        </mat-label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <mat-label class="descripcion">
+                                            Sexo
+                                        </mat-label>
+                                    </td>
+                                    <td>
+                                        <mat-label class="descripcionTexto">
+                                            {{seleccionado.sexo}}
+                                        </mat-label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <mat-label class="descripcion">
+                                            Genero
+                                        </mat-label>
+                                    </td>
+                                    <td>
+                                        <mat-label class="descripcionTexto">
+                                            {{seleccionado.genero}}
+                                        </mat-label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <mat-label class="descripcion">
+                                            Estatus Residencia:
+                                        </mat-label>
+                                    </td>
+                                    <td>
+                                        <mat-label class="descripcionTexto">
+                                            {{seleccionado.estatusResidencia}}
+                                        </mat-label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <mat-label class="descripcion">
+                                          Tipo Participante:
+                                        </mat-label>
+                                    </td>
+                                    <td>
+                                        <mat-label class="descripcionTexto">
+                                            {{seleccionado.tipoParticipante}}
+                                        </mat-label>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </mat-grid-tile>
+
+                        <mat-grid-tile>
+                            <table width="100%" border="0">
+                                <tr>
+                                    <td>
+                                        <mat-label class="descripcion">
+                                            Ultimo Curso Aprobado
+                                        </mat-label>
+                                    </td>
+                                    <td>
+                                        <mat-label class="descripcionTexto">
+                                            {{seleccionado.ultimoCursoAprobado}}
+                                        </mat-label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <mat-label class="descripcion">
+                                            Asiste al colegio
+                                        </mat-label>
+                                    </td>
+                                    <td>
+                                        <mat-label class="descripcionTexto">
+                                            {{seleccionado.asisteAlColegio}}
+                                        </mat-label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <mat-label class="descripcion">
+                                           Nivel Escolaridad
+                                        </mat-label>
+                                    </td>
+                                    <td>
+                                        <mat-label class="descripcionTexto">
+                                            {{seleccionado.nivelEscolaridad}}
+                                        </mat-label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <mat-label class="descripcion">
+                                            Grupo Poblacional:
+                                        </mat-label>
+                                    </td>
+                                    <td>
+                                        <mat-label class="descripcionTexto">
+                                            {{seleccionado.grupoPoblacional}}
+                                        </mat-label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <mat-label class="descripcion">
+                                            Grupo Etnico:
+                                        </mat-label>
+                                    </td>
+                                    <td>
+                                        <mat-label class="descripcionTexto">
+                                            {{seleccionado.grupoEtnico}}
+                                        </mat-label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <mat-label class="descripcion">
+                                            Nacionalidad:
+                                        </mat-label>
+                                    </td>
+                                    <td>
+                                        <mat-label class="descripcionTexto">
+                                            {{seleccionado.nacionalidad}}
+                                        </mat-label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <mat-label class="descripcion">
+                                            Discapacidad:
+                                        </mat-label>
+                                    </td>
+                                    <td>
+                                        <mat-label class="descripcionTexto">
+                                            {{seleccionado.discapacidad==true?"SI":"NO"}}
+                                        </mat-label>
+                                    </td>
+                                </tr>
+                            </table>
+                        </mat-grid-tile>
+                    </mat-grid-list>
+                </mat-card-content>
+            </mat-card>
+            <div class="col-12">
+                <button type="button" matStepperPrevious mat-raised-button color="primary">Atras</button>
+
+            </div>
+        </mat-step>
+    </mat-horizontal-stepper>
+</div>

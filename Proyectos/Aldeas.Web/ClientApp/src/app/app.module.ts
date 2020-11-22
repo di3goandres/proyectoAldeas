@@ -33,6 +33,7 @@ import { VerindicadorparticipanteComponent } from './components/05-Registro/veri
 import { PipesModule } from './pipes/pipes.module';
 import { VerproyectosComponent } from './components/03-InfoGeneral/verproyectos/verproyectos.component';
 import { DetalleproyectosComponent } from './components/03-InfoGeneral/detalleproyectos/detalleproyectos.component';
+import { VerproyectosparticipantesComponent } from './components/05-Registro/verproyectosparticipantes/verproyectosparticipantes.component';
 
 
 const routes: Routes = [ 
@@ -57,6 +58,7 @@ const routes: Routes = [
   { path: 'VerIndicadorParticipante', component: VerindicadorparticipanteComponent, pathMatch: 'full', canActivate:[UsuarioGuard], canLoad: [UsuarioGuard]  },
   { path: 'VerProyectos', component: VerproyectosComponent, pathMatch: 'full', canActivate:[UsuarioGuard], canLoad: [UsuarioGuard]  },
   { path: 'VerDetalleProyectos/:id', component: DetalleproyectosComponent, pathMatch: 'full', canActivate:[UsuarioGuard], canLoad: [UsuarioGuard]  },
+  { path: 'VerParticipantesProyectos/:id', component: VerproyectosparticipantesComponent, pathMatch: 'full', canActivate:[UsuarioGuard], canLoad: [UsuarioGuard]  },
 
 
 ];

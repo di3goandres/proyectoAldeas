@@ -1,66 +1,75 @@
 <div class="container alternate-theme">
-    <mat-horizontal-stepper [linear]="false">
-      <mat-step>
-        <ng-template matStepLabel>Proyectos</ng-template>
-        <mat-card class="example-card">
-          <mat-card-header>
+  <mat-horizontal-stepper [linear]="false">
+    <mat-step>
+      <ng-template matStepLabel>Proyectos</ng-template>
+      <mat-card class="example-card">
+        <mat-card-header>
 
-  
-          </mat-card-header>
-          <mat-card-content>
-            <div class="table-responsive">
-              <table id="customers" matTableExporter  mat-table [dataSource]="dataSource"
-                class="mat-elevation-z8">
-                <ng-container matColumnDef="position">
-                  <th mat-header-cell *matHeaderCellDef> No. </th>
-                  <td mat-cell *matCellDef="let element; let i = index"> {{i + 1}} </td>
-                </ng-container>
-  
-                <ng-container matColumnDef="nombre">
-                  <th mat-header-cell *matHeaderCellDef> Nombre</th>
-                  <td mat-cell *matCellDef="let element"> {{element.nombre |uppercase}} </td>
-                </ng-container>
-  
-                <ng-container matColumnDef="status">
-                  <th mat-header-cell *matHeaderCellDef> Estado </th>
-                  <td mat-cell *matCellDef="let element">
-                    {{ element.status| uppercase }} </td>
-                </ng-container>
-                <ng-container matColumnDef="tipoFinanciacion">
-                    <th mat-header-cell *matHeaderCellDef> Tipo Financiación </th>
-                    <td mat-cell *matCellDef="let element">
-                      {{element.tipo_financiacion | uppercase }} </td>
-                  </ng-container>
-                <ng-container matColumnDef="donante">
-                  <th mat-header-cell *matHeaderCellDef> Donante </th>
-                  <td mat-cell *matCellDef="let element">
-                    {{element.donante | uppercase }} </td>
-                </ng-container>
-                <ng-container matColumnDef="fecha_inicio">
-                  <th mat-header-cell *matHeaderCellDef> Fecha Inicio </th>
-                  <td mat-cell *matCellDef="let element"> {{element.fecha_inicio }} </td>
-                </ng-container>
-                <ng-container matColumnDef="fecha_finalizacion">
-                  <th mat-header-cell *matHeaderCellDef> Fecha finalizacion </th>
-                  <td mat-cell *matCellDef="let element"> {{element.fecha_finalizacion}} </td>
-                </ng-container>
-              
-                <ng-container matColumnDef="detalle">
-                    <th mat-header-cell *matHeaderCellDef> Ver </th>
-                    <td mat-cell *matCellDef="let element">
-                      <button mat-raised-button color="primary" id="logout-button" class="btn btn-primary btn-block"
-                        style="width:50%" [routerLink]="'/VerDetalleProyectos/'+element.id">Ver</button>
-      
-                    </td>
-                  </ng-container>
-  
-                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-              </table>
-              <mat-paginator [pageSizeOptions]="[15, 30, 50]" showFirstLastButtons></mat-paginator>
-            </div>
-          </mat-card-content>
-        </mat-card>
-      </mat-step>
-    </mat-horizontal-stepper>
-  </div>
+
+        </mat-card-header>
+        <mat-card-content>
+          <div class="table-responsive">
+            <table id="customers" matTableExporter mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+              <ng-container matColumnDef="position">
+                <th mat-header-cell *matHeaderCellDef> No. </th>
+                <td mat-cell *matCellDef="let element; let i = index"> {{i + 1}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="nombre">
+                <th mat-header-cell *matHeaderCellDef> Nombre</th>
+                <td mat-cell *matCellDef="let element"> {{element.nombre |uppercase}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef> Estado </th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.status| uppercase }} </td>
+              </ng-container>
+              <ng-container matColumnDef="tipoFinanciacion">
+                <th mat-header-cell *matHeaderCellDef> Tipo Financiación </th>
+                <td mat-cell *matCellDef="let element">
+                  {{element.tipo_financiacion | uppercase }} </td>
+              </ng-container>
+              <ng-container matColumnDef="donante">
+                <th mat-header-cell *matHeaderCellDef> Donante </th>
+                <td mat-cell *matCellDef="let element">
+                  {{element.donante | uppercase }} </td>
+              </ng-container>
+              <ng-container matColumnDef="fecha_inicio">
+                <th mat-header-cell *matHeaderCellDef> Fecha Inicio </th>
+                <td mat-cell *matCellDef="let element"> {{element.fecha_inicio }} </td>
+              </ng-container>
+              <ng-container matColumnDef="fecha_finalizacion">
+                <th mat-header-cell *matHeaderCellDef> Fecha finalizacion </th>
+                <td mat-cell *matCellDef="let element"> {{element.fecha_finalizacion}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="detalle">
+                <th mat-header-cell *matHeaderCellDef> Ver Proyecto</th>
+                <td mat-cell *matCellDef="let element">
+                  <button mat-raised-button color="primary" id="logout-button" class="btn btn-primary btn-block"
+                    style="width:50%" [routerLink]="'/VerDetalleProyectos/'+element.id">Ver</button>
+
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="detalleparticipantes">
+                <th mat-header-cell *matHeaderCellDef> Ver  Participantes</th>
+                <td mat-cell *matCellDef="let element">
+                  <button mat-raised-button color="primary" id="logout-button" class="btn btn-primary btn-block"
+                    style="width:50%" [routerLink]="'/VerParticipantesProyectos/'+element.id">
+                    <mat-icon>assignment_ind</mat-icon></button>
+
+                </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+            <mat-paginator [pageSizeOptions]="[15, 30, 50]" showFirstLastButtons></mat-paginator>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </mat-step>
+  </mat-horizontal-stepper>
+</div>

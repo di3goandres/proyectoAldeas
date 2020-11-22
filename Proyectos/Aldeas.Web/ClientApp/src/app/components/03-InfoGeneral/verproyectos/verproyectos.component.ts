@@ -12,7 +12,7 @@ import { MatTableDataSource } from '@angular/material/table';
 export class VerproyectosComponent implements OnInit {
 
   displayedColumns: string[] = ['position', 'nombre','tipoFinanciacion', 'status', 'donante',
-  'fecha_inicio', 'fecha_finalizacion','detalle']
+  'fecha_inicio', 'fecha_finalizacion','detalle','detalleparticipantes']
 
   itemsProyectos: ItemsProyectoList[];
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;

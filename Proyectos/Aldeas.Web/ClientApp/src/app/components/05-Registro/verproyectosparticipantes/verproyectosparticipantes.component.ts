@@ -5,6 +5,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { RegistroParticipantes } from '../../../models/registroparticipantes/registro.participantes.response';
 import { IndicadoresService } from '../../../services/indicadores/indicadores.service';
+import { RegparticipantesService } from '../../../services/registroparticipantes/regparticipantes.service';
+import { IntegrantesFamilia, Pregunta } from '../../../models/registroparticipantes/participante.response';
 
 @Component({
   selector: 'app-verproyectosparticipantes',
@@ -13,18 +15,30 @@ import { IndicadoresService } from '../../../services/indicadores/indicadores.se
 })
 export class VerproyectosparticipantesComponent implements OnInit {
 
-  displayedColumns: string[] = ['position', 'nombre', 'apellidos','fechaNacimiento',
-     'departamento','municipio', 'detalle']
+  displayedColumns: string[] = ['position', 'nombre', 'apellidos', 'fechaNacimiento',
+    'departamento', 'municipio', 'detalle']
+  displayedColumnsParticipante: string[] =
+    ['position', '0 - 5 Años', '6 - 12 años',
+      '13 - 15 años', '18 - 24 años', '25 - 56 años',
+      'Mayores de 60 años', 'Total']
 
+
+      displayedColumnsPreguntas: string[] =
+    ['position', 'Pregunta', 'Respuesta',
+      'esOtro']
   idProyecto: string;
   participantes: RegistroParticipantes[];
+  preguntas: Pregunta[];
+
+  integrantes: IntegrantesFamilia[] =[];
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild('stepper', { static: false }) stepper: MatStepper;
   seleccionado: RegistroParticipantes;
   dataSource = new MatTableDataSource<RegistroParticipantes>();
   constructor(
     private route: ActivatedRoute,
-    private service: IndicadoresService
+    private service: IndicadoresService,
+    private servicParticipantes: RegparticipantesService
 
   ) { }
 
@@ -47,9 +61,22 @@ export class VerproyectosparticipantesComponent implements OnInit {
   }
 
   Ver(informe: RegistroParticipantes) {
-    this.seleccionado = informe;
 
-    this.stepper.next()
+    this.servicParticipantes.obtenerDetalleParticioante(informe.id).subscribe(
+          OK => {
+
+            console.log(OK);
+            this.seleccionado = OK.participante;
+            this.integrantes = [];
+            this.integrantes.push(...OK.integrantesFamilia)
+            this.preguntas= [];
+            this.preguntas.push(...OK.preguntas)
+            this.stepper.next()
+
+          },
+          ERROR => {console.log(ERROR)},
+        )
+
 
 
   }

@@ -26,7 +26,7 @@ namespace ApiRestAldeas.EntityFrame
         public string Nacionalidad { get; set; }
         public string Genero { get; set; }
         public string TipoParticipante { get; set; }
-        public Boolean Discapacidad { get; set; }
+        public string Discapacidad { get; set; }
         public string NivelEscolaridad { get; set; }
 
     }

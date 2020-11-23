@@ -441,7 +441,7 @@ namespace ApiRestAldeas.Helper
                                                where dato.idProyecto == idProyecto
                                                select new RegistroParticipanteResponse
                                                {
-                                                   id = dato.id,
+                                                    id = dato.id,
                                                     idProyecto = dato.idProyecto,
                                                     idMunicipio = dato.idMunicipio,
                                                     Municipio = muni.municipio,
@@ -476,6 +476,8 @@ namespace ApiRestAldeas.Helper
             }
             return retorno;
         }
+
+
 
     }
 }

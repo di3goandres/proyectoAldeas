@@ -20,26 +20,27 @@ namespace ApiRestAldeas.Helper
             {
                 var nuevo = new RegistroParticipante()
                 {
-                   idProyecto = request.idProyecto,
-                   idMunicipio = request.CodMunicipio,
-                   Nombres = request.Nombres,
-                   Apellidos = request.Apellidos,
-                   FechaNacimiento = request.FechaNacimiento,
-                   Edad = request.Edad,
-                   FechaIngreso = request.FechaIngreso,
-                   FechaSalida = request.FechaSalida == null? null : request.FechaSalida,
-                   Localidad = request.Localidad,
-                   Sexo = request.Sexo,
-                   EstatusResidencia = request.EstatusResidencia,
-                   UltimoCursoAprobado = request.UltimoCursoAprobado,
-                   AsisteAlColegio = request.AsisteAlColegio,
-                   GrupoPoblacional = request.GrupoPoblacional,
-                   GrupoEtnico = request.GrupoEtnico,
-                   Nacionalidad = request.Nacionalidad,
-                   Genero = request.Genero,
-                   TipoParticipante = request.TipoParticipante,
-                  
-                   Discapacidad = request.Discapacidad =="SI"? true:false,
+                    idProyecto = request.idProyecto,
+                    idMunicipio = request.CodMunicipio,
+                    Nombres = request.Nombres,
+                    Apellidos = request.Apellidos,
+                    FechaNacimiento = request.FechaNacimiento,
+                    Edad = request.Edad,
+                    FechaIngreso = request.FechaIngreso,
+                    FechaSalida = request.FechaSalida == null ? null : request.FechaSalida,
+                    Localidad = request.Localidad,
+                    Sexo = request.Sexo,
+                    EstatusResidencia = request.EstatusResidencia,
+                    UltimoCursoAprobado = request.UltimoCursoAprobado,
+                    AsisteAlColegio = request.AsisteAlColegio,
+                    GrupoPoblacional = request.GrupoPoblacional,
+                    GrupoEtnico = request.GrupoEtnico,
+                    Nacionalidad = request.Nacionalidad,
+                    Genero = request.Genero,
+                    TipoParticipante = request.TipoParticipante,
+
+                    Discapacidad = request.Discapacidad,
+
                     NivelEscolaridad = request.NivelEscolaridad
 
 
@@ -49,7 +50,7 @@ namespace ApiRestAldeas.Helper
                 db.tbRegistroParticipantes.Add(nuevo);
                 db.SaveChanges();
                 id = nuevo.id;
-               
+
                 List<DBIntegrantes> listParticipantes = new List<DBIntegrantes>();
 
                 foreach (var item in request.Participantes)
@@ -69,7 +70,7 @@ namespace ApiRestAldeas.Helper
                         Porcentaje = item.Porcentaje
                     });
                 }
-               
+
                 db.tbIntegrantesFamilia.AddRange(listParticipantes);
                 List<RegistroPreguntas> preguntas = new List<RegistroPreguntas>();
 
@@ -80,13 +81,85 @@ namespace ApiRestAldeas.Helper
                         esOtro = item.esOtro,
                         idParticipante = id,
                         Pregunta = item.Pregunta,
-                        Valor = item.esOtro?  item.valorOtro : item.name
+                        Valor = item.esOtro ? item.valorOtro : item.name
                     });
                 }
                 db.tbRegistroPreguntas.AddRange(preguntas);
                 db.SaveChanges();
             }
             return new { id = id, status = id == 0 ? "error" : "OK", code = 200 };
+        }
+
+
+        public static dynamic ConsultarDatosParticipante(IContextFactory factory, IOptions<ConnectionDB> connection,
+            long idParticipante)
+        {
+            RegistroParticipanteProyectosResponse retorno = new RegistroParticipanteProyectosResponse();
+
+
+            using (Aldeas_Context db = factory.Create(connection))
+            {
+
+                var ParticipantesRegistrados = from dato in db.tbRegistroParticipantes
+                                               join muni in db.tbMunicipios on dato.idMunicipio equals muni.id
+                                               join dep in db.tbDepartamentos on muni.cod_dane_departamento equals dep.id_departamento
+
+                                               where dato.id == idParticipante
+                                               select new RegistroParticipanteResponse
+                                               {
+                                                   id = dato.id,
+                                                   idProyecto = dato.idProyecto,
+                                                   idMunicipio = dato.idMunicipio,
+                                                   Municipio = muni.municipio,
+                                                   Departamento = dep.departamento,
+                                                   Nombres = dato.Nombres,
+                                                   Apellidos = dato.Apellidos,
+                                                   FechaNacimiento = dato.FechaNacimiento,
+                                                   Edad = dato.Edad,
+                                                   FechaIngreso = dato.FechaIngreso,
+                                                   FechaSalida = dato.FechaSalida,
+                                                   Localidad = dato.Localidad,
+                                                   Sexo = dato.Sexo,
+                                                   EstatusResidencia = dato.EstatusResidencia,
+                                                   UltimoCursoAprobado = dato.UltimoCursoAprobado,
+                                                   AsisteAlColegio = dato.AsisteAlColegio,
+                                                   GrupoPoblacional = dato.GrupoPoblacional,
+                                                   GrupoEtnico = dato.GrupoEtnico,
+                                                   Nacionalidad = dato.Nacionalidad,
+                                                   Genero = dato.Genero,
+                                                   TipoParticipante = dato.TipoParticipante,
+                                                   Discapacidad = dato.Discapacidad,
+                                                   NivelEscolaridad = dato.NivelEscolaridad
+
+                                               };
+
+
+                if (ParticipantesRegistrados.Any())
+                {
+                    retorno.Participante = (ParticipantesRegistrados.First());
+
+                    var preguntas = from dato in db.tbRegistroPreguntas
+                                    where dato.idParticipante == retorno.Participante.id
+                                    select dato;
+
+                    if (preguntas.Any())
+                    {
+                        retorno.Preguntas = preguntas.ToList();
+
+                    }
+                    var integrantes = from dato in db.tbIntegrantesFamilia
+                                      where dato.id_participantes == retorno.Participante.id
+                                      select dato;
+
+                    if (integrantes.Any())
+                    {
+                        retorno.IntegrantesFamilia = integrantes.ToList();
+
+                    }
+                }
+            }
+
+            return retorno;
         }
 
     }

@@ -251,17 +251,18 @@ export class RegistroparticipantesComponent implements OnInit {
     this.datosParticipante.participantes.push(...this.participantes)
     this.datosParticipante.Linea = []
     this.datosParticipante.Linea.push(...this.taskLineas);
-    // this.datosParticipante.Linea.push(this.taskEtnico)
-    // this.datosParticipante.Linea.push(this.taskNacionalidad)
-    // this.datosParticipante.Linea.push(this.taskGenero)
-    // this.datosParticipante.Linea.push(this.taskTipoParticipante)
-    // this.datosParticipante.Linea.push(this.taskDiscapacidad)
-    // this.datosParticipante.Linea.push(this.taskNivelEscolaridad)
+    this.datosParticipante.Linea.push(this.taskPoblacional);
+    this.datosParticipante.Linea.push(this.taskEtnico)
+    this.datosParticipante.Linea.push(this.taskNacionalidad)
+    this.datosParticipante.Linea.push(this.taskGenero)
+    this.datosParticipante.Linea.push(this.taskTipoParticipante)
+    this.datosParticipante.Linea.push(this.taskDiscapacidad)
+    this.datosParticipante.Linea.push(this.taskNivelEscolaridad)
 
     console.log(this.datosParticipante);
     this.userService.guardarRegistroParticipantes(this.datosParticipante).subscribe(
       response => {
-        console.log(response)
+
         this.Guardando = false;
         if (response.status == "OK") {
           this.MostrarExitoso = true;
@@ -278,6 +279,7 @@ export class RegistroparticipantesComponent implements OnInit {
   }
   retornarValor(task: Task) {
 
+    console.log(task)
     if (task.esOtro) {
       return task.valorOtro
     } else {
@@ -301,6 +303,22 @@ export class RegistroparticipantesComponent implements OnInit {
   onContinuar() {
 
 
+
+    // console.log('A',this.ValidarEtnico);
+    // console.log('B',this.ValidarNacionalidad)
+    // console.log('C',this.ValidarGenero)
+    // console.log('D',this.ValidarSexo)
+    // console.log('E',this.ValidarParticipante)
+    // console.log('F',this.ValidarEstatus)
+    // console.log('G',this.ValidarColegio)
+    // console.log('H',this.ValidarDiscapacidad )
+    // console.log('I',this.ValidarEscolaridad)
+    // console.log('J',this.ValidarLinea)
+    // console.log('K', this.ValidarGrupoPoblacional)
+
+
+
+
     if (this.ValidarEtnico && this.ValidarNacionalidad && this.ValidarGenero
       && this.ValidarSexo && this.ValidarParticipante && this.ValidarEstatus
       && this.ValidarColegio && this.ValidarDiscapacidad && this.ValidarEscolaridad && this.ValidarLinea && this.ValidarGrupoPoblacional) {
@@ -308,6 +326,8 @@ export class RegistroparticipantesComponent implements OnInit {
     } else {
       this.ValidaContinuar = true;
     }
+
+  
   }
 
   taskEtnico: Task;
@@ -318,6 +338,7 @@ export class RegistroparticipantesComponent implements OnInit {
   taskNivelEscolaridad: Task;
   taskgrupo: Task;
 
+  taskPoblacional: Task;
 
 
 
@@ -326,13 +347,15 @@ export class RegistroparticipantesComponent implements OnInit {
 
 
   onNotificar(event: Task, Tipo: any) {
-
+ 
+  
     switch (Tipo) {
 
       case 'GrupoPoblacional':
+
         this.datosParticipante.GrupoPoblacional = this.retornarValor(event);
         this.ValidarGrupoPoblacional = event.formValid;
-        this.taskEtnico = event;
+        this.taskPoblacional = event;
         break;
       case 'Etnico':
         this.datosParticipante.GrupoEtnico = this.retornarValor(event);
@@ -385,6 +408,7 @@ export class RegistroparticipantesComponent implements OnInit {
       default:
         break;
     }
+    console.log(event)
     this.onContinuar();
   }
 
@@ -397,16 +421,19 @@ export class RegistroparticipantesComponent implements OnInit {
       this.ValidarLinea = false
     }
     else {
-      let esOtro = filtro.filter(item =>
-        item.esOtro == true);
+      let esOtro = filtro.filter(item => item.esOtro == true);
       if (esOtro.length > 0) {
         this.ValidarLinea = esOtro[0].completed && esOtro[0].formValid;
+
+
       } else {
         this.ValidarLinea = true;
       }
     }
 
     this.taskLineas.push(...filtro)
+    this.onContinuar();
+
   }
   @ViewChild('Integrantes') TableIntegrantes: MatTable<any>;
 

@@ -196,16 +196,17 @@
                 </div>
 
                 <div class="col-3">
-                    <app-listcheck #llistas [task]="task" Nombre='Línea del Proyecto' (datoSalid)='onNotificar($event, "Linea")'>
+                    <app-listcheck #llistas [task]="task" Nombre='Línea del Proyecto'
+                        (datoSalid)='onNotificar($event, "Linea")'>
                     </app-listcheck>
 
                 </div>
 
                 <div class="col-3">
                     <app-checkbox [tasks]="gruposPoblacionalesCheck" NombreChecbok='Grupo Poblacional'
-                    [datoEntrada]="gruposPoblacionales" (datoSalid)='onNotificar($event, "GrupoPoblacional")'>
+                        [datoEntrada]="gruposPoblacionales" (datoSalid)='onNotificar($event, "GrupoPoblacional")'>
 
-                </app-checkbox>
+                    </app-checkbox>
 
                 </div>
                 <div class="col-3">
@@ -224,8 +225,7 @@
 
                     <br>
                     <button matStepperNext mat-raised-button color="warn"
-                        [disabled]="!(this.firstFormGroup.invalid===false&&ValidaContinuar===false)"
-                        >Continuar</button>
+                        [disabled]="!(this.firstFormGroup.invalid===false&&ValidaContinuar===false)">Continuar</button>
 
                 </div>
 
@@ -241,7 +241,6 @@
             <div class="col-12 main-green-text"><label>Integrantes de la Familia</label></div>
         </div>
         <div class="row">
-
             <div class="containerTable">
 
                 <table #Integrantes mat-table [dataSource]="participantes" class="mat-elevation-z8 participantes">
@@ -333,10 +332,6 @@
 
 
             </div>
-
-
-
-
         </div>
 
         <div>
@@ -411,8 +406,7 @@
             <div class="col-12 centerlabel font-weight-bold">
                 <label class="main-green-text-only">Ya casi esta listo pulsa guardar</label>
                 <br>
-                <button mat-raised-button class="buttton-aldea" style="color: white;"
-                 [disabled]="Guardando"
+                <button mat-raised-button class="buttton-aldea" style="color: white;" [disabled]="Guardando"
                     (click)="onGuardar()">Guardar</button>
 
             </div>

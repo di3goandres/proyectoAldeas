@@ -71,6 +71,8 @@ export class CheckboxComponent implements OnInit {
   }
   onChange(task: Task) {
 
+     this.taskSeleccionado = task;
+
     this.setStakeValidators()
 
     if (task.esOtro) {
@@ -85,7 +87,6 @@ export class CheckboxComponent implements OnInit {
 
 
     }
-    this.taskSeleccionado = task;
 
     this.datoSalid.emit(this.taskSeleccionado);
 

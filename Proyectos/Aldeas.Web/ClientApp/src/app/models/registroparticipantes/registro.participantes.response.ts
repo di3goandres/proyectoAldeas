@@ -28,6 +28,6 @@ export interface RegistroParticipantes {
     nacionalidad:        string;
     genero:              string;
     tipoParticipante:    string;
-    discapacidad:        boolean;
+    discapacidad:        string;
     nivelEscolaridad:    string;
 }

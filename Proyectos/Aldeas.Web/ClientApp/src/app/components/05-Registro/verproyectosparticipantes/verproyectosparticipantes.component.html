@@ -256,13 +256,155 @@
                                     </td>
                                     <td>
                                         <mat-label class="descripcionTexto">
-                                            {{seleccionado.discapacidad==true?"SI":"NO"}}
+                                            {{seleccionado.discapacidad | uppercase}}
                                         </mat-label>
                                     </td>
                                 </tr>
                             </table>
                         </mat-grid-tile>
+                      
                     </mat-grid-list>
+
+                    <div class="row">
+                        <div class="table-responsive">
+                            <table id="customers" #Integrantes mat-table [dataSource]="integrantes" class="mat-elevation-z8 participantes">
+            
+            
+            
+                                <ng-container matColumnDef="position">
+                                    <th mat-header-cell *matHeaderCellDef> No. </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+                                </ng-container>
+            
+            
+                                <ng-container matColumnDef="0 - 5 Años">
+                                    <th mat-header-cell *matHeaderCellDef> 0 - 5 Años </th>
+                                    <td mat-cell *matCellDef="let element; let i  = index">
+            
+                                        <!-- <mat-form-field> -->
+                                        <input matInput type="number" [(ngModel)]="element.rango_0_5">
+                                        <!-- </mat-form-field> -->
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="6 - 12 años">
+                                    <th mat-header-cell *matHeaderCellDef> 6 - 12 años </th>
+                                    <td mat-cell *matCellDef="let element; let i  = index">
+            
+                                        <!-- <mat-form-field> -->
+                                        <input matInput type="number" 
+                                            [(ngModel)]="element.rango_6_12">
+                                        <!-- </mat-form-field> -->
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="13 - 15 años">
+                                    <th mat-header-cell *matHeaderCellDef> 13 - 15 años </th>
+                                    <td mat-cell *matCellDef="let element; let i  = index">
+            
+                                        <!-- <mat-form-field> -->
+                                        <input matInput type="number" [(ngModel)]="element.rango_13_17" >
+                                        <!-- </mat-form-field> -->
+                                    </td>
+                                </ng-container>
+            
+                                <ng-container matColumnDef="18 - 24 años">
+                                    <th mat-header-cell *matHeaderCellDef> 18 - 24 años </th>
+                                    <td mat-cell *matCellDef="let element; let i  = index">
+            
+                                        <!-- <mat-form-field class="maxWidth"> -->
+                                        <input matInput type="number" [(ngModel)]="element.rango_18_24" >
+                                        <!-- </mat-form-field> -->
+                                    </td>
+                                </ng-container>
+            
+                                <ng-container matColumnDef="25 - 56 años">
+                                    <th mat-header-cell *matHeaderCellDef> 25 - 56 años </th>
+                                    <td mat-cell *matCellDef="let element; let i  = index">
+            
+                                        <!-- <mat-form-field> -->
+                                        <input matInput type="number" [(ngModel)]="element.rango_25_56" >
+                                        <!-- </mat-form-field> -->
+                                    </td>
+                                </ng-container>
+            
+                                <ng-container matColumnDef="Mayores de 60 años">
+                                    <th mat-header-cell *matHeaderCellDef> Mayores de 60 años </th>
+                                    <td mat-cell *matCellDef="let element; let i  = index">
+            
+                                        <!-- <mat-form-field> -->
+                                        <input matInput type="number" 
+                                            [(ngModel)]="element.mayores_60">
+                                        <!-- </mat-form-field> -->
+                                    </td>
+                                </ng-container>
+                                <mat-divider></mat-divider>
+                                <ng-container matColumnDef="Total">
+                                    <th mat-header-cell *matHeaderCellDef> TOTAL </th>
+                                    <td mat-cell *matCellDef="let element; let i  = index">
+            
+                                        <!-- <mat-form-field> -->
+                                        <input disabled matInput type="number" [(ngModel)]="element.total">
+                                        <!-- </mat-form-field> -->
+                                    </td>
+                                </ng-container>
+                                <tr mat-header-row *matHeaderRowDef="displayedColumnsParticipante"></tr>
+                                <tr mat-row *matRowDef="let row; columns: displayedColumnsParticipante;"></tr>
+                            </table>
+            
+            
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="table-responsive">
+                            <table id="customers" #Integrantes mat-table [dataSource]="preguntas" class="mat-elevation-z8 participantes">
+            
+            
+            
+                                <ng-container matColumnDef="position">
+                                    <th mat-header-cell *matHeaderCellDef> No. </th>
+                                    <td mat-cell *matCellDef="let element;let i  = index"> {{i+1}} </td>
+                                </ng-container>
+            
+            
+                                <ng-container matColumnDef="Pregunta">
+                                    <th mat-header-cell *matHeaderCellDef> Pregunta </th>
+                                    <td mat-cell *matCellDef="let element;">
+                                        <mat-label>{{element.pregunta}}</mat-label>
+                                        <!-- <mat-form-field> -->
+                                        <!-- <input matInput type="text" [(ngModel)]="element.pregunta"> -->
+                                        <!-- </mat-form-field> -->
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="Respuesta">
+                                    <th mat-header-cell *matHeaderCellDef> Respuesta </th>
+                                    <td mat-cell *matCellDef="let element;">
+            
+                                        <mat-label>{{element.valor}}</mat-label>
+
+                                        <!-- <mat-form-field> -->
+                                      
+                                        <!-- </mat-form-field> -->
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="esOtro">
+                                    <th mat-header-cell *matHeaderCellDef> Es otra respuesta? </th>
+                                    <td mat-cell *matCellDef="let element; let i  = index">
+                                        <mat-label>{{element.esOtro==true?"SI":"No"}}</mat-label>
+            
+                                        <!-- <mat-form-field> -->
+                                        <!-- <input matInput type="number" [(ngModel)]="element.esOtro" > -->
+                                        <!-- </mat-form-field> -->
+                                    </td>
+                                </ng-container>
+            
+                               
+                                <tr mat-header-row *matHeaderRowDef="displayedColumnsPreguntas"></tr>
+                                <tr mat-row *matRowDef="let row; columns: displayedColumnsPreguntas;"></tr>
+                            </table>
+            
+            
+                        </div>
+                    </div>
                 </mat-card-content>
             </mat-card>
             <div class="col-12">

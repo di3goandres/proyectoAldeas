@@ -56,6 +56,9 @@ namespace ApiRestAldeas.Repositories
         dynamic ConsultarParticipantesProyecto(long id);
 
 
+        dynamic ConsultarDetalleParticipante(long id);
+
+
 
         #region indicadores
         dynamic ConsultarIndicadores();

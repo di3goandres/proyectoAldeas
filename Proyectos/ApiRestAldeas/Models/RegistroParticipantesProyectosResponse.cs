@@ -15,6 +15,13 @@ namespace ApiRestAldeas.Models
 
     }
 
+
+    public class RegistroParticipanteProyectosResponse
+    {
+        public RegistroParticipanteResponse Participante { get; set; }
+        public List<RegistroPreguntas> Preguntas { get; set; }
+        public List<DBIntegrantes> IntegrantesFamilia { get; set; }
+    }
     public class RegistroParticipanteResponse
     {
         public long id { get; set; }
@@ -38,8 +45,13 @@ namespace ApiRestAldeas.Models
         public string Nacionalidad { get; set; }
         public string Genero { get; set; }
         public string TipoParticipante { get; set; }
-        public Boolean Discapacidad { get; set; }
+        public string Discapacidad { get; set; }
         public string NivelEscolaridad { get; set; }
+
+    }
+
+    public class LineaProyecto
+    {
 
     }
 }

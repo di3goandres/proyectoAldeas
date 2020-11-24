@@ -4,6 +4,7 @@ using ApiRestAldeas.EntityFrame;
 using ApiRestAldeas.Factory;
 using ApiRestAldeas.Models;
 using Microsoft.Extensions.Options;
+using System.Linq;
 using static ApiRestAldeas.Entities.Appsettings;
 
 namespace ApiRestAldeas.Helper
@@ -20,12 +21,12 @@ namespace ApiRestAldeas.Helper
                 {
                     idProyecto = request.Proyecto,
                     Nombre = request.Nombre,
-                    FechaNacimiento = request.Fecha,
+                    FechaNacimiento = Utils.CambiarFecha(request.Fecha),
                     Cargo = request.Cargo,
                     Tiempo = request.Tiempo,
                     TipoContrato = request.TipoContrato,
-                    FechaInicio = request.FechaInicio,
-                    FechaFin = request.FechaFin,
+                    FechaInicio = Utils.CambiarFecha(request.FechaInicio),
+                    FechaFin = Utils.CambiarFecha(request.FechaFin),
                     CostoMensual = request.CostoMensual,
                     Porcentaje= request.Porcentaje,
                     Contrapartida = request.Contrapartida,
@@ -59,6 +60,65 @@ namespace ApiRestAldeas.Helper
 
             }
             return new { status = idProyecto == 0 ? "error" : "OK", code = 200 };
+        }
+
+
+
+        public static dynamic ConsultarColaboradoresProyecto(IContextFactory factory, IOptions<ConnectionDB> connection,
+          long idProyecto)
+        {
+            ColaboradorResponse retorno = new ColaboradorResponse();
+
+
+            using (Aldeas_Context db = factory.Create(connection))
+            {
+
+                var Colaboradores = from dato in db.TbColaboradors
+
+                                               where dato.idProyecto == idProyecto
+
+                                               select dato;
+                                              
+
+
+                if (Colaboradores.Any())
+                {
+                    retorno.ItemsColaboradores = Colaboradores.ToList();
+
+                   
+                }
+            }
+
+            return retorno;
+        }
+
+
+        public static dynamic ConsultarDetalleColaboradores(IContextFactory factory, IOptions<ConnectionDB> connection,
+          long idColaborador)
+        {
+            ColaboradorDetalleResponse retorno = new ColaboradorDetalleResponse();
+            using (Aldeas_Context db = factory.Create(connection))
+            {
+                var Colaboradores = from dato in db.TbColaboradors
+                                    where dato.Id == idColaborador
+                                    select dato;
+                if (Colaboradores.Any())
+                {
+                    retorno.Item = Colaboradores.First();
+                    var cecos = from dato in db.TbCICentroCostos
+                                where dato.id_Colaboradores == idColaborador
+                                select dato;
+
+                    if (cecos.Any())
+                    {
+                        retorno.ItemsCentroCosto = cecos.ToList();
+
+                    }
+
+
+                }
+            }
+            return retorno;
         }
 
 

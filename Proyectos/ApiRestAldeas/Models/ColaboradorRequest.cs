@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using ApiRestAldeas.EntityFrame;
 
 namespace ApiRestAldeas.Models
 {
@@ -7,7 +8,6 @@ namespace ApiRestAldeas.Models
     {
 
         public long Proyecto { get; set; }
-
         public string Nombre { get; set; }
         public DateTime Fecha { get; set; }
         public string Cargo { get; set; }
@@ -22,5 +22,18 @@ namespace ApiRestAldeas.Models
         public long Aporte { get; set; }
 
         public List<CentrosCostos> ListCentroCostos { get; set; }
+    }
+
+
+
+    public class ColaboradorResponse
+    {
+         public  List<TbColaborador> ItemsColaboradores { get; set; }
+    }
+
+    public class ColaboradorDetalleResponse
+    {
+        public TbColaborador Item { get; set; }
+        public List<ColaboradorInforFinanciera> ItemsCentroCosto { get; set; }
     }
 }

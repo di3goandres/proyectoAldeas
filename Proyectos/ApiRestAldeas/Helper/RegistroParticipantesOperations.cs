@@ -18,6 +18,21 @@ namespace ApiRestAldeas.Helper
             long id = 0;
             using (Aldeas_Context db = factory.Create(connection))
             {
+
+
+                if (request.FechaSalida != null)
+                {
+
+                    request.FechaSalida = Utils.CambiarFecha(request.FechaSalida);
+                }
+
+               
+
+                request.FechaNacimiento = Utils.CambiarFecha(request.FechaNacimiento);
+                request.FechaIngreso = Utils.CambiarFecha(request.FechaIngreso);
+
+
+
                 var nuevo = new RegistroParticipante()
                 {
                     idProyecto = request.idProyecto,
@@ -25,9 +40,10 @@ namespace ApiRestAldeas.Helper
                     Nombres = request.Nombres,
                     Apellidos = request.Apellidos,
                     FechaNacimiento = request.FechaNacimiento,
+
                     Edad = request.Edad,
                     FechaIngreso = request.FechaIngreso,
-                    FechaSalida = request.FechaSalida == null ? null : request.FechaSalida,
+                    FechaSalida = request.FechaSalida,
                     Localidad = request.Localidad,
                     Sexo = request.Sexo,
                     EstatusResidencia = request.EstatusResidencia,

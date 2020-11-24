@@ -41,9 +41,18 @@ namespace ApiRestAldeas.Repositories
         dynamic GuardarRegistroProyecto(ProyectoRequest proyectoRequest);
 
 
+        #region colaborador
 
         dynamic GuardarRegistroColaborador(ColaboradorRequest request);
 
+        dynamic ConsultarColaboradorProyecto(long id);
+
+
+        dynamic ConsultarDetalleColaboradorProyecto(long id);
+
+
+
+        #endregion 
         dynamic GuardarRegistroParticipantes(RegistroParticipantesRequest request);
 
         /// <summary>

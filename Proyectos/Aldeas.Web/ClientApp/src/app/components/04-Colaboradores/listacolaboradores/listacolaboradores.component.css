@@ -1,0 +1,9 @@
+.example-header-image {
+    /* background-image: url('assets/avatars/av-1.png'); */
+    background-size: cover;
+  }
+
+
+::ng-deep .mat-horizontal-stepper-header{
+    pointer-events: none !important;
+}

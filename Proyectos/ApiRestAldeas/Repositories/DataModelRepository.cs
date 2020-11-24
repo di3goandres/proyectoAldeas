@@ -140,6 +140,22 @@ namespace ApiRestAldeas.Repositories
         {
             return RegistroParticipantesOperations.ConsultarDatosParticipante(_factory, _connectionDB, id);
         }
+
+
+        #endregion
+
+
+        #region Colaborador
+
+        public dynamic ConsultarColaboradorProyecto(long id)
+        {
+            return ColaboradoresOperations.ConsultarColaboradoresProyecto(_factory, _connectionDB, id);
+        }
+
+        public dynamic ConsultarDetalleColaboradorProyecto(long id)
+        {
+            return ColaboradoresOperations.ConsultarDetalleColaboradores(_factory, _connectionDB, id);
+        }
         #endregion
     }
 

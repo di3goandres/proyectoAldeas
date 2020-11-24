@@ -25,7 +25,7 @@ namespace ApiRestAldeas.Controllers
         }
         #endregion
 
-        //[Authorize]
+        [Authorize]
         [HttpGet]
         [Route("/api/aldeas/participante/obtenerDetalleParticipante/{id}")]
         public dynamic ConsultarDetalle(long id)

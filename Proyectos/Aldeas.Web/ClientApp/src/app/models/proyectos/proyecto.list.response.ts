@@ -20,6 +20,7 @@ export interface ItemsProyectoList {
     comite_tecnico:     string;
     archivo:            string;
     nombrearchivo:      string;
+    urlReporte :        string;
 }
 
 export enum Status {

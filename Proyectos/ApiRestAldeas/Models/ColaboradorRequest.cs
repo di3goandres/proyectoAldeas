@@ -28,6 +28,9 @@ namespace ApiRestAldeas.Models
 
     public class ColaboradorResponse
     {
+         public ColaboradorResponse() {
+            this.ItemsColaboradores = new List<TbColaborador>();
+         }
          public  List<TbColaborador> ItemsColaboradores { get; set; }
     }
 

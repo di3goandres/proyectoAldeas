@@ -156,6 +156,11 @@ namespace ApiRestAldeas.Repositories
         {
             return ColaboradoresOperations.ConsultarDetalleColaboradores(_factory, _connectionDB, id);
         }
+
+        public dynamic ConsultarExcelProyectosByID(long id)
+        {
+           return InformesOperations.GenerarInforme(_factory, _connectionDB, id);
+        }
         #endregion
     }
 

@@ -31,7 +31,7 @@ namespace ApiRestAldeas.Models
         public Proyectos ItemProyecto { get; set; }
         public InformacionFinanciera ItemFinanciera { get; set; }
         public List<FechasEntregas> ItemsFechas { get; set; }
-        public List<MunicipioProyectos> ItemsMunicipios { get; set; }
+        public List<ProyectoMunicipioResponse> ItemsMunicipios { get; set; }
         public List<TbEjecucion> ItemsEjecucion { get; set; }
         public List<ColaboradorInforFinanciera> ItemsCentroCostos { get; set; }
         public ProyectadosResponse ItemProyectados { get; set; }
@@ -40,6 +40,17 @@ namespace ApiRestAldeas.Models
     public class ProyectoCecoResponse
     {
         public List<ColaboradorInforFinanciera> ItemsCentroCostos { get; set; }
+    }
+
+    public class ProyectoMunicipioResponse
+    {
+        public long id { get; set; }
+
+        public long id_proyecto { get; set; }
+
+        public string id_departamento { get; set; }
+
+        public string id_municipio { get; set; }
     }
 
     public class ProyectadosResponse

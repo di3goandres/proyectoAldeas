@@ -105,6 +105,6 @@ export interface ItemsFecha {
 export interface ItemsMunicipio {
     id:              number;
     id_proyecto:     number;
-    id_departamento: number;
-    id_municipio:    number;
+    id_departamento: string;
+    id_municipio:    string;
 }

@@ -93,5 +93,18 @@ namespace ApiRestAldeas.Repositories
 
         #endregion
 
+
+        #region Proyectos
+       
+        
+
+        dynamic ConsultarExcelProyectosByID(long id);
+
+        
+
+
+
+        #endregion
+
     }
 }

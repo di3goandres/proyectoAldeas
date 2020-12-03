@@ -22,5 +22,8 @@ export class ProyectoService {
     return this.service.ejecutarQuery<UnicoProyecto>('/api/aldeas/proyectos/obtenerproyectosbyid/' + id);
   }
 
+  getReporteProyectos(id) {
+    return this.service.getUrl() + '/api/proyectos/informe/consultar/' + id;
+  }
  
 }

@@ -58,17 +58,17 @@ export class InformacionComponent implements OnInit {
   dataSourcemunicipio: MunicipioSeleccionado[] = [];
 
   Fuente: Select[] = [
-    { value: 'CONTRAPARTIDA ', viewValue: 'CONTRAPARTIDA' },
+    { value: 'CONTRAPARTIDA', viewValue: 'CONTRAPARTIDA' },
     { value: 'APORTE DEL DONANTE', viewValue: 'APORTE DEL DONANTE' },
 
   ];
   TipoFuente: Select[] = [
-    { value: 'EFECTIVO ', viewValue: 'EFECTIVO' },
+    { value: 'EFECTIVO', viewValue: 'EFECTIVO' },
     { value: 'ESPECIE', viewValue: 'ESPECIE' },
 
   ];
   tipoImplementacion: Select[] = [
-    { value: 'PROGRAMA ', viewValue: 'PROGRAMA' },
+    { value: 'PROGRAMA', viewValue: 'PROGRAMA' },
     { value: 'MIXTO', viewValue: 'MIXTO' },
     { value: 'ESPECIAL', viewValue: 'ESPECIAL' }
   ];

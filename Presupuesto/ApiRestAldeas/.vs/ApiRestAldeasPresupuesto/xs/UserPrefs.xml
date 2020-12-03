@@ -1,15 +1,18 @@
 ﻿<Properties StartupConfiguration="{20022DE9-45FB-4E8D-83F1-20270DE6A102}|ApiRestAldeas">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Services/UserService.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="appsettings.json">
     <Files>
       <File FileName="Repositories/IDataModelPresupuesto.cs" Line="24" Column="38" />
-      <File FileName="Controllers/InformesController.cs" />
+      <File FileName="Controllers/InformesController.cs" Line="56" Column="10" />
       <File FileName="Controllers/PresupuestoAnioController.cs" />
       <File FileName="Repositories/DataModelPresupuesto.cs" />
       <File FileName="Repositories/DataModelRepository.cs" />
-      <File FileName="Helper/PresupuestoAnioOperations.cs" Line="169" Column="1" />
+      <File FileName="Helper/PresupuestoAnioOperations.cs" />
       <File FileName="Program.cs" Line="1" Column="1" />
       <File FileName="Startup.cs" Line="1" Column="1" />
       <File FileName="Services/UserService.cs" Line="1" Column="1" />
+      <File FileName="Helper/InformesOperations.cs" Line="124" Column="25" />
+      <File FileName="Helper/PresupuestoOperations.cs" Line="348" Column="31" />
+      <File FileName="appsettings.json" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -17,9 +20,8 @@
           <Node name="ApiRestAldeasPresupuesto" expanded="True">
             <Node name="ApiRestAldeasPresupuesto" expanded="True">
               <Node name="Controllers" expanded="True" />
-              <Node name="Services" expanded="True">
-                <Node name="UserService.cs" selected="True" />
-              </Node>
+              <Node name="Helper" expanded="True" />
+              <Node name="appsettings.json" selected="True" />
             </Node>
           </Node>
         </State>

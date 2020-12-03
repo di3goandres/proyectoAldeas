@@ -88,9 +88,18 @@ namespace ApiRestAldeas.Helper
                         retorno.ItemsFechas = dataFechas.ToList();
                     }
 
-                    var dataMunicipios = from muni in db.tbMunicipioProyectos
-                                     where muni.id_proyecto == idProyecto
-                                     select muni;
+                    var dataMunicipios = from munipro in db.tbMunicipioProyectos
+                                         join muni in db.tbMunicipios  on munipro.id_municipio equals muni.id
+                                         join depar in db.tbDepartamentos on muni.cod_dane_departamento equals depar.id_departamento
+                                     where munipro.id_proyecto == idProyecto
+                                     select new ProyectoMunicipioResponse {
+
+                                            id = munipro.id,
+                                            id_proyecto = munipro.id_proyecto,
+                                            id_departamento = depar.departamento,
+                                            id_municipio = muni.municipio
+
+                                     };
 
                     if (dataMunicipios.Any())
                     {

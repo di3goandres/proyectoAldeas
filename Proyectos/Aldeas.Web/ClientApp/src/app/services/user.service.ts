@@ -175,4 +175,8 @@ export class UserService {
       }
     })
   }
+
+  getUrl(){
+    return environment.ApiUrl;
+  }
 }

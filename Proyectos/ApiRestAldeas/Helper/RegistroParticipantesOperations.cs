@@ -178,5 +178,71 @@ namespace ApiRestAldeas.Helper
             return retorno;
         }
 
+
+        public static dynamic ExportParticipantes(IContextFactory factory, IOptions<ConnectionDB> connection)
+        {
+            RegistroParticipanteProyectosResponse retorno = new RegistroParticipanteProyectosResponse();
+
+
+            using (Aldeas_Context db = factory.Create(connection))
+            {
+
+                var ParticipantesRegistrados = from dato in db.tbRegistroParticipantes
+                                               join muni in db.tbMunicipios on dato.idMunicipio equals muni.id
+                                               join dep in db.tbDepartamentos on muni.cod_dane_departamento equals dep.id_departamento
+                                               select new RegistroParticipanteResponse
+                                               {
+                                                   id = dato.id,
+                                                   idProyecto = dato.idProyecto,
+                                                   idMunicipio = dato.idMunicipio,
+                                                   Municipio = muni.municipio,
+                                                   Departamento = dep.departamento,
+                                                   Nombres = dato.Nombres,
+                                                   Apellidos = dato.Apellidos,
+                                                   FechaNacimiento = dato.FechaNacimiento,
+                                                   Edad = dato.Edad,
+                                                   FechaIngreso = dato.FechaIngreso,
+                                                   FechaSalida = dato.FechaSalida,
+                                                   Localidad = dato.Localidad,
+                                                   Sexo = dato.Sexo,
+                                                   EstatusResidencia = dato.EstatusResidencia,
+                                                   UltimoCursoAprobado = dato.UltimoCursoAprobado,
+                                                   AsisteAlColegio = dato.AsisteAlColegio,
+                                                   GrupoPoblacional = dato.GrupoPoblacional,
+                                                   GrupoEtnico = dato.GrupoEtnico,
+                                                   Nacionalidad = dato.Nacionalidad,
+                                                   Genero = dato.Genero,
+                                                   TipoParticipante = dato.TipoParticipante,
+                                                   Discapacidad = dato.Discapacidad,
+                                                   NivelEscolaridad = dato.NivelEscolaridad
+
+                                               };
+
+
+                if (ParticipantesRegistrados.Any())
+                {
+                    retorno.ParticipanteLista = ParticipantesRegistrados.ToList();
+                    var preguntas = from dato in db.tbRegistroPreguntas
+                                   
+                                    select dato;
+
+                    if (preguntas.Any())
+                    {
+                        retorno.Preguntas = preguntas.ToList();
+
+                    }
+                    var integrantes = from dato in db.tbIntegrantesFamilia
+                                    
+                                      select dato;
+
+                    if (integrantes.Any())
+                    {
+                        retorno.IntegrantesFamilia = integrantes.ToList();
+                    }
+                }
+            }
+
+            return retorno;
+        }
     }
 }

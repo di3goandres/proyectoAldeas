@@ -28,6 +28,15 @@ namespace ApiRestAldeas.Models
 
     public class ProyectoUnicoResponse
     {
+        public ProyectoUnicoResponse()
+        {
+            this.ItemsFechas = new List<FechasEntregas>();
+            this.ItemsMunicipios = new List<ProyectoMunicipioResponse>();
+            this.ItemsEjecucion = new List<TbEjecucion>();
+            this.ItemsCentroCostos = new List<ColaboradorInforFinanciera>();
+            this.ItemProyectados = new ProyectadosResponse();
+
+        }
         public Proyectos ItemProyecto { get; set; }
         public InformacionFinanciera ItemFinanciera { get; set; }
         public List<FechasEntregas> ItemsFechas { get; set; }

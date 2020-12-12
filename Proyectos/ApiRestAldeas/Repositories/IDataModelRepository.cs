@@ -100,7 +100,9 @@ namespace ApiRestAldeas.Repositories
 
         dynamic ConsultarExcelProyectosByID(long id);
 
-        
+        dynamic ExportExcelProyectos();
+
+
 
 
 

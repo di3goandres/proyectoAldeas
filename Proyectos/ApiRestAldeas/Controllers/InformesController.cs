@@ -39,5 +39,17 @@ namespace ApiRestAldeas.Controllers
             var stream = new FileStream(@nombre, FileMode.Open);
             return File(stream, "application/octet-stream", nombre);
         }
+
+        [HttpGet]
+        [Route("/api/proyectos/informe/exportDatabase/")]
+        public IActionResult GetexportDatabase()
+        {
+
+            var nombre = _dataModelRepository.ExportExcelProyectos();
+            if (nombre == null || string.IsNullOrEmpty(nombre))
+                return BadRequest(new { message = "No se pudo crear el archivo" });
+            var stream = new FileStream(@nombre, FileMode.Open);
+            return File(stream, "application/octet-stream", nombre);
+        }
     }
 }

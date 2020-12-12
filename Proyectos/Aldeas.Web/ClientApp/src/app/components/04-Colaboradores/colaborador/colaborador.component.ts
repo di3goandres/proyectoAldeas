@@ -6,6 +6,9 @@ import * as moment from 'moment';
 import { Colaborador } from '../../../models/colaborador';
 import { CentroCostosList } from '../../../models/proyect';
 import { ItemsProyecto } from '../../../models/ProyectoResponse';
+import { RegistroExitosoComponent } from '../../00-Comunes/registro-exitoso/registro-exitoso.component';
+import { RegistroNoexitosoComponent } from '../../00-Comunes/registro-noexitoso/registro-noexitoso.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-colaborador',
@@ -32,7 +35,8 @@ export class ColaboradorComponent implements OnInit {
   ];
   constructor(
     private _formBuilder: FormBuilder,
-    public userService: UserService
+    public userService: UserService,
+    private modalService: NgbModal,
   ) { }
 
   fechaNacimiento(event) {
@@ -98,10 +102,13 @@ export class ColaboradorComponent implements OnInit {
         this.colaborador = new Colaborador();
         this.Guardando = false;
         console.log(response)
+
+        this.registroExitoso()
         this.MostrarExitoso = true;
       },
       error => {
         console.log(error);
+        this.registroNoExitoso("Error", error)
         this.Guardando = false;
 
       }
@@ -154,6 +161,36 @@ export class ColaboradorComponent implements OnInit {
     });
 
 
+  }
+
+
+  registroExitoso() {
+    const modalRef = this.modalService.open(RegistroExitosoComponent, { size: 'md' });
+
+    modalRef.result.then((result) => {
+     
+    }, (reason) => {
+
+      if (reason === 'OK') {
+
+
+      }
+    });
+  }
+
+  registroNoExitoso(Titulo, Mensaje) {
+    const modalRef = this.modalService.open(RegistroNoexitosoComponent, { size: 'md' });
+    modalRef.componentInstance.Titulo = Titulo;
+    modalRef.componentInstance.mensaje = Mensaje
+    modalRef.result.then((result) => {
+
+    }, (reason) => {
+
+      if (reason === 'OK') {
+
+
+      }
+    });
   }
 
 

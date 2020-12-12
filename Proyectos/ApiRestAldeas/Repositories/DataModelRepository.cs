@@ -161,6 +161,11 @@ namespace ApiRestAldeas.Repositories
         {
            return InformesOperations.GenerarInforme(_factory, _connectionDB, id);
         }
+
+        public dynamic ExportExcelProyectos()
+        {
+            return InformesOperations.ExportBasedeDatosInforme(_factory, _connectionDB);
+        }
         #endregion
     }
 

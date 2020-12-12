@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using static ApiRestAldeas.Entities.Appsettings;
 using System.Linq;
 using ApiRestAldeas.Models;
+using System.Collections.Generic;
 
 namespace ApiRestAldeas.Helper
 {
@@ -51,6 +52,33 @@ namespace ApiRestAldeas.Helper
 
 
             }
+        }
+
+        public static dynamic ExportData(IContextFactory factory, IOptions<ConnectionDB> connection)
+        {
+            List<ProyectoMunicipioResponse> retorno = new List<ProyectoMunicipioResponse>();
+            using (Aldeas_Context db = factory.Create(connection))
+            {
+                var dataMunicipios = from munipro in db.tbMunicipioProyectos
+                                     join muni in db.tbMunicipios on munipro.id_municipio equals muni.id
+                                     join depar in db.tbDepartamentos on muni.cod_dane_departamento equals depar.id_departamento
+
+                                     select new ProyectoMunicipioResponse
+                                     {
+
+                                         id = munipro.id,
+                                         id_proyecto = munipro.id_proyecto,
+                                         id_departamento = depar.departamento,
+                                         id_municipio = muni.municipio
+
+                                     };
+
+                if (dataMunicipios.Any())
+                {
+                    retorno = dataMunicipios.ToList();
+                }
+            }
+            return retorno;
         }
     }
 }

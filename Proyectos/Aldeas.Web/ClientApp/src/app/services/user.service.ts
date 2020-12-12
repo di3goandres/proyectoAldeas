@@ -66,6 +66,38 @@ export class UserService {
 
   }
 
+  public ejecutarQuerFile(query: string){
+    return this.http.get(environment.ApiUrl + query,{
+      responseType: 'arraybuffer'} )
+      .subscribe(response => this.downLoadFile(response, "application/octet-stream"));;
+  } 
+
+
+
+
+/**
+* Method is use to download file.
+* @param data - Array Buffer data
+* @param type - type of the document.
+*/
+downLoadFile(data: any, type: string) {
+  let blob = new Blob([data], { type: type});
+  let url = window.URL.createObjectURL(blob);
+  // let pwa = window.open(url);
+
+  var fileLink = document.createElement('a');
+fileLink.href = url;
+
+// it forces the name of the downloaded file
+fileLink.download = 'InformeDeBaseDatos.xls';
+
+// triggers the click event
+fileLink.click();
+  // if (!pwa || pwa.closed || typeof pwa.closed == 'undefined') {
+  //     alert( 'Please disable your Pop-up blocker and try again.');
+  // }
+}
+
 
   // tslint:disable-next-line: typedef con autorizacion
   public ejecutarQueryPost<T>(query: string, params: string) {

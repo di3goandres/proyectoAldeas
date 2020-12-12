@@ -5,7 +5,8 @@ using Microsoft.Extensions.Options;
 using static ApiRestAldeas.Entities.Appsettings;
 using System.IO;
 using ExcelLibrary.SpreadSheet;
-
+using System.Collections.Generic;
+using ApiRestAldeas.EntityFrame;
 
 namespace ApiRestAldeas.Helper
 {
@@ -532,6 +533,766 @@ namespace ApiRestAldeas.Helper
         }
 
 
+
+        public static dynamic ExportBasedeDatosInforme(IContextFactory factory, IOptions<ConnectionDB> connection )
+        {
+          
+            string retornoFinal = "";
+            try
+            {
+                ProyectoListaResponse proyectos = ProyectoOperations.ConsultarProyectoListasExport(factory, connection);
+                if (Directory.Exists("BaseDatos/"))
+                {
+
+                    string[] files = Directory.GetFiles("BaseDatos/");
+                    foreach (string file in files)
+                    {
+                        File.Delete(file);
+
+                    }
+
+                }
+
+
+
+                #region Proyecto
+              
+                Workbook workbook = new Workbook();
+                Worksheet worksheet = new Worksheet("Informes Proyecto");
+
+
+                for (int j = 0; j < 100; j++)
+                    worksheet.Cells[j, 0] = new ExcelLibrary.SpreadSheet.Cell("");
+
+
+                worksheet.Cells[0, 0] = new ExcelLibrary.SpreadSheet.Cell("[Informe general Proyecto]");
+                worksheet.Cells[0, 4] = new ExcelLibrary.SpreadSheet.Cell(string.Format("INFORME REALIZADO EL : [{0}]", DateTime.Now), ExcelLibrary.SpreadSheet.CellFormat.Date);
+                worksheet.Cells[0, 6] = new ExcelLibrary.SpreadSheet.Cell("PROYECTO");
+                //for (int i = 0; i < retorno.DetallePresupuesto.Count; i++)
+                int i = 0;
+                int row = i + 2;
+                int celda = 0;
+
+                string[] ListaDeCamposProyecto = { "ID_PROYECTO", "NOMBRE", "ESTATUS", "DONANTE", "TIPO FINANCIACION" , "NOMBRE DONANTE",
+                                           "DIRECCION", "EMAIL", "FECHA INICIO", "FECHA FIN", "LIDER EJECUCION", "LIDER COORDINACION",
+                                           "COMITE TECNICO", "TIPO IMPLEMENTACION",  "REQUIERE LIQUIDACION"
+
+                        };
+
+                foreach (var item in ListaDeCamposProyecto)
+                {
+                    AgregarCelda(ref worksheet, row, ref celda, item);
+
+                }
+
+           
+
+
+                row++;
+                int CeldaDatos = 0;
+                foreach (var item in proyectos.ItemsProyectos)
+                {
+                    AgregarValorCelda(ref worksheet, row, ref CeldaDatos, item.id.ToString(), false);
+
+                    AgregarValorCelda(ref worksheet, row, ref CeldaDatos, item.nombre, false);
+                    AgregarValorCelda(ref worksheet, row, ref CeldaDatos, item.status, false);
+                    AgregarValorCelda(ref worksheet, row, ref CeldaDatos, item.donante, false);
+                    AgregarValorCelda(ref worksheet, row, ref CeldaDatos, item.tipo_financiacion, false);
+                    AgregarValorCelda(ref worksheet, row, ref CeldaDatos, item.nombre_donante, false);
+                    AgregarValorCelda(ref worksheet, row, ref CeldaDatos, item.direccion, false);
+                    AgregarValorCelda(ref worksheet, row, ref CeldaDatos, item.email, false);
+                    AgregarValorCelda(ref worksheet, row, ref CeldaDatos, item.fecha_inicio, true);
+                    AgregarValorCelda(ref worksheet, row, ref CeldaDatos, item.fecha_finalizacion, true);
+                    AgregarValorCelda(ref worksheet, row, ref CeldaDatos, item.lider_ejecucion, false);
+                    AgregarValorCelda(ref worksheet, row, ref CeldaDatos, item.lider_coordinacion, false);
+                    AgregarValorCelda(ref worksheet, row, ref CeldaDatos, item.comite_tecnico, false);
+                    AgregarValorCelda(ref worksheet, row, ref CeldaDatos, item.tipo_implementacion, false);
+                    AgregarValorCelda(ref worksheet, row, ref CeldaDatos, item.requiereLiquidacion == true ? "SI" : "NO", false);
+
+
+
+                    row++;
+                    CeldaDatos = 0;
+
+                }
+
+
+                worksheet.Cells.ColumnWidth[0, ushort.Parse( celda.ToString())] = 6000;
+
+               
+                workbook.Worksheets.Add(worksheet);
+
+                #endregion
+
+                #region Financiera
+                List<InformacionFinanciera> listaFinanciera =  FinancieraOperations.ConsultarProyectoFinanciearaListas(factory, connection);
+
+                string[] ListaCamposFinancieros = { "ID_FINANCIERA", "ID_PROYECTO","CONTRAPARTIDA", "$ CONTRAPARTIDA",
+                                           "APORTE DONANTE", "$ APORTE DONANTE", "MONEDA DONACION", "TASA DE CAMBIO", "CUENTA",
+                                           "NAVISION", "RESPONSABLE", "LUGAR", "COSTO TOTAL"};
+
+                Worksheet worksheetFinanciera = new Worksheet("Financiera");
+
+
+                worksheetFinanciera.Cells[0, 0] = new ExcelLibrary.SpreadSheet.Cell("[Informe general Proyecto - FINANCIERA]");
+                worksheetFinanciera.Cells[0, 4] = new ExcelLibrary.SpreadSheet.Cell(string.Format("INFORME REALIZADO EL : [{0}]", DateTime.Now), ExcelLibrary.SpreadSheet.CellFormat.Date);
+                worksheetFinanciera.Cells[0, 6] = new ExcelLibrary.SpreadSheet.Cell("FINANCIERA");
+                row = 2;
+                celda = 0;
+                foreach (var item in ListaCamposFinancieros)
+                {
+                    AgregarCelda(ref worksheetFinanciera, row, ref celda, item);
+
+                }
+                CeldaDatos = 0;
+                row++;
+
+                foreach (var item in listaFinanciera)
+                {
+                  
+
+                    AgregarValorCelda(ref worksheetFinanciera , row, ref CeldaDatos, item.id.ToString(), false);
+                    AgregarValorCelda(ref worksheetFinanciera , row, ref CeldaDatos, item.id_proyecto.ToString(), false);
+                    AgregarValorCelda(ref worksheetFinanciera , row, ref CeldaDatos, item.fuente, false);
+                    AgregarValorCelda(ref worksheetFinanciera , row, ref CeldaDatos, item.plataContrapartida, false);
+                    AgregarValorCelda(ref worksheetFinanciera , row, ref CeldaDatos, item.tipoFuente, false);
+                    AgregarValorCelda(ref worksheetFinanciera , row, ref CeldaDatos, item.plataDonante, false);
+                    AgregarValorCelda(ref worksheetFinanciera , row, ref CeldaDatos, item.monedaDonacion, false);
+                    AgregarValorCelda(ref worksheetFinanciera , row, ref CeldaDatos, item.tasacambio, false);
+                    AgregarValorCelda(ref worksheetFinanciera , row, ref CeldaDatos, item.cuenta, false);
+                    AgregarValorCelda(ref worksheetFinanciera , row, ref CeldaDatos, item.navision, false);
+                    AgregarValorCelda(ref worksheetFinanciera , row, ref CeldaDatos, item.responsable, false);
+                    AgregarValorCelda(ref worksheetFinanciera , row, ref CeldaDatos, item.lugar, false);
+                    AgregarValorCelda(ref worksheetFinanciera , row, ref CeldaDatos, item.costoTotal.ToString(), false);
+       
+
+
+
+                    row++;
+                    CeldaDatos = 0;
+
+                }
+
+                worksheetFinanciera.Cells.ColumnWidth[0, ushort.Parse(celda.ToString())] = 6000;
+
+              
+                workbook.Worksheets.Add(worksheetFinanciera);
+
+
+                #endregion
+
+                #region EJECUCION FINANCIERA
+
+                List<TbEjecucion> ItemsEjecucionFinanciera = EjecucionFinancieraOperations.ConsultarExport(factory, connection);
+
+                string[] ListaCamposEjecuciinFinancieros = { "ID_EJECUCION", "ID_FINANCIERA","DESCRIPCION", "ENERO",
+                                           "FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO",
+                                           "JULIO", "AGOSTO", "SEPTIEMBRE", "OCTUBRE", "NOVIEMBRE", "DICIEMBRE"};
+
+                Worksheet worksheetEjecucionFinanciera = new Worksheet("Ejecucion Financiera");
+
+
+                worksheetEjecucionFinanciera.Cells[0, 0] = new ExcelLibrary.SpreadSheet.Cell("[Informe general Proyecto - EJECUCION DEL PROYECTO]");
+                worksheetEjecucionFinanciera.Cells[0, 4] = new ExcelLibrary.SpreadSheet.Cell(string.Format("INFORME REALIZADO EL : [{0}]", DateTime.Now), ExcelLibrary.SpreadSheet.CellFormat.Date);
+                worksheetEjecucionFinanciera.Cells[0, 6] = new ExcelLibrary.SpreadSheet.Cell("EJECUCION DEL PROYECTO");
+       
+                row = 2;
+                celda = 0;
+                foreach (var item in ListaCamposEjecuciinFinancieros)
+                {
+                    AgregarCelda(ref worksheetEjecucionFinanciera, row, ref celda, item);
+
+                }
+                CeldaDatos = 0;
+                row++;
+
+
+                foreach (var item in ItemsEjecucionFinanciera)
+                {
+
+
+                    AgregarValorCelda(ref worksheetEjecucionFinanciera, row, ref CeldaDatos, item.id.ToString(), false);
+                    AgregarValorCelda(ref worksheetEjecucionFinanciera, row, ref CeldaDatos, item.IdFinanciera.ToString(), false);
+                    AgregarValorCelda(ref worksheetEjecucionFinanciera, row, ref CeldaDatos, item.Nombre.ToString(), false);
+
+                    AgregarValorCelda(ref worksheetEjecucionFinanciera, row, ref CeldaDatos, item.Enero.ToString(), false);
+
+                    AgregarValorCelda(ref worksheetEjecucionFinanciera, row, ref CeldaDatos, item.Febrero.ToString(), false);
+                    AgregarValorCelda(ref worksheetEjecucionFinanciera, row, ref CeldaDatos, item.Marzo.ToString(), false);
+                    AgregarValorCelda(ref worksheetEjecucionFinanciera, row, ref CeldaDatos, item.Abril.ToString(), false);
+                    AgregarValorCelda(ref worksheetEjecucionFinanciera, row, ref CeldaDatos, item.Mayo.ToString(), false);
+                    AgregarValorCelda(ref worksheetEjecucionFinanciera, row, ref CeldaDatos, item.Junio.ToString(), false);
+                    AgregarValorCelda(ref worksheetEjecucionFinanciera, row, ref CeldaDatos, item.Julio.ToString(), false);
+                    AgregarValorCelda(ref worksheetEjecucionFinanciera, row, ref CeldaDatos, item.Agosto.ToString(), false);
+                    AgregarValorCelda(ref worksheetEjecucionFinanciera, row, ref CeldaDatos, item.Sept.ToString(), false);
+                    AgregarValorCelda(ref worksheetEjecucionFinanciera, row, ref CeldaDatos, item.Octubre.ToString(), false);
+                    AgregarValorCelda(ref worksheetEjecucionFinanciera, row, ref CeldaDatos, item.Noviembre.ToString(), false);
+                    AgregarValorCelda(ref worksheetEjecucionFinanciera, row, ref CeldaDatos, item.Diciembre.ToString(), false);
+
+
+
+
+
+                    row++;
+                    CeldaDatos = 0;
+
+                }
+
+                worksheetEjecucionFinanciera.Cells.ColumnWidth[0, ushort.Parse(celda.ToString())] = 6000;
+
+
+                workbook.Worksheets.Add(worksheetEjecucionFinanciera);
+
+
+                #endregion
+
+                #region participanes parte 1
+
+                RegistroParticipanteProyectosResponse itemsParticipantes = RegistroParticipantesOperations.ExportParticipantes(factory, connection);
+
+                string[] camposPartiP1 = { "ID_PARTICIPANTE", "ID_PROYECTO","NOMBRES", "APELLIDOS",
+                                           "FECHA NACIMIENTO", "EDAD", "DEPARTAMENTO", "MUNICIPIO", "FECHA INGRESO",
+                                           "FECHA SALIDA", "LOCALIDAD", "GENERO","SEXO", "ESTATUS RESIDENCIA", "ULTIMO CURSO APROBADO", "ASISTE AL COLEGIO",
+                                           "GRUPO POBLACIONAL", "GRUPO ETNICO", "NACIONALIDAD", "TIPO PARTICIPANTE", "DISCAPACIDAD", "NIVEL ESCOLARIDAD"
+               };
+
+                Worksheet worksheetP1 = new Worksheet("Participantes");
+
+
+                worksheetP1.Cells[0, 0] = new ExcelLibrary.SpreadSheet.Cell("[Informe general Proyecto - PARTICIPANTES]");
+                worksheetP1.Cells[0, 4] = new ExcelLibrary.SpreadSheet.Cell(string.Format("INFORME REALIZADO EL : [{0}]", DateTime.Now), ExcelLibrary.SpreadSheet.CellFormat.Date);
+                worksheetP1.Cells[0, 6] = new ExcelLibrary.SpreadSheet.Cell("PARTICIPANTES");
+
+                row = 2;
+                celda = 0;
+                foreach (var item in camposPartiP1)
+                {
+                    AgregarCelda(ref worksheetP1, row, ref celda, item);
+
+                }
+                CeldaDatos = 0;
+                row++;
+
+
+                foreach (var item in itemsParticipantes.ParticipanteLista)
+                {
+
+
+                    AgregarValorCelda(ref worksheetP1, row, ref CeldaDatos, item.id.ToString(), false);
+                    AgregarValorCelda(ref worksheetP1, row, ref CeldaDatos, item.idProyecto.ToString(), false);
+                    AgregarValorCelda(ref worksheetP1, row, ref CeldaDatos, item.Nombres.ToString(), false);
+
+                    AgregarValorCelda(ref worksheetP1, row, ref CeldaDatos, item.Apellidos.ToString(), false);
+
+                    AgregarValorCelda(ref worksheetP1, row, ref CeldaDatos, item.FechaNacimiento, true);
+                    AgregarValorCelda(ref worksheetP1, row, ref CeldaDatos, item.Edad.ToString(), false);
+                    AgregarValorCelda(ref worksheetP1, row, ref CeldaDatos, item.Departamento.ToString(), false);
+                    AgregarValorCelda(ref worksheetP1, row, ref CeldaDatos, item.Municipio.ToString(), false);
+                    AgregarValorCelda(ref worksheetP1, row, ref CeldaDatos, item.FechaIngreso, true);
+                    if (item.FechaSalida == null)
+                    {
+                        AgregarValorCelda(ref worksheetP1, row, ref CeldaDatos, "", false);
+
+                    }
+                    else
+                    {
+                        AgregarValorCelda(ref worksheetP1, row, ref CeldaDatos, Convert.ToDateTime(item.FechaSalida), true);
+
+                    }
+
+                    AgregarValorCelda(ref worksheetP1, row, ref CeldaDatos, item.Localidad.ToString(), false);
+                    AgregarValorCelda(ref worksheetP1, row, ref CeldaDatos, item.Genero.ToString(), false);
+                    AgregarValorCelda(ref worksheetP1, row, ref CeldaDatos, item.Sexo.ToString(), false);
+                    AgregarValorCelda(ref worksheetP1, row, ref CeldaDatos, item.EstatusResidencia.ToString(), false);
+                    AgregarValorCelda(ref worksheetP1, row, ref CeldaDatos, item.UltimoCursoAprobado.ToString(), false);
+                    AgregarValorCelda(ref worksheetP1, row, ref CeldaDatos, item.AsisteAlColegio.ToString(), false);
+                    AgregarValorCelda(ref worksheetP1, row, ref CeldaDatos, item.GrupoPoblacional.ToString(), false);
+                    AgregarValorCelda(ref worksheetP1, row, ref CeldaDatos, item.GrupoEtnico.ToString(), false);
+                    AgregarValorCelda(ref worksheetP1, row, ref CeldaDatos, item.Nacionalidad.ToString(), false);
+                    AgregarValorCelda(ref worksheetP1, row, ref CeldaDatos, item.TipoParticipante.ToString(), false);
+                    AgregarValorCelda(ref worksheetP1, row, ref CeldaDatos, item.Discapacidad.ToString(), false);
+                    AgregarValorCelda(ref worksheetP1, row, ref CeldaDatos, item.NivelEscolaridad.ToString(), false);
+
+                    row++;
+                    CeldaDatos = 0;
+
+                }
+
+                worksheetP1.Cells.ColumnWidth[0, ushort.Parse(celda.ToString())] = 6000;
+
+
+                workbook.Worksheets.Add(worksheetP1);
+
+
+
+
+                #region parte 2
+
+                Worksheet worksheetP2 = new Worksheet("Participantes-Preguntas");
+
+                string[] camposPartiP2 = { "ID_PREGUNTA", "ID_PARTICIPANTE","PREGUNTA", "RESPUESTA",
+                                           "ES OTRA RESPUESTA"
+               };
+
+                worksheetP2.Cells[0, 0] = new ExcelLibrary.SpreadSheet.Cell("[Informe general Proyecto - PARTICIPANTES-PREGUNTAS]");
+                worksheetP2.Cells[0, 4] = new ExcelLibrary.SpreadSheet.Cell(string.Format("INFORME REALIZADO EL : [{0}]", DateTime.Now), ExcelLibrary.SpreadSheet.CellFormat.Date);
+                worksheetP2.Cells[0, 6] = new ExcelLibrary.SpreadSheet.Cell("PARTICIPANTES-preguntas");
+
+                row = 2;
+                celda = 0;
+                foreach (var item in camposPartiP2)
+                {
+                    AgregarCelda(ref worksheetP2, row, ref celda, item);
+
+                }
+                CeldaDatos = 0;
+                row++;
+
+
+                foreach (var item in itemsParticipantes.Preguntas)
+                {
+
+
+                    AgregarValorCelda(ref worksheetP2, row, ref CeldaDatos, item.id.ToString(), false);
+                    AgregarValorCelda(ref worksheetP2, row, ref CeldaDatos, item.idParticipante.ToString(), false);
+                    AgregarValorCelda(ref worksheetP2, row, ref CeldaDatos, item.Pregunta.ToString(), false);
+                    
+                    AgregarValorCelda(ref worksheetP2, row, ref CeldaDatos, item.Valor.ToString(), false);
+
+                    AgregarValorCelda(ref worksheetP2, row, ref CeldaDatos, item.esOtro==true?"SI":"NO", true);
+                  
+                    row++;
+                    CeldaDatos = 0;
+
+                }
+
+                worksheetP2.Cells.ColumnWidth[0, ushort.Parse(celda.ToString())] = 6000;
+
+
+                workbook.Worksheets.Add(worksheetP2);
+
+
+                #endregion
+
+
+                #region parte 3
+
+                Worksheet worksheetP3 = new Worksheet("Integrantes Familia");
+
+                string[] camposPartiP3 = { "ID_INTEGRANTE", "ID_PARTICIPANTE","TIPO", "RANGO 0 A 5 AÑOS",
+                                           "RANGO 6 A 12 AÑOS", "RANGO 13 A 17 AÑOS", "RANGO 18 A 24 AÑOS",
+                                           "RANGO 25 A 56 AÑOS", "MAYORES A 60 AÑOS", "TOTAL", "TOTAL DESAGREGADO", "PORCENTAJE"
+               };
+
+                worksheetP3.Cells[0, 0] = new ExcelLibrary.SpreadSheet.Cell("[Informe general Proyecto - PARTICIPANTES-PREGUNTAS]");
+                worksheetP3.Cells[0, 4] = new ExcelLibrary.SpreadSheet.Cell(string.Format("INFORME REALIZADO EL : [{0}]", DateTime.Now), ExcelLibrary.SpreadSheet.CellFormat.Date);
+                worksheetP3.Cells[0, 6] = new ExcelLibrary.SpreadSheet.Cell("PARTICIPANTES-FAMILIA");
+
+                row = 2;
+                celda = 0;
+                foreach (var item in camposPartiP3)
+                {
+                    AgregarCelda(ref worksheetP3, row, ref celda, item);
+
+                }
+                CeldaDatos = 0;
+                row++;
+
+
+                foreach (var item in itemsParticipantes.IntegrantesFamilia)
+                {
+
+
+                    AgregarValorCelda(ref worksheetP3, row, ref CeldaDatos, item.id.ToString(), false);
+                    AgregarValorCelda(ref worksheetP3, row, ref CeldaDatos, item.id_participantes.ToString(), false);
+                    AgregarValorCelda(ref worksheetP3, row, ref CeldaDatos, item.Nombre.ToString(), false);
+
+                    AgregarValorCelda(ref worksheetP3, row, ref CeldaDatos, item.Rango_0_5.ToString(), false);
+                    AgregarValorCelda(ref worksheetP3, row, ref CeldaDatos, item.Rango_6_12.ToString(), false);
+                    AgregarValorCelda(ref worksheetP3, row, ref CeldaDatos, item.Rango_13_17.ToString(), false);
+                    AgregarValorCelda(ref worksheetP3, row, ref CeldaDatos, item.Rango_18_24.ToString(), false);
+                    AgregarValorCelda(ref worksheetP3, row, ref CeldaDatos, item.Rango_25_56.ToString(), false);
+                    AgregarValorCelda(ref worksheetP3, row, ref CeldaDatos, item.Mayores_60.ToString(), false);
+                    AgregarValorCelda(ref worksheetP3, row, ref CeldaDatos, item.Total.ToString(), false);
+                    AgregarValorCelda(ref worksheetP3, row, ref CeldaDatos, item.TotalDesagregado.ToString(), false);
+                    AgregarValorCelda(ref worksheetP3, row, ref CeldaDatos, item.Porcentaje.ToString(), false);
+
+
+
+                    row++;
+                    CeldaDatos = 0;
+
+                }
+
+                worksheetP3.Cells.ColumnWidth[0, ushort.Parse(celda.ToString())] = 6000;
+
+
+                workbook.Worksheets.Add(worksheetP3);
+
+
+                #endregion
+
+                #endregion
+
+
+
+
+
+                #region fechas
+
+                List<FechasEntregas> itemsFechas = FechasOperations.ExportData(factory, connection);
+
+                Worksheet worksheetP4 = new Worksheet("Proyecto Fechas");
+
+                string[] camposP4 = { "ID_FECHA", "ID_PROYECTO","FECHA", "TIPO FECHA"
+                                        
+               };
+
+                worksheetP4.Cells[0, 0] = new ExcelLibrary.SpreadSheet.Cell("[Informe general Proyecto - FECHAS]");
+                worksheetP4.Cells[0, 4] = new ExcelLibrary.SpreadSheet.Cell(string.Format("INFORME REALIZADO EL : [{0}]", DateTime.Now), ExcelLibrary.SpreadSheet.CellFormat.Date);
+                worksheetP4.Cells[0, 6] = new ExcelLibrary.SpreadSheet.Cell("FECHAS");
+
+                row = 2;
+                celda = 0;
+                foreach (var item in camposP4)
+                {
+                    AgregarCelda(ref worksheetP4, row, ref celda, item);
+
+                }
+                CeldaDatos = 0;
+                row++;
+
+
+                foreach (var item in itemsFechas)
+                {
+
+
+                    AgregarValorCelda(ref worksheetP4, row, ref CeldaDatos, item.id.ToString(), false);
+                    AgregarValorCelda(ref worksheetP4, row, ref CeldaDatos, item.id_proyecto.ToString(), false);
+                    AgregarValorCelda(ref worksheetP4, row, ref CeldaDatos, item.fecha, true);
+                    AgregarValorCelda(ref worksheetP4, row, ref CeldaDatos, item.tipo_fecha.ToString(), false);
+                    row++;
+                    CeldaDatos = 0;
+
+                }
+
+                worksheetP4.Cells.ColumnWidth[0, ushort.Parse(celda.ToString())] = 6000;
+
+
+                workbook.Worksheets.Add(worksheetP4);
+
+                #endregion
+
+
+
+                #region Colaboradores
+
+                ColaboradorResponse ItemsColaborador = ColaboradoresOperations.Exportdata(factory, connection);
+
+                Worksheet worksheetColaborador = new Worksheet("Proyecto Colaboradores");
+
+                string[] camposPColaborador = { "ID_COLABORADOR", "ID_PROYECTO","NOMBRE", "FECHA DE NACIMIENTO",
+                                                "CARGO", "TIEMPO", "TIPO CONTRATO", "FECHA INICIO", "FECHA FIN",
+                                                "COSTO MENSUAL", "PORCENTAJE", "CONTRAPARTIDA", "APORTE"
+
+               };
+
+                worksheetColaborador.Cells[0, 0] = new ExcelLibrary.SpreadSheet.Cell("[Informe general Proyecto - COLABORADDOR]");
+                worksheetColaborador.Cells[0, 4] = new ExcelLibrary.SpreadSheet.Cell(string.Format("INFORME REALIZADO EL : [{0}]", DateTime.Now), ExcelLibrary.SpreadSheet.CellFormat.Date);
+                worksheetColaborador.Cells[0, 6] = new ExcelLibrary.SpreadSheet.Cell("COLABORADOR");
+
+                row = 2;
+                celda = 0;
+                foreach (var item in camposPColaborador)
+                {
+                    AgregarCelda(ref worksheetColaborador, row, ref celda, item);
+
+                }
+                CeldaDatos = 0;
+                row++;
+
+
+                foreach (var item in ItemsColaborador.ItemsColaboradores)
+                {
+
+
+                    AgregarValorCelda(ref worksheetColaborador, row, ref CeldaDatos, item.Id.ToString(), false);
+                    AgregarValorCelda(ref worksheetColaborador, row, ref CeldaDatos, item.idProyecto.ToString(), false);
+                    AgregarValorCelda(ref worksheetColaborador, row, ref CeldaDatos, item.Nombre, false);
+                    AgregarValorCelda(ref worksheetColaborador, row, ref CeldaDatos, item.FechaNacimiento, true);
+                    AgregarValorCelda(ref worksheetColaborador, row, ref CeldaDatos, item.Cargo.ToString(), false);
+                    AgregarValorCelda(ref worksheetColaborador, row, ref CeldaDatos, item.Tiempo.ToString(), false);
+                    AgregarValorCelda(ref worksheetColaborador, row, ref CeldaDatos, item.TipoContrato.ToString(), false);
+                    AgregarValorCelda(ref worksheetColaborador, row, ref CeldaDatos, item.FechaInicio, true);
+                    AgregarValorCelda(ref worksheetColaborador, row, ref CeldaDatos, item.FechaFin, true);
+                    AgregarValorCelda(ref worksheetColaborador, row, ref CeldaDatos, item.CostoMensual.ToString(), false);
+                    AgregarValorCelda(ref worksheetColaborador, row, ref CeldaDatos, item.Porcentaje.ToString()+ "%", false);
+                    AgregarValorCelda(ref worksheetColaborador, row, ref CeldaDatos, item.Contrapartida.ToString() , false);
+                    AgregarValorCelda(ref worksheetColaborador, row, ref CeldaDatos, item.Aporte.ToString(), false);
+
+                    row++;
+                    CeldaDatos = 0;
+
+                }
+
+                worksheetColaborador.Cells.ColumnWidth[0, ushort.Parse(celda.ToString())] = 6000;
+
+
+                workbook.Worksheets.Add(worksheetColaborador);
+
+                #endregion
+
+
+                #region Centros Costos 2
+
+                List<ColaboradorInforFinanciera> itemCecos = CecosOperations.ExportData(factory, connection);
+
+                Worksheet worksheetP5 = new Worksheet("Centros de Costos");
+
+                string[] camposP5 = { "ID_CECO_FINANCIERA", "ID_FINANCIERA","ID_COLABORADOR", "CODIGO"
+
+               };
+
+                worksheetP5.Cells[0, 0] = new ExcelLibrary.SpreadSheet.Cell("[Informe general Proyecto - CECOS]");
+                worksheetP5.Cells[0, 4] = new ExcelLibrary.SpreadSheet.Cell(string.Format("INFORME REALIZADO EL : [{0}]", DateTime.Now), ExcelLibrary.SpreadSheet.CellFormat.Date);
+                worksheetP5.Cells[0, 6] = new ExcelLibrary.SpreadSheet.Cell("CECOS");
+
+                row = 2;
+                celda = 0;
+                foreach (var item in camposP5)
+                {
+                    AgregarCelda(ref worksheetP5, row, ref celda, item);
+
+                }
+                CeldaDatos = 0;
+                row++;
+
+
+                foreach (var item in itemCecos)
+                {
+
+
+                    AgregarValorCelda(ref worksheetP5, row, ref CeldaDatos, item.id.ToString(), false);
+                    
+                    AgregarValorCelda(ref worksheetP5, row, ref CeldaDatos, item.id_InfoFinanciera == null? "NA": item.id_InfoFinanciera.ToString(), false);
+                    AgregarValorCelda(ref worksheetP5, row, ref CeldaDatos, item.id_Colaboradores == null ? "NA" : item.id_Colaboradores.ToString(), false);
+
+
+                    AgregarValorCelda(ref worksheetP5, row, ref CeldaDatos, item.Codigo.ToString(), false);
+                    row++;
+                    CeldaDatos = 0;
+
+                }
+
+                worksheetP5.Cells.ColumnWidth[0, ushort.Parse(celda.ToString())] = 6000;
+
+
+                workbook.Worksheets.Add(worksheetP5);
+
+                #endregion
+
+
+                #region Municipios
+
+                List<ProyectoMunicipioResponse> ItemsMunicipios = MunicipioOperations.ExportData(factory, connection);
+
+                Worksheet worksheetP6 = new Worksheet("Proyecto Municipios");
+
+                string[] camposP6 = { "ID_MUNICIPIO_PROYECTO", "ID_PROYECTO","DEPARTAMENTO", "MUNICIPIO"
+
+               };
+
+                worksheetP6.Cells[0, 0] = new ExcelLibrary.SpreadSheet.Cell("[Informe general Proyecto - MUNICIPIOS]");
+                worksheetP6.Cells[0, 4] = new ExcelLibrary.SpreadSheet.Cell(string.Format("INFORME REALIZADO EL : [{0}]", DateTime.Now), ExcelLibrary.SpreadSheet.CellFormat.Date);
+                worksheetP6.Cells[0, 6] = new ExcelLibrary.SpreadSheet.Cell("MUNICIPIOS");
+
+                row = 2;
+                celda = 0;
+                foreach (var item in camposP6)
+                {
+                    AgregarCelda(ref worksheetP6, row, ref celda, item);
+
+                }
+                CeldaDatos = 0;
+                row++;
+
+
+                foreach (var item in ItemsMunicipios)
+                {
+
+
+                    AgregarValorCelda(ref worksheetP6, row, ref CeldaDatos, item.id.ToString(), false);
+
+                    AgregarValorCelda(ref worksheetP6, row, ref CeldaDatos, item.id_proyecto.ToString(), false);
+                    AgregarValorCelda(ref worksheetP6, row, ref CeldaDatos, item.id_departamento.ToString(), false);
+                    AgregarValorCelda(ref worksheetP6, row, ref CeldaDatos, item.id_municipio.ToString(), false);
+                    row++;
+                    CeldaDatos = 0;
+
+                }
+
+                worksheetP6.Cells.ColumnWidth[0, ushort.Parse(celda.ToString())] = 6000;
+
+
+                workbook.Worksheets.Add(worksheetP6);
+
+                #endregion
+
+
+
+                #region Participantes Proyectados Parte 1
+
+                List<DBParticipantesProyectados> ItemProyectado = ParticipantesProyectadosOperations.ExportDataProyectados(factory, connection);
+
+                Worksheet worksheetP7 = new Worksheet("Proyecto data Proyectados");
+
+                string[] camposP7 = { "ID_PROYECTADO", "ID_PROYECTO","TOTAL FAMILIAS", "OBSERVACIONES"
+
+               };
+
+                worksheetP7.Cells[0, 0] = new ExcelLibrary.SpreadSheet.Cell("[Informe general Proyecto - PROYECTADOS]");
+                worksheetP7.Cells[0, 4] = new ExcelLibrary.SpreadSheet.Cell(string.Format("INFORME REALIZADO EL : [{0}]", DateTime.Now), ExcelLibrary.SpreadSheet.CellFormat.Date);
+                worksheetP7.Cells[0, 6] = new ExcelLibrary.SpreadSheet.Cell("DATA PROYECTADOS");
+
+                row = 2;
+                celda = 0;
+                foreach (var item in camposP7)
+                {
+                    AgregarCelda(ref worksheetP7, row, ref celda, item);
+
+                }
+                CeldaDatos = 0;
+                row++;
+
+
+                foreach (var item in ItemProyectado)
+                {
+
+
+                    AgregarValorCelda(ref worksheetP7, row, ref CeldaDatos, item.id.ToString(), false);
+
+                    AgregarValorCelda(ref worksheetP7, row, ref CeldaDatos, item.id_proyecto.ToString(), false);
+                    AgregarValorCelda(ref worksheetP7, row, ref CeldaDatos, item.TotalFamilias.ToString(), false);
+                    AgregarValorCelda(ref worksheetP7, row, ref CeldaDatos, item.Observaciones.ToString(), false);
+                    row++;
+                    CeldaDatos = 0;
+
+                }
+
+                worksheetP7.Cells.ColumnWidth[0, ushort.Parse(celda.ToString())] = 6000;
+
+
+                workbook.Worksheets.Add(worksheetP7);
+
+                #endregion
+
+
+
+
+
+                #region Participantes Proyectados Parte 2
+
+                List<DBParticipantes> ItemProyectadoV2 = ParticipantesProyectadosOperations.ExportDataparticipantes(factory, connection);
+
+                Worksheet worksheetP8 = new Worksheet("Proyecto  data participantes Proyectados");
+                string[] camposP8 = { "ID_PARTICIPANTE_PROYECTADO", "ID_PROYECTADO","TIPO", "RANGO 0 A 5 AÑOS",
+                                           "RANGO 6 A 12 AÑOS", "RANGO 13 A 17 AÑOS", "RANGO 18 A 24 AÑOS",
+                                           "RANGO 25 A 56 AÑOS", "MAYORES A 60 AÑOS", "TOTAL", "TOTAL DESAGREGADO", "PORCENTAJE"
+               };
+
+                worksheetP8.Cells[0, 0] = new ExcelLibrary.SpreadSheet.Cell("[Informe general Proyecto - PARTICIPANTES-PROYECTADOS]");
+                worksheetP8.Cells[0, 4] = new ExcelLibrary.SpreadSheet.Cell(string.Format("INFORME REALIZADO EL : [{0}]", DateTime.Now), ExcelLibrary.SpreadSheet.CellFormat.Date);
+                worksheetP8.Cells[0, 6] = new ExcelLibrary.SpreadSheet.Cell("PARTICIPANTES-PROYECTADOS");
+
+
+                row = 2;
+                celda = 0;
+                foreach (var item in camposP8)
+                {
+                    AgregarCelda(ref worksheetP8, row, ref celda, item);
+
+                }
+                CeldaDatos = 0;
+                row++;
+
+
+                foreach (var item in ItemProyectadoV2)
+                {
+
+
+                    AgregarValorCelda(ref worksheetP8, row, ref CeldaDatos, item.id.ToString(), false);
+                    AgregarValorCelda(ref worksheetP8, row, ref CeldaDatos, item.id_participantes.ToString(), false);
+                    AgregarValorCelda(ref worksheetP8, row, ref CeldaDatos, item.Nombre.ToString(), false);
+
+                    AgregarValorCelda(ref worksheetP8, row, ref CeldaDatos, item.Rango_0_5.ToString(), false);
+                    AgregarValorCelda(ref worksheetP8, row, ref CeldaDatos, item.Rango_6_12.ToString(), false);
+                    AgregarValorCelda(ref worksheetP8, row, ref CeldaDatos, item.Rango_13_17.ToString(), false);
+                    AgregarValorCelda(ref worksheetP8, row, ref CeldaDatos, item.Rango_18_24.ToString(), false);
+                    AgregarValorCelda(ref worksheetP8, row, ref CeldaDatos, item.Rango_25_56.ToString(), false);
+                    AgregarValorCelda(ref worksheetP8, row, ref CeldaDatos, item.Mayores_60.ToString(), false);
+                    AgregarValorCelda(ref worksheetP8, row, ref CeldaDatos, item.Total.ToString(), false);
+                    AgregarValorCelda(ref worksheetP8, row, ref CeldaDatos, item.TotalDesagregado.ToString(), false);
+                    AgregarValorCelda(ref worksheetP8, row, ref CeldaDatos, item.Porcentaje.ToString(), false);
+                    row++;
+                    CeldaDatos = 0;
+
+                }
+
+                worksheetP8.Cells.ColumnWidth[0, ushort.Parse(celda.ToString())] = 7000;
+
+
+                workbook.Worksheets.Add(worksheetP8);
+
+                #endregion
+
+
+
+
+
+                if (!Directory.Exists("BaseDatos/"))
+                {
+                    DirectoryInfo di = Directory.CreateDirectory("BaseDatos/");
+                }
+
+                var nombre = "BaseDatos/" + DateTime.Now.ToString("yyyyMM-ddHHmmss") + "BaseDeDatos.xls";
+                workbook.Save(nombre);
+
+
+                retornoFinal = nombre;
+
+
+            }
+            catch (Exception e)
+            {
+                //new ClientListException("Erreur lors de la conversion en fichier Excel ! erreur : " + e.Message);
+            }
+
+            return retornoFinal;
+        }
+
+
+
+        private static void AgregarCelda(ref Worksheet worksheet, int row, ref int celda, string nombreCelda)
+        {
+            worksheet.Cells[row, celda] = new ExcelLibrary.SpreadSheet.Cell(nombreCelda);
+            celda = celda + 1;
+        }
+
+        private static void AgregarValorCelda(ref Worksheet worksheet, int row, ref int celda, object valor, bool fecha)
+        {
+            if(!fecha)
+            {
+                worksheet.Cells[row, celda] = new ExcelLibrary.SpreadSheet.Cell(valor, ExcelLibrary.SpreadSheet.CellFormat.General);
+
+            }
+            else
+            {
+                worksheet.Cells[row, celda] = new ExcelLibrary.SpreadSheet.Cell(valor, ExcelLibrary.SpreadSheet.CellFormat.Date);
+
+            }
+
+            celda++;
+        }
     }
 
 }

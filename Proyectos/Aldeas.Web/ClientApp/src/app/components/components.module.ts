@@ -45,6 +45,9 @@ import { ListafechasComponent } from './00-Comunes/listafechas/listafechas.compo
 import { CecoseditComponent } from './00-Comunes/cecosedit/cecosedit.component';
 import { VerproyectosparticipantesComponent } from './05-Registro/verproyectosparticipantes/verproyectosparticipantes.component';
 import { ListacolaboradoresComponent } from './04-Colaboradores/listacolaboradores/listacolaboradores.component';
+import { MunicipioseditComponent } from './00-Comunes/municipiosedit/municipiosedit.component';
+import { EditarcolaboradorComponent } from './04-Colaboradores/editarcolaborador/editarcolaborador.component';
+import { DescargarbasedatosComponent } from './06-Descargas/descargarbasedatos/descargarbasedatos.component';
 @NgModule({
   declarations: [
     LoginComponent,
@@ -68,7 +71,10 @@ import { ListacolaboradoresComponent } from './04-Colaboradores/listacolaborador
     ListafechasComponent,
     CecoseditComponent,
     VerproyectosparticipantesComponent,
-    ListacolaboradoresComponent],
+    ListacolaboradoresComponent,
+    MunicipioseditComponent,
+    EditarcolaboradorComponent,
+    DescargarbasedatosComponent],
   imports: [
 
     CommonModule,

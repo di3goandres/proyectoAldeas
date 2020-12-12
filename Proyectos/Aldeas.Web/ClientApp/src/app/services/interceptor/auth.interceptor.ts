@@ -36,14 +36,16 @@ export class AuthInterceptor implements HttpInterceptor {
 
 
 
-    console.log(request.url)
+
 
     if (usuario != null) {
       this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
       let user = this.currentUserSubject.value;
       let token = user.token
 
-      if (!request.url.includes('/api/aldeas/GuardarProyectoArchivo/')) {
+     if (!request.url.includes('/api/aldeas/GuardarProyectoArchivo/')) {
+      
+
         request = this.addToken(request, token);
       }
     }
@@ -56,19 +58,33 @@ export class AuthInterceptor implements HttpInterceptor {
           }
         }),
         catchError(Error => {
-          console.log(Error)
+          console.log("error:", Error)
           if (Error.status == 401) {
             this.Service.logout();
           }
           this.Service.cerrarModal();
+         
+            return throwError(Error);
 
-          return throwError(Error)
+          
         }));
   }
   private addToken(request: HttpRequest<any>, token: string) {
     const headers = new HttpHeaders({
       'Authorization': token,
       'Content-Type': 'application/json'
+    });
+    return request.clone({
+      headers,
+
+    })
+
+  }
+
+  private addTokenExcel(request: HttpRequest<any>, token: string) {
+    const headers = new HttpHeaders({
+      'Authorization': token,
+    
     });
     return request.clone({
       headers,

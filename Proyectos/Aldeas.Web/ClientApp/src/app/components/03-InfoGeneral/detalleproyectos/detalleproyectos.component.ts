@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { ProyectoService } from 'src/app/services/proyectos/proyecto.service';
-import { ItemProyectados, ItemFinanciera, ItemProyecto, ItemsEjecucion, ItemsFecha, ListParticipante, ItemsCentroCosto } from '../../../models/proyectos/proyecto.unico.response';
+import { ItemProyectados, ItemFinanciera, ItemProyecto, ItemsEjecucion, ItemsFecha, ListParticipante, ItemsCentroCosto, ItemsMunicipio } from '../../../models/proyectos/proyecto.unico.response';
 
 
 @Component({
@@ -27,7 +27,7 @@ export class DetalleproyectosComponent implements OnInit {
       'Mayores de 60 años', 'Total', 'TotalDesagregado']
 
   itemsCentroCostos: ItemsCentroCosto[];
-
+  itemsMunicipios:   ItemsMunicipio[];
   idProyecto: string;
   default: "COMITES"
   secondFormGroup: FormGroup;
@@ -76,7 +76,9 @@ export class DetalleproyectosComponent implements OnInit {
         this.participantes.push(...OK.itemProyectados.listParticipantes);
         this.itemsCentroCostos = [];
         this.itemsCentroCostos.push(...OK.itemsCentroCostos);
-        console.log(this.itemsCentroCostos)
+        this.itemsMunicipios = [];
+        this.itemsMunicipios.push(...OK.itemsMunicipios);
+        
 
 
         this.fechasMostrar$.next(this.fechas.filter(item => item.tipo_fecha.toUpperCase() == this.default));

@@ -39,7 +39,39 @@ namespace ApiRestAldeas.Helper
         /// </summary>
         /// <param name="factory"></param>
         /// <param name="connection"></param>
-        /// <returns></returns>
+        /// <returns></returns>ConsultarProyectoListasExport
+        public static dynamic ConsultarProyectoListasExport(IContextFactory factory, IOptions<ConnectionDB> connection)
+        {
+            ProyectoListaResponse retorno = new ProyectoListaResponse();
+            using (Aldeas_Context db = factory.Create(connection))
+            {
+                var data = from pro in db.tbProyectos
+                           select new Proyectos {
+                               id = pro.id,
+                               nombre = pro.nombre,
+                               status = pro.status,
+                               donante = pro.donante,
+                               tipo_financiacion = pro.tipo_financiacion,
+                               nombre_donante = pro.nombre_donante,
+                               direccion = pro.direccion,
+                               email = pro.email,
+                               fecha_inicio = pro.fecha_inicio,
+                               fecha_finalizacion = pro.fecha_finalizacion,
+                               lider_ejecucion = pro.lider_ejecucion,
+                               lider_coordinacion = pro.lider_coordinacion,
+                               tipo_implementacion = pro.tipo_implementacion,
+                               comite_tecnico = pro.comite_tecnico,
+                               requiereLiquidacion = pro.requiereLiquidacion
+
+
+
+                           };
+                retorno.ItemsProyectos = (data.ToList());
+            }
+            return retorno;
+        }
+
+
         public static dynamic ConsultarProyectoListas(IContextFactory factory, IOptions<ConnectionDB> connection)
         {
             ProyectoListaResponse retorno = new ProyectoListaResponse();
@@ -213,7 +245,7 @@ namespace ApiRestAldeas.Helper
                     fechas.Add(new FechasEntregas()
                     {
                         id_proyecto = nuevoProyecto.id,
-                        fecha = item.Fecha,
+                        fecha = Utils.CambiarFecha(item.Fecha),
                         tipo_fecha = "COMITES"
                     });
                 }
@@ -223,7 +255,7 @@ namespace ApiRestAldeas.Helper
                     fechas.Add(new FechasEntregas()
                     {
                         id_proyecto = nuevoProyecto.id,
-                        fecha = item.Fecha,
+                        fecha = Utils.CambiarFecha(item.Fecha),
                         tipo_fecha = "INFORMES"
                     });
                 }
@@ -273,7 +305,7 @@ namespace ApiRestAldeas.Helper
                     fechas.Add(new FechasEntregas()
                     {
                         id_proyecto = nuevoProyecto.id,
-                        fecha = item.Fecha,
+                        fecha = Utils.CambiarFecha(item.Fecha),
                         tipo_fecha = "FECHAS DESEMBOLSO"
                     });
                 }
@@ -282,7 +314,7 @@ namespace ApiRestAldeas.Helper
                     fechas.Add(new FechasEntregas()
                     {
                         id_proyecto = nuevoProyecto.id,
-                        fecha = item.Fecha,
+                        fecha = Utils.CambiarFecha(item.Fecha),
                         tipo_fecha = "VISITAS"
                     });
                 }

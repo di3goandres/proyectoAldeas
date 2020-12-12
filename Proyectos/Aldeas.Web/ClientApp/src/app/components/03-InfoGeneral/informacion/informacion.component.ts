@@ -8,6 +8,9 @@ import { UserService } from '../../../services/user.service';
 import { ConsultaDepartamentos, Municipio, Departamento } from '../../../models/ConsultaDepartamentos';
 import { CentrosCosto, SubCentro } from '../../../models/comunes';
 import { Task } from 'src/app/models/checkbox';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { RegistroExitosoComponent } from '../../00-Comunes/registro-exitoso/registro-exitoso.component';
+import { RegistroNoexitosoComponent } from '../../00-Comunes/registro-noexitoso/registro-noexitoso.component';
 
 interface Select {
   value: string;
@@ -147,7 +150,8 @@ export class InformacionComponent implements OnInit {
 
   constructor(
     private _formBuilder: FormBuilder,
-    public userService: UserService
+    public userService: UserService,
+    private modalService: NgbModal,
   ) {
     this.FechaComite = new Date();
     this.FechaDesembolso = new Date()
@@ -658,10 +662,12 @@ export class InformacionComponent implements OnInit {
       response => {
        console.log(response);
        if(response.status == "OK"){
+        this.registroExitoso();
         this.reiniciar();
        }
       },
       error => {
+        this.registroNoExitoso("Error", error);
         console.log(error)
         this.Guardando = false;
       },
@@ -856,6 +862,35 @@ export class InformacionComponent implements OnInit {
     this.traerDepartamentos();
  
 
+  }
+
+  registroExitoso() {
+    const modalRef = this.modalService.open(RegistroExitosoComponent, { size: 'md' });
+
+    modalRef.result.then((result) => {
+       this.reiniciar()
+    }, (reason) => {
+
+      if (reason === 'OK') {
+
+
+      }
+    });
+  }
+
+  registroNoExitoso(Titulo, Mensaje) {
+    const modalRef = this.modalService.open(RegistroNoexitosoComponent, { size: 'md' });
+    modalRef.componentInstance.Titulo = Titulo;
+    modalRef.componentInstance.mensaje = Mensaje
+    modalRef.result.then((result) => {
+
+    }, (reason) => {
+
+      if (reason === 'OK') {
+
+
+      }
+    });
   }
 
 }

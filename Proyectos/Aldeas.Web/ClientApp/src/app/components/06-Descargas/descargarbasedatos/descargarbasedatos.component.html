@@ -1,0 +1,22 @@
+<div class="container alternate-theme">
+<mat-card class="example-card">
+    <mat-card-header>
+        <div mat-card-avatar class="example-header-image"
+                                    style="background-image: url('assets/avatars/av-1.png')"></div>
+      <mat-card-title>Descarga de la Información</mat-card-title>
+      <mat-card-subtitle>Proyectos Aldeas</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="assets/avatars/av-2.png" alt="ayudante">
+    <mat-card-content>
+      <p>
+       Esta a punto de descargar toda la información de la base de datos, este proceso puede tardar dependiendo de la información almacenada en esta.
+
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      
+      <button mat-raised-button color="primary" id="logout-button" class="btn btn-primary btn-block"
+      (click)="descargar()" >
+      <mat-icon>cloud_download</mat-icon></button>
+    </mat-card-actions>
+  </mat-card></div>

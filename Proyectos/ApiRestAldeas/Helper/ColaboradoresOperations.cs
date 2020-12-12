@@ -93,6 +93,35 @@ namespace ApiRestAldeas.Helper
         }
 
 
+
+        public static dynamic Exportdata(IContextFactory factory, IOptions<ConnectionDB> connection
+       )
+        {
+            ColaboradorResponse retorno = new ColaboradorResponse();
+
+
+            using (Aldeas_Context db = factory.Create(connection))
+            {
+
+                var Colaboradores = from dato in db.TbColaboradors
+
+                               
+
+                                    select dato;
+
+
+
+                if (Colaboradores.Any())
+                {
+                    retorno.ItemsColaboradores = Colaboradores.ToList();
+
+
+                }
+            }
+
+            return retorno;
+        }
+
         public static dynamic ConsultarDetalleColaboradores(IContextFactory factory, IOptions<ConnectionDB> connection,
           long idColaborador)
         {

@@ -25,5 +25,11 @@ export class ProyectoService {
   getReporteProyectos(id) {
     return this.service.getUrl() + '/api/proyectos/informe/consultar/' + id;
   }
+
+
+  getDataExport() {
+    this.service.ejecutarQuerFile('/api/proyectos/informe/exportdatabase/');
+    
+  }
  
 }

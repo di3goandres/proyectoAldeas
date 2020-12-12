@@ -35,6 +35,7 @@ import { VerproyectosComponent } from './components/03-InfoGeneral/verproyectos/
 import { DetalleproyectosComponent } from './components/03-InfoGeneral/detalleproyectos/detalleproyectos.component';
 import { VerproyectosparticipantesComponent } from './components/05-Registro/verproyectosparticipantes/verproyectosparticipantes.component';
 import { ListacolaboradoresComponent } from './components/04-Colaboradores/listacolaboradores/listacolaboradores.component';
+import { DescargarbasedatosComponent } from './components/06-Descargas/descargarbasedatos/descargarbasedatos.component';
 
 
 const routes: Routes = [ 
@@ -62,6 +63,7 @@ const routes: Routes = [
   { path: 'VerParticipantesProyectos/:id', component: VerproyectosparticipantesComponent, pathMatch: 'full', canActivate:[UsuarioGuard], canLoad: [UsuarioGuard]  },
   { path: 'VerColaboradoresProyectos/:id', component: ListacolaboradoresComponent, pathMatch: 'full', canActivate:[UsuarioGuard], canLoad: [UsuarioGuard]  },
 
+  { path: 'DescargarDatos', component: DescargarbasedatosComponent, pathMatch: 'full', canActivate:[UsuarioGuard], canLoad: [UsuarioGuard]  },
 
 ];
 @NgModule({

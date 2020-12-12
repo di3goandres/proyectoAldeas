@@ -19,6 +19,8 @@ namespace ApiRestAldeas.Models
     public class RegistroParticipanteProyectosResponse
     {
         public RegistroParticipanteResponse Participante { get; set; }
+        public List<RegistroParticipanteResponse> ParticipanteLista { get; set; }
+
         public List<RegistroPreguntas> Preguntas { get; set; }
         public List<DBIntegrantes> IntegrantesFamilia { get; set; }
     }

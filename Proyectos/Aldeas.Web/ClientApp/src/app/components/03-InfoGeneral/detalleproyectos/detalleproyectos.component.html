@@ -331,7 +331,7 @@
           </p>
         </mat-card-content>
       </mat-card>
-      <div class="row">
+ 
 
         <div class="table-responsive">
           <table id="customers" #participantesTable mat-table [dataSource]="participantes" class="mat-elevation-z8 participantes">
@@ -424,7 +424,7 @@
 
 
 
-      </div>
+    
     </mat-tab>
 
     <mat-tab label="CeCos">
@@ -432,6 +432,14 @@
 
 
         <app-cecosedit [(dataSource)]="itemsCentroCostos"></app-cecosedit>
+      </div>
+    </mat-tab>
+
+    <mat-tab label="Departamentos">
+      <div *ngIf="itemsMunicipios!=null && itemsMunicipios.length>=1">
+
+
+        <app-municipiosedit [(dataSource)]="itemsMunicipios"></app-municipiosedit>
       </div>
     </mat-tab>
   </mat-tab-group>

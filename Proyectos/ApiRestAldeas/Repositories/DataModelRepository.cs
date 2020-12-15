@@ -63,10 +63,7 @@ namespace ApiRestAldeas.Repositories
             return ColaboradoresOperations.Guardar(_factory, _connectionDB, request);
         }
 
-        public dynamic GuardarRegistroParticipantes(RegistroParticipantesRequest request)
-        {
-            return RegistroParticipantesOperations.Guardar(_factory, _connectionDB,request);
-        }
+        
 
         public dynamic GuardarRegistroProyecto(ProyectoRequest proyectoRequest)
         {
@@ -165,6 +162,30 @@ namespace ApiRestAldeas.Repositories
         public dynamic ExportExcelProyectos()
         {
             return InformesOperations.ExportBasedeDatosInforme(_factory, _connectionDB);
+        }
+
+        public dynamic ActualizarCeco(long id, int idCecoNuevo)
+        {
+            return CecosOperations.UpdateCeco(_factory, _connectionDB, id, idCecoNuevo);
+        }
+
+        public dynamic ColaboradorActualizar(ColaboradorRequest request)
+        {
+            return ColaboradoresOperations.Actualizar(_factory, _connectionDB, request);
+        }
+
+        public dynamic GuardarRegistroParticipantes(RegistroParticipantesRequest request)
+        {
+            return RegistroParticipantesOperations.Guardar(_factory, _connectionDB, request);
+        }
+        public dynamic ActualizarParticipante(RegistroParticipantesRequest request)
+        {
+            return RegistroParticipantesOperations.Actualizar(_factory, _connectionDB, request);
+        }
+
+        public dynamic ActualizarIntegrante(ActualizarIntegrantesRequest request)
+        {
+            return RegistroParticipantesOperations.ActualizarIntegrantes(_factory, _connectionDB, request);
         }
         #endregion
     }

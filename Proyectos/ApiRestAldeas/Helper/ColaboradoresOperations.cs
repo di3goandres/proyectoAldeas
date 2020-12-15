@@ -151,5 +151,42 @@ namespace ApiRestAldeas.Helper
         }
 
 
+        public static dynamic Actualizar(IContextFactory factory, IOptions<ConnectionDB> connection,
+          ColaboradorRequest request)
+        {
+            long idProyecto = 0;
+            using (Aldeas_Context db = factory.Create(connection))
+            {
+                var Colaborador = from dato in db.TbColaboradors
+                                    where dato.Id == request.id
+                                  select dato;
+                if (Colaborador.Any())
+                {
+
+
+
+                    Colaborador.First().Nombre = request.Nombre;
+                    Colaborador.First().FechaNacimiento = Utils.CambiarFecha(request.Fecha);
+                    Colaborador.First().Cargo = request.Cargo;
+                    Colaborador.First().Tiempo = request.Tiempo;
+                    Colaborador.First().TipoContrato = request.TipoContrato;
+                    Colaborador.First().FechaInicio = Utils.CambiarFecha(request.FechaInicio);
+                    Colaborador.First().FechaFin = Utils.CambiarFecha(request.FechaFin);
+                    Colaborador.First().CostoMensual = request.CostoMensual;
+                    Colaborador.First().Porcentaje = request.Porcentaje;
+                    Colaborador.First().Contrapartida = request.Contrapartida;
+                    Colaborador.First().Aporte = request.Aporte;
+
+                    db.SaveChanges();
+                    idProyecto = request.id;
+
+                };
+               
+
+            }
+            return new { status = idProyecto == 0 ? "error" : "OK", code = idProyecto == 0? 203:200 };
+        }
+
+
     }
 }

@@ -7,17 +7,19 @@ export interface RegistroParticipantesResponse {
 export interface RegistroParticipantes {
     id:                  number;
     idProyecto:          number;
-    idMunicipio:         number;
+    idMunicipio:         string;
     municipio:           string;
+    idDepartamento:      string;   
+
     departamento:        string;   
 
     nombres:             string;
     apellidos:           string;
 
-    fechaNacimiento:     string;
+    fechaNacimiento:     Date;
     edad:                number;
-    fechaIngreso:        string;
-    fechaSalida:         string;
+    fechaIngreso:        Date;
+    fechaSalida:         Date;
     localidad:           string;
     sexo:                string;
     estatusResidencia:   string;

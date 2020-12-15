@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ItemsCentroCosto } from '../../../models/proyectos/proyecto.unico.response';
+import { OnlycecoeditComponent } from '../onlycecoedit/onlycecoedit.component';
 
 @Component({
   selector: 'app-cecosedit',
@@ -7,13 +9,30 @@ import { ItemsCentroCosto } from '../../../models/proyectos/proyecto.unico.respo
   styleUrls: ['./cecosedit.component.css']
 })
 export class CecoseditComponent implements OnInit {
-  displayedColumns: string[] = ['position',  'Nombre'];
+  displayedColumns: string[] = ['position',  'Nombre', 'actualizar'];
   @Input() dataSource: ItemsCentroCosto[]=[];
 
-  constructor() { }
+  constructor(
+    private modalService: NgbModal,
+
+  ) { }
 
   ngOnInit(): void {
-    console.log(this.dataSource)
+  
+  }
+
+  registroExitoso() {
+    const modalRef = this.modalService.open(OnlycecoeditComponent, { size: 'md' });
+
+    modalRef.result.then((result) => {
+     
+    }, (reason) => {
+
+      if (reason === 'OK') {
+
+
+      }
+    });
   }
 
 }

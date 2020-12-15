@@ -31,7 +31,7 @@ namespace ApiRestAldeas.EntityFrame
         /// <summary>
         /// 
         /// </summary>
-        public int SubCodigo { get; set; }
+        public string SubCodigo { get; set; }
 
         /// <summary>
         /// 

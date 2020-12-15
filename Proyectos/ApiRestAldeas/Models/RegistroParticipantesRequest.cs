@@ -15,6 +15,8 @@ namespace ApiRestAldeas.Models
     }
     public class RegistroParticipantesRequest
     {
+        public long id { get; set; }
+
         public long idProyecto { get; set; }
         public DateTime FechaIngreso { get; set; }
         public DateTime? FechaSalida { get; set; }

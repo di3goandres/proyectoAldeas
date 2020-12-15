@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { forwardRef, NgModule } from '@angular/core';
+import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule, PreloadAllModules, Routes, CanActivate } from '@angular/router';
 
@@ -36,6 +36,7 @@ import { DetalleproyectosComponent } from './components/03-InfoGeneral/detallepr
 import { VerproyectosparticipantesComponent } from './components/05-Registro/verproyectosparticipantes/verproyectosparticipantes.component';
 import { ListacolaboradoresComponent } from './components/04-Colaboradores/listacolaboradores/listacolaboradores.component';
 import { DescargarbasedatosComponent } from './components/06-Descargas/descargarbasedatos/descargarbasedatos.component';
+import { ChecklistComponent } from './components/00-Comunes/checklist/checklist.component';
 
 
 const routes: Routes = [ 
@@ -95,6 +96,7 @@ const routes: Routes = [
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },
+    
   ],
   bootstrap: [AppComponent]
 })

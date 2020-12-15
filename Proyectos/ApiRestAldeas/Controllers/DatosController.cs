@@ -49,15 +49,7 @@ namespace ApiRestAldeas.Controllers
             return _dataModelRepository.GuardarRegistroProyecto(proyectoRequest);
         }
 
-        [Authorize]
-        [HttpPost]
-        [Route("/api/aldeas/GuardarRegistroParticipantes/")]
-        public dynamic GuardarRegistroParticipantes([FromBody] RegistroParticipantesRequest request)
-        {
-
-            return _dataModelRepository.GuardarRegistroParticipantes(request);
-          
-        }
+       
 
         [Authorize]
         [HttpPost]

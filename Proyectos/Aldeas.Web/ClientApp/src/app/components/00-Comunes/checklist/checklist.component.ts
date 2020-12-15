@@ -1,57 +1,86 @@
-import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectorRef, AfterViewChecked } from '@angular/core';
-import { Task } from '../../../models/checkbox';
+import { Component, OnInit, Input, Output, AfterViewChecked, ChangeDetectorRef, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MatListOption } from '@angular/material/list';
+import { Task } from 'src/app/models/checkbox';
 
 @Component({
-  selector: 'app-listcheck',
-  templateUrl: './listcheck.component.html',
-  styleUrls: ['./listcheck.component.css']
+  selector: 'app-checklist',
+  templateUrl: './checklist.component.html',
+  styleUrls: ['./checklist.component.css']
 })
-export class ListcheckComponent implements OnInit, AfterViewChecked {
+export class ChecklistComponent implements OnInit, AfterViewChecked {
+
   @Input() Nombre: string;
   @Input() task: Task;
+  taskMostrar: Task;
+
   @Output() datoSalid = new EventEmitter<Task>();
   mostrarOtro: boolean = false;
   firstFormGroup: FormGroup;
+  selectedOptions: string[] = [];
   otroValor: string;
   taskSeleccionado: Task;
   allComplete: boolean = false;
 
-  mostrar=false;
+  mostrar = false;
   constructor(
     private _formBuilder: FormBuilder,
-    private cdRef : ChangeDetectorRef
+    private cdRef: ChangeDetectorRef
   ) { }
 
   ngAfterViewChecked() {
-   
-      this.cdRef.detectChanges();
-    
+
+    this.cdRef.detectChanges();
+
   }
   ngOnInit(): void {
 
 
     this.firstFormGroup = this._formBuilder.group({
-      Multiple: ['', Validators.required],
+      // Multiple: ['', Validators.required],
 
       Otro: [''],
 
     });
 
+    this.taskMostrar = this.task;
+    console.log(this.taskMostrar.subtasks)
     this.taskSeleccionado = this.task.subtasks[0];
     this.task.subtasks.forEach(item => {
-      item.formValid = false;
+      item.formValid = true;
       item.valorOtro = ''
 
     })
 
     this.mostrar = true;
+    this.datoSalid.emit(this.taskMostrar);
+
     this.cdRef.detectChanges();
 
   }
-  onChange(task: Task) {
+  onChange(options: MatListOption[]) {
+    // console.log(options.map(o => o.value));
+   
+      this.taskMostrar.subtasks.forEach(task => {
 
-    console.log(task);
+        task.completed = false;
+      })
+   
+    options.map(element => {
+
+      this.taskMostrar.subtasks.forEach(task => {
+        // console.log('name: ', task.name, ' value: ',element.value )
+        if (task.name == element.value) {
+          task.completed = true;
+          if (task.esOtro == true) {
+            task.formValid == false;
+          } else {
+            task.formValid == true;
+          }
+        }
+      })
+
+    });
     let EsOtro = this.task.subtasks.find(item => {
       return item.esOtro === true;
     });
@@ -70,18 +99,18 @@ export class ListcheckComponent implements OnInit, AfterViewChecked {
 
 
     }
-    this.taskSeleccionado = task;
 
-    this.datoSalid.emit(this.task);
+
+    this.datoSalid.emit(this.taskMostrar);
 
 
   }
 
   updateAllComplete() {
 
-    this.allComplete = this.task.subtasks != null && this.task.subtasks.every(t => t.completed);
+    // this.allComplete = this.task.subtasks != null && this.task.subtasks.every(t => t.completed);
 
-    this.datoSalid.emit(this.task);
+    // this.datoSalid.emit(this.task);
 
   }
 
@@ -119,7 +148,7 @@ export class ListcheckComponent implements OnInit, AfterViewChecked {
 
     }
 
-    this.datoSalid.emit(this.task);
+    this.datoSalid.emit(this.taskMostrar);
 
 
 
@@ -127,15 +156,15 @@ export class ListcheckComponent implements OnInit, AfterViewChecked {
   }
 
   actualizarValor(valido, valor) {
-    let actualizar = this.task.subtasks.find(item => {
+    let actualizar = this.taskMostrar.subtasks.find(item => {
       return item.esOtro === true;
     });
     actualizar.valorOtro = valor;
     actualizar.formValid = valido;
 
 
-    let index = this.task.subtasks.indexOf(actualizar);
-    this.task.subtasks[index] = actualizar;
+    let index = this.taskMostrar.subtasks.indexOf(actualizar);
+    this.taskMostrar.subtasks[index] = actualizar;
   }
   setStakeValidators(): void {
     const stakeControl = this.firstFormGroup.get('Otro');
@@ -148,5 +177,6 @@ export class ListcheckComponent implements OnInit, AfterViewChecked {
 
 
   }
+
 
 }

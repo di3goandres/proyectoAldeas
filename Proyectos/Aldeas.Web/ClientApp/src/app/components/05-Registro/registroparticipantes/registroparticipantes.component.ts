@@ -22,128 +22,130 @@ export class RegistroparticipantesComponent implements OnInit {
   codigoDepartamento: number;
   codigoMunicipio: number;
   task: Task = {
+    id:0,
     pregunta: 'Linea del Proyecto',
     name: 'Línea del Proyecto (Opción Multiple)',
     completed: false,
     esOtro: false,
     color: 'primary',
     subtasks: [
-      { pregunta: 'Linea del Proyecto', name: 'Educación en Emergencias', esOtro: false, completed: false, color: 'primary' },
-      { pregunta: 'Linea del Proyecto', name: 'Traslado Humanitario', esOtro: false, completed: false, color: 'primary' },
-      { pregunta: 'Linea del Proyecto', name: 'Acogimiento Transitorio', esOtro: false, completed: false, color: 'primary' },
-      { pregunta: 'Linea del Proyecto', name: 'ICT Corner', esOtro: false, completed: false, color: 'primary' },
-      { pregunta: 'Linea del Proyecto', name: 'Fortalecimiento Familiar', esOtro: false, completed: false, color: 'primary' },
-      { pregunta: 'Linea del Proyecto', name: 'Fortalecimiento Comunitario', esOtro: false, completed: false, color: 'primary' },
-      { pregunta: 'Linea del Proyecto', name: 'Espacios Amigables', esOtro: false, completed: false, color: 'primary' },
-      { pregunta: 'Linea del Proyecto', name: 'Otro', esOtro: true, completed: false, color: 'primary' },
+      {id:0, pregunta: 'Linea del Proyecto', name: 'Educación en Emergencias', esOtro: false, completed: false, color: 'primary' },
+      {id:0, pregunta: 'Linea del Proyecto', name: 'Traslado Humanitario', esOtro: false, completed: false, color: 'primary' },
+      {id:0, pregunta: 'Linea del Proyecto', name: 'Acogimiento Transitorio', esOtro: false, completed: false, color: 'primary' },
+      {id:0, pregunta: 'Linea del Proyecto', name: 'ICT Corner', esOtro: false, completed: false, color: 'primary' },
+      {id:0, pregunta: 'Linea del Proyecto', name: 'Fortalecimiento Familiar', esOtro: false, completed: false, color: 'primary' },
+      {id:0, pregunta: 'Linea del Proyecto', name: 'Fortalecimiento Comunitario', esOtro: false, completed: false, color: 'primary' },
+      {id:0, pregunta: 'Linea del Proyecto', name: 'Espacios Amigables', esOtro: false, completed: false, color: 'primary' },
+      {id:0, pregunta: 'Linea del Proyecto', name: 'Otro', esOtro: true, completed: false, color: 'primary' },
     ]
   };
 
 
   taskServicio: Task = {
+    id:0,
     pregunta: 'Servicio que recibe',
     name: 'Servicio que Recibe (Opción Multiple)',
     completed: false,
     esOtro: false,
     color: 'primary',
     subtasks: [
-      { pregunta: 'Servicio que recibe', name: 'Educación en Emergencias', esOtro: false, completed: false, color: 'primary' },
-      { pregunta: 'Servicio que recibe', name: 'Traslado Humanitario', esOtro: false, completed: false, color: 'primary' },
-      { pregunta: 'Servicio que recibe', name: 'Acogimiento Transitorio', esOtro: false, completed: false, color: 'primary' },
-      { pregunta: 'Servicio que recibe', name: 'ICT Corner', esOtro: false, completed: false, color: 'primary' },
-      { pregunta: 'Servicio que recibe', name: 'Fortalecimiento Familiar', esOtro: false, completed: false, color: 'primary' },
-      { pregunta: 'Servicio que recibe', name: 'Fortalecimiento Comunitario', esOtro: false, completed: false, color: 'primary' },
-      { pregunta: 'Servicio que recibe', name: 'Espacios Amigables', esOtro: false, completed: false, color: 'primary' },
-      { pregunta: 'Servicio que recibe', name: 'Otro', esOtro: true, completed: false, color: 'primary' },
+      {id:0, pregunta: 'Servicio que recibe', name: 'Educación en Emergencias', esOtro: false, completed: false, color: 'primary' },
+      {id:0, pregunta: 'Servicio que recibe', name: 'Traslado Humanitario', esOtro: false, completed: false, color: 'primary' },
+      {id:0, pregunta: 'Servicio que recibe', name: 'Acogimiento Transitorio', esOtro: false, completed: false, color: 'primary' },
+      {id:0, pregunta: 'Servicio que recibe', name: 'ICT Corner', esOtro: false, completed: false, color: 'primary' },
+      {id:0, pregunta: 'Servicio que recibe', name: 'Fortalecimiento Familiar', esOtro: false, completed: false, color: 'primary' },
+      {id:0, pregunta: 'Servicio que recibe', name: 'Fortalecimiento Comunitario', esOtro: false, completed: false, color: 'primary' },
+      {id:0, pregunta: 'Servicio que recibe', name: 'Espacios Amigables', esOtro: false, completed: false, color: 'primary' },
+      {id:0, pregunta: 'Servicio que recibe', name: 'Otro', esOtro: true, completed: false, color: 'primary' },
     ]
   };
 
 
   grupo: string;
   grupoEtnico: Task[] = [
-    { pregunta: 'Grupo Etnico', name: 'Afrodescendiente', completed: false, esOtro: false, color: 'primary' },
-    { pregunta: 'Grupo Etnico', name: 'Palenque', completed: false, esOtro: false, color: 'primary' },
-    { pregunta: 'Grupo Etnico', name: 'Raizal', completed: false, esOtro: false, color: 'primary' },
-    { pregunta: 'Grupo Etnico', name: 'Rom', completed: false, esOtro: false, color: 'primary' },
-    { pregunta: 'Grupo Etnico', name: 'Indigena', completed: false, esOtro: false, color: 'primary' },
-    { pregunta: 'Grupo Etnico', name: 'Ninguno', completed: false, esOtro: false, color: 'primary' },
-    { pregunta: 'Grupo Etnico', name: 'Otro', completed: false, esOtro: true, color: 'primary' },
+    {id:0, pregunta: 'Grupo Etnico', name: 'Afrodescendiente', completed: false, esOtro: false, color: 'primary' },
+    {id:0, pregunta: 'Grupo Etnico', name: 'Palenque', completed: false, esOtro: false, color: 'primary' },
+    {id:0, pregunta: 'Grupo Etnico', name: 'Raizal', completed: false, esOtro: false, color: 'primary' },
+    {id:0, pregunta: 'Grupo Etnico', name: 'Rom', completed: false, esOtro: false, color: 'primary' },
+    {id:0, pregunta: 'Grupo Etnico', name: 'Indigena', completed: false, esOtro: false, color: 'primary' },
+    {id:0, pregunta: 'Grupo Etnico', name: 'Ninguno', completed: false, esOtro: false, color: 'primary' },
+    {id:0, pregunta: 'Grupo Etnico', name: 'Otro', completed: false, esOtro: true, color: 'primary' },
 
   ]
 
   nacionalidad: string;
   nacionalidadCheck: Task[] = [
-    { pregunta: 'Nacionalidad', name: 'Colombiano/a', completed: false, esOtro: false, color: 'primary' },
-    { pregunta: 'Nacionalidad', name: 'Venezolano/a', completed: false, esOtro: false, color: 'primary' },
-    { pregunta: 'Nacionalidad', name: 'Colombo-Venezolano', completed: false, esOtro: false, color: 'primary' },
-    { pregunta: 'Nacionalidad', name: 'Otro', completed: false, esOtro: true, color: 'primary' },
+    {id:0, pregunta: 'Nacionalidad', name: 'Colombiano/a', completed: false, esOtro: false, color: 'primary' },
+    {id:0, pregunta: 'Nacionalidad', name: 'Venezolano/a', completed: false, esOtro: false, color: 'primary' },
+    {id:0, pregunta: 'Nacionalidad', name: 'Colombo-Venezolano', completed: false, esOtro: false, color: 'primary' },
+    {id:0, pregunta: 'Nacionalidad', name: 'Otro', completed: false, esOtro: true, color: 'primary' },
   ]
   genero: string;
   generoCheck: Task[] = [
-    { pregunta: 'Genero', name: 'Femenino', completed: false, esOtro: false, color: 'primary' },
-    { pregunta: 'Genero', name: 'Masculino', completed: false, esOtro: false, color: 'primary' },
-    { pregunta: 'Genero', name: 'Otro', completed: false, esOtro: true, color: 'primary' },
+    {id:0, pregunta: 'Genero', name: 'Femenino', completed: false, esOtro: false, color: 'primary' },
+    {id:0, pregunta: 'Genero', name: 'Masculino', completed: false, esOtro: false, color: 'primary' },
+    {id:0, pregunta: 'Genero', name: 'Otro', completed: false, esOtro: true, color: 'primary' },
   ]
   sexo: string;
   sexoCheck: Task[] = [
-    { pregunta: 'Sexo', name: 'Hombre', completed: false, esOtro: false, color: 'primary' },
-    { pregunta: 'Sexo', name: 'Mujer', completed: false, esOtro: false, color: 'primary' },
+    {id:0, pregunta: 'Sexo', name: 'Hombre', completed: false, esOtro: false, color: 'primary' },
+    {id:0, pregunta: 'Sexo', name: 'Mujer', completed: false, esOtro: false, color: 'primary' },
   ]
   tipoParticipante: string;
   tipoParticipanteCheck: Task[] = [
-    { pregunta: 'Tipo Participante', name: 'Niño, Niña, Adolescente O Joven', completed: false, esOtro: false, color: 'primary' },
-    { pregunta: 'Tipo Participante', name: 'Adulto', completed: false, esOtro: false, color: 'primary' },
-    { pregunta: 'Tipo Participante', name: 'Cuidador Principal', completed: false, esOtro: false, color: 'primary' },
-    { pregunta: 'Tipo Participante', name: 'Lider Comunitario', completed: false, esOtro: false, color: 'primary' },
-    { pregunta: 'Tipo Participante', name: 'Representante de Institucion Publica', completed: false, esOtro: false, color: 'primary' },
-    { pregunta: 'Tipo Participante', name: 'Otro', completed: false, esOtro: true, color: 'primary' },
+    {id:0, pregunta: 'Tipo Participante', name: 'Niño, Niña, Adolescente O Joven', completed: false, esOtro: false, color: 'primary' },
+    {id:0, pregunta: 'Tipo Participante', name: 'Adulto', completed: false, esOtro: false, color: 'primary' },
+    {id:0, pregunta: 'Tipo Participante', name: 'Cuidador Principal', completed: false, esOtro: false, color: 'primary' },
+    {id:0, pregunta: 'Tipo Participante', name: 'Lider Comunitario', completed: false, esOtro: false, color: 'primary' },
+    {id:0, pregunta: 'Tipo Participante', name: 'Representante de Institucion Publica', completed: false, esOtro: false, color: 'primary' },
+    {id:0, pregunta: 'Tipo Participante', name: 'Otro', completed: false, esOtro: true, color: 'primary' },
   ]
   discapacidad: string;
   discapacidadCheck: Task[] = [
-    { pregunta: 'Discapacidad', name: 'No', completed: false, esOtro: false, color: 'primary' },
-    { pregunta: 'Discapacidad', name: 'Si', completed: false, esOtro: true, color: 'primary' },
+    {id:0, pregunta: 'Discapacidad', name: 'No', completed: false, esOtro: false, color: 'primary' },
+    {id:0, pregunta: 'Discapacidad', name: 'Si', completed: false, esOtro: true, color: 'primary' },
 
   ];
   singo: string;
   SinoAplicaCheck: Task[] = [
-    { pregunta: 'Depende del Donde se llame', name: 'Si', completed: false, esOtro: false, color: 'primary' },
-    { pregunta: 'Depende del Donde se llame', name: 'No', completed: false, esOtro: false, color: 'primary' },
-    { pregunta: 'Depende del Donde se llame', name: 'No Aplica', completed: false, esOtro: false, color: 'primary' },
+    {id:0, pregunta: 'Depende del Donde se llame', name: 'Si', completed: false, esOtro: false, color: 'primary' },
+    {id:0, pregunta: 'Depende del Donde se llame', name: 'No', completed: false, esOtro: false, color: 'primary' },
+    {id:0, pregunta: 'Depende del Donde se llame', name: 'No Aplica', completed: false, esOtro: false, color: 'primary' },
 
   ];
 
 
   SinoCheck: Task[] = [
-    { pregunta: 'Servicio que recibe', name: 'Si', completed: false, esOtro: false, color: 'primary' },
-    { pregunta: 'Servicio que recibe', name: 'No', completed: false, esOtro: false, color: 'primary' },
+    {id:0, pregunta: 'Servicio que recibe', name: 'Si', completed: false, esOtro: false, color: 'primary' },
+    {id:0, pregunta: 'Servicio que recibe', name: 'No', completed: false, esOtro: false, color: 'primary' },
 
   ];
   residenciaEstatus: string;
   residenciaEstatusCheck: Task[] = [
-    { pregunta: 'Estado Residencia', name: 'Regular', completed: false, esOtro: false, color: 'primary' },
-    { pregunta: 'Estado Residencia', name: 'Irregular', completed: false, esOtro: false, color: 'primary' },
-    { pregunta: 'Estado Residencia', name: 'NS/NR', completed: false, esOtro: false, color: 'primary' },
-    { pregunta: 'Estado Residencia', name: 'No Aplica', completed: false, esOtro: false, color: 'primary' },
+    {id:0, pregunta: 'Estado Residencia', name: 'Regular', completed: false, esOtro: false, color: 'primary' },
+    {id:0, pregunta: 'Estado Residencia', name: 'Irregular', completed: false, esOtro: false, color: 'primary' },
+    { id:0,pregunta: 'Estado Residencia', name: 'NS/NR', completed: false, esOtro: false, color: 'primary' },
+    {id:0, pregunta: 'Estado Residencia', name: 'No Aplica', completed: false, esOtro: false, color: 'primary' },
   ];
 
   colegio: string;
   colegioCheck: Task[] = [
-    { pregunta: 'Asiste al Colegio', name: 'Si', completed: false, esOtro: false, color: 'primary' },
-    { pregunta: 'Asiste al Colegio', name: 'No', completed: false, esOtro: false, color: 'primary' },
-    { pregunta: 'Asiste al Colegio', name: 'NS/NR', completed: false, esOtro: false, color: 'primary' },
-    { pregunta: 'Asiste al Colegio', name: 'No Aplica', completed: false, esOtro: false, color: 'primary' },
+    {id:0, pregunta: 'Asiste al Colegio', name: 'Si', completed: false, esOtro: false, color: 'primary' },
+    {id:0, pregunta: 'Asiste al Colegio', name: 'No', completed: false, esOtro: false, color: 'primary' },
+    {id:0, pregunta: 'Asiste al Colegio', name: 'NS/NR', completed: false, esOtro: false, color: 'primary' },
+    {id:0, pregunta: 'Asiste al Colegio', name: 'No Aplica', completed: false, esOtro: false, color: 'primary' },
   ];
   nivelEscolaridad: string;
   nivelEscolaridadCheck: Task[] = [
-    { pregunta: 'Nivel Escolaridad', name: 'Preescolar', completed: false, esOtro: false, color: 'primary' },
-    { pregunta: 'Nivel Escolaridad', name: 'Primaria', completed: false, esOtro: false, color: 'primary' },
-    { pregunta: 'Nivel Escolaridad', name: 'Bachiller', completed: false, esOtro: false, color: 'primary' },
-    { pregunta: 'Nivel Escolaridad', name: 'Técnico / Tecnológico', completed: false, esOtro: false, color: 'primary' },
-    { pregunta: 'Nivel Escolaridad', name: 'Profesional', completed: false, esOtro: false, color: 'primary' },
-    { pregunta: 'Nivel Escolaridad', name: 'Postgrado', completed: false, esOtro: false, color: 'primary' },
-    { pregunta: 'Nivel Escolaridad', name: 'Ninguno', completed: false, esOtro: false, color: 'primary' },
-    { pregunta: 'Nivel Escolaridad', name: 'NS/NR', completed: false, esOtro: false, color: 'primary' },
-    { pregunta: 'Nivel Escolaridad', name: 'Otra', completed: false, esOtro: true, color: 'primary' },
+    {id:0, pregunta: 'Nivel Escolaridad', name: 'Preescolar', completed: false, esOtro: false, color: 'primary' },
+    {id:0, pregunta: 'Nivel Escolaridad', name: 'Primaria', completed: false, esOtro: false, color: 'primary' },
+    {id:0, pregunta: 'Nivel Escolaridad', name: 'Bachiller', completed: false, esOtro: false, color: 'primary' },
+    {id:0, pregunta: 'Nivel Escolaridad', name: 'Técnico / Tecnológico', completed: false, esOtro: false, color: 'primary' },
+    {id:0, pregunta: 'Nivel Escolaridad', name: 'Profesional', completed: false, esOtro: false, color: 'primary' },
+    {id:0, pregunta: 'Nivel Escolaridad', name: 'Postgrado', completed: false, esOtro: false, color: 'primary' },
+    {id:0, pregunta: 'Nivel Escolaridad', name: 'Ninguno', completed: false, esOtro: false, color: 'primary' },
+    {id:0, pregunta: 'Nivel Escolaridad', name: 'NS/NR', completed: false, esOtro: false, color: 'primary' },
+    {id:0, pregunta: 'Nivel Escolaridad', name: 'Otra', completed: false, esOtro: true, color: 'primary' },
   ]
 
 
@@ -155,12 +157,12 @@ export class RegistroparticipantesComponent implements OnInit {
 
   gruposPoblacionales: string;
   gruposPoblacionalesCheck: Task[] = [
-    { pregunta: 'Grupos Poblacionales', name: 'Pendular', completed: false, esOtro: false, color: 'primary' },
-    { pregunta: 'Grupos Poblacionales', name: 'Acogida', completed: false, esOtro: false, color: 'primary' },
-    { pregunta: 'Grupos Poblacionales', name: 'Transitorio', completed: false, esOtro: false, color: 'primary' },
-    { pregunta: 'Grupos Poblacionales', name: 'Permanencia', completed: false, esOtro: false, color: 'primary' },
-    { pregunta: 'Grupos Poblacionales', name: 'Retornado', completed: false, esOtro: false, color: 'primary' },
-    { pregunta: 'Grupos Poblacionales', name: 'No aplica', completed: false, esOtro: false, color: 'primary' },
+    {id:0, pregunta: 'Grupos Poblacionales', name: 'Pendular', completed: false, esOtro: false, color: 'primary' },
+    {id:0, pregunta: 'Grupos Poblacionales', name: 'Acogida', completed: false, esOtro: false, color: 'primary' },
+    {id:0, pregunta: 'Grupos Poblacionales', name: 'Transitorio', completed: false, esOtro: false, color: 'primary' },
+    {id:0, pregunta: 'Grupos Poblacionales', name: 'Permanencia', completed: false, esOtro: false, color: 'primary' },
+    {id:0, pregunta: 'Grupos Poblacionales', name: 'Retornado', completed: false, esOtro: false, color: 'primary' },
+    {id:0, pregunta: 'Grupos Poblacionales', name: 'No aplica', completed: false, esOtro: false, color: 'primary' },
 
   ]
 

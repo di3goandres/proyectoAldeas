@@ -17,11 +17,23 @@ export class CheckBox {
 
 
 
-export interface Task {
+export class Task {
    
+    constructor(pregunta, name, completed, esOtro, color){
+        this.pregunta = pregunta;
+        this.name= name;
+        this.completed = completed;
+        this.esOtro= esOtro;
+        this.color= color;
+    }
+    id: number;
     pregunta:string;
     name: string;
-    completed: boolean;
+    completed?: boolean;
+
+
+  
+
     esOtro: boolean;
     color: ThemePalette;
     formValid?:boolean;

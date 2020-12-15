@@ -1,4 +1,4 @@
-<form [formGroup]="firstFormGroup">
+<form [formGroup]="firstFormGroup" *ngIf="mostrar==true">
 <section class="example-section">
     <span class="example-list-section">
         <label id="example-radio-group-label" class="main-green-text-only">{{Nombre}}</label>
@@ -10,7 +10,7 @@
     <span class="example-list-section">
         <ul>
             <li *ngFor="let subtask of task.subtasks">
-                <mat-checkbox [(ngModel)]="subtask.completed" [color]="subtask.color"
+                <mat-checkbox [(ngModel)]="subtask.completed"  [color]="subtask.color"
                     (change)="onChange(subtask)"
                      formControlName="Multiple">
                      <span class="break-word">  {{subtask.name}} </span>

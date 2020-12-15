@@ -24,8 +24,8 @@ export class SinocheckpreguntaComponent implements OnInit {
   ) { }
 
   tasks: Task[] = [
-    { pregunta: 'Respuesta', name: 'Si', completed: false, esOtro: false, color: 'primary' },
-    { pregunta: 'Respuesta', name: 'No', completed: false, esOtro: false, color: 'primary' },
+    {id:0, pregunta: 'Respuesta', name: 'Si', completed: false, esOtro: false, color: 'primary' },
+    {id:0, pregunta: 'Respuesta', name: 'No', completed: false, esOtro: false, color: 'primary' },
   
   ]
   ngOnInit(): void {

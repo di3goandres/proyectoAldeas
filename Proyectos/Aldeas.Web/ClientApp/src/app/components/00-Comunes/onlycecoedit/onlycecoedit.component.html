@@ -1,0 +1,57 @@
+<mat-card>
+
+<mat-card-header>
+    <div mat-card-avatar class="example-header-image"
+    style="background-image: url('assets/avatars/av-4.png')"></div>
+    <mat-card-title class="main-green-text">Actualización datos Cecos</mat-card-title>
+</mat-card-header>
+<mat-card-content>
+<div class="row" *ngIf="subCentro.length>0">
+    <div class="col-12">
+        <mat-label>
+          Actual:  {{Cecos.codigo}}
+        </mat-label>
+
+    </div>
+    <div class="col-6">
+        <mat-form-field appearance="fill">
+            <mat-label>Centro de Costos</mat-label>
+            <mat-select
+                (selectionChange)="cambioCentroCosto($event.value)" required>
+                <mat-option *ngFor="let item of centrosCostos" [value]="item.codigoCentro">
+                    {{item.nombre}}
+                </mat-option>
+            </mat-select>
+
+        </mat-form-field>
+    </div>
+    <div class="col-6">
+        <mat-form-field appearance="fill">
+            <mat-label>Sub Centro de Costos </mat-label>
+            <mat-select  (selectionChange)="cambio($event.value)" required>
+                <mat-option *ngFor="let item of subCentroSeleccionado" [value]="item.codigoSubCentro">
+                    {{item.nombre}}
+                </mat-option>
+            </mat-select>
+
+        </mat-form-field>
+    </div>
+    <div class="col-6">
+        <button mat-raised-button
+            class="btn main-green mat-focus-indicator btn btn-success pull-right bajar mat-raised-button mat-button-base mat-primary pull-right bajar"
+          
+       
+            (click)="Cerrar()">Cerrar </button>
+
+    </div>
+    <div class="col-6">
+        <button mat-raised-button
+            class="btn buttton-aldea mat-focus-indicator btn btn-success pull-right bajar mat-raised-button mat-button-base mat-primary pull-right bajar"
+            color="primary"
+       
+            (click)="Actualizar()">Actualizar </button>
+
+    </div>
+</div>
+</mat-card-content>
+</mat-card>

@@ -93,6 +93,13 @@
                                 <mat-card-subtitle>
                                     Cargo: {{seleccionado.cargo}}
                                 </mat-card-subtitle>
+
+                                <mat-card-subtitle>
+                                    Tiempo: {{seleccionado.tiempo}}
+                                </mat-card-subtitle>
+                                <mat-card-subtitle>
+                                    Tipo Contrato: {{seleccionado.tipoContrato}}
+                                </mat-card-subtitle>
                             </mat-card-header>
                         </mat-grid-tile>
                         <mat-grid-tile>
@@ -129,7 +136,7 @@
                                     </td>
                                     <td>
                                         <mat-label class="descripcionTexto">
-                                            {{seleccionado.costoMensual}}
+                                            {{seleccionado.costoMensual | number}}
                                         </mat-label>
                                     </td>
                                 </tr>
@@ -141,7 +148,7 @@
                                     </td>
                                     <td>
                                         <mat-label class="descripcionTexto">
-                                            {{seleccionado.porcentaje}}
+                                            {{seleccionado.porcentaje}}%
                                         </mat-label>
                                     </td>
                                 </tr>
@@ -153,7 +160,7 @@
                                     </td>
                                     <td>
                                         <mat-label class="descripcionTexto">
-                                            {{seleccionado.contrapartida}}
+                                            {{seleccionado.contrapartida | number}}
                                         </mat-label>
                                     </td>
                                 </tr>
@@ -165,8 +172,15 @@
                                     </td>
                                     <td>
                                         <mat-label class="descripcionTexto">
-                                            {{seleccionado.aporte}}
+                                            {{seleccionado.aporte | number}}
                                         </mat-label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <button type="button"  (click)="abrirEditarDetalle(seleccionado)" mat-raised-button color="primary">
+                                            <mat-icon>cached</mat-icon>
+                                        </button>
                                     </td>
                                 </tr>
 
@@ -197,12 +211,20 @@
                                     <td mat-cell *matCellDef="let element; let i  = index">
 
                                         <mat-label>{{element.codigo}}</mat-label>
-                                        <!-- <mat-form-field> -->
-                                        <!-- <input matInput type="number" [(ngModel)]="element.codigo"> -->
-                                        <!-- </mat-form-field> -->
+                                  
                                     </td>
                                 </ng-container>
 
+
+                                <ng-container matColumnDef="Actualizar">
+                                    <th mat-header-cell *matHeaderCellDef> Actualizar </th>
+                                    <td mat-cell *matCellDef="let element" style="text-align: center;">
+                                        <button type="button"  (click)="AbrirEditar(element)" mat-raised-button color="primary">
+                                            <mat-icon>cached</mat-icon>
+                                        </button>
+
+                                    </td>
+                                </ng-container>
                                 <tr mat-header-row *matHeaderRowDef="displayedColumnsCecos"></tr>
                                 <tr mat-row *matRowDef="let row; columns: displayedColumnsCecos;"></tr>
                             </table>

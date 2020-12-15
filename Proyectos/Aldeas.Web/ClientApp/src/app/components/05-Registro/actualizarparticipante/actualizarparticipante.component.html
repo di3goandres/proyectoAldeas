@@ -1,0 +1,233 @@
+<mat-horizontal-stepper [linear]="true" #stepper >
+
+    <mat-step [stepControl]="firstFormGroup" >
+        <form [formGroup]="firstFormGroup" *ngIf="datosParticipante!=null">
+
+            <ng-template matStepLabel>Actualización</ng-template>
+            <div class="row">
+                <div class="col-12 main-green-text"><label>Actualización de Participantes</label></div>
+            </div>
+            <!--Fechas-->
+            <div class="row">
+             
+                <div class="col-6">
+
+                    <mat-form-field appearance="fill">
+                        <mat-label>Fecha de ingreso</mat-label>
+                        <input matInput formControlName="FechaInicio" [matDatepicker]="pickerInicio"
+                            [(ngModel)]="datosParticipante.FechaIngreso" (dateChange)="FechaInicio($event)"
+                            ng-keydown="$event.preventDefault();">
+                        <mat-datepicker-toggle matSuffix [for]="pickerInicio">
+                        </mat-datepicker-toggle>
+                        <mat-datepicker touchUi #pickerInicio></mat-datepicker>
+                        <!-- <input type="button" value="Agregar Fecha"/> -->
+
+                    </mat-form-field>
+                </div>
+
+                <div class="col-6">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Fecha de Salida del Proyecto</mat-label>
+                        <input matInput formControlName="Fechafin" [matDatepicker]="pickerFin"
+                            [(ngModel)]="datosParticipante.FechaSalida" ng-keydown="$event.preventDefault();"
+                            [min]="datosParticipante.FechaIngreso">
+                        <mat-datepicker-toggle matSuffix [for]="pickerFin">
+                        </mat-datepicker-toggle>
+                        <mat-datepicker touchUi #pickerFin></mat-datepicker>
+                    </mat-form-field>
+                </div>
+
+
+
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Nombre Participante</mat-label>
+                        <input matInput [(ngModel)]="datosParticipante.Nombres" formControlName="Nombre" required />
+
+                    </mat-form-field>
+                </div>
+                <div class="col-3">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Apellido</mat-label>
+                        <input matInput [(ngModel)]="datosParticipante.Apellidos" formControlName="Apellidos"
+                            required />
+
+                    </mat-form-field>
+                </div>
+                <div class="col-3">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Edad</mat-label>
+                        <input matInput type="number" [(ngModel)]="datosParticipante.Edad" formControlName="Edad"
+                            required />
+
+                    </mat-form-field>
+                </div>
+                <div class="col-3">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Fecha de Nacimiento</mat-label>
+                        <input matInput formControlName="FechaNacimiento" [matDatepicker]="pNacimiento"
+                            [(ngModel)]="datosParticipante.FechaNacimiento" ng-keydown="$event.preventDefault();">
+                        <mat-datepicker-toggle matSuffix [for]="pNacimiento">
+                        </mat-datepicker-toggle>
+                        <mat-datepicker touchUi #pNacimiento></mat-datepicker>
+                    </mat-form-field>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-4">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Departamento</mat-label>
+
+                        <mat-select [(ngModel)]="datosParticipante.CodDepartamento" [(value)]="datosParticipante.CodDepartamento"
+                            (selectionChange)="cambioDepartamento($event.value)" formControlName="Departamento">
+                            <mat-option *ngFor="let departamento of Departamentos" [value]="departamento.codigo"
+                                required>
+                                {{departamento.nombre}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-4">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Municipio</mat-label>
+
+                        <mat-select formControlName="Municipio" [(ngModel)]="datosParticipante.CodMunicipio">
+
+                            <mat-option *ngFor="let municipio of MunicipioSeleccionado" [value]="municipio.codigo"
+                                required>
+                                {{municipio.nombre}}
+
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-4">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Localidad/Barrio/Comuna</mat-label>
+                        <input matInput [(ngModel)]="datosParticipante.Localidad" formControlName="Localidad"
+                            required />
+
+                    </mat-form-field>
+                </div>
+
+            </div>
+            <mat-divider></mat-divider>
+
+            <div class="row">
+                <div class="col-3">
+                    <app-checkbox [tasks]="grupoEtnico" [datoEntrada]="datosParticipante.GrupoEtnico" NombreChecbok='Grupo Étnico'
+                        (datoSalid)='onNotificar($event, "Etnico")' (valid)="OnValidar($event,'Etnico')"></app-checkbox>
+                </div>
+                <div class="col-3">
+                    <app-checkbox [tasks]="nacionalidadCheck" NombreChecbok='Nacionalidad' [datoEntrada]="datosParticipante.Nacionalidad"
+                        (datoSalid)='onNotificar($event, "Nacionalidad")'>
+                    </app-checkbox>
+                </div>
+                <div class="col-3">
+                    <app-checkbox [tasks]="generoCheck" NombreChecbok='Genero Del Participante' [datoEntrada]="datosParticipante.Genero"
+                        (datoSalid)='onNotificar($event, "Genero")'>
+                    </app-checkbox>
+                </div>
+                <div class="col-3">
+                    <app-checkbox [tasks]="sexoCheck" NombreChecbok='Sexo del participante' [datoEntrada]="datosParticipante.Sexo"
+                        (datoSalid)='onNotificar($event, "Sexo")'>
+                    </app-checkbox>
+                </div>
+
+
+            </div>
+            <mat-divider></mat-divider>
+
+            <div class="row">
+                <div class="col-3">
+                    <app-checkbox [tasks]="tipoParticipanteCheck" NombreChecbok='Tipo Participante'
+                        [datoEntrada]="datosParticipante.TipoParticipante" (datoSalid)='onNotificar($event, "TipoParticipante")'>
+                    </app-checkbox>
+
+                </div>
+                <div class="col-3">
+                    <app-checkbox [tasks]="residenciaEstatusCheck" NombreChecbok='Estatus de Residencia'
+                        [datoEntrada]="datosParticipante.EstatusResidencia" (datoSalid)='onNotificar($event, "Residencia")'>
+
+                    </app-checkbox>
+                </div>
+
+                <div class="col-3">
+                    <app-checkbox [tasks]="colegioCheck" NombreChecbok='Asiste Al Colegio' [datoEntrada]="datosParticipante.AsisteAlColegio"
+                        (datoSalid)='onNotificar($event, "Colegio")'>
+
+                    </app-checkbox>
+
+
+                </div>
+
+
+                <div class="col-3">
+                    <app-checkbox [tasks]="discapacidadCheck" NombreChecbok='Participante con Discapacidad'
+                        [datoEntrada]="datosParticipante.Discapacidad" (datoSalid)='onNotificar($event, "Discapacidad")'>
+
+                    </app-checkbox>
+                </div>
+
+
+            </div>
+            <mat-divider></mat-divider>
+
+            <div class="row">
+                <div class="col-3">
+                    <app-checkbox [tasks]="nivelEscolaridadCheck" NombreChecbok='Nivel de Escolaridad'
+                        [datoEntrada]="datosParticipante.NivelEscolaridad" (datoSalid)='onNotificar($event, "NivelEscolaridad")'>
+
+                    </app-checkbox>
+                </div>
+
+                <div class="col-3" >
+                    <app-checklist #llistas [task]="task" Nombre='Línea del Proyecto'
+                        (datoSalid)='onNotificar($event, "Linea")'>
+                    </app-checklist>
+
+   
+
+                </div>
+
+                <div class="col-3">
+                    <app-checkbox [tasks]="gruposPoblacionalesCheck" NombreChecbok='Grupo Poblacional'
+                        [datoEntrada]="datosParticipante.GrupoPoblacional" (datoSalid)='onNotificar($event, "GrupoPoblacional")'>
+
+                    </app-checkbox>
+
+                </div>
+                <div class="col-3">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Ultimo Curso Aprobado</mat-label>
+                        <input matInput [(ngModel)]="datosParticipante.UltimoCursoAprobado"
+                            formControlName="UltimoCurso" required />
+
+                    </mat-form-field>
+                </div>
+
+            </div>
+            <mat-divider></mat-divider>
+            <div class="row">
+                <div class="col-6 centerlabel font-weight-bold">
+                    <button mat-raised-button color="warn" ngbAutofocus (click)="Cerrar()">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </div>  
+                <div class="col-6 centerlabel font-weight-bold">
+                    <button  mat-raised-button color="warn" (click)="onGuardar()"
+                    [disabled]="!(this.firstFormGroup.invalid===false&&ValidaContinuar===false)"><mat-icon>cached</mat-icon></button>
+
+                   
+                </div>
+            </div>
+
+        </form>
+    </mat-step>
+  
+
+</mat-horizontal-stepper>

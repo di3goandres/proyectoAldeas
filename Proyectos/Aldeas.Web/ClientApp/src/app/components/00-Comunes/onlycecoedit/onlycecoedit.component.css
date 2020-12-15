@@ -1,17 +1,25 @@
-.mat-form-field {
-    width: 100%;
-}
-
-.centerlabel{
-    text-align: center;
-    
+.departamento
+{ 
+width: 100%;
 }
 
 .centrarTabla{
     float: none; margin: 0 auto;
 }
 
+.mat-form-field {
+    width: 100%;
+}
+
+.bajar{
+    margin-top: 10px;
+}
+
 .example-header-image {
     /* background-image: url('assets/avatars/av-1.png'); */
     background-size: cover;
-  }
+}
+
+.col-6{
+ text-align: center;
+}

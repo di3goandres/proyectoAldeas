@@ -154,7 +154,7 @@ export class ColaboradorComponent implements OnInit {
       Costo: ['', Validators.required],
 
      
-      Porcentaje: ['', Validators.required],
+      Porcentaje: ['', [Validators.min(0), Validators.max(100)]],
       Contrapartida: ['', Validators.required],
       Aporte: ['', Validators.required]
 
@@ -163,6 +163,8 @@ export class ColaboradorComponent implements OnInit {
 
   }
 
+
+  
 
   registroExitoso() {
     const modalRef = this.modalService.open(RegistroExitosoComponent, { size: 'md' });

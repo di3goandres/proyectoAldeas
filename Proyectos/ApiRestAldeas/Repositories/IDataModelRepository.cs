@@ -51,9 +51,10 @@ namespace ApiRestAldeas.Repositories
         dynamic ConsultarDetalleColaboradorProyecto(long id);
 
 
+        dynamic ColaboradorActualizar(ColaboradorRequest request);
+ 
 
         #endregion 
-        dynamic GuardarRegistroParticipantes(RegistroParticipantesRequest request);
 
         /// <summary>
         /// Metodo para consultar todos los proyectos
@@ -75,6 +76,11 @@ namespace ApiRestAldeas.Repositories
         dynamic AsociarIndicadorParticipante(IndicadoresRequest request);
         dynamic ConsultarRespuestasIndicadoresParticipante(long id, long idIndicador);
         dynamic ConsultarIndicadorParticipante(long id);
+        dynamic GuardarRegistroParticipantes(RegistroParticipantesRequest request);
+
+        dynamic ActualizarParticipante(RegistroParticipantesRequest request);
+        dynamic ActualizarIntegrante(ActualizarIntegrantesRequest request);
+
         #endregion
 
 
@@ -108,5 +114,12 @@ namespace ApiRestAldeas.Repositories
 
         #endregion
 
+
+        #region cecos
+
+        dynamic ActualizarCeco(long id, int idSubcentroNuevo);
+        #endregion
+
+       
     }
 }

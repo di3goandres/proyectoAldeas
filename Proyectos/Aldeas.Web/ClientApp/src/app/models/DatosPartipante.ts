@@ -30,6 +30,7 @@ export class RegistroParticipante {
         this.participantes =[]
     }
    
+    public id:          number;
     public idProyecto: number;
     public FechaIngreso: Date;
     public FechaSalida: Date;

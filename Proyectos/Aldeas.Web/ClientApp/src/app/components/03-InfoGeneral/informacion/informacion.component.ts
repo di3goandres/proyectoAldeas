@@ -91,10 +91,10 @@ export class InformacionComponent implements OnInit {
   ];
   mondea: string;
   monedaChecK: Task[] = [
-    {pregunta: 'MONEDA', name: 'USD', completed: false, esOtro: false, color: 'primary' },
-    {pregunta: 'MONEDA', name: 'EURO', completed: false, esOtro: false, color: 'primary' },
-    {pregunta: 'MONEDA', name: 'COP', completed: false, esOtro: false, color: 'primary' },
-    {pregunta: 'MONEDA', name: 'Otra', completed: false, esOtro: true, color: 'primary' },
+    {id:0,pregunta: 'MONEDA', name: 'USD', completed: false, esOtro: false, color: 'primary' },
+    {id:0,pregunta: 'MONEDA', name: 'EURO', completed: false, esOtro: false, color: 'primary' },
+    {id:0,pregunta: 'MONEDA', name: 'COP', completed: false, esOtro: false, color: 'primary' },
+    {id:0,pregunta: 'MONEDA', name: 'Otra', completed: false, esOtro: true, color: 'primary' },
   ]
   isLinear = false;
   firstFormGroup: FormGroup;

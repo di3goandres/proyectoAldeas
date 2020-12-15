@@ -4,6 +4,11 @@ using ApiRestAldeas.EntityFrame;
 
 namespace ApiRestAldeas.Models
 {
+
+    public class ActualizarIntegrantesRequest
+    {
+        public List<DBIntegrantes> IntegrantesFamilia { get; set; }
+    }
     public class RegistroParticipantesProyectosResponse
     {
 
@@ -30,6 +35,8 @@ namespace ApiRestAldeas.Models
         public long idProyecto { get; set; }
         public int idMunicipio { get; set; }
         public string Municipio { get; set; }
+        public int idDepartamento { get; set; }
+
         public string Departamento { get; set; }
         public string Nombres { get; set; }
         public string Apellidos { get; set; }

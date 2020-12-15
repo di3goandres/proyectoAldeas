@@ -1,19 +1,4 @@
-::ng-deep .mat-horizontal-stepper-header{
-    pointer-events: none !important;
-}
-
-.descripcion{
-    font-weight: bold;
-    color: #77b856
-  }
-
-  .descripcionTexto{
-   color: black;
-   padding-left: 1px;
-  
-  }
-
-  .example-radio-group {
+.example-radio-group {
     display: flex;
     flex-direction: column;
     margin: 15px 0;
@@ -110,4 +95,3 @@ ul {
   overflow-x: auto;
   white-space: nowrap;
 }
-

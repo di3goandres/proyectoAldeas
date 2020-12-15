@@ -35,10 +35,11 @@ export class CheckboxComponent implements OnInit {
     this.taskSeleccionado = this.tasks[0];
     this.setStakeValidators()
     this.tasks.forEach(item => {
-      item.formValid = false;
+      item.formValid = this.datoEntrada == ''? false:true;
       item.valorOtro = ''
 
     })
+    this.datoSalid.emit(this.taskSeleccionado);
 
   }
 

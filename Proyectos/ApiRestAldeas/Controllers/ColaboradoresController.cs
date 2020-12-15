@@ -24,7 +24,7 @@ namespace ApiRestAldeas.Controllers
         #endregion
 
 
-        //[Authorize]
+        [Authorize]
         [HttpGet]
         [Route("/api/aldeas/proyecto/obtenercolaboradores/{id}")]
         public dynamic ConsultarProyectosColaborador(long id)
@@ -32,12 +32,29 @@ namespace ApiRestAldeas.Controllers
             return _dataModelRepository.ConsultarColaboradorProyecto(id);
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpGet]
         [Route("/api/aldeas/colaborador/detalle/{id}")]
         public dynamic ConsultarDetalle(long id)
         {
             return _dataModelRepository.ConsultarDetalleColaboradorProyecto(id);
+        }
+
+
+        [Authorize]
+        [HttpGet]
+        [Route("/api/aldeas/colaborador/updatececos/{id}/{idCeco}")]
+        public dynamic ActualizarCeco(long id, int idCeco)
+        {
+            return _dataModelRepository.ActualizarCeco(id, idCeco);
+        }
+
+        [Authorize]
+        [HttpPost]
+        [Route("/api/aldeas/colaborador/update/")]
+        public dynamic ActualizarColaborador(ColaboradorRequest request)
+        {
+            return _dataModelRepository.ColaboradorActualizar(request);
         }
     }
 }

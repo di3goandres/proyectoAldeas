@@ -36,8 +36,8 @@ export class RegistrarindicadorComponent implements OnInit {
   indicadoresRequest = new IndicadoresRequest();
   Respuesta: string;
   RespuestaCheck: Task[] = [
-    { pregunta: 'Nacionalidad', name: 'Si', completed: false, esOtro: false, color: 'primary' },
-    { pregunta: 'Nacionalidad', name: 'No', completed: false, esOtro: false, color: 'primary' },
+    { id: 0, pregunta: 'Nacionalidad', name: 'Si', completed: false, esOtro: false, color: 'primary' },
+    { id: 0, pregunta: 'Nacionalidad', name: 'No', completed: false, esOtro: false, color: 'primary' },
 
   ]
   encabezado: Preguntas;
@@ -172,7 +172,7 @@ export class RegistrarindicadorComponent implements OnInit {
   }
 
   onNotificar(event: any, IdPregunta: any) {
-     console.log(event, ' - ', IdPregunta)
+    console.log(event, ' - ', IdPregunta)
 
 
     this.respuestaIndicadores.forEach(item => {
@@ -231,7 +231,7 @@ export class RegistrarindicadorComponent implements OnInit {
     console.log(this.indicadoresRequest);
 
     this.indicadorService.GuardarIndicador(this.indicadoresRequest).subscribe(
-      OK => { 
+      OK => {
         this.registroExitoso();
       },
       ERROR => {
@@ -254,7 +254,7 @@ export class RegistrarindicadorComponent implements OnInit {
     const modalRef = this.modalService.open(RegistroExitosoComponent, { size: 'md' });
 
     modalRef.result.then((result) => {
-       this.reiniciarForumulario()
+      this.reiniciarForumulario()
     }, (reason) => {
 
       if (reason === 'OK') {

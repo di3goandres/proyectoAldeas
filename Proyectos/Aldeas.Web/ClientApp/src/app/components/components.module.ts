@@ -22,6 +22,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { FechasComponent } from './00-Comunes/fechas/fechas.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import {MatListModule} from '@angular/material/list';
 import { MatRadioModule } from '@angular/material/radio'
 import { ColaboradorComponent } from './04-Colaboradores/colaborador/colaborador.component';
 import { RegistroparticipantesComponent } from './05-Registro/registroparticipantes/registroparticipantes.component';
@@ -48,6 +49,9 @@ import { ListacolaboradoresComponent } from './04-Colaboradores/listacolaborador
 import { MunicipioseditComponent } from './00-Comunes/municipiosedit/municipiosedit.component';
 import { EditarcolaboradorComponent } from './04-Colaboradores/editarcolaborador/editarcolaborador.component';
 import { DescargarbasedatosComponent } from './06-Descargas/descargarbasedatos/descargarbasedatos.component';
+import { OnlycecoeditComponent } from './00-Comunes/onlycecoedit/onlycecoedit.component';
+import { ActualizarparticipanteComponent } from './05-Registro/actualizarparticipante/actualizarparticipante.component';
+import { ChecklistComponent } from './00-Comunes/checklist/checklist.component';
 @NgModule({
   declarations: [
     LoginComponent,
@@ -74,7 +78,11 @@ import { DescargarbasedatosComponent } from './06-Descargas/descargarbasedatos/d
     ListacolaboradoresComponent,
     MunicipioseditComponent,
     EditarcolaboradorComponent,
-    DescargarbasedatosComponent],
+    DescargarbasedatosComponent,
+    OnlycecoeditComponent,
+    ActualizarparticipanteComponent,
+    ChecklistComponent
+   ],
   imports: [
 
     CommonModule,
@@ -101,7 +109,8 @@ import { DescargarbasedatosComponent } from './06-Descargas/descargarbasedatos/d
     MatSnackBarModule,
     PipesModule,
     MatPaginatorModule,
-    MatTabsModule
+    MatTabsModule,
+    MatListModule
 
   ],
   providers: [

@@ -32,5 +32,33 @@ namespace ApiRestAldeas.Controllers
         {
             return _dataModelRepository.ConsultarDetalleParticipante(id);
         }
+
+        [Authorize]
+        [HttpPost]
+        [Route("/api/aldeas/participante/update/")]
+        public dynamic Actualizar([FromBody] RegistroParticipantesRequest request)
+        {
+            return _dataModelRepository.ActualizarParticipante(request);
+        }
+
+        [Authorize]
+        [HttpPost]
+        [Route("/api/aldeas/GuardarRegistroParticipantes/")]
+        public dynamic GuardarRegistroParticipantes([FromBody] RegistroParticipantesRequest request)
+        {
+
+            return _dataModelRepository.GuardarRegistroParticipantes(request);
+
+        }
+
+        [Authorize]
+        [HttpPost]
+        [Route("/api/aldeas/participante/integrantes/update/")]
+        public dynamic ActualizarIntegrantes([FromBody] ActualizarIntegrantesRequest request)
+        {
+
+            return _dataModelRepository.ActualizarIntegrante(request);
+
+        }
     }
 }

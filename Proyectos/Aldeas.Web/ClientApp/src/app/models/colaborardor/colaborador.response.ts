@@ -4,16 +4,18 @@ export interface ColaboradorResponse {
     itemsColaboradores: ItemsColaboradores[];
 }
 
-export interface ItemsColaboradores {
+export class ItemsColaboradores {
     id:              number;
     idProyecto:      number;
     nombre:          string;
-    fechaNacimiento: string;
+    fechaNacimiento: Date;
+    fecha:           Date;
+
     cargo:           string;
     tiempo:          string;
     tipoContrato:    string;
-    fechaInicio:     string;
-    fechaFin:        string;
+    fechaInicio:     Date;
+    fechaFin:        Date;
     costoMensual:    number;
     porcentaje:      number;
     contrapartida:   number;

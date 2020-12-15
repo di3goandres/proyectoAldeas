@@ -1,1 +1,195 @@
-<p>editarcolaborador works!</p>
+<mat-card *ngIf="colaborador!=null">
+    <mat-card-header>
+        <div mat-card-avatar class="example-header-image" style="background-image: url('assets/avatars/av-2.png')">
+        </div>
+        <mat-card-title class="main-green-text"> Actualización Colaborador</mat-card-title>
+
+    </mat-card-header>
+
+    <mat-card-content>
+        <form [formGroup]="firstFormGroup">
+
+            <!--Nombre Colaborardor 
+                        Fecha de Nacimiento
+                        Cargo    
+                    -->
+
+            <div class="row">
+                <div class="col-12">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Nombre del Colaborador</mat-label>
+                        <input matInput [(ngModel)]="colaborador.nombre" formControlName="NombreColaborador" required />
+
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Fecha de Nacimiento</mat-label>
+                        <input matInput formControlName="FechaNacimiento" [matDatepicker]="pickerDesembolso"
+                            [(ngModel)]="colaborador.fecha" ng-keydown="$event.preventDefault();" [max]="FechaMax">
+                        <mat-datepicker-toggle matSuffix [for]="pickerDesembolso">
+                        </mat-datepicker-toggle>
+                        <mat-datepicker touchUi #pickerDesembolso></mat-datepicker>
+                        <!-- <input type="button" value="Agregar Fecha"/> -->
+
+                    </mat-form-field>
+                </div>
+                <div class="col-6">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Cargo</mat-label>
+                        <input matInput [(ngModel)]="colaborador.cargo" formControlName="Cargo" required />
+
+                    </mat-form-field>
+                </div>
+
+            </div>
+            <!--
+                        Empleo a Tiempo
+                        Tipo de Contrato
+                        Costo Mensual    
+                    -->
+            <div class="row">
+                <div class="col-6">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Empleo a Tiempo</mat-label>
+                        <input matInput [(ngModel)]="colaborador.tiempo" formControlName="Tiempo" required />
+
+                    </mat-form-field>
+                </div>
+                <div class="col-6">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Tipo de Contrato</mat-label>
+                        <mat-select formControlName="TipoContrato" [(ngModel)]="colaborador.tipoContrato" required>
+                            <mat-option *ngFor="let item of tipoContrado" [value]="item.value">
+                                {{item.viewValue}}
+                            </mat-option>
+                        </mat-select>
+
+                    </mat-form-field>
+                </div>
+
+
+            </div>
+
+            <!--Fechas-->
+            <div class="row">
+                <div class="col-6">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Fecha de Inicio</mat-label>
+                        <input matInput formControlName="FechaInicio" [matDatepicker]="pickerInicio"
+                            [(ngModel)]="colaborador.fechaInicio" (dateChange)="FechaInicio($event)"
+                            ng-keydown="$event.preventDefault();">
+                        <mat-datepicker-toggle matSuffix [for]="pickerInicio">
+                        </mat-datepicker-toggle>
+                        <mat-datepicker touchUi #pickerInicio></mat-datepicker>
+                        <!-- <input type="button" value="Agregar Fecha"/> -->
+
+                    </mat-form-field>
+                </div>
+
+                <div class="col-6">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Fecha de Fin</mat-label>
+                        <input matInput formControlName="Fechafin" [matDatepicker]="pickerFin"
+                            [(ngModel)]="colaborador.fechaFin" ng-keydown="$event.preventDefault();"
+                            (dateChange)="FechaInicio($event)" [min]="colaborador.fechaInicio">
+                        <mat-datepicker-toggle matSuffix [for]="pickerFin">
+                        </mat-datepicker-toggle>
+                        <mat-datepicker touchUi #pickerFin></mat-datepicker>
+
+                    </mat-form-field>
+                </div>
+
+
+            </div>
+
+            <!--
+                       COSTO MENSUAL
+                       CENTRO DE COSTOS
+                       SUB CENTRO DE COSTOS  
+                       % DE RECUPERACION  
+                    -->
+            <div class="row">
+                <div class="col-6">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Costo Mensual</mat-label>
+                        <input matInput type="number" [(ngModel)]="colaborador.costoMensual" formControlName="Costo"
+                            required />
+
+                    </mat-form-field>
+                </div>
+
+                <div class="col-6">
+                    <mat-form-field appearance="fill">
+                        <mat-label>% De recuperacion</mat-label>
+                        <input [(ngModel)]="colaborador.porcentaje" type="number" matInput min="0" max="100"
+                            formControlName="Porcentaje" required />
+
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12  main-green-text">
+                    <label>Fuente y Valor de Financiación</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Contrapartida</mat-label>
+                        <input matInput [(ngModel)]="colaborador.contrapartida" type="number"
+                            formControlName="Contrapartida" required />
+
+
+                    </mat-form-field>
+                </div>
+                <div class="col-6">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Aporte del Donante</mat-label>
+
+                        <input matInput [(ngModel)]="colaborador.aporte" type="number" formControlName="Aporte"
+                            required />
+
+
+
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 centerlabel font-weight-bold">
+                    <label>Ya casi esta listo pulsa Actualizar
+                        <!-- {{this.firstFormGroup.valid}} {{  validarCentroCosto }} - {{Guardando}} -->
+
+                    </label>
+
+
+
+
+                </div>
+
+
+
+
+            </div>
+
+            <div class="row">
+                <div class="col-6 centerlabel font-weight-bold">
+                    <button mat-raised-button color="warn" ngbAutofocus (click)="Cerrar()">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </div>
+                <div class="col-6 centerlabel font-weight-bold">
+                    <button mat-raised-button color="warn" [disabled]="this.firstFormGroup.invalid"
+                        (click)="onGuardar()">
+                        <mat-icon>cached</mat-icon>
+                    </button>
+                </div>
+            </div>
+
+
+        </form>
+    </mat-card-content>
+</mat-card>

@@ -107,6 +107,121 @@ namespace ApiRestAldeas.Helper
         }
 
 
+
+        public static dynamic Actualizar(IContextFactory factory, IOptions<ConnectionDB> connection,
+           RegistroParticipantesRequest request)
+        {
+            long id = 0;
+            using (Aldeas_Context db = factory.Create(connection))
+            {
+
+
+                if (request.FechaSalida != null)
+                {
+
+                    request.FechaSalida = Utils.CambiarFecha(request.FechaSalida);
+                }
+
+
+
+                request.FechaNacimiento = Utils.CambiarFecha(request.FechaNacimiento);
+                request.FechaIngreso = Utils.CambiarFecha(request.FechaIngreso);
+
+
+                var registro = from dato in db.tbRegistroParticipantes
+                                  where dato.id == request.id
+                                  select dato;
+                if (registro.Any())
+                {
+
+
+
+                    registro.First().FechaIngreso = request.FechaIngreso;
+                    registro.First().FechaNacimiento = Utils.CambiarFecha(request.FechaNacimiento);
+                    registro.First().FechaSalida = Utils.CambiarFecha(request.FechaSalida);
+
+                    registro.First().Nombres = request.Nombres;
+                    registro.First().Apellidos = request.Apellidos;
+                    registro.First().EstatusResidencia = request.EstatusResidencia;
+                    registro.First().Sexo =request.Sexo;
+                    registro.First().idMunicipio = request.CodMunicipio;
+                    registro.First().Localidad = request.Localidad;
+                    registro.First().UltimoCursoAprobado = request.UltimoCursoAprobado;
+                    registro.First().AsisteAlColegio = request.AsisteAlColegio;
+                    registro.First().GrupoPoblacional = request.GrupoPoblacional;
+                    registro.First().GrupoEtnico = request.GrupoEtnico;
+                    registro.First().Nacionalidad = request.Nacionalidad;
+                    registro.First().Genero = request.Genero;
+                    registro.First().TipoParticipante = request.TipoParticipante;
+                  
+                    registro.First().Discapacidad = request.Discapacidad;
+                    registro.First().NivelEscolaridad = request.NivelEscolaridad;
+                    db.SaveChanges();
+                    id = request.id;
+
+                    db.tbRegistroPreguntas.RemoveRange(db.tbRegistroPreguntas.Where(x => x.idParticipante == id));
+
+                    List<RegistroPreguntas> preguntas = new List<RegistroPreguntas>();
+                    db.SaveChanges();
+
+                    foreach (var item in request.Linea)
+                    {
+                        preguntas.Add(new RegistroPreguntas()
+                        {
+                            esOtro = item.esOtro,
+                            idParticipante = id,
+                            Pregunta = item.Pregunta,
+                            Valor = item.esOtro ? item.valorOtro : item.name
+                        });
+                    }
+                    db.tbRegistroPreguntas.AddRange(preguntas);
+                    db.SaveChanges();
+
+                };
+
+            }
+            return new { id = id, status = id == 0 ? "error" : "OK", code = 200 };
+        }
+
+
+        public static dynamic ActualizarIntegrantes(IContextFactory factory, IOptions<ConnectionDB> connection,
+          ActualizarIntegrantesRequest request)
+        {
+            long id = 0;
+            using (Aldeas_Context db = factory.Create(connection))
+            {
+
+
+
+                foreach(var integrante in request.IntegrantesFamilia)
+                {
+
+                    var registro = from dato in db.tbIntegrantesFamilia
+                                   where dato.id == integrante.id 
+                                   select dato;
+                    if (registro.Any())
+                    {
+
+                        id = integrante.id;
+                        registro.First().Rango_0_5 = integrante.Rango_0_5;
+                        registro.First().Rango_6_12 = integrante.Rango_6_12;
+                        registro.First().Rango_13_17 = integrante.Rango_13_17;
+                        registro.First().Rango_18_24 = integrante.Rango_18_24;
+                        registro.First().Rango_25_56 = integrante.Rango_25_56;
+                        registro.First().Mayores_60 = integrante.Mayores_60;
+                        registro.First().Total = integrante.Total;
+
+                        db.SaveChanges();
+
+                    }
+                }
+
+                
+
+            }
+            return new { id = id, status = id == 0 ? "error" : "OK", code = 200 };
+        }
+
         public static dynamic ConsultarDatosParticipante(IContextFactory factory, IOptions<ConnectionDB> connection,
             long idParticipante)
         {
@@ -127,6 +242,7 @@ namespace ApiRestAldeas.Helper
                                                    idProyecto = dato.idProyecto,
                                                    idMunicipio = dato.idMunicipio,
                                                    Municipio = muni.municipio,
+                                                   idDepartamento = dep.id_departamento,
                                                    Departamento = dep.departamento,
                                                    Nombres = dato.Nombres,
                                                    Apellidos = dato.Apellidos,
@@ -196,6 +312,7 @@ namespace ApiRestAldeas.Helper
                                                    idProyecto = dato.idProyecto,
                                                    idMunicipio = dato.idMunicipio,
                                                    Municipio = muni.municipio,
+                                                   idDepartamento = dep.id_departamento,
                                                    Departamento = dep.departamento,
                                                    Nombres = dato.Nombres,
                                                    Apellidos = dato.Apellidos,

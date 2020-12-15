@@ -106,7 +106,7 @@
                     <mat-label>Fecha de Fin</mat-label>
                     <input matInput formControlName="Fechafin" [matDatepicker]="pickerFin"
                         [(ngModel)]="colaborador.FechaFin" ng-keydown="$event.preventDefault();"
-                        (dateChange)="fechaNacimiento($event)" [min]="colaborador.FechaInicio">
+                        (dateChange)="FechaInicio($event)" [min]="colaborador.FechaInicio">
                     <mat-datepicker-toggle matSuffix [for]="pickerFin">
                     </mat-datepicker-toggle>
                     <mat-datepicker touchUi #pickerFin></mat-datepicker>

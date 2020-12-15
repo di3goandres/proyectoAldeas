@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ItemsCentroCosto } from '../../../models/proyectos/proyecto.unico.response';
 import { OnlycecoeditComponent } from '../onlycecoedit/onlycecoedit.component';
@@ -9,8 +9,10 @@ import { OnlycecoeditComponent } from '../onlycecoedit/onlycecoedit.component';
   styleUrls: ['./cecosedit.component.css']
 })
 export class CecoseditComponent implements OnInit {
-  displayedColumns: string[] = ['position',  'Nombre', 'actualizar'];
+  displayedColumns: string[] = ['position',  'Nombre', 'Actualizar'];
   @Input() dataSource: ItemsCentroCosto[]=[];
+  @Output() valid = new EventEmitter<boolean>();
+
 
   constructor(
     private modalService: NgbModal,
@@ -26,6 +28,7 @@ export class CecoseditComponent implements OnInit {
 
     modalRef.result.then((result) => {
      
+     
     }, (reason) => {
 
       if (reason === 'OK') {
@@ -35,4 +38,19 @@ export class CecoseditComponent implements OnInit {
     });
   }
 
+
+  AbrirEditar(element: ItemsCentroCosto ) {
+    const modalRef = this.modalService.open(OnlycecoeditComponent, { size: 'md' });
+    modalRef.componentInstance.Cecos = element;
+    
+    modalRef.result.then((result) => {
+    
+      if(result=="OK"){
+        this.valid.emit(true);
+      }
+    }, (reason) => {
+
+      this.valid.emit(false);
+    });
+  }
 }

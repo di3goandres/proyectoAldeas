@@ -77,4 +77,9 @@ namespace ApiRestAldeas.Models
 
     }
 
+
+    public class EjecucionFinancieraRequest
+    {
+        public List<TbEjecucion> ItemsEjecucion { get; set; }
+    }
 }

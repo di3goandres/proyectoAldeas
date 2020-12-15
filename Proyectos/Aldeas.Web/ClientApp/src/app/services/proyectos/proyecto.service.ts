@@ -3,6 +3,7 @@ import { UserService } from '../user.service';
 import { ProyectoResponse } from '../../models/ProyectoResponse';
 import { ProyectoListResponse } from '../../models/proyectos/proyecto.list.response';
 import { UnicoProyecto } from 'src/app/models/proyectos/proyecto.unico.response';
+import { EjecucionFinancieraRequest } from '../../models/proyectos/ejecucion.request';
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +30,12 @@ export class ProyectoService {
 
   getDataExport() {
     this.service.ejecutarQuerFile('/api/proyectos/informe/exportdatabase/');
-    
+
   }
- 
+
+  ActualizarEjecucion(data: EjecucionFinancieraRequest) {
+
+    return this.service.ejecutarQueryPostNuevo('/api/aldeas/proyectos/ejecucion/update/', data);
+  }
+
 }

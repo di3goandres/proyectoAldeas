@@ -4,6 +4,10 @@ import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { ProyectoService } from 'src/app/services/proyectos/proyecto.service';
 import { ItemProyectados, ItemFinanciera, ItemProyecto, ItemsEjecucion, ItemsFecha, ListParticipante, ItemsCentroCosto, ItemsMunicipio } from '../../../models/proyectos/proyecto.unico.response';
+import { EjecucionFinancieraRequest } from '../../../models/proyectos/ejecucion.request';
+import { RegistroExitosoComponent } from '../../00-Comunes/registro-exitoso/registro-exitoso.component';
+import { RegistroNoexitosoComponent } from '../../00-Comunes/registro-noexitoso/registro-noexitoso.component';
+import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -27,7 +31,7 @@ export class DetalleproyectosComponent implements OnInit {
       'Mayores de 60 años', 'Total', 'TotalDesagregado']
 
   itemsCentroCostos: ItemsCentroCosto[];
-  itemsMunicipios:   ItemsMunicipio[];
+  itemsMunicipios: ItemsMunicipio[];
   idProyecto: string;
   default: "COMITES"
   secondFormGroup: FormGroup;
@@ -37,6 +41,8 @@ export class DetalleproyectosComponent implements OnInit {
     private service: ProyectoService,
     private changeDetectorRefs: ChangeDetectorRef,
     private _formBuilder: FormBuilder,
+    private modalService: NgbModal,
+
 
 
   ) { }
@@ -57,7 +63,11 @@ export class DetalleproyectosComponent implements OnInit {
 
   }
 
-
+  onNotificar(event: boolean) {
+    if (event) {
+      this.cargaInicial();
+    }
+  }
   cargaInicial() {
     this.service.getProyectosById(this.idProyecto).subscribe(
       OK => {
@@ -78,7 +88,7 @@ export class DetalleproyectosComponent implements OnInit {
         this.itemsCentroCostos.push(...OK.itemsCentroCostos);
         this.itemsMunicipios = [];
         this.itemsMunicipios.push(...OK.itemsMunicipios);
-        
+
 
 
         this.fechasMostrar$.next(this.fechas.filter(item => item.tipo_fecha.toUpperCase() == this.default));
@@ -102,5 +112,49 @@ export class DetalleproyectosComponent implements OnInit {
 
   }
 
+  ejecucionUpdate = new EjecucionFinancieraRequest();
+  ActualizarEjecucion() {
+
+    this.ejecucionUpdate.ItemsEjecucion = [];
+    this.ejecucionUpdate.ItemsEjecucion.push(...this.itemsEjecucion);
+
+    this.service.ActualizarEjecucion(this.ejecucionUpdate).subscribe(
+      OK => {  this.registroExitoso()  },
+      ERROR => { 
+        this.registroNoExitoso("Ha ocurrido un error", "Intentelo mas tarde")
+        
+        console.log(ERROR) },
+    )
+  }
+
+
+  registroExitoso() {
+    const modalRef = this.modalService.open(RegistroExitosoComponent, { size: 'md' });
+
+    modalRef.result.then((result) => {
+     
+    }, (reason) => {
+
+      if (reason === 'OK') {
+
+
+      }
+    });
+  }
+
+  registroNoExitoso(Titulo, Mensaje) {
+    const modalRef = this.modalService.open(RegistroNoexitosoComponent, { size: 'md' });
+    modalRef.componentInstance.Titulo = Titulo;
+    modalRef.componentInstance.mensaje = Mensaje
+    modalRef.result.then((result) => {
+
+    }, (reason) => {
+
+      if (reason === 'OK') {
+
+
+      }
+    });
+  }
 
 }

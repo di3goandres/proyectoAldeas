@@ -1,4 +1,5 @@
 ﻿using System;
+using ApiRestAldeas.Models;
 using ApiRestAldeas.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -42,6 +43,15 @@ namespace ApiRestAldeas.Controllers
         public dynamic ConsultaCecosProyectosById(long id)
         {
             return _dataModelRepository.ConsultarCecosProyectosByID(id);
+        }
+
+
+        [Authorize]
+        [HttpPost]
+        [Route("/api/aldeas/proyectos/ejecucion/update/")]
+        public dynamic ActualizarEjecucion([FromBody] EjecucionFinancieraRequest request)
+        {
+            return _dataModelRepository.ActualizarEjecucion(request);
         }
 
 

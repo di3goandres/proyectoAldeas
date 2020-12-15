@@ -110,7 +110,7 @@ namespace ApiRestAldeas.Repositories
 
 
 
-
+        dynamic ActualizarEjecucion(EjecucionFinancieraRequest request);
 
         #endregion
 

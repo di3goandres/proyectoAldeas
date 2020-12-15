@@ -156,9 +156,9 @@
           <div class="row">
 
 
-            <div class="containerTable" *ngIf="itemsEjecucion!=null">
-
-              <table mat-table [dataSource]="itemsEjecucion" class="mat-elevation-z8 ajuste">
+            <div class="able-responsive" *ngIf="itemsEjecucion!=null">
+              <!-- <div class="table-responsive"> -->
+                <table id="customers"  mat-table [dataSource]="itemsEjecucion" class="mat-elevation-z8 ajuste">
 
 
                 <!-- Position Column -->
@@ -285,6 +285,16 @@
 
 
             </div>
+            <div class="row">
+
+
+              <div class="col-12" style="text-align: center;">
+                  <button type="button" (click)="ActualizarEjecucion()"mat-raised-button color="primary">
+                      <mat-icon>cached</mat-icon>
+                  </button>
+              </div>
+          </div>
+
           </div>
 
 
@@ -430,8 +440,8 @@
     <mat-tab label="CeCos">
       <div *ngIf="itemsCentroCostos!=null && itemsCentroCostos.length>=1">
 
-
-        <app-cecosedit [(dataSource)]="itemsCentroCostos"></app-cecosedit>
+    
+        <app-cecosedit [(dataSource)]="itemsCentroCostos"     (valid)='onNotificar($event)'></app-cecosedit>
       </div>
     </mat-tab>
 

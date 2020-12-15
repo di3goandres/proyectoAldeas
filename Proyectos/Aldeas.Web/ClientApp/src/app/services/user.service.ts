@@ -43,65 +43,66 @@ export class UserService {
   }
 
   postFile(fileToUpload: File, id: string) {
-   
-   let user = this.currentUserSubject.value;
+
+    let user = this.currentUserSubject.value;
 
     const formData: FormData = new FormData();
     this.header = new HttpHeaders().set('Authorization', user.token);
 
     formData.append('file', fileToUpload);
     formData.append('Proyecto', id.toString());
-   
+
     return this.http.post<Respuesta>(environment.ApiUrl + '/api/aldeas/GuardarProyectoArchivo/',
-     formData);
-    
-}
+      formData);
+
+  }
 
   ///metodo par ejecutar metodos get
   public ejecutarQuery<T>(query: string) {
-   let user = this.currentUserSubject.value;
+    let user = this.currentUserSubject.value;
     // this.header = new HttpHeaders().set('Authorization', user.token);
     // return this.http.get<T>(environment.ApiUrl + query, { headers: this.header });
     return this.http.get<T>(environment.ApiUrl + query);
 
   }
 
-  public ejecutarQuerFile(query: string){
-    return this.http.get(environment.ApiUrl + query,{
-      responseType: 'arraybuffer'} )
+  public ejecutarQuerFile(query: string) {
+    return this.http.get(environment.ApiUrl + query, {
+      responseType: 'arraybuffer'
+    })
       .subscribe(response => this.downLoadFile(response, "application/octet-stream"));;
-  } 
+  }
 
 
 
 
-/**
-* Method is use to download file.
-* @param data - Array Buffer data
-* @param type - type of the document.
-*/
-downLoadFile(data: any, type: string) {
-  let blob = new Blob([data], { type: type});
-  let url = window.URL.createObjectURL(blob);
-  // let pwa = window.open(url);
+  /**
+  * Method is use to download file.
+  * @param data - Array Buffer data
+  * @param type - type of the document.
+  */
+  downLoadFile(data: any, type: string) {
+    let blob = new Blob([data], { type: type });
+    let url = window.URL.createObjectURL(blob);
+    // let pwa = window.open(url);
 
-  var fileLink = document.createElement('a');
-fileLink.href = url;
+    var fileLink = document.createElement('a');
+    fileLink.href = url;
 
-// it forces the name of the downloaded file
-fileLink.download = 'InformeDeBaseDatos.xls';
+    // it forces the name of the downloaded file
+    fileLink.download = 'InformeDeBaseDatos.xls';
 
-// triggers the click event
-fileLink.click();
-  // if (!pwa || pwa.closed || typeof pwa.closed == 'undefined') {
-  //     alert( 'Please disable your Pop-up blocker and try again.');
-  // }
-}
+    // triggers the click event
+    fileLink.click();
+    // if (!pwa || pwa.closed || typeof pwa.closed == 'undefined') {
+    //     alert( 'Please disable your Pop-up blocker and try again.');
+    // }
+  }
 
 
   // tslint:disable-next-line: typedef con autorizacion
   public ejecutarQueryPost<T>(query: string, params: string) {
-   let user = this.currentUserSubject.value;
+    let user = this.currentUserSubject.value;
 
     // this.header = new HttpHeaders().set('Authorization', user.token)
     //   .set('Content-Type', 'application/json');
@@ -110,6 +111,17 @@ fileLink.click();
 
 
   }
+
+  public ejecutarQueryPostNuevo<T>(query: string, data: any) {
+    let user = this.currentUserSubject.value;
+    let json = JSON.stringify(data);
+    let params = json;
+
+    return this.http.post<T>(environment.ApiUrl + query, params);
+
+
+  }
+
 
   loginUser(user, getToken = null): Observable<any> {
     if (getToken != null) {
@@ -121,7 +133,7 @@ fileLink.click();
 
 
 
-    return this.http.post<any>(environment.ApiUrl +'/api/user/authenticate', this.json, { headers: this.header })
+    return this.http.post<any>(environment.ApiUrl + '/api/user/authenticate', this.json, { headers: this.header })
       .pipe(map(user => {
 
         localStorage.setItem('currentUser', JSON.stringify(user));
@@ -208,7 +220,7 @@ fileLink.click();
     })
   }
 
-  getUrl(){
+  getUrl() {
     return environment.ApiUrl;
   }
 }

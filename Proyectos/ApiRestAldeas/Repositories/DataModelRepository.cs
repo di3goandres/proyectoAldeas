@@ -187,6 +187,11 @@ namespace ApiRestAldeas.Repositories
         {
             return RegistroParticipantesOperations.ActualizarIntegrantes(_factory, _connectionDB, request);
         }
+
+        public dynamic ActualizarEjecucion(EjecucionFinancieraRequest request)
+        {
+            return EjecucionFinancieraOperations.ActualizarEjecucion(_factory, _connectionDB, request);
+        }
         #endregion
     }
 

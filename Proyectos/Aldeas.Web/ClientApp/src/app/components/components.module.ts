@@ -52,6 +52,9 @@ import { DescargarbasedatosComponent } from './06-Descargas/descargarbasedatos/d
 import { OnlycecoeditComponent } from './00-Comunes/onlycecoedit/onlycecoedit.component';
 import { ActualizarparticipanteComponent } from './05-Registro/actualizarparticipante/actualizarparticipante.component';
 import { ChecklistComponent } from './00-Comunes/checklist/checklist.component';
+import { ActualizaritemproyectoComponent } from './03-InfoGeneral/01-Actualizar/actualizaritemproyecto/actualizaritemproyecto.component';
+import { ActualizariteminfofinancieraComponent } from './03-InfoGeneral/01-Actualizar/actualizariteminfofinanciera/actualizariteminfofinanciera.component';
+import { CheckboxV2Component } from './00-Comunes/checkbox-v2/checkbox-v2.component';
 @NgModule({
   declarations: [
     LoginComponent,
@@ -81,7 +84,10 @@ import { ChecklistComponent } from './00-Comunes/checklist/checklist.component';
     DescargarbasedatosComponent,
     OnlycecoeditComponent,
     ActualizarparticipanteComponent,
-    ChecklistComponent
+    ChecklistComponent,
+    ActualizaritemproyectoComponent,
+    ActualizariteminfofinancieraComponent,
+    CheckboxV2Component
    ],
   imports: [
 

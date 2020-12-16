@@ -8,6 +8,8 @@ import { EjecucionFinancieraRequest } from '../../../models/proyectos/ejecucion.
 import { RegistroExitosoComponent } from '../../00-Comunes/registro-exitoso/registro-exitoso.component';
 import { RegistroNoexitosoComponent } from '../../00-Comunes/registro-noexitoso/registro-noexitoso.component';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { ActualizaritemproyectoComponent } from '../01-Actualizar/actualizaritemproyecto/actualizaritemproyecto.component';
+import { ActualizariteminfofinancieraComponent } from '../01-Actualizar/actualizariteminfofinanciera/actualizariteminfofinanciera.component';
 
 
 @Component({
@@ -126,7 +128,40 @@ export class DetalleproyectosComponent implements OnInit {
         console.log(ERROR) },
     )
   }
+  ActualizarItemProyecto( ){
+    const modalRef = this.modalService.open(ActualizaritemproyectoComponent, { size: 'xl' });
+    modalRef.componentInstance.infoProyecto = this.itemProyecto
+    
+    modalRef.result.then((result) => {
+      if (result === 'OK') {
+        this.cargaInicial()
+       this.registroExitoso() 
+      }else if (result === 'NOK') {
+        this.registroNoExitoso("Ha ocurrido un error", "Intentelo mas tarde")
+      }
+    }, (reason) => {
 
+     
+    });
+  }
+
+
+  ActualizarItemInfoFinanciera( ){
+    const modalRef = this.modalService.open(ActualizariteminfofinancieraComponent, { size: 'xl' });
+    modalRef.componentInstance.itemFinanciera = this.itemFinanciera
+    
+    modalRef.result.then((result) => {
+      if (result === 'OK') {
+        this.cargaInicial()
+       this.registroExitoso() 
+      }else if (result === 'NOK') {
+        this.registroNoExitoso("Ha ocurrido un error", "Intentelo mas tarde")
+      }
+    }, (reason) => {
+
+     
+    });
+  }
 
   registroExitoso() {
     const modalRef = this.modalService.open(RegistroExitosoComponent, { size: 'md' });

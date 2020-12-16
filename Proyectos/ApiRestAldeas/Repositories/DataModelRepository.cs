@@ -137,7 +137,15 @@ namespace ApiRestAldeas.Repositories
         {
             return RegistroParticipantesOperations.ConsultarDatosParticipante(_factory, _connectionDB, id);
         }
+        public dynamic ActualizarItemProyecto(ItemProyectoRequest proyectoRequest)
+        {
+            return ProyectoOperations.ActualizarItemProyecto(_factory, _connectionDB, proyectoRequest);
+        }
 
+        public dynamic ActualizarItemInfoFinanciera(InformacionFinancieraRequest proyectoRequest)
+        {
+            return ProyectoOperations.ActualizarItemInfoFinanciera(_factory, _connectionDB, proyectoRequest);
+        }
 
         #endregion
 
@@ -192,6 +200,10 @@ namespace ApiRestAldeas.Repositories
         {
             return EjecucionFinancieraOperations.ActualizarEjecucion(_factory, _connectionDB, request);
         }
+
+       
+
+
         #endregion
     }
 

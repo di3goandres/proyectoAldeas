@@ -229,6 +229,7 @@ namespace ApiRestAldeas.Helper
                     lider_coordinacion = proyectoRequest.LiderCoordinacion,
                     comite_tecnico = proyectoRequest.ComiteTecnico,
                     tipo_implementacion = proyectoRequest.TipoImplementacion,
+                    telefono = proyectoRequest.Telefono,
                     Nombrearchivo = null,
                     requiereLiquidacion = proyectoRequest.Requiere.ToUpper() =="TRUE" ? true:false,
                     archivo = null
@@ -434,6 +435,83 @@ namespace ApiRestAldeas.Helper
                 db.SaveChanges();
             }
             return new { id = idProyecto, status = idProyecto == 0 ? "error" : "OK", code = 200 };
+        }
+
+
+        public static dynamic ActualizarItemProyecto(IContextFactory factory, IOptions<ConnectionDB> connection,
+        ItemProyectoRequest proyectoRequest)
+        {
+            long idProyecto = 0;
+            using (Aldeas_Context db = factory.Create(connection))
+            {
+
+
+
+                var registro = from dato in db.tbProyectos
+                               where dato.id == proyectoRequest.ItemProyecto.id
+                               select dato;
+                if (registro.Any())
+                {
+
+                    idProyecto = proyectoRequest.ItemProyecto.id;
+                    registro.First().nombre = proyectoRequest.ItemProyecto.nombre;
+                    registro.First().status = proyectoRequest.ItemProyecto.status;
+                    registro.First().donante = proyectoRequest.ItemProyecto.donante;
+                    registro.First().fecha_inicio = Utils.CambiarFecha(proyectoRequest.ItemProyecto.fecha_inicio);
+                    registro.First().fecha_finalizacion = Utils.CambiarFecha(proyectoRequest.ItemProyecto.fecha_finalizacion);
+                    registro.First().requiereLiquidacion = proyectoRequest.ItemProyecto.requiereLiquidacion;
+                    registro.First().tipo_implementacion = proyectoRequest.ItemProyecto.tipo_implementacion;
+                    registro.First().tipo_financiacion = proyectoRequest.ItemProyecto.tipo_financiacion;
+                    registro.First().nombre_donante = proyectoRequest.ItemProyecto.nombre_donante;
+                    registro.First().direccion = proyectoRequest.ItemProyecto.direccion;
+                    registro.First().email = proyectoRequest.ItemProyecto.email;
+                    registro.First().lider_ejecucion = proyectoRequest.ItemProyecto.lider_ejecucion;
+                    registro.First().telefono = proyectoRequest.ItemProyecto.telefono;
+                    registro.First().lider_coordinacion = proyectoRequest.ItemProyecto.lider_coordinacion;
+                    registro.First().comite_tecnico = proyectoRequest.ItemProyecto.comite_tecnico;
+                    db.SaveChanges();
+
+                }
+           
+            }
+            return new { id = idProyecto, status = idProyecto == 0 ? "error" : "OK", code = idProyecto == 0 ? 300:200 };
+        }
+
+
+        public static dynamic ActualizarItemInfoFinanciera(IContextFactory factory, IOptions<ConnectionDB> connection,
+      InformacionFinancieraRequest proyectoRequest)
+        {
+            long idProyecto = 0;
+            using (Aldeas_Context db = factory.Create(connection))
+            {
+
+
+
+                var registro = from dato in db.tbInformacionFinanciera
+                               where dato.id == proyectoRequest.ItemFinanciera.id
+                               select dato;
+                if (registro.Any())
+                {
+
+                    idProyecto = proyectoRequest.ItemFinanciera.id;
+                    registro.First().costoTotal = proyectoRequest.ItemFinanciera.costoTotal;
+                    registro.First().fuente = proyectoRequest.ItemFinanciera.fuente;
+                    registro.First().plataContrapartida = proyectoRequest.ItemFinanciera.plataContrapartida;
+                    registro.First().tipoFuente = proyectoRequest.ItemFinanciera.tipoFuente;
+                    registro.First().plataDonante = proyectoRequest.ItemFinanciera.plataDonante;
+                    registro.First().monedaDonacion = proyectoRequest.ItemFinanciera.monedaDonacion;
+                    registro.First().tasacambio = proyectoRequest.ItemFinanciera.tasacambio;
+                    registro.First().cuenta = proyectoRequest.ItemFinanciera.cuenta;
+                    registro.First().navision = proyectoRequest.ItemFinanciera.navision;
+                    registro.First().responsable = proyectoRequest.ItemFinanciera.responsable;
+                    registro.First().lugar = proyectoRequest.ItemFinanciera.lugar;
+
+                    db.SaveChanges();
+
+                }
+
+            }
+            return new { id = idProyecto, status = idProyecto == 0 ? "error" : "OK", code = idProyecto == 0 ? 300 : 200 };
         }
 
         public static dynamic GuardarArchivo(IContextFactory factory, IOptions<ConnectionDB> connection,

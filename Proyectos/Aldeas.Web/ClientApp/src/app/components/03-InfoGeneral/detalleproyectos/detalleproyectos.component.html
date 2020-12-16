@@ -91,6 +91,18 @@
                 <tr>
                   <td>
                     <mat-label class="descripcion">
+                     Teléfono:
+                    </mat-label>
+                  </td>
+                  <td>
+                    <mat-label class="descripcionTexto">
+                      {{itemProyecto.telefono}}
+                    </mat-label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <mat-label class="descripcion">
                       Lider Ejecución:
                     </mat-label>
                   </td>
@@ -129,7 +141,15 @@
           </mat-grid-list>
         </mat-card-content>
         <mat-card-actions>
+          <div class="row">
 
+
+            <div class="col-12" style="text-align: center;">
+                <button type="button" (click)="ActualizarItemProyecto()"mat-raised-button color="primary">
+                    <mat-icon>cached</mat-icon>
+                </button>
+            </div>
+        </div>
         </mat-card-actions>
       </mat-card>
     </mat-tab>
@@ -152,11 +172,22 @@
           <mat-card-subtitle>Lugar: {{itemFinanciera.lugar}}</mat-card-subtitle>
 
         </mat-card-header>
+        <mat-card-actions>
+          <div class="row">
+
+
+            <div class="col-12" style="text-align: center;">
+                <button type="button" (click)="ActualizarItemInfoFinanciera()" mat-raised-button color="primary">
+                    <mat-icon>cached</mat-icon>
+                </button>
+            </div>
+        </div>
+        </mat-card-actions>
         <mat-card-content>
           <div class="row">
 
 
-            <div class="able-responsive" *ngIf="itemsEjecucion!=null">
+            <div class="table-responsive" *ngIf="itemsEjecucion!=null">
               <!-- <div class="table-responsive"> -->
                 <table id="customers"  mat-table [dataSource]="itemsEjecucion" class="mat-elevation-z8 ajuste">
 
@@ -285,16 +316,16 @@
 
 
             </div>
-            <div class="row">
-
-
-              <div class="col-12" style="text-align: center;">
-                  <button type="button" (click)="ActualizarEjecucion()"mat-raised-button color="primary">
-                      <mat-icon>cached</mat-icon>
-                  </button>
-              </div>
+            
           </div>
+          <div class="row">
 
+
+            <div class="col-12" style="text-align: center;">
+                <button type="button" (click)="ActualizarEjecucion()"mat-raised-button color="primary">
+                    <mat-icon>cached</mat-icon>
+                </button>
+            </div>
           </div>
 
 

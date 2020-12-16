@@ -82,4 +82,14 @@ namespace ApiRestAldeas.Models
     {
         public List<TbEjecucion> ItemsEjecucion { get; set; }
     }
+
+    public class ItemProyectoRequest
+    {
+        public Proyectos ItemProyecto { get; set; }
+    }
+
+    public class InformacionFinancieraRequest
+    {
+        public InformacionFinanciera ItemFinanciera { get; set; }
+    }
 }

@@ -55,6 +55,9 @@ namespace ApiRestAldeas.EntityFrame
 
         public string tipo_implementacion { get; set; }
 
+
+        public string telefono { get; set; }
+
         /// <summary>
         /// 
         /// </summary>

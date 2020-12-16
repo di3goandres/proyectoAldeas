@@ -1,0 +1,180 @@
+
+<mat-card>
+<mat-card-header>
+    <div mat-card-avatar class="example-header-image" style="background-image: url('assets/avatars/av-4.png')">
+    </div>
+    <mat-card-title class="main-green-text">
+        Actualizacion Proyecto
+    </mat-card-title>
+</mat-card-header>
+    <mat-card-content>
+        <form [formGroup]="firstFormGroup" *ngIf="infoProyecto!=null">
+
+            <div class="row">
+                <div class="col-3">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Estado del proyecto</mat-label>
+                        <mat-select formControlName="estado" [(ngModel)]="infoProyecto.status" required>
+                            <mat-option *ngFor="let estado of estados" [value]="estado.value">
+                                {{estado.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-3">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Nombre del Proyecto</mat-label>
+                        <input matInput placeholder="Nombre del Proyecto" formControlName="proyecto"
+                            [(ngModel)]="infoProyecto.nombre" required>
+                    </mat-form-field>
+                </div>
+                <div class="col-3">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Donante</mat-label>
+                        <input matInput formControlName="Donante" [(ngModel)]="infoProyecto.donante"
+                            placeholder="Donante" required>
+                    </mat-form-field>
+                </div>
+                <div class="col-3">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Tipo de Financiación</mat-label>
+                        <mat-select formControlName="financiacion" [(ngModel)]="infoProyecto.tipo_financiacion"
+                            required>
+                            <mat-option *ngFor="let estado of financiacion" [value]="estado.value">
+                                {{estado.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Requiere Liquidación</mat-label>
+                        <mat-select formControlName="requiere" [(ngModel)]="infoProyecto.requiereLiquidacionv" required>
+                            <mat-option *ngFor="let item of requiere" [value]="item.value">
+                                {{item.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-3">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Fecha de Inicio</mat-label>
+                        <input matInput formControlName="fechas" [matDatepicker]="picker"
+                            [(ngModel)]="infoProyecto.fecha_inicio" ng-keydown="$event.preventDefault();"
+                            (dateChange)="Cambio($event)">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker touchUi #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div class="col-3">
+
+                    <mat-form-field appearance="fill">
+                        <mat-label>Fecha de Finalizacion</mat-label>
+                        <input matInput formControlName="fechasFin" [matDatepicker]="pickerEnd"
+                            ng-keydown="$event.preventDefault();" (dateChange)="Cambio($event)"
+                            [min]="infoProyecto.fecha_inicio" [(ngModel)]="infoProyecto.fecha_finalizacion">
+                        <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
+                        <mat-datepicker touchUi #pickerEnd></mat-datepicker>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12  main-green-text"><label>Datos de Contacto del Donante</label></div>
+            </div>
+        
+            <div class="row">
+                <div class="col-3">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Nombre del Contacto</mat-label>
+                        <input matInput placeholder="Nombre Contacto" formControlName="NombreContacto"
+                            [(ngModel)]="infoProyecto.nombre_donante" required>
+                    </mat-form-field>
+                </div>
+                <div class="col-3">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Direccion</mat-label>
+                        <input matInput placeholder="Direccion" formControlName="Direccion"
+                            [(ngModel)]="infoProyecto.direccion" required>
+                    </mat-form-field>
+                </div>
+                <div class="col-3">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Email</mat-label>
+                        <input type="email" matInput formControlName="email" [(ngModel)]="infoProyecto.email"
+                            placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+                    </mat-form-field>
+                </div>
+                <div class="col-3">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Telefono</mat-label>
+                        <input type="text" matInput formControlName="telefono" [(ngModel)]="infoProyecto.telefono"
+                            placeholder="Telefono" required>
+                    </mat-form-field>
+                </div>
+        
+            </div>
+        
+            <div class="row">
+                <div class="col-12 main-green-text"><label>Implementación</label></div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Líder de Ejecución del Proyecto</mat-label>
+                        <input matInput placeholder="Lider Ejecucion" formControlName="LiderEjecucion"
+                            [(ngModel)]="infoProyecto.lider_ejecucion" required>
+                    </mat-form-field>
+                </div>
+                <div class="col-3">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Lider de la Coordinacion del Proyecto</mat-label>
+                        <input matInput placeholder="Lider de la Coordinacion" formControlName="LiderCoordinacion"
+                            [(ngModel)]="infoProyecto.lider_coordinacion" required>
+                    </mat-form-field>
+                </div>
+                <div class="col-3">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Comite Técnico del Proyecto</mat-label>
+                        <input matInput formControlName="ComiteTecnico" [(ngModel)]="infoProyecto.comite_tecnico"
+                            placeholder="Comite Tecnico del Proyecto" required>
+                    </mat-form-field>
+                </div>
+                <div class="col-3">
+        
+                    <mat-form-field appearance="fill">
+                        <mat-label>Tipo de Implementación</mat-label>
+                        <mat-select formControlName="tipoImplementacion"
+                            [(ngModel)]="infoProyecto.tipo_implementacion" required>
+                            <mat-option *ngFor="let item of tipoImplementacion" [value]="item.value">
+                                {{item.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+        
+            </div>
+            <mat-divider></mat-divider>
+        
+            </form>
+    </mat-card-content>
+    <mat-card-actions>
+        <div class="row">
+            <div class="col-6 centerlabel font-weight-bold">
+                <button mat-raised-button color="warn" ngbAutofocus (click)="close()">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </div>
+            <div class="col-6 centerlabel font-weight-bold">
+                <button mat-raised-button color="warn" [disabled]="this.firstFormGroup.invalid"
+                    (click)="onGuardar()">
+                    <mat-icon>cached</mat-icon>
+                </button>
+            </div>
+        </div>
+
+    </mat-card-actions>
+</mat-card>
+

@@ -54,6 +54,21 @@ namespace ApiRestAldeas.Controllers
             return _dataModelRepository.ActualizarEjecucion(request);
         }
 
+        [Authorize]
+        [HttpPost]
+        [Route("/api/aldeas/proyectos/itemproyecto/update/")]
+        public dynamic ActualizarItemProyecto([FromBody] ItemProyectoRequest request)
+        {
+            return _dataModelRepository.ActualizarItemProyecto(request);
+        }
+
+        [Authorize]
+        [HttpPost]
+        [Route("/api/aldeas/proyectos/iteminfofinanciera/update/")]
+        public dynamic ActualizarIteminformacionFinanciera([FromBody] InformacionFinancieraRequest request)
+        {
+            return _dataModelRepository.ActualizarItemInfoFinanciera(request);
+        }
 
     }
 }

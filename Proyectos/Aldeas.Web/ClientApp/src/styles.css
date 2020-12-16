@@ -214,3 +214,12 @@ mat-datepicker-toggle {
 .cdk-global-overlay-wrapper, .cdk-overlay-container {
   z-index: 99999 !important;
 }
+
+.example-header-image {
+  /* background-image: url('assets/avatars/av-1.png'); */
+  background-size: cover;
+}
+
+.mat-form-field {
+  width: 100%;
+}

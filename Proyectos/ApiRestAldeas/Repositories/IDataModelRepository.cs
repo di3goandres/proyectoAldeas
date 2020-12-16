@@ -96,13 +96,14 @@ namespace ApiRestAldeas.Repositories
         dynamic ConsultarCecosProyectosByID(long id);
 
 
-
+        dynamic ActualizarItemProyecto(ItemProyectoRequest proyectoRequest);
+        dynamic ActualizarItemInfoFinanciera(InformacionFinancieraRequest proyectoRequest);
         #endregion
 
 
         #region Proyectos
-       
-        
+
+
 
         dynamic ConsultarExcelProyectosByID(long id);
 

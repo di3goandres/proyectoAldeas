@@ -10,7 +10,7 @@ export interface UnicoProyecto {
     itemProyectados:   ItemProyectados;
 }
 
-export interface ItemFinanciera {
+export class ItemFinanciera {
     id:                 number;
     id_proyecto:        number;
     costoTotal:         number;
@@ -57,6 +57,7 @@ export interface ItemProyecto {
     tipo_financiacion:   string;
     nombre_donante:      string;
     direccion:           string;
+    telefono:            string;
     email:               string;
     fecha_inicio:        string;
     fecha_finalizacion:  string;
@@ -65,6 +66,8 @@ export interface ItemProyecto {
     tipo_implementacion: string;
     comite_tecnico:      string;
     requiereLiquidacion: boolean;
+    requiereLiquidacionv: string;
+
     archivo:             string;
     nombrearchivo:       string;
 }
@@ -107,4 +110,13 @@ export interface ItemsMunicipio {
     id_proyecto:     number;
     id_departamento: string;
     id_municipio:    string;
+}
+
+
+export class ItemProyectoRequest{
+    ItemProyecto: ItemProyecto
+}
+
+export class ItemFinancieraRequest{
+    ItemFinanciera: ItemFinanciera
 }

@@ -10,6 +10,7 @@ import { RegistroNoexitosoComponent } from '../../00-Comunes/registro-noexitoso/
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ActualizaritemproyectoComponent } from '../01-Actualizar/actualizaritemproyecto/actualizaritemproyecto.component';
 import { ActualizariteminfofinancieraComponent } from '../01-Actualizar/actualizariteminfofinanciera/actualizariteminfofinanciera.component';
+import { ActualizaritemparticipanteobservacionesComponent } from '../01-Actualizar/actualizaritemparticipanteobservaciones/actualizaritemparticipanteobservaciones.component';
 
 
 @Component({
@@ -144,7 +145,22 @@ export class DetalleproyectosComponent implements OnInit {
      
     });
   }
+  ActualizarParticipanteObservaciones(){
+    const modalRef = this.modalService.open(ActualizaritemparticipanteobservacionesComponent, { size: 'mg' });
+    modalRef.componentInstance.itemProyectados = this.itemProyectados
+    
+    modalRef.result.then((result) => {
+      if (result === 'OK') {
+        this.cargaInicial()
+       this.registroExitoso() 
+      }else if (result === 'NOK') {
+        this.registroNoExitoso("Ha ocurrido un error", "Intentelo mas tarde")
+      }
+    }, (reason) => {
 
+     
+    });
+  }
 
   ActualizarItemInfoFinanciera( ){
     const modalRef = this.modalService.open(ActualizariteminfofinancieraComponent, { size: 'xl' });

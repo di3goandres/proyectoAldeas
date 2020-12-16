@@ -69,7 +69,7 @@ namespace ApiRestAldeas.Models
             this.ListParticipantes = new List<DBParticipantes>();
         }
         public  long id { get; set; }
-        public long TotalFamilias { get; set; }
+        public int TotalFamilias { get; set; }
         public string Observaciones { get; set; }
         ///  Mujeres, Hombres, Otros, Adicionales
         /// </summary>
@@ -96,5 +96,11 @@ namespace ApiRestAldeas.Models
     public class FechasEntregasRequest
     {
         public FechasEntregas ItemsFechas { get; set; }
+    }
+
+    public class ProyectadosRequest
+    {
+        public ProyectadosResponse ItemProyectados { get; set; }
+
     }
 }

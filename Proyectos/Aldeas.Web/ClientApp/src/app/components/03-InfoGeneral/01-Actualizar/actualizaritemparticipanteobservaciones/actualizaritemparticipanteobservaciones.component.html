@@ -1,0 +1,59 @@
+<mat-card *ngIf="itemProyectadosUpdate!=null">
+    <mat-card-header>
+        <div mat-card-avatar class="example-header-image" style="background-image: url('assets/avatars/av-4.png')">
+        </div>
+        <mat-card-title class="main-green-text">
+            Actualizacion 
+        </mat-card-title>
+    </mat-card-header>
+    
+
+    <mat-card-content>
+        <form [formGroup]="firstFormGroup">
+        <div class="row">
+
+            <div class="col-12">
+                <mat-form-field appearance="fill">
+                    <mat-label>Total Familias</mat-label>
+                    <input matInput type="number" [(ngModel)]="itemProyectadosUpdate.totalFamilias"  
+                    formControlName="total" required
+                    (ngModelChange)="Cambio($event)">
+
+                </mat-form-field>
+            </div>
+            <div class="col-12">
+                <mat-form-field appearance="fill">
+                    <mat-label>Observaciones</mat-label>
+                    <!-- <input matInput [(ngModel)]="itemProyectadosUpdate.observaciones"   (change)="Cambio($event)">> -->
+
+
+                    <textarea matInput
+                    cdkTextareaAutosize
+                    formControlName="observaciones" 
+                    #autosize="cdkTextareaAutosize"
+                    cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="5"
+                    required
+                    [(ngModel)]="itemProyectadosUpdate.observaciones"   (ngModelChange)="Cambio($event)"
+                    ></textarea>
+                </mat-form-field>
+            </div>
+        </div>
+       </form>
+        <mat-card-actions>
+            <div class="row">
+                <div class="col-6 centerlabel font-weight-bold" style="text-align: center;">
+                    <button mat-raised-button color="warn" ngbAutofocus (click)="Close()">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </div>
+                <div class="col-6 centerlabel font-weight-bold" style="text-align: center;">
+                    <button mat-raised-button color="warn" [disabled]="(firstFormGroup.invalid)" (click)="onGuardar()">
+                        <mat-icon>cached</mat-icon>
+                    </button>
+                </div>
+            </div>
+
+        </mat-card-actions>
+    </mat-card-content>
+</mat-card>

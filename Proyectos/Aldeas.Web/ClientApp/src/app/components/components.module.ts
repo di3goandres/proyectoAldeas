@@ -56,6 +56,7 @@ import { ActualizaritemproyectoComponent } from './03-InfoGeneral/01-Actualizar/
 import { ActualizariteminfofinancieraComponent } from './03-InfoGeneral/01-Actualizar/actualizariteminfofinanciera/actualizariteminfofinanciera.component';
 import { CheckboxV2Component } from './00-Comunes/checkbox-v2/checkbox-v2.component';
 import { EditarfechaComponent } from './00-Comunes/editarfecha/editarfecha.component';
+import { ActualizaritemparticipanteobservacionesComponent } from './03-InfoGeneral/01-Actualizar/actualizaritemparticipanteobservaciones/actualizaritemparticipanteobservaciones.component';
 @NgModule({
   declarations: [
     LoginComponent,
@@ -89,7 +90,8 @@ import { EditarfechaComponent } from './00-Comunes/editarfecha/editarfecha.compo
     ActualizaritemproyectoComponent,
     ActualizariteminfofinancieraComponent,
     CheckboxV2Component,
-    EditarfechaComponent
+    EditarfechaComponent,
+    ActualizaritemparticipanteobservacionesComponent
    ],
   imports: [
 

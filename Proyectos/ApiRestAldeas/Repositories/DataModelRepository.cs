@@ -152,6 +152,11 @@ namespace ApiRestAldeas.Repositories
             return ProyectoOperations.ActualizarItemFechas(_factory, _connectionDB, proyectoRequest);
         }
 
+        public dynamic ActualizarItemParticipanteObservaciones(ProyectadosRequest proyectoRequest)
+        {
+            return ProyectoOperations.ActualizarItemParticipanteObservaciones(_factory, _connectionDB, proyectoRequest);
+        }
+
         #endregion
 
 
@@ -206,7 +211,9 @@ namespace ApiRestAldeas.Repositories
             return EjecucionFinancieraOperations.ActualizarEjecucion(_factory, _connectionDB, request);
         }
 
-     
+       
+
+
 
 
 

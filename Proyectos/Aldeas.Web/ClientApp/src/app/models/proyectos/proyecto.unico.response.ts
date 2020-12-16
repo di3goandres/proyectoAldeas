@@ -26,7 +26,7 @@ export class ItemFinanciera {
     lugar:              string;
 }
 
-export interface ItemProyectados {
+export class ItemProyectados {
     id:                number;
     totalFamilias:     number;
     observaciones:     string;
@@ -123,4 +123,12 @@ export class ItemFinancieraRequest{
 
 export class ItemsFechaRequest{
     ItemsFechas: ItemsFecha
+}
+
+export class ListParticipanteRequest{
+    listParticipantes: ListParticipante[];
+}
+
+export class ItemProyectadosRequest{
+    ItemProyectados: ItemProyectados;
 }

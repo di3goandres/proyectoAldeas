@@ -515,8 +515,7 @@ namespace ApiRestAldeas.Helper
         }
 
 
-        public static dynamic ActualizarItemFechas(IContextFactory factory, IOptions<ConnectionDB> connection,
-  FechasEntregasRequest proyectoRequest)
+        public static dynamic ActualizarItemFechas(IContextFactory factory, IOptions<ConnectionDB> connection,FechasEntregasRequest proyectoRequest)
         {
             long idProyecto = 0;
             using (Aldeas_Context db = factory.Create(connection))
@@ -533,6 +532,33 @@ namespace ApiRestAldeas.Helper
                     idProyecto = proyectoRequest.ItemsFechas.id;
                     registro.First().fecha =Utils.CambiarFecha( proyectoRequest.ItemsFechas.fecha);
                    
+                    db.SaveChanges();
+
+                }
+
+            }
+            return new { id = idProyecto, status = idProyecto == 0 ? "error" : "OK", code = idProyecto == 0 ? 300 : 200 };
+        }
+
+
+        public static dynamic ActualizarItemParticipanteObservaciones(IContextFactory factory, IOptions<ConnectionDB> connection,
+            ProyectadosRequest proyectoRequest)
+        {
+            long idProyecto = 0;
+            using (Aldeas_Context db = factory.Create(connection))
+            {
+
+
+
+                var registro = from dato in db.tbParticipantesProyectados
+                               where dato.id == proyectoRequest.ItemProyectados.id
+                               select dato;
+                if (registro.Any())
+                {
+
+                    idProyecto = proyectoRequest.ItemProyectados.id;
+                    registro.First().TotalFamilias = proyectoRequest.ItemProyectados.TotalFamilias;
+                    registro.First().Observaciones = proyectoRequest.ItemProyectados.Observaciones;
                     db.SaveChanges();
 
                 }

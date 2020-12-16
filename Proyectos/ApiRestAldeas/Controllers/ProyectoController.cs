@@ -78,5 +78,13 @@ namespace ApiRestAldeas.Controllers
             return _dataModelRepository.ActualizarItemFechas(request);
         }
 
+        [Authorize]
+        [HttpPost]
+        [Route("/api/aldeas/proyectos/itemobservaciones/update/")]
+        public dynamic Actualizarobs([FromBody] ProyectadosRequest request)
+        {
+            return _dataModelRepository.ActualizarItemParticipanteObservaciones(request);
+        }
+
     }
 }

@@ -391,14 +391,25 @@
           <div mat-card-avatar class="example-header-image"></div>
           <mat-card-title>Participantes Proyecto</mat-card-title>
           <mat-card-subtitle>Total Familias: {{itemProyectados.totalFamilias}}</mat-card-subtitle>
-
+          <mat-card-subtitle><p>
+            Observaciones {{itemProyectados.observaciones}}
+          </p></mat-card-subtitle>
         </mat-card-header>
 
         <mat-card-content>
-          <p>
-            Observaciones {{itemProyectados.observaciones}}
-          </p>
+         
         </mat-card-content>
+        <mat-card-actions>
+          <div class="row">
+
+
+            <div class="col-12" style="text-align: center;">
+                <button type="button" (click)="ActualizarParticipanteObservaciones()" mat-raised-button color="primary">
+                    <mat-icon>cached</mat-icon>
+                </button>
+            </div>
+        </div>
+        </mat-card-actions>
       </mat-card>
  
 

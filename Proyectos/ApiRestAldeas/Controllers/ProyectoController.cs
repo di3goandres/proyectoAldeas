@@ -70,5 +70,13 @@ namespace ApiRestAldeas.Controllers
             return _dataModelRepository.ActualizarItemInfoFinanciera(request);
         }
 
+        [Authorize]
+        [HttpPost]
+        [Route("/api/aldeas/proyectos/itemfecha/update/")]
+        public dynamic ActualizarFecha([FromBody] FechasEntregasRequest request)
+        {
+            return _dataModelRepository.ActualizarItemFechas(request);
+        }
+
     }
 }

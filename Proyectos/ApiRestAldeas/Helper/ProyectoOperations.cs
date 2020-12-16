@@ -514,6 +514,33 @@ namespace ApiRestAldeas.Helper
             return new { id = idProyecto, status = idProyecto == 0 ? "error" : "OK", code = idProyecto == 0 ? 300 : 200 };
         }
 
+
+        public static dynamic ActualizarItemFechas(IContextFactory factory, IOptions<ConnectionDB> connection,
+  FechasEntregasRequest proyectoRequest)
+        {
+            long idProyecto = 0;
+            using (Aldeas_Context db = factory.Create(connection))
+            {
+
+
+
+                var registro = from dato in db.tbFechaEntregas
+                               where dato.id == proyectoRequest.ItemsFechas.id
+                               select dato;
+                if (registro.Any())
+                {
+
+                    idProyecto = proyectoRequest.ItemsFechas.id;
+                    registro.First().fecha =Utils.CambiarFecha( proyectoRequest.ItemsFechas.fecha);
+                   
+                    db.SaveChanges();
+
+                }
+
+            }
+            return new { id = idProyecto, status = idProyecto == 0 ? "error" : "OK", code = idProyecto == 0 ? 300 : 200 };
+        }
+
         public static dynamic GuardarArchivo(IContextFactory factory, IOptions<ConnectionDB> connection,
           long idProyecto, byte[] file, string tipo)
         {

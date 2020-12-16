@@ -55,6 +55,7 @@ import { ChecklistComponent } from './00-Comunes/checklist/checklist.component';
 import { ActualizaritemproyectoComponent } from './03-InfoGeneral/01-Actualizar/actualizaritemproyecto/actualizaritemproyecto.component';
 import { ActualizariteminfofinancieraComponent } from './03-InfoGeneral/01-Actualizar/actualizariteminfofinanciera/actualizariteminfofinanciera.component';
 import { CheckboxV2Component } from './00-Comunes/checkbox-v2/checkbox-v2.component';
+import { EditarfechaComponent } from './00-Comunes/editarfecha/editarfecha.component';
 @NgModule({
   declarations: [
     LoginComponent,
@@ -87,7 +88,8 @@ import { CheckboxV2Component } from './00-Comunes/checkbox-v2/checkbox-v2.compon
     ChecklistComponent,
     ActualizaritemproyectoComponent,
     ActualizariteminfofinancieraComponent,
-    CheckboxV2Component
+    CheckboxV2Component,
+    EditarfechaComponent
    ],
   imports: [
 

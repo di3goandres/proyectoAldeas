@@ -92,4 +92,9 @@ namespace ApiRestAldeas.Models
     {
         public InformacionFinanciera ItemFinanciera { get; set; }
     }
+
+    public class FechasEntregasRequest
+    {
+        public FechasEntregas ItemsFechas { get; set; }
+    }
 }

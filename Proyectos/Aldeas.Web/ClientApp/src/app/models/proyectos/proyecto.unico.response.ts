@@ -98,10 +98,10 @@ export interface ItemsEjecucion {
     diciembre:    number;
 }
 
-export interface ItemsFecha {
+export class ItemsFecha {
     id:          number;
     id_proyecto: number;
-    fecha:       string;
+    fecha:       any;
     tipo_fecha:  string;
 }
 
@@ -119,4 +119,8 @@ export class ItemProyectoRequest{
 
 export class ItemFinancieraRequest{
     ItemFinanciera: ItemFinanciera
+}
+
+export class ItemsFechaRequest{
+    ItemsFechas: ItemsFecha
 }

@@ -98,6 +98,7 @@ namespace ApiRestAldeas.Repositories
 
         dynamic ActualizarItemProyecto(ItemProyectoRequest proyectoRequest);
         dynamic ActualizarItemInfoFinanciera(InformacionFinancieraRequest proyectoRequest);
+        dynamic ActualizarItemFechas(FechasEntregasRequest proyectoRequest);
         #endregion
 
 

@@ -1,0 +1,50 @@
+<mat-card *ngIf="Fecha!=null">
+    <mat-card-header>
+        <mat-card-title>Actualización Fecha - Tipo {{Fecha.tipo_fecha |uppercase}}</mat-card-title>
+        <mat-card-subtitle></mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+        <div class="row">
+
+            <div class="col-6">
+                <mat-form-field appearance="fill">
+                    <mat-label>Fecha Actual</mat-label>
+                    <input matInput disabled [value]="Fecha.fecha|date:['MM/dd/yyyy']" ng-keydown="$event.preventDefault();">
+
+
+
+                </mat-form-field>
+            </div>
+            <div class="col-6">
+                <mat-form-field appearance="fill">
+                    <mat-label>Fecha Nueva</mat-label>
+                    <input matInput [matDatepicker]="pickerDesembolso" [(ngModel)]="fechaNueva"
+                        ng-keydown="$event.preventDefault();"
+                        (dateChange)="Cambiofecha($event)">
+                    <mat-datepicker-toggle matSuffix [for]="pickerDesembolso">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker touchUi #pickerDesembolso></mat-datepicker>
+                    <!-- <input type="button" value="Agregar Fecha"/> -->
+
+                </mat-form-field>
+            </div>
+        </div>
+        <mat-card-actions>
+            <div class="row">
+                <div class="col-6 centerlabel font-weight-bold" style="text-align: center;">
+                    <button mat-raised-button color="warn" ngbAutofocus (click)="Cerrar()">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </div>
+                <div class="col-6 centerlabel font-weight-bold" style="text-align: center;">
+                    <button mat-raised-button color="warn"  [disabled]="!permitirGuardar"
+                        (click)="onGuardar()">
+                        <mat-icon>cached</mat-icon>
+                    </button>
+                </div>
+            </div>
+
+        </mat-card-actions>
+    </mat-card-content>
+</mat-card>

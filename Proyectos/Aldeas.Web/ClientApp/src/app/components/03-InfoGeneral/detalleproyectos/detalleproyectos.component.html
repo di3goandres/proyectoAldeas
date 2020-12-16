@@ -336,21 +336,49 @@
     </mat-tab>
     <mat-tab label="Fechas">
       <mat-tab-group (selectedTabChange)="cambioTab($event)">
-        <mat-tab label="COMITES"> COMITES
+        <mat-tab label="COMITES"> 
+          <div class="row">
 
-          <app-listafechas *ngIf="fechas.length>0" [fechas]="fechas" filtro="COMITES"></app-listafechas>
+
+            <div class="col-12" style="text-align: center;padding-left:30px" class="main-green-text">
+              COMITES
+            </div>
+        </div>
+          <app-listafechas *ngIf="fechas.length>0" [fechas]="fechas" filtro="COMITES"  (valid)='onNotificar($event)'></app-listafechas>
         </mat-tab>
-        <mat-tab label="INFORMES"> INFORMES
+        <mat-tab label="INFORMES"> 
+          <div class="row">
 
-          <app-listafechas *ngIf="fechas.length>0" [fechas]="fechas" filtro="INFORMES"></app-listafechas>
+
+            <div class="col-12" style="text-align: center;padding-left:30px" class="main-green-text">
+              INFORMES
+            </div>
+        </div>
+
+          <app-listafechas *ngIf="fechas.length>0" [fechas]="fechas" filtro="INFORMES"  (valid)='onNotificar($event)'></app-listafechas>
         </mat-tab>
-        <mat-tab label="FECHAS DESEMBOLSO"> FECHAS DESEMBOLSO
+        <mat-tab  label="FECHAS DESEMBOLSO"> 
+          
+          <div class="row">
 
-          <app-listafechas *ngIf="fechas.length>0" [fechas]="fechas" filtro="FECHAS DESEMBOLSO"></app-listafechas>
+
+            <div class="col-12" style="text-align: center;padding-left:30px" class="main-green-text">
+              FECHAS DESEMBOLSO
+            </div>
+        </div>
+
+          <app-listafechas *ngIf="fechas.length>0" [fechas]="fechas" filtro="FECHAS DESEMBOLSO"  (valid)='onNotificar($event)'></app-listafechas>
         </mat-tab>
-        <mat-tab label="VISITAS"> FECHAS DESEMBOLSO
+        <mat-tab label="VISITAS"> 
+          <div class="row">
 
-          <app-listafechas *ngIf="fechas.length>0" [fechas]="fechas" filtro="VISITAS"></app-listafechas>
+
+            <div class="col-12" style="text-align: center;padding-left:30px" class="main-green-text">
+              VISITAS
+            </div>
+        </div>
+
+          <app-listafechas *ngIf="fechas.length>0" [fechas]="fechas" filtro="VISITAS" (valid)='onNotificar($event)'></app-listafechas>
         </mat-tab>
       </mat-tab-group>
     </mat-tab>

@@ -435,7 +435,7 @@ namespace ApiRestAldeas.Helper
 
                 i = 0;
                 row = i + 2;
-                worksheetRParticipantes.Cells[row, 0]  = new ExcelLibrary.SpreadSheet.Cell("#");
+                worksheetRParticipantes.Cells[row, 0]  = new ExcelLibrary.SpreadSheet.Cell("ID_REGISTRO_PARTICIPANTE");
                 worksheetRParticipantes.Cells[row, 1]  = new ExcelLibrary.SpreadSheet.Cell("NOMBRES");
                 worksheetRParticipantes.Cells[row, 2]  = new ExcelLibrary.SpreadSheet.Cell("APELLIDOS");
                 worksheetRParticipantes.Cells[row, 3]  = new ExcelLibrary.SpreadSheet.Cell("FECHA NACIMIENTO");
@@ -468,7 +468,7 @@ namespace ApiRestAldeas.Helper
                 {
                     countFechas++;
                     row = i + 3;
-                    worksheetRParticipantes.Cells[row, 0]  = new ExcelLibrary.SpreadSheet.Cell(countFechas, ExcelLibrary.SpreadSheet.CellFormat.General);
+                    worksheetRParticipantes.Cells[row, 0]  = new ExcelLibrary.SpreadSheet.Cell(DTA.id.ToString(), ExcelLibrary.SpreadSheet.CellFormat.General);
                     worksheetRParticipantes.Cells[row, 1]  = new ExcelLibrary.SpreadSheet.Cell(DTA.Nombres, ExcelLibrary.SpreadSheet.CellFormat.General);
                     worksheetRParticipantes.Cells[row, 2]  = new ExcelLibrary.SpreadSheet.Cell(DTA.Apellidos, ExcelLibrary.SpreadSheet.CellFormat.General);
                     worksheetRParticipantes.Cells[row, 3]  = new ExcelLibrary.SpreadSheet.Cell(DTA.FechaNacimiento, ExcelLibrary.SpreadSheet.CellFormat.Date);
@@ -509,6 +509,66 @@ namespace ApiRestAldeas.Helper
 
                 #endregion
 
+
+                #region integrantes familia
+
+                Worksheet familia = new Worksheet("Integrantes Familia");
+
+
+                for (int j = 0; j < 100; j++)
+                    familia.Cells[j, 0] = new ExcelLibrary.SpreadSheet.Cell("");
+
+
+                familia.Cells[0, 0] = new ExcelLibrary.SpreadSheet.Cell("[Informe general Proyecto]");
+                familia.Cells[0, 4] = new ExcelLibrary.SpreadSheet.Cell(string.Format("INFORME REALIZADO EL : [{0}]", DateTime.Now), ExcelLibrary.SpreadSheet.CellFormat.Date);
+                familia.Cells[0, 6] = new ExcelLibrary.SpreadSheet.Cell("INTEGRANTES FAMILIA");
+              
+                i = 0;
+                row = i + 2;
+                int celda = 0;
+
+                string[] camposPartiP3 = { "ID_INTEGRANTE", "ID_PARTICIPANTE","TIPO", "RANGO 0 A 5 AÑOS",
+                                           "RANGO 6 A 12 AÑOS", "RANGO 13 A 17 AÑOS", "RANGO 18 A 24 AÑOS",
+                                           "RANGO 25 A 56 AÑOS", "MAYORES A 60 AÑOS", "TOTAL", "TOTAL DESAGREGADO", "PORCENTAJE"
+                        };
+
+                foreach (var item in camposPartiP3)
+                {
+                    AgregarCelda(ref familia, row, ref celda, item);
+
+                }
+                List<DBIntegrantes> data = RegistroParticipantesOperations.ExportParticipantesIntegrantes(factory, connection, id);
+                row++;
+                int CeldaDatos = 0;
+                foreach (var item in data)
+                {
+                    AgregarValorCelda(ref familia, row, ref CeldaDatos, item.id.ToString(), false);
+                    AgregarValorCelda(ref familia, row, ref CeldaDatos, item.id_participantes.ToString(), false);
+                    AgregarValorCelda(ref familia, row, ref CeldaDatos, item.Nombre.ToString(), false);
+                    AgregarValorCelda(ref familia, row, ref CeldaDatos, item.Rango_0_5.ToString(), false);
+                    AgregarValorCelda(ref familia, row, ref CeldaDatos, item.Rango_6_12.ToString(), false);
+                    AgregarValorCelda(ref familia, row, ref CeldaDatos, item.Rango_13_17.ToString(), false);
+                    AgregarValorCelda(ref familia, row, ref CeldaDatos, item.Rango_18_24.ToString(), false);
+                    AgregarValorCelda(ref familia, row, ref CeldaDatos, item.Rango_25_56.ToString(), false);
+                    AgregarValorCelda(ref familia, row, ref CeldaDatos, item.Mayores_60.ToString(), false);
+                    AgregarValorCelda(ref familia, row, ref CeldaDatos, item.Total.ToString(), false);
+                    AgregarValorCelda(ref familia, row, ref CeldaDatos, item.TotalDesagregado.ToString(), false);
+                    AgregarValorCelda(ref familia, row, ref CeldaDatos, item.Porcentaje.ToString(), false);
+
+
+
+
+                    row++;
+                    CeldaDatos = 0;
+
+                }
+
+
+                familia.Cells.ColumnWidth[0, ushort.Parse(celda.ToString())] = 6000;
+
+
+                workbook.Worksheets.Add(familia);
+                #endregion
 
 
                 if (!Directory.Exists("Informes/"))

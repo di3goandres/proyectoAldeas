@@ -361,5 +361,29 @@ namespace ApiRestAldeas.Helper
 
             return retorno;
         }
+
+        public static dynamic ExportParticipantesIntegrantes(IContextFactory factory, IOptions<ConnectionDB> connection, long IdProyecto)
+        {
+            List<DBIntegrantes>   retorno = new List<DBIntegrantes>()  ;
+
+
+            using (Aldeas_Context db = factory.Create(connection))
+            {
+
+       
+                var integrantes = from dato in db.tbIntegrantesFamilia
+                                    join rp in db.tbRegistroParticipantes on dato.id_participantes equals rp.id
+                                    where rp.idProyecto == IdProyecto
+                                    select dato;
+
+                if (integrantes.Any())
+                {
+                    retorno = integrantes.ToList();
+                }
+                
+            }
+
+            return retorno;
+        }
     }
 }

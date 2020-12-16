@@ -350,8 +350,8 @@ namespace ApiRestAldeas.Helper
                     countFechas++;
                     row = i + 3;
                     worksheetMunicipios.Cells[row, 0] = new ExcelLibrary.SpreadSheet.Cell(countFechas, ExcelLibrary.SpreadSheet.CellFormat.General);
-                    worksheetMunicipios.Cells[row, 1] = new ExcelLibrary.SpreadSheet.Cell(DTA.id_departamento, ExcelLibrary.SpreadSheet.CellFormat.General);
-                    worksheetMunicipios.Cells[row, 2] = new ExcelLibrary.SpreadSheet.Cell(DTA.id_municipio, ExcelLibrary.SpreadSheet.CellFormat.General);
+                    worksheetMunicipios.Cells[row, 1] = new ExcelLibrary.SpreadSheet.Cell(DTA.departamento, ExcelLibrary.SpreadSheet.CellFormat.General);
+                    worksheetMunicipios.Cells[row, 2] = new ExcelLibrary.SpreadSheet.Cell(DTA.municipio, ExcelLibrary.SpreadSheet.CellFormat.General);
                     i++;
 
 
@@ -1124,8 +1124,8 @@ namespace ApiRestAldeas.Helper
                     AgregarValorCelda(ref worksheetP6, row, ref CeldaDatos, item.id.ToString(), false);
 
                     AgregarValorCelda(ref worksheetP6, row, ref CeldaDatos, item.id_proyecto.ToString(), false);
-                    AgregarValorCelda(ref worksheetP6, row, ref CeldaDatos, item.id_departamento.ToString(), false);
-                    AgregarValorCelda(ref worksheetP6, row, ref CeldaDatos, item.id_municipio.ToString(), false);
+                    AgregarValorCelda(ref worksheetP6, row, ref CeldaDatos, item.departamento.ToString(), false);
+                    AgregarValorCelda(ref worksheetP6, row, ref CeldaDatos, item.municipio.ToString(), false);
                     row++;
                     CeldaDatos = 0;
 

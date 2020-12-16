@@ -105,11 +105,13 @@ export class ItemsFecha {
     tipo_fecha:  string;
 }
 
-export interface ItemsMunicipio {
+export class ItemsMunicipio {
     id:              number;
     id_proyecto:     number;
-    id_departamento: string;
-    id_municipio:    string;
+    departamento: string;
+    municipio:    string;
+    id_departamento: number;
+    id_municipio:    number;
 }
 
 
@@ -125,10 +127,12 @@ export class ItemsFechaRequest{
     ItemsFechas: ItemsFecha
 }
 
-export class ListParticipanteRequest{
-    listParticipantes: ListParticipante[];
-}
+
 
 export class ItemProyectadosRequest{
     ItemProyectados: ItemProyectados;
+}
+
+export class ItemMunicipioRequest{
+    itemsMunicipios:   ItemsMunicipio;
 }

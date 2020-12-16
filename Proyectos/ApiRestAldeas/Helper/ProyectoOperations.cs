@@ -128,8 +128,10 @@ namespace ApiRestAldeas.Helper
 
                                             id = munipro.id,
                                             id_proyecto = munipro.id_proyecto,
-                                            id_departamento = depar.departamento,
-                                            id_municipio = muni.municipio
+                                            id_departamento = depar.id_departamento,
+                                            departamento = depar.departamento,
+                                            id_municipio = muni.id,
+                                            municipio = muni.municipio
 
                                      };
 
@@ -563,6 +565,67 @@ namespace ApiRestAldeas.Helper
 
                 }
 
+            }
+            return new { id = idProyecto, status = idProyecto == 0 ? "error" : "OK", code = idProyecto == 0 ? 300 : 200 };
+        }
+
+
+        public static dynamic ActualizarItemParticipanteLIST(IContextFactory factory, IOptions<ConnectionDB> connection,
+           ProyectadosRequest proyectoRequest)
+        {
+            long idProyecto = 0;
+            using (Aldeas_Context db = factory.Create(connection))
+            {
+
+
+
+
+                foreach(var info in proyectoRequest.ItemProyectados.ListParticipantes)
+                {
+                    var registro = from dato in db.tbParticipantes
+                                   where dato.id == info.id
+                                   select dato;
+                    if (registro.Any())
+                    {
+
+                        idProyecto = info.id;
+                        registro.First().Rango_0_5 = info.Rango_0_5;
+                        registro.First().Rango_6_12 = info.Rango_6_12;                 
+                        registro.First().Rango_13_17 = info.Rango_13_17;
+                        registro.First().Rango_18_24 = info.Rango_18_24;
+                        registro.First().Rango_25_56 = info.Rango_25_56;
+                        registro.First().Mayores_60 = info.Mayores_60;
+                        registro.First().Total = info.Total;
+                        registro.First().TotalDesagregado = info.TotalDesagregado;
+                        db.SaveChanges();
+
+                    }
+                }
+               
+
+            }
+            return new { id = idProyecto, status = idProyecto == 0 ? "error" : "OK", code = idProyecto == 0 ? 300 : 200 };
+        }
+
+
+        public static dynamic ActualizarItemMunicipio(IContextFactory factory, IOptions<ConnectionDB> connection,
+         MunicipioRequest proyectoRequest)
+        {
+            long idProyecto = 0;
+            using (Aldeas_Context db = factory.Create(connection))
+            {
+                    var registro = from dato in db.tbMunicipioProyectos
+                                   where dato.id == proyectoRequest.ItemsMunicipios.id
+                                   select dato;
+                    if (registro.Any())
+                    {
+                       idProyecto = proyectoRequest.ItemsMunicipios.id;
+                        registro.First().id_departamento = proyectoRequest.ItemsMunicipios.id_departamento;
+                        registro.First().id_municipio = proyectoRequest.ItemsMunicipios.id_municipio;
+                        db.SaveChanges();
+
+                    }
+                
             }
             return new { id = idProyecto, status = idProyecto == 0 ? "error" : "OK", code = idProyecto == 0 ? 300 : 200 };
         }

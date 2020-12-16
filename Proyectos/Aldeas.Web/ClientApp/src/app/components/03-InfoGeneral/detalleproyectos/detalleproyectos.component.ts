@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { ProyectoService } from 'src/app/services/proyectos/proyecto.service';
-import { ItemProyectados, ItemFinanciera, ItemProyecto, ItemsEjecucion, ItemsFecha, ListParticipante, ItemsCentroCosto, ItemsMunicipio } from '../../../models/proyectos/proyecto.unico.response';
+import { ItemProyectados, ItemFinanciera, ItemProyecto, ItemsEjecucion, ItemsFecha, ListParticipante, ItemsCentroCosto, ItemsMunicipio, ItemProyectadosRequest } from '../../../models/proyectos/proyecto.unico.response';
 import { EjecucionFinancieraRequest } from '../../../models/proyectos/ejecucion.request';
 import { RegistroExitosoComponent } from '../../00-Comunes/registro-exitoso/registro-exitoso.component';
 import { RegistroNoexitosoComponent } from '../../00-Comunes/registro-noexitoso/registro-noexitoso.component';
@@ -123,6 +123,24 @@ export class DetalleproyectosComponent implements OnInit {
 
     this.service.ActualizarEjecucion(this.ejecucionUpdate).subscribe(
       OK => {  this.registroExitoso()  },
+      ERROR => { 
+        this.registroNoExitoso("Ha ocurrido un error", "Intentelo mas tarde")
+        
+        console.log(ERROR) },
+    )
+  }
+
+  itemspartcipantes = new ItemProyectadosRequest();
+  ActualizarListaparticipantes() {
+
+    this.itemspartcipantes.ItemProyectados = new ItemProyectados();
+    this.itemspartcipantes.ItemProyectados.listParticipantes = [];
+    this.itemspartcipantes.ItemProyectados.listParticipantes.push(...this.participantes);
+
+    this.service.ActualizarobserListParticipantes(this.itemspartcipantes).subscribe(
+      OK => {  
+        this.registroExitoso() 
+       },
       ERROR => { 
         this.registroNoExitoso("Ha ocurrido un error", "Intentelo mas tarde")
         

@@ -1,0 +1,62 @@
+<mat-card *ngIf="itemsMunicipio!=null">
+    <mat-card-header>
+        <div mat-card-avatar class="example-header-image" style="background-image: url('assets/avatars/av-4.png')">
+        </div>
+        <mat-card-title class="main-green-text">
+            Actualización
+        </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+        <form [formGroup]="firstFormGroup">
+            <div class="row">
+                <div class="col-6">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Departamentos</mat-label>
+    
+                        <mat-select (selectionChange)="cambioDepartamento($event.value)" formControlName="departamento"
+                            [(ngModel)]="itemsMunicipio.id_departamento" [(value)]="itemsMunicipio.id_departamento">
+                            <mat-option *ngFor="let departamento of Departamentos" [value]="departamento.codigo">
+                                {{departamento.nombre}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-6">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Municipio</mat-label>
+    
+                        <mat-select [(ngModel)]="codigoMunicipio" formControlName="municipio" 
+                        (selectionChange)="cambioMunicipio($event.value)" 
+                        required>
+    
+                            <mat-option *ngFor="let municipio of MunicipioSeleccionado" [value]="municipio.codigo" required>
+                                {{municipio.nombre}}
+    
+                            </mat-option>
+                        </mat-select>
+    
+                    </mat-form-field>
+                </div>
+    
+            </div>
+        </form>
+        
+        <mat-card-actions>
+            <div class="row">
+                <div class="col-6 centerlabel font-weight-bold" style="text-align: center;">
+                    <button mat-raised-button color="warn" ngbAutofocus (click)="Cerrar()">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </div>
+                <div class="col-6 centerlabel font-weight-bold" style="text-align: center;">
+                    <button mat-raised-button color="warn" (click)="onGuardar()" [disabled]="firstFormGroup.invalid">
+                        <mat-icon>cached</mat-icon>
+                    </button>
+                </div>
+            </div>
+
+        </mat-card-actions>
+    </mat-card-content>
+
+</mat-card>

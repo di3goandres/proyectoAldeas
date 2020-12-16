@@ -57,9 +57,13 @@ namespace ApiRestAldeas.Models
 
         public long id_proyecto { get; set; }
 
-        public string id_departamento { get; set; }
+        public int  id_departamento { get; set; }
 
-        public string id_municipio { get; set; }
+        public int  id_municipio { get; set; }
+
+        public string departamento { get; set; }
+
+        public string municipio { get; set; }
     }
 
     public class ProyectadosResponse
@@ -102,5 +106,10 @@ namespace ApiRestAldeas.Models
     {
         public ProyectadosResponse ItemProyectados { get; set; }
 
+    }
+
+    public class MunicipioRequest
+    {
+        public ProyectoMunicipioResponse ItemsMunicipios { get; set; }
     }
 }

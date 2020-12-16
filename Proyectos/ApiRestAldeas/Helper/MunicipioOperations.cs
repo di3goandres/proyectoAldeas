@@ -68,8 +68,8 @@ namespace ApiRestAldeas.Helper
 
                                          id = munipro.id,
                                          id_proyecto = munipro.id_proyecto,
-                                         id_departamento = depar.departamento,
-                                         id_municipio = muni.municipio
+                                         departamento = depar.departamento,
+                                         municipio = muni.municipio
 
                                      };
 

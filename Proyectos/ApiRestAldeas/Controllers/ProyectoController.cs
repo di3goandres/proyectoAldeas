@@ -86,5 +86,21 @@ namespace ApiRestAldeas.Controllers
             return _dataModelRepository.ActualizarItemParticipanteObservaciones(request);
         }
 
+        [Authorize]
+        [HttpPost]
+        [Route("/api/aldeas/proyectos/listparticipante/update/")]
+        public dynamic ActualizarListparticpante([FromBody] ProyectadosRequest request)
+        {
+            return _dataModelRepository.ActualizarItemParticipanteObservaciones(request);
+        }
+
+        [Authorize]
+        [HttpPost]
+        [Route("/api/aldeas/proyectos/municipio/update/")]
+        public dynamic ActualizarMunicioio([FromBody] MunicipioRequest request)
+        {
+            return _dataModelRepository.ActualizarItemMunicipio(request);
+        }
+
     }
 }

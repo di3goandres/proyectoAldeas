@@ -11,6 +11,7 @@ import { environment } from 'src/environments/environment';
 import { Colaborador } from '../models/colaborador';
 import { RegistroParticipante } from '../models/DatosPartipante';
 import { ProyectoResponse } from '../models/ProyectoResponse';
+import { Usuarios } from '../models/usuarios/Usuarios';
 
 
 @Injectable({
@@ -251,4 +252,9 @@ export class UserService {
   getUrl() {
     return environment.ApiUrl;
   }
+
+  guardarUsuario(data: Usuarios) {
+    return this.ejecutarQueryPostNuevo<Respuesta>('/api/user/agregaractualizar/', data);
+  }
+
 }

@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ItemsCentroCosto } from '../../../models/proyectos/proyecto.unico.response';
 import { OnlycecoeditComponent } from '../onlycecoedit/onlycecoedit.component';
+import { ProyectoService } from '../../../services/proyectos/proyecto.service';
 
 @Component({
   selector: 'app-cecosedit',
@@ -9,7 +10,7 @@ import { OnlycecoeditComponent } from '../onlycecoedit/onlycecoedit.component';
   styleUrls: ['./cecosedit.component.css']
 })
 export class CecoseditComponent implements OnInit {
-  displayedColumns: string[] = ['position',  'Nombre', 'Actualizar'];
+  displayedColumns: string[] = ['position',  'Nombre'];
   @Input() dataSource: ItemsCentroCosto[]=[];
   @Output() valid = new EventEmitter<boolean>();
 
@@ -17,9 +18,17 @@ export class CecoseditComponent implements OnInit {
   constructor(
     private modalService: NgbModal,
 
+    public service: ProyectoService
+
   ) { }
 
   ngOnInit(): void {
+
+    let value = this.service.permitirEditar();
+
+    if (value){
+      this.displayedColumns.push( 'Actualizar')
+    }
   
   }
 

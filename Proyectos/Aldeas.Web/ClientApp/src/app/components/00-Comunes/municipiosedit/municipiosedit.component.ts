@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ItemsMunicipio } from '../../../models/proyectos/proyecto.unico.response';
 import { OnlymunicipioeditComponent } from '../onlymunicipioedit/onlymunicipioedit.component';
+import { ProyectoService } from '../../../services/proyectos/proyecto.service';
 
 @Component({
   selector: 'app-municipiosedit',
@@ -9,15 +10,21 @@ import { OnlymunicipioeditComponent } from '../onlymunicipioedit/onlymunicipioed
   styleUrls: ['./municipiosedit.component.css']
 })
 export class MunicipioseditComponent implements OnInit {
-  displayedColumns: string[] = ['position',  'Departamento', 'Municipio', 'Actualizar'];
+  displayedColumns: string[] = ['position',  'Departamento', 'Municipio'];
   @Input() dataSource:  ItemsMunicipio[]=[];
   @Output() valid = new EventEmitter<boolean>();
 
   constructor(
     private modalService: NgbModal,
+    public service: ProyectoService
   ) { }
 
   ngOnInit(): void {
+    let value = this.service.permitirEditar();
+
+    if (value){
+      this.displayedColumns.push( 'Actualizar')
+    }
   }
 
   AbrirEditar(element: ItemsMunicipio ) {

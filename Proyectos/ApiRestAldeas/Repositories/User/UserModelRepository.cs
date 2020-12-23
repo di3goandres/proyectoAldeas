@@ -1,4 +1,5 @@
 ﻿using System;
+using ApiRestAldeas.EntityFrame;
 using ApiRestAldeas.Factory;
 using ApiRestAldeas.Helper;
 using Microsoft.Extensions.Options;
@@ -19,6 +20,10 @@ namespace ApiRestAldeas.Repositories.User
             _factory = factory;
         }
 
+        public dynamic Agregar(Usuarios user)
+        {
+            return UserOperations.AgregarActualizarUsuario(_factory, _connectionDB, user);
+        }
 
         public dynamic EsAdministrador(string user)
         {

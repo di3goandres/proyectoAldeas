@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
+using ApiRestAldeas.EntityFrame;
 using ApiRestAldeas.Models;
 using ApiRestAldeas.Repositories;
+using ApiRestAldeas.Repositories.User;
 using ApiRestAldeas.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -14,14 +16,18 @@ namespace ApiRestAldeas.Controllers
     {
         #region propiedades
         private IUserService _userService;
-       
 
-       
+        private readonly IUserModelRepository _UserModel;
+
+
+
+
         #endregion
 
-        public UsersController(IUserService userService)
+        public UsersController(IUserService userService, IUserModelRepository UserModel)
         {
             _userService = userService;
+            _UserModel = UserModel;
         }
 
         [HttpPost]
@@ -36,20 +42,23 @@ namespace ApiRestAldeas.Controllers
             return Ok(response);
         }
 
-        //[Authorize]
-        //[HttpGet]
-        //public IActionResult GetAll()
-        //{
-        //    var users = _userService.GetAll();
-        //    return Ok(users);
-        //}
-        //[Authorize]
-        //[HttpGet]
-        //public async Task<IActionResult> GetAll()
-        //{
-        //    var users = await _userService.GetAll();
-        //    return Ok(users);
-        //}
+        [Authorize]
+        [HttpPost]
+        [Route("/api/user/agregaractualizar/")]
+        public dynamic AgregarUsuario(Usuarios usuario)
+        {
+            var response = _userService.Existe(usuario);
+            if (response)
+            {
+                return _UserModel.Agregar(usuario);
+
+            }
+            else
+            {
+                return ( new { id = 0, status = "ERROR", code = 300, message = "NO EXISTE" });
+
+            }
+        }
 
     }
 }

@@ -32,7 +32,12 @@
 
     <button mat-menu-item [routerLink]="['/AdminUsuarios']" *ngIf="(userType =='ADMINISTRADOR')">
       <mat-icon>admin_panel_settings</mat-icon>
-      <span>Registro Usuarios</span>
+      <span>Lista Usuarios</span>
+    </button>
+
+    <button mat-menu-item [routerLink]="['/RegistroNuevoUsuario']" *ngIf="(userType =='ADMINISTRADOR')">
+      <mat-icon>admin_panel_settings</mat-icon>
+      <span>Nuevo Usuario</span>
     </button>
 
   

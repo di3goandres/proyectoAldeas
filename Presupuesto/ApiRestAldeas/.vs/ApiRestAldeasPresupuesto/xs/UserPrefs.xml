@@ -1,34 +1,31 @@
 ﻿<Properties StartupConfiguration="{20022DE9-45FB-4E8D-83F1-20270DE6A102}|ApiRestAldeas">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Services/UserService.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Controllers/UsersController.cs">
     <Files>
       <File FileName="Repositories/IDataModelPresupuesto.cs" Line="24" Column="38" />
       <File FileName="Controllers/InformesController.cs" />
       <File FileName="Controllers/PresupuestoAnioController.cs" />
       <File FileName="Repositories/DataModelPresupuesto.cs" />
       <File FileName="Helper/PresupuestoAnioOperations.cs" />
-      <File FileName="Program.cs" Line="1" Column="1" />
-      <File FileName="Startup.cs" Line="79" Column="12" />
+      <File FileName="Program.cs" />
+      <File FileName="Startup.cs" />
       <File FileName="Helper/PresupuestoOperations.cs" />
-      <File FileName="Helper/CategoriaOperations.cs" Line="102" Column="68" />
-      <File FileName="Services/ConfigureService.cs" Line="1" Column="1" />
-      <File FileName="Controllers/UsersController.cs" Line="38" Column="44" />
-      <File FileName="EntityFrame/Administrador.cs" Line="26" Column="45" />
-      <File FileName="Services/UserService.cs" Line="39" Column="19" />
+      <File FileName="Helper/CategoriaOperations.cs" />
+      <File FileName="Services/ConfigureService.cs" />
+      <File FileName="Controllers/UsersController.cs" Line="27" Column="99" />
+      <File FileName="Repositories/DataModelRepository.cs" Line="162" Column="43" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="ApiRestAldeasPresupuesto" expanded="True">
-            <Node name="ApiRestAldeasPresupuesto" expanded="True">
+            <Node name="ApiRestAldeasPresupuesto" expanded="True" selected="True">
               <Node name="Controllers" expanded="True" />
               <Node name="Entities" expanded="True" />
               <Node name="EntityFrame" expanded="True" />
               <Node name="Factory" expanded="True" />
               <Node name="Helper" expanded="True" />
               <Node name="Repositories" expanded="True" />
-              <Node name="Services" expanded="True">
-                <Node name="UserService.cs" selected="True" />
-              </Node>
+              <Node name="Services" expanded="True" />
             </Node>
           </Node>
         </State>

@@ -59,6 +59,7 @@ import { EditarfechaComponent } from './00-Comunes/editarfecha/editarfecha.compo
 import { ActualizaritemparticipanteobservacionesComponent } from './03-InfoGeneral/01-Actualizar/actualizaritemparticipanteobservaciones/actualizaritemparticipanteobservaciones.component';
 import { OnlymunicipioeditComponent } from './00-Comunes/onlymunicipioedit/onlymunicipioedit.component';
 import { UsuariosComponent } from './07-Admin/usuarios/usuarios.component';
+import { NuevousuarioComponent } from './07-Admin/nuevousuario/nuevousuario.component';
 @NgModule({
   declarations: [
     LoginComponent,
@@ -95,7 +96,8 @@ import { UsuariosComponent } from './07-Admin/usuarios/usuarios.component';
     EditarfechaComponent,
     ActualizaritemparticipanteobservacionesComponent,
     OnlymunicipioeditComponent,
-    UsuariosComponent
+    UsuariosComponent,
+    NuevousuarioComponent
    ],
   imports: [
 

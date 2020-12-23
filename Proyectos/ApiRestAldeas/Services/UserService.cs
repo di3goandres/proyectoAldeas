@@ -7,6 +7,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using ApiRestAldeas.Entities;
+using ApiRestAldeas.EntityFrame;
 using ApiRestAldeas.Models;
 using ApiRestAldeas.Repositories.User;
 using Microsoft.Extensions.Options;
@@ -19,6 +20,7 @@ namespace ApiRestAldeas.Services
     {
         AuthenticateResponse Authenticate(LoginRequest model);
         Task<IEnumerable<User>> GetAll();
+        Boolean Existe(Usuarios usuario);
     }
 
     public class UserService : IUserService
@@ -101,6 +103,40 @@ namespace ApiRestAldeas.Services
         }
 
 
+        public Boolean Existe(Usuarios model)
+        {
+            bool existe = false;
+            try
+            {
+                var user = new User();
+
+                using (DirectoryEntry entry = new DirectoryEntry(_config.Path))
+                {
+                    using (DirectorySearcher searcher = new DirectorySearcher(entry))
+                    {
+                        searcher.Filter = String.Format("({0}={1})", SAMAccountNameAttribute, model.username);
+                        searcher.PropertiesToLoad.Add(DisplayName);
+                        searcher.PropertiesToLoad.Add(SAMAccountNameAttribute);
+                        var result = searcher.FindOne();
+                        if (result != null)
+                        {
+
+                            existe = true;
+
+                        }
+                    }
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return existe;
+
+
+        }
         public async Task<IEnumerable<User>> GetAll()
         {
             return await Task.Run(() => _users);

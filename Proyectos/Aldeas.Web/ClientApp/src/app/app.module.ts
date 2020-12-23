@@ -37,6 +37,8 @@ import { VerproyectosparticipantesComponent } from './components/05-Registro/ver
 import { ListacolaboradoresComponent } from './components/04-Colaboradores/listacolaboradores/listacolaboradores.component';
 import { DescargarbasedatosComponent } from './components/06-Descargas/descargarbasedatos/descargarbasedatos.component';
 import { ChecklistComponent } from './components/00-Comunes/checklist/checklist.component';
+import { UsuariosComponent } from './components/07-Admin/usuarios/usuarios.component';
+import { AdminGuard } from './guards/admin.guard';
 
 
 const routes: Routes = [ 
@@ -65,6 +67,7 @@ const routes: Routes = [
   { path: 'VerColaboradoresProyectos/:id', component: ListacolaboradoresComponent, pathMatch: 'full', canActivate:[UsuarioGuard], canLoad: [UsuarioGuard]  },
 
   { path: 'DescargarDatos', component: DescargarbasedatosComponent, pathMatch: 'full', canActivate:[UsuarioGuard], canLoad: [UsuarioGuard]  },
+  { path: 'AdminUsuarios', component: UsuariosComponent, pathMatch: 'full', canActivate:[AdminGuard], canLoad: [AdminGuard]  },
 
 ];
 @NgModule({

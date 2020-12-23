@@ -36,4 +36,9 @@ export class ColaboradorService {
     return this.service
     .ejecutarQueryPost<Respuesta>('/api/aldeas/colaborador/update/', params);
   }
+
+
+  permitirEditar(){
+    return this.service.permitirEditar();
+  }
 }

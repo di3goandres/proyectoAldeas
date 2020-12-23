@@ -41,4 +41,9 @@ export class RegparticipantesService {
     return this.service
     .ejecutarQueryPost<Respuesta>('/api/aldeas/participante/integrantes/update/', params);
   }
+
+
+  permitirEditar(){
+    return this.service.permitirEditar();
+  }
 }

@@ -8,6 +8,8 @@ namespace ApiRestAldeas.Models
         public string DisplayName { get; set; }
         public string Username { get; set; }
         public string Token { get; set; }
+        public string Perfil { get; set; }
+
 
 
         public AuthenticateResponse(User user, string token)
@@ -15,6 +17,7 @@ namespace ApiRestAldeas.Models
             DisplayName = user.DisplayName;
             Username = user.Username;
             Token = token;
+            Perfil = user.Perfil;
         }
     }
 }

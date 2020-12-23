@@ -9,13 +9,16 @@
       <span>Home</span>
     </button>
 
+    <button mat-menu-item [matMenuTriggerFor]="admin"  *ngIf="(userType =='ADMINISTRADOR')">
+      <mat-icon>admin_panel_settings</mat-icon> <span>Administrar Usuarios</span>
+    </button>
     <button mat-menu-item [matMenuTriggerFor]="gestionRegistroProyectos">
       <mat-icon>list</mat-icon> <span>Proyectos</span>
     </button>
     <button mat-menu-item [matMenuTriggerFor]="gestionRegistroParticipantes">
       <mat-icon>accessibility</mat-icon> <span>Participantes</span>
     </button>
-    <button mat-menu-item [matMenuTriggerFor]="gestionRegistroColaboradores">
+    <button mat-menu-item [matMenuTriggerFor]="gestionRegistroColaboradores" *ngIf="Editar">
       <mat-icon>assignment_ind</mat-icon> <span>Colaboradores</span>
     </button>
 
@@ -25,14 +28,24 @@
 
   </mat-menu>
 
+  <mat-menu #admin="matMenu">
+
+    <button mat-menu-item [routerLink]="['/AdminUsuarios']" *ngIf="(userType =='ADMINISTRADOR')">
+      <mat-icon>admin_panel_settings</mat-icon>
+      <span>Registro Usuarios</span>
+    </button>
+
+  
+
+  </mat-menu>
   <mat-menu #gestionRegistroParticipantes="matMenu">
 
-    <button mat-menu-item [routerLink]="['/RegistroParticipantes']">
+    <button mat-menu-item [routerLink]="['/RegistroParticipantes']" *ngIf="Editar">
       <mat-icon>assignment_turned_in</mat-icon>
       <span>Registro Participantes</span>
     </button>
 
-    <button mat-menu-item [routerLink]="['/RegistroIndicador']">
+    <button mat-menu-item [routerLink]="['/RegistroIndicador']"  *ngIf="Editar">
       <mat-icon>drag_indicator</mat-icon>
       <span>Registro Indicador Participante</span>
     </button>
@@ -45,7 +58,7 @@
 
   <mat-menu #gestionRegistroColaboradores="matMenu">
 
-    <button mat-menu-item [routerLink]="['/Colaborador']">
+    <button mat-menu-item [routerLink]="['/Colaborador']"  *ngIf="Editar">
       <mat-icon>assignment_turned_in</mat-icon>
       <span>Registro Colaboradores</span>
     </button>
@@ -55,7 +68,7 @@
 
   <mat-menu #gestionRegistroProyectos="matMenu">
 
-    <button mat-menu-item [routerLink]="['/Informacion']">
+    <button mat-menu-item [routerLink]="['/Informacion']"   *ngIf="Editar">
       <mat-icon>assignment_turned_in</mat-icon>
       <span>Registro Proyectos</span>
     </button>
@@ -65,7 +78,7 @@
       <span>Ver Proyectos</span>
     </button>
 
-    <button mat-menu-item [routerLink]="['/DescargarDatos']">
+    <button mat-menu-item [routerLink]="['/DescargarDatos']"  *ngIf="Editar">
       <mat-icon>cloud_download</mat-icon>
       <span>Descargar Datos</span>
     </button>

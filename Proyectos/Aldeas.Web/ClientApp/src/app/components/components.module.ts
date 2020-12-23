@@ -58,6 +58,7 @@ import { CheckboxV2Component } from './00-Comunes/checkbox-v2/checkbox-v2.compon
 import { EditarfechaComponent } from './00-Comunes/editarfecha/editarfecha.component';
 import { ActualizaritemparticipanteobservacionesComponent } from './03-InfoGeneral/01-Actualizar/actualizaritemparticipanteobservaciones/actualizaritemparticipanteobservaciones.component';
 import { OnlymunicipioeditComponent } from './00-Comunes/onlymunicipioedit/onlymunicipioedit.component';
+import { UsuariosComponent } from './07-Admin/usuarios/usuarios.component';
 @NgModule({
   declarations: [
     LoginComponent,
@@ -93,7 +94,8 @@ import { OnlymunicipioeditComponent } from './00-Comunes/onlymunicipioedit/onlym
     CheckboxV2Component,
     EditarfechaComponent,
     ActualizaritemparticipanteobservacionesComponent,
-    OnlymunicipioeditComponent
+    OnlymunicipioeditComponent,
+    UsuariosComponent
    ],
   imports: [
 

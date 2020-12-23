@@ -70,4 +70,9 @@ export class ProyectoService {
     return this.service.ejecutarQueryPostNuevo<Respuesta>('/api/aldeas/proyectos/municipio/update/', data);
   }
 
+
+  permitirEditar(){
+    return this.service.permitirEditar();
+  }
+
 }

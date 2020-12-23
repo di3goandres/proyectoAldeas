@@ -220,6 +220,34 @@ export class UserService {
     })
   }
 
+  isAdmin(): Promise<boolean> {
+
+
+    let user = this.currenUserValue;
+    console.log(user)
+    return new Promise(resolve => {
+
+      if (user.perfil = 'ADMINISTRADOR') {
+        resolve(true);
+      } else {
+        this.router.navigate(['home']);
+  
+        resolve(false);
+  
+      }
+    })
+   
+
+  }
+
+  permitirEditar(){
+    let user = this.currenUserValue;
+    if(user.perfil === 'ADMINISTRADOR' || user.perfil === 'EDITOR'){
+      return true;
+    }else{
+      return false;
+    }
+  }
   getUrl() {
     return environment.ApiUrl;
   }

@@ -71,6 +71,11 @@ namespace ApiRestAldeas.EntityFrame
         public virtual DbSet<DBIndicadorComplemento> TbIndicadorComplemento { get; set; }
         public virtual DbSet<DBIndicadorRespuestas> TBIndicadorRespuestas { get; set; }
 
+        public virtual DbSet<Usuarios> TbUsuarios { get; set; }
+        public virtual DbSet<Perfiles> TbPerfiles { get; set; }
+
+
+
         #endregion
 
         #region Required
@@ -78,6 +83,18 @@ namespace ApiRestAldeas.EntityFrame
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
+            modelBuilder.Entity<Perfiles>(entity =>
+            {
+                entity.ToTable("Perfiles");
+
+
+            });
+            modelBuilder.Entity<Usuarios>(entity =>
+            {
+                entity.ToTable("usuarios");
+
+
+            });
 
             modelBuilder.Entity<DBIndicadorRespuestas>(entity =>
             {

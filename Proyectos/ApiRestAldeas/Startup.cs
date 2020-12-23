@@ -8,6 +8,7 @@ using ApiRestAldeas.EntityFrame;
 using ApiRestAldeas.Factory;
 using ApiRestAldeas.Helper;
 using ApiRestAldeas.Repositories;
+using ApiRestAldeas.Repositories.User;
 using ApiRestAldeas.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -79,6 +80,7 @@ namespace ApiRestAldeas
             services.AddRouting(options => options.LowercaseUrls = true);
             services.AddScoped(typeof(IContextFactory), typeof(ContextFactory));
             services.AddScoped(typeof(IDataModelRepository), typeof(DataModelRepository));
+            services.AddScoped(typeof(IUserModelRepository), typeof(UserModelRepository));
             // configure DI for application services para el llamado al servicio de 
             services.AddScoped<IUserService, UserService>();
             services.AddDbContext<Aldeas_Context>();

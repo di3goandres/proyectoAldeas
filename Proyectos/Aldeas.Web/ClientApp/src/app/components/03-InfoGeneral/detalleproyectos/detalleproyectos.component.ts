@@ -41,7 +41,7 @@ export class DetalleproyectosComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private service: ProyectoService,
+    public service: ProyectoService,
     private changeDetectorRefs: ChangeDetectorRef,
     private _formBuilder: FormBuilder,
     private modalService: NgbModal,

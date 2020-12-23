@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ApiRestAldeas.Entities;
 using ApiRestAldeas.Models;
+using ApiRestAldeas.Repositories.User;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using static ApiRestAldeas.Entities.Appsettings;
@@ -22,6 +23,8 @@ namespace ApiRestAldeas.Services
 
     public class UserService : IUserService
     {
+        private readonly IUserModelRepository _UserModelRepository;
+
         // users hardcoded for simplicity, store in a db with hashed passwords in production applications
         private List<User> _users = new List<User>
         {
@@ -35,11 +38,11 @@ namespace ApiRestAldeas.Services
         private readonly LdapConfig _config;
 
 
-        public UserService(IOptions<Token> appSettings, IOptions<LdapConfig> config)
+        public UserService(IOptions<Token> appSettings, IOptions<LdapConfig> config, IUserModelRepository data)
         {
             _appSettings = appSettings.Value;
             _config = config.Value;
-
+            _UserModelRepository = data;
         }
 
         public AuthenticateResponse Authenticate(LoginRequest model)
@@ -50,7 +53,7 @@ namespace ApiRestAldeas.Services
                 {
                     user.DisplayName = "Diego Andres Montealegre Garcia";
                     user.Username = model.Username;
-
+                    user.Perfil =  _UserModelRepository.EsAdministrador(model.Username);
                     var token = generateJwtToken(user);
 
                     return new AuthenticateResponse(user, token);
@@ -73,6 +76,7 @@ namespace ApiRestAldeas.Services
 
                                 user.DisplayName = displayName == null || displayName.Count <= 0 ? "" : displayName[0].ToString();
                                 user.Username = sameAccountName == null || sameAccountName.Count <= 0 ? "" : sameAccountName[0].ToString();
+                                user.Perfil = _UserModelRepository.EsAdministrador(model.Username);
 
                                 var token = generateJwtToken(user);
 

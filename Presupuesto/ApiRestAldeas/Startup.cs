@@ -80,6 +80,7 @@ namespace ApiRestAldeas
 
             // configure DI for application services para el llamado al servicio de 
             services.AddScoped<IUserService, UserService>();
+
             services.AddDbContext<Aldeas_Context>();
             services.AddControllers();
             services.AddMvc(options=> {

@@ -141,7 +141,7 @@
           </mat-grid-list>
         </mat-card-content>
         <mat-card-actions>
-          <div class="row">
+          <div class="row" *ngIf="this.service.permitirEditar()">
 
 
             <div class="col-12" style="text-align: center;">
@@ -173,7 +173,7 @@
 
         </mat-card-header>
         <mat-card-actions>
-          <div class="row">
+          <div class="row" *ngIf="this.service.permitirEditar()">
 
 
             <div class="col-12" style="text-align: center;">
@@ -318,7 +318,7 @@
             </div>
             
           </div>
-          <div class="row">
+          <div class="row" *ngIf="this.service.permitirEditar()">
 
 
             <div class="col-12" style="text-align: center;">
@@ -399,8 +399,8 @@
         <mat-card-content>
          
         </mat-card-content>
-        <mat-card-actions>
-          <div class="row">
+        <mat-card-actions >
+          <div class="row" *ngIf="this.service.permitirEditar()">
 
 
             <div class="col-12" style="text-align: center;">
@@ -501,7 +501,7 @@
 
         </div>
 
-        <div class="row">
+        <div class="row" *ngIf="this.service.permitirEditar()">
 
 
             <div class="col-12" style="text-align: center;">

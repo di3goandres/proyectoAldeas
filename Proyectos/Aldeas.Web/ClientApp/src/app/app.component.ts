@@ -9,7 +9,9 @@ import { User } from './models/user';
 })
 export class AppComponent implements OnInit, DoCheck    {
 
+  Editar =false;
   currentUser: User;
+  userType: string = '';
   title = 'Aldeas Infantiles SOS';
   constructor(
     public userService: UserService,
@@ -22,7 +24,18 @@ export class AppComponent implements OnInit, DoCheck    {
   ngDoCheck(): void {
    
   }
+
+
+
+  
   ngOnInit(): void {
+    if(this.currentUser!= null){
+      this.userType = this.currentUser.perfil;
+      if(this.userType === 'ADMINISTRADOR' || this.userType === 'EDITOR'){
+        this.Editar = true;
+      }
+
+    }
    
   }
 

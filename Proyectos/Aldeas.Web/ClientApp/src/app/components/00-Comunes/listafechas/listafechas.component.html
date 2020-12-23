@@ -16,7 +16,7 @@
         <td mat-cell *matCellDef="let element">
           {{ element.tipo_fecha| uppercase }} </td>
       </ng-container>
-      <ng-container matColumnDef="actualizar">
+      <ng-container matColumnDef="actualizar" *ngIf="this.service.permitirEditar()">
         <th mat-header-cell *matHeaderCellDef> Actualizar </th>
         <td mat-cell *matCellDef="let element"> 
 

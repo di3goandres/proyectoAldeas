@@ -72,15 +72,21 @@ export class DetalleproyectosComponent implements OnInit {
       this.cargaInicial();
     }
   }
+
+  delay(ms: number) {
+      return new Promise( resolve => setTimeout(resolve, ms) );
+  }
   ActualizarArchivo(element: ItemProyecto){
 
     const modalRef = this.modalService.open(CambiararchivoComponent, { size: 'md' });
     modalRef.componentInstance.id = element.id.toString();
     
-    modalRef.result.then((result) => {
+    modalRef.result.then(async (result) => {
       if (result === 'OK') {
-        this.cargaInicial()
         this.registroExitoso() 
+        await this.delay(500);
+        this.cargaInicial()
+     
       }else if (result === 'NOK') {
         this.registroNoExitoso("Ha ocurrido un error", "Intentelo mas tarde")
       }

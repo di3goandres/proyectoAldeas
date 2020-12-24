@@ -700,7 +700,7 @@ export class InformacionComponent implements OnInit {
       this.ValidarArchivo = false;
 
     }
-
+    // this.guardarArchivo(2);
     this.continuarPanatalla_2();
   }
   otroTipo:string =""

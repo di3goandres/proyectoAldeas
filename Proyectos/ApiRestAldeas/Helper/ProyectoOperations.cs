@@ -9,6 +9,7 @@ using System.Linq;
 using static ApiRestAldeas.Entities.Appsettings;
 using ApiRestAldeas.Models;
 using System.Collections.Generic;
+using System.IO;
 
 namespace ApiRestAldeas.Helper
 {
@@ -631,7 +632,7 @@ namespace ApiRestAldeas.Helper
         }
 
         public static dynamic GuardarArchivo(IContextFactory factory, IOptions<ConnectionDB> connection,
-          long idProyecto, byte[] file, string tipo)
+          long idProyecto, byte[] file, string nombre, string tipo)
         {
             using (Aldeas_Context db = factory.Create(connection))
             {
@@ -643,9 +644,9 @@ namespace ApiRestAldeas.Helper
 
                 if (proyectoActualizar.Any())
                 {
-                    proyectoActualizar.First().Nombrearchivo = tipo;
+                    proyectoActualizar.First().tipoArchivo = tipo;
+                    proyectoActualizar.First().Nombrearchivo = nombre;
                     proyectoActualizar.First().archivo = file;
-
                     db.SaveChanges();
 
                 }
@@ -658,6 +659,59 @@ namespace ApiRestAldeas.Helper
             return new { id = idProyecto, status =  "OK", code = 200 };
         }
 
+
+
+        public static dynamic ConsultarArchivo(IContextFactory factory, IOptions<ConnectionDB> connection,
+       long idProyecto)
+        {
+            ArchivoResponse retorno = new ArchivoResponse();
+            using (Aldeas_Context db = factory.Create(connection))
+            {
+
+                var data = from pro in db.tbProyectos
+                                         where pro.id == idProyecto
+                                         select pro;
+
+
+                var directorio = "ProyectosFiles/" + idProyecto + "/";
+
+                if (!Directory.Exists(directorio))
+                {
+                    DirectoryInfo di = Directory.CreateDirectory(directorio);
+                }
+
+            
+
+                if (data.Any())
+                {
+                   
+                    retorno.Idproyecto = data.First().id;
+                    retorno.TipoArchivo = data.First().tipoArchivo; ;
+                    retorno.NombreArchivo = data.First().Nombrearchivo;
+
+                    if (!File.Exists(directorio + retorno.NombreArchivo))
+                    {
+                        try
+                        {
+                            using (var fs = new FileStream(directorio + retorno.NombreArchivo, FileMode.Create, FileAccess.Write))
+                            {
+                                fs.Write(data.First().archivo, 0, data.First().archivo.Length);
+                               
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine("Exception caught in process: {0}", ex);
+                            
+                        }
+                    }
+
+                }
+
+
+            }
+            return retorno;
+        }
 
         public static dynamic ConsultarParticipantes(IContextFactory factory, IOptions<ConnectionDB> connection,
            long idProyecto)

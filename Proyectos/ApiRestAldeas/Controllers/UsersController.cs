@@ -38,7 +38,7 @@ namespace ApiRestAldeas.Controllers
         {
             var response = _userService.Authenticate(model);
 
-            if (response == null)
+            if (response == null || response.Perfil =="")
                 return BadRequest(new { message = "Username or password is incorrect"});
 
             return Ok(response);

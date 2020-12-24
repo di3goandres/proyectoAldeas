@@ -82,6 +82,9 @@
                     </mat-label>
                   </td>
                 </tr>
+
+
+                
               </table>
 
             </mat-grid-tile>
@@ -136,6 +139,26 @@
                     </mat-label>
                   </td>
                 </tr>
+                <tr>
+                  <td>
+                    <mat-label class="descripcion">
+                      Archivo:
+                    </mat-label>
+                  </td>
+                  <td>
+                    <mat-label class="descripcionTexto">
+                      {{itemProyecto.nombrearchivo | uppercase}}
+                      <button type="button" (click)="DescargarArchivo(itemProyecto)"mat-raised-button color="primary">
+                        <mat-icon>download</mat-icon>
+                    </button>
+                    <button type="button"  *ngIf="this.service.permitirEditar()" (click)="ActualizarArchivo(itemProyecto)"mat-raised-button color="primary">
+                      <mat-icon>cached</mat-icon>
+                  </button>
+                    </mat-label>
+                  </td>
+                </tr>
+                
+                
               </table>
             </mat-grid-tile>
           </mat-grid-list>

@@ -4,6 +4,7 @@ using ApiRestAldeas.EntityFrame;
 using ApiRestAldeas.Factory;
 using ApiRestAldeas.Helper;
 using ApiRestAldeas.Models;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json.Linq;
@@ -16,11 +17,14 @@ namespace ApiRestAldeas.Repositories
         private readonly IOptions<ConnectionDB> _connectionDB;
    
         private readonly IContextFactory _factory;
+        private IWebHostEnvironment _hostingEnvironment;
 
-        public DataModelRepository(IOptions<ConnectionDB> connectionDB, IContextFactory factory)
+
+        public DataModelRepository(IOptions<ConnectionDB> connectionDB, IContextFactory factory, IWebHostEnvironment environment)
         {
             _connectionDB = connectionDB;
             _factory = factory;
+            _hostingEnvironment = environment;
         }
 
         public dynamic CentroCostos()
@@ -70,17 +74,54 @@ namespace ApiRestAldeas.Repositories
             return ProyectoOperations.Guardar(_factory, _connectionDB, proyectoRequest);
         }
 
-        public dynamic UploadFile([FromForm] FileInputModel data)
+        public  async System.Threading.Tasks.Task<dynamic> UploadFileAsync([FromForm] FileInputModel data)
         {
+            var nombreArchivo = DateTime.Now.ToString("yyyyMM-ddHHmmss");
+            var tipo = data.File.ContentType;
+            if (tipo.Contains("pdf"))
+            {
+                nombreArchivo+= ".pdf";
+            }
+            else
+            {
+                nombreArchivo += ".xls";
+            }
+          
+            try
+            {
+                if (data.File.Length > 0)
+                {
+                    var directorio = "ProyectosFiles/" + data.Proyecto + "/";
+                 
+                    if (!Directory.Exists(directorio))
+                    {
+                        DirectoryInfo di = Directory.CreateDirectory(directorio);
+                    }
+                   
+
+                    var filePath = directorio + nombreArchivo;
+
+
+                    using (Stream fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await data.File.CopyToAsync(fileStream);
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+
+            }
             byte[] ContenidoBase64;
             using(var memoryStream = new MemoryStream())
             {
-                data.File.CopyToAsync(memoryStream);
+                _ = data.File.CopyToAsync(memoryStream);
 
                 ContenidoBase64 = memoryStream.ToArray();
             }
 
-            return  ProyectoOperations.GuardarArchivo(_factory, _connectionDB, data.Proyecto, ContenidoBase64, data.File.FileName);
+            return  ProyectoOperations.GuardarArchivo(
+                _factory, _connectionDB, data.Proyecto, ContenidoBase64, nombreArchivo, data.File.ContentType);
               
         }
 
@@ -220,6 +261,11 @@ namespace ApiRestAldeas.Repositories
         public dynamic ActualizarEjecucion(EjecucionFinancieraRequest request)
         {
             return EjecucionFinancieraOperations.ActualizarEjecucion(_factory, _connectionDB, request);
+        }
+
+        public dynamic ConsultarArchivo(long idProyecto)
+        {
+            return ProyectoOperations.ConsultarArchivo(_factory, _connectionDB, idProyecto);
         }
 
 

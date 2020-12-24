@@ -8,11 +8,13 @@ namespace ApiRestAldeas.Repositories
 {
     public interface IDataModelRepository
     {
+
+        dynamic ConsultarArchivo(long idProyecto);
         /// <summary>
         /// Metodo para guardar la informacion de 
         /// </summary>
         /// <returns></returns>
-        dynamic UploadFile([FromForm] FileInputModel data);
+        Task<dynamic> UploadFileAsync([FromForm] FileInputModel data);
         /// <summary>
         /// Metodo para guardar n proyecto
         /// </summary>

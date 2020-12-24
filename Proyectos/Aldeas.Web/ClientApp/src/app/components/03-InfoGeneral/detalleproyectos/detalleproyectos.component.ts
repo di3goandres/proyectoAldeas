@@ -11,6 +11,7 @@ import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ActualizaritemproyectoComponent } from '../01-Actualizar/actualizaritemproyecto/actualizaritemproyecto.component';
 import { ActualizariteminfofinancieraComponent } from '../01-Actualizar/actualizariteminfofinanciera/actualizariteminfofinanciera.component';
 import { ActualizaritemparticipanteobservacionesComponent } from '../01-Actualizar/actualizaritemparticipanteobservaciones/actualizaritemparticipanteobservaciones.component';
+import { CambiararchivoComponent } from '../cambiararchivo/cambiararchivo.component';
 
 
 @Component({
@@ -70,6 +71,29 @@ export class DetalleproyectosComponent implements OnInit {
     if (event) {
       this.cargaInicial();
     }
+  }
+  ActualizarArchivo(element: ItemProyecto){
+
+    const modalRef = this.modalService.open(CambiararchivoComponent, { size: 'md' });
+    modalRef.componentInstance.id = element.id.toString();
+    
+    modalRef.result.then((result) => {
+      if (result === 'OK') {
+        this.cargaInicial()
+        this.registroExitoso() 
+      }else if (result === 'NOK') {
+        this.registroNoExitoso("Ha ocurrido un error", "Intentelo mas tarde")
+      }
+    }, (reason) => {
+
+     
+    });
+
+  }
+  DescargarArchivo(element: ItemProyecto){
+
+    this.service.getFileProyect(element.id, element.nombrearchivo);
+
   }
   cargaInicial() {
     this.service.getProyectosById(this.idProyecto).subscribe(

@@ -12,7 +12,7 @@ import { Colaborador } from '../models/colaborador';
 import { RegistroParticipante } from '../models/DatosPartipante';
 import { ProyectoResponse } from '../models/ProyectoResponse';
 import { Usuarios } from '../models/usuarios/Usuarios';
-
+// import { DatePipe } from '@angular/common'
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +33,7 @@ export class UserService {
   });
 
   constructor(
+    // public datepipe: DatePipe,
     private http: HttpClient,
     public router: Router) {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
@@ -74,9 +75,45 @@ export class UserService {
       .subscribe(response => this.downLoadFile(response, "application/octet-stream"));;
   }
 
+  public ejecutarQuerFileExcelPDf(query: string, nombre: string) {
+    return this.http.get(environment.ApiUrl + query, {
+      responseType: 'arraybuffer'
+    })
+      .subscribe(response => this.downLoadFileTipo(response,nombre));;
+  }
 
 
 
+
+
+  /**
+  * Method is use to download file.
+  * @param data - Array Buffer data
+  * @param type - type of the document.
+  */
+ downLoadFileTipo(data: any, nombre: string) {
+   let type ='application/octet-stream';
+   if(nombre.includes('pdf')){
+      type='application/pdf'
+   }
+  let blob = new Blob([data], { type: type });
+  let url = window.URL.createObjectURL(blob);
+  // let pwa = window.open(url);
+
+  var fileLink = document.createElement('a');
+  fileLink.href = url;
+  let date=new Date();
+  let filename =nombre
+  
+  // it forces the name of the downloaded file
+  fileLink.download = filename;
+
+  // triggers the click event
+  fileLink.click();
+  // if (!pwa || pwa.closed || typeof pwa.closed == 'undefined') {
+  //     alert( 'Please disable your Pop-up blocker and try again.');
+  // }
+}
   /**
   * Method is use to download file.
   * @param data - Array Buffer data

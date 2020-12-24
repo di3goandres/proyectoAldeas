@@ -36,6 +36,11 @@ export class ProyectoService {
 
   }
 
+  getFileProyect(id: number,  nombre:string) {
+    this.service.ejecutarQuerFileExcelPDf('/api/aldeas/proyectos/informe/file/' + id, nombre);
+
+  }
+
   ActualizarEjecucion(data: EjecucionFinancieraRequest) {
 
     return this.service.ejecutarQueryPostNuevo<Respuesta>('/api/aldeas/proyectos/ejecucion/update/', data);

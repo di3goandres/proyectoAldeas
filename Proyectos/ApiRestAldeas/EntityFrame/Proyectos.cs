@@ -71,6 +71,13 @@ namespace ApiRestAldeas.EntityFrame
         public string Nombrearchivo { get; set; }
 
 
+        public string tipoArchivo { get; set; }
+
+
+
+     
+
+
 
     }
 }

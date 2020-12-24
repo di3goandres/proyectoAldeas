@@ -61,6 +61,7 @@ import { OnlymunicipioeditComponent } from './00-Comunes/onlymunicipioedit/onlym
 import { UsuariosComponent } from './07-Admin/usuarios/usuarios.component';
 import { NuevousuarioComponent } from './07-Admin/nuevousuario/nuevousuario.component';
 import { ActualizarusuarioComponent } from './07-Admin/actualizarusuario/actualizarusuario.component';
+import { CambiararchivoComponent } from './03-InfoGeneral/cambiararchivo/cambiararchivo.component';
 @NgModule({
   declarations: [
     LoginComponent,
@@ -99,7 +100,8 @@ import { ActualizarusuarioComponent } from './07-Admin/actualizarusuario/actuali
     OnlymunicipioeditComponent,
     UsuariosComponent,
     NuevousuarioComponent,
-    ActualizarusuarioComponent
+    ActualizarusuarioComponent,
+    CambiararchivoComponent
    ],
   imports: [
 

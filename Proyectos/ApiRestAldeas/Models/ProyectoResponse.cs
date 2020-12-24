@@ -112,4 +112,12 @@ namespace ApiRestAldeas.Models
     {
         public ProyectoMunicipioResponse ItemsMunicipios { get; set; }
     }
+
+    public class ArchivoResponse
+    {
+        public long Idproyecto { get; set; }
+
+        public string NombreArchivo { get; set; }
+        public string TipoArchivo { get; set; }
+    }
 }

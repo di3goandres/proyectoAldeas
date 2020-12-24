@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using ApiRestAldeas.Models;
@@ -69,7 +70,9 @@ namespace ApiRestAldeas.Controllers
                 || proyectoRequest.File.ContentType.Contains("contenidoapplication/octet-stream")
                 || proyectoRequest.File.ContentType.Contains(excelLargo))
             {
-                return _dataModelRepository.UploadFile(proyectoRequest);
+               var data = _dataModelRepository.UploadFileAsync(proyectoRequest);
+
+                return   new { id = 0, status = "OK", code = 200 };
 
             }
             else
@@ -81,6 +84,32 @@ namespace ApiRestAldeas.Controllers
                     message = "No se permite este tipo de contenido" + proyectoRequest.File.ContentType
                 };
             }
+        }
+
+        [Authorize]
+        [HttpGet]
+        [Route("/api/aldeas/proyectos/informe/file/{id}")]
+        public IActionResult GetFileProyect(long id)
+        {
+
+            ArchivoResponse data = _dataModelRepository.ConsultarArchivo(id);
+            if (data.Idproyecto == 0)
+            {
+                return BadRequest(new { message = "No se pudo obtener el archivo" });
+            }
+            else
+            {
+                var TipoArchivo = "application/octet-stream";
+                var nombre = "ProyectosFiles/" + id + "/" + data.NombreArchivo;
+                if (data.TipoArchivo.Contains("pdf"))
+                {
+                    TipoArchivo= data.TipoArchivo;
+                }
+           
+                var stream = new FileStream(@nombre, FileMode.Open);
+                return File(stream, TipoArchivo, data.NombreArchivo);
+            }
+
         }
 
         [Authorize]

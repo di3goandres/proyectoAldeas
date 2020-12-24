@@ -1,30 +1,41 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Usuarios } from 'src/app/models/usuarios/Usuarios';
 import { UserService } from 'src/app/services/user.service';
 import { RegistroExitosoComponent } from '../../00-Comunes/registro-exitoso/registro-exitoso.component';
 import { RegistroNoexitosoComponent } from '../../00-Comunes/registro-noexitoso/registro-noexitoso.component';
 
 @Component({
-  selector: 'app-nuevousuario',
-  templateUrl: './nuevousuario.component.html',
-  styleUrls: ['./nuevousuario.component.css']
+  selector: 'app-actualizarusuario',
+  templateUrl: './actualizarusuario.component.html',
+  styleUrls: ['./actualizarusuario.component.css']
 })
-export class NuevousuarioComponent implements OnInit {
+export class ActualizarusuarioComponent implements OnInit {
+  @Input() usuarioInput: Usuarios
+  @Input() countAdmin: number;
 
+ 
+ 
   formgroup: FormGroup;
-  activo: 0;
+  activo: string;
   NuevoNombre: string;
+
+
   usuario: Usuarios
 
   constructor(
     private _formBuilder: FormBuilder,
     private modalService: NgbModal,
-    private service: UserService
+    private service: UserService,
+    private activeModal: NgbActiveModal,
+
   ) { }
 
 
+  Cerrar(){
+    this.activeModal.dismiss();
+  }
   openExitoso() {
     const modalRef = this.modalService.open(RegistroExitosoComponent,
       { size: 'md' });
@@ -50,28 +61,25 @@ export class NuevousuarioComponent implements OnInit {
   }
   onGuardar() {
 
-    this.usuario = new Usuarios();
-    this.usuario.id = 0;
-    var x = "32";
+  
+   
     var y: number = +this.activo ;
     this.usuario.idPerfil = y
-    this.usuario.username = this.NuevoNombre;
+  
 
-    this.service.guardarUsuario(this.usuario).subscribe(
+    this.service.ActualizarUsuario(this.usuario).subscribe(
       OK => {
         console.log(OK)
 
         if (OK.code == 200 && OK.status == "OK") {
           this.formgroup.reset();
+          this.activeModal.close("OK")
           this.openExitoso()
         } else {
          
 
           if (OK.message == "NO EXISTE") {
             this.openNoExitoso("ATENCIÓN","USUARIO, NO EXISTE")
-          }else{
-           this.openNoExitoso("Ha ocurrido un error", "Intentelo mas tarde")
-
           }
 
 
@@ -92,13 +100,19 @@ export class NuevousuarioComponent implements OnInit {
   }
   ngOnInit(): void {
 
+    this.usuario = new Usuarios();
+    this.usuario.id = this.usuarioInput.id;
+    this.usuario.username = this.usuarioInput.username;
+
+    this.activo= this.usuarioInput.idPerfil.toString();
 
     this.formgroup = this._formBuilder.group({
 
-      nombre: ['', Validators.required],
+      nombre: ['', Validators.nullValidator],
 
 
     })
   }
+
 
 }

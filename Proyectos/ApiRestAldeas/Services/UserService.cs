@@ -10,6 +10,7 @@ using ApiRestAldeas.Entities;
 using ApiRestAldeas.EntityFrame;
 using ApiRestAldeas.Models;
 using ApiRestAldeas.Repositories.User;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using static ApiRestAldeas.Entities.Appsettings;
@@ -26,7 +27,7 @@ namespace ApiRestAldeas.Services
     public class UserService : IUserService
     {
         private readonly IUserModelRepository _UserModelRepository;
-
+        private readonly ILogger<UserService> _logger;
         // users hardcoded for simplicity, store in a db with hashed passwords in production applications
         private List<User> _users = new List<User>
         {
@@ -40,11 +41,12 @@ namespace ApiRestAldeas.Services
         private readonly LdapConfig _config;
 
 
-        public UserService(IOptions<Token> appSettings, IOptions<LdapConfig> config, IUserModelRepository data)
+        public UserService(IOptions<Token> appSettings, IOptions<LdapConfig> config, IUserModelRepository data, ILogger<UserService> logger)
         {
             _appSettings = appSettings.Value;
             _config = config.Value;
             _UserModelRepository = data;
+            _logger = logger;
         }
 
         public AuthenticateResponse Authenticate(LoginRequest model)
@@ -94,8 +96,8 @@ namespace ApiRestAldeas.Services
             }
             catch(Exception ex)
             {
+                _logger.LogError(ex.Message);
 
-             
             }
             return null;
 
@@ -105,6 +107,8 @@ namespace ApiRestAldeas.Services
 
         public Boolean Existe(Usuarios model)
         {
+            _logger.LogInformation("Datos de entrada id = {0}, perfil {1}, username {2}", model.id, model.IdPerfil, model.username);
+
             bool existe = false;
             try
             {
@@ -131,7 +135,7 @@ namespace ApiRestAldeas.Services
             }
             catch (Exception ex)
             {
-
+                _logger.LogInformation("error: {0} ",ex.Message);
             }
             return existe;
 

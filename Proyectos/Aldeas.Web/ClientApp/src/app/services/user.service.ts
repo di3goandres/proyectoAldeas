@@ -254,7 +254,9 @@ export class UserService {
   }
 
   guardarUsuario(data: Usuarios) {
-    return this.ejecutarQueryPostNuevo<Respuesta>('/api/user/agregaractualizar/', data);
+    return this.ejecutarQueryPostNuevo<Respuesta>('/api/user/agregar/', data);
   }
-
+  ActualizarUsuario(data: Usuarios) {
+    return this.ejecutarQueryPostNuevo<Respuesta>('/api/user/actualizar/', data);
+  }
 }

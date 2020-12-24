@@ -60,6 +60,7 @@ import { ActualizaritemparticipanteobservacionesComponent } from './03-InfoGener
 import { OnlymunicipioeditComponent } from './00-Comunes/onlymunicipioedit/onlymunicipioedit.component';
 import { UsuariosComponent } from './07-Admin/usuarios/usuarios.component';
 import { NuevousuarioComponent } from './07-Admin/nuevousuario/nuevousuario.component';
+import { ActualizarusuarioComponent } from './07-Admin/actualizarusuario/actualizarusuario.component';
 @NgModule({
   declarations: [
     LoginComponent,
@@ -97,7 +98,8 @@ import { NuevousuarioComponent } from './07-Admin/nuevousuario/nuevousuario.comp
     ActualizaritemparticipanteobservacionesComponent,
     OnlymunicipioeditComponent,
     UsuariosComponent,
-    NuevousuarioComponent
+    NuevousuarioComponent,
+    ActualizarusuarioComponent
    ],
   imports: [
 

@@ -6,6 +6,7 @@ import { ItemMunicipioRequest, ItemProyectadosRequest, ItemProyectoRequest, Item
 import { EjecucionFinancieraRequest } from '../../models/proyectos/ejecucion.request';
 import { Respuesta } from '../../models/comunes';
 import { ItemFinancieraRequest } from '../../models/proyectos/proyecto.unico.response';
+import { Usuarios, UsuariosResponse } from '../../models/usuarios/Usuarios';
 
 @Injectable({
   providedIn: 'root'
@@ -75,4 +76,11 @@ export class ProyectoService {
     return this.service.permitirEditar();
   }
 
+  ObtenerUsuarios() {
+    return this.service.ejecutarQuery<UsuariosResponse>('/api/user/obtenerusuarios/');
+  }
+
+  EliminarUsuario(data: Usuarios) {
+    return this.service.ejecutarQueryPostNuevo<Respuesta>('/api/user/eliminarusuario/', data);
+  }
 }

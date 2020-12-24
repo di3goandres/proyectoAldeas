@@ -1,6 +1,6 @@
 ﻿using ApiRestAldeas.EntityFrame;
 using ApiRestAldeas.Factory;
-
+using ApiRestAldeas.Models;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
@@ -42,27 +42,94 @@ namespace ApiRestAldeas.Helper
 
             using (Aldeas_Context db = factory.Create(connection))
             {
+                if ( usuario.id != 0)
+                {
+                    var dataUpdate = from pro in db.TbUsuarios
+                                     where pro.id == usuario.id
+                                     select pro;
+
+                    if (dataUpdate.Any())
+                    {
+                        var nuevo = dataUpdate.First();
+                        nuevo.IdPerfil = usuario.IdPerfil;
+                        db.SaveChanges();
+                        id = nuevo.id;
+                    }
+
+                }
+                else
+                {
+                    var data = from pro in db.TbUsuarios
+                               where pro.username == usuario.username
+                               select pro;
+
+                    if (!data.Any())
+                    {
+                        var nuevo = new Usuarios();
+                        nuevo.IdPerfil = usuario.IdPerfil;
+                        nuevo.username = usuario.username;
+                        db.TbUsuarios.Add(nuevo);
+                        db.SaveChanges();
+                        id = nuevo.id;
+                    }
+                }
+               
+              
+                
+            }
+            return new { id = id, status = id == 0 ? "ERROR" : "OK", code = 200, message = "EXITOSO" };
+
+        }
+
+        public static dynamic Eliminar(IContextFactory factory, IOptions<ConnectionDB> connection, Usuarios usuario)
+        {
+
+            long id = 0;
+
+            using (Aldeas_Context db = factory.Create(connection))
+            {
                 var data = from pro in db.TbUsuarios
                            where pro.username == usuario.username
                            select pro;
 
-                if (!data.Any())
+                if (data.Any())
                 {
-                    var nuevo = new Usuarios();
-                    nuevo.IdPerfil = usuario.IdPerfil;
-                    nuevo.username = usuario.username;
+
+                    
+                    db.TbUsuarios.Remove(data.First());
                     db.SaveChanges();
-                    id = nuevo.id;
+                    id = -1;
+
                 }
-                else
-                {
-                    var nuevo = data.First();
-                    nuevo.IdPerfil = usuario.IdPerfil;
-                    db.SaveChanges();
-                    id = nuevo.id;
-                }
+               
             }
             return new { id = id, status = id == 0 ? "ERROR" : "OK", code = 200, message = "EXITOSO" };
+
+        }
+
+
+        public static dynamic ConsultarUsuarios(IContextFactory factory, IOptions<ConnectionDB> connection)
+        {
+            UsuariosList retorno = new UsuariosList();
+            using (Aldeas_Context db = factory.Create(connection))
+            {
+                var data = from pro in db.TbUsuarios
+                           join p in db.TbPerfiles on pro.IdPerfil equals p.id
+                           select new UsuariosResponse {
+
+                               id = pro.id,
+                               IdPerfil = pro.IdPerfil,
+                               username = pro.username,
+                               Perfil = p.perfil
+                           };
+
+                if (data.Any())
+                {
+                    retorno.ItemsUsarios = data.ToList();
+                }
+                
+            }
+            return retorno;
 
         }
     }

@@ -5,3 +5,7 @@ export class Usuarios {
     perfil: string;
 
 }
+
+export interface UsuariosResponse{
+    itemsUsarios:  Usuarios[]
+}

@@ -13,6 +13,8 @@ namespace ApiRestAldeasPresupuesto.EntityFrame
 
         public string username { get; set; }
         public bool administrador { get; set; }
+        public long IdPerfil { get; set; }
+
 
     }
 

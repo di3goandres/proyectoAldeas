@@ -26,32 +26,15 @@ export class AgregarusuarioComponent implements OnInit {
   ) { }
 
 
-  openExitoso() {
-    const modalRef = this.modalService.open(RegistroexitosoComponent,
-      { size: 'md' });
-
-    modalRef.result.then((result) => {
-
-
-    }, (reason) => {
-
-
-    });
-  }
-  openNoExitoso(message) {
-    const modalRef = this.modalService.open(NoexitosoComponent, { size: 'md' });
-    modalRef.componentInstance.message = message;
-    modalRef.result.then((result) => {
-
-    }, (reason) => {
-
-
-    });
-  }
+ 
   onGuardar() {
 
     this.usuario = new Usuario();
-    this.usuario.administrador = this.activo == "true" ? true : false;
+    // this.usuario.administrador = this.activo == "true" ? true : false;
+    var y: number = +this.activo ;
+    this.usuario.idPerfil = y
+    
+
     this.usuario.username = this.NuevoNombre;
 
     this.service.guardarUsuario(this.usuario).subscribe(
@@ -60,38 +43,24 @@ export class AgregarusuarioComponent implements OnInit {
 
         if (OK.code == 200 && OK.status == "OK") {
           this.formgroup.reset();
-          this.openExitoso()
+           this.service.Exitoso();
         } else {
           if (OK.message == "NO EXISTE") {
-            this.openNoExitoso("USUARIO, NO EXISTE")
+            this.service.NoExitoso("USUARIO", "NO EXISTE")
 
 
           } else if (OK.id == 0)
-            this.openNoExitoso("USUARIO, PREVIAMENTE AGREGADO")
+          this.service.NoExitoso("USUARIO", "PREVIAMENTE AGREGADO")
 
         }
       },
-      Error => { console.log(Error) },
+      Error => { console.log(Error)
+      
+        this.service.NoExitoso("Ha ocurrido un error ", "Intentelo nuevamente")
+      },
 
     )
-    // this.categoriaActualizar = new Categoria();
-    // this.categoriaActualizar.id =  this.categoria.id
-
-    // this.categoriaActualizar.nombre = this.NuevoNombre;
-    // this.categoriaActualizar.estado =  this.activo === "true"? true:false;
-
-    // console.log( this.categoriaActualizar);
-    // this.categoriaService.updateCategoria(this.categoriaActualizar)
-    // .subscribe(
-
-    //   OK => {
-    //     if (OK.code == 200 && OK.status == "OK") {
-    //       this.activeModal.close('OK')
-    //     }
-    //     console.log(OK)
-    //   },
-    //   ERROR => { console.log(ERROR) }
-    // );
+  
 
   }
   ngOnInit(): void {

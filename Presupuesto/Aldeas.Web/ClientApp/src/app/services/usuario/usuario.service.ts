@@ -40,4 +40,20 @@ export class UsuarioService {
   getListProgramasUsuarios(id) {
     return this.userService.ejecutarQuery<UsuarioProgramaResponse>('/api/user/listarProgramas/'+id)
   }
+
+
+  ActualizarUsuario(data: Usuario) {
+    return this.userService.ejecutarQueryPostNuevo<Respuesta>('/api/user/actualizar/', data)
+  }
+
+  permitirEditar(){
+    return this.userService.permitirEditar();
+  }
+  Exitoso(){
+    this.userService.registroExitoso();
+  }
+
+  NoExitoso(Titulo, Mensaje){
+    this.userService.registroNoExitoso(Titulo, Mensaje);
+  }
 }

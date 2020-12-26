@@ -162,6 +162,11 @@ namespace ApiRestAldeas.Repositories
             return UserOperations.AgregarUsuario(_factory, _connectionDB, usuario);
         }
 
+        public dynamic ActualizarUsuario(DBAdministrador usuario)
+        {
+            return UserOperations.ActualizarUsuario(_factory, _connectionDB, usuario);
+        }
+
         public dynamic ListaUsuarios()
         {
             return UserOperations.ListaUsuarios(_factory, _connectionDB);

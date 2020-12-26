@@ -3,17 +3,18 @@
   <mat-menu #menu="matMenu">
     <button mat-menu-item [routerLink]="['/Home']">
       <mat-icon>home</mat-icon>
-      <span>Home</span>
+      <span>Home {{userType}}</span>
     </button>
+    <button mat-menu-item [matMenuTriggerFor]="usuarios"  *ngIf="(userType =='ADMINISTRADOR')">
+      <mat-icon>admin_panel_settings</mat-icon> <span>Usuarios</span>
+    </button>
+
     <button mat-menu-item [matMenuTriggerFor]="configuracion">
       <mat-icon>handyman</mat-icon> <span>Presupuesto</span>
     </button>
-    <button mat-menu-item [matMenuTriggerFor]="usuarios">
-      <mat-icon>handyman</mat-icon> <span>Usuarios</span>
-    </button>
-
+  
     <button mat-menu-item [matMenuTriggerFor]="gestionPresupuesto">
-      <mat-icon>handyman</mat-icon> <span>Gestión Presupuesto</span>
+      <mat-icon>corporate_fare</mat-icon> <span>Gestión Presupuesto</span>
     </button>
 
 
@@ -31,7 +32,7 @@
 
   </mat-menu>
   <mat-menu #programa="matMenu">
-    <button mat-menu-item [routerLink]="['/CrearPrograma']">
+    <button mat-menu-item [routerLink]="['/CrearPrograma']" *ngIf="Editar">
       <mat-icon>add</mat-icon>
       <span>Crear</span>
     </button>
@@ -113,3 +114,9 @@
     </router-outlet>
   </div>
 </body>
+
+
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)"
+size="large" color="#fff" type="ball-atom" [fullScreen]="true">
+ <p style="color: white"> Estamos procesando tu solicitud </p>
+</ngx-spinner>

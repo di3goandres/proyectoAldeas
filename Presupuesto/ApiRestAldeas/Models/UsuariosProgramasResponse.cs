@@ -16,9 +16,18 @@ namespace ApiRestAldeasPresupuesto.Models
     {
         public List<UsuarioProgramaRequest> AgregarPrograma { get; set; }
     }
+
+    public class UsuariosResponse
+    {
+        public long id { get; set; }
+        public string username { get; set; }
+        public long IdPerfil { get; set; }
+        public string Perfil { get; set; }
+
+    }
     public class UsuariosProgramasResponse
     {
-        public List<DBAdministrador> Usuarios { get; set; }
+        public List<UsuariosResponse> Usuarios { get; set; }
     }
 
     public class UsuariosListaProgramasResponse

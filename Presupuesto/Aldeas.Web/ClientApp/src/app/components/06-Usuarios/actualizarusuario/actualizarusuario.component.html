@@ -3,23 +3,23 @@
     <mat-card class="example-card">
         <mat-card-header>
             <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title>Agregar Usuario </mat-card-title>
-            <mat-card-subtitle>Agregar</mat-card-subtitle>
+            <mat-card-title>Actualizar Usuario </mat-card-title>
+            <mat-card-subtitle>Actualizar</mat-card-subtitle>
         </mat-card-header>
 
         <mat-card-content>
 
 
             <div class="row">
-                <form [formGroup]="formgroup" style="width: 100%;">
+                <!-- <form [formGroup]="formgroup" style="width: 100%;"> -->
                     <div class="col-12">
                         <mat-form-field appearance="fill">
                             <mat-label>Nombre</mat-label>
-                            <input matInput placeholder="Nuevo Nombre" [(ngModel)]="NuevoNombre" 
-                                formControlName="nombre" required >
+                            <input matInput [(ngModel)]="usuario.username" 
+                                 disabled >
                         </mat-form-field>
                     </div>
-                </form>
+                <!-- </form> -->
             </div>
 
                 <div class="row">
@@ -41,10 +41,25 @@
 
 
         </mat-card-content>
-        <mat-card-actions>
-            <button mat-raised-button class="buttton-aldea" [disabled]="!(formgroup.valid)"
-                (click)="onGuardar()">Guardar</button>
-        </mat-card-actions>
+       
+
+            <mat-card-actions>
+                <div class="row">
+                    <div class="col-6 centerlabel font-weight-bold" style="text-align: center;">
+                        <button mat-raised-button color="warn" ngbAutofocus (click)="Cerrar()">
+                            <mat-icon>close</mat-icon>
+                        </button>
+                    </div>
+                    <div class="col-6 centerlabel font-weight-bold" style="text-align: center;">
+                        <button mat-raised-button color="warn" 
+                            (click)="onGuardar()">
+                            <mat-icon>cached</mat-icon>
+                        </button>
+                    </div>
+                </div>
+    
+            </mat-card-actions>
+          
     </mat-card>
 
 </div>

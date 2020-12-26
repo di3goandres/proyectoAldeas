@@ -26,23 +26,32 @@
   
           <!-- Color Column -->
           <ng-container matColumnDef="administrador">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Administrador </th>
-            <td mat-cell *matCellDef="let row"> {{row.administrador== true? "ADMINISTRADOR": "USUARIO" }} </td>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Rol </th>
+            <td mat-cell *matCellDef="let row"> {{row.perfil }} </td>
           </ng-container>
           <ng-container matColumnDef="asociar">
             <th mat-header-cell *matHeaderCellDef> Asociar Programas </th>
-            <td mat-cell *matCellDef="let element">
+            <td mat-cell *matCellDef="let element" style="text-align: center;">
               <button type="button" mat-mini-fab class="buttton-aldea" aria-label="fecha"
               (click)="OpenAsociar(element)">
-                <mat-icon>open_in_new</mat-icon>
+                <mat-icon>add_box</mat-icon>
               </button> </td>
           </ng-container> 
           <ng-container matColumnDef="Ver">
             <th mat-header-cell *matHeaderCellDef> Ver Programas </th>
-            <td mat-cell *matCellDef="let element">
+            <td mat-cell *matCellDef="let element" style="text-align: center;">
               <button type="button" mat-mini-fab class="buttton-aldea" aria-label="fecha"
               (click)="OpenProgramas(element)">
-                <mat-icon>open_in_new</mat-icon>
+                <mat-icon>remove_red_eye</mat-icon>
+              </button> </td>
+          </ng-container> 
+
+          <ng-container matColumnDef="Actualizar">
+            <th mat-header-cell *matHeaderCellDef> Actualizar </th>
+            <td mat-cell *matCellDef="let element" style="text-align: center;">
+              <button type="button" mat-mini-fab class="buttton-aldea" aria-label="fecha"
+              (click)="Actualizar(element)">
+                <mat-icon>cached</mat-icon>
               </button> </td>
           </ng-container> 
   

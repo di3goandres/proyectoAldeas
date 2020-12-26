@@ -5,6 +5,7 @@ export interface CargosResponse {
 export class CargosDatum {
   constructor(){
     this.id =0;
+    this.tipo = ''
   }
   id:         number;
   tipo:       string;

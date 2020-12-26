@@ -8,6 +8,8 @@ namespace ApiRestAldeas.Models
         public string DisplayName { get; set; }
         public string Username { get; set; }
         public bool Administrador { get; set; }
+        public string Perfil { get; set; }
+
 
         public string Token { get; set; }
 
@@ -17,6 +19,7 @@ namespace ApiRestAldeas.Models
             DisplayName = user.DisplayName;
             Username = user.Username;
             Token = token;
+            Perfil = user.Perfil;
         }
     }
 }

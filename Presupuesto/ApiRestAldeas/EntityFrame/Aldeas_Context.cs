@@ -35,6 +35,8 @@ namespace ApiRestAldeas.EntityFrame
             optionsBuilder.UseSqlServer(_ConnectionDB.Value.Conexion);
         }
         public virtual DbSet<DBAdministrador> TbAdministradores { get; set; }
+        public virtual DbSet<Perfiles> TbPerfiles { get; set; }
+
 
         public virtual DbSet<DBUsuariosProgramas> TbUsuariosProgramas { get; set; }
 
@@ -98,7 +100,12 @@ namespace ApiRestAldeas.EntityFrame
             {
                 entity.ToTable("usuarios_administradores");
             });
+            modelBuilder.Entity<Perfiles>(entity =>
+            {
+                entity.ToTable("Perfiles");
 
+
+            });
 
             modelBuilder.Entity<DBUsuariosProgramas>(entity =>
             {

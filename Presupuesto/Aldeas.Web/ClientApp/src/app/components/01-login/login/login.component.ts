@@ -42,7 +42,8 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data=>{
-          this.router.navigate(['/Home'])
+          // this.router.navigate(['/Home'])
+          window.location.reload();
         },
         error =>{
           this.errorBolean = true;

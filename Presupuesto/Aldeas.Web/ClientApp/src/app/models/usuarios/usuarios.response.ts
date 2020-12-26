@@ -5,5 +5,8 @@ export interface UsuariosResponse {
 export class Usuario {
   id: number;
   username: string;
+  perfil: string;
+
   administrador: boolean;
+  idPerfil: number;
 }

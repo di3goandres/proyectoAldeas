@@ -48,7 +48,10 @@ export class ActualizarcargoComponent implements OnInit {
           }
           console.log(OK)
         },
-        ERROR => { console.log(ERROR) }
+        ERROR => { console.log(ERROR)
+        
+        
+          this.activeModal.close('NOK')}
       );
 
   }

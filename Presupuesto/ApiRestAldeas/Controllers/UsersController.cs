@@ -37,10 +37,10 @@ namespace ApiRestAldeas.Controllers
         {
             var response = _userService.Authenticate(model);
 
-            if (response == null)
+            if (response == null || response.Perfil == "")
                 return BadRequest(new { message = "Username or password is incorrect" });
 
-            response.Administrador = _dataModelRepository.EsAdministrador(model.Username);
+            //response.Administrador = _dataModelRepository.EsAdministrador(model.Username);
             return Ok(response);
         }
 
@@ -56,6 +56,24 @@ namespace ApiRestAldeas.Controllers
             if (response)
             {
                 return _dataModelRepository.AgregarUsuario(usuario);
+
+            }
+            else
+            {
+                return new { id = 0, status = "ERROR", code = 200, message = "NO EXISTE" };
+
+            }
+        }
+
+        [Authorize]
+        [HttpPost]
+        [Route("/api/user/actualizar/")]
+        public dynamic ActualizarUsuario(DBAdministrador usuario)
+        {
+            var response = _userService.Existe(usuario);
+            if (response)
+            {
+                return _dataModelRepository.ActualizarUsuario(usuario);
 
             }
             else

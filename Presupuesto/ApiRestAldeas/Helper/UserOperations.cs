@@ -17,17 +17,17 @@ namespace ApiRestAldeasPresupuesto.Helper
         public static dynamic EsAdministrador(IContextFactory factory, IOptions<ConnectionDB> connection, String user)
         {
 
-            bool retorno = false;
+            string retorno = "";
             using (Aldeas_Context db = factory.Create(connection))
             {
                 var data = from pro in db.TbAdministradores
+                           join p in db.TbPerfiles on pro.IdPerfil equals p.id
                            where pro.username == user
-                           select pro;
+                           select p;
 
                 if (data.Any())
                 {
-                
-                    retorno = data.FirstOrDefault().administrador;
+                    retorno = data.FirstOrDefault().perfil;
                 }
 
             }
@@ -69,6 +69,7 @@ namespace ApiRestAldeasPresupuesto.Helper
                 {
                     var nuevo = new DBAdministrador();
                     nuevo.administrador = usuario.administrador;
+                    nuevo.IdPerfil = usuario.IdPerfil;
                     nuevo.username = usuario.username;
                     db.TbAdministradores.Add(nuevo);
                     db.SaveChanges();
@@ -80,6 +81,35 @@ namespace ApiRestAldeasPresupuesto.Helper
             return new { id = id, status = id == 0 ? "ERROR" : "OK", code = 200, message="EXITOSO" };
 
         }
+
+
+        public static dynamic ActualizarUsuario(IContextFactory factory, IOptions<ConnectionDB> connection, DBAdministrador usuario)
+        {
+
+            long id = 0;
+
+            using (Aldeas_Context db = factory.Create(connection))
+            {
+                var data = from pro in db.TbAdministradores
+                           where pro.id == usuario.id
+                           select pro;
+
+                if (data.Any())
+                {
+
+                    data.First().IdPerfil = usuario.IdPerfil;
+           
+                    db.SaveChanges();
+                    id = usuario.id;
+
+
+                }
+            }
+            return new { id = id, status = id == 0 ? "ERROR" : "OK", code = 200, message = "EXITOSO" };
+
+        }
+
+
         public static dynamic ListaUsuarios(IContextFactory factory, IOptions<ConnectionDB> connection)
         {
             UsuariosProgramasResponse retorno = new UsuariosProgramasResponse();
@@ -87,7 +117,15 @@ namespace ApiRestAldeasPresupuesto.Helper
             using (Aldeas_Context db = factory.Create(connection))
             {
                 var data = from pro in db.TbAdministradores
-                           select pro;
+                           join p in db.TbPerfiles on pro.IdPerfil equals p.id
+                           select new UsuariosResponse
+                           {
+
+                               id = pro.id,
+                               IdPerfil = pro.IdPerfil,
+                               username = pro.username,
+                               Perfil = p.perfil
+                           };
 
                 if (data.Any())
                 {

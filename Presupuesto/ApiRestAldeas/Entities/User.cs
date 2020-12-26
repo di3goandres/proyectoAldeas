@@ -10,6 +10,9 @@ namespace ApiRestAldeas.Entities
 
         public bool Administrador { get; set; }
 
+        public string Perfil { get; set; }
+
+
         public string Username { get; set; }
 
         

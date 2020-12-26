@@ -13,6 +13,10 @@ import { RegistroParticipante } from '../models/DatosPartipante';
 import { environment } from '../../environments/environment';
 
 import * as FileSaver from 'file-saver';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NoexitosoComponent } from '../components/00-Comunes/noexitoso/noexitoso.component';
+import { RegistroexitosoComponent } from '../components/00-Comunes/registroexitoso/registroexitoso.component';
+import { RegistroNoexitosoComponent } from '../components/00-Comunes/registro-noexitoso/registro-noexitoso.component';
 
 
 @Injectable({
@@ -28,13 +32,15 @@ export class UserService {
   public token;
   public json: string;
 
-  public header = new HttpHeaders({
-    // tslint:disable-next-line: object-literal-key-quotes
-    'Autorization': this.token
-  });
+  // public header = new HttpHeaders({
+  //   // tslint:disable-next-line: object-literal-key-quotes
+  //   'Autorization': this.token
+  // });
 
   constructor(
     private http: HttpClient,
+    private modalService: NgbModal,
+
     public router: Router) {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
@@ -44,36 +50,56 @@ export class UserService {
     return this.currentUserSubject.value;
   }
 
-  postFile(fileToUpload: File, id: string) {
-   
-   let user = this.currentUserSubject.value;
 
-    const formData: FormData = new FormData();
-    this.header = new HttpHeaders().set('Authorization', user.token);
-
-    formData.append('file', fileToUpload);
-    formData.append('Proyecto', id.toString());
-   
-    return this.http.post<Respuesta>(environment.ApiUrl + '/api/aldeas/GuardarProyectoArchivo/',
-     formData, { headers: this.header });
-    
-}
 
   ///metodo par ejecutar metodos get
   public ejecutarQuery<T>(query: string) {
    let user = this.currentUserSubject.value;
-    this.header = new HttpHeaders().set('Authorization', user.token);
-    return this.http.get<T>(environment.ApiUrl + query, { headers: this.header });
+    // this.header = new HttpHeaders().set('Authorization', user.token);
+    // return this.http.get<T>(environment.ApiUrl + query, { headers: this.header });
+    return this.http.get<T>(environment.ApiUrl + query);
+
+  }
+
+  public ejecutarQueryPostNuevo<T>(query: string, data: any) {
+
+    let json = JSON.stringify(data);
+    let params = json;
+
+    return this.http.post<T>(environment.ApiUrl + query, params);
+
+
   }
 
 
+  isAdmin(): Promise<boolean> {
+
+
+    let user = this.currenUserValue;
+    console.log(user)
+    return new Promise(resolve => {
+
+      if (user.perfil = 'ADMINISTRADOR') {
+        resolve(true);
+      } else {
+        this.router.navigate(['home']);
+  
+        resolve(false);
+  
+      }
+    })
+   
+
+  }
   // tslint:disable-next-line: typedef con autorizacion
   public ejecutarQueryPost<T>(query: string, params: string) {
    let user = this.currentUserSubject.value;
 
-    this.header = new HttpHeaders().set('Authorization', user.token)
-      .set('Content-Type', 'application/json');
-    return this.http.post<T>(environment.ApiUrl + query, params, { headers: this.header });
+    // this.header = new HttpHeaders().set('Authorization', user.token)
+    //   .set('Content-Type', 'application/json');
+    return this.http.post<T>(environment.ApiUrl + query, params);
+    // return this.http.post<T>(environment.ApiUrl + query, params, { headers: this.header });
+
 
   }
 
@@ -83,11 +109,13 @@ export class UserService {
     }
     this.json = JSON.stringify(user);
     this.params = 'json=' + this.json;
-    this.header = new HttpHeaders().set('Content-Type', 'application/json');
+    let header = new HttpHeaders().set('Content-Type', 'application/json');
 
 
 
-    return this.http.post<any>(environment.ApiUrl +'/api/user/authenticate', this.json, { headers: this.header })
+    return this.http.post<any>(environment.ApiUrl +'/api/user/authenticate', this.json, { headers: header })
+    // return this.http.post<any>(environment.ApiUrl +'/api/user/authenticate', this.json)
+
       .pipe(map(user => {
 
         localStorage.setItem('currentUser', JSON.stringify(user));
@@ -144,12 +172,7 @@ export class UserService {
 
   }
 
-// getExcel(metodo){
-//   this.http.post(environment.ApiUrl + metodo , { responseType: 'blob' })
-//  .subscribe((resp: any) => {
-//     saveAs(resp, `filename.csv`)
-//  });
-// }
+  
 
   getIdentity() {
     let token = localStorage.getItem('currentUser');
@@ -183,5 +206,45 @@ export class UserService {
 
   getUrl(){
     return environment.ApiUrl ;
+  }
+
+  permitirEditar(){
+    let user = this.currenUserValue;
+    if(user.perfil === 'ADMINISTRADOR' || user.perfil === 'EDITOR'){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+
+
+  registroExitoso() {
+    const modalRef = this.modalService.open(RegistroexitosoComponent, { size: 'md' });
+
+    modalRef.result.then((result) => {
+     
+    }, (reason) => {
+
+      if (reason === 'OK') {
+
+
+      }
+    });
+  }
+
+  registroNoExitoso(Titulo, Mensaje) {
+    const modalRef = this.modalService.open(RegistroNoexitosoComponent, { size: 'md' });
+    modalRef.componentInstance.Titulo = Titulo;
+    modalRef.componentInstance.mensaje = Mensaje
+    modalRef.result.then((result) => {
+
+    }, (reason) => {
+
+      if (reason === 'OK') {
+
+
+      }
+    });
   }
 }

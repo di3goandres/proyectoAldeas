@@ -65,7 +65,14 @@ export class ListacargosComponent implements OnInit {
     modalRef.result.then((result) => {
       if (result === "OK") {
         this.openExitoso();
+        this.service.Exitoso()
         this.cargaInicial(true)
+      }
+
+      if (result === "NOK") {
+      
+        this.service.NoExitoso("Ha ocurrido un error inespareado", "Intentelo mas tarde")
+       
       }
 
     }, (reason) => {

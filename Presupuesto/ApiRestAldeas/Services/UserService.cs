@@ -63,7 +63,7 @@ namespace ApiRestAldeas.Services
                 {
                     user.DisplayName = "Diego Andres Montealegre Garcia";
                     user.Username = model.Username;
-                    user.Administrador = _dataModelRepository.EsAdministrador(user.Username);
+                    user.Perfil = _dataModelRepository.EsAdministrador(user.Username);
                     var token = generateJwtToken(user);
 
                     return new AuthenticateResponse(user, token);
@@ -86,7 +86,7 @@ namespace ApiRestAldeas.Services
 
                                 user.DisplayName = displayName == null || displayName.Count <= 0 ? "" : displayName[0].ToString();
                                 user.Username = sameAccountName == null || sameAccountName.Count <= 0 ? "" : sameAccountName[0].ToString();
-                                user.Administrador = _dataModelRepository.EsAdministrador(user.Username);
+                                user.Perfil = _dataModelRepository.EsAdministrador(user.Username);
                                 var token = generateJwtToken(user);
 
                                 return new AuthenticateResponse(user, token);
@@ -127,9 +127,7 @@ namespace ApiRestAldeas.Services
                         var result = searcher.FindOne();
                         if (result != null)
                         {
-                         
                             existe = true;
-
                         }
                     }
                 }
@@ -162,7 +160,7 @@ namespace ApiRestAldeas.Services
                 Subject = new ClaimsIdentity(new[] { new Claim("id", user.Username),
                  new Claim("Administrador", user.Administrador.ToString())}),
                 //Expires = DateTime.UtcNow.AddDays(7),
-                Expires = DateTime.UtcNow.AddDays(7),
+                Expires = DateTime.UtcNow.AddHours(12),
 
                 SigningCredentials =
                 new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)

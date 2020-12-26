@@ -16,7 +16,7 @@
                         <mat-form-field appearance="fill">
                             <mat-label> Tipo</mat-label>
         
-                            <mat-select [(ngModel)]="cargo.tipo"  formControlName="tipo" >
+                            <mat-select   formControlName="tipo" >
                                 <mat-option *ngFor="let tipo of tiposCargos" [value]="tipo.value">
                                     {{tipo.viewValue}}
                                 </mat-option>

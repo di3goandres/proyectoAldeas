@@ -11,7 +11,7 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { LoginComponent } from './components/01-login/login/login.component';
 import { ComponentsModule } from './components/components.module';
 import { HomeComponent } from './components/02-Home/home/home.component';
-import  {MatCurrencyFormatModule} from 'mat-currency-format';
+import { MatCurrencyFormatModule } from 'mat-currency-format';
 
 import { MatTabsModule } from '@angular/material/tabs';
 
@@ -39,6 +39,9 @@ import { GestionarprogramasComponent } from './components/05-Presupuesto/Gestion
 import { VeritemspresupuestonioComponent } from './components/05-Presupuesto/Gestion/veritemspresupuestonio/veritemspresupuestonio.component';
 import { AsociaritemspresupuestoComponent } from './components/05-Presupuesto/Gestion/asociaritemspresupuesto/asociaritemspresupuesto.component';
 import { MatStepperModule } from '@angular/material/stepper';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { AuthInterceptor } from './services/interceptor/auth.interceptor';
+import { AdminGuard } from './guards/admin.guard';
 
 
 const routes: Routes = [
@@ -48,89 +51,33 @@ const routes: Routes = [
     redirectTo: 'login',
     pathMatch: 'full'
   },
-  {
-    path: 'Home', component: HomeComponent, pathMatch: 'full', canActivate: [UsuarioGuard],
-    canLoad: [UsuarioGuard]
-  },
-  {
-    path: 'Cargos', component: ListacargosComponent, pathMatch: 'full',
-    canActivate: [UsuarioGuard], canLoad: [UsuarioGuard]
-  },
   { path: 'logout/:sure', component: LoginComponent, pathMatch: 'full' },
-  {
-    path: 'TipoProgramas', component: ProgramatipoComponent, pathMatch: 'full',
-    canActivate: [UsuarioGuard], canLoad: [UsuarioGuard]
-  },
-  {
-    path: 'Programas', component: ListaprogramasComponent, pathMatch: 'full',
-    canActivate: [UsuarioGuard], canLoad: [UsuarioGuard]
-  },
-  {
-    path: 'OnlyProgramas', component: ListaonlyprogramaComponent, pathMatch: 'full',
-    canActivate: [UsuarioGuard], canLoad: [UsuarioGuard]
-  }
-  ,
-  {
-    path: 'OnlyCategorias', component: ListaonlyrubrosComponent, pathMatch: 'full',
-    canActivate: [UsuarioGuard], canLoad: [UsuarioGuard]
-  }
-  ,
-  {
-    path: 'CategoriasPucs', component: ListarubrospucsComponent, pathMatch: 'full',
-    canActivate: [UsuarioGuard], canLoad: [UsuarioGuard]
-  }
-  ,
-  {
-    path: 'GenerarPresupuesto', component: PrincipalpresupuestoComponent, pathMatch: 'full',
-    canActivate: [UsuarioGuard], canLoad: [UsuarioGuard]
-  }
-  ,
-  {
-    path: 'VerPresupuesto/:id', component: ListapresupuestoprogramaComponent, pathMatch: 'full',
-    canActivate: [UsuarioGuard], canLoad: [UsuarioGuard]
-  }
 
-  
-  // rutas usuarios
-  ,
-  {
-    path: 'VerUsuarios', component: ListausuariosComponent, pathMatch: 'full',
-    canActivate: [UsuarioGuard], canLoad: [UsuarioGuard]
-  }
-  ,
-  {
-    path: 'AgregarUsuario', component: AgregarusuarioComponent, pathMatch: 'full',
-    canActivate: [UsuarioGuard], canLoad: [UsuarioGuard]
-  }
+  { path: 'Home', component: HomeComponent, pathMatch: 'full', canActivate: [UsuarioGuard], canLoad: [UsuarioGuard] },
+  { path: 'Cargos', component: ListacargosComponent, pathMatch: 'full', canActivate: [UsuarioGuard], canLoad: [UsuarioGuard] },
+  { path: 'TipoProgramas', component: ProgramatipoComponent, pathMatch: 'full', canActivate: [UsuarioGuard], canLoad: [UsuarioGuard] },
+  { path: 'Programas', component: ListaprogramasComponent, pathMatch: 'full', canActivate: [UsuarioGuard], canLoad: [UsuarioGuard] },
+  { path: 'OnlyProgramas', component: ListaonlyprogramaComponent, pathMatch: 'full', canActivate: [UsuarioGuard], canLoad: [UsuarioGuard] },
+  { path: 'OnlyCategorias', component: ListaonlyrubrosComponent, pathMatch: 'full', canActivate: [UsuarioGuard], canLoad: [UsuarioGuard] },
+  { path: 'CategoriasPucs', component: ListarubrospucsComponent, pathMatch: 'full', canActivate: [UsuarioGuard], canLoad: [UsuarioGuard] },
+  { path: 'GenerarPresupuesto', component: PrincipalpresupuestoComponent, pathMatch: 'full', canActivate: [UsuarioGuard], canLoad: [UsuarioGuard] },
+  { path: 'VerPresupuesto/:id', component: ListapresupuestoprogramaComponent, pathMatch: 'full', canActivate: [UsuarioGuard], canLoad: [UsuarioGuard] },
+
+
+  // Admnitrador
+  { path: 'VerUsuarios', component: ListausuariosComponent, pathMatch: 'full', canActivate: [AdminGuard], canLoad: [AdminGuard] },
+  { path: 'AgregarUsuario', component: AgregarusuarioComponent, pathMatch: 'full', canActivate: [AdminGuard], canLoad: [AdminGuard] },
 
   /**creacion de programas */
 
-  ,
-  {
-    path: 'CrearPrograma', component: CrearprogramaComponent, pathMatch: 'full',
-    canActivate: [UsuarioGuard], canLoad: [UsuarioGuard]
-  }
-  ,
-  {
-    path: 'Financiadores', component: ListaFinanciadoresComponent, pathMatch: 'full',
-    canActivate: [UsuarioGuard], canLoad: [UsuarioGuard]
-  }
-/**Gestion presupuesto */
-  ,
-  {
-    path: 'GestionProgramas', component: GestionarprogramasComponent, pathMatch: 'full',
-    canActivate: [UsuarioGuard], canLoad: [UsuarioGuard]
-  }
-  ,
-  {
-    path: 'GestionProgramas/PresupuestoAnio/:id', component: VeritemspresupuestonioComponent, pathMatch: 'full',
-    canActivate: [UsuarioGuard], canLoad: [UsuarioGuard]
-  }
-  ,
-  {
-    path: 'VerDetallePresupuesto/:id', component: AsociaritemspresupuestoComponent, pathMatch: 'full',
-    canActivate: [UsuarioGuard], canLoad: [UsuarioGuard]
-  }
+
+  { path: 'CrearPrograma', component: CrearprogramaComponent, pathMatch: 'full', canActivate: [UsuarioGuard], canLoad: [UsuarioGuard] },
+  { path: 'Financiadores', component: ListaFinanciadoresComponent, pathMatch: 'full', canActivate: [UsuarioGuard], canLoad: [UsuarioGuard] },
+  /**Gestion presupuesto */
+
+  { path: 'GestionProgramas', component: GestionarprogramasComponent, pathMatch: 'full', canActivate: [UsuarioGuard], canLoad: [UsuarioGuard] },
+  { path: 'GestionProgramas/PresupuestoAnio/:id', component: VeritemspresupuestonioComponent, pathMatch: 'full', canActivate: [UsuarioGuard], canLoad: [UsuarioGuard] },
+  { path: 'VerDetallePresupuesto/:id', component: AsociaritemspresupuestoComponent, pathMatch: 'full', canActivate: [UsuarioGuard], canLoad: [UsuarioGuard] }
 
 
 
@@ -156,9 +103,11 @@ const routes: Routes = [
     BrowserAnimationsModule,
     NgbModule,
     MatCurrencyFormatModule,
-    MatStepperModule
+    MatStepperModule,
+    NgxSpinnerModule
   ],
   providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },
   ],
   bootstrap: [AppComponent]

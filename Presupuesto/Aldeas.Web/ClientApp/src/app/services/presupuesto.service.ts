@@ -95,4 +95,16 @@ export class PresupuestoService {
   gerReporte(id) {
     return this.userService.getUrl() + '/api/generarinforme/consultar/' + id;
   }
+  
+  permitirEditar(){
+    return this.userService.permitirEditar();
+  }
+
+  Exitoso(){
+    this.userService.registroExitoso();
+  }
+
+  NoExitoso(Titulo, Mensaje){
+    this.userService.registroNoExitoso(Titulo, Mensaje);
+  }
 }

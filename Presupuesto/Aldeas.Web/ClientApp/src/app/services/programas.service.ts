@@ -61,4 +61,15 @@ export class ProgramasService {
   getProgramasUsuario() {
     return this.userService.ejecutarQuery<UsuarioProgramaResponse>('/api/user/soloprogramastoken' )
   }
+  permitirEditar(){
+    return this.userService.permitirEditar();
+  }
+
+  Exitoso(){
+    this.userService.registroExitoso();
+  }
+
+  NoExitoso(Titulo, Mensaje){
+    this.userService.registroNoExitoso(Titulo, Mensaje);
+  }
 }

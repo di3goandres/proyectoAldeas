@@ -28,6 +28,14 @@ export class CargosService {
     return this.userService.ejecutarQueryPost<Respuesta>('/api/cargos/update', params)
   }
 
+  permitirEditar(){
+    return this.userService.permitirEditar();
+  }
+  Exitoso(){
+    this.userService.registroExitoso();
+  }
 
-
+  NoExitoso(Titulo, Mensaje){
+    this.userService.registroNoExitoso(Titulo, Mensaje);
+  }
 }

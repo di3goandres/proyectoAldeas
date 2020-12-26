@@ -79,6 +79,9 @@ namespace ApiRestAldeas.Repositories
         #region USUARIO
         dynamic AgregarUsuario(DBAdministrador usuario);
 
+        dynamic ActualizarUsuario(DBAdministrador usuario);
+
+
 
         dynamic ListaUsuarios();
 

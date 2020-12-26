@@ -62,6 +62,7 @@ import { UsuariosComponent } from './07-Admin/usuarios/usuarios.component';
 import { NuevousuarioComponent } from './07-Admin/nuevousuario/nuevousuario.component';
 import { ActualizarusuarioComponent } from './07-Admin/actualizarusuario/actualizarusuario.component';
 import { CambiararchivoComponent } from './03-InfoGeneral/cambiararchivo/cambiararchivo.component';
+import { CopiarusuarioComponent } from './03-InfoGeneral/copiarusuario/copiarusuario.component';
 @NgModule({
   declarations: [
     LoginComponent,
@@ -101,7 +102,8 @@ import { CambiararchivoComponent } from './03-InfoGeneral/cambiararchivo/cambiar
     UsuariosComponent,
     NuevousuarioComponent,
     ActualizarusuarioComponent,
-    CambiararchivoComponent
+    CambiararchivoComponent,
+    CopiarusuarioComponent
    ],
   imports: [
 

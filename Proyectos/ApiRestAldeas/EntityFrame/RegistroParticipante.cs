@@ -28,6 +28,8 @@ namespace ApiRestAldeas.EntityFrame
         public string TipoParticipante { get; set; }
         public string Discapacidad { get; set; }
         public string NivelEscolaridad { get; set; }
+        public long? id_origen { get; set; }
+
 
     }
 }

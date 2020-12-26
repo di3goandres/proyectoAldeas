@@ -40,6 +40,7 @@ namespace ApiRestAldeas.Controllers
             return File(stream, "application/octet-stream", nombre);
         }
 
+        [Authorize]
         [HttpGet]
         [Route("/api/proyectos/informe/exportDatabase/")]
         public IActionResult GetexportDatabase()

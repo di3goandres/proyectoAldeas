@@ -40,6 +40,7 @@ import { ChecklistComponent } from './components/00-Comunes/checklist/checklist.
 import { UsuariosComponent } from './components/07-Admin/usuarios/usuarios.component';
 import { AdminGuard } from './guards/admin.guard';
 import { NuevousuarioComponent } from './components/07-Admin/nuevousuario/nuevousuario.component';
+import { CopiarusuarioComponent } from './components/03-InfoGeneral/copiarusuario/copiarusuario.component';
 
 
 const routes: Routes = [ 
@@ -66,6 +67,7 @@ const routes: Routes = [
   { path: 'VerDetalleProyectos/:id', component: DetalleproyectosComponent, pathMatch: 'full', canActivate:[UsuarioGuard], canLoad: [UsuarioGuard]  },
   { path: 'VerParticipantesProyectos/:id', component: VerproyectosparticipantesComponent, pathMatch: 'full', canActivate:[UsuarioGuard], canLoad: [UsuarioGuard]  },
   { path: 'VerColaboradoresProyectos/:id', component: ListacolaboradoresComponent, pathMatch: 'full', canActivate:[UsuarioGuard], canLoad: [UsuarioGuard]  },
+  { path: 'CopiarParticipante', component: CopiarusuarioComponent, pathMatch: 'full', canActivate:[UsuarioGuard], canLoad: [UsuarioGuard]  },
 
   { path: 'DescargarDatos', component: DescargarbasedatosComponent, pathMatch: 'full', canActivate:[UsuarioGuard], canLoad: [UsuarioGuard]  },
   { path: 'AdminUsuarios', component: UsuariosComponent, pathMatch: 'full', canActivate:[AdminGuard], canLoad: [AdminGuard]  },

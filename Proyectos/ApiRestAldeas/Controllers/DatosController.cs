@@ -60,6 +60,8 @@ namespace ApiRestAldeas.Controllers
             return _dataModelRepository.GuardarRegistroColaborador(request);
         }
 
+
+        [Authorize]
         [HttpPost]
         [Route("/api/aldeas/GuardarProyectoArchivo/")]
         public dynamic guardarProyecto([FromForm] FileInputModel proyectoRequest)
@@ -130,6 +132,7 @@ namespace ApiRestAldeas.Controllers
             return _dataModelRepository.ConsultarProyectos();
         }
 
+        [Authorize]
         [HttpGet]
         [Route("/api/aldeas/proyectos/obtenerParticipantes/{id}")]
         public dynamic ConsultarParticioantes(long id)

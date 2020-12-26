@@ -47,7 +47,8 @@ namespace ApiRestAldeas.Helper
             using (Aldeas_Context db = factory.Create(connection))
             {
                 var data = from pro in db.tbProyectos
-                           select new Proyectos {
+                           select new ProyectosSinArchivo
+                           {
                                id = pro.id,
                                nombre = pro.nombre,
                                status = pro.status,
@@ -62,7 +63,8 @@ namespace ApiRestAldeas.Helper
                                lider_coordinacion = pro.lider_coordinacion,
                                tipo_implementacion = pro.tipo_implementacion,
                                comite_tecnico = pro.comite_tecnico,
-                               requiereLiquidacion = pro.requiereLiquidacion
+                               requiereLiquidacion = pro.requiereLiquidacion,
+                               telefono = pro.telefono
 
 
 
@@ -79,7 +81,27 @@ namespace ApiRestAldeas.Helper
             using (Aldeas_Context db = factory.Create(connection))
             {
                 var data = from pro in db.tbProyectos
-                           select pro;
+                           select new ProyectosSinArchivo
+                           {
+                               id = pro.id,
+                               nombre = pro.nombre,
+                               status = pro.status,
+                               donante = pro.donante,
+                               tipo_financiacion = pro.tipo_financiacion,
+                               nombre_donante = pro.nombre_donante,
+                               direccion = pro.direccion,
+                               email = pro.email,
+                               fecha_inicio = pro.fecha_inicio,
+                               fecha_finalizacion = pro.fecha_finalizacion,
+                               lider_ejecucion = pro.lider_ejecucion,
+                               lider_coordinacion = pro.lider_coordinacion,
+                               tipo_implementacion = pro.tipo_implementacion,
+                               comite_tecnico = pro.comite_tecnico,
+                               requiereLiquidacion = pro.requiereLiquidacion,
+                               telefono = pro.telefono
+
+
+                           };
                 retorno.ItemsProyectos = (data.ToList());
             }
             return retorno;

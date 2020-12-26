@@ -8,6 +8,7 @@ import { ProyectoResponse } from '../../models/ProyectoResponse';
 import { RegistroParticipantesResponse } from '../../models/registroparticipantes/registro.participantes.response';
 import { RespuestaIndicadoresResponse } from 'src/app/models/indicadores/Respuesta.indicadores.response';
 import { RespuestasResponse } from '../../models/indicadores/Respuestas.response';
+import { ParticipantesCopiaRequest } from '../../models/registroparticipantes/participantes.disponibles';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,11 @@ export class IndicadoresService {
   obtenerParticipantes(id) {
     return this.service
       .ejecutarQuery<RegistroParticipantesResponse>('/api/aldeas/proyectos/obtenerparticipantes/' + id);
+  }
+
+  obtenerParticipantesDisponibles(data: ParticipantesCopiaRequest) {
+    return this.service
+      .ejecutarQueryPostNuevo<RegistroParticipantesResponse>('/api/aldeas/participante/disponibles/', data);
   }
   ObtenerIndicadores() {
     return this.service

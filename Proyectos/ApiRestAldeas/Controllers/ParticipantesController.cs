@@ -60,5 +60,25 @@ namespace ApiRestAldeas.Controllers
             return _dataModelRepository.ActualizarIntegrante(request);
 
         }
+
+        [Authorize]
+        [HttpPost]
+        [Route("/api/aldeas/participante/copiar/")]
+        public dynamic CopiarParticipante([FromBody] UsuarioCambio  request)
+        {
+
+            return _dataModelRepository.CopiarRegistroParticipante(request);
+
+        }
+
+        //[Authorize]
+        [HttpPost]
+        [Route("/api/aldeas/participante/disponibles/")]
+        public dynamic ConsultarCopiarParticipante([FromBody] UsuarioCambio request)
+        {
+
+            return _dataModelRepository.ConsultarCopiarIntegrante(request);
+
+        }
     }
 }

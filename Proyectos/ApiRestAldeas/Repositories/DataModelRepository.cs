@@ -268,6 +268,16 @@ namespace ApiRestAldeas.Repositories
             return ProyectoOperations.ConsultarArchivo(_factory, _connectionDB, idProyecto);
         }
 
+        public dynamic CopiarRegistroParticipante(UsuarioCambio usuarioCambio)
+        {
+            return RegistroParticipantesOperations.CopiarIntegrante(_factory, _connectionDB, usuarioCambio);
+        }
+
+        public dynamic ConsultarCopiarIntegrante(UsuarioCambio usuarioCambio)
+        {
+            return RegistroParticipantesOperations.ConsultarCopiarIntegrante(_factory, _connectionDB, usuarioCambio);
+        }
+
 
 
 

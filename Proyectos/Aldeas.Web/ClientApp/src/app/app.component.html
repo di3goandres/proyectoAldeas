@@ -82,7 +82,10 @@
       <mat-icon>list</mat-icon>
       <span>Ver Proyectos</span>
     </button>
-
+    <button mat-menu-item [routerLink]="['/CopiarParticipante']"  *ngIf="Editar">
+      <mat-icon>content_copy</mat-icon>
+      <span>Copiar Participante</span>
+    </button>
     <button mat-menu-item [routerLink]="['/DescargarDatos']"  *ngIf="Editar">
       <mat-icon>cloud_download</mat-icon>
       <span>Descargar Datos</span>

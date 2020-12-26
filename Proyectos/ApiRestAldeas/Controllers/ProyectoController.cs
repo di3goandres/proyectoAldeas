@@ -31,7 +31,7 @@ namespace ApiRestAldeas.Controllers
             return _dataModelRepository.ConsultarListaProyectos();
         }
 
-      //& [Authorize]
+        [Authorize]
         [HttpGet]
         [Route("/api/aldeas/proyectos/obtenerProyectosById/{id}")]
         public dynamic ConsultaProyectosById(long id)

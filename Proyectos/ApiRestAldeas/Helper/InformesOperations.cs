@@ -635,7 +635,7 @@ namespace ApiRestAldeas.Helper
 
                 string[] ListaDeCamposProyecto = { "ID_PROYECTO", "NOMBRE", "ESTATUS", "DONANTE", "TIPO FINANCIACION" , "NOMBRE DONANTE",
                                            "DIRECCION", "EMAIL", "FECHA INICIO", "FECHA FIN", "LIDER EJECUCION", "LIDER COORDINACION",
-                                           "COMITE TECNICO", "TIPO IMPLEMENTACION",  "REQUIERE LIQUIDACION"
+                                           "COMITE TECNICO", "TIPO IMPLEMENTACION",  "REQUIERE LIQUIDACION", "TELEFONO"
 
                         };
 
@@ -668,6 +668,8 @@ namespace ApiRestAldeas.Helper
                     AgregarValorCelda(ref worksheet, row, ref CeldaDatos, item.comite_tecnico, false);
                     AgregarValorCelda(ref worksheet, row, ref CeldaDatos, item.tipo_implementacion, false);
                     AgregarValorCelda(ref worksheet, row, ref CeldaDatos, item.requiereLiquidacion == true ? "SI" : "NO", false);
+                    AgregarValorCelda(ref worksheet, row, ref CeldaDatos, item.telefono, false);
+
 
 
 

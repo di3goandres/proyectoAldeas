@@ -7,6 +7,8 @@ import { EjecucionFinancieraRequest } from '../../models/proyectos/ejecucion.req
 import { Respuesta } from '../../models/comunes';
 import { ItemFinancieraRequest } from '../../models/proyectos/proyecto.unico.response';
 import { Usuarios, UsuariosResponse } from '../../models/usuarios/Usuarios';
+import { ParticipantesCopiaRequest } from '../../models/registroparticipantes/participantes.disponibles';
+import { RegistroParticipantesResponse } from 'src/app/models/registroparticipantes/registro.participantes.response';
 
 @Injectable({
   providedIn: 'root'
@@ -87,5 +89,17 @@ export class ProyectoService {
 
   EliminarUsuario(data: Usuarios) {
     return this.service.ejecutarQueryPostNuevo<Respuesta>('/api/user/eliminarusuario/', data);
+  }
+
+
+  obtenerParticipantesDisponibles(data: ParticipantesCopiaRequest) {
+    return this.service
+      .ejecutarQueryPostNuevo<RegistroParticipantesResponse>('/api/aldeas/participante/disponibles/', data);
+  }
+
+
+  CopiarParticipantes(data: ParticipantesCopiaRequest) {
+    return this.service
+      .ejecutarQueryPostNuevo<Respuesta>('/api/aldeas/participante/copiar/', data);
   }
 }

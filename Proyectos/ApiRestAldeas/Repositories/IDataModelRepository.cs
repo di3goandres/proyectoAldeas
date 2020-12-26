@@ -127,6 +127,7 @@ namespace ApiRestAldeas.Repositories
         dynamic ActualizarCeco(long id, int idSubcentroNuevo);
         #endregion
 
-       
+        dynamic CopiarRegistroParticipante(UsuarioCambio usuarioCambio);
+        dynamic ConsultarCopiarIntegrante(UsuarioCambio usuarioCambio);
     }
 }

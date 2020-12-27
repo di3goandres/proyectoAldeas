@@ -398,17 +398,17 @@ namespace ApiRestAldeas.Helper
                                                where dato.id == usuarioCambio.Participante
                                                select dato;
 
-                var participantesDestino = from dato in db.tbRegistroParticipantes
-                                         where dato.id_origen == usuarioCambio.Participante
-                                         && dato.idProyecto == usuarioCambio.ProyectoDestino
+                //var participantesDestino = from dato in db.tbRegistroParticipantes
+                //                         where dato.id_origen == usuarioCambio.Participante
+                //                         && dato.idProyecto == usuarioCambio.ProyectoDestino
 
-                                         select dato;
+                //                         select dato;
 
-                if (participantesDestino.Any())
-                {
-                    return new { id = id, status = "Ya se ha copiado previamente este participante a este proyecto.", code = 400 };
+                //if (participantesDestino.Any())
+                //{
+                //    return new { id = id, status = "Ya se ha copiado previamente este participante a este proyecto.", code = 400 };
 
-                }
+                //}
                 if (ParticipanteOrigen.Any())
                 {
                     var datosNuevo = ParticipanteOrigen.First();

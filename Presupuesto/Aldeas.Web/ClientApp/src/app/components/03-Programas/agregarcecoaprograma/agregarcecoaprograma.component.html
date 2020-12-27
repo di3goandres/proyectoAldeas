@@ -12,13 +12,27 @@
             <form [formGroup]="formgroup">
 
                 <div class="row">
+                    <div class="col-12">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Financiador</mat-label>
+        
+                            <mat-select formControlName="Financiador"   [(ngModel)]="cecoAgregar.idFinanciador"
+                            required  >
+                                <mat-option *ngFor="let financiador of financiadores" [value]="financiador.id" required>
+                                    {{financiador.id + ' - '+ financiador.nombre}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
 
                     <div class="col-6 tabla">
                         <mat-form-field appearance="fill">
                             <mat-label>Codigo Ceco</mat-label>
                             <input matInput placeholder="Codigo CECO"
                             type="number"
-                             [(ngModel)]="cecoAgregar.codigoCeco"
+                             [(ngModel)]="cecoAgregar.codigoCeco" (ngModelChange)="ValidarNombre()"
                                 formControlName="CodigoCeco" required>
                         </mat-form-field>
                     </div>

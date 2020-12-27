@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
     this.loading = true;
     this.errorBolean = false;
     this.userService.loginUser(this.user)
-      .pipe(first())
+      // .pipe(first())
       .subscribe(
         data=>{
           // this.router.navigate(['/Home'])

@@ -152,13 +152,18 @@ namespace ApiRestAldeas.Services
 
         private string generateJwtToken(User user)
         {
+            var ADMINI = false;
+            if (user.Perfil == "ADMINISTRADOR" || user.Perfil == "EDITOR")
+            {
+                ADMINI = true;
+            }
             // generate token that is valid for 7 days
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_appSettings.JWT_SECRET_KEY);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new[] { new Claim("id", user.Username),
-                 new Claim("Administrador", user.Administrador.ToString())}),
+                 new Claim("Administrador", ADMINI.ToString())}),
                 //Expires = DateTime.UtcNow.AddDays(7),
                 Expires = DateTime.UtcNow.AddHours(12),
 

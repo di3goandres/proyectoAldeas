@@ -4,6 +4,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ProgramasService } from 'src/app/services/programas.service';
 import { Ceco } from 'src/app/models/programas/programas.response';
 import { Programa } from '../../../models/programas/programas.response';
+import { FinanciadoresDatum } from 'src/app/models/financiadores/financiadores.response';
 
 @Component({
   selector: 'app-agregarcecoaprograma',
@@ -12,6 +13,7 @@ import { Programa } from '../../../models/programas/programas.response';
 })
 export class AgregarcecoaprogramaComponent implements OnInit {
 
+  financiadores: FinanciadoresDatum[] = [];
 
 
   @Input() Actuales: Ceco[] = [];
@@ -29,11 +31,28 @@ export class AgregarcecoaprogramaComponent implements OnInit {
     private _formBuilder: FormBuilder,
     private activeModal: NgbActiveModal,
     private programasService: ProgramasService
-  ) { }
+    
+  ) { 
+
+    this.TraerFinciadores();
+  }
   cerrar() {
     this.activeModal.close('dismmiss')
   }
 
+
+  TraerFinciadores(){
+    this.programasService.getFinanciadores().subscribe(
+      OK => {
+       console.log(OK)
+        this.financiadores = [];
+        this.financiadores.push(... OK.financiadoresData)
+  
+      },
+      Errr => {console.log(Errr)}
+ 
+    )
+  }
   onGuardar() {
 
 
@@ -80,12 +99,28 @@ export class AgregarcecoaprogramaComponent implements OnInit {
     }
 
   }
+
+  ValidarNombre(){
+    
+
+    let filtro = this.Actuales.filter(item => {
+      return item.codigoCeco == this.cecoAgregar.codigoCeco
+       
+    })
+
+    console.log(filtro);
+    if(filtro.length>=1){
+      this.cecoAgregar.nombre = filtro[0].nombre
+    }
+  }
   ngOnInit(): void {
     this.cecoAgregar = new Ceco();
     this.cecoAgregar.idPrograma = this.programaInput.id
     this.formgroup = this._formBuilder.group({
 
       nombre: ['', Validators.required],
+      Financiador: ['', Validators.required],
+
       CodigoCeco: ['', Validators.required],
 
       SubCentro: ['', Validators.required],

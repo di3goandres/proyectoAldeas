@@ -255,6 +255,7 @@ namespace ApiRestAldeasPresupuesto.Helper
                     idPrograma = cecoRequest.IdPrograma,
                     Nombre = cecoRequest.Nombre,
                     CodigoCeco = cecoRequest.CodigoCeco,
+                    idFinanciador = cecoRequest.IdFinanciador,
                     Estado = true,
                     FacilityNav = cecoRequest.FacilityNav,
                     NombreSubCentro = cecoRequest.NombreSubCentro,

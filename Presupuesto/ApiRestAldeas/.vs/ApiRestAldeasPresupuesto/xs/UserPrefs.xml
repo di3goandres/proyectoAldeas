@@ -1,31 +1,34 @@
 ﻿<Properties StartupConfiguration="{20022DE9-45FB-4E8D-83F1-20270DE6A102}|ApiRestAldeas">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Helper/ProgramasOperations.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Controllers/InformesController.cs">
     <Files>
       <File FileName="Helper/UserOperations.cs" Line="103" Column="37" />
       <File FileName="EntityFrame/Perfiles.cs" />
       <File FileName="Services/UserService.cs" Line="173" Column="1" />
-      <File FileName="Repositories/DataModelRepository.cs" Line="71" Column="49" />
-      <File FileName="Repositories/IDataModelRepository.cs" />
+      <File FileName="Repositories/DataModelRepository.cs" Line="30" Column="9" />
       <File FileName="Controllers/TipoProgramaController.cs" Line="1" Column="1" />
       <File FileName="Models/ProgramasRequest.cs" Line="28" Column="18" />
       <File FileName="Helper/AuthorizeAttribute.cs" Line="48" Column="1" />
       <File FileName="Helper/JwtMiddleware.cs" Line="94" Column="1" />
       <File FileName="Controllers/DatosController.cs" Line="127" Column="56" />
-      <File FileName="Helper/ProgramasOperations.cs" Line="258" Column="34" />
+      <File FileName="Helper/ProgramasOperations.cs" Line="258" Column="63" />
+      <File FileName="EntityFrame/Aldeas_Context.cs" Line="100" Column="1" />
+      <File FileName="EntityFrame/DbPresupuesto.cs" Line="28" Column="36" />
+      <File FileName="Repositories/IDataModelPresupuesto.cs" Line="33" Column="31" />
+      <File FileName="Repositories/DataModelPresupuesto.cs" Line="57" Column="85" />
+      <File FileName="Helper/InformesOperations.cs" Line="18" Column="36" />
+      <File FileName="Controllers/InformesController.cs" Line="59" Column="18" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="ApiRestAldeasPresupuesto" expanded="True">
             <Node name="ApiRestAldeasPresupuesto" expanded="True">
-              <Node name="Controllers" expanded="True" />
-              <Node name="EntityFrame" expanded="True" />
-              <Node name="Helper" expanded="True">
-                <Node name="ProgramasOperations.cs" selected="True" />
+              <Node name="Controllers" expanded="True">
+                <Node name="InformesController.cs" selected="True" />
               </Node>
-              <Node name="Models" expanded="True" />
+              <Node name="EntityFrame" expanded="True" />
+              <Node name="Helper" expanded="True" />
               <Node name="Repositories" expanded="True" />
-              <Node name="Services" expanded="True" />
             </Node>
           </Node>
         </State>

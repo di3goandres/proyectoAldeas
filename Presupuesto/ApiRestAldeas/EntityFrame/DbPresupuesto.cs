@@ -23,10 +23,24 @@ namespace ApiRestAldeasPresupuesto.EntityFrame
         public DateTime fecha_creacion { get; set; }
         public DateTime fecha_actualizacion { get; set; }
 
+    }
 
+    public class View_DbPresupuesto
+    {
 
+        [Key]
+        public long id { get; set; }
+        public long idPresupuestoAnio { get; set; }
+        public long idPrograma { get; set; }
+        public long idFinanciador { get; set; }
+        public int Anio { get; set; }
+        public Decimal CoberturaAnual { get; set; }
+        public Decimal CoberturaMensual { get; set; }
+        public Decimal CoberturaMensualEsperada { get; set; }
+        public Decimal CoberturasCasas { get; set; }
 
-
+        public DateTime fecha_creacion { get; set; }
+        public DateTime fecha_actualizacion { get; set; }
 
     }
 }

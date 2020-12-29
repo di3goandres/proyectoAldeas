@@ -3,7 +3,7 @@
   <mat-menu #menu="matMenu">
     <button mat-menu-item [routerLink]="['/Home']">
       <mat-icon>home</mat-icon>
-      <span>Home {{userType}}</span>
+      <span>Home </span>
     </button>
     <button mat-menu-item [matMenuTriggerFor]="usuarios"  *ngIf="(userType =='ADMINISTRADOR')">
       <mat-icon>admin_panel_settings</mat-icon> <span>Usuarios</span>
@@ -11,6 +11,11 @@
 
     <button mat-menu-item [matMenuTriggerFor]="configuracion">
       <mat-icon>handyman</mat-icon> <span>Presupuesto</span>
+    </button>
+
+    <button mat-menu-item [matMenuTriggerFor]="programa">
+      <mat-icon>assignment</mat-icon>
+      <span>Programas</span>
     </button>
   
     <button mat-menu-item [matMenuTriggerFor]="gestionPresupuesto">
@@ -44,7 +49,7 @@
       <mat-icon>article</mat-icon>
       <span>Programas</span>
     </button>
-    <button mat-menu-item [routerLink]="['/Programas']">
+    <button mat-menu-item [routerLink]="['/Programas']" >
       <mat-icon>assignment</mat-icon>
       <span>Programas/Cecos</span>
     </button>
@@ -73,10 +78,7 @@
       <mat-icon>attach_money</mat-icon>
       <span>Financiadores</span>
     </button>
-    <button mat-menu-item [matMenuTriggerFor]="programa">
-      <mat-icon>list</mat-icon>
-      <span>Programas</span>
-    </button>
+   
 
     <button mat-menu-item [routerLink]="['/OnlyCategorias']">
       <mat-icon>category</mat-icon>

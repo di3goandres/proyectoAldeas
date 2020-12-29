@@ -314,7 +314,27 @@ namespace ApiRestAldeasPresupuesto.Helper
             return retornoFinal;
         }
 
-      
+
+
+        public static dynamic ConsultarPresupuesto(IContextFactory factory, IOptions<ConnectionDB> connection)
+        {
+            List<View_DbPresupuesto> retorno = new List<View_DbPresupuesto>();
+            using (Aldeas_Context db = factory.Create(connection))
+            {
+                var data = from view in db.ViewPresupuestos
+
+                           select view;
+                if (data.Any())
+                {
+                    retorno = data.ToList();
+
+                }
+                
+
+            }
+
+            return retorno;
+        }
     }
 
 }

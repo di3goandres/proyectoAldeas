@@ -30,6 +30,10 @@ namespace ApiRestAldeasPresupuesto.Repositories
         dynamic GenerarInforme(PresupuestoProgramRequest request);
 
 
+        dynamic ConsultarView();
+
+
+
 
     }
 }

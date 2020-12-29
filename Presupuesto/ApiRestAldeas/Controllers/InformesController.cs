@@ -45,7 +45,7 @@ namespace ApiRestAldeasPresupuesto.Controllers
 
         [HttpGet]
         [Route("/api/generarinforme/consultar/{id}")]
-        public IActionResult GetWorkbook(long id)
+        public IActionResult ConultarInforme(long id)
         {
             PresupuestoProgramRequest request = new PresupuestoProgramRequest();
             request.IdPresupuesto = id;
@@ -53,6 +53,14 @@ namespace ApiRestAldeasPresupuesto.Controllers
 
             var stream = new FileStream(@nombre, FileMode.Open);
             return File(stream, "application/octet-stream", nombre);
+        }
+
+
+        [HttpGet]
+        [Route("/api/consultar/consultar/{id}")]
+        public dynamic GetInformePresupuesto(long id)
+        {
+            return _dataModelRepository.ConsultarView();
         }
     }
 }

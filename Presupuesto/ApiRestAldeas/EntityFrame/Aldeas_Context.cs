@@ -47,6 +47,8 @@ namespace ApiRestAldeas.EntityFrame
         public virtual DbSet<DbRubros> TbRubros { get; set; }
         public virtual DbSet<DbPucs> TbPucs { get; set; }
         public virtual DbSet<DbPresupuesto> TbPresupuestos { get; set; }
+        public virtual DbSet<View_DbPresupuesto> ViewPresupuestos { get; set; }
+
         public virtual DbSet<DbPresupuestoPrograma> TbPresupuestosProgramas { get; set; }
 
         public virtual DbSet<DbTipoPrograma> TbTipoPrograma { get; set; }
@@ -60,13 +62,14 @@ namespace ApiRestAldeas.EntityFrame
 
 
 
-
-
+      
 
         #region Required
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+        
 
             modelBuilder.Entity<DbPresupuestoAnio>(entity =>
             {
@@ -93,6 +96,11 @@ namespace ApiRestAldeas.EntityFrame
             modelBuilder.Entity<DbPresupuesto>(entity =>
             {
                 entity.ToTable("Presupuesto");
+            });
+
+            modelBuilder.Entity<View_DbPresupuesto>(entity =>
+            {
+                entity.ToView("INFORME_PRESUPUESTO");
             });
 
 

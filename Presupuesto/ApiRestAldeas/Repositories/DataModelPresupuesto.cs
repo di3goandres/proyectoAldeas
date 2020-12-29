@@ -51,5 +51,10 @@ namespace ApiRestAldeasPresupuesto.Repositories
             return PresupuestoAnioOperations.Guardar( _factory, _connectionDB, request);
          
         }
+
+        public dynamic ConsultarView()
+        {
+            return InformesOperations.ConsultarPresupuesto(_factory, _connectionDB);
+        }
     }
 }

@@ -22,7 +22,7 @@ export class ListaprogramasComponent implements OnInit {
 
   idPrograma: number;
   displayedColumns: string[] = ['codigoCeco', 'nombre',
-    'subCentro', 'nombreSubCentro', 'facilityNav', 'financiador' ,'estado', 'Actualizar'];
+    'subCentro', 'nombreSubCentro', 'facilityNav', 'financiador' ,'estado'];
   dataSource: MatTableDataSource<Ceco>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -31,7 +31,7 @@ export class ListaprogramasComponent implements OnInit {
   cecos: Ceco[] = [];
 
   constructor(
-    private servicePrograma: ProgramasService,
+    public servicePrograma: ProgramasService,
     private modalService: NgbModal) {
 
   }
@@ -143,7 +143,11 @@ export class ListaprogramasComponent implements OnInit {
     )
   }
   ngOnInit(): void {
-  
+    let value = this.servicePrograma.permitirEditar();
+
+    if (value){
+      this.displayedColumns.push( 'Actualizar')
+    }
     this.idPrograma = 0
     this.cargaInicial(false);
 

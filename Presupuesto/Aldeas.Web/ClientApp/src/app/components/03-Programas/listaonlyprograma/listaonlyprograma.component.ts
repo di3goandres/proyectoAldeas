@@ -17,7 +17,7 @@ import { CrearprogramaComponent } from '../crearprograma/crearprograma.component
 export class ListaonlyprogramaComponent implements OnInit {
   displayedColumns: string[] = [ 'id', 'nombre', 'cobertura', 'tipoPrograma',
   'perNomina',  'perCapacitacion',
-  'fechaCreacion', 'fechaActualizacion', 'estado', 'Actualizar', 'Ver'];
+  'fechaCreacion', 'fechaActualizacion', 'estado'];
  dataSource: MatTableDataSource<Programa>;
  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
  @ViewChild(MatSort, {static: true}) sort: MatSort;
@@ -25,7 +25,7 @@ export class ListaonlyprogramaComponent implements OnInit {
  cecos: Ceco[] = [];
 
  constructor(
-   private servicePrograma:ProgramasService,
+   public servicePrograma:ProgramasService,
    private modalService: NgbModal) { 
 
  }
@@ -98,6 +98,14 @@ export class ListaonlyprogramaComponent implements OnInit {
    )
  }
  ngOnInit(): void {
+
+  let value = this.servicePrograma.permitirEditar();
+
+  if (value){
+    this.displayedColumns.push( 'Actualizar')
+  }
+  // this.displayedColumns.push( 'Ver')
+
  this.cargaInicial();
 
 

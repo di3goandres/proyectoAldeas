@@ -69,12 +69,20 @@ namespace ApiRestAldeas.EntityFrame
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
-        
-
             modelBuilder.Entity<DbPresupuestoAnio>(entity =>
             {
-                entity.ToTable("PresupuestoAnio");
+                entity.ToTable("01_PresupuestoAnio");
             });
+            modelBuilder.Entity<DbPresupuesto>(entity =>
+            {
+                entity.ToTable("02_Presupuesto");
+            });
+
+            modelBuilder.Entity<DbPresupuestoPrograma>(entity =>
+            {
+                entity.ToTable("03_PresupuestoPrograma").Property(x => x.Cargo).HasColumnName("idCargo");
+            });
+
 
             modelBuilder.Entity<DbFinanciadores>(entity =>
             {
@@ -88,20 +96,9 @@ namespace ApiRestAldeas.EntityFrame
             {
                 entity.ToTable("tipo_programa");
             }); 
-            modelBuilder.Entity<DbPresupuestoPrograma>(entity =>
-            {
-                entity.ToTable("PresupuestoPrograma").Property(x => x.Cargo).HasColumnName("idCargo");
-            });
+            
 
-            modelBuilder.Entity<DbPresupuesto>(entity =>
-            {
-                entity.ToTable("Presupuesto");
-            });
-
-            modelBuilder.Entity<View_DbPresupuesto>(entity =>
-            {
-                entity.ToView("INFORME_PRESUPUESTO");
-            });
+           
 
 
             modelBuilder.Entity<DBAdministrador>(entity =>

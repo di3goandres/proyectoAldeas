@@ -1,7 +1,7 @@
 <mat-card class="example-card">
     <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>Categorias</mat-card-title>
+      <div mat-card-avatar class="example-header-image" style="background-image: url('assets/avatars/av-1.png')"></div>
+        <mat-card-title class="main-green-text">Categorias</mat-card-title>
       <mat-card-subtitle>Lista de Categorias</mat-card-subtitle>
     </mat-card-header>
   
@@ -42,7 +42,7 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Activo </th>
                 <td mat-cell *matCellDef="let row"> {{row.estado==true? "Activo":"No Activo" |uppercase}} </td>
               </ng-container>.
-              <ng-container matColumnDef="Actualizar">
+              <ng-container matColumnDef="Actualizar"  *ngIf="this.categoriasService.permitirEditar()">
                 <th mat-header-cell *matHeaderCellDef> Actualizar </th>
                 <td mat-cell *matCellDef="let element">
                     <button type="button" mat-mini-fab class="buttton-aldea" aria-label="fecha"

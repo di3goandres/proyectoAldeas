@@ -16,10 +16,10 @@ import { ActualizarcategoriaComponent } from '../actualizarcategoria/actualizarc
 export class ListaonlyrubrosComponent implements OnInit {
 
   constructor(
-    private categoriasService: CategoriasService,
+    public categoriasService: CategoriasService,
     private modalService: NgbModal) { }
   displayedColumns: string[] = ['id', 'nombre',
-    'fechaCreacion', 'fechaActualizacion', 'estado', 'Actualizar'];
+    'fechaCreacion', 'fechaActualizacion', 'estado'];
   dataSource: MatTableDataSource<Categoria>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -27,7 +27,11 @@ export class ListaonlyrubrosComponent implements OnInit {
   categorias: Categoria[] = [];
 
   ngOnInit(): void {
+    let value = this.categoriasService.permitirEditar();
 
+    if (value){
+      this.displayedColumns.push( 'Actualizar')
+    }
     this.cargaInicial()
   }
 
@@ -84,6 +88,8 @@ export class ListaonlyrubrosComponent implements OnInit {
   }
 
   cargaInicial() {
+
+   
 
     this.categoriasService.getCategorias().subscribe(
       OK => {

@@ -22,8 +22,7 @@ export class ListarubrospucsComponent implements OnInit {
   @ViewChild('pucs') table: MatTable<any>;
   displayedColumns: string[] = ['tipo', 'cuentaSIIGO',
     'descripcionCuenta', 'cuentaNAV', 'detalleCuentaNav', 'tipoCuentaNav', 'fichaBanco',
-    'casa', 'requiereNotaIngles', 'estado', 'fechaActualizacion',
-    'Actualizar'];
+    'casa', 'requiereNotaIngles', 'estado', 'fechaActualizacion'];
   dataSource: MatTableDataSource<Puc>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -31,7 +30,7 @@ export class ListarubrospucsComponent implements OnInit {
   categorias: Categoria[] = [];
 
   constructor(
-    private serviceCategoria: CategoriasService,
+    public serviceCategoria: CategoriasService,
     private modalService: NgbModal) {
 
   }
@@ -139,6 +138,12 @@ export class ListarubrospucsComponent implements OnInit {
     )
   }
   ngOnInit(): void {
+
+    let value = this.serviceCategoria.permitirEditar();
+
+    if (value){
+      this.displayedColumns.push( 'Actualizar')
+    }
     this.idCategoria = 0;
     this.cargaInicial(false);
 

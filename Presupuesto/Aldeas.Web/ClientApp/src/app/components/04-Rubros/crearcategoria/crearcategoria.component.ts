@@ -28,7 +28,7 @@ export class CrearcategoriaComponent implements OnInit {
   formgroup: FormGroup;
   formgroup_2: FormGroup;
   constructor(private _formBuilder: FormBuilder,
-    private activeModal: NgbActiveModal,
+    // private activeModal: NgbActiveModal,
     private service: CategoriasService
   ) { }
 
@@ -65,7 +65,7 @@ export class CrearcategoriaComponent implements OnInit {
     
   }
   cerrar(){
-    this.activeModal.close('dismmiss')
+    // this.activeModal.close('dismmiss')
   }
   onGuardar() {
     this.guardar = new CategoriaRequest(this.NombrePrograma, this.dataSource);
@@ -74,11 +74,21 @@ export class CrearcategoriaComponent implements OnInit {
     this.service.storeCategoria(this.guardar).subscribe(
       OK => {
         if (OK.code == 200 && OK.status == "OK") {
-          this.activeModal.close('OK')
+        
+
+          this.service.Exitoso();
+          this.formgroup.reset();
+          this.formgroup_2.reset()
+          this.dataSource = [];
+          this.table.renderRows();
+
         }
         console.log(OK)
       },
-      ERROR => { console.log(ERROR) }
+      ERROR => { console.log(ERROR)
+        this.service.NoExitoso("Ha ocurrido Un error", "Intentelo mas tarde");
+      
+      }
 
     );
 

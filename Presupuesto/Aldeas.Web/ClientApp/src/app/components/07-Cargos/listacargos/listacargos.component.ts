@@ -22,7 +22,7 @@ export class ListacargosComponent implements OnInit {
 
 
   displayedColumns: string[] = ['position', 'tipo',
-    'codcargo', 'cargo', 'Actualizar'];
+    'codcargo', 'cargo'];
   dataSource: MatTableDataSource<CargosDatum>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -41,7 +41,7 @@ export class ListacargosComponent implements OnInit {
 
 
   constructor(
-    private service: CargosService,
+    public service: CargosService,
     private modalService: NgbModal) {
 
   }
@@ -64,7 +64,7 @@ export class ListacargosComponent implements OnInit {
     modalRef.componentInstance.update = element;
     modalRef.result.then((result) => {
       if (result === "OK") {
-        this.openExitoso();
+       
         this.service.Exitoso()
         this.cargaInicial(true)
       }
@@ -125,6 +125,11 @@ export class ListacargosComponent implements OnInit {
   }
   ngOnInit(): void {
 
+    let value = this.service.permitirEditar();
+
+    if (value){
+      this.displayedColumns.push( 'Actualizar')
+    }
     this.cargaInicial(false);
 
 

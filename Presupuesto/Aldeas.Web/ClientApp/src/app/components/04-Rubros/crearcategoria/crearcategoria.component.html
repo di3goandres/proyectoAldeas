@@ -2,8 +2,8 @@
 
     <mat-card class="example-card">
         <mat-card-header>
-            <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title>Creacion Categoria Nueva</mat-card-title>
+            <div mat-card-avatar class="example-header-image" style="background-image: url('assets/avatars/av-4.png')"></div>
+            <mat-card-title  class="main-green-text">Creacion Categoria Nueva</mat-card-title>
             <mat-card-subtitle>Nuevo</mat-card-subtitle>
         </mat-card-header>
 
@@ -22,7 +22,7 @@
             <mat-divider>
             </mat-divider>
             <mat-label>
-                <h1>PUCS</h1>
+                <h1 class="main-green-text">PUCS</h1>
             </mat-label>
 
             <form [formGroup]="formgroup_2">
@@ -95,7 +95,7 @@
     
     
                     <div class="col-4 tabla">
-                        <label id="example-radio-group-label">Tipo</label>
+                        <label id="example-radio-group-label" class="main-green-text">Tipo</label>
                         <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
                             [(ngModel)]="nuevoCeco.tipo" [value]="nuevoCeco.tipo">
     
@@ -105,7 +105,7 @@
     
                     </div>
                     <div class="col-4 tabla">
-                        <label id="example-radio-group-label">Tipo Cuenta Nav</label>
+                        <label id="example-radio-group-label" class="main-green-text">Tipo Cuenta Nav</label>
                         <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
                             [(ngModel)]="nuevoCeco.tipoCuentaNav" [value]="nuevoCeco.tipoCuentaNav">
     
@@ -121,7 +121,7 @@
     
     
                     <div class="col-4 tabla">
-                        <label id="example-radio-group-label">Requiere Nota en Ingles</label>
+                        <label id="example-radio-group-label" class="main-green-text">Requiere Nota en Ingles</label>
                         <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
                             [(ngModel)]="NotaIngles" [value]="NotaIngles">
     
@@ -143,8 +143,8 @@
           
                 
             <div class="row">
-                <div class="col-12 tabla">
-                    <table #pucsTable mat-table [dataSource]="dataSource"
+                <div class="col-12 tabla  table-responsive">
+                    <table id="customers" #pucsTable mat-table [dataSource]="dataSource"
                         class="mat-elevation-z8  centrarTabla tabla">
 
 

@@ -10,7 +10,11 @@
     </button>
 
     <button mat-menu-item [matMenuTriggerFor]="configuracion">
-      <mat-icon>handyman</mat-icon> <span>Presupuesto</span>
+      <mat-icon>handyman</mat-icon> <span>Datos Básicos</span>
+    </button>
+
+    <button mat-menu-item [matMenuTriggerFor]="categoria">
+      <mat-icon>build</mat-icon> <span>Configuración Categorias</span>
     </button>
 
     <button mat-menu-item [matMenuTriggerFor]="programa">
@@ -69,6 +73,25 @@
 
 
   </mat-menu>
+
+  <mat-menu #categoria="matMenu">
+
+
+    <button mat-menu-item [routerLink]="['/OnlyCategorias']">
+      <mat-icon>category</mat-icon>
+      <span>Categorias</span>
+    </button>
+
+    <button mat-menu-item [routerLink]="['/CrearCategoria']" *ngIf="Editar">
+      <mat-icon>addchart</mat-icon>
+      <span>Crear Categoria</span>
+    </button>
+    <button mat-menu-item [routerLink]="['/CategoriasPucs']">
+      <mat-icon>compare_arrows</mat-icon>
+      <span>Categorias /Pucs</span>
+    </button>
+
+  </mat-menu>
   <mat-menu #configuracion="matMenu">
     <button mat-menu-item [routerLink]="['/Cargos']">
       <mat-icon>face</mat-icon>
@@ -80,14 +103,6 @@
     </button>
    
 
-    <button mat-menu-item [routerLink]="['/OnlyCategorias']">
-      <mat-icon>category</mat-icon>
-      <span>Categorias</span>
-    </button>
-    <button mat-menu-item [routerLink]="['/CategoriasPucs']">
-      <mat-icon>compare_arrows</mat-icon>
-      <span>Categorias /Pucs</span>
-    </button>
 
   </mat-menu>
   <div class="container" style="max-width: 1260px;">

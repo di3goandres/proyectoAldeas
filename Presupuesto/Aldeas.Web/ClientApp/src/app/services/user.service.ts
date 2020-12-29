@@ -79,7 +79,7 @@ export class UserService {
     console.log(user)
     return new Promise(resolve => {
 
-      if (user.perfil = 'ADMINISTRADOR') {
+      if (user.perfil == 'ADMINISTRADOR') {
         resolve(true);
       } else {
         this.router.navigate(['home']);

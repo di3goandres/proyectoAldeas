@@ -42,6 +42,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { AuthInterceptor } from './services/interceptor/auth.interceptor';
 import { AdminGuard } from './guards/admin.guard';
+import { CrearcategoriaComponent } from './components/04-Rubros/crearcategoria/crearcategoria.component';
 
 
 const routes: Routes = [
@@ -58,8 +59,11 @@ const routes: Routes = [
   { path: 'TipoProgramas', component: ProgramatipoComponent, pathMatch: 'full', canActivate: [UsuarioGuard], canLoad: [UsuarioGuard] },
   { path: 'Programas', component: ListaprogramasComponent, pathMatch: 'full', canActivate: [UsuarioGuard], canLoad: [UsuarioGuard] },
   { path: 'OnlyProgramas', component: ListaonlyprogramaComponent, pathMatch: 'full', canActivate: [UsuarioGuard], canLoad: [UsuarioGuard] },
+
   { path: 'OnlyCategorias', component: ListaonlyrubrosComponent, pathMatch: 'full', canActivate: [UsuarioGuard], canLoad: [UsuarioGuard] },
   { path: 'CategoriasPucs', component: ListarubrospucsComponent, pathMatch: 'full', canActivate: [UsuarioGuard], canLoad: [UsuarioGuard] },
+  { path: 'CrearCategoria', component: CrearcategoriaComponent, pathMatch: 'full', canActivate: [AdminGuard], canLoad: [AdminGuard] },
+  
   { path: 'GenerarPresupuesto', component: PrincipalpresupuestoComponent, pathMatch: 'full', canActivate: [UsuarioGuard], canLoad: [UsuarioGuard] },
   { path: 'VerPresupuesto/:id', component: ListapresupuestoprogramaComponent, pathMatch: 'full', canActivate: [UsuarioGuard], canLoad: [UsuarioGuard] },
 

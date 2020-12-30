@@ -11,6 +11,7 @@ import { ActualizarPresupuestoComponent } from '../actualizar-presupuesto/actual
 import { RegistroexitosoComponent } from '../../00-Comunes/registroexitoso/registroexitoso.component';
 import { PresupuestoAnioResponse, PresupuestoAnioDatum } from '../../../models/presupuestoanio/anio.response';
 import { AsociarfinanciadoranioComponent } from '../Gestion/asociarfinanciadoranio/asociarfinanciadoranio.component';
+import { MatStepper } from '@angular/material/stepper';
 
 @Component({
   selector: 'app-listapresupuestoprograma',
@@ -18,6 +19,7 @@ import { AsociarfinanciadoranioComponent } from '../Gestion/asociarfinanciadoran
   styleUrls: ['./listapresupuestoprograma.component.css']
 })
 export class ListapresupuestoprogramaComponent implements OnInit {
+  PresupuestoSeleccionado = 0;
   response: PresupuestoAnioResponse;
   presupuestoResponse: PresupuestoAnioDatum[] = []
   programaRequest = new PresupuestoListRequest()
@@ -27,7 +29,11 @@ export class ListapresupuestoprogramaComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   displayedColumns: string[] = ['id', 'anio',
-    'nombrePrograma', 'tipoPrograma', 'Cobertura','numeroVersion', 'per_nomina', 'per_capacitacion','Ver', 'descargar'];
+    'nombrePrograma', 'tipoPrograma', 'Cobertura',
+    'numeroVersion', 'per_nomina', 'per_capacitacion','Agregar', 'descargar'];
+
+  @ViewChild('stepper') private myStepper: MatStepper;
+
   constructor(
     private route: ActivatedRoute,
     private service: PresupuestoService,
@@ -92,6 +98,14 @@ export class ListapresupuestoprogramaComponent implements OnInit {
 
       }
     });
+  }
+
+  VerPresupuesto(element){
+
+    console.log(element)
+    this.myStepper.next()
+
+    this.PresupuestoSeleccionado = element.id;
   }
   AbrirCrearPresupuesto(element) {
     const modalRef = this.modalService.open(GenerarPresupuestoComponent, { size: 'md' });

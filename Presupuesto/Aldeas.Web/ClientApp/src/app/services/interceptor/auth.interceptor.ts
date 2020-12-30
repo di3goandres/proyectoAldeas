@@ -37,8 +37,7 @@ export class AuthInterceptor implements HttpInterceptor {
       let token = user.token
 
      if (!request.url.includes('/api/aldeas/GuardarProyectoArchivo/')) {
-      
-
+    
         request = this.addToken(request, token);
       }
     }

@@ -36,5 +36,7 @@ namespace ApiRestAldeasPresupuesto.EntityFrame
         public decimal Octubre { get; set; }
         public decimal Noviembre { get; set; }
         public decimal Diciembre { get; set; }
+        public decimal Total { get; set; }
+
     }
 }

@@ -129,6 +129,7 @@ CREATE TABLE [dbo].[03_PresupuestoPrograma](
 	[Octubre] [decimal](18, 5) NOT NULL,
 	[Noviembre] [decimal](18, 5) NOT NULL,
 	[Diciembre] [decimal](18, 5) NOT NULL,
+	[Total] [decimal](18, 5) NOT NULL,
 	[DetalleGasto] [varchar](max) NOT NULL,
 	[NotaIngles] [varchar](max) NULL,
  CONSTRAINT [PK_PresupuestoPrograma] PRIMARY KEY CLUSTERED 

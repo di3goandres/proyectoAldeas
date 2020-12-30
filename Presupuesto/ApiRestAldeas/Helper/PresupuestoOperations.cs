@@ -26,23 +26,20 @@ namespace ApiRestAldeasPresupuesto.Helper
 
 
 
-                var presupuesto = from pro in db.TbPresupuestos
-                                  join finan in db.TbFinanciadores on pro.idFinanciador equals finan.id
+                var presupuesto = from pro in db.TbPresupuestoAnio
+                                
                                   where pro.id == id
-                                  && pro.id == id
+                                 
                                   select new 
                                   {
                                       Id = pro.idPrograma,
-                                      pro.idFinanciador,
-                                      finan.nombre
-                                   
+                                 
+                          
                                   };
                 if(presupuesto.Any())
                 {
                     idPrograma = presupuesto.FirstOrDefault().Id;
-                    idFinanciador = presupuesto.FirstOrDefault().idFinanciador;
-                    Financiacodr = presupuesto.FirstOrDefault().nombre;
-
+                 
 
                 }
                 var data = from pro in db.TbProgramas
@@ -60,7 +57,7 @@ namespace ApiRestAldeasPresupuesto.Helper
                 }
                 var dataCecos = from cecos in db.TbProgramasCecos
                                 where cecos.Estado == true
-                                   && cecos.idPrograma == idPrograma && cecos.idFinanciador == idFinanciador
+                                   && cecos.idPrograma == idPrograma
                                 select new PresupuestoProgramCeco
                                 {
                                     IdPrograma = cecos.idPrograma,
@@ -76,9 +73,6 @@ namespace ApiRestAldeasPresupuesto.Helper
                 var dataSubCecos = from cecos in db.TbProgramasCecos
                                    where cecos.Estado == true
                                        && cecos.idPrograma == idPrograma
-                                       && cecos.idPrograma == idPrograma && cecos.idFinanciador == idFinanciador
-
-
                                    select new PresupuestoSubCeco
                                    {
                                        IdCeco = cecos.CodigoCeco,
@@ -290,6 +284,7 @@ namespace ApiRestAldeasPresupuesto.Helper
                 {
                     datos.Cargo = null;
                 }
+                datos.Total = (datos.Enero + datos.Febrero + datos.Marzo + datos.Abril + datos.Mayo + datos.Junio + datos.Julio + datos.Agosto + datos.Septiembre + datos.Octubre + datos.Noviembre + datos.Diciembre);
                 db.TbPresupuestosProgramas.Add(datos);
                 db.SaveChanges();
             }

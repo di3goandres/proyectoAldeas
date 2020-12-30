@@ -24,6 +24,21 @@ import { MatTabGroup } from '@angular/material/tabs';
   styleUrls: ['./asociaritemspresupuesto.component.css']
 })
 export class AsociaritemspresupuestoComponent implements OnInit {
+
+  _id: number;
+ 
+  @Input() set id (value: number){
+    this._id = value;
+    this.programaRequest.idPresupuesto = this._id
+    console.log('Estamos Validando',this._id)
+
+    this.guardar.idPresupuesto = this.programaRequest.idPresupuesto
+    if(this._id != null && this._id!= 0){
+      this.getDetalle(null);
+      this.datosIniciales();
+    }
+  
+  }
   MostrarExitoso = false;
   Guardando = false;
   isLinear = false;
@@ -43,7 +58,7 @@ export class AsociaritemspresupuestoComponent implements OnInit {
   @ViewChild(MatTabGroup) tabGroup: MatTabGroup;
 
   @ViewChild('tableFamiliar') tableFamilia: MatTable<Detalle>;
-  @ViewChild('stepper') private myStepper: MatStepper;
+  @ViewChild('stepper2') private myStepper: MatStepper;
   /*
     Fin detalle familiares
     */
@@ -238,39 +253,42 @@ export class AsociaritemspresupuestoComponent implements OnInit {
 
 
   validarFomularios() {
-   
-    if ( this.tabGroup.selectedIndex ==1 ) {
-      if (this.datoRubro.esNomina) {
-        this.permitirGuardar = this.formgroupNomina.valid && this.formgroupNormal.valid
-
-      }
-      if (this.datoRubro.esppto) {
-        this.permitirGuardar = this.formgroupFamiliar.valid && this.formgroupNormal.valid
-
-      }
-      if (this.datoRubro.esppto == false && this.datoRubro.esNomina == false) {
-        this.permitirGuardar = this.formgroupNormal.valid
-
-      }
-    } else {
-      let seleccionados = this.presupuestoCheck.subtasks.filter(t => {
-        return t.completed == true;
-      });
-
-      let numeroMeses = seleccionados.length;
-      if (this.datoRubro.esNomina) {
-        this.permitirGuardar = this.formgroupNomina.valid && this.formgroupNormal.valid && numeroMeses > 0
-
-      }
-      if (this.datoRubro.esppto) {
-        this.permitirGuardar = this.formgroupFamiliar.valid && this.formgroupNormal.valid && numeroMeses > 0
-
-      }
-      if (this.datoRubro.esppto == false && this.datoRubro.esNomina == false) {
-        this.permitirGuardar = this.formgroupNormal.valid && numeroMeses > 0
-
+    if(this.tabGroup!= null){
+      if ( this.tabGroup.selectedIndex ==1 ) {
+        if (this.datoRubro.esNomina) {
+          this.permitirGuardar = this.formgroupNomina.valid && this.formgroupNormal.valid
+  
+        }
+        if (this.datoRubro.esppto) {
+          this.permitirGuardar = this.formgroupFamiliar.valid && this.formgroupNormal.valid
+  
+        }
+        if (this.datoRubro.esppto == false && this.datoRubro.esNomina == false) {
+          this.permitirGuardar = this.formgroupNormal.valid
+  
+        }
+      } else {
+        let seleccionados = this.presupuestoCheck.subtasks.filter(t => {
+          return t.completed == true;
+        });
+  
+        let numeroMeses = seleccionados.length;
+        if (this.datoRubro.esNomina) {
+          this.permitirGuardar = this.formgroupNomina.valid && this.formgroupNormal.valid && numeroMeses > 0
+  
+        }
+        if (this.datoRubro.esppto) {
+          this.permitirGuardar = this.formgroupFamiliar.valid && this.formgroupNormal.valid && numeroMeses > 0
+  
+        }
+        if (this.datoRubro.esppto == false && this.datoRubro.esNomina == false) {
+          this.permitirGuardar = this.formgroupNormal.valid && numeroMeses > 0
+  
+        }
       }
     }
+   
+  
 
 
   }
@@ -487,11 +505,11 @@ export class AsociaritemspresupuestoComponent implements OnInit {
     //datos primera pantalla
 
     //IdPresupuesto
-    var y: number = +this.route.snapshot.paramMap.get('id');
-    this.programaRequest.idPresupuesto = y
-    this.guardar.idPresupuesto = this.programaRequest.idPresupuesto
-    this.getDetalle(null);
-    this.datosIniciales();
+    var y: number = this._id//+this.route.snapshot.paramMap.get('id');
+    // this.programaRequest.idPresupuesto = y
+    // this.guardar.idPresupuesto = this.programaRequest.idPresupuesto
+    // this.getDetalle(null);
+    // this.datosIniciales();
 
     //fin primera pantalla
 

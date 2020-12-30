@@ -82,15 +82,18 @@ export class UserService {
       if (user.perfil == 'ADMINISTRADOR') {
         resolve(true);
       } else {
-        this.router.navigate(['home']);
+        this.router.navigate(['Home']);
   
         resolve(false);
   
       }
     })
-   
+  
+    
+    ;   
 
   }
+  
   // tslint:disable-next-line: typedef con autorizacion
   public ejecutarQueryPost<T>(query: string, params: string) {
    let user = this.currentUserSubject.value;

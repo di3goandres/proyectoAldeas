@@ -212,7 +212,7 @@ export class PrincipalpresupuestoComponent implements OnInit {
   ngOnInit(): void {
 
 
-    //IdPresupuesto
+    //IdPresupuesto se cambia por IdPresupuesto Anio.
     var y: number = +this.route.snapshot.paramMap.get('id');
     this.programaRequest.idPresupuesto = y
     this.guardar.idPresupuesto = this.programaRequest.idPresupuesto

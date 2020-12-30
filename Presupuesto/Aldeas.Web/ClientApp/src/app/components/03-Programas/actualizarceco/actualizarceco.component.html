@@ -67,12 +67,25 @@
 
 
         </mat-card-content>
-        <mat-card-actions>
 
-            <button mat-raised-button ngbAutofocus (click)="cerrar()">Cancelar</button>
-            <button mat-raised-button class="buttton-aldea" [disabled]="!(formgroup.valid)"
-                (click)="onGuardar()">Guardar</button>
+        <mat-card-actions>
+            <div class="row">
+                <div class="col-6 centerlabel font-weight-bold" style="text-align: center;">
+                    <button mat-raised-button color="warn" ngbAutofocus (click)="cerrar()">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </div>
+                <div class="col-6 centerlabel font-weight-bold" style="text-align: center;">
+                    <button mat-raised-button color="warn"  [disabled]="!(formgroup.valid)"
+                        (click)="onGuardar()">
+                        <mat-icon>cached</mat-icon>
+                    </button>
+                </div>
+            </div>
+
         </mat-card-actions>
+
+       
     </mat-card>
 
 </div>

@@ -39,9 +39,14 @@ namespace ApiRestAldeasPresupuesto.Helper
                                actual = tpre.actual,
                                numeroVersion = tpre.numeroVersion,
                                fecha_actualizacion = tpre.fecha_actualizacion,
+
                                fecha_creacion = tpre.fecha_creacion,
                                Anio = tpre.Anio,
-                               idPrograma = tpre.idPrograma
+                               idPrograma = tpre.idPrograma,
+                               per_capacitacion = tpre.per_capacitacion,
+                               per_nomina = tpre.per_nomina,
+
+
 
                            };
                 if (data.Any())
@@ -88,12 +93,23 @@ namespace ApiRestAldeasPresupuesto.Helper
                 }
                 else
                 {
+
+                    var programa = from pro in db.TbProgramas
+                                   where pro.id == request.idPrograma
+
+                                   select pro;
+
+                    if (!programa.Any())
+                    {
+                        return new { id = 0, status = "Error", code = 200, message = "Error" };
+                    }
                     var nuevo = new DbPresupuestoAnio()
                     {
                         actual = true,
                         fecha_creacion = DateTime.Now,
                         fecha_actualizacion = DateTime.Now,
-
+                        per_capacitacion = programa.First().per_capacitacion,
+                        per_nomina = programa.First().per_capacitacion,
                         idPrograma = request.idPrograma,
                         numeroVersion = 1,
                         Anio = request.Anio,

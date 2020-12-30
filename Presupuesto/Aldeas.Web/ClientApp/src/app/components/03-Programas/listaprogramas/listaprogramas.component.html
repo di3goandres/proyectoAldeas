@@ -1,97 +1,107 @@
-<mat-card class="example-card" >
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image" style="background-image: url('assets/avatars/av-2.png')"></div>
-      <mat-card-title class="main-green-text">Programas/CECOS</mat-card-title>
-      <mat-card-subtitle>Lista de programas/CECO</mat-card-subtitle>
-    </mat-card-header>
-  
-    <mat-card-content>
+<mat-card class="example-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image" style="background-image: url('assets/avatars/av-2.png')"></div>
+    <mat-card-title class="main-green-text">Programas/CECOS</mat-card-title>
+    <mat-card-subtitle>Lista de programas/CECO</mat-card-subtitle>
+  </mat-card-header>
 
-      <div class="row">
-        <div class="col-6 centerlabel font-weight-bold" style="text-align: center;">
+  <mat-card-content>
+
+    <div class="row">
+      <div class="col-6 centerlabel font-weight-bold" style="text-align: center;">
         <mat-form-field appearance="fill">
-            <mat-label>Selecciona Un programa</mat-label>
-            <mat-select (selectionChange)="onChange($event.value)">
-              <mat-option *ngFor="let programa of programas" [value]="programa.id">
-                {{programa.nombre | uppercase}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-          </div>
-
-           <div class="col-6 centerlabel font-weight-bold" style="text-align: center;">
-          <mat-form-field>
-            <mat-label>Filtro</mat-label>
-            <input matInput (keyup)="applyFilter($event)" placeholder="Ej. Cundinamarca" #input>
-          </mat-form-field>
-
-
-            </div>
-       
-            <div class="col-6 centerlabel font-weight-bold" style="text-align: center;"  *ngIf="this.servicePrograma.permitirEditar()">
-           <button mat-mat-raised-button  *ngIf="idPrograma!=0"
-             class="btn  buttton-aldea btn-success pull-right" 
-            (click)="openAgregar()" >Agregar</button> 
-         </div>
+          <mat-label>Selecciona Un programa</mat-label>
+          <mat-select (selectionChange)="onChange($event.value)">
+            <mat-option *ngFor="let programa of programas" [value]="programa.id">
+              {{programa.nombre | uppercase}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
       </div>
-          <div class="mat-elevation-z8  table-responsive">
-            <table  id="customers" #pucs  mat-table [dataSource]="dataSource">
-              <!-- Progress Column -->
-              <ng-container matColumnDef="codigoCeco">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Código Ceco </th>
-                <td mat-cell *matCellDef="let row"> {{row.codigoCeco}} </td>
-              </ng-container>
-          
-              <!-- Name Column -->
-              <ng-container matColumnDef="nombre">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
-                <td mat-cell *matCellDef="let row"> {{row.nombre |uppercase}} </td>
-              </ng-container>
-          
-              <!-- Color Column -->
-              <ng-container matColumnDef="subCentro">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Codigo SubCentro Costo </th>
-                <td mat-cell *matCellDef="let row" [style.color]="row.subCentro"> {{row.subCentro}} </td>
-              </ng-container>
-              <ng-container matColumnDef="nombreSubCentro">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre SubCentro de Costo </th>
-                <td mat-cell *matCellDef="let row" [style.color]="row.nombreSubCentro"> {{row.nombreSubCentro |uppercase}} </td>
-              </ng-container>
-              <ng-container matColumnDef="facilityNav">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> FacilityNav </th>
-                <td mat-cell *matCellDef="let row"> {{row.facilityNav}} </td>
-              </ng-container>
-              <ng-container matColumnDef="financiador">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Financiador </th>
-                <td mat-cell *matCellDef="let row"> {{row.nombreFinanciador}} </td>
-              </ng-container>
+
+      <div class="col-6 centerlabel font-weight-bold" style="text-align: center;">
+        <mat-form-field>
+          <mat-label>Filtro</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Ej. Cundinamarca" #input>
+        </mat-form-field>
 
 
-              <ng-container matColumnDef="estado">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Activo </th>
-                <td mat-cell *matCellDef="let row"> {{row.estado==true? "Activo":"No Activo" |uppercase}} </td>
-              </ng-container>
-              <ng-container matColumnDef="Actualizar" *ngIf="this.servicePrograma.permitirEditar()">
-                <th mat-header-cell *matHeaderCellDef> Actualizar </th>
-                <td mat-cell *matCellDef="let element">
-                    <button type="button" mat-mini-fab class="buttton-aldea" aria-label="fecha"
-                        (click)="openActualizar(element)">
-                        <mat-icon>refresh</mat-icon>
-                    </button> </td>
-            </ng-container>
-              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-          
-              <!-- Row shown when there is no matching data. -->
-              <tr class="mat-row" *matNoDataRow>
-                <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
-              </tr>
-            </table>
-          
-            <mat-paginator [pageSizeOptions]="[10, 20, 30, 50]"></mat-paginator>
-          </div>
-    </mat-card-content>
-    <mat-card-actions>
-    
+      </div>
+
+     
+    </div>
+
+    <mat-card-actions   *ngIf="this.servicePrograma.permitirEditar()">
+      <div class="row">
+        <div class="col-6 centerlabel font-weight-bold" style="text-align: center;" *ngIf="idPrograma!=0">
+          <mat-label>Agregar Ceco al programa</mat-label>
+          <button mat-mat-raised-button *ngIf="idPrograma!=0" class="btn  buttton-aldea btn-success pull-right"
+          (click)="openAgregar()"><mat-icon>add</mat-icon></button>
+        </div>
+      </div>
+
     </mat-card-actions>
-  </mat-card>
+
+    <div class="mat-elevation-z8  table-responsive">
+      <table id="customers" #pucs mat-table [dataSource]="dataSource">
+        <!-- Progress Column -->
+        <ng-container matColumnDef="codigoCeco">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Código Ceco </th>
+          <td mat-cell *matCellDef="let row"> {{row.codigoCeco}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="nombre">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+          <td mat-cell *matCellDef="let row"> {{row.nombre |uppercase}} </td>
+        </ng-container>
+
+        <!-- Color Column -->
+        <ng-container matColumnDef="subCentro">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Codigo SubCentro Costo </th>
+          <td mat-cell *matCellDef="let row" [style.color]="row.subCentro"> {{row.subCentro}} </td>
+        </ng-container>
+        <ng-container matColumnDef="nombreSubCentro">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre SubCentro de Costo </th>
+          <td mat-cell *matCellDef="let row" [style.color]="row.nombreSubCentro"> {{row.nombreSubCentro |uppercase}}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="facilityNav">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> FacilityNav </th>
+          <td mat-cell *matCellDef="let row"> {{row.facilityNav}} </td>
+        </ng-container>
+        <ng-container matColumnDef="financiador">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Financiador </th>
+          <td mat-cell *matCellDef="let row"> {{row.nombreFinanciador}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="estado">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Activo </th>
+          <td mat-cell *matCellDef="let row"> {{row.estado==true? "Activo":"No Activo" |uppercase}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Actualizar" *ngIf="this.servicePrograma.permitirEditar()">
+          <th mat-header-cell *matHeaderCellDef> Actualizar </th>
+          <td mat-cell *matCellDef="let element">
+            <button type="button" mat-mini-fab class="buttton-aldea" aria-label="fecha"
+              (click)="openActualizar(element)">
+              <mat-icon>refresh</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        <!-- Row shown when there is no matching data. -->
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+        </tr>
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[10, 20, 30, 50]"></mat-paginator>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+
+  </mat-card-actions>
+</mat-card>

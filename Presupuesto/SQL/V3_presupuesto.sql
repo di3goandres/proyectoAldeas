@@ -12,14 +12,14 @@ GO
 
 
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[03_PresupuestoPrograma]') AND type in (N'U'))
-DROP TABLE [dbo].[PresupuestoPrograma]
+DROP TABLE [dbo].[03_PresupuestoPrograma]
 GO
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[02_Presupuesto]') AND type in (N'U'))
-DROP TABLE [dbo].[Presupuesto]
+DROP TABLE [dbo].[02_Presupuesto]
 GO
 
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[01_PresupuestoAnio]') AND type in (N'U'))
-DROP TABLE [dbo].[PresupuestoAnio]
+DROP TABLE [dbo].[01_PresupuestoAnio]
 GO
 
 
@@ -69,8 +69,9 @@ CREATE TABLE [dbo].[02_Presupuesto](
 	[idPresupuestoAnio] [bigint] NOT NULL,
 	[idPrograma] [bigint] NOT NULL,
 	[idFinanciador] [bigint] NOT NULL,
-    [IdProgramaCecos] [int] NOT NULL,
+    [IdProgramaCecos] [bigint] NOT NULL,
 	[Anio] [int] NOT NULL,
+	[NombreContrato] [varchar](max) NULL,
 	[CoberturaAnual] [decimal](18, 5) NOT NULL,
 	[CoberturaMensual] [decimal](18, 5) NOT NULL,
 	[CoberturaMensualEsperada] [decimal](18, 5) NOT NULL,
@@ -84,12 +85,6 @@ CREATE TABLE [dbo].[02_Presupuesto](
 ) ON [PRIMARY]
 GO
 
-
-ALTER TABLE [dbo].[02_Presupuesto]  WITH CHECK ADD  CONSTRAINT [FK_Presupuesto_programas] FOREIGN KEY([idPrograma])
-REFERENCES [dbo].[programas] ([id])
-GO
-ALTER TABLE [dbo].[02_Presupuesto] CHECK CONSTRAINT [FK_Presupuesto_programas]
-GO
 
 ALTER TABLE [dbo].[02_Presupuesto]  WITH CHECK ADD  CONSTRAINT [FK_Presupuesto_programas] FOREIGN KEY([idPrograma])
 REFERENCES [dbo].[programas] ([id])

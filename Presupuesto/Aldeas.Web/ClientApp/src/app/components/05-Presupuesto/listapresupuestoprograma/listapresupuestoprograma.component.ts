@@ -27,7 +27,7 @@ export class ListapresupuestoprogramaComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   displayedColumns: string[] = ['id', 'anio',
-    'nombrePrograma', 'tipoPrograma', 'Cobertura','numeroVersion', 'Financiador',   'Ver', 'descargar'];
+    'nombrePrograma', 'tipoPrograma', 'Cobertura','numeroVersion', 'per_nomina', 'per_capacitacion','Ver', 'descargar'];
   constructor(
     private route: ActivatedRoute,
     private service: PresupuestoService,

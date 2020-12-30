@@ -6,12 +6,22 @@
   </mat-card-header>
 
   <mat-card-content>
-
-    <button type="button" mat-mini-fab class="buttton-aldea" aria-label="fecha"
+    <mat-card-actions>
+      <div class="row">
+          <div class="col-12 centerlabel font-weight-bold" style="text-align: left;">
+            <mat-label>Crear Presupuesto del año:</mat-label>
+            <button type="button" mat-mini-fab class="buttton-aldea" aria-label="fecha"
       (click)="AbrirCrearPresupuesto(programa)">
-      <mat-icon>open_in_new</mat-icon>
+      <mat-icon>fiber_new</mat-icon>
     </button>
 
+          </div>
+     
+      </div>
+
+  </mat-card-actions>
+
+   
 
     <div class="mat-elevation-z8  table-responsive">
       <table id="customers" mat-table [dataSource]="dataSource" matSort>
@@ -50,30 +60,33 @@
           <td mat-cell *matCellDef="let row"> {{row.numeroVersion |number}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="Financiador">
-          <th mat-header-cell *matHeaderCellDef> Asociar Financiador </th>
+        <ng-container matColumnDef="per_capacitacion">
+          <th mat-header-cell *matHeaderCellDef> % Capacitación</th>
           <td mat-cell *matCellDef="let element">
-            <button type="button" mat-mini-fab class="buttton-aldea" aria-label="fecha"
-            (click)="AbrirAsociarPresupuesto(element)">
-              <mat-icon>open_in_new</mat-icon>
-            </button> </td>
+            {{element.per_capacitacion |number}}% </td>
+
         </ng-container>
 
        
-        <ng-container matColumnDef="Ver">
-          <th mat-header-cell *matHeaderCellDef> Financiadores</th>
+        <ng-container matColumnDef="per_nomina">
+          <th mat-header-cell *matHeaderCellDef> % Nomina</th>
           <td mat-cell *matCellDef="let element">
-            <button type="button" mat-mini-fab class="buttton-aldea" aria-label="fecha"
-              [routerLink]="['/GestionProgramas/PresupuestoAnio/', element.id]">
-              <mat-icon>open_in_new</mat-icon>
-            </button> </td>
+            {{element.per_nomina |number}}%
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Ver">
+          <th mat-header-cell *matHeaderCellDef> % Nomina</th>
+          <td mat-cell *matCellDef="let element">
+            {{element.per_nomina |number}}%
+            </td>
         </ng-container>
 
         <ng-container matColumnDef="descargar">
           <th mat-header-cell *matHeaderCellDef> Descargar</th>
           <td mat-cell *matCellDef="let element">
            
-            <a [href]="element.urlReporte">descargar</a>
+            <a [href]="element.urlReporte">Descargar</a>
             </td>
         </ng-container>
 

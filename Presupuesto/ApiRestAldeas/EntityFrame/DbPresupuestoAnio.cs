@@ -17,6 +17,9 @@ namespace ApiRestAldeasPresupuesto.EntityFrame
 
         public int numeroVersion { get; set; }
 
+        public decimal per_nomina { get; set; }
+
+        public decimal per_capacitacion { get; set; }
 
         public DateTime fecha_creacion { get; set; }
 

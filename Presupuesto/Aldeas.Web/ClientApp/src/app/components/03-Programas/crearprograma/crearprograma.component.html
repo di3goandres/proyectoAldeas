@@ -2,8 +2,9 @@
 
     <mat-card class="example-card">
         <mat-card-header>
-            <div mat-card-avatar class="example-header-image" style="background-image: url('assets/avatars/av-2.png')"></div>
-            <mat-card-title class="main-green-text">Creacion Programa Nuevo</mat-card-title>
+            <div mat-card-avatar class="example-header-image" style="background-image: url('assets/avatars/av-2.png')">
+            </div>
+            <mat-card-title class="main-green-text">Creación Programa Nuevo</mat-card-title>
             <mat-card-subtitle>Nuevo</mat-card-subtitle>
         </mat-card-header>
 
@@ -34,7 +35,7 @@
             <mat-divider>
             </mat-divider>
             <mat-label>
-                <h1>Centros de costos</h1>
+                <h1 class="main-green-text">Centros de costos</h1>
             </mat-label>
 
             <form [formGroup]="formgroup_2">
@@ -78,7 +79,7 @@
                         </mat-form-field>
                     </div>
 
-                    <div class="col-4">
+                    <div class="col-4 tabla">
 
 
                         <mat-form-field appearance="fill">
@@ -90,17 +91,20 @@
                             </mat-select>
                         </mat-form-field>
                     </div>
-                    
-                </div>
-                <div dlass="row">
-                    <div class="col-4"></div>
-                    <div class="col-4 centrarTabla" style="text-align: center;">
-                        <button mat-mat-raised-button class="btn  buttton-aldea btn-success pull-right"
-                            [disabled]="formgroup_2.invalid" (click)="Agregar()">Agregar</button>
-                    </div>
-                    <div class="col-4"></div>
 
                 </div>
+                <mat-card-actions>
+                    <div class="row">
+                        <div class="col-12 centerlabel font-weight-bold" style="text-align: center;">
+                            <button mat-mat-raised-button class="btn  buttton-aldea btn-success pull-right"
+                                [disabled]="formgroup_2.invalid" (click)="Agregar()">
+                                <mat-icon>add</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                </mat-card-actions>
+
+
                 <div class="row" *ngIf="Validaciones">
                     <div class="col-12 alerta">
                         <mat-label>La combinación centro de costo / sub centro ya existe o estar por agregarse
@@ -109,8 +113,8 @@
                 </div>
             </form>
             <div class="row">
-                <div class="col-12 tabla">
-                    <table #cecosTable mat-table [dataSource]="dataSourceCecos"
+                <div class="col-12 mat-elevation-z8  table-responsive">
+                    <table id="customers" #cecosTable mat-table [dataSource]="dataSourceCecos"
                         class="mat-elevation-z8  centrarTabla tabla">
 
 
@@ -156,7 +160,8 @@
                                 <button type="button" mat-mini-fab class="buttton-aldea" aria-label="fecha"
                                     (click)="eliminar(element)">
                                     <mat-icon>delete_outline</mat-icon>
-                                </button> </td>
+                                </button>
+                            </td>
                         </ng-container>
 
 
@@ -171,17 +176,17 @@
             </div>
         </mat-card-content>
         <mat-card-actions>
-            <div dlass="row">
-                <div class="col-4"></div>
-                <div class="col-4 centrarTabla" style="text-align: center;">
+            <div class="row">
+                <div class="col-12 centerlabel font-weight-bold" style="text-align: center;">
                     <button mat-raised-button class="buttton-aldea" [disabled]="!(formgroup.valid && PermitirGuardar)"
-                (click)="onGuardar()">Guardar</button>
+                        (click)="onGuardar()">
+                    <mat-icon>save</mat-icon></button>
                 </div>
                 <div class="col-4"></div>
 
             </div>
 
-          
+
         </mat-card-actions>
     </mat-card>
 

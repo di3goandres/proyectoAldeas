@@ -2,8 +2,9 @@
 
     <mat-card class="example-card">
         <mat-card-header>
-            <div mat-card-avatar class="example-header-image" style="background-image: url('assets/avatars/av-4.png')"></div>
-            <mat-card-title  class="main-green-text">Creacion Categoria Nueva</mat-card-title>
+            <div mat-card-avatar class="example-header-image" style="background-image: url('assets/avatars/av-4.png')">
+            </div>
+            <mat-card-title class="main-green-text">Creacion Categoria Nueva</mat-card-title>
             <mat-card-subtitle>Nuevo</mat-card-subtitle>
         </mat-card-header>
 
@@ -13,8 +14,8 @@
                     <div class="col-12">
                         <mat-form-field appearance="fill">
                             <mat-label>Nombre de la Categoria</mat-label>
-                            <input matInput placeholder="Nombre del Proyecto"
-                             [(ngModel)]="NombrePrograma" formControlName="nombre" required>
+                            <input matInput placeholder="Nombre del Proyecto" [(ngModel)]="NombrePrograma"
+                                formControlName="nombre" required>
                         </mat-form-field>
                     </div>
                 </div>
@@ -26,122 +27,120 @@
             </mat-label>
 
             <form [formGroup]="formgroup_2">
-            
 
-                    <div class="row">
-    
-                        <div class="col-6 tabla">
-                            <mat-form-field appearance="fill">
-                                <mat-label>Cuenta SIIGO</mat-label>
-                                <input matInput placeholder="Nueva Cuenta SIIGO"
-                                 [(ngModel)]="nuevoCeco.cuentaSIIGO"
-                                    formControlName="cuentaSIIGO" required>
-                            </mat-form-field>
-                        </div>
-                        <div class="col-6 tabla">
-                            <mat-form-field appearance="fill">
-                                <mat-label>Descripcion cuenta</mat-label>
-                                <input matInput placeholder="Nueva Cuenta SIIGO"
-                                 [(ngModel)]="nuevoCeco.descripcionCuenta"
-                                    formControlName="descripcionCuenta" required>
-                            </mat-form-field>
-                        </div>
-                    </div>
-    
-                    <div class="row">
-    
-                        <div class="col-6 tabla">
-                            <mat-form-field appearance="fill">
-                                <mat-label>Cuenta NAV</mat-label>
-                                <input matInput placeholder="Nueva Cuenta NAV" 
-                                [(ngModel)]="nuevoCeco.cuentaNAV"
-                                    formControlName="cuentaNAV" required>
-                            </mat-form-field>
-                        </div>
-                        <div class="col-6 tabla">
-                            <mat-form-field appearance="fill">
-                                <mat-label>Descripcion cuenta NAV</mat-label>
-                                <input matInput placeholder="Nueva Cuenta SIIGO"
-                                 [(ngModel)]="nuevoCeco.detalleCuentaNav"
-                                    formControlName="detalleCuentaNav" required>
-                            </mat-form-field>
-                        </div>
-                    </div>
-    
-                    <div class="row">
-    
-    
-                     <div class="col-6 tabla">
-                            <mat-form-field appearance="fill">
-                                <mat-label>Ficha Banco</mat-label>
-                                <input matInput placeholder="Nueva Ficha Banco"
-                                 [(ngModel)]="nuevoCeco.fichaBanco"
-                                    formControlName="fichaBanco">
-                            </mat-form-field>
-                        </div> 
-                 
-                        <div class="col-6 tabla">
-                            <mat-form-field appearance="fill">
-                                <mat-label>Casa</mat-label>
-                                <input matInput type="number" placeholder="Nuevo Casa" [(ngModel)]="nuevoCeco.casa"
-                                    formControlName="casa" >
-                            </mat-form-field>
-                        </div>
-    
-                    </div>
-                </form>
-    
+
                 <div class="row">
-    
-    
-                    <div class="col-4 tabla">
-                        <label id="example-radio-group-label" class="main-green-text">Tipo</label>
-                        <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
-                            [(ngModel)]="nuevoCeco.tipo" [value]="nuevoCeco.tipo">
-    
-                            <mat-radio-button value="Según Cargo">Según Cargo</mat-radio-button>
-                            <mat-radio-button value="Uno a Uno">Uno a Uno</mat-radio-button>
-                        </mat-radio-group>
-    
+
+                    <div class="col-6 tabla">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Cuenta SIIGO</mat-label>
+                            <input matInput placeholder="Nueva Cuenta SIIGO" [(ngModel)]="nuevoCeco.cuentaSIIGO"
+                                formControlName="cuentaSIIGO" required>
+                        </mat-form-field>
                     </div>
-                    <div class="col-4 tabla">
-                        <label id="example-radio-group-label" class="main-green-text">Tipo Cuenta Nav</label>
-                        <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
-                            [(ngModel)]="nuevoCeco.tipoCuentaNav" [value]="nuevoCeco.tipoCuentaNav">
-    
-                            <mat-radio-button value="Cuenta">Cuenta</mat-radio-button>
-                            <mat-radio-button value="FICHA">Ficha</mat-radio-button>
-                            <mat-radio-button value="">Ninguna</mat-radio-button>
-    
-                        </mat-radio-group>
-    
-                    </div>
-    
-               
-    
-    
-                    <div class="col-4 tabla">
-                        <label id="example-radio-group-label" class="main-green-text">Requiere Nota en Ingles</label>
-                        <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
-                            [(ngModel)]="NotaIngles" [value]="NotaIngles">
-    
-                            <mat-radio-button value="true">Si</mat-radio-button>
-                            <mat-radio-button value="false">No</mat-radio-button>
-                        </mat-radio-group>
-    
-                    </div>
-                 
-    
-                </div>
-                <div class="row">
-                    <div class="col-4 tabla">
-                        <button mat-mat-raised-button class="btn  buttton-aldea btn-success pull-right"
-                            [disabled]="formgroup_2.invalid" (click)="Agregar()">Agregar</button>
+                    <div class="col-6 tabla">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Descripcion cuenta</mat-label>
+                            <input matInput placeholder="Nueva Cuenta SIIGO" [(ngModel)]="nuevoCeco.descripcionCuenta"
+                                formControlName="descripcionCuenta" required>
+                        </mat-form-field>
                     </div>
                 </div>
-    
-          
-                
+
+                <div class="row">
+
+                    <div class="col-6 tabla">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Cuenta NAV</mat-label>
+                            <input matInput placeholder="Nueva Cuenta NAV" [(ngModel)]="nuevoCeco.cuentaNAV"
+                                formControlName="cuentaNAV" required>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-6 tabla">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Descripcion cuenta NAV</mat-label>
+                            <input matInput placeholder="Nueva Cuenta SIIGO" [(ngModel)]="nuevoCeco.detalleCuentaNav"
+                                formControlName="detalleCuentaNav" required>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="row">
+
+
+                    <div class="col-6 tabla">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Ficha Banco</mat-label>
+                            <input matInput placeholder="Nueva Ficha Banco" [(ngModel)]="nuevoCeco.fichaBanco"
+                                formControlName="fichaBanco">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-6 tabla">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Casa</mat-label>
+                            <input matInput type="number" placeholder="Nuevo Casa" [(ngModel)]="nuevoCeco.casa"
+                                formControlName="casa">
+                        </mat-form-field>
+                    </div>
+
+                </div>
+            </form>
+
+            <div class="row">
+
+
+                <div class="col-4 tabla">
+                    <label id="example-radio-group-label" class="main-green-text">Tipo</label>
+                    <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+                        [(ngModel)]="nuevoCeco.tipo" [value]="nuevoCeco.tipo">
+
+                        <mat-radio-button value="Según Cargo">Según Cargo</mat-radio-button>
+                        <mat-radio-button value="Uno a Uno">Uno a Uno</mat-radio-button>
+                    </mat-radio-group>
+
+                </div>
+                <div class="col-4 tabla">
+                    <label id="example-radio-group-label" class="main-green-text">Tipo Cuenta Nav</label>
+                    <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+                        [(ngModel)]="nuevoCeco.tipoCuentaNav" [value]="nuevoCeco.tipoCuentaNav">
+
+                        <mat-radio-button value="Cuenta">Cuenta</mat-radio-button>
+                        <mat-radio-button value="FICHA">Ficha</mat-radio-button>
+                        <mat-radio-button value="">Ninguna</mat-radio-button>
+
+                    </mat-radio-group>
+
+                </div>
+
+
+
+
+                <div class="col-4 tabla">
+                    <label id="example-radio-group-label" class="main-green-text">Requiere Nota en Ingles</label>
+                    <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+                        [(ngModel)]="NotaIngles" [value]="NotaIngles">
+
+                        <mat-radio-button value="true">Si</mat-radio-button>
+                        <mat-radio-button value="false">No</mat-radio-button>
+                    </mat-radio-group>
+
+                </div>
+
+
+            </div>
+            <mat-card-actions>
+            <div class="row">
+                <div class="col-12 centerlabel font-weight-bold" style="text-align: center;">
+                    <button  mat-icon-button class="btn  buttton-aldea btn-success pull-right"
+                        [disabled]="formgroup_2.invalid" (click)="Agregar()">
+                        <mat-icon>add_circle</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </mat-card-actions>
+
+
             <div class="row">
                 <div class="col-12 tabla  table-responsive">
                     <table id="customers" #pucsTable mat-table [dataSource]="dataSource"
@@ -205,7 +204,8 @@
                                 <button type="button" mat-mini-fab class="buttton-aldea" aria-label="fecha"
                                     (click)="eliminar(element)">
                                     <mat-icon>delete_outline</mat-icon>
-                                </button> </td>
+                                </button>
+                            </td>
                         </ng-container>
 
 
@@ -219,12 +219,20 @@
 
             </div>
         </mat-card-content>
+
         <mat-card-actions>
-          
-            <button  mat-raised-button ngbAutofocus (click)="cerrar()">Cancelar</button>
-            <button mat-raised-button class="buttton-aldea" 
-            [disabled]="!(formgroup.valid && PermitirGuardar)" (click)="onGuardar()">Guardar</button>
+            <div class="row">
+               
+                <div class="col-12 centerlabel font-weight-bold" style="text-align: center;">
+                    <button mat-raised-button color="warn" [disabled]="!(formgroup.valid && PermitirGuardar)"
+                        (click)="onGuardar()">
+                        <mat-icon>save</mat-icon>
+                    </button>
+                </div>
+            </div>
+
         </mat-card-actions>
+
     </mat-card>
 
 </div>

@@ -195,7 +195,7 @@ export class CrearprogramaComponent implements OnInit {
       SubcodigoCeco: ['', Validators.required],
       NombreSubCeco: ['', Validators.required],
       Facility: ['', Validators.required],
-      financiador: ['', Validators.required],
+      financiador: ['', [Validators.required, Validators.min(1)]],
 
 
 

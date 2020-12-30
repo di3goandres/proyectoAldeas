@@ -517,7 +517,7 @@ export class AsociaritemspresupuestoComponent implements OnInit {
 
     this.formgroupNomina = this._formBuilder.group({
 
-      numeroIdentificacion: ['', Validators.required],
+      numeroIdentificacion: ['', [ Validators.min(1), Validators.required]],
       Nombre: ['', Validators.required],
       asignacion: ['', [Validators.max(100), Validators.min(1)]],
 

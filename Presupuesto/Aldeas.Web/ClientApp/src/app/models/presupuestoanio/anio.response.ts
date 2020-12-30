@@ -14,6 +14,8 @@ export class PresupuestoAnioDatum {
   anio: number;
   actual: boolean;
   urlReporte: string;
+  per_capacitacion:number;
+  per_nomina: number;
   numeroVersion: number;
   fecha_creacion: string;
   fecha_actualizacion: string;

@@ -37,6 +37,9 @@ namespace ApiRestAldeasPresupuesto.Models
 
         public string NombrePrograma { get; set; }
 
+        public string NombreContrato { get; set; }
+
+
 
         public string Financiador { get; set; }
 
@@ -56,6 +59,15 @@ namespace ApiRestAldeasPresupuesto.Models
     public class PresupuestoProgramRequest
     {
         public long IdPresupuesto { get; set; }
+
+    }
+
+
+    public class CoberturaRequest
+    {
+        public long IdPrograma { get; set; }
+        public long IdPresupuestoAnio { get; set; }
+        public long IdCeco { get; set; }
 
     }
     public class PresupuestoProgramResponse
@@ -137,7 +149,10 @@ namespace ApiRestAldeasPresupuesto.Models
 
     public class PresupuestoByProgramResponse
     {
-
+        public PresupuestoByProgramResponse()
+        {
+            this.presupuesto = new List<ResponsePresupuesto>();
+        }
         public Program programa { get; set; }
         public List<ResponsePresupuesto> presupuesto { get; set; }
     }

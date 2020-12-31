@@ -8,6 +8,7 @@ export class PresupuestoL {
   idPresupuestoAnio: number
   idFinanciador: number;
   idPrograma: number;
+  idProgramaCecos: number;
   anio: number;
   coberturaAnual: number;
   coberturaMensual: number;

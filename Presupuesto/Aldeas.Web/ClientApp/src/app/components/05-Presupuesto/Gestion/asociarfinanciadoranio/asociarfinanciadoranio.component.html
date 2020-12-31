@@ -1,39 +1,21 @@
 <div>
     <mat-card class="example-card" *ngIf="noMostrar==true">
         <mat-card-header>
-            <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title>Nuevo Presupuesto</mat-card-title>
+            <div mat-card-avatar class="example-header-image" style="background-image: url('assets/avatars/av-2.png')">
+            </div>
+            <mat-card-title class="main-green-text">Nueva Cobertura</mat-card-title>
             <!-- <mat-card-subtitle>Para el programa: {{programa.nombre}}</mat-card-subtitle> -->
         </mat-card-header>
 
         <mat-card-content>
-
-
             <div>
-
-                <div class="row">
-                    <div class="col-xs-12 col-12 form-group">
-                        <label>Seleccione un Financiador</label>
-                        <button type="button" mat-mini-fab class="buttton-aldea" aria-label="fecha"
-                            (click)="openUsuarios()">
-                            <mat-icon>person</mat-icon>
-                        </button>
-                    </div>
-                    <div class="col-xs-12 col-12  form-group" *ngIf="financiador!=null">
-                        <label>Financiador</label>
-
-                        <input disabled="true" class="form-control" [(value)]="financiador.nombre" />
-                    </div>
-
-                </div>
-
                 <form [formGroup]="formGroup">
 
                     <div class="row">
 
                         <div class="col-6 tabla">
                             <mat-form-field appearance="fill">
-                                <mat-label>Covertura Anual</mat-label>
+                                <mat-label>Cobertura Anual</mat-label>
                                 <input matInput placeholder="Covertura Anual" type="number"
                                     (change)="validarFomularios()" [(ngModel)]="guardar.coberturaAnual"
                                     formControlName="anual" required>
@@ -42,7 +24,7 @@
 
                         <div class="col-6 tabla">
                             <mat-form-field appearance="fill">
-                                <mat-label>Covertura Mensual</mat-label>
+                                <mat-label>Cobertura Mensual</mat-label>
                                 <input matInput placeholder="Covertura Mensual" type="number"
                                     (change)="validarFomularios()" [(ngModel)]="guardar.coberturaMensual"
                                     formControlName="mensual" required>
@@ -53,7 +35,7 @@
 
                         <div class="col-6 tabla">
                             <mat-form-field appearance="fill">
-                                <mat-label>Covertura esperada</mat-label>
+                                <mat-label>Cobertura esperada</mat-label>
                                 <input matInput placeholder="Covertura Esperada" type="number"
                                     (change)="validarFomularios()" [(ngModel)]="guardar.coberturaMensualEsperada"
                                     formControlName="esperado" required>
@@ -62,7 +44,7 @@
 
                         <div class="col-6 tabla">
                             <mat-form-field appearance="fill">
-                                <mat-label>Covertura Casas</mat-label>
+                                <mat-label>Cobertura Casas</mat-label>
                                 <input matInput placeholder="Covertura Casas" type="number"
                                     (change)="validarFomularios()" [(ngModel)]="guardar.coberturasCasas"
                                     formControlName="casas" required>
@@ -77,11 +59,15 @@
 
         </mat-card-content>
         <mat-card-actions>
-
-            <button mat-raised-button ngbAutofocus (click)="cerrar()">Cancelar</button>
-            <button mat-raised-button ngbAutofocus [disabled]="!permitirGuardar"
-                (click)="guardarData()">Guardar</button>
-
+            <div class="row">
+                <div class="col-6 centerlabel font-weight-bold" style="text-align: center;">
+                    <button mat-raised-button ngbAutofocus (click)="cerrar()">Cancelar</button>
+                </div>
+                <div class="col-6 centerlabel font-weight-bold" style="text-align: center;">
+                    <button mat-raised-button ngbAutofocus [disabled]="this.formGroup.invalid"
+                        (click)="guardarData()">Guardar</button>
+                </div>
+            </div>
 
         </mat-card-actions>
     </mat-card>

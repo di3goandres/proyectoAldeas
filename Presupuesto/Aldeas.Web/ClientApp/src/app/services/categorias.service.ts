@@ -47,6 +47,9 @@ export class CategoriasService {
       .ejecutarQueryPost<Respuesta>('/api/presupuesto/pucs/update', params);
   }
 
+  NoExitosoComun(){
+    this.userService.registroNoExitosoComun();
+  }
   permitirEditar(){
     return this.userService.permitirEditar();
   }

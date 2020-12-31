@@ -19,7 +19,7 @@ namespace ApiRestAldeasPresupuesto.Helper
     {
         public static dynamic GenerarInforme(IContextFactory factory, IOptions<ConnectionDB> connection, PresupuestoProgramRequest request)
         {
-            Presupuestodetalle retorno = PresupuestoOperations.ConsultarDetallePresupuestosByProgramas(factory, connection, request);
+            Presupuestodetalle retorno = PresupuestoOperations.ConsultarDetallePresupuestosByProgramasExport(factory, connection, request);
             string retornoFinal = "";
             try
             {

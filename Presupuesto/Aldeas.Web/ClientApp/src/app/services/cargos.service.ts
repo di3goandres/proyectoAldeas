@@ -38,4 +38,8 @@ export class CargosService {
   NoExitoso(Titulo, Mensaje){
     this.userService.registroNoExitoso(Titulo, Mensaje);
   }
+
+  NoExitosoComun(){
+    this.userService.registroNoExitosoComun();
+  }
 }

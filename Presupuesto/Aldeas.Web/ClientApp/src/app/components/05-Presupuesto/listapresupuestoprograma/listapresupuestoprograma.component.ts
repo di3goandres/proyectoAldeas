@@ -19,7 +19,7 @@ import { MatStepper } from '@angular/material/stepper';
   styleUrls: ['./listapresupuestoprograma.component.css']
 })
 export class ListapresupuestoprogramaComponent implements OnInit {
-  PresupuestoSeleccionado = 0;
+  PresupuestoSeleccionado: PresupuestoAnioDatum;
   response: PresupuestoAnioResponse;
   presupuestoResponse: PresupuestoAnioDatum[] = []
   programaRequest = new PresupuestoListRequest()
@@ -100,12 +100,12 @@ export class ListapresupuestoprogramaComponent implements OnInit {
     });
   }
 
-  VerPresupuesto(element){
+  VerPresupuesto(element: PresupuestoAnioDatum){
 
     console.log(element)
     this.myStepper.next()
 
-    this.PresupuestoSeleccionado = element.id;
+    this.PresupuestoSeleccionado = element;
   }
   AbrirCrearPresupuesto(element) {
     const modalRef = this.modalService.open(GenerarPresupuestoComponent, { size: 'md' });

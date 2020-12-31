@@ -56,4 +56,7 @@ export class UsuarioService {
   NoExitoso(Titulo, Mensaje){
     this.userService.registroNoExitoso(Titulo, Mensaje);
   }
+  NoExitosoComun(){
+    this.userService.registroNoExitosoComun();
+  }
 }

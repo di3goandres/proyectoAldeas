@@ -10,6 +10,7 @@ using ApiRestAldeas.Helper;
 using ApiRestAldeas.Repositories;
 using ApiRestAldeas.Services;
 using ApiRestAldeasPresupuesto.Repositories;
+using ApiRestAldeasPresupuesto.Repositories.GestionPresupuesto;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -77,6 +78,8 @@ namespace ApiRestAldeas
             services.AddScoped(typeof(IContextFactory), typeof(ContextFactory));
             services.AddScoped(typeof(IDataModelRepository), typeof(DataModelRepository));
             services.AddScoped(typeof(IDataModelPresupuesto), typeof(DataModelPresupuesto));
+            services.AddScoped(typeof(IDataGestionPresupuesto), typeof(DataGestionPresupuesto));
+
 
             // configure DI for application services para el llamado al servicio de 
             services.AddScoped<IUserService, UserService>();

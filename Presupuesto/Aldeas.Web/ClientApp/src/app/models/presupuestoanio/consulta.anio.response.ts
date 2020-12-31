@@ -7,6 +7,7 @@ export interface PresupuestoCobertura {
   id: number;
   idPrograma: number;
   nombrePrograma: string;
+  nombreContrato: string;
   financiador: string;
   anio: number;
   coberturaAnual: number;

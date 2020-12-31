@@ -9,6 +9,7 @@ import { Task } from '../../../../models/checkbox';
 import { PresupuestoL } from '../../../../models/presupuesto/list.presupuesto.response';
 import { FinanciadorfaltanteComponent } from '../financiadorfaltante/financiadorfaltante.component';
 import { FinanciadoresDatum } from '../../../../models/financiadores/financiadores.response';
+import { CoberturaRequest } from 'src/app/models/cobertura/Cobertura.request';
 
 @Component({
   selector: 'app-asociarfinanciadoranio',
@@ -17,7 +18,7 @@ import { FinanciadoresDatum } from '../../../../models/financiadores/financiador
 })
 export class AsociarfinanciadoranioComponent implements OnInit {
 
-  @Input() presupuesto : PresupuestoAnioDatum;
+  @Input() presupuesto : CoberturaRequest;
 
   anioList: SelectItem[] = [];
   guardar=new PresupuestoL();
@@ -36,22 +37,6 @@ export class AsociarfinanciadoranioComponent implements OnInit {
   ) { }
 
  
-  openUsuarios() {
-    const modalRef = this.modalService.open(FinanciadorfaltanteComponent, { size: 'lg' });
-    modalRef.componentInstance.idPresupuestoAnio = this.presupuesto.id;
-   
-    modalRef.result.then((result: FinanciadoresDatum) => {
-     this.financiador = result;
-     this.guardar.idFinanciador = this.financiador.id;
-     this.validarFomularios();
-    }, (reason) => {
-
-      if (reason === 'OK') {
-
-
-      }
-    });
-  }
 
   cerrar() {
     this.activeModal.dismiss();
@@ -68,7 +53,7 @@ export class AsociarfinanciadoranioComponent implements OnInit {
   }
   
   validarFomularios() {
-    this.permitirGuardar = this.formGroup.valid  &&    this.financiador != null ;
+    this.permitirGuardar = this.formGroup.valid 
   }
 
   guardarData() {
@@ -77,27 +62,26 @@ export class AsociarfinanciadoranioComponent implements OnInit {
 
         this.activeModal.close("OK");
       },
-      Error => { console.log(Error) },
+      Error => { console.log(Error) 
+        this.service.NoExitosoComun()
+      
+      },
 
     )
     console.log(this.guardar)
   }
 
-  cargaInicial() {
-    this.service.getFinanciadoresFaltantes(this.presupuesto.id).subscribe(
-      OK => { console.log(OK) },
-      Error => { console.log(Error) },
 
-    )
-  }
   ngOnInit(): void {
 
   
 
  console.log(this.presupuesto)
- this.guardar.idPrograma = this.presupuesto.idPrograma;
- this.guardar.idPresupuestoAnio = this.presupuesto.id;
- this.guardar.anio = this.presupuesto.anio;
+    this.guardar.idPrograma = this.presupuesto.idPrograma;
+    this.guardar.idPresupuestoAnio = this.presupuesto.idPresupuestoAnio;
+    this.guardar.idProgramaCecos = this.presupuesto.idCeco;
+
+   
 
     this.noMostrar = true;
     this.formGroup = this._formBuilder.group({

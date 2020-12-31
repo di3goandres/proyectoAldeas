@@ -3,8 +3,9 @@
         <mat-card-header>
             <div mat-card-avatar class="example-header-image" style="background-image: url('assets/avatars/av-6.png')">
             </div>
-            <mat-card-title class="main-green-text">PRESUPUESTO PARA EL PROGRAMA: {{programas.nombre|uppercase}}</mat-card-title>
-
+            <mat-card-title class="main-green-text">PRESUPUESTO PARA EL PROGRAMA: {{programas.nombre|uppercase}}
+            </mat-card-title>
+            <mat-card-subtitle> Año: {{_Anio }}</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
             <mat-horizontal-stepper [linear]="true" #stepper2>
@@ -12,7 +13,7 @@
                 <mat-step [stepControl]="firstFormGroup">
                     <form [formGroup]="firstFormGroup">
 
-                        <ng-template matStepLabel>Seleccion Servicio</ng-template>
+                        <ng-template matStepLabel>Selección Servicio</ng-template>
                         <mat-card class="example-card">
 
 
@@ -48,6 +49,32 @@
 
                                     </div>
 
+                                </div>
+
+                                <div class="row" *ngIf="tienecobertura">
+                                    <div class="col-6">
+                                        <mat-form-field appearance="fill">
+                                            <mat-label>Selecciona Un Contrato  o Cobertura</mat-label>
+                                            <mat-select formControlName="Cobertura" required 
+                                            (selectionChange)="AsociarPresupuesto($event.value)" 
+                                            >
+                                                <mat-option *ngFor="let cobertura of Listacoberturas" [value]="cobertura.id">
+                                                    {{cobertura.nombreContrato | uppercase}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+
+                                    </div>
+
+                                    <div class="col-6 centerlabel font-weight-bold ion-align-items-start" style="text-align: center;vertical-align: center;">
+                                        <mat-label>Asociar cobertura</mat-label>
+                                        <button mat-raised-button color="warn"
+                                        [disabled]="cobertura.idCeco==0"
+                                         ngbAutofocus (click)="AbrirAsociarPresupuesto()">
+                                            <mat-icon>add_circle</mat-icon>
+                                        </button>
+                                    </div>
+                    
                                 </div>
 
                                 <div class="row">
@@ -115,8 +142,9 @@
                     <ng-template matStepLabel>Agregar Presupuesto</ng-template>
                     <mat-card class="example-card">
                         <mat-card-header>
-                            <div mat-card-avatar class="example-header-image"></div>
-                            <mat-card-title>Agregar Presupuesto: {{datoRubro.nombre | uppercase}}</mat-card-title>
+                            <div mat-card-avatar class="example-header-image" style="background-image: url('assets/avatars/av-2.png')">
+                            </div>
+                            <mat-card-title  class="main-green-text">Agregar Presupuesto: {{datoRubro.nombre | uppercase}}</mat-card-title>
                             <mat-card-subtitle>Agregar</mat-card-subtitle>
                         </mat-card-header>
 
@@ -347,7 +375,7 @@
                                     <mat-grid-list cols="6" rowHeight="2:1">
                                         <mat-grid-tile>
 
-                                            <mat-form-field class="example-full-width" >
+                                            <mat-form-field class="example-full-width">
                                                 <mat-label>Enero</mat-label>
                                                 <input matInput placeholder="Enero" [(ngModel)]="guardar.Enero"
                                                     (ngModelChange)="Actualizar()" type="number">
@@ -415,8 +443,9 @@
                                         <mat-grid-tile>
                                             <mat-form-field class="example-full-width">
                                                 <mat-label>Septiembre</mat-label>
-                                                <input matInput placeholder="Septiembre" [(ngModel)]="guardar.Septiembre"
-                                                    (ngModelChange)="Actualizar()" type="number">
+                                                <input matInput placeholder="Septiembre"
+                                                    [(ngModel)]="guardar.Septiembre" (ngModelChange)="Actualizar()"
+                                                    type="number">
                                             </mat-form-field>
 
                                         </mat-grid-tile>
@@ -471,7 +500,9 @@
     </mat-card>
     <mat-card>
         <mat-card-header>
-            <mat-card-title>DETALLE PRESUPUESTO </mat-card-title>
+            <div mat-card-avatar class="example-header-image" style="background-image: url('assets/avatars/av-7.png')">
+            </div>
+            <mat-card-title class="main-green-text">DETALLE PRESUPUESTO </mat-card-title>
 
         </mat-card-header>
         <mat-card-content>
@@ -480,9 +511,8 @@
                     <div class="row" style="text-align: center;">
                         <div class="col-12" style="padding-top: 10px;">
                             <app-detallepresupuestoprograma [detalle]="dataSourcePresupuesto"
-                                *ngIf="dataSourcePresupuesto.length>0"
-                                (elimine)='Notificar($event)'
-                                ></app-detallepresupuestoprograma>
+                                *ngIf="dataSourcePresupuesto.length>0" (elimine)='Notificar($event)'>
+                            </app-detallepresupuestoprograma>
 
                         </div>
                     </div>
@@ -491,10 +521,8 @@
                     <div class="row" style="text-align: center;" *ngIf="mostrar">
                         <div class="col-12" style="padding-top: 10px;">
                             <app-detalle-familiarpresupuestoprograma [detalle]="dataSourcePresupuesto"
-                                *ngIf="dataSourcePresupuesto.length>0"
-                                (elimine)='Notificar($event)'
-                                
-                                ></app-detalle-familiarpresupuestoprograma>
+                                *ngIf="dataSourcePresupuesto.length>0" (elimine)='Notificar($event)'>
+                            </app-detalle-familiarpresupuestoprograma>
 
 
                         </div>
@@ -504,10 +532,8 @@
                     <div class="row" style="text-align: center;">
                         <div class="col-12" style="padding-top: 10px;">
                             <app-detalle-otrospresupuestoprograma [detalle]="dataSourcePresupuesto"
-                                *ngIf="dataSourcePresupuesto.length>0"
-                                (elimine)='Notificar($event)'
-                                
-                                ></app-detalle-otrospresupuestoprograma>
+                                *ngIf="dataSourcePresupuesto.length>0" (elimine)='Notificar($event)'>
+                            </app-detalle-otrospresupuestoprograma>
 
                         </div>
                     </div>

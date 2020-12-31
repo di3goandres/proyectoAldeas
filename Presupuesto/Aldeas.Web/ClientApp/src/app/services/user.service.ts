@@ -11,6 +11,7 @@ import { CentrosResponse, Respuesta } from '../models/comunes';
 import { Colaborador } from '../models/colaborador';
 import { RegistroParticipante } from '../models/DatosPartipante';
 import { environment } from '../../environments/environment';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import * as FileSaver from 'file-saver';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -40,7 +41,7 @@ export class UserService {
   constructor(
     private http: HttpClient,
     private modalService: NgbModal,
-
+    private _snackBar: MatSnackBar,
     public router: Router) {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
@@ -50,7 +51,13 @@ export class UserService {
     return this.currentUserSubject.value;
   }
 
-
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 6000,
+      horizontalPosition: 'end',
+      verticalPosition: 'top',
+    });
+  }
 
   ///metodo par ejecutar metodos get
   public ejecutarQuery<T>(query: string) {
@@ -83,7 +90,6 @@ export class UserService {
         resolve(true);
       } else {
         this.router.navigate(['Home']);
-  
         resolve(false);
   
       }
@@ -93,7 +99,7 @@ export class UserService {
     ;   
 
   }
-  
+
   // tslint:disable-next-line: typedef con autorizacion
   public ejecutarQueryPost<T>(query: string, params: string) {
    let user = this.currentUserSubject.value;
@@ -234,6 +240,10 @@ export class UserService {
 
       }
     });
+  }
+
+  registroNoExitosoComun(){
+    this.registroNoExitoso("Error", "Ha ocurrido un error inesperado, por favor intentelo nuevamente.");
   }
 
   registroNoExitoso(Titulo, Mensaje) {

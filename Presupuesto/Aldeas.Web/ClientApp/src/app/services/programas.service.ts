@@ -40,6 +40,9 @@ export class ProgramasService {
        .ejecutarQueryPost<Respuesta>('/api/presupuesto/programas/actualizar/',params );
   }
 
+  NoExitosoComun(){
+    this.userService.registroNoExitosoComun();
+  }
   updateCecos(ceco: Ceco) {
     let json = JSON.stringify(ceco);
     let params = '' + json;

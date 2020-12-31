@@ -75,6 +75,7 @@ import { CargoselectComponent } from './07-Cargos/cargoselect/cargoselect.compon
 import { BorrardetallepresupuestoComponent } from './05-Presupuesto/borrardetallepresupuesto/borrardetallepresupuesto.component';
 import { RegistroNoexitosoComponent } from './00-Comunes/registro-noexitoso/registro-noexitoso.component';
 import { ActualizarusuarioComponent } from './06-Usuarios/actualizarusuario/actualizarusuario.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [LoginComponent, HomeComponent,
@@ -119,7 +120,8 @@ import { ActualizarusuarioComponent } from './06-Usuarios/actualizarusuario/actu
     MatPaginatorModule,
     MatAutocompleteModule,
     MatTabsModule,
-    MatCurrencyFormatModule
+    MatCurrencyFormatModule,
+    MatSnackBarModule
   ],
   providers: [
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },

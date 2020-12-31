@@ -17,6 +17,10 @@ import { CargosDatum } from '../../../../models/cargos/cargos';
 import { CargoselectComponent } from '../../../07-Cargos/cargoselect/cargoselect.component';
 import { MatStepper } from '@angular/material/stepper';
 import { MatTabGroup } from '@angular/material/tabs';
+import { PresupuestoAnioDatum } from 'src/app/models/presupuestoanio/anio.response';
+import { CoberturaRequest } from 'src/app/models/cobertura/Cobertura.request';
+import { PresupuestoCobertura } from '../../../../models/presupuestoanio/consulta.anio.response';
+import { AsociarfinanciadoranioComponent } from '../asociarfinanciadoranio/asociarfinanciadoranio.component';
 
 @Component({
   selector: 'app-asociaritemspresupuesto',
@@ -26,18 +30,36 @@ import { MatTabGroup } from '@angular/material/tabs';
 export class AsociaritemspresupuestoComponent implements OnInit {
 
   _id: number;
- 
-  @Input() set id (value: number){
-    this._id = value;
-    this.programaRequest.idPresupuesto = this._id
-    console.log('Estamos Validando',this._id)
+  _Anio: number;
+  cobertura = new CoberturaRequest();
 
-    this.guardar.idPresupuesto = this.programaRequest.idPresupuesto
-    if(this._id != null && this._id!= 0){
-      this.getDetalle(null);
-      this.datosIniciales();
+  tienecobertura = false;
+
+  Listacoberturas: PresupuestoCobertura[] = [];
+  @Input() set id(value: PresupuestoAnioDatum) {
+
+    console.log('Estamos Validando elemento', value[0])
+    let elemento = value[0]
+
+    if (elemento != null) {
+      this.cobertura.idPrograma = elemento.idPrograma;
+      this.cobertura.idPresupuestoAnio = elemento.id;
+
+      this._id = elemento.id;
+      this.programaRequest.idPresupuesto = this._id
+      this._Anio = elemento.anio
+
+      this.tienecobertura = elemento.cobertura;
+
+      // console.log('Estamos Validando', this._id)
+
+      this.guardar.idPresupuesto = this.programaRequest.idPresupuesto
+      if (this._id != null && this._id != 0) {
+         this.getDetalle(0);
+        this.datosIniciales();
+      }
     }
-  
+
   }
   MostrarExitoso = false;
   Guardando = false;
@@ -147,7 +169,7 @@ export class AsociaritemspresupuestoComponent implements OnInit {
     console.log(this.Manual)
   }
 
-  Notificar(event: boolean){
+  Notificar(event: boolean) {
     console.log(event)
     this.getDetalle(null);
   }
@@ -173,7 +195,7 @@ export class AsociaritemspresupuestoComponent implements OnInit {
     this.pucMostrar.push(this.guardar);
     this.dataSource = new MatTableDataSource(this.pucMostrar);
     this.validarFomularios();
- 
+
 
   }
 
@@ -183,7 +205,7 @@ export class AsociaritemspresupuestoComponent implements OnInit {
   }
 
   Actualizar() {
-   
+
     this.pucMostrar = [];
     this.pucMostrar.push(this.guardar);
     this.dataSource = new MatTableDataSource(this.pucMostrar);
@@ -253,42 +275,42 @@ export class AsociaritemspresupuestoComponent implements OnInit {
 
 
   validarFomularios() {
-    if(this.tabGroup!= null){
-      if ( this.tabGroup.selectedIndex ==1 ) {
+    if (this.tabGroup != null) {
+      if (this.tabGroup.selectedIndex == 1) {
         if (this.datoRubro.esNomina) {
           this.permitirGuardar = this.formgroupNomina.valid && this.formgroupNormal.valid
-  
+
         }
         if (this.datoRubro.esppto) {
           this.permitirGuardar = this.formgroupFamiliar.valid && this.formgroupNormal.valid
-  
+
         }
         if (this.datoRubro.esppto == false && this.datoRubro.esNomina == false) {
           this.permitirGuardar = this.formgroupNormal.valid
-  
+
         }
       } else {
         let seleccionados = this.presupuestoCheck.subtasks.filter(t => {
           return t.completed == true;
         });
-  
+
         let numeroMeses = seleccionados.length;
         if (this.datoRubro.esNomina) {
           this.permitirGuardar = this.formgroupNomina.valid && this.formgroupNormal.valid && numeroMeses > 0
-  
+
         }
         if (this.datoRubro.esppto) {
           this.permitirGuardar = this.formgroupFamiliar.valid && this.formgroupNormal.valid && numeroMeses > 0
-  
+
         }
         if (this.datoRubro.esppto == false && this.datoRubro.esNomina == false) {
           this.permitirGuardar = this.formgroupNormal.valid && numeroMeses > 0
-  
+
         }
       }
     }
-   
-  
+
+
 
 
   }
@@ -306,13 +328,18 @@ export class AsociaritemspresupuestoComponent implements OnInit {
       OK => {
 
         // this.activeModal.close(this.guardar)
-        this.openExitoso()
+        this.presupuestoService.Exitoso()
         this.getDetalle(null)
         this.getFamiliar();
         this.clearFormularios();
 
       },
-      Error => { console.log(Error) },
+      Error => {
+        console.log(Error)
+
+        this.presupuestoService.NoExitoso("Error", "Ha ocurrido un error inesperado, por favor intentelo nuevamente.")
+
+      },
 
     )
 
@@ -338,21 +365,23 @@ export class AsociaritemspresupuestoComponent implements OnInit {
   }
   getDetalle(id) {
     let number = 0;
+    console.log(id);
     this.dataSourcePresupuesto = []
     if (id == null) {
       number = this.programaRequest.idPresupuesto
     } else {
       number = id;
 
-    }
+    }  console.log(number);
     this.presupuestoService.getDetallePresupuesto(number).subscribe(
 
       OK => {
+        console.log(OK);
       
         this.dataSourcePresupuesto = []
         if (OK.detallePresupuesto != null)
           this.dataSourcePresupuesto.push(...OK.detallePresupuesto)
-        // this.changeDetectorRefs.detectChanges();
+
         this.getFamiliar();
       },
       Error => { console.log(Error) },
@@ -374,11 +403,6 @@ export class AsociaritemspresupuestoComponent implements OnInit {
   }
 
 
-  //  constructor(
-  //    private presupuestoService: PresupuestoService,
-  //    private route: ActivatedRoute,
-  //    private changeDetectorRefs: ChangeDetectorRef,
-  //    private modalService: NgbModal) { }
 
 
   onChange(value) {
@@ -407,16 +431,49 @@ export class AsociaritemspresupuestoComponent implements OnInit {
 
   }
   onChangeCeco(value) {
-
+    this.subCentrosSeleccionado = [];
     this.subCentrosSeleccionado = this.subCentros.filter(item => {
       return item.idCeco == value
     })
+
+    this.Listacoberturas = [];
 
   }
 
   onChangeServicio(value) {
     this.servicioSeleccionado = value
     this.guardar.idProgramaCecos = this.servicioSeleccionado
+
+    this.cobertura.idCeco = value;
+    this.Listacoberturas = [];
+
+    this.consultarCoberturas();
+  }
+
+
+  consultarCoberturas() {
+
+    //Si tien Cobertura, se debe pedir la seleccion del contrato y permitir crear el contrato o editarlo
+    if (this.tienecobertura) {
+
+      this.presupuestoService.getCoberturas(this.cobertura).subscribe(
+        OK => {
+
+          console.log(OK)
+          if (OK.presupuesto.length == 0) {
+            this.presupuestoService.MostrarSnack("No se ha registrado contrato/Cobertura para esta servicio, debes asociarlo.")
+          } else {
+            this.Listacoberturas = [];
+            this.Listacoberturas.push(...OK.presupuesto)
+          }
+        },
+        ERROR => {
+          console.log(ERROR)
+          this.presupuestoService.NoExitoso("Error", "Ha ocurrido un error inesperado, por favor intentelo nuevamente.")
+        },
+
+      )
+    }
   }
 
   datoCargo = new CargosDatum();
@@ -457,23 +514,7 @@ export class AsociaritemspresupuestoComponent implements OnInit {
     });
   }
 
-  openExitoso() {
-    const modalRef = this.modalService.open(RegistroexitosoComponent,
-      { size: 'md' });
 
-    modalRef.result.then((result) => {
-
-
-    }, (reason) => {
-
-
-    });
-
-
-
-
-
-  }
 
 
   datosIniciales() {
@@ -499,6 +540,36 @@ export class AsociaritemspresupuestoComponent implements OnInit {
       Error => { console.log(Error) },
 
     )
+  }
+
+  AbrirAsociarPresupuesto(element) {
+    const modalRef = this.modalService.open(AsociarfinanciadoranioComponent, { size: 'md' });
+
+    modalRef.componentInstance.presupuesto = this.cobertura;
+    modalRef.result.then((result) => {
+      if (result === "OK") {
+        this.presupuestoService.Exitoso()
+        this.consultarCoberturas();
+      }
+      
+    }, (reason) => {
+
+      if (reason === 'OK') {
+
+
+      }
+    });
+  }
+
+  AsociarPresupuesto(value: number){
+    this.guardar.idPresupuesto  =  value;
+    this.programaRequest.idPresupuesto = value;
+
+    console.log(this.guardar);
+
+    this.getDetalle(value);
+  
+
   }
   ngOnInit(): void {
 
@@ -530,12 +601,14 @@ export class AsociaritemspresupuestoComponent implements OnInit {
 
       Categoria: ['', Validators.required],
 
+      Cobertura: ['', Validators.nullValidator]
+
 
     });
 
     this.formgroupNomina = this._formBuilder.group({
 
-      numeroIdentificacion: ['', [ Validators.min(1), Validators.required]],
+      numeroIdentificacion: ['', [Validators.min(1), Validators.required]],
       Nombre: ['', Validators.required],
       asignacion: ['', [Validators.max(100), Validators.min(1)]],
 
@@ -566,9 +639,11 @@ export class AsociaritemspresupuestoComponent implements OnInit {
     this.formgroupFamiliar.reset();
     this.formgroupNormal.reset();
     this.formgroupNomina.reset();
-    this.firstFormGroup.reset();
+    // this.firstFormGroup.reset();
     this.datoCargo = new CargosDatum();
-    this.myStepper.reset();
+    // this.myStepper.reset();
+
+    this.myStepper.previous();
   }
 
   updateUSAmount(event) {

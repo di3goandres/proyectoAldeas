@@ -10,6 +10,7 @@ import { PresupuestoAnioResponse, PresupuestoAnioDatum } from '../models/presupu
 
 import { FinanciadoresResponse } from '../models/financiadores/financiadores.response';
 import { CoberturaAnioResponse } from '../models/presupuestoanio/consulta.anio.response';
+import { CoberturaRequest } from '../models/cobertura/Cobertura.request';
 
 @Injectable({
   providedIn: 'root'
@@ -59,9 +60,8 @@ export class PresupuestoService {
   }
 
   guardar(data: PresupuestoL) {
-    let json = JSON.stringify(data);
-    let params = '' + json;
-    return this.userService.ejecutarQueryPost<Respuesta>('/api/presupuesto/store/', params)
+
+    return this.userService.ejecutarQueryPostNuevo<Respuesta>('/api/presupuesto/store/', data)
   }
   update(data: PresupuestoL) {
     let json = JSON.stringify(data);
@@ -106,5 +106,18 @@ export class PresupuestoService {
 
   NoExitoso(Titulo, Mensaje){
     this.userService.registroNoExitoso(Titulo, Mensaje);
+  }
+
+  NoExitosoComun(){
+    this.userService.registroNoExitosoComun();
+  }
+
+
+  getCoberturas(data: CoberturaRequest) {
+    return this.userService.ejecutarQueryPostNuevo<CoberturaAnioResponse>('/api/aldeas/gestion/presupuesto/consultar/coberturas',data)
+  }
+
+  MostrarSnack(Mensaje: string){
+    this.userService.openSnackBar(Mensaje, "");
   }
 }

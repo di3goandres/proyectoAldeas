@@ -21,7 +21,7 @@ namespace ApiRestAldeasPresupuesto.Helper
             using (Aldeas_Context db = factory.Create(connection))
             {
                 long idPrograma = 0;
-                long idFinanciador = 0;
+                
                 string Financiacodr = "";
 
 
@@ -172,23 +172,43 @@ namespace ApiRestAldeasPresupuesto.Helper
 
             using (Aldeas_Context db = factory.Create(connection))
             {
+
+                int conteo = 0;
+                /// Se valida que la combinacion anio programa y ceco no exista dos veces.
                 var data = from pro in db.TbPresupuestos
-                           where pro.idPrograma == datos.idPrograma && pro.Anio == datos.Anio 
-                           && pro.idFinanciador == datos.idFinanciador
+                           join panio in db.TbPresupuestoAnio on pro.idPresupuestoAnio equals panio.id 
+                           where pro.idPrograma == datos.idPrograma 
+                           && pro.IdProgramaCecos == datos.IdProgramaCecos
+                           && panio.id  == datos.idPresupuestoAnio
 
                            select pro;
-                if (data.Any())
-                {
-                    return new { id = 0, status = "Error", code = 200, message = "ya existe" };
-                }
-                else
-                {
+               
+                    conteo = data.ToList().Count;
+                
+                    var anio = from panio in db.TbPresupuestoAnio
+                               where  panio.id == datos.idPresupuestoAnio
+                               select panio;
+                    if (anio.Any())
+                    {
+                        datos.Anio = anio.First().Anio;
+                    }
+
+                    var dataCeco = from ceco in db.TbProgramasCecos
+                                   where ceco.id == datos.IdProgramaCecos
+                                   select ceco;
+                    if (dataCeco.Any())
+                    {
+                        conteo++;
+                        datos.NombreContrato = "Contrato - " + dataCeco.First().CodigoCeco + "/" + dataCeco.First().SubCentro + " - "  + dataCeco.First().NombreSubCentro +" # "+ conteo;
+                        datos.idFinanciador = dataCeco.First().idFinanciador;
+                    }
+                 
                     datos.fecha_actualizacion = DateTime.Now;
                     datos.fecha_creacion = DateTime.Now;
 
                     db.TbPresupuestos.Add(datos);
                     db.SaveChanges();
-                }
+                
 
 
 
@@ -346,7 +366,9 @@ namespace ApiRestAldeasPresupuesto.Helper
             using (Aldeas_Context db = factory.Create(connection))
             {
                 var data = from pro in db.TbProgramas
+
                            join pre in db.TbPresupuestos on pro.id equals pre.idPrograma
+                          
                            join tpro in db.TbTipoPrograma on pro.id_tipo_programa equals tpro.id
                            join prep in db.TbPresupuestosProgramas on pre.id equals prep.idPresupuesto
                            join cec in db.TbProgramasCecos on prep.idProgramaCecos equals cec.id
@@ -354,6 +376,79 @@ namespace ApiRestAldeasPresupuesto.Helper
                            join puc in db.TbPucs on prep.idRubroPucs equals puc.id
                            join rubro in db.TbRubros on puc.idRubro equals rubro.id
                            where pre.id == request.IdPresupuesto
+                           select new PresupuestoProgramResponse
+                           {
+                               id = prep.id,
+                               idPresupuesto = pre.id,
+                               Programa = pro.Nombre,
+                               Anio = pre.Anio,
+                               ClasificacionGasto = tpro.cobertura == true ? "OPERACIONAL" : "ADMINISTRATIVO",
+                               CentroCosto = cec.CodigoCeco,
+                               NombreCentroCosto = cec.Nombre,
+                               SubCentroCosto = cec.SubCentro,
+                               NombreSubCentroCosto = cec.NombreSubCentro,
+                               NombreRubro = rubro.Nombre,
+                               esNomina = rubro.esNomina,
+                               EsPptp = rubro.EsPptp,
+                               CuentaSIIGO = puc.CuentaSIIGO,
+                               NombreCuenta = puc.DescripcionCuenta,
+                               CuentaCotable = puc.CuentaNAV,
+                               Facility = cec.FacilityNav,
+                               DetalleGasto = prep.DetalleGasto,
+                               NotaIngles = prep.NotaIngles,
+                               NoCasa = prep.NoCasa,
+                               NoKids = prep.NoKids,
+                               NumeroIdentificacion = prep.NumeroIdentificacion,
+                               Nombre = prep.Nombre,
+                               Asignacion = prep.Asignacion,
+                               Cargo = cargo.cargo,
+                               Enero = prep.Enero,
+                               Febrero = prep.Febrero,
+                               Marzo = prep.Marzo,
+                               Abril = prep.Abril,
+                               Mayo = prep.Mayo,
+                               Junio = prep.Junio,
+                               Julio = prep.Julio,
+                               Agosto = prep.Agosto,
+                               Septiembre = prep.Septiembre,
+                               Octubre = prep.Octubre,
+                               Noviembre = prep.Noviembre,
+                               Diciembre = prep.Diciembre,
+                               Total = prep.Total
+
+                           };
+                if (data.Any())
+                {
+                    retorno.DetallePresupuesto = data.ToList();
+                }
+                else
+                {
+                    retorno.DetallePresupuesto = new List<PresupuestoProgramResponse>();
+
+                }
+
+
+            }
+
+            return retorno;
+        }
+
+        public static dynamic ConsultarDetallePresupuestosByProgramasExport(IContextFactory factory, IOptions<ConnectionDB> connection, PresupuestoProgramRequest request)
+        {
+            Presupuestodetalle retorno = new Presupuestodetalle();
+            using (Aldeas_Context db = factory.Create(connection))
+            {
+                var data = from pro in db.TbProgramas
+                         
+                           join pre in db.TbPresupuestos on pro.id equals pre.idPrograma
+                           join panio in db.TbPresupuestoAnio on pre.idPresupuestoAnio  equals panio.id
+                           join tpro in db.TbTipoPrograma on pro.id_tipo_programa equals tpro.id
+                           join prep in db.TbPresupuestosProgramas on pre.id equals prep.idPresupuesto
+                           join cec in db.TbProgramasCecos on prep.idProgramaCecos equals cec.id
+                           join cargo in db.TbCargos on pre.id equals cargo.id
+                           join puc in db.TbPucs on prep.idRubroPucs equals puc.id
+                           join rubro in db.TbRubros on puc.idRubro equals rubro.id
+                           where panio.id == request.IdPresupuesto
                            select new PresupuestoProgramResponse
                            {
                               id = prep.id,
@@ -392,7 +487,7 @@ namespace ApiRestAldeasPresupuesto.Helper
                                Octubre = prep.Octubre,
                                Noviembre = prep.Noviembre,
                                Diciembre=  prep.Diciembre,
-                               Total = (prep.Enero + prep.Febrero + prep.Marzo + prep.Abril+ prep.Mayo + prep.Junio +prep.Julio + prep.Agosto + prep.Septiembre + prep.Octubre + prep.Noviembre+ prep.Diciembre)
+                               Total =  prep.Total
 
                            };
                 if (data.Any())

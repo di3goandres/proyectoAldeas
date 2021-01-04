@@ -51,14 +51,16 @@
 
                                 </div>
 
-                                <div class="row" *ngIf="tienecobertura">
-                                    <div class="col-6">
+                                <div class="row">
+
+                                    <div class="col-8" *ngIf="tienecobertura==false">
                                         <mat-form-field appearance="fill">
-                                            <mat-label>Selecciona Un Contrato  o Cobertura</mat-label>
-                                            <mat-select formControlName="Cobertura" required 
-                                            (selectionChange)="AsociarPresupuesto($event.value)" 
-                                            >
-                                                <mat-option *ngFor="let cobertura of Listacoberturas" [value]="cobertura.id">
+                                            <mat-label>Selecciona Un Contrato o Cobertura</mat-label>
+                                            <mat-select formControlName="Cobertura" required [ngModel]="contratoNumber"
+                                                [disabled]="!tienecobertura"
+                                                (selectionChange)="AsociarPresupuesto($event.value)">
+                                                <mat-option *ngFor="let cobertura of Listacoberturas"
+                                                    [value]="cobertura.id">
                                                     {{cobertura.nombreContrato | uppercase}}
                                                 </mat-option>
                                             </mat-select>
@@ -66,15 +68,28 @@
 
                                     </div>
 
-                                    <div class="col-6 centerlabel font-weight-bold ion-align-items-start" style="text-align: center;vertical-align: center;">
+                                    <div class="col-8" *ngIf="tienecobertura==true">
+                                        <mat-form-field appearance="fill">
+                                            <mat-label>Selecciona Un Contrato o Cobertura</mat-label>
+                                            <mat-select formControlName="Cobertura" required [ngModel]="contratoNumber"
+                                                (selectionChange)="AsociarPresupuesto($event.value)">
+                                                <mat-option *ngFor="let cobertura of Listacoberturas"
+                                                    [value]="cobertura.id">
+                                                    {{cobertura.nombreContrato | uppercase}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+
+                                    </div>
+                                    <div class="col-4 centerlabel font-weight-bold ion-align-items-start"
+                                        style="text-align: center;vertical-align: center;" *ngIf="tienecobertura">
                                         <mat-label>Asociar cobertura</mat-label>
-                                        <button mat-raised-button color="warn"
-                                        [disabled]="cobertura.idCeco==0"
-                                         ngbAutofocus (click)="AbrirAsociarPresupuesto()">
+                                        <button mat-raised-button color="warn" [disabled]="cobertura.idCeco==0"
+                                            ngbAutofocus (click)="AbrirAsociarPresupuesto()">
                                             <mat-icon>add_circle</mat-icon>
                                         </button>
                                     </div>
-                    
+
                                 </div>
 
                                 <div class="row">
@@ -128,10 +143,13 @@
 
                             </mat-card-content>
                             <mat-card-actions>
-                                <div>
-
-                                    <button mat-raised-button color="warn" matStepperNext
+                                <div class="row">
+                                    <div class="col-12 centerlabel font-weight-bold" style="text-align: center;">
+                                        <button mat-raised-button color="warn" matStepperNext
                                         [disabled]="!(this.firstFormGroup.invalid== false && this.pubGuardar.id != 0 )">Continuar</button>
+                                    </div>
+
+                                
                                 </div>
                             </mat-card-actions>
                         </mat-card>
@@ -142,9 +160,11 @@
                     <ng-template matStepLabel>Agregar Presupuesto</ng-template>
                     <mat-card class="example-card">
                         <mat-card-header>
-                            <div mat-card-avatar class="example-header-image" style="background-image: url('assets/avatars/av-2.png')">
+                            <div mat-card-avatar class="example-header-image"
+                                style="background-image: url('assets/avatars/av-2.png')">
                             </div>
-                            <mat-card-title  class="main-green-text">Agregar Presupuesto: {{datoRubro.nombre | uppercase}}</mat-card-title>
+                            <mat-card-title class="main-green-text">Agregar Presupuesto: {{datoRubro.nombre |
+                                uppercase}}</mat-card-title>
                             <mat-card-subtitle>Agregar</mat-card-subtitle>
                         </mat-card-header>
 
@@ -483,10 +503,21 @@
 
                         </mat-card-content>
                         <mat-card-actions>
+                            <div class="row">
+                                <div class="col-6 centerlabel font-weight-bold" style="text-align: center;">
+                                    <button mat-raised-button color="warn" ngbAutofocus (click)="Atras()">
+                                        <mat-icon>close</mat-icon>
+                                    </button>
+                                </div>
+                                <div class="col-6 centerlabel font-weight-bold" style="text-align: center;">
+                                    <button mat-raised-button color="warn" [disabled]="!permitirGuardar"
+                                        (click)="guardarData()">
+                                        <mat-icon>save</mat-icon>
+                                    </button>
+                                </div>
+                            </div>
 
 
-                            <button mat-raised-button ngbAutofocus [disabled]="!permitirGuardar"
-                                (click)="guardarData()">Guardar</button>
 
 
                         </mat-card-actions>

@@ -314,6 +314,25 @@ namespace ApiRestAldeasPresupuesto.Helper
 
 
 
+        public static dynamic GuardarDetallePresupuestoSinCobertura(IContextFactory factory, IOptions<ConnectionDB> connection, DbPresupuestoPrograma datos)
+        {
+
+            using (Aldeas_Context db = factory.Create(connection))
+            {
+                if (datos.Cargo == 0)
+                {
+                    datos.Cargo = null;
+                }
+                datos.Total = (datos.Enero + datos.Febrero + datos.Marzo + datos.Abril + datos.Mayo + datos.Junio + datos.Julio + datos.Agosto + datos.Septiembre + datos.Octubre + datos.Noviembre + datos.Diciembre);
+                db.TbPresupuestosProgramas.Add(datos);
+                db.SaveChanges();
+            }
+
+            return new { id = 0, status = "OK", code = 200 };
+        }
+
+
+
 
         public static dynamic ActualizarPresupuestoProgramas(IContextFactory factory, IOptions<ConnectionDB> connection, DbPresupuestoPrograma datos)
         {

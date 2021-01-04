@@ -1,17 +1,13 @@
 ﻿<Properties StartupConfiguration="{20022DE9-45FB-4E8D-83F1-20270DE6A102}|ApiRestAldeas">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Helper/InformesOperations.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Helper/GestionPresupuestoOperations.cs">
     <Files>
-      <File FileName="Controllers/GestionPresupuesto.cs" Line="35" Column="49" IsPinned="True" />
-      <File FileName="Repositories/GestionPresupuesto/IDataGestionPresupuesto.cs" Line="8" Column="79" />
-      <File FileName="Helper/UserOperations.cs" Line="1" Column="1" />
-      <File FileName="Controllers/PresupuestoController.cs" Line="91" Column="1" />
-      <File FileName="Repositories/GestionPresupuesto/DataGestionPresupuesto.cs" Line="29" Column="57" />
-      <File FileName="Helper/GestionPresupuestoOperations.cs" Line="45" Column="1" />
-      <File FileName="Repositories/DataModelRepository.cs" Line="135" Column="54" />
-      <File FileName="Helper/PresupuestoOperations.cs" Line="301" Column="1" />
-      <File FileName="Controllers/InformesController.cs" Line="52" Column="51" />
-      <File FileName="Repositories/DataModelPresupuesto.cs" Line="46" Column="46" />
-      <File FileName="Helper/InformesOperations.cs" Line="22" Column="83" />
+      <File FileName="Helper/PresupuestoOperations.cs" Line="181" Column="50" IsPinned="True" />
+      <File FileName="Helper/GestionPresupuestoOperations.cs" Line="44" Column="1" IsPinned="True" />
+      <File FileName="Controllers/PresupuestoController.cs" Line="92" Column="48" />
+      <File FileName="Repositories/DataModelRepository.cs" Line="135" Column="51" />
+      <File FileName="Helper/PresupuestoAnioOperations.cs" Line="1" Column="1" />
+      <File FileName="Controllers/GestionPresupuestoController.cs" Line="35" Column="59" />
+      <File FileName="Repositories/GestionPresupuesto/DataGestionPresupuesto.cs" Line="29" Column="67" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -21,21 +17,18 @@
               <Node name="Controllers" expanded="True" />
               <Node name="EntityFrame" expanded="True" />
               <Node name="Helper" expanded="True">
-                <Node name="InformesOperations.cs" selected="True" />
+                <Node name="GestionPresupuestoOperations.cs" selected="True" />
               </Node>
               <Node name="Models" expanded="True" />
               <Node name="Repositories" expanded="True">
                 <Node name="GestionPresupuesto" expanded="True" />
               </Node>
-              <Node name="Services" expanded="True" />
             </Node>
           </Node>
         </State>
       </Pad>
       <Pad Id="MonoDevelop.Debugger.WatchPad">
-        <State>
-          <Value>datos</Value>
-        </State>
+        <State />
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
@@ -50,6 +43,9 @@
       <Breakpoint file="/Users/diegomontealegregarcia/Projects/Github/proyectoAldeas/Presupuesto/ApiRestAldeas/Controllers/UsersController.cs" relfile="Controllers/UsersController.cs" line="73" column="1" />
       <Breakpoint file="/Users/diegomontealegregarcia/Projects/Github/proyectoAldeas/Presupuesto/ApiRestAldeas/Controllers/DatosController.cs" relfile="Controllers/DatosController.cs" line="126" column="1" />
       <Breakpoint file="/Users/diegomontealegregarcia/Projects/Github/proyectoAldeas/Presupuesto/ApiRestAldeas/Controllers/PresupuestoController.cs" relfile="Controllers/PresupuestoController.cs" line="91" column="1" />
+      <Breakpoint file="/Users/diegomontealegregarcia/Projects/Github/proyectoAldeas/Presupuesto/ApiRestAldeas/Helper/PresupuestoOperations.cs" relfile="Helper/PresupuestoOperations.cs" line="301" column="1" />
+      <Breakpoint file="/Users/diegomontealegregarcia/Projects/Github/proyectoAldeas/Presupuesto/ApiRestAldeas/Controllers/GestionPresupuestoController.cs" relfile="Controllers/GestionPresupuestoController.cs" line="33" column="1" />
+      <Breakpoint file="/Users/diegomontealegregarcia/Projects/Github/proyectoAldeas/Presupuesto/ApiRestAldeas/Helper/GestionPresupuestoOperations.cs" relfile="Helper/GestionPresupuestoOperations.cs" line="48" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />

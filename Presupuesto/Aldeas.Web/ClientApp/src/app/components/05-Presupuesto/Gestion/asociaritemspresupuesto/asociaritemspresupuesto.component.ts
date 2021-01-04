@@ -34,7 +34,7 @@ export class AsociaritemspresupuestoComponent implements OnInit {
   cobertura = new CoberturaRequest();
 
   tienecobertura = false;
-
+  contratoNumber: any;
   Listacoberturas: PresupuestoCobertura[] = [];
   @Input() set id(value: PresupuestoAnioDatum) {
 
@@ -55,7 +55,7 @@ export class AsociaritemspresupuestoComponent implements OnInit {
 
       this.guardar.idPresupuesto = this.programaRequest.idPresupuesto
       if (this._id != null && this._id != 0) {
-         this.getDetalle(0);
+        this.getDetalle(0);
         this.datosIniciales();
       }
     }
@@ -316,18 +316,23 @@ export class AsociaritemspresupuestoComponent implements OnInit {
   }
 
 
-  // cerrar() {
-  //   this.activeModal.dismiss()
-  // }
+
 
   guardarData() {
     this.guardar.esNomina = this.datoRubro.esNomina;
     this.guardar.esPPTO = this.datoRubro.esppto;
-    console.log('GUARDANDO', this.guardar)
+
+    this.callServiceCobertura();
+    /// Preguntar Si es con cobertura o NO
+
+
+
+  }
+
+  callServiceSinCobertura() {
     this.presupuestoService.guardarPresupuesto(this.guardar).subscribe(
       OK => {
 
-        // this.activeModal.close(this.guardar)
         this.presupuestoService.Exitoso()
         this.getDetalle(null)
         this.getFamiliar();
@@ -336,13 +341,29 @@ export class AsociaritemspresupuestoComponent implements OnInit {
       },
       Error => {
         console.log(Error)
-
         this.presupuestoService.NoExitoso("Error", "Ha ocurrido un error inesperado, por favor intentelo nuevamente.")
 
       },
 
     )
+  }
+  callServiceCobertura() {
+    this.presupuestoService.guardarPresupuesto(this.guardar).subscribe(
+      OK => {
 
+        this.presupuestoService.Exitoso()
+        this.getDetalle(null)
+        this.getFamiliar();
+        this.clearFormularios();
+
+      },
+      Error => {
+        console.log(Error)
+        this.presupuestoService.NoExitoso("Error", "Ha ocurrido un error inesperado, por favor intentelo nuevamente.")
+
+      },
+
+    )
   }
 
 
@@ -372,12 +393,11 @@ export class AsociaritemspresupuestoComponent implements OnInit {
     } else {
       number = id;
 
-    }  console.log(number);
+    }
     this.presupuestoService.getDetallePresupuesto(number).subscribe(
 
       OK => {
         console.log(OK);
-      
         this.dataSourcePresupuesto = []
         if (OK.detallePresupuesto != null)
           this.dataSourcePresupuesto.push(...OK.detallePresupuesto)
@@ -454,26 +474,30 @@ export class AsociaritemspresupuestoComponent implements OnInit {
   consultarCoberturas() {
 
     //Si tien Cobertura, se debe pedir la seleccion del contrato y permitir crear el contrato o editarlo
-    if (this.tienecobertura) {
+    // if (this.tienecobertura) {
+    this.presupuestoService.getCoberturas(this.cobertura).subscribe(
+      OK => {
+        console.log(OK)
+        if (this.tienecobertura) {
 
-      this.presupuestoService.getCoberturas(this.cobertura).subscribe(
-        OK => {
-
-          console.log(OK)
           if (OK.presupuesto.length == 0) {
             this.presupuestoService.MostrarSnack("No se ha registrado contrato/Cobertura para esta servicio, debes asociarlo.")
           } else {
             this.Listacoberturas = [];
             this.Listacoberturas.push(...OK.presupuesto)
           }
-        },
-        ERROR => {
-          console.log(ERROR)
-          this.presupuestoService.NoExitoso("Error", "Ha ocurrido un error inesperado, por favor intentelo nuevamente.")
-        },
+        } else {
+          this.Listacoberturas.push(...OK.presupuesto)
+          this.AsociarPresupuesto(this.Listacoberturas[0].id)
+        }
+      },
+      ERROR => {
+        console.log(ERROR)
+        this.presupuestoService.NoExitoso("Error", "Ha ocurrido un error inesperado, por favor intentelo nuevamente.")
+      },
 
-      )
-    }
+    )
+    // }
   }
 
   datoCargo = new CargosDatum();
@@ -551,7 +575,7 @@ export class AsociaritemspresupuestoComponent implements OnInit {
         this.presupuestoService.Exitoso()
         this.consultarCoberturas();
       }
-      
+
     }, (reason) => {
 
       if (reason === 'OK') {
@@ -561,14 +585,13 @@ export class AsociaritemspresupuestoComponent implements OnInit {
     });
   }
 
-  AsociarPresupuesto(value: number){
-    this.guardar.idPresupuesto  =  value;
+  AsociarPresupuesto(value: number) {
+    this.guardar.idPresupuesto = value;
     this.programaRequest.idPresupuesto = value;
-
+    this.contratoNumber = value;
     console.log(this.guardar);
-
     this.getDetalle(value);
-  
+
 
   }
   ngOnInit(): void {
@@ -646,6 +669,9 @@ export class AsociaritemspresupuestoComponent implements OnInit {
     this.myStepper.previous();
   }
 
+  Atras() {
+    this.myStepper.previous();
+  }
   updateUSAmount(event) {
     this.valorMensual = event.target.value;
 

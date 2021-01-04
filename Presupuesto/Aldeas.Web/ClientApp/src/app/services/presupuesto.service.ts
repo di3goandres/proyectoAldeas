@@ -53,6 +53,12 @@ export class PresupuestoService {
     return this.userService.ejecutarQueryPost<Respuesta>('/api/presupuesto/storedetalle/', params)
   }
 
+  guardarPresupuestoSinCobertura(data: PresupuestoRequest) {
+    let json = JSON.stringify(data);
+    let params = '' + json;
+    return this.userService.ejecutarQueryPost<Respuesta>('/api/presupuesto/storedetalle/', params)
+  }
+
   updatePresupuesto(data: PresupuestoRequest) {
     let json = JSON.stringify(data);
     let params = '' + json;

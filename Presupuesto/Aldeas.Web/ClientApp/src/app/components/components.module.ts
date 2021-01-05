@@ -76,6 +76,7 @@ import { BorrardetallepresupuestoComponent } from './05-Presupuesto/borrardetall
 import { RegistroNoexitosoComponent } from './00-Comunes/registro-noexitoso/registro-noexitoso.component';
 import { ActualizarusuarioComponent } from './06-Usuarios/actualizarusuario/actualizarusuario.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { DeseacontinuarComponent } from './00-Comunes/deseacontinuar/deseacontinuar.component';
 
 @NgModule({
   declarations: [LoginComponent, HomeComponent,
@@ -93,7 +94,11 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     DetalleOtrospresupuestoprogramaComponent, GenerarPresupuestoComponent,
     ActualizarPresupuestoComponent, ActualizardetalleComponent, ListausuariosComponent,
     AgregarusuarioComponent, NoexitosoComponent, VerprogramasasociadosComponent, AsociarprogramasComponent,
-    ProgramatipoComponent, ListacargosComponent, ActualizarcargoComponent, AgregarcargoComponent, ListaFinanciadoresComponent, GestionarprogramasComponent, AsociarfinanciadoranioComponent, FinanciadorfaltanteComponent, AsociaritemspresupuestoComponent, VeritemspresupuestonioComponent, CargoselectComponent, BorrardetallepresupuestoComponent, RegistroNoexitosoComponent, ActualizarusuarioComponent],
+    ProgramatipoComponent, ListacargosComponent, ActualizarcargoComponent, AgregarcargoComponent, 
+    ListaFinanciadoresComponent, GestionarprogramasComponent, AsociarfinanciadoranioComponent, 
+    FinanciadorfaltanteComponent, AsociaritemspresupuestoComponent, VeritemspresupuestonioComponent,
+    CargoselectComponent, BorrardetallepresupuestoComponent, RegistroNoexitosoComponent, ActualizarusuarioComponent,
+    DeseacontinuarComponent],
   imports: [
 
     CommonModule,

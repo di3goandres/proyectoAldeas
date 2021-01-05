@@ -83,12 +83,22 @@
                     </td>
                   </ng-container>
     
-                  <ng-container matColumnDef="Agregar">
+                  <ng-container matColumnDef="Agregar" *ngIf="this.service.permitirEditar()">
                     <th mat-header-cell *matHeaderCellDef> Agregar</th>
                     <td mat-cell *matCellDef="let element" style="text-align: center;">
                       <button type="button" mat-mini-fab class="buttton-aldea" aria-label="fecha"
                       (click)="VerPresupuesto(element)">
                       <mat-icon>zoom_in</mat-icon>
+                      </button>
+                    </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="TomarVersion" *ngIf="this.service.permitirEditar()">
+                    <th mat-header-cell *matHeaderCellDef> Versionar</th>
+                    <td mat-cell *matCellDef="let element" style="text-align: center;">
+                      <button type="button" mat-mini-fab class="buttton-aldea" aria-label="fecha"
+                      (click)="AbrirTomarVersion(element)">
+                      <mat-icon>camera_enhance</mat-icon>
                       </button>
                     </td>
                   </ng-container>

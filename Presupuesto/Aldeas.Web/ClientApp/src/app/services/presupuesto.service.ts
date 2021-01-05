@@ -126,4 +126,10 @@ export class PresupuestoService {
   MostrarSnack(Mensaje: string){
     this.userService.openSnackBar(Mensaje, "");
   }
+
+
+  tomarVersion(data: PresupuestoListRequest) {
+  
+    return this.userService.ejecutarQueryPostNuevo<Respuesta>('/api/aldeas/gestion/presupuesto/versionar/', data)
+  }
 }

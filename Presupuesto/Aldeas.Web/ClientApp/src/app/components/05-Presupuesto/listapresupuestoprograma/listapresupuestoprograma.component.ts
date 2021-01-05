@@ -12,6 +12,7 @@ import { RegistroexitosoComponent } from '../../00-Comunes/registroexitoso/regis
 import { PresupuestoAnioResponse, PresupuestoAnioDatum } from '../../../models/presupuestoanio/anio.response';
 import { AsociarfinanciadoranioComponent } from '../Gestion/asociarfinanciadoranio/asociarfinanciadoranio.component';
 import { MatStepper } from '@angular/material/stepper';
+import { DeseacontinuarComponent } from '../../00-Comunes/deseacontinuar/deseacontinuar.component';
 
 @Component({
   selector: 'app-listapresupuestoprograma',
@@ -30,22 +31,34 @@ export class ListapresupuestoprogramaComponent implements OnInit {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   displayedColumns: string[] = ['id', 'anio',
     'nombrePrograma', 'tipoPrograma', 'Cobertura',
-    'numeroVersion', 'per_nomina', 'per_capacitacion','Agregar', 'descargar'];
+    'numeroVersion', 'per_nomina', 'per_capacitacion'];
 
   @ViewChild('stepper') private myStepper: MatStepper;
 
   constructor(
     private route: ActivatedRoute,
-    private service: PresupuestoService,
+    public service: PresupuestoService,
     private modalService: NgbModal
   ) { }
 
   ngOnInit(): void {
+    let admin = this.service.permitirEditar();
+
+    if (admin) {
+      this.displayedColumns.push('Agregar');
+      this.displayedColumns.push('TomarVersion');
+
+
+    }
+    this.displayedColumns.push('descargar');
+
 
     var y: number = +this.route.snapshot.paramMap.get('id');
     this.programaRequest.idPresupuesto = y
     this.cargaInicial();
   }
+
+
   Actualizar(element) {
     const modalRef = this.modalService.open(ActualizarPresupuestoComponent, { size: 'md' });
     modalRef.componentInstance.programa = this.programa;
@@ -81,7 +94,7 @@ export class ListapresupuestoprogramaComponent implements OnInit {
     });
   }
 
-  AbrirAsociarPresupuesto(element){
+  AbrirAsociarPresupuesto(element) {
     const modalRef = this.modalService.open(AsociarfinanciadoranioComponent, { size: 'md' });
 
     modalRef.componentInstance.presupuesto = element;
@@ -100,7 +113,7 @@ export class ListapresupuestoprogramaComponent implements OnInit {
     });
   }
 
-  VerPresupuesto(element: PresupuestoAnioDatum){
+  VerPresupuesto(element: PresupuestoAnioDatum) {
 
     console.log(element)
     this.myStepper.next()
@@ -126,7 +139,44 @@ export class ListapresupuestoprogramaComponent implements OnInit {
     });
   }
 
+  idTomarVersion = 0;
+  AbrirTomarVersion(element) {
+    this.idTomarVersion = element.id;
+    const modalRef = this.modalService.open(DeseacontinuarComponent, { size: 'md' });
+    modalRef.componentInstance.Titulo = "Versionamiento";
+    modalRef.componentInstance.mensaje = "Esta a punto de tomar una versión, Desea Continuar?"
+    modalRef.result.then((result) => {
+      if (result === "OK") {
+        this.tomarVersion()
+      }
+      console.log('result', result);
+    }, (reason) => {
 
+      if (reason === 'OK') {
+
+
+      }
+    });
+  }
+
+
+  tomarVersion() {
+    console.log(this.idTomarVersion);
+    let data = new PresupuestoListRequest();
+    data.idPresupuesto = this.idTomarVersion;
+    this.service.tomarVersion(data).subscribe(
+      OK => { console.log(OK) 
+      
+        this.service.Exitoso();
+        this.cargaInicial();
+
+      },
+      ERROR => {
+        this.service.NoExitosoComun();
+
+      },
+    )
+  }
 
 
   async cargaInicial() {
@@ -136,15 +186,15 @@ export class ListapresupuestoprogramaComponent implements OnInit {
         console.log(OK)
         this.presupuestoResponse = []
 
-        
+
         this.presupuestoResponse = OK.presupuestoAnioData;
-     
+
         this.programa = new ProgramaL();
         this.programa.nombre = OK.nombrePrograma
         this.programa.id = OK.idPrograma
 
 
-        this.presupuestoResponse.forEach(item=>{
+        this.presupuestoResponse.forEach(item => {
           item.urlReporte = this.service.gerReporte(item.id)
 
         })

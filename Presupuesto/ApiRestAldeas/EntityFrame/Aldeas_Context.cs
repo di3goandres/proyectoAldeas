@@ -84,6 +84,13 @@ namespace ApiRestAldeas.EntityFrame
             });
 
 
+            modelBuilder.Entity<View_DbPresupuesto>(entity =>
+            {
+                entity.ToView("ConsultaItemsPresupesto");
+            });
+
+
+
             modelBuilder.Entity<DbFinanciadores>(entity =>
             {
                 entity.ToTable("Financiadores");

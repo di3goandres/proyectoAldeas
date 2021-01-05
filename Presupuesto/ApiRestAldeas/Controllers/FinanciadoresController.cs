@@ -26,7 +26,7 @@ namespace ApiRestAldeasPresupuesto.Controllers
             _logger = logger;
             _dataModelRepository = dataModelRepository;
         }
-        //[Authorize]
+        [Authorize]
         [HttpGet]
         [Route("/api/financiadores/get/")]
         public dynamic consultar()

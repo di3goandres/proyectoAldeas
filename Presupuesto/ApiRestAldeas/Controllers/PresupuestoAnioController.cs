@@ -28,7 +28,7 @@ namespace ApiRestAldeasPresupuesto.Controllers
             _dataModelRepository = dataModelRepository;
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpGet]
         [Route("/api/presupuestoanio/consultar/{id}")]
         public dynamic Consultar(long id)
@@ -36,7 +36,8 @@ namespace ApiRestAldeasPresupuesto.Controllers
             return _dataModelRepository.Consultar(id);
         }
 
-        //[Authorize]
+        [AuthorizeUser]
+
 
         [HttpPost]
         [Route("/api/presupuestoanio/save/")]
@@ -45,12 +46,16 @@ namespace ApiRestAldeasPresupuesto.Controllers
             return _dataModelRepository.Guardar(request);
         }
 
+        [Authorize]
+
         [HttpGet]
         [Route("/api/presupuestoanio/consultarAnio/{id}")]
         public dynamic ConsultaPresupuestoAnio(long id)
         {
             return _dataModelRepository.ConsultarPresupuestoAnio(id);
         }
+        [Authorize]
+
         [HttpGet]
         [Route("/api/presupuestoanio/faltante/{id}")]
         public dynamic ConsultarFinanciadorFaltante(long id)
@@ -58,7 +63,7 @@ namespace ApiRestAldeasPresupuesto.Controllers
             return _dataModelRepository.ConsultarFinanciadorFaltante(id);
         }
 
-
+        [AuthorizeUser]
         [HttpGet]
         [Route("/api/presupuestoanio/borrardetalle/{id}")]
         public dynamic BorrarDetalle(long id)

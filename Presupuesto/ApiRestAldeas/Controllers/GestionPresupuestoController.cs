@@ -26,13 +26,23 @@ namespace ApiRestAldeasPresupuesto.Controllers
         }
 
 
-        //[Authorize]
+        [Authorize]
         [HttpPost]
         [Route("/api/aldeas/gestion/presupuesto/consultar/coberturas")]
         public dynamic Consultar(CoberturaRequest request)
         {
          
             return _dataRepository.ConsultarPresupuestosByProgramYCeco(request);
+        }
+
+    
+        [AuthorizeUser]
+        [HttpPost]
+        [Route("/api/aldeas/gestion/presupuesto/versionar/")]
+        public dynamic Versionar(PresupuestoProgramRequest request)
+        {
+
+            return _dataRepository.GenerarVersionamiento(request);
         }
     }
 }

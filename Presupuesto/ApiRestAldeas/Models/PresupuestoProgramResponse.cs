@@ -141,6 +141,12 @@ namespace ApiRestAldeasPresupuesto.Models
 
 
     }
+
+    public class PresupuestodetalleView
+    {
+
+        public List<View_DbPresupuesto> DetallePresupuesto { get; set; }
+    }
     public class Presupuestodetalle
     {
 

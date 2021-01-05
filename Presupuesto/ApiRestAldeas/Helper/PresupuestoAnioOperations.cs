@@ -127,6 +127,158 @@ namespace ApiRestAldeasPresupuesto.Helper
             return new { id = id, status = id == 0 ? "error" : "OK", code = 200 };
         }
 
+        public static long Copiar(IContextFactory factory, IOptions<ConnectionDB> connection, long  IdPresupuestoAnio)
+        {
+            long id = 0;
+            using (Aldeas_Context db = factory.Create(connection))
+            {
+
+
+                var data = from pro in db.TbPresupuestoAnio
+                           where pro.id == IdPresupuestoAnio && pro.actual == true
+                           select pro;
+
+
+
+                if (data.Any())
+                {
+                    #region Copiamos 01 Presupuesto Anio
+                    int numVersion = 0;
+                    numVersion = data.First().numeroVersion+1;
+                    var nuevo = new DbPresupuestoAnio()
+                    {
+                        actual = true,
+                        fecha_creacion = DateTime.Now,
+                        fecha_actualizacion = DateTime.Now,
+                        per_capacitacion = data.First().per_capacitacion,
+                        per_nomina = data.First().per_capacitacion,
+                        idPrograma = data.First().idPrograma,
+                        numeroVersion = numVersion,
+                        Anio = data.First().Anio,
+
+
+                    };
+                    db.TbPresupuestoAnio.Add(nuevo);
+
+                    db.SaveChanges();
+                    data.First().actual = false;
+                    data.First().fecha_actualizacion = DateTime.Now;
+
+                    db.SaveChanges();
+
+                    id = nuevo.id;
+
+                    #endregion
+
+                    #region  Copiamos  02 Presupuesto coberturas
+                    var dataCoberturas = from pro in db.TbPresupuestos
+                               where pro.idPresupuestoAnio == IdPresupuestoAnio
+                               select pro;
+
+
+
+                    List<DbPresupuestoPrograma> presupuestoProgramasCopia = new List<DbPresupuestoPrograma>();
+                    if (dataCoberturas.Any())
+                    {
+                        foreach(var copia in dataCoberturas.ToList())
+                        {
+                            long idCoberturaCopia = 0;
+                            var coberturaCopia = new DbPresupuesto
+                            {
+                                Anio = copia.Anio,
+                                idPresupuestoAnio = id,
+                                idPrograma = copia.idPrograma,
+                                idFinanciador = copia.idFinanciador,
+                                IdProgramaCecos = copia.IdProgramaCecos,
+                                NombreContrato = copia.NombreContrato,
+                                CoberturaAnual = copia.CoberturaAnual,
+                                CoberturaMensual = copia.CoberturaMensual,
+                                CoberturaMensualEsperada = copia.CoberturaMensualEsperada,
+                                CoberturasCasas = copia.CoberturasCasas,
+                                fecha_actualizacion = DateTime.Now,
+                                fecha_creacion = DateTime.Now
+
+
+                            };
+
+                            db.TbPresupuestos.Add(coberturaCopia);
+                            db.SaveChanges();
+                            idCoberturaCopia = coberturaCopia.id;
+
+
+                            var dataItemsCobertura = from pro in db.TbPresupuestosProgramas
+                                                 where pro.idPresupuesto == copia.id
+                                                     select pro;
+
+                            if (dataItemsCobertura.Any())
+                            {
+                                foreach(var copiaItem in dataItemsCobertura.ToList())
+                                {
+                                    var nuevoCopiaItem = new DbPresupuestoPrograma
+                                    {
+
+                                        idPresupuesto = idCoberturaCopia,
+                                        idProgramaCecos = copiaItem.idProgramaCecos,
+                                        idRubroPucs = copiaItem.idRubroPucs,
+                                        esNomina = copiaItem.esNomina,
+                                        esPPTO =copiaItem.esPPTO,
+                                        NumeroIdentificacion = copiaItem.NumeroIdentificacion,
+                                        Nombre = copiaItem.Nombre,
+                                        Cargo = copiaItem.Cargo,
+                                        Asignacion = copiaItem.Asignacion,
+                                        NoCasa = copiaItem.NoCasa,
+                                        NoKids = copiaItem.NoKids,
+                                        NotaIngles = copiaItem.NotaIngles,
+                                        DetalleGasto = copiaItem.DetalleGasto,
+                                        Enero = copiaItem.Enero,
+                                        Febrero = copiaItem.Febrero,
+                                        Marzo = copiaItem.Marzo,
+                                        Abril = copiaItem.Abril,
+                                        Mayo = copiaItem.Mayo,
+                                        Junio = copiaItem.Junio,
+                                        Julio = copiaItem.Julio,
+                                        Agosto = copiaItem.Agosto,
+                                        Septiembre = copiaItem.Septiembre,
+                                        Octubre = copiaItem.Octubre,
+                                        Noviembre = copiaItem.Noviembre,
+                                        Diciembre = copiaItem.Diciembre,
+                                        Total = copiaItem.Total
+
+
+                                    };
+                                    presupuestoProgramasCopia.Add(nuevoCopiaItem);
+                                }
+
+                                if (presupuestoProgramasCopia.Count > 0)
+                                {
+                                    db.TbPresupuestosProgramas.AddRange(presupuestoProgramasCopia);
+                                    db.SaveChanges();
+                                    presupuestoProgramasCopia = new List<DbPresupuestoPrograma>();
+                                }
+
+                            }
+
+
+                        }
+
+                      
+                    }
+                    #endregion
+
+
+
+                }
+                else
+                {
+                    return 0;
+                }
+                   
+            }
+
+
+            return id;
+        }
+
 
         public static dynamic Borrar(IContextFactory factory, IOptions<ConnectionDB> connection, long Id)
         {

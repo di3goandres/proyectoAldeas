@@ -37,7 +37,7 @@ namespace ApiRestAldeasPresupuesto.Controllers
             return _dataModelRepository.ConsultarCargos();
         }
 
-        [Authorize]
+        [AuthorizeUser]
         [HttpPost]
         [Route("/api/cargos/save/")]
         public dynamic Guardar(CargosRequest data)
@@ -45,7 +45,7 @@ namespace ApiRestAldeasPresupuesto.Controllers
             return _dataModelRepository.GuardarCargos(data);
         }
 
-        [Authorize]
+        [AuthorizeUser]
         [HttpPost]
         [Route("/api/cargos/update/")]
         public dynamic Update(CargosRequest data)

@@ -64,8 +64,8 @@ namespace ApiRestAldeasPresupuesto.Controllers
         {
             return _dataModelRepository.ObtenerPucByRubro(id);
         }
-        [Authorize]
 
+        [AuthorizeUser]
         [HttpPost]
         [Route("/api/presupuesto/storedetalle/")]
         public dynamic GuardarDetallePresupuesto(DbPresupuestoPrograma request)
@@ -74,8 +74,7 @@ namespace ApiRestAldeasPresupuesto.Controllers
             return _dataModelRepository.GuardarPresupuestoDetalle(request);
         }
 
-        [Authorize]
-
+        [AuthorizeUser]
         [HttpPost]
         [Route("/api/presupuesto/updatedetalle/")]
         public dynamic UpdateDetallePresupuesto(DbPresupuestoPrograma request)
@@ -84,14 +83,14 @@ namespace ApiRestAldeasPresupuesto.Controllers
             return _dataModelRepository.ActualizarPresupuesto(request);
         }
 
-        [Authorize]
+        [AuthorizeUser]
         [HttpPost]
         [Route("/api/presupuesto/store/")]
         public dynamic GuardarPresupuesto(DbPresupuesto request)
         {
             return _dataModelRepository.GuardarPresupuesto(request);
         }
-        [Authorize]
+        [AuthorizeUser]
         [HttpPost]
         [Route("/api/presupuesto/update/")]
         public dynamic ActualizarPresupuesto(DbPresupuesto request)

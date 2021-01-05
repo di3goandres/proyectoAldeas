@@ -47,7 +47,7 @@ namespace ApiRestAldeas.Controllers
 
 
 
-        [Authorize]
+        [AuthorizeUser]
         [HttpPost]
         [Route("/api/user/agregar/")]
         public dynamic AgregarUsuario(DBAdministrador usuario)
@@ -65,7 +65,7 @@ namespace ApiRestAldeas.Controllers
             }
         }
 
-        [Authorize]
+        [AuthorizeUser]
         [HttpPost]
         [Route("/api/user/actualizar/")]
         public dynamic ActualizarUsuario(DBAdministrador usuario)
@@ -96,7 +96,7 @@ namespace ApiRestAldeas.Controllers
         {
             return _dataModelRepository.ListaProgramasUsuarios(id);
         }
-        [Authorize]
+        [AuthorizeUser]
         [HttpPost]
         [Route("/api/user/asociarPrograma/")]
         public dynamic AsociarProgramasUsuarios(List<UsuarioProgramaRequest> request)
@@ -104,7 +104,7 @@ namespace ApiRestAldeas.Controllers
             return _dataModelRepository.AsociarProgramasUsuarios(request);
         }
 
-        [Authorize]
+        [AuthorizeUser]
         [HttpPost]
         [Route("/api/user/quitarPrograma/")]
         public dynamic QuitarProgramasUsuarios(List<UsuarioProgramaRequest> request)

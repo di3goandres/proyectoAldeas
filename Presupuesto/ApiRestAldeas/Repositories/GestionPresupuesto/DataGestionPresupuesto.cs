@@ -28,5 +28,10 @@ namespace ApiRestAldeasPresupuesto.Repositories.GestionPresupuesto
         {
             return GestionPresupuestoOperations.ConsultarPresupuestosByProgramYCeco(_factory, _connectionDB, request);
         }
+
+        public dynamic GenerarVersionamiento(PresupuestoProgramRequest request)
+        {
+            return GestionPresupuestoOperations.GenerarVersionamiento(_factory, _connectionDB, request);
+        }
     }
 }

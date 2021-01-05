@@ -165,7 +165,7 @@ namespace ApiRestAldeasPresupuesto.Helper
         }
 
 
-        #region Tabla Presupuesto
+        #region Tabla Presupuesto Coberturas
 
         public static dynamic GuardarPresupuesto(IContextFactory factory, IOptions<ConnectionDB> connection, DbPresupuesto datos)
         {
@@ -254,9 +254,9 @@ namespace ApiRestAldeasPresupuesto.Helper
             {
                 var data = from pre in db.TbPresupuestos
                            join ceco in db.TbProgramasCecos on pre.idPrograma equals ceco.idPrograma
-                       
+                           join panio in db.TbPresupuestoAnio on pre.idPresupuestoAnio equals panio.id
                            join finan in db.TbFinanciadores on ceco.idFinanciador equals finan.id
-                           where pre.idPrograma == request.IdPresupuesto
+                           where pre.idPrograma == request.IdPresupuesto && panio.actual == true
                            select new ResponsePresupuesto
                            { 
                               idPrograma = pre.idPrograma,
@@ -381,68 +381,22 @@ namespace ApiRestAldeasPresupuesto.Helper
 
         public static dynamic ConsultarDetallePresupuestosByProgramas(IContextFactory factory, IOptions<ConnectionDB> connection, PresupuestoProgramRequest request)
         {
-            Presupuestodetalle retorno = new Presupuestodetalle();
+            PresupuestodetalleView retorno = new PresupuestodetalleView();
             using (Aldeas_Context db = factory.Create(connection))
             {
-                var data = from pro in db.TbProgramas
+                var data = from pro in db.ViewPresupuestos
 
-                           join pre in db.TbPresupuestos on pro.id equals pre.idPrograma
+
+                           where pro.idPresupuesto == request.IdPresupuesto
+                           select pro;
                           
-                           join tpro in db.TbTipoPrograma on pro.id_tipo_programa equals tpro.id
-                           join prep in db.TbPresupuestosProgramas on pre.id equals prep.idPresupuesto
-                           join cec in db.TbProgramasCecos on prep.idProgramaCecos equals cec.id
-                           join cargo in db.TbCargos on pre.id equals cargo.id
-                           join puc in db.TbPucs on prep.idRubroPucs equals puc.id
-                           join rubro in db.TbRubros on puc.idRubro equals rubro.id
-                           where pre.id == request.IdPresupuesto
-                           select new PresupuestoProgramResponse
-                           {
-                               id = prep.id,
-                               idPresupuesto = pre.id,
-                               Programa = pro.Nombre,
-                               Anio = pre.Anio,
-                               ClasificacionGasto = tpro.cobertura == true ? "OPERACIONAL" : "ADMINISTRATIVO",
-                               CentroCosto = cec.CodigoCeco,
-                               NombreCentroCosto = cec.Nombre,
-                               SubCentroCosto = cec.SubCentro,
-                               NombreSubCentroCosto = cec.NombreSubCentro,
-                               NombreRubro = rubro.Nombre,
-                               esNomina = rubro.esNomina,
-                               EsPptp = rubro.EsPptp,
-                               CuentaSIIGO = puc.CuentaSIIGO,
-                               NombreCuenta = puc.DescripcionCuenta,
-                               CuentaCotable = puc.CuentaNAV,
-                               Facility = cec.FacilityNav,
-                               DetalleGasto = prep.DetalleGasto,
-                               NotaIngles = prep.NotaIngles,
-                               NoCasa = prep.NoCasa,
-                               NoKids = prep.NoKids,
-                               NumeroIdentificacion = prep.NumeroIdentificacion,
-                               Nombre = prep.Nombre,
-                               Asignacion = prep.Asignacion,
-                               Cargo = cargo.cargo,
-                               Enero = prep.Enero,
-                               Febrero = prep.Febrero,
-                               Marzo = prep.Marzo,
-                               Abril = prep.Abril,
-                               Mayo = prep.Mayo,
-                               Junio = prep.Junio,
-                               Julio = prep.Julio,
-                               Agosto = prep.Agosto,
-                               Septiembre = prep.Septiembre,
-                               Octubre = prep.Octubre,
-                               Noviembre = prep.Noviembre,
-                               Diciembre = prep.Diciembre,
-                               Total = prep.Total
-
-                           };
                 if (data.Any())
                 {
                     retorno.DetallePresupuesto = data.ToList();
                 }
                 else
                 {
-                    retorno.DetallePresupuesto = new List<PresupuestoProgramResponse>();
+                    retorno.DetallePresupuesto = new List<View_DbPresupuesto>();
 
                 }
 

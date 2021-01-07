@@ -145,6 +145,13 @@ namespace ApiRestAldeasPresupuesto.Helper
                     #region Copiamos 01 Presupuesto Anio
                     int numVersion = 0;
                     numVersion = data.First().numeroVersion+1;
+
+                    var conteo = from pro in db.TbPresupuestoAnio
+                                 where pro.idPrograma == data.First().idPrograma
+                                       && pro.Anio == data.First().Anio
+                                 select pro;
+
+                    numVersion  = conteo.Count() + 1;
                     var nuevo = new DbPresupuestoAnio()
                     {
                         actual = true,

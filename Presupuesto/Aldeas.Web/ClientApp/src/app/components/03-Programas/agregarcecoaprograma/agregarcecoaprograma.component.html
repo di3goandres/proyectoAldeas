@@ -37,15 +37,13 @@
                         </mat-form-field>
                     </div>
 
-                    <div class="col-6 tabla">
-                        <mat-form-field appearance="fill">
+                    <div class="col-6 tabla" >
+                        <mat-form-field appearance="fill" >
                             <mat-label>Nombre</mat-label>
-                            <input matInput placeholder="Nombre CECO" [(ngModel)]="cecoAgregar.nombre"
-                                formControlName="nombre" required>
+                            <input matInput placeholder="Nombre CECO" [disabled]="existeNombre" [(ngModel)]="cecoAgregar.nombre"
+                                formControlName="nombre">
                         </mat-form-field>
                     </div>
-
-
                 </div>
 
                 <div class="row">
@@ -56,7 +54,7 @@
                             <mat-label>Codigo Sub Centro</mat-label>
                             <input matInput placeholder="Codigo Sub CECO" 
                             type="number"
-                            [(ngModel)]="cecoAgregar.subCentro"
+                            [(ngModel)]="cecoAgregar.subCentro" (ngModelChange)="ValidarSubCeco()"
                                 formControlName="SubCentro" required>
                         </mat-form-field>
                     </div>

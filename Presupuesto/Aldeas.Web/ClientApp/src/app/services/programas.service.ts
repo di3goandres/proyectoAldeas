@@ -75,4 +75,8 @@ export class ProgramasService {
   NoExitoso(Titulo, Mensaje){
     this.userService.registroNoExitoso(Titulo, Mensaje);
   }
+
+  MostrarSnack(Mensaje: string){
+    this.userService.openSnackBar(Mensaje, "");
+  }
 }

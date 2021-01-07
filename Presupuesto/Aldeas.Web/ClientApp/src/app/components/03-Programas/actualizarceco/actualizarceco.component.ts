@@ -31,7 +31,9 @@ export class ActualizarcecoComponent implements OnInit {
   cerrar() {
     this.activeModal.close('dismmiss')
   }
-
+  onFocus(){
+    this.programasService.MostrarSnack("Al modificar el Nombre, cambias el nombre del Ceco.")
+  }
   onGuardar() {
 
     this.cecoActualizar = this.cecoInput;

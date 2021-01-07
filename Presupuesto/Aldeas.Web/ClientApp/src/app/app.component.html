@@ -36,7 +36,10 @@
       <mat-icon>assignment_turned_in</mat-icon>
       <span>Programas Asociados</span>
     </button>
-    
+    <button mat-menu-item [routerLink]="['/VolverOtraVersion']" *ngIf="Editar">
+      <mat-icon>history</mat-icon>
+      <span>Versión Presupuesto</span>
+    </button>
 
 
   </mat-menu>

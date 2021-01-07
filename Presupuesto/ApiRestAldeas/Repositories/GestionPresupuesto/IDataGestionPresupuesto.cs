@@ -8,5 +8,7 @@ namespace ApiRestAldeasPresupuesto.Repositories.GestionPresupuesto
         dynamic ConsultarPresupuestosByProgramYCeco(CoberturaRequest request);
         dynamic GenerarVersionamiento(PresupuestoProgramRequest request);
 
+        dynamic ConsultaProgramasVersion();
+
     }
 }

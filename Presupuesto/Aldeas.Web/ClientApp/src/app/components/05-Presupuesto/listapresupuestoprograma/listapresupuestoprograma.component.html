@@ -1,7 +1,7 @@
 <!-- <div class="container"> -->
   <mat-card>
     <mat-card-content>
-      <mat-horizontal-stepper [linear]="true" #stepper>
+      <mat-horizontal-stepper [linear]="true" #stepper1>
 
         <mat-step>
           <ng-template matStepLabel>Lista de presupuestos Servicio</ng-template>
@@ -28,11 +28,13 @@
                 </div>
     
               </mat-card-actions>
-    
-    
-    
-              <div class="mat-elevation-z8  table-responsive">
-                <table id="customers" mat-table [dataSource]="dataSource" matSort>
+            </mat-card-content>
+            </mat-card>
+            <mat-card>
+              <mat-card-content>
+                        <div class="mat-elevation-z8 table-responsive">
+                <table id="customers" mat-table [dataSource]="dataSource" matSort #matSort1>
+        
     
                   <ng-container matColumnDef="id">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> # </th>
@@ -117,16 +119,25 @@
     
                 </table>
     
-                <mat-paginator [pageSizeOptions]="[10, 20, 30, 50]"></mat-paginator>
+                <mat-paginator [pageSizeOptions]="[10, 20, 30, 50]" #MatPaginator1></mat-paginator>
               </div>
             </mat-card-content>
-            <mat-card-actions>
-    
-            </mat-card-actions>
+        
           </mat-card>
         </mat-step>
 
         <mat-step>
+          <mat-card-actions>
+            <div class="row">
+                <div class="col-12 centerlabel font-weight-bold" style="text-align: center;">
+                    <button mat-raised-button color="warn" ngbAutofocus (click)="Atras()">
+                        <mat-icon>keyboard_backspace</mat-icon>
+                    </button>
+                </div>
+               
+            </div>
+
+        </mat-card-actions>
           <ng-template matStepLabel>Agregar Presupuesto</ng-template>
           <app-asociaritemspresupuesto [id]="[(PresupuestoSeleccionado)]"></app-asociaritemspresupuesto>
         </mat-step>

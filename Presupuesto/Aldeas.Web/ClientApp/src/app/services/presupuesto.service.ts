@@ -11,6 +11,7 @@ import { PresupuestoAnioResponse, PresupuestoAnioDatum } from '../models/presupu
 import { FinanciadoresResponse } from '../models/financiadores/financiadores.response';
 import { CoberturaAnioResponse } from '../models/presupuestoanio/consulta.anio.response';
 import { CoberturaRequest } from '../models/cobertura/Cobertura.request';
+import { ProgramaResponse } from '../models/programas/programas.response';
 
 @Injectable({
   providedIn: 'root'
@@ -131,5 +132,11 @@ export class PresupuestoService {
   tomarVersion(data: PresupuestoListRequest) {
   
     return this.userService.ejecutarQueryPostNuevo<Respuesta>('/api/aldeas/gestion/presupuesto/versionar/', data)
+  }
+
+
+  getProgramasVersion() {
+
+    return this.userService.ejecutarQuery<ProgramaResponse>('/api/aldeas/gestion/presupuesto/versionar/programas/')
   }
 }

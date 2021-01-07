@@ -27,13 +27,16 @@ export class ListapresupuestoprogramaComponent implements OnInit {
   programa: ProgramaL;
   presupuesto: PresupuestoL[];
   dataSource: MatTableDataSource<PresupuestoAnioDatum>;
-  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  @ViewChild('MatPaginator1', { static: true }) paginator: MatPaginator;
+  @ViewChild('MatSort1', { static: true }) sort: MatSort;
+
+
+ 
   displayedColumns: string[] = ['id', 'anio',
     'nombrePrograma', 'tipoPrograma', 'Cobertura',
     'numeroVersion', 'per_nomina', 'per_capacitacion'];
 
-  @ViewChild('stepper') private myStepper: MatStepper;
+  @ViewChild('stepper1') private myStepper: MatStepper;
 
   constructor(
     private route: ActivatedRoute,
@@ -120,6 +123,10 @@ export class ListapresupuestoprogramaComponent implements OnInit {
 
     this.PresupuestoSeleccionado = element;
   }
+
+  Atras(){
+    this.myStepper.previous()
+  }
   AbrirCrearPresupuesto(element) {
     const modalRef = this.modalService.open(GenerarPresupuestoComponent, { size: 'md' });
     modalRef.componentInstance.programa = this.programa;
@@ -187,8 +194,10 @@ export class ListapresupuestoprogramaComponent implements OnInit {
         this.presupuestoResponse = []
 
 
-        this.presupuestoResponse = OK.presupuestoAnioData;
-
+        this.presupuestoResponse.push(... OK.presupuestoAnioData);
+        this.dataSource = new MatTableDataSource(this.presupuestoResponse);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort
         this.programa = new ProgramaL();
         this.programa.nombre = OK.nombrePrograma
         this.programa.id = OK.idPrograma
@@ -198,9 +207,7 @@ export class ListapresupuestoprogramaComponent implements OnInit {
           item.urlReporte = this.service.gerReporte(item.id)
 
         })
-        this.dataSource = new MatTableDataSource(this.presupuestoResponse);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort
+      
 
       },
       Error => { console.log(Error) },

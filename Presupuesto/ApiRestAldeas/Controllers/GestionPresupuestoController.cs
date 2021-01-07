@@ -44,5 +44,14 @@ namespace ApiRestAldeasPresupuesto.Controllers
 
             return _dataRepository.GenerarVersionamiento(request);
         }
+
+        [AuthorizeUser]
+        [HttpGet]
+        [Route("/api/aldeas/gestion/presupuesto/versionar/programas/")]
+        public dynamic ConsultarProgramas()
+        {
+
+            return _dataRepository.ConsultaProgramasVersion();
+        }
     }
 }

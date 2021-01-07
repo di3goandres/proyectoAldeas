@@ -24,6 +24,11 @@ namespace ApiRestAldeasPresupuesto.Repositories.GestionPresupuesto
             _factory = factory;
         }
 
+        public dynamic ConsultaProgramasVersion()
+        {
+            return ProgramasOperations.ConsultarOnlyProgramas(_factory, _connectionDB);
+        }
+
         public dynamic ConsultarPresupuestosByProgramYCeco(CoberturaRequest request)
         {
             return GestionPresupuestoOperations.ConsultarPresupuestosByProgramYCeco(_factory, _connectionDB, request);

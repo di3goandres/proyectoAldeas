@@ -43,6 +43,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { AuthInterceptor } from './services/interceptor/auth.interceptor';
 import { AdminGuard } from './guards/admin.guard';
 import { CrearcategoriaComponent } from './components/04-Rubros/crearcategoria/crearcategoria.component';
+import { ListaversionesComponent } from './components/05-Presupuesto/Gestion/listaversiones/listaversiones.component';
 
 
 const routes: Routes = [
@@ -71,6 +72,7 @@ const routes: Routes = [
   // Admnitrador
   { path: 'VerUsuarios', component: ListausuariosComponent, pathMatch: 'full', canActivate: [AdminGuard], canLoad: [AdminGuard] },
   { path: 'AgregarUsuario', component: AgregarusuarioComponent, pathMatch: 'full', canActivate: [AdminGuard], canLoad: [AdminGuard] },
+  { path: 'VolverOtraVersion', component: ListaversionesComponent, pathMatch: 'full', canActivate: [UsuarioGuard], canLoad: [UsuarioGuard] },
 
   /**creacion de programas */
 

@@ -67,6 +67,40 @@ namespace ApiRestAldeasPresupuesto.Helper
         }
 
 
+
+        public static dynamic ConsultarOnlyProgramas(IContextFactory factory, IOptions<ConnectionDB> connection)
+        {
+            ProgramasResponse retorno = new ProgramasResponse();
+            using (Aldeas_Context db = factory.Create(connection))
+            {
+                var data = from pro in db.TbProgramas
+                           join tipo in db.TbTipoPrograma on pro.id_tipo_programa equals tipo.id
+                           select new Program
+                           {
+                               Estado = pro.Estado,
+                               FechaActualizacion = pro.FechaActualizacion,
+                               FechaCreacion = pro.FechaCreacion,
+                               Id = pro.id,
+                               Nombre = pro.Nombre,
+                               IdTipoPrograma = tipo.id,
+                               TipoProgramaNombre = tipo.nombre,
+                               Cobertura = tipo.cobertura,
+                               PerCapacitacion = pro.per_capacitacion,
+                               PerNomina = pro.per_nomina,
+
+                           };
+                if (data.Any())
+                {
+                    retorno.Programas = data.ToList();
+                }
+              
+
+            }
+
+            return retorno;
+        }
+
+
         /// <summary>
         /// consulta los programas faltantes del usuario.
         /// </summary>
@@ -232,11 +266,16 @@ namespace ApiRestAldeasPresupuesto.Helper
                            select pro;
                 if (data.Any())
                 {
-                    data.First().Nombre = cecoRequest.Nombre;
+                    
                     data.First().Estado = cecoRequest.Estado;
                     data.First().NombreSubCentro = cecoRequest.NombreSubCentro;
                     data.First().FacilityNav = cecoRequest.FacilityNav;
                     data.First().fecha_actualizacion = DateTime.Now;
+
+                    var others = from pro in db.TbProgramasCecos
+                                 where pro.CodigoCeco == data.First().CodigoCeco
+                                 select pro;
+                    others.ToList().ForEach(x => x.Nombre = cecoRequest.Nombre);
 
                     db.SaveChanges();
                 }

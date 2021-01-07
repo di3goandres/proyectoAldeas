@@ -18,7 +18,7 @@
                         <mat-form-field appearance="fill">
                             <mat-label>Nombre</mat-label>
                             <input matInput placeholder="Nuevo Nombre CECO" [(ngModel)]="NuevoNombre"
-                                formControlName="nombre" required>
+                                formControlName="nombre" required (focus)="onFocus()">
                         </mat-form-field>
                     </div>
 

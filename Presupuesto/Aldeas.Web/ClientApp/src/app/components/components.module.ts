@@ -77,6 +77,7 @@ import { RegistroNoexitosoComponent } from './00-Comunes/registro-noexitoso/regi
 import { ActualizarusuarioComponent } from './06-Usuarios/actualizarusuario/actualizarusuario.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { DeseacontinuarComponent } from './00-Comunes/deseacontinuar/deseacontinuar.component';
+import { ListaversionesComponent } from './05-Presupuesto/Gestion/listaversiones/listaversiones.component';
 
 @NgModule({
   declarations: [LoginComponent, HomeComponent,
@@ -98,7 +99,8 @@ import { DeseacontinuarComponent } from './00-Comunes/deseacontinuar/deseacontin
     ListaFinanciadoresComponent, GestionarprogramasComponent, AsociarfinanciadoranioComponent, 
     FinanciadorfaltanteComponent, AsociaritemspresupuestoComponent, VeritemspresupuestonioComponent,
     CargoselectComponent, BorrardetallepresupuestoComponent, RegistroNoexitosoComponent, ActualizarusuarioComponent,
-    DeseacontinuarComponent],
+    DeseacontinuarComponent,
+    ListaversionesComponent],
   imports: [
 
     CommonModule,

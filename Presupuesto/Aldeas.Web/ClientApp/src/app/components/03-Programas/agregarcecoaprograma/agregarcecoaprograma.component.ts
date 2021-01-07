@@ -31,8 +31,8 @@ export class AgregarcecoaprogramaComponent implements OnInit {
     private _formBuilder: FormBuilder,
     private activeModal: NgbActiveModal,
     private programasService: ProgramasService
-    
-  ) { 
+
+  ) {
 
     this.TraerFinciadores();
   }
@@ -41,24 +41,22 @@ export class AgregarcecoaprogramaComponent implements OnInit {
   }
 
 
-  TraerFinciadores(){
+  TraerFinciadores() {
     this.programasService.getFinanciadores().subscribe(
       OK => {
-       console.log(OK)
+        console.log(OK)
         this.financiadores = [];
-        this.financiadores.push(... OK.financiadoresData)
-  
+        this.financiadores.push(...OK.financiadoresData)
+
       },
-      Errr => {console.log(Errr)}
- 
+      Errr => { console.log(Errr) }
+
     )
   }
-  onGuardar() {
 
-
-
-    //filtro cuando existe los dos subcentro y codigo
-    let filtro = this.Actuales.filter(item => {
+  validarDatos(){
+     //filtro cuando existe los dos subcentro y codigo
+     let filtro = this.Actuales.filter(item => {
       return item.codigoCeco == this.cecoAgregar.codigoCeco
         && item.subCentro == this.cecoAgregar.subCentro
     })
@@ -69,22 +67,22 @@ export class AgregarcecoaprogramaComponent implements OnInit {
     let filtro_2 = this.Actuales.filter(item => {
       return item.codigoCeco == this.cecoAgregar.codigoCeco
     })
-    if( filtro_2.length > 0)
-    {
-      if(filtro.length > 0){
+    if (filtro_2.length > 0) {
+      if (filtro.length > 0) {
         this.Validaciones = true
       }
-      else{
+      else {
         this.Validaciones = false
 
       }
     }
- 
+  }
+  onGuardar() {
 
+    this.validarDatos();
     //filtro cuando existe solo el centro
 
- 
-    console.log( this.Validaciones,this.cecoAgregar);
+    console.log(this.Validaciones, this.cecoAgregar);
     if (!this.Validaciones) {
       this.programasService.storeCeco(this.cecoAgregar)
         .subscribe(
@@ -100,17 +98,42 @@ export class AgregarcecoaprogramaComponent implements OnInit {
 
   }
 
-  ValidarNombre(){
-    
+  existeNombre = false;
+  ValidarNombre() {
+    this.cecoAgregar.nombre = ""
 
     let filtro = this.Actuales.filter(item => {
       return item.codigoCeco == this.cecoAgregar.codigoCeco
-       
+
     })
 
     console.log(filtro);
-    if(filtro.length>=1){
+    if (filtro.length >= 1) {
       this.cecoAgregar.nombre = filtro[0].nombre
+      this.existeNombre = true;
+    } else {
+      this.existeNombre = false;
+
+    }
+
+    this.setStakeValidators()
+  }
+
+  setStakeValidators(): void {
+    const stakeControl = this.formgroup.get('nombre');
+    if (this.existeNombre === true) {
+      stakeControl.disable();
+    } else {
+      stakeControl.enable();
+    }
+    stakeControl.updateValueAndValidity();
+
+
+  }
+  ValidarSubCeco() {
+    this.validarDatos()
+    if(this.Validaciones){
+      this.programasService.MostrarSnack("La combinación centro de costo / sub centro ya existe")
     }
   }
   ngOnInit(): void {

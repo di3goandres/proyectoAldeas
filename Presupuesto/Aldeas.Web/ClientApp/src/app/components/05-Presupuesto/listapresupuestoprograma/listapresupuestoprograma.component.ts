@@ -195,9 +195,7 @@ export class ListapresupuestoprogramaComponent implements OnInit {
 
 
         this.presupuestoResponse.push(... OK.presupuestoAnioData);
-        this.dataSource = new MatTableDataSource(this.presupuestoResponse);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort
+     
         this.programa = new ProgramaL();
         this.programa.nombre = OK.nombrePrograma
         this.programa.id = OK.idPrograma
@@ -207,6 +205,10 @@ export class ListapresupuestoprogramaComponent implements OnInit {
           item.urlReporte = this.service.gerReporte(item.id)
 
         })
+
+        this.dataSource = new MatTableDataSource(this.presupuestoResponse);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort
       
 
       },

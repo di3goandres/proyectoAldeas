@@ -1,148 +1,148 @@
 <!-- <div class="container"> -->
-  <mat-card>
-    <mat-card-content>
-      <mat-horizontal-stepper [linear]="true" #stepper1>
+<mat-card>
+  <mat-card-content>
+    <mat-horizontal-stepper [linear]="true" #stepper1>
 
-        <mat-step>
-          <ng-template matStepLabel>Lista de presupuestos Servicio</ng-template>
-          <mat-card class="example-card" *ngIf="programa">
-            <mat-card-header>
-              <div mat-card-avatar class="example-header-image" style="background-image: url('assets/avatars/av-2.png')">
-              </div>
-              <mat-card-title class="main-green-text">Programa: {{programa.nombre | uppercase}}</mat-card-title>
-              <mat-card-subtitle>Lista de Presupuesto</mat-card-subtitle>
-            </mat-card-header>
-    
-            <mat-card-content>
-              <mat-card-actions>
-                <div class="row">
-                  <div class="col-12 centerlabel font-weight-bold" style="text-align: left;">
-                    <mat-label>Crear Presupuesto del año:</mat-label>
-                    <button type="button" mat-mini-fab class="buttton-aldea" aria-label="fecha"
-                      (click)="AbrirCrearPresupuesto(programa)">
-                      <mat-icon>fiber_new</mat-icon>
-                    </button>
-    
-                  </div>
-    
+      <mat-step>
+        <ng-template matStepLabel>Lista de presupuestos Servicio</ng-template>
+        <mat-card class="example-card" *ngIf="programa">
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image" style="background-image: url('assets/avatars/av-2.png')">
+            </div>
+            <mat-card-title class="main-green-text">Programa: {{programa.nombre | uppercase}}</mat-card-title>
+            <mat-card-subtitle>Lista de Presupuesto</mat-card-subtitle>
+          </mat-card-header>
+
+          <mat-card-content>
+            <mat-card-actions>
+              <div class="row">
+                <div class="col-12 centerlabel font-weight-bold" style="text-align: left;">
+                  <mat-label>Crear Presupuesto del año:</mat-label>
+                  <button type="button" mat-mini-fab class="buttton-aldea" aria-label="fecha"
+                    (click)="AbrirCrearPresupuesto(programa)">
+                    <mat-icon>fiber_new</mat-icon>
+                  </button>
+
                 </div>
-    
-              </mat-card-actions>
-            </mat-card-content>
-            </mat-card>
-            <mat-card>
-              <mat-card-content>
-                        <div class="mat-elevation-z8 table-responsive">
-                <table id="customers" mat-table [dataSource]="dataSource" matSort #matSort1>
-        
-    
-                  <ng-container matColumnDef="id">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> # </th>
-                    <td mat-cell *matCellDef="let row"> {{row.id}} </td>
-                  </ng-container>
-    
-                  <!-- Name Column -->
-                  <ng-container matColumnDef="anio">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Año </th>
-                    <td mat-cell *matCellDef="let row"> {{row.anio}} </td>
-                  </ng-container>
-    
-                  <!-- Color Column -->
-                  <ng-container matColumnDef="nombrePrograma">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Programa </th>
-                    <td mat-cell *matCellDef="let row"> {{row.nombrePrograma}} </td>
-                  </ng-container>
-                  <ng-container matColumnDef="tipoPrograma">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Tipo Programa</th>
-                    <td mat-cell *matCellDef="let row"> {{row.tipoPrograma }} </td>
-                  </ng-container>
-    
-    
-                  <ng-container matColumnDef="Cobertura">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Cobertura </th>
-                    <td mat-cell *matCellDef="let row"> {{row.cobertura===true? "COBERTURA":"SIN COBERTURA"}} </td>
-                  </ng-container>
-    
-    
-    
-                  <ng-container matColumnDef="numeroVersion">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Version # </th>
-                    <td mat-cell *matCellDef="let row"> {{row.numeroVersion |number}} </td>
-                  </ng-container>
-    
-                  <ng-container matColumnDef="per_capacitacion">
-                    <th mat-header-cell *matHeaderCellDef> % Capacitación</th>
-                    <td mat-cell *matCellDef="let element">
-                      {{element.per_capacitacion |number}}% </td>
-    
-                  </ng-container>
-    
-    
-                  <ng-container matColumnDef="per_nomina">
-                    <th mat-header-cell *matHeaderCellDef> % Nomina</th>
-                    <td mat-cell *matCellDef="let element">
-                      {{element.per_nomina |number}}%
-                    </td>
-                  </ng-container>
-    
-                  <ng-container matColumnDef="Agregar" *ngIf="this.service.permitirEditar()">
-                    <th mat-header-cell *matHeaderCellDef> Agregar</th>
-                    <td mat-cell *matCellDef="let element" style="text-align: center;">
-                      <button type="button" mat-mini-fab class="buttton-aldea" aria-label="fecha"
+
+              </div>
+
+            </mat-card-actions>
+          </mat-card-content>
+        </mat-card>
+        <mat-card>
+          <mat-card-content>
+            <div class="mat-elevation-z8 table-responsive">
+              <table id="customers" mat-table [dataSource]="dataSource" matSort #matSort1>
+
+
+                <ng-container matColumnDef="id">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> # </th>
+                  <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="anio">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Año </th>
+                  <td mat-cell *matCellDef="let row"> {{row.anio}} </td>
+                </ng-container>
+
+                <!-- Color Column -->
+                <ng-container matColumnDef="nombrePrograma">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Programa </th>
+                  <td mat-cell *matCellDef="let row"> {{row.nombrePrograma}} </td>
+                </ng-container>
+                <ng-container matColumnDef="tipoPrograma">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Tipo Programa</th>
+                  <td mat-cell *matCellDef="let row"> {{row.tipoPrograma }} </td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="Cobertura">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Cobertura </th>
+                  <td mat-cell *matCellDef="let row"> {{row.cobertura===true? "COBERTURA":"SIN COBERTURA"}} </td>
+                </ng-container>
+
+
+
+                <ng-container matColumnDef="numeroVersion">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Version # </th>
+                  <td mat-cell *matCellDef="let row"> {{row.numeroVersion |number}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="per_capacitacion">
+                  <th mat-header-cell *matHeaderCellDef> % Capacitación</th>
+                  <td mat-cell *matCellDef="let element">
+                    {{element.per_capacitacion |number}}% </td>
+
+                </ng-container>
+
+
+                <ng-container matColumnDef="per_nomina">
+                  <th mat-header-cell *matHeaderCellDef> % Nomina</th>
+                  <td mat-cell *matCellDef="let element">
+                    {{element.per_nomina |number}}%
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Agregar" *ngIf="this.service.permitirEditar()">
+                  <th mat-header-cell *matHeaderCellDef> Agregar</th>
+                  <td mat-cell *matCellDef="let element" style="text-align: center;">
+                    <button type="button" mat-mini-fab class="buttton-aldea" aria-label="fecha"
                       (click)="VerPresupuesto(element)">
                       <mat-icon>zoom_in</mat-icon>
-                      </button>
-                    </td>
-                  </ng-container>
+                    </button>
+                  </td>
+                </ng-container>
 
-                  <ng-container matColumnDef="TomarVersion" *ngIf="this.service.permitirEditar()">
-                    <th mat-header-cell *matHeaderCellDef> Versionar</th>
-                    <td mat-cell *matCellDef="let element" style="text-align: center;">
-                      <button type="button" mat-mini-fab class="buttton-aldea" aria-label="fecha"
+                <ng-container matColumnDef="TomarVersion" *ngIf="this.service.permitirEditar()">
+                  <th mat-header-cell *matHeaderCellDef> Versionar</th>
+                  <td mat-cell *matCellDef="let element" style="text-align: center;">
+                    <button type="button" mat-mini-fab class="buttton-aldea" aria-label="fecha"
                       (click)="AbrirTomarVersion(element)">
                       <mat-icon>camera_enhance</mat-icon>
-                      </button>
-                    </td>
-                  </ng-container>
-    
-                  <ng-container matColumnDef="descargar">
-                    <th mat-header-cell *matHeaderCellDef> Descargar</th>
-                    <td mat-cell *matCellDef="let element">
-    
-                      <a [href]="element.urlReporte">Descargar</a>
-                    </td>
-                  </ng-container>
-    
-                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    
-    
-                </table>
-    
-                <mat-paginator [pageSizeOptions]="[10, 20, 30, 50]" #MatPaginator1></mat-paginator>
-              </div>
-            </mat-card-content>
-        
-          </mat-card>
-        </mat-step>
-
-        <mat-step>
-          <mat-card-actions>
-            <div class="row">
-                <div class="col-12 centerlabel font-weight-bold" style="text-align: center;">
-                    <button mat-raised-button color="warn" ngbAutofocus (click)="Atras()">
-                        <mat-icon>keyboard_backspace</mat-icon>
                     </button>
-                </div>
-               
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="descargar">
+                  <th mat-header-cell *matHeaderCellDef> Descargar</th>
+                  <td mat-cell *matCellDef="let element">
+
+                    <a [href]="element.urlReporte">Descargar</a>
+                  </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+
+              </table>
+
+              <mat-paginator [pageSizeOptions]="[10, 20, 30, 50]" #MatPaginator1></mat-paginator>
+            </div>
+          </mat-card-content>
+
+        </mat-card>
+      </mat-step>
+
+      <mat-step>
+        <mat-card-actions>
+          <div class="row">
+            <div class="col-12 centerlabel font-weight-bold" style="text-align: center;">
+              <button mat-raised-button color="warn" ngbAutofocus (click)="Atras()">
+                <mat-icon>keyboard_backspace</mat-icon>
+              </button>
             </div>
 
+          </div>
+
         </mat-card-actions>
-          <ng-template matStepLabel>Agregar Presupuesto</ng-template>
-          <app-asociaritemspresupuesto [id]="[(PresupuestoSeleccionado)]"></app-asociaritemspresupuesto>
-        </mat-step>
-      </mat-horizontal-stepper>
-    </mat-card-content>
-  </mat-card>
+        <ng-template matStepLabel>Agregar Presupuesto</ng-template>
+        <app-asociaritemspresupuesto [id]="[(PresupuestoSeleccionado)]"></app-asociaritemspresupuesto>
+      </mat-step>
+    </mat-horizontal-stepper>
+  </mat-card-content>
+</mat-card>
 
 <!-- </div> -->

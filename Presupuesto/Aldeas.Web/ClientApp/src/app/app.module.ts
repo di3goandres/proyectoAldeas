@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID,NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule, PreloadAllModules, Routes, CanActivate } from '@angular/router';
@@ -44,7 +44,8 @@ import { AuthInterceptor } from './services/interceptor/auth.interceptor';
 import { AdminGuard } from './guards/admin.guard';
 import { CrearcategoriaComponent } from './components/04-Rubros/crearcategoria/crearcategoria.component';
 import { ListaversionesComponent } from './components/05-Presupuesto/Gestion/listaversiones/listaversiones.component';
-
+import localCo from '@angular/common/locales/es-CO';
+import { registerLocaleData } from '@angular/common';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent, pathMatch: 'full' },
@@ -88,6 +89,7 @@ const routes: Routes = [
 
 
 ];
+registerLocaleData(localCo);
 @NgModule({
   declarations: [
     AppComponent,
@@ -114,6 +116,7 @@ const routes: Routes = [
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: LOCALE_ID, useValue: 'es-Co' },
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },
   ],
   bootstrap: [AppComponent]

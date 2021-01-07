@@ -147,5 +147,147 @@ namespace ApiRestAldeasPresupuesto.Helper
 
           
         }
+
+        public static dynamic VolverVersionAnterior(IContextFactory factory, IOptions<ConnectionDB> connection, long idVersionAnterior, long idActual) 
+        {
+            using (Aldeas_Context db = factory.Create(connection))
+            {
+           
+                var Anterior = from pre in db.TbPresupuestoAnio
+                                     where pre.id == idVersionAnterior && pre.actual == false
+                                     select pre;
+
+                var Actual = from pre in db.TbPresupuestoAnio
+                               where pre.id == idActual && pre.actual == true
+                               select pre;
+
+                if (Anterior.Any() && Actual.Any())
+                {
+
+                    Anterior.First().actual = true;
+                    Anterior.First().fecha_actualizacion = DateTime.Now;
+
+                    Actual.First().actual = false;
+                    Actual.First().fecha_actualizacion = DateTime.Now;
+
+                    db.SaveChanges();
+
+                    return new JsonResult(new { message = "Versionamiento exitoso" }) { StatusCode = StatusCodes.Status200OK };
+
+                }
+                else
+                {
+                    return new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
+                }
+            }
+
+
+        
     }
+
+        public static dynamic ConsulatPresupuestoAniosPrograma(IContextFactory factory, IOptions<ConnectionDB> connection, long idPrograma, int Anio)
+        {
+
+            VersionamientoResponse retorno = new VersionamientoResponse();
+
+            using (Aldeas_Context db = factory.Create(connection))
+            {
+
+
+                var PresupuestoAnio = from tpre in db.TbPresupuestoAnio
+                           join pro in db.TbProgramas on tpre.idPrograma equals pro.id
+                           join tpro in db.TbTipoPrograma on pro.id_tipo_programa equals tpro.id
+                           where tpre.actual == true && pro.id == idPrograma && tpre.Anio == Anio
+                           select new PresupuestoAnioData
+                           {
+                               id = tpre.id,
+                               NombrePrograma = pro.Nombre,
+                               TipoPrograma = tpro.nombre,
+                               Cobertura = tpro.cobertura,
+                               actual = tpre.actual,
+                               numeroVersion = tpre.numeroVersion,
+                               fecha_actualizacion = tpre.fecha_actualizacion,
+                               fecha_creacion = tpre.fecha_creacion,
+                               Anio = tpre.Anio,
+                               idPrograma = tpre.idPrograma,
+                               per_capacitacion = tpre.per_capacitacion,
+                               per_nomina = tpre.per_nomina,
+
+
+
+                           };
+                //var PresupuestoAnio = from pre in db.TbPresupuestoAnio
+                //                      where pre.idPrograma == idPrograma
+                //                      && pre.actual == true && pre.Anio == Anio
+                //                      select pre;
+
+                if (PresupuestoAnio.Any())
+                {
+                    retorno.Actual = PresupuestoAnio.First();
+                }
+
+                var PresupuestoAnioVersiones = from tpre in db.TbPresupuestoAnio
+                                      join pro in db.TbProgramas on tpre.idPrograma equals pro.id
+                                      join tpro in db.TbTipoPrograma on pro.id_tipo_programa equals tpro.id
+                                      where tpre.actual == false && pro.id == idPrograma && tpre.Anio == Anio
+                                      select new PresupuestoAnioData
+                                      {
+                                          id = tpre.id,
+                                          NombrePrograma = pro.Nombre,
+                                          TipoPrograma = tpro.nombre,
+                                          Cobertura = tpro.cobertura,
+                                          actual = tpre.actual,
+                                          numeroVersion = tpre.numeroVersion,
+                                          fecha_actualizacion = tpre.fecha_actualizacion,
+                                          fecha_creacion = tpre.fecha_creacion,
+                                          Anio = tpre.Anio,
+                                          idPrograma = tpre.idPrograma,
+                                          per_capacitacion = tpre.per_capacitacion,
+                                          per_nomina = tpre.per_nomina,
+
+
+
+                                      };
+                //var PresupuestoAnioVersiones = from pre in db.TbPresupuestoAnio
+                //                      where pre.idPrograma == idPrograma
+                //                      && pre.actual == false && pre.Anio == Anio
+                //                      select pre;
+
+                if (PresupuestoAnioVersiones.Any())
+                {
+                    retorno.Versiones = PresupuestoAnioVersiones.ToList();
+                }
+            
+
+            }
+
+            return retorno;
+        }
+
+        public static dynamic ConsultarAnios(IContextFactory factory, IOptions<ConnectionDB> connection, long idPrograma)
+        {
+
+            VersionamientoAnioResponse retorno = new VersionamientoAnioResponse();
+
+            using (Aldeas_Context db = factory.Create(connection))
+            {
+
+
+                var PresupuestoAnio = from pre in db.TbPresupuestoAnio
+                                      where pre.idPrograma == idPrograma
+                                      
+                                      select pre.Anio;
+
+                if (PresupuestoAnio.Any())
+                {
+                    retorno.Anios = PresupuestoAnio.Distinct().ToList();
+                }
+
+            }
+
+            return retorno;
+        }
+
+    }
+
 }

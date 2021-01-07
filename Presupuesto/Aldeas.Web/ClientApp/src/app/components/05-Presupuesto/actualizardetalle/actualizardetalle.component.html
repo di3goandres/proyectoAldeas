@@ -1,6 +1,7 @@
 <mat-card class="example-card" *ngIf="final==true">
     <mat-card-header>
-        <div mat-card-avatar class="example-header-image" style="background-image: url('assets/avatars/av-2.png')"></div>
+        <div mat-card-avatar class="example-header-image" style="background-image: url('assets/avatars/av-2.png')">
+        </div>
         <mat-card-title class="main-green-text">Actualizar Presupuesto: {{entrada.nombre | uppercase}}</mat-card-title>
         <mat-card-subtitle>Agregar</mat-card-subtitle>
     </mat-card-header>
@@ -15,19 +16,17 @@
                     <div class="col-6 tabla">
                         <mat-form-field appearance="fill">
                             <mat-label>No. Identificación</mat-label>
-                            <input matInput placeholder="Número de Identificación"
-                             type="number"
+                            <input matInput placeholder="Número de Identificación" type="number"
                                 [(ngModel)]="guardar.NumeroIdentificacion" (change)="validarFomularios()"
-                                 formControlName="numeroIdentificacion" required>
+                                formControlName="numeroIdentificacion" required>
                         </mat-form-field>
                     </div>
 
                     <div class="col-6 tabla">
                         <mat-form-field appearance="fill">
                             <mat-label>Nombre</mat-label>
-                            <input matInput placeholder="Nombre" [(ngModel)]="guardar.Nombre" (change)="validarFomularios()"
-                             formControlName="Nombre"
-                                required>
+                            <input matInput placeholder="Nombre" [(ngModel)]="guardar.Nombre"
+                                (change)="validarFomularios()" formControlName="Nombre" required>
                         </mat-form-field>
                     </div>
 
@@ -38,9 +37,9 @@
                     <div class="col-6 tabla">
                         <mat-form-field appearance="fill">
                             <mat-label>% Asignación</mat-label>
-                            <input matInput placeholder="% Asignación" type="number" min="0" max="100" 
-                            (change)="validarFomularios()"
-                                [(ngModel)]="guardar.Asignacion" formControlName="asignacion" required>
+                            <input matInput placeholder="% Asignación" type="number" min="0" max="100"
+                                (change)="validarFomularios()" [(ngModel)]="guardar.Asignacion"
+                                formControlName="asignacion" required>
                         </mat-form-field>
                     </div>
 
@@ -58,36 +57,30 @@
             </form>
         </div>
 
-        <div  *ngIf="entrada.esPptp === true">
+        <div *ngIf="entrada.esPptp === true">
             <form [formGroup]="formgroupFamiliar">
                 <div class="row">
 
                     <div class="col-6 tabla">
                         <mat-form-field appearance="fill">
                             <mat-label>No. de Casa</mat-label>
-                            <input matInput placeholder="Número de Identificación"
-                             type="number"  min="1" max="15"
-                             (ngModelChange)="validarFomularios()"
-                                [(ngModel)]="guardar.NoCasa"
-                                 formControlName="NoCasa" required>
+                            <input matInput placeholder="Número de Identificación" type="number" min="1" max="15"
+                                (ngModelChange)="validarFomularios()" [(ngModel)]="guardar.NoCasa"
+                                formControlName="NoCasa" required>
                         </mat-form-field>
                     </div>
 
                     <div class="col-6 tabla">
                         <mat-form-field appearance="fill">
                             <mat-label>No. de Niños</mat-label>
-                            <input matInput placeholder="Nombre"
-                            (ngModelChange)="validarFomularios()"
-                            type="number" min="1" max="15"
-                            [(ngModel)]="guardar.NoKids"
-                             formControlName="NoKids"
-                                required>
+                            <input matInput placeholder="Nombre" (ngModelChange)="validarFomularios()" type="number"
+                                min="1" max="15" [(ngModel)]="guardar.NoKids" formControlName="NoKids" required>
                         </mat-form-field>
                     </div>
 
                 </div>
 
-            
+
             </form>
         </div>
 
@@ -97,15 +90,12 @@
                 <div class="col-12 tabla">
                     <mat-form-field appearance="fill">
                         <mat-label>Valor Anual</mat-label>
-                        <input matInput placeholder="Valor Anual"
-                       
-                         type="number"
-                            [(ngModel)]="valorMensual" (ngModelChange)="Cambiar()"
-                             formControlName="valor" required>
+                        <input matInput placeholder="Valor Anual" type="number" [(ngModel)]="valorMensual"
+                            (ngModelChange)="Cambiar()" formControlName="valor" required>
                     </mat-form-field>
                 </div>
 
-               
+
             </div>
 
             <div class="row">
@@ -113,20 +103,18 @@
                 <div class="col-12 tabla">
                     <mat-form-field appearance="fill">
                         <mat-label>Detalle Gasto</mat-label>
-                        <input matInput placeholder="Detalle Gasto"
-                        (ngModelChange)="validarFomularios()"
-                            [(ngModel)]="guardar.DetalleGasto" 
-                             formControlName="detalleGasto" required>
+                        <input matInput placeholder="Detalle Gasto" (ngModelChange)="validarFomularios()"
+                            [(ngModel)]="guardar.DetalleGasto" formControlName="detalleGasto" required>
                     </mat-form-field>
                 </div>
 
-               
+
             </div>
 
-           
+
         </form>
         <mat-tab-group>
-            <mat-tab label="Por Meses" >
+            <mat-tab label="Por Meses">
 
                 <div class="row">
                     <div class="col-12">
@@ -135,8 +123,7 @@
                     </div>
                 </div>
                 <div class="mat-elevation-z8  table-responsive">
-                    <table id="customers" #pucs mat-table [dataSource]="dataSource" matSort
-                        style="width:100%;">
+                    <table id="customers" #pucs mat-table [dataSource]="dataSource" matSort style="width:100%;">
                         <!-- Progress Column -->
                         <ng-container matColumnDef="Enero">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header> Ene </th>
@@ -211,108 +198,104 @@
 
                 </div>
             </mat-tab>
-            <mat-tab label="Manual" >
+            <mat-tab label="Manual">
 
-                <mat-grid-list cols="6" rowHeight="2:1">
-                    <mat-grid-tile>
+                <table width="100%" border="0">
+                    <tr>
+                        <td>
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Enero</mat-label>
+                                <input matInput placeholder="Enero" [(ngModel)]="guardar.Enero"
+                                    (ngModelChange)="Actualizar()" type="number">
+                            </mat-form-field>
+                        </td>
+                        <td>
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Febrero</mat-label>
+                                <input matInput placeholder="Febrero" [(ngModel)]="guardar.Febrero"
+                                    (ngModelChange)="Actualizar()" type="number">
+                            </mat-form-field>
+                        </td>
+                        <td>
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Marzo</mat-label>
+                                <input matInput placeholder="Marzo" [(ngModel)]="guardar.Marzo"
+                                    (ngModelChange)="Actualizar()" type="number">
+                            </mat-form-field>
+                        </td>
 
-                        <mat-form-field class="example-full-width" >
-                            <mat-label>Enero</mat-label>
-                            <input matInput placeholder="Enero" [(ngModel)]="guardar.Enero"
-                                (ngModelChange)="Actualizar()" type="number">
-                        </mat-form-field>
+                        <td>
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Abril</mat-label>
+                                <input matInput placeholder="Abril" [(ngModel)]="guardar.Abril"
+                                    (ngModelChange)="Actualizar()" type="number">
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Mayo</mat-label>
+                                <input matInput placeholder="Mayo" [(ngModel)]="guardar.Mayo"
+                                    (ngModelChange)="Actualizar()" type="number">
+                            </mat-form-field>
+                        </td>
+                        <td>
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Junio</mat-label>
+                                <input matInput placeholder="Junio" [(ngModel)]="guardar.Junio"
+                                    (ngModelChange)="Actualizar()" type="number">
+                            </mat-form-field>
+                        </td>
+                        <td>
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Julio</mat-label>
+                                <input matInput placeholder="Julio" [(ngModel)]="guardar.Julio"
+                                    (ngModelChange)="Actualizar()" type="number">
+                            </mat-form-field>
+                        </td>
+                        <td>
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Agosto</mat-label>
+                                <input matInput placeholder="Agosto" [(ngModel)]="guardar.Agosto"
+                                    (ngModelChange)="Actualizar()" type="number">
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Septiembre</mat-label>
+                                <input matInput placeholder="Septiembre" [(ngModel)]="guardar.Septiembre"
+                                    (ngModelChange)="Actualizar()" type="number">
+                            </mat-form-field>
 
+                        </td>
+                        <td>
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Octubre</mat-label>
+                                <input matInput placeholder="Octubre" [(ngModel)]="guardar.Octubre"
+                                    (ngModelChange)="Actualizar()" type="number">
+                            </mat-form-field>
+                        </td>
+                        <td>
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Noviembre</mat-label>
+                                <input matInput placeholder="Noviembre" [(ngModel)]="guardar.Noviembre"
+                                    (ngModelChange)="Actualizar()" type="number">
+                            </mat-form-field>
+                        </td>
+                        <td>
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Diciembre</mat-label>
+                                <input matInput placeholder="Diciembre" [(ngModel)]="guardar.Diciembre"
+                                    (ngModelChange)="Actualizar()" type="number">
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                </table>
 
-                    </mat-grid-tile>
-                    <mat-grid-tile>
-
-                        <mat-form-field class="example-full-width">
-                            <mat-label>Febrero</mat-label>
-                            <input matInput placeholder="Febrero" [(ngModel)]="guardar.Febrero"
-                                (ngModelChange)="Actualizar()" type="number">
-                        </mat-form-field>
-
-
-                    </mat-grid-tile>
-                    <mat-grid-tile>
-
-                        <mat-form-field class="example-full-width">
-                            <mat-label>Marzo</mat-label>
-                            <input matInput placeholder="Marzo" [(ngModel)]="guardar.Marzo"
-                                (ngModelChange)="Actualizar()" type="number">
-                        </mat-form-field>
-
-
-                    </mat-grid-tile>
-                    <mat-grid-tile>
-                        <mat-form-field class="example-full-width">
-                            <mat-label>Abril</mat-label>
-                            <input matInput placeholder="Abril" [(ngModel)]="guardar.Abril"
-                                (ngModelChange)="Actualizar()" type="number">
-                        </mat-form-field>
-                    </mat-grid-tile>
-                    <mat-grid-tile>
-                        <mat-form-field class="example-full-width">
-                            <mat-label>Mayo</mat-label>
-                            <input matInput placeholder="Mayo" [(ngModel)]="guardar.Mayo"
-                                (ngModelChange)="Actualizar()" type="number">
-                        </mat-form-field>
-                    </mat-grid-tile>
-                    <mat-grid-tile>
-                        <mat-form-field class="example-full-width">
-                            <mat-label>Junio</mat-label>
-                            <input matInput placeholder="Junio" [(ngModel)]="guardar.Junio"
-                                (ngModelChange)="Actualizar()" type="number">
-                        </mat-form-field>
-                    </mat-grid-tile>
-
-                    <mat-grid-tile>
-                        <mat-form-field class="example-full-width">
-                            <mat-label>Julio</mat-label>
-                            <input matInput placeholder="Julio" [(ngModel)]="guardar.Julio"
-                                (ngModelChange)="Actualizar()" type="number">
-                        </mat-form-field>
-                    </mat-grid-tile>
-
-                    <mat-grid-tile>
-                        <mat-form-field class="example-full-width">
-                            <mat-label>Agosto</mat-label>
-                            <input matInput placeholder="Agosto" [(ngModel)]="guardar.Agosto"
-                                (ngModelChange)="Actualizar()" type="number">
-                        </mat-form-field>
-                    </mat-grid-tile>
-                    <mat-grid-tile>
-                        <mat-form-field class="example-full-width">
-                            <mat-label>Septiembre</mat-label>
-                            <input matInput placeholder="Septiembre" [(ngModel)]="guardar.Septiembre"
-                                (ngModelChange)="Actualizar()" type="number">
-                        </mat-form-field>
-
-                    </mat-grid-tile>
-                    <mat-grid-tile>
-                        <mat-form-field class="example-full-width">
-                            <mat-label>Octubre</mat-label>
-                            <input matInput placeholder="Octubre" [(ngModel)]="guardar.Octubre"
-                                (ngModelChange)="Actualizar()" type="number">
-                        </mat-form-field>
-                    </mat-grid-tile>
-
-                    <mat-grid-tile>
-                        <mat-form-field class="example-full-width">
-                            <mat-label>Noviembre</mat-label>
-                            <input matInput placeholder="Noviembre" [(ngModel)]="guardar.Noviembre"
-                                (ngModelChange)="Actualizar()" type="number">
-                        </mat-form-field>
-                    </mat-grid-tile>
-
-                    <mat-grid-tile>
-                        <mat-form-field class="example-full-width">
-                            <mat-label>Diciembre</mat-label>
-                            <input matInput placeholder="Diciembre" [(ngModel)]="guardar.Diciembre"
-                                (ngModelChange)="Actualizar()" type="number">
-                        </mat-form-field>
-                    </mat-grid-tile>
-                </mat-grid-list>
+           
 
 
             </mat-tab>
@@ -321,12 +304,22 @@
 
 
     </mat-card-content>
+
     <mat-card-actions>
-
-        <button mat-raised-button ngbAutofocus (click)="cerrar()">Cancelar</button>
-        <button mat-raised-button ngbAutofocus [disabled]="!permitirGuardar"
-         (click)="guardarData()">Guardar</button>
-
+        <div class="row">
+            <div class="col-6 centerlabel font-weight-bold" style="text-align: center;">
+                <button mat-raised-button color="warn" ngbAutofocus (click)="cerrar()">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </div>
+            <div class="col-6 centerlabel font-weight-bold" style="text-align: center;">
+                <button mat-raised-button color="warn" [disabled]="!permitirGuardar"
+                    (click)="guardarData()">
+                    <mat-icon>cached</mat-icon>
+                </button>
+            </div>
+        </div>
 
     </mat-card-actions>
+
 </mat-card>

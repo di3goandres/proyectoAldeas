@@ -37,11 +37,11 @@
               </ng-container>
               <ng-container matColumnDef="fechacreacion">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha Creacion</th>
-                <td mat-cell *matCellDef="let row"> {{row.fecha_creacion}} </td>
+                <td mat-cell *matCellDef="let row"> {{row.fecha_creacion| date: "MMM/dd/yyyy HH:mm:ss"| uppercase}}</td>
               </ng-container>
               <ng-container matColumnDef="fechaupdate">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha Actualización </th>
-                <td mat-cell *matCellDef="let row"> {{row.fecha_actualizacion}} </td>
+                <td mat-cell *matCellDef="let row"> {{row.fecha_actualizacion| date: "MMM/dd/yyyy HH:mm:ss"| uppercase}} </td>
               </ng-container>
 
             

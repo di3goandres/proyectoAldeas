@@ -9,6 +9,12 @@ namespace ApiRestAldeasPresupuesto.Repositories.GestionPresupuesto
         dynamic GenerarVersionamiento(PresupuestoProgramRequest request);
 
         dynamic ConsultaProgramasVersion();
+        dynamic ConsultaVersionesProgramasVersion(long idPrograma, int Anio);
+        dynamic ConsultarAnios(long idPrograma);
+        dynamic VolverVersionAnterior(long idVersionAnterior, long idActual);
+
+
+
 
     }
 }

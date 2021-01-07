@@ -1,38 +1,263 @@
-<mat-card  class="example-card" >
+<mat-card class="example-card">
     <mat-card-header>
-        <div mat-card-avatar class="example-header-image" style="background-image: url('assets/avatars/av-4.png')">
+        <div mat-card-avatar class="example-header-image" style="background-image: url('assets/avatars/av-2.png')">
         </div>
         <mat-card-title class="main-green-text">
-            Versiones de Presuesto / Proyecto
+            Versiones de Presuesto / Programa
         </mat-card-title>
     </mat-card-header>
 
 
     <mat-card-content>
-        <div class="col-6">
-            <mat-form-field appearance="fill">
-                <mat-label>Selecciona Un Proyecto</mat-label>
-                <mat-select 
-                    (selectionChange)="changePrograma($event.value)" required>
-                    <mat-option *ngFor="let proyecto of programas"
-                        [value]="proyecto.id">
-                        {{proyecto.id}} - {{proyecto.nombre | uppercase}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-
-        </div>
-    </mat-card-content>
-    <mat-card-actions>
         <div class="row">
-            
-            <div class="col-12 centerlabel font-weight-bold" style="text-align: center;">
-                <button mat-raised-button color="warn" 
-                    (click)="onGuardar()">
-                    <mat-icon>update</mat-icon>
-                </button>
+            <div class="col-6">
+                <mat-form-field appearance="fill">
+                    <mat-label>Selecciona Un Programa</mat-label>
+                    <mat-select (selectionChange)="changePrograma($event.value)" required>
+                        <mat-option *ngFor="let proyecto of programas" [value]="proyecto.id">
+                            {{proyecto.id}} - {{proyecto.nombre | uppercase}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+            </div>
+            <div class="col-6">
+                <mat-form-field appearance="fill">
+                    <mat-label>Selecciona Un Año</mat-label>
+                    <mat-select (selectionChange)="changeAnio($event.value)" required [(ngModel)]="valueAnio">
+                        <mat-option *ngFor="let anio of anios" [value]="anio">
+                            Año: {{anio}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
             </div>
         </div>
 
-    </mat-card-actions>
+    </mat-card-content>
+
+
+
+</mat-card>
+
+<mat-card *ngIf="actual!=null">
+    <mat-card-header>
+        <div mat-card-avatar class="example-header-image" style="background-image: url('assets/avatars/av-1.png')">
+        </div>
+        <mat-card-title class="main-green-text">
+            Versión Actual
+        </mat-card-title>
+        <mat-card-subtitle>
+            <table id="customers" width="100%" border="0">
+                <tr>
+                    <td>
+                        <mat-label class="descripcion">
+                            ID:
+                        </mat-label>
+                    </td>
+                    <td>
+                        <mat-label class="descripcionTexto">
+                            {{actual.id}}
+                        </mat-label>
+                    </td>
+                    <td>
+                        <mat-label class="descripcion">
+                            AÑO:
+                        </mat-label>
+                    </td>
+                    <td>
+                        <mat-label class="descripcionTexto">
+                             {{actual.anio}}
+                        </mat-label>
+                    </td>
+               
+                    <td>
+                        <mat-label class="descripcion">
+                            PROGRAMA:
+                        </mat-label>
+                    </td>
+                    <td>
+                        <mat-label class="descripcionTexto">
+                            {{actual.nombrePrograma}}
+                        </mat-label>
+                    </td>
+                    <td>
+                        <mat-label class="descripcion">
+                            % Nomina
+                        </mat-label>
+                    </td>
+                    <td>
+                        <mat-label class="descripcionTexto">
+                            {{actual.per_nomina | number}}%
+                        </mat-label>
+                    </td>
+                    <td>
+                        <mat-label class="descripcion">
+                            Fecha Creación
+                        </mat-label>
+                    </td>
+                    <td>
+                        <mat-label class="descripcionTexto">
+                            {{actual.fecha_creacion | date: "MMM/dd/yyyy HH:mm:ss"| uppercase}}
+                        </mat-label>
+                    </td>
+                </tr>
+
+              
+
+                <tr>
+                   
+                    <td>
+                        <mat-label class="descripcion">
+                            Version #
+                        </mat-label>
+                    </td>
+                    <td>
+                        <mat-label class="descripcionTexto">
+                            {{actual.numeroVersion}}
+                        </mat-label>
+                    </td>
+                    <td>
+                        <mat-label class="descripcion">
+                            COBERTURA:
+                        </mat-label>
+                    </td>
+                    <td>
+                        <mat-label class="descripcionTexto">
+                            {{actual.cobertura===true? "COBERTURA":"SIN COBERTURA"}}
+                        </mat-label>
+                    </td>
+              
+                   
+                    <td>
+                        <mat-label class="descripcion">
+                            TIPO PROGRAMA:
+                        </mat-label>
+                    </td>
+                    <td>
+                        <mat-label class="descripcionTexto">
+                             {{actual.tipoPrograma}}
+                        </mat-label>
+                    </td>
+                    <td>
+                        <mat-label class="descripcion">
+                            % Capacitación
+                        </mat-label>
+                    </td>
+                    <td>
+                        <mat-label class="descripcionTexto">
+                            {{actual.per_capacitacion | number}}%
+                        </mat-label>
+                    </td>
+
+                    <td>
+                        <mat-label class="descripcion">
+                            Fecha Actualización
+                        </mat-label>
+                    </td>
+                    <td>
+                        <mat-label class="descripcionTexto">
+                            {{actual.fecha_actualizacion | date: "MMM/dd/yyyy HH:mm:ss"| uppercase}}
+                        </mat-label>
+                    </td>
+                </tr>   
+            </table>
+
+        </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+
+        <div class="row">
+            <div class="col-12 centerlabel font-weight-bold" style="text-align: center;">
+                <mat-card-title class="main-green-text">Lista de Versiones anteriores</mat-card-title>
+            </div>
+
+        </div>
+
+        <div class="mat-elevation-z8 table-responsive">
+            <table id="customers" mat-table [dataSource]="dataSource" matSort #matSort1>
+
+
+                <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> # </th>
+                    <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="anio">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Año </th>
+                    <td mat-cell *matCellDef="let row"> {{row.anio}} </td>
+                </ng-container>
+
+                <!-- Color Column -->
+                <ng-container matColumnDef="nombrePrograma">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Programa </th>
+                    <td mat-cell *matCellDef="let row"> {{row.nombrePrograma}} </td>
+                </ng-container>
+                <ng-container matColumnDef="tipoPrograma">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Tipo Programa</th>
+                    <td mat-cell *matCellDef="let row"> {{row.tipoPrograma }} </td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="Cobertura">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Cobertura </th>
+                    <td mat-cell *matCellDef="let row"> {{row.cobertura===true? "COBERTURA":"SIN COBERTURA"}} </td>
+                </ng-container>
+
+
+
+                <ng-container matColumnDef="numeroVersion">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Version # </th>
+                    <td mat-cell *matCellDef="let row"> {{row.numeroVersion |number}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="per_capacitacion">
+                    <th mat-header-cell *matHeaderCellDef> % Capacitación</th>
+                    <td mat-cell *matCellDef="let element">
+                        {{element.per_capacitacion |number}}% </td>
+
+                </ng-container>
+
+
+                <ng-container matColumnDef="per_nomina">
+                    <th mat-header-cell *matHeaderCellDef> % Nomina</th>
+                    <td mat-cell *matCellDef="let element">
+                        {{element.per_nomina |number}}%
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Fecha Creación">
+                    <th mat-header-cell *matHeaderCellDef> Fecha Creación</th>
+                    <td mat-cell *matCellDef="let element">
+                        {{element.fecha_creacion | date: "MMM/dd/yyyy HH:mm:ss"| uppercase}}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Fecha Actualizacion">
+                    <th mat-header-cell *matHeaderCellDef> Fecha Actualización</th>
+                    <td mat-cell *matCellDef="let element">
+                        {{element.fecha_actualizacion | date: "MMM/dd/yyyy HH:mm:ss"| uppercase}}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="TomarEsta" *ngIf="this.service.permitirEditar()">
+                    <th mat-header-cell *matHeaderCellDef> Tomar Versión</th>
+                    <td mat-cell *matCellDef="let element">
+                        <button type="button" mat-mini-fab class="buttton-aldea" aria-label="fecha"
+                            (click)="AbrirTomarVersion(element)">
+                            <mat-icon>restore</mat-icon>
+                        </button>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+
+            </table>
+
+            <mat-paginator [pageSizeOptions]="[10, 20, 30, 50]" #MatPaginator1></mat-paginator>
+        </div>
+    </mat-card-content>
 </mat-card>

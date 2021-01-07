@@ -36,11 +36,11 @@
           <!-- Color Column -->
           <ng-container matColumnDef="fechaCreacion">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha Creación </th>
-            <td mat-cell *matCellDef="let row"> {{row.fechaCreacion}} </td>
+            <td mat-cell *matCellDef="let row"> {{row.fechaCreacion| date: "MMM/dd/yyyy HH:mm:ss"| uppercase}} </td>
           </ng-container>
           <ng-container matColumnDef="fechaActualizacion">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha Actualización </th>
-            <td mat-cell *matCellDef="let row"> {{row.fechaActualizacion |uppercase}} </td>
+            <td mat-cell *matCellDef="let row"> {{row.fechaActualizacion | date: "MMM/dd/yyyy HH:mm:ss"| uppercase}}</td>
           </ng-container>
   
   

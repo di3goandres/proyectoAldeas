@@ -29,14 +29,30 @@ namespace ApiRestAldeasPresupuesto.Repositories.GestionPresupuesto
             return ProgramasOperations.ConsultarOnlyProgramas(_factory, _connectionDB);
         }
 
+        public dynamic ConsultarAnios(long idPrograma)
+        {
+            return GestionPresupuestoOperations.ConsultarAnios(_factory, _connectionDB, idPrograma);
+
+        }
+
         public dynamic ConsultarPresupuestosByProgramYCeco(CoberturaRequest request)
         {
             return GestionPresupuestoOperations.ConsultarPresupuestosByProgramYCeco(_factory, _connectionDB, request);
         }
 
+        public dynamic ConsultaVersionesProgramasVersion(long idPrograma, int Anio)
+        {
+            return GestionPresupuestoOperations.ConsulatPresupuestoAniosPrograma(_factory, _connectionDB, idPrograma, Anio);
+        }
+
         public dynamic GenerarVersionamiento(PresupuestoProgramRequest request)
         {
             return GestionPresupuestoOperations.GenerarVersionamiento(_factory, _connectionDB, request);
+        }
+
+        public dynamic VolverVersionAnterior(long idVersionAnterior, long idActual)
+        {
+            return GestionPresupuestoOperations.VolverVersionAnterior(_factory, _connectionDB, idVersionAnterior, idActual);
         }
     }
 }

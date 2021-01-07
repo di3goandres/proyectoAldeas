@@ -53,5 +53,30 @@ namespace ApiRestAldeasPresupuesto.Controllers
 
             return _dataRepository.ConsultaProgramasVersion();
         }
+
+        [AuthorizeUser]
+        [HttpGet]
+        [Route("/api/aldeas/gestion/presupuesto/versiones/presupuesto/{idPrograma}/{anio}")]
+        public dynamic ConsultarVersiones(long idPrograma, int anio)
+        {
+
+            return _dataRepository.ConsultaVersionesProgramasVersion(idPrograma,anio);
+        }
+
+        [AuthorizeUser]
+        [HttpGet]
+        [Route("/api/aldeas/gestion/presupuesto/versiones/programa/anio/{idPrograma}")]
+        public dynamic ConsultarVersionesAnio( long idPrograma)
+        {
+            return _dataRepository.ConsultarAnios(idPrograma);
+        }
+
+        [AuthorizeUser]
+        [HttpGet]
+        [Route("/api/aldeas/gestion/presupuesto/versiones/programa/volver/{idVersionAnterior}/{idActual}")]
+        public dynamic ConsultarVersionesAnio(long idVersionAnterior, long idActual)
+        {
+            return _dataRepository.VolverVersionAnterior(idVersionAnterior, idActual);
+        }
     }
 }

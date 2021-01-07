@@ -12,6 +12,8 @@ import { FinanciadoresResponse } from '../models/financiadores/financiadores.res
 import { CoberturaAnioResponse } from '../models/presupuestoanio/consulta.anio.response';
 import { CoberturaRequest } from '../models/cobertura/Cobertura.request';
 import { ProgramaResponse } from '../models/programas/programas.response';
+import { AniosResponse } from '../models/Versiones/anio';
+import { VersionesResponse } from '../models/Versiones/ListaVersiones';
 
 @Injectable({
   providedIn: 'root'
@@ -138,5 +140,18 @@ export class PresupuestoService {
   getProgramasVersion() {
 
     return this.userService.ejecutarQuery<ProgramaResponse>('/api/aldeas/gestion/presupuesto/versionar/programas/')
+  }
+
+  getProgramasVersionAnio(id: number) {
+    return this.userService.ejecutarQuery<AniosResponse>('/api/aldeas/gestion/presupuesto/versiones/programa/anio/' + id)
+  }
+
+  getProgramasListVersionAnio(idPrograma: number, anio: number) {
+    return this.userService.ejecutarQuery<VersionesResponse>('/api/aldeas/gestion/presupuesto/versiones/presupuesto/' + idPrograma + '/' +anio)
+  }
+
+  tomarVersionAnterior (idAnterior: number, idActual) {
+  
+    return this.userService.ejecutarQuery<Respuesta>('/api/aldeas/gestion/presupuesto/versiones/programa/volver/' + idAnterior +'/'+ idActual)
   }
 }

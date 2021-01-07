@@ -367,6 +367,10 @@ namespace ApiRestAldeasPresupuesto.Helper
                     data.First().Diciembre = datos.Diciembre;
                     data.First().NotaIngles = datos.NotaIngles;
                     data.First().DetalleGasto = datos.DetalleGasto;
+                    data.First().Total = datos.Enero + datos.Febrero + datos.Marzo + datos.Abril + datos.Mayo + datos.Junio +
+                        datos.Julio + datos.Agosto + datos.Septiembre + datos.Octubre + datos.Noviembre + datos.Diciembre;
+                    ;
+
                     db.SaveChanges();
                 }
 

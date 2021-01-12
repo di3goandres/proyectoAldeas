@@ -190,7 +190,7 @@ export class AgregarpresupuestoComponent implements OnInit {
       numeroIdentificacion: ['', Validators.required],
       Nombre: ['', Validators.required],
       asignacion: ['', [Validators.max(100), Validators.min(1)]],
-      cargo: ['', Validators.required],
+      cargo: ['',[ Validators.required, Validators.min(1)]],
 
     })
     this.formgroupFamiliar = this._formBuilder.group({

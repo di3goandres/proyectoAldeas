@@ -1,6 +1,7 @@
 export class PresupuestoRequest{
    constructor(){
-
+      this.Asignacion = 0;
+      this.Cargo = 0;
    }
 
    idPresupuesto:                 number;
@@ -41,6 +42,10 @@ export class PresupuestoRequest{
    Octubre:                    number; 
    Noviembre:                  number; 
    Diciembre:                  number; 
+   Total:                      number; 
+   TotalAnual:                 number; 
+
+
 
 
 

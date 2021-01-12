@@ -164,70 +164,145 @@ export class AsociaritemspresupuestoComponent implements OnInit {
 
   ) { }
 
+  yourFn(event) {
+    console.log(event.index)
+    if (event.index == 1) {
+      this.Manual = true;
+      this.valorMensual = 0;
+      this.dejarEncerosManual()
+
+    } else {
+      this.Manual = false;
+    }
+
+  }
   tabActivo(data) {
-    this.Manual = data;
-    console.log(this.Manual)
+    // console.log(data)
+
+    // if(data){
+    //   this.valorMensual =0;
+    // }
+    // this.Manual = data;
+    // console.log(this.Manual)
   }
 
   Notificar(event: boolean) {
-    console.log(event)
+
     this.getDetalle(null);
   }
   onNotificar(event: Task, Tipo: any) {
-
-    this.presupuestoCheck = event;
-    let seleccionados = event.subtasks.filter(t => {
-      return t.completed == true;
-    });
-
-    let numeroMeses = seleccionados.length;
-    this.dejarEnceros();
-    if (this.valorMensual != 0) {
-
-      let valorMes = this.valorMensual / numeroMeses;
-      seleccionados.forEach(item => {
-        this.agregarValorAlCampo(item, valorMes);
-      })
+    console.log('ando notificando algo');
+    if(!this.Manual){
+      this.presupuestoCheck = event;
+      let seleccionados = event.subtasks.filter(t => {
+        return t.completed == true;
+      });
+  
+      let numeroMeses = seleccionados.length;
+      this.dejarEnceros();
+      if (this.valorMensual != 0) {
+  
+        let valorMes = this.valorMensual / numeroMeses;
+        seleccionados.forEach(item => {
+          this.agregarValorAlCampo(item, valorMes);
+        })
+      }
+  
+  
+      this.pucMostrar = [];
+      this.pucMostrar.push(this.guardar);
+      this.dataSource = new MatTableDataSource(this.pucMostrar);
+      this.validarFomularios();
     }
+  
 
-
-    this.pucMostrar = [];
-    this.pucMostrar.push(this.guardar);
-    this.dataSource = new MatTableDataSource(this.pucMostrar);
-    this.validarFomularios();
 
 
   }
 
   Cambiar() {
+    this.guardar.Total = this.valorMensual;
     this.onNotificar(this.presupuestoCheck, "")
+    this.CalcularPorcentaje();
 
   }
 
   Actualizar() {
 
     this.pucMostrar = [];
+
+
     this.pucMostrar.push(this.guardar);
     this.dataSource = new MatTableDataSource(this.pucMostrar);
     this.validarFomularios();
+    this.calcularValorAnual();
+    this.CalcularPorcentaje();
+
+
 
   }
 
+  dejarEncerosManual()
+  {
+   
+        this.guardar.Enero = 0;
+        this.guardar.Febrero = 0;
+        this.guardar.Marzo = 0;
+        this.guardar.Abril = 0;
+        this.guardar.Mayo = 0;
+        this.guardar.Junio = 0;
+        this.guardar.Julio = 0;
+        this.guardar.Agosto = 0;
+        this.guardar.Septiembre = 0;
+        this.guardar.Octubre = 0;
+        this.guardar.Noviembre = 0;
+        this.guardar.Diciembre = 0;
+      
+  
+    
+  }
   dejarEnceros() {
-    this.guardar.Enero = 0;
-    this.guardar.Febrero = 0;
-    this.guardar.Marzo = 0;
-    this.guardar.Abril = 0;
-    this.guardar.Mayo = 0;
-    this.guardar.Junio = 0;
-    this.guardar.Julio = 0;
-    this.guardar.Agosto = 0;
-    this.guardar.Septiembre = 0;
-    this.guardar.Octubre = 0;
-    this.guardar.Noviembre = 0;
-    this.guardar.Diciembre = 0;
+    console.log("entre a dejar en ceros")
+    if (!this.Manual) {
+      this.guardar.Enero = 0;
+      this.guardar.Febrero = 0;
+      this.guardar.Marzo = 0;
+      this.guardar.Abril = 0;
+      this.guardar.Mayo = 0;
+      this.guardar.Junio = 0;
+      this.guardar.Julio = 0;
+      this.guardar.Agosto = 0;
+      this.guardar.Septiembre = 0;
+      this.guardar.Octubre = 0;
+      this.guardar.Noviembre = 0;
+      this.guardar.Diciembre = 0;
+    }
 
   }
+
+
+
+
+  calcularValorAnual() {
+
+    this.valorMensual = this.guardar.Enero +
+      this.guardar.Febrero +
+      this.guardar.Marzo +
+      this.guardar.Abril +
+      this.guardar.Mayo +
+      this.guardar.Junio +
+      this.guardar.Julio +
+      this.guardar.Agosto +
+      this.guardar.Septiembre +
+      this.guardar.Octubre +
+      this.guardar.Noviembre +
+      this.guardar.Diciembre;
+
+    this.guardar.Total = this.valorMensual;
+
+
+  }
+
 
   agregarValorAlCampo(event: Task, cantidad) {
 
@@ -273,12 +348,28 @@ export class AsociaritemspresupuestoComponent implements OnInit {
     }
   }
 
+  CalcularPorcentaje() {
+    console.log(this.guardar.Asignacion)
+    if (this.guardar.Asignacion != undefined &&  this.guardar.Asignacion!= 0) {
+      this.guardar.TotalAnual = (this.guardar.Total * this.guardar.Asignacion) / 100
+    } else {
+      this.guardar.TotalAnual = 0;
+    }
+
+    this.validarFomularios();
+  }
 
   validarFomularios() {
     if (this.tabGroup != null) {
+      console.log(this.tabGroup.selectedIndex);
+
       if (this.tabGroup.selectedIndex == 1) {
         if (this.datoRubro.esNomina) {
           this.permitirGuardar = this.formgroupNomina.valid && this.formgroupNormal.valid
+          if (this.permitirGuardar && this.guardar.Cargo == 0) {
+            this.permitirGuardar = false;
+          }
+          console.log(this.permitirGuardar);
 
         }
         if (this.datoRubro.esppto) {
@@ -297,7 +388,10 @@ export class AsociaritemspresupuestoComponent implements OnInit {
         let numeroMeses = seleccionados.length;
         if (this.datoRubro.esNomina) {
           this.permitirGuardar = this.formgroupNomina.valid && this.formgroupNormal.valid && numeroMeses > 0
-
+          if (this.permitirGuardar && this.guardar.Cargo == 0) {
+            this.permitirGuardar = false;
+          }
+          console.log(this.permitirGuardar);
         }
         if (this.datoRubro.esppto) {
           this.permitirGuardar = this.formgroupFamiliar.valid && this.formgroupNormal.valid && numeroMeses > 0
@@ -330,6 +424,7 @@ export class AsociaritemspresupuestoComponent implements OnInit {
   }
 
   callServiceSinCobertura() {
+    console.log(this.guardar);
     this.presupuestoService.guardarPresupuesto(this.guardar).subscribe(
       OK => {
 
@@ -348,6 +443,8 @@ export class AsociaritemspresupuestoComponent implements OnInit {
     )
   }
   callServiceCobertura() {
+    console.log(this.guardar);
+    this.guardar.Total = 0;
     this.presupuestoService.guardarPresupuesto(this.guardar).subscribe(
       OK => {
 
@@ -508,6 +605,8 @@ export class AsociaritemspresupuestoComponent implements OnInit {
       this.datoCargo = result;
       this.guardar.Cargo = result.id;
       this.guardar.idRubroPucs = this.pubGuardar.id
+      console.log('diego')
+      this.validarFomularios();
 
 
 
@@ -634,6 +733,7 @@ export class AsociaritemspresupuestoComponent implements OnInit {
       numeroIdentificacion: ['', [Validators.min(1), Validators.required]],
       Nombre: ['', Validators.required],
       asignacion: ['', [Validators.max(100), Validators.min(1)]],
+      // cargo: ['', [Validators.required]],
 
 
     })

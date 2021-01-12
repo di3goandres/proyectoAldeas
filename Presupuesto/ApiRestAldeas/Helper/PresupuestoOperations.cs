@@ -304,6 +304,8 @@ namespace ApiRestAldeasPresupuesto.Helper
                 {
                     datos.Cargo = null;
                 }
+                datos.fecha_actualizacion = DateTime.Now;
+                datos.fecha_creacion = DateTime.Now;
                 datos.Total = (datos.Enero + datos.Febrero + datos.Marzo + datos.Abril + datos.Mayo + datos.Junio + datos.Julio + datos.Agosto + datos.Septiembre + datos.Octubre + datos.Noviembre + datos.Diciembre);
                 db.TbPresupuestosProgramas.Add(datos);
                 db.SaveChanges();
@@ -323,6 +325,10 @@ namespace ApiRestAldeasPresupuesto.Helper
                 {
                     datos.Cargo = null;
                 }
+                datos.fecha_actualizacion = DateTime.Now;
+                datos.fecha_creacion = DateTime.Now;
+
+
                 datos.Total = (datos.Enero + datos.Febrero + datos.Marzo + datos.Abril + datos.Mayo + datos.Junio + datos.Julio + datos.Agosto + datos.Septiembre + datos.Octubre + datos.Noviembre + datos.Diciembre);
                 db.TbPresupuestosProgramas.Add(datos);
                 db.SaveChanges();
@@ -345,7 +351,11 @@ namespace ApiRestAldeasPresupuesto.Helper
                            select pro;
                 if (data.Any())
                 {
-                   
+                    int porcentaje = 0;
+                    if(datos.Asignacion != null)
+                    {
+                        porcentaje = (int)datos.Asignacion/100;
+                    }
                     data.First().NumeroIdentificacion = datos.NumeroIdentificacion == null? null: datos.NumeroIdentificacion;
                     data.First().Nombre = datos.Nombre;
                     data.First().Cargo = datos.Cargo;
@@ -370,6 +380,8 @@ namespace ApiRestAldeasPresupuesto.Helper
                     data.First().Total = datos.Enero + datos.Febrero + datos.Marzo + datos.Abril + datos.Mayo + datos.Junio +
                         datos.Julio + datos.Agosto + datos.Septiembre + datos.Octubre + datos.Noviembre + datos.Diciembre;
                     ;
+                    data.First().TotalAnual = data.First().Total * porcentaje;
+                    datos.fecha_actualizacion = DateTime.Now;
 
                     db.SaveChanges();
                 }

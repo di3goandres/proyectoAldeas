@@ -46,7 +46,7 @@
 
                     <div class="col-6 tabla">
                         <mat-form-field appearance="fill">
-                            <mat-label>Cargo</mat-label>
+                            <mat-label>Cargo {{guardar.Cargo}}</mat-label>
                             <input matInput placeholder="Cargo" [(ngModel)]="guardar.Cargo" type="text"
                             (change)="validarFomularios()"
                              formControlName="cargo"

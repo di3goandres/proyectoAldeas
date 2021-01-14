@@ -136,9 +136,16 @@ namespace ApiRestAldeas.Helper
 
 
 
-                    registro.First().FechaIngreso = request.FechaIngreso;
+                    registro.First().FechaIngreso = Utils.CambiarFecha(request.FechaIngreso); ;
                     registro.First().FechaNacimiento = Utils.CambiarFecha(request.FechaNacimiento);
-                    registro.First().FechaSalida = Utils.CambiarFecha(request.FechaSalida);
+                    if (request.FechaSalida != null)
+                    {
+                        registro.First().FechaSalida = Utils.CambiarFecha(request.FechaSalida);
+                    }
+                    else
+                    {
+                        registro.First().FechaSalida = null;
+                    }
 
                     registro.First().Nombres = request.Nombres;
                     registro.First().Apellidos = request.Apellidos;

@@ -249,7 +249,10 @@ namespace ApiRestAldeasPresupuesto.Helper
                                         Octubre = copiaItem.Octubre,
                                         Noviembre = copiaItem.Noviembre,
                                         Diciembre = copiaItem.Diciembre,
-                                        Total = copiaItem.Total
+                                        Total = copiaItem.Total,
+                                        TotalAnual = copiaItem.TotalAnual,
+                                        fecha_actualizacion = DateTime.Now,
+                                        fecha_creacion = DateTime.Now
 
 
                                     };

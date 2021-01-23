@@ -12,7 +12,11 @@ import { Colaborador } from '../models/colaborador';
 import { RegistroParticipante } from '../models/DatosPartipante';
 import { ProyectoResponse } from '../models/ProyectoResponse';
 import { Usuarios } from '../models/usuarios/Usuarios';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { RegistroNoexitosoComponent } from '../components/00-Comunes/registro-noexitoso/registro-noexitoso.component';
 // import { DatePipe } from '@angular/common'
+import { RegistroExitosoComponent } from '../components/00-Comunes/registro-exitoso/registro-exitoso.component';
 
 @Injectable({
   providedIn: 'root'
@@ -35,6 +39,8 @@ export class UserService {
   constructor(
     // public datepipe: DatePipe,
     private http: HttpClient,
+    private modalService: NgbModal,
+    private _snackBar: MatSnackBar,
     public router: Router) {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
@@ -295,5 +301,48 @@ export class UserService {
   }
   ActualizarUsuario(data: Usuarios) {
     return this.ejecutarQueryPostNuevo<Respuesta>('/api/user/actualizar/', data);
+  }
+
+
+
+  registroExitoso() {
+    const modalRef = this.modalService.open(RegistroExitosoComponent, { size: 'md' });
+
+    modalRef.result.then((result) => {
+     
+    }, (reason) => {
+
+      if (reason === 'OK') {
+
+
+      }
+    });
+  }
+
+  registroNoExitosoComun(){
+    this.registroNoExitoso("Error", "Ha ocurrido un error inesperado, por favor intentelo nuevamente.");
+  }
+
+  registroNoExitoso(Titulo, Mensaje) {
+    const modalRef = this.modalService.open(RegistroNoexitosoComponent, { size: 'md' });
+    modalRef.componentInstance.Titulo = Titulo;
+    modalRef.componentInstance.mensaje = Mensaje
+    modalRef.result.then((result) => {
+
+    }, (reason) => {
+
+      if (reason === 'OK') {
+
+
+      }
+    });
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 6000,
+      horizontalPosition: 'end',
+      verticalPosition: 'top',
+    });
   }
 }

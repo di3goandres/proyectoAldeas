@@ -645,12 +645,17 @@ export class InformacionComponent implements OnInit {
           
           this.guardarArchivo(response.id)
          
+        }else{
+        this.userService.registroNoExitosoComun();
+          
         }
        
       },
       error => {
         console.log(error)
         this.Guardando = false;
+
+        this.userService.registroNoExitosoComun();
 
       },
 

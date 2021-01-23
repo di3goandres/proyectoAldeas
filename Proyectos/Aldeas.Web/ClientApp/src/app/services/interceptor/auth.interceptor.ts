@@ -43,10 +43,12 @@ export class AuthInterceptor implements HttpInterceptor {
       let user = this.currentUserSubject.value;
       let token = user.token
 
-     if (!request.url.includes('/api/aldeas/GuardarProyectoArchivo/')) {
-      
+      if (!request.url.includes('/api/aldeas/GuardarProyectoArchivo/')) {
+
 
         request = this.addToken(request, token);
+      } else {
+        request = this.addTokenExcel(request, token);
       }
     }
 
@@ -63,10 +65,10 @@ export class AuthInterceptor implements HttpInterceptor {
             this.Service.logout();
           }
           this.Service.cerrarModal();
-         
-            return throwError(Error);
 
-          
+          return throwError(Error);
+
+
         }));
   }
   private addToken(request: HttpRequest<any>, token: string) {
@@ -84,7 +86,7 @@ export class AuthInterceptor implements HttpInterceptor {
   private addTokenExcel(request: HttpRequest<any>, token: string) {
     const headers = new HttpHeaders({
       'Authorization': token,
-    
+
     });
     return request.clone({
       headers,

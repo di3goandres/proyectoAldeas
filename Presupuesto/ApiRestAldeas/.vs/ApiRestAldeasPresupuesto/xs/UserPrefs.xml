@@ -1,18 +1,19 @@
 ﻿<Properties StartupConfiguration="{20022DE9-45FB-4E8D-83F1-20270DE6A102}|ApiRestAldeas">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Helper/PresupuestoAnioOperations.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Startup.cs">
     <Files>
       <File FileName="Helper/GestionPresupuestoOperations.cs" Line="134" Column="60" IsPinned="True" />
-      <File FileName="Controllers/GestionPresupuestoController.cs" Line="45" Column="46" />
-      <File FileName="Repositories/GestionPresupuesto/DataGestionPresupuesto.cs" Line="50" Column="53" />
+      <File FileName="Controllers/GestionPresupuestoController.cs" />
+      <File FileName="Repositories/GestionPresupuesto/DataGestionPresupuesto.cs" />
       <File FileName="Repositories/GestionPresupuesto/IDataGestionPresupuesto.cs" />
       <File FileName="Controllers/PresupuestoAnioController.cs" />
       <File FileName="Repositories/DataModelPresupuesto.cs" />
       <File FileName="Controllers/DatosController.cs" />
       <File FileName="Controllers/PresupuestoController.cs" />
       <File FileName="Repositories/DataModelRepository.cs" />
-      <File FileName="Helper/PresupuestoOperations.cs" Line="312" Column="1" />
+      <File FileName="Helper/PresupuestoOperations.cs" />
       <File FileName="EntityFrame/DbPresupuestoPrograma.cs" />
-      <File FileName="Helper/PresupuestoAnioOperations.cs" Line="268" Column="1" />
+      <File FileName="Helper/PresupuestoAnioOperations.cs" Line="187" Column="111" />
+      <File FileName="Startup.cs" Line="108" Column="12" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -21,13 +22,12 @@
             <Node name="ApiRestAldeasPresupuesto" expanded="True">
               <Node name="Controllers" expanded="True" />
               <Node name="EntityFrame" expanded="True" />
-              <Node name="Helper" expanded="True">
-                <Node name="PresupuestoAnioOperations.cs" selected="True" />
-              </Node>
+              <Node name="Helper" expanded="True" />
               <Node name="Models" expanded="True" />
               <Node name="Repositories" expanded="True">
                 <Node name="GestionPresupuesto" expanded="True" />
               </Node>
+              <Node name="Startup.cs" selected="True" />
             </Node>
           </Node>
         </State>
